@@ -2,29 +2,24 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Jobhunt</title>
+	<title>Jobbers Argentina</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="CreativeLayers">
 
 	<!-- Styles -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css" />
-	<link rel="stylesheet" href="css/icons.css">
-	<link rel="stylesheet" href="css/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
-	<link rel="stylesheet" type="text/css" href="css/chosen.css" />
-	<link rel="stylesheet" type="text/css" href="css/colors/colors.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
+	<link rel="stylesheet" href="local/resources/views/css/icons.css">
+	<link rel="stylesheet" href="local/resources/views/css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
+	<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 	
 </head>
-<body>
-
-<div class="page-loading">
-	<img src="images/loader.gif" alt="" />
-	<span>Skip Loader</span>
-</div>
+<body> 
 
 <div class="theme-layout" id="scrollup">
 	
@@ -843,13 +838,13 @@
 	</div>
 </div><!-- SIGNUP POPUP -->
 
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/modernizr.js" type="text/javascript"></script>
-<script src="js/script.js" type="text/javascript"></script>
-<script src="js/wow.min.js" type="text/javascript"></script>
-<script src="js/slick.min.js" type="text/javascript"></script>
-<script src="js/parallax.js" type="text/javascript"></script>
-<script src="js/select-chosen.js" type="text/javascript"></script>
+<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
+<script src="local/resources/views/js/script.js" type="text/javascript"></script>
+<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
+<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
+<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
+<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
 
 </body>
 </html>
