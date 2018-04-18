@@ -8,3 +8,5 @@ Route::get('inicio', 'con_index@index');
 //Rutas para las empresas.
 
 //Rutas para el administrador del sitio.
+
+Route::get('administrator', 'con_administrator_login@index');
