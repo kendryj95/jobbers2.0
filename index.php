@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -16,9 +17,10 @@
 | into the script here so that we don't have to worry about manual
 | loading any of our classes later on. It feels nice to relax.
 |
- */
+*/
 
-require __DIR__ . '/local/bootstrap/autoload.php';
+require __DIR__.'/local/bootstrap/autoload.php';
+
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights
@@ -29,9 +31,9 @@ require __DIR__ . '/local/bootstrap/autoload.php';
 | will load up this application so that we can run it and send
 | the responses back to the browser and delight our users.
 |
- */
+*/
 
-$app = require_once __DIR__ . '/local/bootstrap/app.php';
+$app = require_once __DIR__.'/local/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +45,9 @@ $app = require_once __DIR__ . '/local/bootstrap/app.php';
 | the client's browser allowing them to enjoy the creative
 | and wonderful application we have prepared for them.
 |
- */
+*/
 
-$kernel = $app->make('Illuminate\Contracts\Http\Kernel');
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
