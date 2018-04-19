@@ -10,3 +10,4 @@ Route::get('inicio', 'con_index@index');
 //Rutas para el administrador del sitio.
 
 Route::get('administrator', 'con_administrator_login@index');
+Route::get('admindashboard', 'con_administrator_dashboard@dashboard');
