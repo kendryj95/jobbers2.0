@@ -54,11 +54,7 @@
 		</div>
 	</section>
 
-	<footer style="position: fixed; bottom: 0;">  
-		<div class="bottom-line">
-			<span>© 2018 Jobbers Argentina todos los derechos reservados.</span> 
-		</div>
-	</footer> 
+	<?php include('local/resources/views/includes/footer_single.php');?>
 </div> 
 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
