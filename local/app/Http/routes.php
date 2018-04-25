@@ -14,6 +14,9 @@ Route::get('detalleoferta', function (){return view('detalle_oferta');});
 
 //Rutas para las empresas.
 
+Route::get('empresa', 'con_empresa_login@login');
+
+
 //Rutas para el administrador del sitio.
 
 Route::get('administrator', 'con_administrator_login@index');
