@@ -3,6 +3,13 @@
 Route::get('/', 'con_index@index');
 Route::get('inicio', 'con_index@index');
 
+Route::get('nosotros', function (){return view('nosotros');});
+Route::get('contacto', function (){return view('contacto');});
+Route::get('fag', function (){return view('faq');});
+Route::get('noticias', function (){return view('noticias');});
+Route::get('detallenoticia', function (){return view('detalle_noticia');});
+Route::get('ofertas', function (){return view('ofertas');});
+Route::get('detalleoferta', function (){return view('detalle_oferta');});
 //Rutas para los candidatos.
 
 //Rutas para las empresas.
