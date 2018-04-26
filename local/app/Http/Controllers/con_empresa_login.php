@@ -17,4 +17,9 @@ class con_empresa_login extends Controller
   {
   	return view('administrator_empresas_ver');
   }
+
+  public function registro_view()
+  {
+  	return view('empresa_registro_view');
+  }
 }
