@@ -20,8 +20,8 @@
 
 </head>
 <body>
-
- <?php include("local/resources/views/includes/menu_top_responsive.php")?>
+ 
+<?php include("local/resources/views/includes/menu_top_responsive.php");?>
 <?php include("local/resources/views/includes/header_con_imagen.php");?>
 
 	<section class="overlape">
