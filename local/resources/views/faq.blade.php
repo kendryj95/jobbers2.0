@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Jobbers Argentina</title>
+	<title>Jobhunt</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -16,46 +16,58 @@
 	<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 	<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
 	<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
-	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
 </head>
-<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-position: center;"> 
-<div class="theme-layout" id="scrollup"> 
-	 
+<body>
+
+
+<!--Header responsive-->
+<?php include("local/resources/views/includes/menu_top_responsive.php")?>
+<?php include("local/resources/views/includes/menu_top.php")?>
+
+
+
 	<section>
-		<div class="block remove-bottom">
+		<div class="block no-padding  gray">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="account-popup-area signin-popup-box static" style="padding: 20px;">
-							<div class="account-popup">
-							<div class="text-center">
-									<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
-							</div> 
-								<span>Administración del Sistema</span>
-								<form style="padding: 10px;">
-									<div class="cfield">
-										<input type="text" placeholder="Correo electrónico" />
-										<i class="la la-user"></i>
-									</div>
-									<div class="cfield">
-										<input type="password" placeholder="********" />
-										<i class="la la-key"></i>
-									</div>
-									 
-									<a href="#" title="">Olvidé mi clave</a>
-									<button type="submit">Entrar</button>
-								</form> 
+						<div class="inner2">
+							<div class="inner-title2">
+								<h3>Preguntas frecuentes</h3>
+								<span>Lo que mas preguntan nuestros Jobbers</span>
 							</div>
-						</div><!-- LOGIN POPUP -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<?php include('local/resources/views/includes/footer_single.php');?>
-</div> 
+	<section>
+		<div class="block ">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="faqs">
+							<div class="faq-box">
+								<h2>Pregunta uno? <i class="la la-minus"></i></h2>
+								<div class="contentbox">
+									<p>Designer at work who don’t have any content for their product yet have the possibility to insert a dummy text into their design to judge on the arrangement of text on their site, on readability or on fonts and sizes. A dummy text is also helpful to present a design without content to a client to show how the text is going to look like without irritating the client by real texts.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+		<?php include("local/resources/views/includes/general_footer.php");?>
+
+</div>
+<?php include("local/resources/views/includes/login_register_modal.php");?>
 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
 <script src="local/resources/views/js/script.js" type="text/javascript"></script>
@@ -69,4 +81,3 @@
 
 </body>
 </html>
-

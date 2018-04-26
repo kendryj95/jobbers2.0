@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 	
 </head>
-<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-position: center;"> 
+<body style="background-image: url('local/resources/views/images/145.jpg'); background-size: cover;background-position: center; height: 100vh"> 
 <div class="theme-layout" id="scrollup"> 
 	 
 	<section>
@@ -30,9 +30,9 @@
 						<div class="account-popup-area signin-popup-box static" style="padding: 20px;">
 							<div class="account-popup">
 							<div class="text-center">
-									<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
+									<img src="local/resources/views/images/logo_d.png" style="width: 200px;">
 							</div> 
-								<span>Administración del Sistema</span>
+								<span>Bienvenido! Inicie sesión para acceder a su panel</span>
 								<form style="padding: 10px;">
 									<div class="cfield">
 										<input type="text" placeholder="Correo electrónico" />
@@ -43,7 +43,14 @@
 										<i class="la la-key"></i>
 									</div>
 									 
-									<a href="#" title="">Olvidé mi clave</a>
+									<div>
+										<div class="pull-left">
+											<a href="#" title="">Olvidé mi clave</a>
+										</div>
+										<div class="pull-right">
+											<a href="empresa/registro" title="">Registrar empresa</a>
+										</div>
+									</div>
 									<button type="submit">Entrar</button>
 								</form> 
 							</div>
@@ -54,7 +61,11 @@
 		</div>
 	</section>
 
-	<?php include('local/resources/views/includes/footer_single.php');?>
+	<footer style="position: fixed; bottom: 0;">  
+		<div class="bottom-line">
+			<span>© 2018 Jobbers Argentina todos los derechos reservados.</span> 
+		</div>
+	</footer> 
 </div> 
 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
