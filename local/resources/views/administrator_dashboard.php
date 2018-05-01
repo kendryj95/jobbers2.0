@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12" >
 						<div class="inner-header" style="height:100px;padding:0px;padding-top: 30px;">
-							<h3 style="font-size: 26px;font-weight: 300;">Daniel Maidana</h3>
+							<h3 style="font-size: 26px;font-weight: 300;"><?php echo session()->get('adm_nombre');?></h3>
 						</div>
 					</div>
 				</div>

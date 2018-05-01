@@ -2,7 +2,7 @@
 	<span class="close-profile"><i class="la la-close"></i></span>
 	<div class="can-detail-s">
 		<div class="cst"><img src="http://placehold.it/145x145" alt="" /></div>
-		<h3>Daniel Maidana</h3>
+		<h3><?php echo session()->get('adm_nombre');?>/h3>
 		<span><i>Administrador</i>
 	</div>
 	<div class="tree_widget-sec"> 

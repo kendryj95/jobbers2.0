@@ -5,7 +5,7 @@
 					<a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
 				</div><!-- Logo -->
 				<div class="my-profiles-sec">
-					<span><img src="http://placehold.it/50x50" alt="" /> Daniel Maidana <i class="la la-bars"></i></span>
+					<span><img src="http://placehold.it/50x50" alt="" /><?php echo session()->get('adm_nombre');?><i class="la la-bars"></i></span>
 				</div>
 				<div class="wishlist-dropsec">
 					<span><i class="la la-heart"></i><strong>3</strong></span>
