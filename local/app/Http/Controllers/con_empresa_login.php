@@ -22,4 +22,9 @@ class con_empresa_login extends Controller
   {
   	return view('empresa_registro_view');
   }
+
+  public function newPost()
+  {
+  	return view('empresa_new_post');
+  }
 }
