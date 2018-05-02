@@ -15,7 +15,7 @@
 				 						<a href="#" title=""><i class="la la-industry"></i>Empresas</a>
 				 						<ul>
 				 							<li onclick='location.href="adminempresas"'><a href="" title="">Ver empresa</a></li>
-				 							<li><a href="#" title="">Nueva empresa</a></li>
+				 							<li onclick='location.href="adminempresanueva"'> <a href="#" title="">Nueva empresa</a></li>
 				 						</ul>
 				 					</li>
 				 					<li class="inner-child">
@@ -25,6 +25,7 @@
 				 							<li><a href="#" title="">Nueva candidato</a></li>
 				 						</ul>
 				 					</li>
+				 					<li><a href="adminmalerinver" title=""><i class="fa fa-briefcase"></i>Mi Maletín</a></li>
 				 					<li class="inner-child">
 				 						<a href="#" title=""><i class="la la-file-text"></i>Noticias</a>
 				 						<ul>
@@ -43,7 +44,7 @@
 				 					</li>
 				 					<li><a href="adminpagos" title=""><i class="la la-money"></i>Pagos</a></li>
 				 					<li><a href="adminkardex" title=""><i class="la la-user-secret"></i>Kardex</a></li>
-				 					<li><a href="#" title=""><i class="la la-arrow-left"></i>Salir</a></li>
+				 					<li><a href="admsalir" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 				 				</ul>
 				 			</div>
 				 		</div> 
