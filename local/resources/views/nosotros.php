@@ -24,7 +24,7 @@
 
 <!--Header responsive-->
 <?php include("local/resources/views/includes/menu_top_responsive.php")?>
-<?php include("local/resources/views/includes/menu_top.php")?>
+<?php include("local/resources/views/includes/menu_top.php");?>
 
 
 
@@ -53,25 +53,42 @@
 					 <div class="about-us">
 						 <div class="row">
 							 <div class="col-lg-12">
-								 <h3>About Job Hunt</h3>
+								 <h3>Nuestra empresa</h3>
 							 </div>
-							 <div class="col-lg-7">
-								 <p>Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect additionally wow absolutely crud meretriciously hastily dalmatian a glowered inset one echidna cassowary some parrot and much as goodness some froze the sullen much connected bat wonderfully on instantaneously eel valiantly petted this along across highhandedly much. </p>
-								 <p>Repeatedly dreamed alas opossum but dramatically despite expeditiously that jeepers loosely yikes that as or eel underneath kept and slept compactly far purred sure abidingly up above fitting to strident wiped set waywardly far the and pangolin horse approving paid chuckled cassowary oh above a much opposite far much hypnotically more therefore wasp less that hey apart well like while superbly orca and far hence one.Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy.</p>
+							 <div class="col-lg-7" style="text-align: justify;">
+								<p>
+								<strong>Somos Jobbers!</strong>
+
+								Brindamos herramientas, ante las problemáticas sociales y culturales, para dar solución a los desencuentros entre postulantes y empresas, reduciendo tiempos y costos de empleabilidad.</p>
+
+								<p><strong>¿Quiénes Somos?</strong>
+
+								Somos un equipo de profesionales con vocación de trabajo hacia la comunidad. Nos enfocamos en brindar herramientas digitales para dar soluciones concretas e inteligentes.</p>
+
+								<p><strong>¿Quiénes Somos?</strong>
+
+								Nuestra misión es lograr que personas y empresas tengan a su alcance la mejor forma de encontrarse. Trabajamos a través del campo virtual y personal para mejorar los procedimientos, tiempos y calidad en los reclutamientos, tanto en los ofrecimientos como en la demanda de trabajo.</p>
+
+								<p><strong>¿Quiénes Somos?</strong>
+
+								Mediante nuestras propias investigaciones, con aliados en reclutamiento y desarrollo en todo el mundo, buscamos ser la red de empleo y educación laboral con impacto social más grande de Argentina.</p>
+
+								<p>Los valores del equipo Jobbers:</p>
+
+						 
+									<p style="margin-top: -10px;">- Mucha energía</p>
+									<p style="margin-top: -20px;">- Inteligencia emocional</p>
+									<p style="margin-top: -20px;">- Credibilidad</p>
+									<p style="margin-top: -20px;">- Mirada hacia el futuro</p>
+									<p style="margin-top: -20px;">- Creatividad sin límites</p>
+									<p style="margin-top: -20px;">- Respeto mutuo</p>
+								 
+
 							 </div>
 							 <div class="col-lg-5">
-								 <img src="http://placehold.it/432x280" alt="">
-							 </div>
-							 <div class="col-lg-12">
-								 <p>Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect additionally wow absolutely crud meretriciously hastily dalmatian a glowered inset one echidna cassowary some parrot and much as goodness some froze the sullen much connected bat wonderfully on instantaneously eel valiantly petted this along across highhandedly much. </p>
-								 <p>Repeatedly dreamed alas opossum but dramatically despite expeditiously that jeepers loosely yikes that as or eel underneath kept and slept compactly far purred sure abidingly up above fitting to strident wiped set waywardly far the and pangolin horse approving paid chuckled cassowary oh above a much opposite far much hypnotically more therefore wasp less that hey apart well like while superbly orca and far hence one.Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy.</p>
-							 </div>
-						 </div>
-						 <!--<div class="tags-share">
-							 <div class="share-bar">
-								 <a href="#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="share-google"><i class="la la-google"></i></a><span>Share</span>
-							 </div>
-						 </div>-->
+								 <img src="local/resources/views/images/daniel.png" style="width: 432px;border-radius: 15px;" alt="">
+							 </div> 
+						 </div> 
 					 </div>
 				 </div>
 				</div>

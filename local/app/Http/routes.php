@@ -4,9 +4,9 @@ Route::get('/', 'con_index@index');
 Route::get('inicio', 'con_index@index');
 
 Route::get('nosotros', function (){return view('nosotros');});
-Route::get('contacto', function (){return view('contacto');});
-Route::get('fag', function (){return view('faq');});
+Route::get('contacto', function (){return view('contacto');}); 
 Route::get('noticias', function (){return view('noticias');});
+Route::get('fag', 'con_administrator_faq@detalle_preguntas');
 Route::get('detallenoticia', function (){return view('detalle_noticia');});
 Route::get('ofertas', function (){return view('ofertas');});
 Route::get('detalleoferta', function (){return view('detalle_oferta');});
@@ -39,6 +39,18 @@ Route::group(['middleware' =>'log_a'], function ()
 	Route::get('admincandidatos', 'con_administrator_candidatos@index');
 	Route::get('adminnoticias', 'con_administrator_noticias@index');
 	Route::get('adminpagos', 'con_pagos@index');
+
+
+	// Preguntas prefrecuentes
+	Route::get('adminfag', 'con_administrator_faq@index');
+	Route::post('adminfaqcrear', 'con_administrator_faq@crear');
+	Route::get('eliminarpre/{id}', 'con_administrator_faq@eliminar');
+	Route::post('actpregunta', 'con_administrator_faq@update');
+
+	Route::get('configuracion', 'con_administrator_configuracion@index');
+	Route::post('adminconfigcrear', 'con_administrator_configuracion@actualizar');
+
+ 
 
 	Route::post('listar_arch', 'con_maletin@listar_arch');
 	Route::post('actarch', 'con_maletin@alias');//Actualiza los alias
