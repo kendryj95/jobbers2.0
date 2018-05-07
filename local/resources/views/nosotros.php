@@ -20,10 +20,9 @@
 
 </head>
 <body>
-
-
+ 
 <!--Header responsive-->
-<?php include("local/resources/views/includes/menu_top_responsive.php")?>
+<?php include("local/resources/views/includes/menu_top_responsive.php");?>
 <?php include("local/resources/views/includes/menu_top.php");?>
 
 

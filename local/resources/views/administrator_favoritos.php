@@ -56,21 +56,25 @@
 						 				</tr>
 						 			</thead>
 						 			<tbody>
-						 				<tr>
+						 				<?php 
+						 				foreach ($datos as $key ) {
+						 					echo '<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Test Title</a></h3>
-						 							<span>Search Keywords: 2, 60, Crawley RH10 8XH, United Kingdom</span>
+						 							<h3><a href="'.$key->url.'" title="">'.$key->titulo.'</a></h3>
+						 							<span>'.$key->descripcion.'</span>
 						 						</div>
 						 					</td>
 						 					<td>
 						 						<ul class="action_job">
-						 						<li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 						<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li> 
+						 						<li><span>Ver</span><a href="'.$key->url.'" title=""><i class="la la-eye"></i></a></li>
+						 						<li><span>Eliminar</span><a href="adminfavoritosdel/'.$key->id.'" title=""><i class="la la-trash-o"></i></a></li> 
 						 						</ul> 
-						 						<span>Oferta laboral</span>
+						 						<span>'.$key->decrip.'</span>
 						 					</td>
-						 				</tr>
+						 				</tr>';
+						 				}
+						 				?>
 						 			 
 						 			</tbody>
 						 		</table>

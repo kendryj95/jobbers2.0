@@ -113,8 +113,7 @@
 		</div>
 	</section> 
 	<?php include("local/resources/views/includes/modales/administrator_faq.php");?>
-</div>
-
+</div> 
 <?php include("local/resources/views/includes/aside_right_administrator.php");?>
  
 

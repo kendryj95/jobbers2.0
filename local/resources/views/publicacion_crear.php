@@ -49,12 +49,16 @@
                 </div>
                 <div class="modal-body " style="padding: 0px;overflow-y: scroll;overflow-x: hidden;">
                     
-                   <div class="row">
+                  <div class="row">
                        <?php 
-                       foreach ($datos as $key) {
-                     
+                       foreach ($imagen as $key) {
+                            $imagen="0.jpg";
+                            if(!$key->nombre_aleatorio=="")
+                            {
+                                $imagen=$key->nombre_aleatorio;
+                            }
                             echo ' <div class="col-sm-3 text-center" style="padding-top: 25px;">
-                            <a href="#"> <img onClick="set_imagen('.$key->id.','."'$key->nombre_aleatorio'".')" src="uploads/'.$key->nombre_aleatorio.'" data-dismiss="modal" style="max-width: 200px;max-height: 200px;"> </a>
+                            <a href="#"> <img onClick="set_imagen('.$key->id.','."'$key->nombre_aleatorio'".')" src="uploads/'.$imagen.'" data-dismiss="modal" style="max-width: 200px;max-height: 200px;"> </a>
                                 
                         </div> ';
                         }
@@ -107,7 +111,7 @@
                                     <div class="col-lg-9 column">
                                         <div class="">
                                             <div class="profile-title">
-                                                <h3>Nueva empresa</h3>
+                                                <h3>Nueva publicación</h3>
                                             </div>
                                             <div class="text-center">
                                                 <span class="round"><a href="#" data-toggle="modal" data-target="#modal_imagenes"><img id="imagen_de_perfil" class="img-circle" src="local/resources/views/images/seleccionar.jpg" style="border-radius: 50%;margin-top: 30px;height: 140px; width: 140px;"></a></span>
@@ -116,103 +120,127 @@
                                             </div>
                                             <hr>
                                             <div class="profile-form-edit">
-                                                <form action="adminempresaagregar" method="POST">
+                                                <form action="publiacionescreg" method="POST">
                                                     <input value="" name="input_imagen" id="input_imagen" type="hidden" name="">
                                                     <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                                     <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <span class="pf-title">Nombre de empresa</span>
-                                                            <div class="pf-field">
-                                                                <input name="nombre_empresa" type="text" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <span class="pf-title">Nombre del responsable</span>
-                                                            <div class="pf-field">
-                                                                <input name="nombre_responsable" type="text" placeholder="">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-6">
-                                                            <span class="pf-title">Sector de la empresa</span>
+                                                         <div class="col-lg-12">
+                                                            <span class="pf-title">Empresa</span>
                                                            
                                                             <div class="pf-field">
-                                                                <select id="sector" name="sector" data-placeholder="Select Your CV" class="chosen" style="display: none;">
+                                                                <select id="empresa" name="empresa" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="1">Jobbers</option>
+                                                                     
+                                                                </select> 
+                                                    
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <span class="pf-title">Título de publicación</span>
+                                                            <div class="pf-field">
+                                                                <input name="titulo_publicación" type="text" placeholder="Título de la publicación">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <span class="pf-title">Salario</span>
+                                                           
+                                                            <div class="pf-field">
+                                                                <select id="salario" name="salario" data-placeholder="" class="chosen" style="display: none;">
                                                                      <option value="">Seleccionar</option>
-                                                                    <?php foreach($sectores as $key)
-                                                                    {
-                                                                        echo '<option value="'.$key->id.'">'.$key->nombre.'</option>';
-                                                                    } ?>
+                                                                      <?php foreach ($salarios as $key) {
+                                                                         echo'<option value=" '.$key->id.' ">'.$key->salario.'</option>';
+                                                                     }?>
+                                                                </select> 
+                                                    
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <span class="pf-title">Sector</span>
+                                                           
+                                                            <div class="pf-field">
+                                                                <select id="sector" name="sector" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="">Seleccionar</option>
+                                                                      <?php foreach ($sectores as $key) {
+                                                                         echo'<option value=" '.$key->id.' ">'.$key->nombre.'</option>';
+                                                                     }?>
+                                                                </select> 
+                                                    
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <span class="pf-title">Área</span>
+                                                           
+                                                            <div class="pf-field">
+                                                                <select id="area" name="area" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="">Seleccionar</option>
+                                                                      <?php foreach ($areas as $key) {
+                                                                         echo'<option value=" '.$key->id.' ">'.$key->nombre.'</option>';
+                                                                     }?>
                                                                 </select> 
                                                     
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-4">
-                                                            <span class="pf-title">Razón social</span>
+                                                            <span class="pf-title">Disponibilidad</span>
+                                                           
                                                             <div class="pf-field">
-                                                                <input name="razon_social" type="text" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <span class="pf-title">CUIT</span>
-                                                            <div class="pf-field">
-                                                                <input name="cuit" type="text" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <span class="pf-title">Teléfono</span>
-                                                            <div class="pf-field">
-                                                                <input name="telefonos" type="text" placeholder="">
+                                                                <select id="disponibilidad" name="disponibilidad" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="">Seleccionar</option>
+                                                                      <?php foreach ($disponibilidad as $key) {
+                                                                         echo'<option value=" '.$key->id.' ">'.$key->nombre.'</option>';
+                                                                     }?>
+                                                                </select> 
+                                                    
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-4">
-                                                            <span class="pf-title">País</span> 
-                                                            <div class="pf-field">
-                                                                <select id="pais" name="pais" data-placeholder="Select Your CV" class="chosen" style="display: none;">
-                                                                     <option value="">Seleccionar</option>
-                                                                    <?php foreach($paises as $key)
-                                                                    {
-                                                                        echo '<option value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                                    } ?>
-                                                                </select> 
-                                                            </div>
-                                                        </div>
                                                         <div class="col-lg-4">
                                                             <span class="pf-title">Provincia</span>
-                                                             <div class="pf-field">
-                                                                <select onChange="localidades(this.value)" id="provincia" name="provincia" data-placeholder="Provincia" class="chosen" style="display: none;">
-                                                                    <option value="">Seleccionar</option>
-                                                                    <?php foreach($provincias as $key)
-                                                                    {
-                                                                        echo '<option value="'.$key->id.'">'.$key->provincia.'</option>';
-                                                                    } ?>
+                                                           
+                                                            <div class="pf-field">
+                                                                <select id="provincia" name="provincia" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="">Seleccionar</option>
+                                                                        <?php foreach ($provincia as $key) {
+                                                                         echo'<option value=" '.$key->id.' ">'.$key->provincia.'</option>';
+                                                                     }?>
                                                                 </select> 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                           <div class="pf-field">
-                                                               <span class="pf-title">Localidad</span>
-                                                             <div class="pf-field">
-                                                                <select id="localidad" name="localidad" data-placeholder="Provincia" class="chosen" style="display: none;">
-                                                                    <option value="">Seleccionar</option>
-                                                                    <?php foreach($localidades as $key)
-                                                                    {
-                                                                        echo '<option class="localidades localidad_'.$key->id_provincia.'" value="'.$key->id.'">'.$key->localidad.'</option>';
-                                                                    } ?>
-                                                                </select> 
-                                                            </div>
+                                                    
                                                             </div>
                                                         </div>
 
-                                                         <div class="col-lg-12">
+                                                        <div class="col-lg-4">
+                                                            <span class="pf-title">Localidad</span>
+                                                           
+                                                            <div class="pf-field">
+                                                                <select id="localidad" name="localidad" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="">Seleccionar</option>
+                                                                        <?php foreach ($localidad as $key) {
+                                                                         echo'<option value=" '.$key->id.' ">'.$key->localidad.'</option>';
+                                                                     }?>
+                                                                </select> 
+                                                    
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <span class="pf-title">Con discapacidad</span>
+                                                           
+                                                            <div class="pf-field">
+                                                                <select id="discapacidad" name="discapacidad" data-placeholder="" class="chosen" style="display: none;">
+                                                                     <option value="">Seleccionar</option>
+                                                                     <option value="NO">No</option>
+                                                                     <option value="SI">Si</option> 
+                                                                </select> 
+                                                    
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-12">
                                                             <span class="pf-title">Dirección</span>
                                                             <div class="pf-field">
-                                                                <input name="direccion" type="text" placeholder="">
+                                                                <input name="direccion" type="text" placeholder="Dirección">
                                                             </div>
                                                         </div>
-
                                                         <div class="col-lg-12">
                                                             <span class="pf-title">Descripción</span>
                                                             <div class="pf-field">
