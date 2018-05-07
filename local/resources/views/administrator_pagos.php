@@ -52,12 +52,12 @@
 						 			<thead>
 						 				<tr>
 						 					<td>Nº Operación</td>
-						 					<td>Descripción</td>
+						 					<td>Cliente</td>
 						 					<td>Fecha de pago</td>
 						 					<td>Medio de pago</td>
 						 					<td>Monto</td>
 						 					<td>Estatus</td>
-						 					<td>Acción</td>
+						 					<td>Productos</td>
 						 				</tr>
 						 			</thead>
 						 			<tbody>
@@ -84,11 +84,7 @@
 						 						<span>Pending</span>
 						 					</td>
 						 					<td>
-						 						<ul class="action_job">
-						 							<li><span>View Job</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 							<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-						 							<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-						 						</ul>
+						 						<span class="status active">Ver productos</span>
 						 					</td>
 						 				</tr>
 						 			</tbody>

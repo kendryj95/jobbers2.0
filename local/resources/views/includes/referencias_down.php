@@ -4,5 +4,4 @@
 
  <script src="local/resources/views/plugins/jBox/Source/jBox.js" type="text/javascript"></script> 
 <script src="local/resources/views/plugins/jBox/Source/plugins/Image/jBox.Image.js" type="text/javascript"></script>
-<script src="local/resources/views/plugins/jBox/Demo/Demo.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="local/resources/views/plugins/jBox/Demo/Demo.js" type="text/javascript"></script> 

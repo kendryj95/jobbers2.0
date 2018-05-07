@@ -15,6 +15,7 @@
       <link rel="stylesheet" type="text/css" href="local/resources/views/plugins/imagen/css/jquery.Jcrop.min.css" />
 
       <link rel="stylesheet" type="text/css" href="http://www.dropzonejs.com/css/dropzone.css?v=1524508426" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style type="text/css">
          .dropzone {
          border: 2px dashed #0087F7;
@@ -31,7 +32,7 @@
          margin-top: 1.4rem;
          }
       </style>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
    </head>
    <body>
       <div class="theme-layout" id="scrollup">
