@@ -77,7 +77,7 @@
 						<li><a href="#" title=""><i class="la la-history"></i> Logout</a></li>
 					</ul>
 				</div>
-				<?php include "local/resources/views/includes/header_empresa.php" ?>
+				<?php include "includes/header_empresa.php" ?>
 			</div>
 		</div>
 	</header>
@@ -104,144 +104,136 @@
 				 	
 				 	<?php include("includes/aside_empresa.php") ?>
 
-				 	<div class="col-lg-9 column">
-				 		<div class="padding-left">
-					 		<div class="profile-title">
-					 			<h3>Publicar nueva oferta de trabajo</h3>
-					 			<div class="steps-sec">
-					 				<div class="step active" id="step1">
-					 					<p><i class="la la-info"></i></p>
-					 					<span>Información</span>
-					 				</div>
-					 				
-					 				<div class="step" id="step2">
-					 					<p><i class="la  la-check-circle"></i></p>
-					 					<span>Listo</span>
-					 				</div>
-					 			</div>
-					 		</div>
-					 		<div class="profile-form-edit" style="margin-bottom: 20px">
-					 			<form>
-					 				<div class="row">
-					 					<div class="col-lg-12">
-					 						<span class="pf-title">Titulo de la oferta</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="Designer" />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<span class="pf-title">Description</span>
-					 						<div class="pf-field">
-					 							<textarea>Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present</textarea>
-					 						</div>
-					 					</div>
-					 					
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Área</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Por favor selecciona el área" class="chosen">
-													<option>Administración, Contabilidad y Finanzas</option>
-													<option>Aduana y Comercio Exterior</option>
-													<option>Abastecimiento y Logística</option>
-													<option>Ingeniería Civil y Construcción</option>
-												</select>
-					 						</div>
-					 					</div>
+				 	 	<div class="col-lg-9 column">
+				 	 		<div class="padding-left">
+				 		 		<div class="manage-jobs-sec">
+				 		 			<h3>Listado de ofertas de trabajo</h3>
+				 		 			<div class="extra-job-info">
+				 			 			<span><i class="la la-clock-o"></i><strong>9</strong> Ofertas publicadas</span>
+				 			 			<span><i class="la la-file-text"></i><strong>20</strong> Postulados en total</span>
+				 			 			<span><i class="la la-users"></i><strong>18</strong> Jobbers Activos</span>
+				 			 		</div>
+				 			 		<table>
+				 			 			<thead>
+				 			 				<tr>
+				 			 					<td>Titulo</td>
+				 			 					<td>Postulados</td>
+				 			 					<td>Creado y Vencido</td>
+				 			 					<td>Status</td>
+				 			 					<td>Acciones</td>
+				 			 				</tr>
+				 			 			</thead>
+				 			 			<tbody>
+				 			 				<tr>
+				 			 					<td>
+				 			 						<div class="table-list-title">
+				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
+				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+				 			 						</div>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="applied-field">3+ Postulado(s)</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span>October 27, 2017</span><br />
+				 			 						<span>April 25, 2011</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="status active">Activo</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<ul class="action_job">
+				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
+				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+				 			 						</ul>
+				 			 					</td>
+				 			 				</tr>
+				 			 				<tr>
+				 			 					<td>
+				 			 						<div class="table-list-title">
+				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
+				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+				 			 						</div>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="applied-field">3+ Postulado(s)</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span>October 27, 2017</span><br />
+				 			 						<span>April 25, 2011</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="status active">Activo</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<ul class="action_job">
+				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
+				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+				 			 						</ul>
+				 			 					</td>
+				 			 				</tr>
+				 			 				<tr>
+				 			 					<td>
+				 			 						<div class="table-list-title">
+				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
+				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+				 			 						</div>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="applied-field">3+ Postulado(s)</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span>October 27, 2017</span><br />
+				 			 						<span>April 25, 2011</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="status">Inactivo</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<ul class="action_job">
+				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
+				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+				 			 						</ul>
+				 			 					</td>
+				 			 				</tr>
+				 			 				<tr>
+				 			 					<td>
+				 			 						<div class="table-list-title">
+				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
+				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+				 			 						</div>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="applied-field">3+ Postulado(s)</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span>October 27, 2017</span><br />
+				 			 						<span>April 25, 2011</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<span class="status active">Activo</span>
+				 			 					</td>
+				 			 					<td>
+				 			 						<ul class="action_job">
+				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
+				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+				 			 						</ul>
+				 			 					</td>
+				 			 				</tr>
 
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Sector</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Por favor selecciona el sector" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
-												</select>
-					 						</div>
-					 					</div>
-
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Salario por ofrecer</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Por favor selecciona el tipo de salario" class="chosen">
-													<option>Salario / Cargar</option>
-													<option>Por Rango</option>
-													<option>A convenir</option>
-												</select>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Planes de estado</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>A</option>
-													<option>B</option>
-													<option>C</option>
-													<option>D</option>
-												</select>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<br>
-					 						<p class="vtchek">
-					 							<input type="checkbox" name="" id="accept">
-					 							<label for="accept">Candidados con discapacidad.</label>
-					 						</p>
-					 					</div>
-
-					 					<div class="col-lg-12">
-					 						<span class="pf-title">Agregar video</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="Link/Url Youtube (Opcional)" />
-					 						</div>
-					 					</div>
-
-					 					<div class="col-lg-12">
-					 						<button type="button" id="post">Publicar</button>
-					 					</div>
-					 					
-
-					 				</div>
-					 			</form>
-					 		</div>
-					 		<!-- <div class="contact-edit">
-					 			<form>
-					 				<div class="row">
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Find On Map</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="Collins Street West, Victoria 8007, Australia." />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-3">
-					 						<span class="pf-title">Latitude</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="41.1589654" />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-3">
-					 						<span class="pf-title">Longitude</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="21.1589654" />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<a href="#" title="" class="srch-lctn">Search Location</a>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<span class="pf-title">Maps</span>
-					 						<div class="pf-map">
-					 							<div id="map_div"></div>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<button type="submit">Next</button>
-					 					</div>
-					 				</div>
-					 			</form>
-					 		</div> -->
-					 	</div>
-					</div>
+				 			 			</tbody>
+				 			 		</table>
+				 		 		</div>
+				 		 	</div>
+				 		</div>
 				 </div>
 			</div>
 		</div>

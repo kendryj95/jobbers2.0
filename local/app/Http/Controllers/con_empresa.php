@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use View;
-class con_empresa_login extends Controller
+class con_empresa extends Controller
 {
     public function login()
     {
@@ -26,5 +26,10 @@ class con_empresa_login extends Controller
   public function newPost()
   {
   	return view('empresa_new_post');
+  }
+
+  public function ofertas()
+  {
+  	return view('empresa_ofertas');
   }
 }

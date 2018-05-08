@@ -14,9 +14,10 @@ Route::get('detalleoferta', function (){return view('detalle_oferta');});
 
 //Rutas para las empresas.
 
-Route::get('empresa', 'con_empresa_login@login');
-Route::get('empresa/registro', 'con_empresa_login@registro_view');
-Route::get('empresa/new_post', 'con_empresa_login@newPost');
+Route::get('empresa', 'con_empresa@login');
+Route::get('empresa/registro', 'con_empresa@registro_view');
+Route::get('empresa/new_post', 'con_empresa@newPost');
+Route::get('empresa/ofertas', 'con_empresa@ofertas');
 
 
 //Rutas para el administrador del sitio.
