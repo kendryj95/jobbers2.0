@@ -6,9 +6,9 @@
 				 				<li><a href="adminfavoritos" title=""><i class="la la-heart"></i>Mis favoritos</a></li>
 				 				<li class="inner-child">
 				 						<a href="#" title=""><i class="la la-file-text"></i>Publicaciones</a>
-				 						<ul>
-				 							<li  onclick='location.href="adminofertas"'><a href="" title="">Ver publicaciones</a></li>
-				 							<li><a href="#" title="">Nueva publicación</a></li> 
+				 						<ul id="ocultar">
+				 							<li  onclick='location.href="publiacionesver"'><a href="" title="">Ver publicaciones</a></li>
+				 							<li onclick='location.href="publiacionescrear"'><a href="#" title="">Nueva publicación</a></li> 
 				 						</ul>
 				 					</li>
 				 					<li class="inner-child">

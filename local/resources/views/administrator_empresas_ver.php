@@ -51,20 +51,28 @@
 					 		</div>
 					 	</div>
 				 		<div class="emply-list-sec">
-				 			<div class="emply-list">
+				 			<?php foreach ($datos as $key) {
+				 				$imagen="0.jpg";
+				 				if(!$key->nombre_aleatorio=="")
+				 				{
+				 					$imagen=$key->nombre_aleatorio;
+				 				}
+				 				echo'<div class="emply-list">
 				 				<div class="emply-list-thumb">
-				 					<a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
+				 					<a href="#" title=""><img src="uploads/'.$imagen.'" alt=""></a>
 				 				</div>
 				 				<div class="emply-list-info">
-				 					<div class="emply-pstn">4 Open Position</div>
-				 					<h3><a href="#" title="">King LLC</a></h3>
-				 					<span>Accountancy, Human Resources</span>
-				 					<h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-				 					<p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
+				 					<div class="emply-pstn"></div>
+				 					<h3><a href="#" title="">'.$key->nombre.'</a></h3>
+				 					<span>'.$key->provincia.', '.$key->localidad.'</span>
+				 					<h6><i class="la la-map-marker"></i>'.$key->descripcion.'</p>
 				 				</div>
-				 			</div><!-- Employe List -->
-				 			 
-				 			<div class="pagination">
+				 			</div>';
+				 			}?>
+
+				 			<!-- Employe List -->
+				 				<!--
+								<div class="pagination">
 								<ul>
 									<li class="prev"><a href=""><i class="la la-long-arrow-left"></i> Anterior</a></li>
 									<li><a href="">1</a></li>
@@ -74,7 +82,9 @@
 									<li><a href="">14</a></li>
 									<li class="next"><a href="">Siguiente <i class="la la-long-arrow-right"></i></a></li>
 								</ul>
-							</div><!-- Pagination -->
+							</div>
+				 				--> 
+				 			<!-- Pagination -->
 				 		</div>
 					</div>
 				 </div>
