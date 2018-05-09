@@ -32,4 +32,9 @@ class con_empresa extends Controller
   {
   	return view('empresa_ofertas');
   }
+
+  public function planes()
+  {
+  	return view('empresa_planes');
+  }
 }

@@ -61,4 +61,9 @@ class con_ofertas extends Controller
     		
     	}
     }
+
+    public function detailOferta()
+    {
+        return view("detail_oferta");
+    }
 }
