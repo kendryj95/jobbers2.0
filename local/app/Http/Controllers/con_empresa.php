@@ -37,4 +37,9 @@ class con_empresa extends Controller
   {
   	return view('empresa_planes');
   }
+
+  public function postulados()
+  {
+  	return view('empresa_postulados');
+  }
 }

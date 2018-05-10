@@ -19,6 +19,7 @@ Route::get('empresa/registro', 'con_empresa@registro_view');
 Route::get('empresa/new_post', 'con_empresa@newPost');
 Route::get('empresa/ofertas', 'con_empresa@ofertas');
 Route::get('empresa/planes', 'con_empresa@planes');
+Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
 
 
 //Rutas para el administrador del sitio.
