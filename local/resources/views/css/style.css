@@ -111,6 +111,27 @@ body {
 button, a, input[type="submit"], input[type="button"] {
     cursor: pointer;
 }
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #141f72;
+    color: #FFF;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    font-family: Open Sans;
+}
+
+.btn-primary:hover {
+    background-color: #d42525;
+    color: #FFF;
+}
+
 w {
     outline: none!important
 }

@@ -8,16 +8,18 @@ Route::get('contacto', function (){return view('contacto');});
 Route::get('noticias', function (){return view('noticias');});
 Route::get('fag', 'con_administrator_faq@detalle_preguntas');
 Route::get('detallenoticia', function (){return view('detalle_noticia');});
-Route::get('empresas', function (){return view('empresas');});
-
-Route::get('ofertas', 'con_ofertas@index');
- 
+Route::get('ofertas', function (){return view('ofertas');});
 Route::get('detalleoferta', function (){return view('detalle_oferta');});
 //Rutas para los candidatos.
 
 //Rutas para las empresas.
 
-Route::get('empresa', 'con_empresa_login@login');
+Route::get('empresa', 'con_empresa@login');
+Route::get('empresa/registro', 'con_empresa@registro_view');
+Route::get('empresa/new_post', 'con_empresa@newPost');
+Route::get('empresa/ofertas', 'con_empresa@ofertas');
+Route::get('empresa/planes', 'con_empresa@planes');
+Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
 
 
 //Rutas para el administrador del sitio.
@@ -30,8 +32,6 @@ Route::group(['middleware' => 'log_a'], function ()
 	
 	Route::get('admindashboard', 'con_administrator_dashboard@dashboard');
 	Route::get('adminfavoritos', 'con_administrator_favoritos@index');
-	Route::get('adminfavoritosdel/{id}', 'con_administrator_favoritos@delete');
-
 	Route::get('adminkardex', 'con_administrator_kardex@index');
 
 	Route::get('adminempresas', 'con_administrator_empresas@index');
@@ -45,10 +45,6 @@ Route::group(['middleware' => 'log_a'], function ()
 	Route::get('adminnoticias', 'con_administrator_noticias@index');
 	Route::get('adminpagos', 'con_pagos@index');
 
-	//Rutas de publiacaciones
-	Route::get('publiacionesver', 'con_publiaciones@index');
-	Route::get('publiacionescrear', 'con_publiaciones@create');
-	Route::post('publiacionescreg', 'con_publiaciones@register');
 
 	// Preguntas prefrecuentes
 	Route::get('adminfag', 'con_administrator_faq@index');

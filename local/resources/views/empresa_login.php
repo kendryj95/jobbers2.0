@@ -48,7 +48,7 @@
 											<a href="#" title="">Olvidé mi clave</a>
 										</div>
 										<div class="pull-right">
-											<a href="#" title="">Registrar empresa</a>
+											<a href="empresa/registro" title="">Registrar empresa</a>
 										</div>
 									</div>
 									<button type="submit">Entrar</button>
