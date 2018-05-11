@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
 </head>
-<body> 
+<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)"> 
 
 <div class="theme-layout" id="scrollup">
 	
@@ -25,7 +25,7 @@
 
 	<section class="overlape" style="padding: 0px;">
 		<div class="block no-padding">
-			<div data-velocity="-.1" style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_daniel.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 			<div class="container fluid" >
 				<div class="row">
 					<div class="col-lg-12" >

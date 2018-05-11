@@ -25,7 +25,7 @@ Route::get('empresa', 'con_empresa_login@login');
 Route::post('admlog', 'con_administrator_login@login');
 Route::get('administrator', 'con_administrator_login@index');
 
-Route::group(['middleware' =>'log_a'], function () 
+Route::group(['middleware' => 'log_a'], function () 
 { 
 	
 	Route::get('admindashboard', 'con_administrator_dashboard@dashboard');

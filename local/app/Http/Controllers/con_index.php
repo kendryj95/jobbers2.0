@@ -2,9 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use view;
+use View;
 use Illuminate\Http\Request;
-
+use DB;
 class con_index extends Controller {
 
 	/**
@@ -14,7 +14,14 @@ class con_index extends Controller {
 	 */
 	public function index()
 	{
-		return view("index");
+		$vista=View::make("index");
+		//$sql="SELECT * ";
+		try {
+			return $vista;
+			//$datos="";
+		} catch (Exception $e) {
+			
+		}
 	}
 
 	/**
