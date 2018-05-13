@@ -28,6 +28,8 @@ Route::get('empresa/new_post', 'con_empresa@newPost');
 Route::get('empresa/ofertas', 'con_empresa@ofertas');
 Route::get('empresa/planes', 'con_empresa@planes');
 Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
+Route::post('empresa/exists', 'con_empresa@exist_empresa'); // Verifica si existe la empresa o no.
+Route::post('empresa/registro_success', 'con_empresa@registro'); // Verifica si existe la empresa o no.
 
 
 //********************************************************//
