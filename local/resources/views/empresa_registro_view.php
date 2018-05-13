@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="CreativeLayers">
+	<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
@@ -45,41 +46,49 @@
 									<span>Bienvenido! Registre sus datos como empresa</span>
 									<form style="padding: 10px;">
 										<div class="cfield">
-											<input type="text" placeholder="Correo electrónico (*)" />
-											<i class="la la-at"></i>
-										</div>
-										<div class="cfield">
-											<input type="text" placeholder="Confirmar Correo electrónico (*)" />
-											<i class="la la-at"></i>
-										</div>
-										<div class="cfield">
-											<input type="password" placeholder="Contraseña (*)" />
-											<i class="la la-key"></i>
-										</div>
-										<div class="cfield">
-											<input type="password" placeholder="Confirmar Contraseña (*)" />
-											<i class="la la-key"></i>
-										</div>
-										<div class="cfield">
-											<input type="text" placeholder="Nombre Responsable (*)" />
+											<input type="text" placeholder="Usuario (*)" id="user" />
 											<i class="la la-user"></i>
 										</div>
 										<div class="cfield">
-											<input type="text" placeholder="Razón Social (*)" />
+											<input type="text" placeholder="Correo electrónico (*)" id="email" />
+											<i class="la la-at"></i>
+										</div>
+										<div class="cfield">
+											<input type="text" placeholder="Confirmar Correo electrónico (*)" id="email_verify" />
+											<i class="la la-at"></i>
+										</div>
+										<div class="cfield">
+											<input type="password" placeholder="Contraseña (*)" id="password" />
+											<i class="la la-key"></i>
+										</div>
+										<div class="cfield">
+											<input type="password" placeholder="Confirmar Contraseña (*)" id="password_verify" />
+											<i class="la la-key"></i>
+										</div>
+										<div class="cfield">
+											<input type="text" placeholder="Nombre Responsable (*)" id="nombre_responsable" />
+											<i class="la la-user"></i>
+										</div>
+										<div class="cfield">
+											<input type="text" placeholder="Nombre de la Empresa (*)" id="nombre_empresa" />
 											<i class="la la-industry"></i>
 										</div>
 										<div class="cfield">
-											<input type="text" placeholder="CUIT (Opcional)" />
+											<input type="text" placeholder="Razón Social (*)" id="razon_social" />
+											<i class="la la-industry"></i>
+										</div>
+										<div class="cfield">
+											<input type="text" placeholder="CUIT (Opcional)" id="cuit" />
 											<i class="la la-slack"></i>
 										</div>
 										<div class="cfield">
-											<input type="text" placeholder="Teléfono (*)" />
+											<input type="text" placeholder="Teléfono (*)" id="telefono" />
 											<i class="la la-phone"></i>
 										</div>
 										 
 										<p class="vtchek">
-											<input type="checkbox" name="" id="accept">
-											<label for="accept">Acepto términos, condiciones y políticas de privacidad.</label>
+											<input type="checkbox" name="" id="accept_term">
+											<label for="accept_term">Acepto términos, condiciones y políticas de privacidad.</label>
 										</p>
 										<button type="button" class="next" data-target="1">Continuar</button>
 									</form> 
@@ -222,6 +231,7 @@
 <script src="../local/resources/views/js/maps2.js" type="text/javascript"></script>
 
 <script>
+	var plan = 1;
 	$(document).ready(function() {
 		
 
@@ -233,12 +243,72 @@
 
 		$('.next').on('click', function(){
 
+					console.log('alsndjasnd');
 			switch($(this).attr('data-target')) {
 
 				case '1':
 
-					$('.back-cont').hide();
-					$('#step2').fadeIn('slow');
+
+					var user = $('#user').val();
+					var email = $('#email').val();
+					var email_verify = $('#email_verify').val();
+					var password = $('#password').val();
+					var password_verify = $('#password_verify').val();
+					var nombre_responsable = $('#nombre_responsable').val();
+					var nombre_empresa = $('#nombre_empresa').val();
+					var razon_social = $('#razon_social').val();
+					var cuit = $('#cuit').val();
+					var telefono = $('#telefono').val();
+
+					if (user != "" && email != "" && email_verify != "" && password != "" && password_verify != "" && nombre_responsable != "" && nombre_empresa != "" && razon_social != "" && telefono != "") {
+						if (isEmail(email)) {
+							if (email.trim().toLowerCase() == email_verify.trim().toLowerCase()) {
+								if (password == password_verify) {
+									if (password.length >= 8 && password.length <= 12) {
+										if ($('#accept_term').is(':checked')) {
+
+											$.ajaxSetup({
+										         headers: {
+										           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+										         }
+											});
+											$.ajax({
+												url: 'exists',
+												type: 'POST',
+												dataType: 'json',
+												data: {email: email},
+												success: function(response){
+													if (response.status == 1) {
+														$('.back-cont').hide();
+														$('#step2').fadeIn('slow');
+													} else {
+														alert("Ya existe una empresa registrada con ese correo electronico.");
+													}
+												},
+												error: function(error){
+													alert("Lo sentimos, ha ocurrido un error en el proceso. Por favor intentelo de nuevo.");
+												}
+											});
+
+										} else {
+											alert("Debes aceptar todos los terminos y condiciones de uso de la plataforma para continuar");
+										}
+									} else {
+										alert("La contraseña solo puede contener entre 8 a 12 caracteres");
+									}
+								} else {
+									alert("Las contraseñas no coinciden");
+								}
+							} else {
+								alert("Los correos electronicos no coinciden");
+							}
+						} else {
+							alert("El email introducido no es un correo electronico válido");
+						}
+					} else {
+						alert("Debes completar los campos obligatorios");
+					}
+
 					break;
 				case '2':
 
@@ -247,7 +317,42 @@
 					break;
 				case '3':
 
-					alert('Creado exitosamente');
+						$.ajaxSetup({
+					         headers: {
+					           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					         }
+						});
+						$.ajax({
+							url: 'registro_success',
+							type: 'POST',
+							dataType: 'json',
+							data: {
+								user: $('#user').val(),
+								email: $('#email').val(),
+								password: $('#password').val(),
+								nombre_responsable: $('#nombre_responsable').val(),
+								nombre_empresa : $('#nombre_empresa').val(),
+								razon_social : $('#razon_social').val(),
+								cuit: $('#cuit').val(),
+								telefono: $('#telefono').val(),
+								plan: plan
+							},
+							success: function(response){
+								if (response.status == 1) {
+									alert('Empresa registrada satisfactoriamente.');
+
+									setTimeout(function(){
+										window.location.assign("../inicio");
+									}, 3000);
+								} else {
+									alert("Lo sentimos, ha ocurrido un error en el registro. Por favor intentelo de nuevo.");
+								}
+							},
+							error: function(error){
+								alert("Lo sentimos, ha ocurrido un error en el proceso. Por favor intentelo de nuevo.");
+							}
+						});
+					
 					break;
 			}
 
@@ -265,6 +370,12 @@
 		});
 
 	});
+
+
+	function isEmail(email) {
+	  var regex = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/;
+	  return regex.test(email);
+	}
 </script>
 
 </body>
