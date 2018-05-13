@@ -8,11 +8,15 @@ use App\Http\Requests;
 use View;
 class con_empresa extends Controller
 {
-    public function login()
-    {
-    	return view('empresa_login');
-    }
+  public function login()
+  {
+  	return view('empresa_login');
+  }
 
+ public function ver()
+  {
+    return view('empresas_ver');
+  }
   public function index()
   {
   	return view('administrator_empresas_ver');

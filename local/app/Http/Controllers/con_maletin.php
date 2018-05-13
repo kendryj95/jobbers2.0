@@ -12,14 +12,23 @@ use File;
 use DB;
 class con_maletin extends Controller
 {
+    var $ruta="";
+
     public function index()
     {
     	return view("administrator_maletin");
     }
+
+    public function indexcandidato()
+    {
+        return view("candidatos_maletin");
+    }
     
     public function listar_arch()
     {
-    	$sql="SELECT * FROM tbl_archivos WHERE id_usuario = ".session()->get('adm_id')."";
+
+        $identificador=$this->validar_user();
+    	$sql="SELECT * FROM tbl_archivos WHERE id_usuario = ".$identificador."";
     	$datos=DB::select($sql);
     	echo json_encode($datos); 
     }
@@ -31,10 +40,11 @@ class con_maletin extends Controller
     }
 	public function eliminar($id)
     {
-    	$sql="DELETE FROM tbl_archivos WHERE id=".$id." AND id_usuario =".session()->get('adm_id')."" ;
+         $identificador=$this->validar_user();
+    	$sql="DELETE FROM tbl_archivos WHERE id=".$id." AND id_usuario =".$identificador."" ;
     	try {
     		DB::delete($sql);
-    		return  Redirect("adminmalerinver?info=del");
+    		return  Redirect("".$this->ruta."?info=del");
     	} catch (Exception $e) {
     		
     	}
@@ -42,10 +52,11 @@ class con_maletin extends Controller
 
     public function alias()
     {
-    	$sql="UPDATE tbl_archivos SET alias='".$_POST['alias']."' WHERE id=".$_POST['id_alias']." AND id_usuario =".session()->get('adm_id')."" ;
+         $identificador=$this->validar_user();
+    	$sql="UPDATE tbl_archivos SET alias='".$_POST['alias']."' WHERE id=".$_POST['id_alias']." AND id_usuario =".$identificador."" ;
     	try {
     		DB::update($sql);
-    		return  Redirect("adminmalerinver?info=up");
+    		return  Redirect("".$this->ruta."?info=up");
     	} catch (Exception $e) {
     		
     	}
@@ -53,6 +64,7 @@ class con_maletin extends Controller
 
     public function post_upload(){
 
+            $identificador=$this->validar_user();
 			$file = Input::file('file');
 			$destinationPath = 'uploads';
 			// If the uploads fail due to file system, you can try doing public_path().'/uploads' 
@@ -91,7 +103,7 @@ class con_maletin extends Controller
     		}
 
 			$upload_success = Input::file('file')->move($destinationPath, $filename);
-			$sql="INSERT INTO tbl_archivos VALUES (null,".session()->get('adm_id').",'".$original."','".$extension."','','".$filename."','".$tipo_documento."',null);";
+			$sql="INSERT INTO tbl_archivos VALUES (null,".$identificador.",'".$original."','".$extension."','','".$filename."','".$tipo_documento."',null);";
 
 			if( $upload_success ) {
 				try {
@@ -104,5 +116,26 @@ class con_maletin extends Controller
 			}
 	}
 
+    public function validar_user()
+    {
+        $identificador="";
+        if(session()->get('tipo_usuario')==3)
+        {
+            $identificador="admin_id";
+            $this->ruta="adminmalerinver";
+        }
+        else if(session()->get('tipo_usuario')==1)
+        {
+                $identificador="emp_id";
+        }
+
+        else if(session()->get('tipo_usuario')==2)
+        {
+                $this->ruta="candimaletin";
+                $identificador=2;
+        }
+
+        return $identificador;
+    }
 
 }

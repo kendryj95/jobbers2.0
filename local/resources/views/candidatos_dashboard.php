@@ -18,19 +18,19 @@
 <div class="theme-layout" id="scrollup">
 	
 	<!--Header responsive-->
-	<?php include('local/resources/views/includes/header_responsive_administrator.php');?>
-	<?php include('local/resources/views/includes/header_administrator.php');?>
+	<?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
+	<?php include('local/resources/views/includes/header_candidatos.php');?>
 	<!--fin Header responsive-->
 	
 
 	<section class="overlape" style="padding: 0px;">
 		<div class="block no-padding">
-			<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_daniel.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_candidato_dash.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 			<div class="container fluid" >
 				<div class="row">
 					<div class="col-lg-12" >
 						<div class="inner-header" style="height:100px;padding:0px;padding-top: 30px;">
-							<h3 style="font-size: 26px;font-weight: 300;"><?php echo session()->get('adm_nombre');?></h3>
+							<h3 style="font-size: 26px;font-weight: 300;"><?php ?></h3>
 						</div>
 					</div>
 				</div>
@@ -38,110 +38,110 @@
 		</div>
 	</section>
 
-	<section>
+	<section style="margin-bottom: 20px;">
 		<div class="block no-padding">
 			<div class="container">
 				 <div class="row no-gape">
-				 	<?php include('local/resources/views/includes/aside_administrator.php');?>
+				 	<?php include('local/resources/views/includes/aside_candidatos.php');?>
 
-				 	<div class="col-lg-9 column">
+				 	 <div class="col-lg-9 column" >
 				 		<div class="padding-left">
-					 		 <div class="manage-jobs-sec addscroll">
-					 			<h3>Resumen</h3>
-					 			<div class="extra-job-info">
-						 			<span><i class="la la-stethoscope"></i><strong>9</strong> Trabajos</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong> Noticias</span>
-						 			<span><i class="la la la-support"></i><strong>18</strong> Soporte</span>
-						 			<span ><i class="la la-industry"></i><strong><?php echo $datos_canidad_registros[0]->cantidad;?></strong>Empresas</span>
-						 			<span style="color: #095b03;font-weight: 700;"><i class="la la-industry"></i><strong><?php echo $datos_canidad_nuevos_registros[0]->cantidad;?></strong>Empresas (+)</span>
-						 			<span style="color: #9b001f;font-weight: 700;"><i class="la la-industry"></i><strong>20</strong> Empresas (-)</span>
-						 			<span><i class="la la-users"></i><strong><?php echo $datos_canidad_registros[1]->cantidad;?></strong>Candidatos</span>
-						 			<span style="color: #095b03;font-weight: 700;"><i class="la la-users"></i><strong><?php echo $datos_canidad_nuevos_registros[0]->cantidad;?></strong>Candidatos (+)</span>
-						 			<span style="color: #9b001f;font-weight: 700;"><i class="la la-users"></i><strong>20</strong> Candidatos (-)</span> 
-						 		</div>
-						 		<!--Top empresa-->
-						 		<h3>Top empresas</h3>
-						 		<table>
-						 			<thead>
-						 				<tr>
-						 					<td>Empresa</td>
-						 					<td>Publicaciones activas</td>
-						 					<td>Publicaciones bloquedas</td>
-						 					<td>Reputación</td>
-						 					<td>Action</td>
-						 				</tr>
-						 			</thead>
-						 			<tbody> 
-						 				<tr>
-						 					<td>
-						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						 							<span><i class="la la-map-marker"></i>Dirección /</span> 
-						 							<span><i class=""></i>Área</span>
-						 						</div>
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">+3 Applied</span><br>
-						 						
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">-3 Applied</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">5</span>
-						 					</td>
-						 					<td>
-						 						<ul class="action_job">
-						 							<li><span>Ver empresa</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 						</ul>
-						 					</td>
-						 				</tr> 
-						 			</tbody>
-						 		</table>
-						 		<!--Fin Top empresa-->
+					 		<div class="manage-jobs-sec">
+					 			<h3>Mi panel</h3>
+						 		<div class="cat-sec">
+									<div class="row no-gape">
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="#" title="">
+													<i class="la la-briefcase"></i>
+													<span>Postulaciones</span>
+													<p>14 Postulaciones</p>
+												</a>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category view-resume-list">
+												<a href="#" title="">
+													<i class="la la-eye"></i>
+													<span>Perfil público</span>
+													<p>22 Vistos</p>
+												</a>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="#" title="">
+													<i class="la la-file-text "></i>
+													<span>Mi CV</span>
+													<p>&nbsp;</p>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="cat-sec">
+									<div class="row no-gape">
+										
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category follow-companies-popup">
+												<a href="#" title="">
+													<i class="la la-user"></i>
+													<span>Empresa Seguidas</span>
+													<p>56 Empresas</p>
+												</a>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="#" title="">
+													<i class="la la-file"></i>
+													<span>Mi perfil</span>
+													<p>Ver Perfil</p>
+												</a>
+											</div>
+										</div>
 
-						 		<!--Top candidatos-->
-						 		<h3 style="margin-top:-25px;">Top candidatos</h3>
-						 		<table>
-						 			<thead>
-						 				<tr>
-						 					<td>Nombre</td>
-						 					<td>Postulaciones</td>
-						 					<td>Reputación</td>
-						 					<td>Puntos</td>
-						 					<td>Action</td>
-						 				</tr>
-						 			</thead>
-						 			<tbody> 
-						 				<tr>
-						 					<td>
-						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Victor Fernandez</a></h3>
-						 							<span><i class="la la-map-marker"></i>Dirección /</span> 
-						 							<span><i class=""></i>Área estudio</span>
-						 						</div>
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">+3 Applied</span><br>
-						 						
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">3.5</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">5</span>
-						 					</td>
-						 					<td>
-						 						<ul class="action_job">
-						 							<li><span>Ver Jobbers</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 						</ul>
-						 					</td>
-						 				</tr> 
-						 			</tbody>
-						 		</table>
-						 		<!--Fin Top candidatos-->
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="candifavoritos" title="">
+													<i class="la la-heart"></i>
+													<span>Favoritos</span>
+													<p>5 Favoritos</p>
+												</a>
+											</div>
+										</div>
 
-						 		 
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="#" title="">
+													<i class="la la-support"></i>
+													<span>Soporte</span>
+													<p>&nbsp;</p>
+												</a>
+											</div>
+										</div>
+
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="#" title="">
+													<i class="la la-cart-arrow-down"></i>
+													<span>Tienda Jobbers</span>
+													<p>&nbsp;</p>
+												</a>
+											</div>
+										</div>
+
+										<div class="col-lg-4 col-md-4 col-sm-12">
+											<div class="p-category">
+												<a href="#" title="">
+													<i class="la la-check"></i>
+													<span>Recomendaciones</span>
+													<p>5 Recomendaciones</p>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
 					 		</div>
 					 	</div>
 					</div>
@@ -263,8 +263,9 @@
 			</li>
 		</ul>		
 	</div>
+	
 </div>
-
+<?php include("local/resources/views/includes/general_footer.php");?>
 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
 <script src="local/resources/views/js/script.js" type="text/javascript"></script>

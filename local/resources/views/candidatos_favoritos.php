@@ -13,24 +13,24 @@
 	<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
 </head>
-<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)"> 
+<body> 
 
 <div class="theme-layout" id="scrollup">
 	
 	<!--Header responsive-->
-	<?php include('local/resources/views/includes/header_responsive_administrator.php');?>
-	<?php include('local/resources/views/includes/header_administrator.php');?>
+	<?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
+	<?php include('local/resources/views/includes/header_candidatos.php');?>
 	<!--fin Header responsive-->
 	
 
 	<section class="overlape" style="padding: 0px;">
 		<div class="block no-padding">
-			<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_daniel.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div data-velocity="-.1" style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 			<div class="container fluid" >
 				<div class="row">
 					<div class="col-lg-12" >
 						<div class="inner-header" style="height:100px;padding:0px;padding-top: 30px;">
-							<h3 style="font-size: 26px;font-weight: 300;"><?php echo session()->get('adm_nombre');?></h3>
+							<h3 style="font-size: 26px;font-weight: 300;">Daniel Maidana</h3>
 						</div>
 					</div>
 				</div>
@@ -38,110 +38,46 @@
 		</div>
 	</section>
 
-	<section>
+	<section >
 		<div class="block no-padding">
 			<div class="container">
 				 <div class="row no-gape">
-				 	<?php include('local/resources/views/includes/aside_administrator.php');?>
+				 	<?php include('local/resources/views/includes/aside_candidatos.php');?>
 
-				 	<div class="col-lg-9 column">
+				 	<div class="col-lg-9 column" >
 				 		<div class="padding-left">
-					 		 <div class="manage-jobs-sec addscroll">
-					 			<h3>Resumen</h3>
-					 			<div class="extra-job-info">
-						 			<span><i class="la la-stethoscope"></i><strong>9</strong> Trabajos</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong> Noticias</span>
-						 			<span><i class="la la la-support"></i><strong>18</strong> Soporte</span>
-						 			<span ><i class="la la-industry"></i><strong><?php echo $datos_canidad_registros[0]->cantidad;?></strong>Empresas</span>
-						 			<span style="color: #095b03;font-weight: 700;"><i class="la la-industry"></i><strong><?php echo $datos_canidad_nuevos_registros[0]->cantidad;?></strong>Empresas (+)</span>
-						 			<span style="color: #9b001f;font-weight: 700;"><i class="la la-industry"></i><strong>20</strong> Empresas (-)</span>
-						 			<span><i class="la la-users"></i><strong><?php echo $datos_canidad_registros[1]->cantidad;?></strong>Candidatos</span>
-						 			<span style="color: #095b03;font-weight: 700;"><i class="la la-users"></i><strong><?php echo $datos_canidad_nuevos_registros[0]->cantidad;?></strong>Candidatos (+)</span>
-						 			<span style="color: #9b001f;font-weight: 700;"><i class="la la-users"></i><strong>20</strong> Candidatos (-)</span> 
-						 		</div>
-						 		<!--Top empresa-->
-						 		<h3>Top empresas</h3>
-						 		<table>
+					 		  <div class="manage-jobs-sec addscroll">
+					 			<h3>Mis favoritos</h3>
+						 		<table class="alrt-table">
 						 			<thead>
 						 				<tr>
-						 					<td>Empresa</td>
-						 					<td>Publicaciones activas</td>
-						 					<td>Publicaciones bloquedas</td>
-						 					<td>Reputación</td>
-						 					<td>Action</td>
+						 					<td>Detalle</td>
+						 					<td class="text-right"></td>
 						 				</tr>
 						 			</thead>
-						 			<tbody> 
-						 				<tr>
+						 			<tbody>
+						 				<?php 
+						 				/*foreach ($datos as $key ) {
+						 					echo '<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						 							<span><i class="la la-map-marker"></i>Dirección /</span> 
-						 							<span><i class=""></i>Área</span>
+						 							<h3><a href="'.$key->url.'" title="">'.$key->titulo.'</a></h3>
+						 							<span>'.$key->descripcion.'</span>
 						 						</div>
 						 					</td>
 						 					<td>
-						 						<span class="applied-field">+3 Applied</span><br>
-						 						
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">-3 Applied</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">5</span>
-						 					</td>
-						 					<td>
 						 						<ul class="action_job">
-						 							<li><span>Ver empresa</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 						</ul>
+						 						<li><span>Ver</span><a href="'.$key->url.'" title=""><i class="la la-eye"></i></a></li>
+						 						<li><span>Eliminar</span><a href="adminfavoritosdel/'.$key->id.'" title=""><i class="la la-trash-o"></i></a></li> 
+						 						</ul> 
+						 						<span>'.$key->decrip.'</span>
 						 					</td>
-						 				</tr> 
+						 				</tr>';
+						 				}*/
+						 				?>
+						 			 
 						 			</tbody>
 						 		</table>
-						 		<!--Fin Top empresa-->
-
-						 		<!--Top candidatos-->
-						 		<h3 style="margin-top:-25px;">Top candidatos</h3>
-						 		<table>
-						 			<thead>
-						 				<tr>
-						 					<td>Nombre</td>
-						 					<td>Postulaciones</td>
-						 					<td>Reputación</td>
-						 					<td>Puntos</td>
-						 					<td>Action</td>
-						 				</tr>
-						 			</thead>
-						 			<tbody> 
-						 				<tr>
-						 					<td>
-						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Victor Fernandez</a></h3>
-						 							<span><i class="la la-map-marker"></i>Dirección /</span> 
-						 							<span><i class=""></i>Área estudio</span>
-						 						</div>
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">+3 Applied</span><br>
-						 						
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">3.5</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">5</span>
-						 					</td>
-						 					<td>
-						 						<ul class="action_job">
-						 							<li><span>Ver Jobbers</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 						</ul>
-						 					</td>
-						 				</tr> 
-						 			</tbody>
-						 		</table>
-						 		<!--Fin Top candidatos-->
-
-						 		 
 					 		</div>
 					 	</div>
 					</div>
@@ -262,9 +198,9 @@
 				</div><!-- Job -->	
 			</li>
 		</ul>		
-	</div>
+	</div> 
 </div>
-
+<?php include("local/resources/views/includes/general_footer.php");?>
 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
 <script src="local/resources/views/js/script.js" type="text/javascript"></script>
