@@ -1,26 +1,37 @@
-<?php
-//Rutas generales
+<?php 
+
+//********************************************************//
+//*            RUTAS GENERALES DEL SISTEMA               *//
+//********************************************************//
 Route::get('/', 'con_index@index');
 Route::get('inicio', 'con_index@index');
-
-//Rutas Generales
-
 Route::get('nosotros', function (){return view('nosotros');});
 Route::get('contacto', function (){return view('contacto');}); 
 Route::get('noticias', function (){return view('noticias');});
 Route::get('fag', 'con_administrator_faq@detalle_preguntas');
 Route::get('detallenoticia', function (){return view('detalle_noticia');}); 
 Route::get('ofertas', 'con_ofertas@index');
-Route::get('detalleoferta', function (){return view('detalle_oferta');});
-
+Route::get('detalleoferta/{id}', 'con_ofertas@detalle'); 
+Route::post('loguear', 'con_login@log');
+Route::get('logout', 'con_login@salir');
  
-//Rutas para los candidatos.
+//********************************************************//
+//*                 RUTAS PARA LOS CANDIDATOS            *//
+//********************************************************//
+
+Route::group(['middleware' => 'log_c'], function () 
+{	
 Route::get('candidashboard', 'con_candidato_dashboard@dashboard');
 Route::get('candifavoritos', 'con_candidato_favoritos@index');
 Route::get('candimaletin', 'con_maletin@indexcandidato'); 
 Route::post('listar_arch_candi', 'con_maletin@listar_arch_candi');
-Route::get('candiconfiguracion', 'con_candidatos_configuracion@index');
-//Rutas para las empresas.
+Route::get('candiconfiguracion', 'con_candidatos_configuracion@index'); 
+});
+
+
+//********************************************************//
+//*                RUTAS PARA LAS EMPRESAS               *//
+//********************************************************//
 Route::get('empresas', 'con_empresa@ver');
 Route::get('empresa', 'con_empresa@login');
 Route::get('empresa/registro', 'con_empresa@registro_view');
@@ -33,7 +44,7 @@ Route::post('empresa/registro_success', 'con_empresa@registro'); // Verifica si 
 
 
 //********************************************************//
-//*                                                       *//
+//*       RUTAS PARA EL ADMINISYTRADOR DE SISTEMA        *//
 //********************************************************//
 
 Route::post('admlog', 'con_administrator_login@login');

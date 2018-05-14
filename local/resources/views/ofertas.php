@@ -251,7 +251,7 @@
               <!-- MOdern Job LIst -->
               <div class="job-list-modern">
                 <div class="job-listings-sec">
-
+                  <a href=""></a>
                   <?php foreach($publicaciones as $key)
                   {
                     $estado="Activa";
@@ -262,7 +262,7 @@
                             <img src="uploads/'.$key->imagen.'" alt="" style="max-width: 98px;"> 
                           </div>
                           <h3>
-                            <a href="#" title="">'.$key->titulo.'
+                            <a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'
                             </a>
                           </h3>
                           <span>'.$key->nombre.'

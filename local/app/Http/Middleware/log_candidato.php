@@ -15,6 +15,10 @@ class log_candidato
      */
     public function handle($request, Closure $next)
     {
+         if ($request->session()->get('candidato')==null)
+        {
+            return redirect('inicio');            
+        } else 
         return $next($request);
     }
 }

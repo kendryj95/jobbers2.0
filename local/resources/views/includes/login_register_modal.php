@@ -2,13 +2,14 @@
 	<div class="account-popup">
 		<span class="close-popup"><i class="la la-close"></i></span>
 		<h3>Login de usuarios</h3> 
-		<form>
+		<form action="loguear" method="POST">
 			<div class="cfield">
-				<input type="text" placeholder="Correo" />
+				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
+				<input type="text" placeholder="Correo" name="correo" />
 				<i class="la la-user"></i>
 			</div>
 			<div class="cfield">
-				<input type="password" placeholder="********" />
+				<input type="password" placeholder="********" name="pass" />
 				<i class="la la-key"></i>
 			</div>
 			<p class="remember-label"> 

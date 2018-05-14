@@ -10,10 +10,12 @@ use DB;
 use Redirect;
 class con_publiaciones extends Controller
 {
+
+    
     public function index()
     {
     	$vista=View::make("administrator_publicacion_ver");
-    	$sql="SELECT t1.direccion, t1.id, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp  FROM tbl_publicacion t1
+    	$sql="SELECT  t1.direccion, t1.id, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp  FROM tbl_publicacion t1
 			LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
 			LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
 			LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
@@ -23,10 +25,11 @@ class con_publiaciones extends Controller
 			LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
 			GROUP BY t1.id
 			";
-
+         
 		try {
 			$datos=DB::select($sql);
 			$vista->datos=$datos;
+           
 			return $vista;
 		} catch (Exception $e) {
 			

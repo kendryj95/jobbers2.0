@@ -17,7 +17,7 @@
 				 					<li><a href="candiconfiguracion" title=""><i class="la la-gear"></i>Configuración</a></li>
 				 					 
 				 					<!--<li><a href="#" title=""><i class="la la-money"></i>Pagos</a></li> -->
-				 					<li><a href="#" title=""><i class="la la-arrow-left"></i>Salir</a></li>
+				 					<li><a href="logout" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 				 				</ul>
 				 			</div>
 				 		</div> 
