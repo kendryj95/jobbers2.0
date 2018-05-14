@@ -7,9 +7,22 @@
 				 				<li  >
 				 						<a href="ofertas" title=""><i class="la la-file-text"></i>Ofertas</a> 
 				 					</li>
+
 				 					<li >
 				 						<a href="empresas" title=""><i class="la la-industry"></i>Empresas</a> 
 				 					</li> 
+				 					 <li >
+				 						<a href="#" title=""><i class="la la-industry"></i>Postulaciones</a> 
+				 					</li>
+				 					<li >
+				 						<a href="#" title=""><i class="la la-industry"></i>Perfil Público</a> 
+				 					</li>
+				 					<li >
+				 						<a href="#" title=""><i class="la la-industry"></i>Curriculum</a> 
+				 					</li>
+				 					<li >
+				 						<a href="#" title=""><i class="la la-industry"></i>Empresas Seguidas</a> 
+				 					</li>
 				 					<li><a href="candimaletin" title=""><i class="fa fa-briefcase"></i>Mi Maletín</a></li> 
 				 					<li >
 				 						<a href="noticias" title=""><i class="la la-file-text"></i>Noticias</a> 

@@ -85,12 +85,12 @@ class con_ofertas extends Controller
                 FROM tbl_publicacion 
                 WHERE id_empresa= ".$datos[0]->id_empresa." and estatus = 1 GROUP by id_empresa"; 
 
-                $sql_vistas="
+                /*$sql_vistas="
                 SELECT count(*) as cantidad FROM tbl_vistos WHERE id_usuario = ".$datos[0]->id_empresa." AND id_tipo_visto = 1
                 GROUP by id_usuario";  
                 $vistas=DB::select($sql_vistas); 
                 
-                $vista->vistas=$vistas;
+                $vista->vistas=$vistas;*/
                 $sql_cantidad_ofertas="
                 SELECT count(*) as cantidad 
                 FROM tbl_publicacion 

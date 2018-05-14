@@ -107,7 +107,7 @@
 							 			<div class="job-overview">
 								 			<h3>Información de empresa</h3>
 								 			<ul>
-								 				<li><i class="la la-eye"></i><h3>Vistas </h3><span><?php echo $vistas[0]->cantidad;?></span></li>
+								 				<li><i class="la la-eye"></i><h3>Vistas </h3><span> </span></li>
 								 				<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
 								 				<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->dir_empresa;?></span></li>
 								 				<!--
