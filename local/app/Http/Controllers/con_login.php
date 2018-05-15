@@ -11,7 +11,7 @@ class con_login extends Controller
 {
     public function log(Request $request)
     {
-    	$sql="SELECT *,count(id) as cantidad FROM tbl_usuarios WHERE correo='".$_POST['correo']."' AND '".$_POST['pass']."'";
+    	$sql="SELECT *,count(id) as cantidad FROM tbl_usuarios WHERE correo='".$_POST['correo']."' AND clave='".$_POST['pass']."'";
     	try {
     		$datos=DB::select($sql);
     		if($datos[0]->cantidad)
@@ -23,7 +23,7 @@ class con_login extends Controller
     			{	
     				$prefijo="empresa";
     				$sufijo="emp_";
-    				$ruta="";//Ruta del panel de arministracion de empresas
+    				$ruta="empresa/ofertas";//Ruta del panel de arministracion de empresas
     				 
     			}
     			else if($datos[0]->tipo_usuario==2)

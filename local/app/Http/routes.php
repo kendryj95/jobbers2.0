@@ -14,6 +14,8 @@ Route::get('ofertas', 'con_ofertas@index');
 Route::get('detalleoferta/{id}', 'con_ofertas@detalle'); 
 Route::post('loguear', 'con_login@log');
 Route::get('logout', 'con_login@salir');
+Route::get('localidades/{id_provincia}', 'con_gral@getLocalidades');
+Route::get('sectores/{id_area}', 'con_gral@getSectores');
  
 //********************************************************//
 //*                 RUTAS PARA LOS CANDIDATOS            *//
@@ -35,12 +37,17 @@ Route::get('candiconfiguracion', 'con_candidatos_configuracion@index');
 Route::get('empresas', 'con_empresa@ver');
 Route::get('empresa', 'con_empresa@login');
 Route::get('empresa/registro', 'con_empresa@registro_view');
+
+Route::group(['middleware' => 'log_e'], function () 
+{	
 Route::get('empresa/new_post', 'con_empresa@newPost');
 Route::get('empresa/ofertas', 'con_empresa@ofertas');
 Route::get('empresa/planes', 'con_empresa@planes');
 Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
 Route::post('empresa/exists', 'con_empresa@exist_empresa'); // Verifica si existe la empresa o no.
 Route::post('empresa/registro_success', 'con_empresa@registro'); // Verifica si existe la empresa o no.
+Route::post('empresa/registrar_post', 'con_empresa@registerPost');
+});
 
 
 //********************************************************//

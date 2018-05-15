@@ -109,9 +109,9 @@
 				 		 		<div class="manage-jobs-sec">
 				 		 			<h3>Listado de ofertas de trabajo</h3>
 				 		 			<div class="extra-job-info">
-				 			 			<span><i class="la la-clock-o"></i><strong>9</strong> Ofertas publicadas</span>
-				 			 			<span><i class="la la-file-text"></i><strong>20</strong> Postulados en total</span>
-				 			 			<span><i class="la la-users"></i><strong>18</strong> Jobbers Activos</span>
+				 			 			<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
+				 			 			<span><i class="la la-file-text"></i><strong>0</strong> Postulados en total</span>
+				 			 			<span><i class="la la-users"></i><strong>0</strong> Jobbers Activos</span>
 				 			 		</div>
 				 			 		<table>
 				 			 			<thead>
@@ -124,111 +124,33 @@
 				 			 				</tr>
 				 			 			</thead>
 				 			 			<tbody>
+				 			 				<?php foreach ($ofertas as $oferta): ?>
 				 			 				<tr>
 				 			 					<td>
 				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+				 			 							<h3><a href="#" title=""><?= $oferta->titulo ?></a></h3>
+				 			 							<span><i class="la la-map-marker"></i><?= $oferta->ubicacion ?></span>
 				 			 						</div>
 				 			 					</td>
 				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
+				 			 						<a href="candidatos-postulados"><span class="applied-field">0 Postulado(s)</span></a>
 				 			 					</td>
 				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
+				 			 						<span><?= $oferta->fcrea_fvenc ?></span>
 				 			 					</td>
 				 			 					<td>
-				 			 						<span class="status active">Activo</span>
+				 			 						<span class="status active"><?= $oferta->estatus ?></span>
 				 			 					</td>
 				 			 					<td>
 				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+				 			 							<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>" title=""><i class="la la-eye"></i></a></li>
 				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
 				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
 				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
 				 			 						</ul>
 				 			 					</td>
 				 			 				</tr>
-				 			 				<tr>
-				 			 					<td>
-				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-				 			 						</div>
-				 			 					</td>
-				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span class="status active">Activo</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-				 			 						</ul>
-				 			 					</td>
-				 			 				</tr>
-				 			 				<tr>
-				 			 					<td>
-				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-				 			 						</div>
-				 			 					</td>
-				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span class="status">Inactivo</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-				 			 						</ul>
-				 			 					</td>
-				 			 				</tr>
-				 			 				<tr>
-				 			 					<td>
-				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-				 			 						</div>
-				 			 					</td>
-				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span class="status active">Activo</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-				 			 						</ul>
-				 			 					</td>
-				 			 				</tr>
-
+				 			 				<?php endforeach ?>
 				 			 			</tbody>
 				 			 		</table>
 				 		 		</div>

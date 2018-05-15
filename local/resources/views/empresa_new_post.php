@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="CreativeLayers">
+	<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
@@ -121,78 +122,116 @@
 					 			</div>
 					 		</div>
 					 		<div class="profile-form-edit" style="margin-bottom: 20px">
-					 			<form>
+					 			<form id="form_oferta">
 					 				<div class="row">
 					 					<div class="col-lg-12">
-					 						<span class="pf-title">Titulo de la oferta</span>
+					 						<span class="pf-title">Titulo de la oferta <b>*</b></span>
 					 						<div class="pf-field">
-					 							<input type="text" placeholder="Designer" />
+					 							<input type="text" placeholder="Designer" name="titulo" id="titulo" />
 					 						</div>
 					 					</div>
 					 					<div class="col-lg-12">
-					 						<span class="pf-title">Description</span>
+					 						<span class="pf-title">Description <b>*</b></span>
 					 						<div class="pf-field">
-					 							<textarea>Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present</textarea>
+					 							<textarea placeholder="Descripcion de la oferta" name="descripcion" id="descripcion"></textarea>
 					 						</div>
 					 					</div>
 					 					
 					 					<div class="col-lg-6">
-					 						<span class="pf-title">Área</span>
+					 						<span class="pf-title">Área <b>*</b></span>
 					 						<div class="pf-field">
-					 							<select data-placeholder="Por favor selecciona el área" class="chosen">
-													<option>Administración, Contabilidad y Finanzas</option>
-													<option>Aduana y Comercio Exterior</option>
-													<option>Abastecimiento y Logística</option>
-													<option>Ingeniería Civil y Construcción</option>
+					 							<select data-placeholder="Por favor selecciona el área" class="chosen" id="area" name="area" onchange="getSector(this.value)">
+					 								<option value="0">Seleccionar</option>
+													<?php foreach ($areas as $area): ?>
+														<option value="<?= $area->id ?>"><?= $area->area ?></option>
+													<?php endforeach ?>
 												</select>
 					 						</div>
 					 					</div>
 
 					 					<div class="col-lg-6">
-					 						<span class="pf-title">Sector</span>
+					 						<span class="pf-title">Sector <b>*</b></span>
 					 						<div class="pf-field">
-					 							<select data-placeholder="Por favor selecciona el sector" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
+					 							<select data-placeholder="Por favor selecciona el sector" class="chosen" id="sector" name="sector">
+													<option>Seleccionar</option>
 												</select>
 					 						</div>
 					 					</div>
 
 					 					<div class="col-lg-6">
-					 						<span class="pf-title">Salario por ofrecer</span>
+					 						<span class="pf-title">Provincia <b>*</b></span>
 					 						<div class="pf-field">
-					 							<select data-placeholder="Por favor selecciona el tipo de salario" class="chosen">
-													<option>Salario / Cargar</option>
-													<option>Por Rango</option>
-													<option>A convenir</option>
+					 							<select data-placeholder="Por favor selecciona la provincia" class="chosen" id="provincia" onchange="getLocalidad(this.value)" name="provincia">
+													<option value="0">Seleccionar</option>
+													<?php foreach ($provincias as $prov): ?>
+													<option value="<?= $prov->id ?>"><?= $prov->provincia ?></option>
+													<?php endforeach ?>
+													
 												</select>
 					 						</div>
 					 					</div>
+
 					 					<div class="col-lg-6">
-					 						<span class="pf-title">Planes de estado</span>
+					 						<span class="pf-title">Localidad <b>*</b></span>
 					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>A</option>
-													<option>B</option>
-													<option>C</option>
-													<option>D</option>
+					 							<select data-placeholder="Por favor selecciona la localidad" class="chosen" id="localidad" name="localidad">
+													<option>Seleccionar</option>
+												</select>
+					 						</div>
+					 					</div>
+
+					 					<div class="col-lg-12">
+					 						<span class="pf-title">Dirección</span>
+					 						<div class="pf-field">
+					 							<input type="text" placeholder="Dirección de la oferta laboral" name="direccion" id="direccion" />
+					 						</div>
+					 					</div>
+
+					 					<div class="col-lg-4">
+					 						<span class="pf-title">Salario por ofrecer <b>*</b></span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Por favor selecciona el tipo de salario" class="chosen" id="salario" name="salario">
+													<option value="0">Seleccionar</option>
+													<?php foreach ($salarios as $salario): ?>
+													<option value="<?= $salario->id ?>"><?= $salario->salario ?></option>
+													<?php endforeach ?>
+												</select>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-4">
+					 						<span class="pf-title">Planes de estado <b>*</b></span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Por favor selecciona el plan del estado" class="chosen" id="plan" name="plan">
+													<option value="0">Seleccionar</option>
+													<?php foreach ($planes as $plan): ?>
+													<option value="<?= $plan->id ?>"><?= $plan->plan ?></option>
+													<?php endforeach ?>
+												</select>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-4">
+					 						<span class="pf-title">Disponibilidad <b>*</b></span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Por favor la disponibilidad" class="chosen" id="disp" name="disp">
+					 								<option value="0">Seleccionar</option>
+					 								<?php foreach ($disponibilidades as $disp): ?>
+					 								<option value="<?= $disp->id ?>"><?= ucwords(strtolower($disp->nombre)); ?></option>
+					 								<?php endforeach ?>
 												</select>
 					 						</div>
 					 					</div>
 					 					<div class="col-lg-12">
 					 						<br>
 					 						<p class="vtchek">
-					 							<input type="checkbox" name="" id="accept">
-					 							<label for="accept">Candidados con discapacidad.</label>
+					 							<input type="checkbox" name="discapacidad" id="discapacidad">
+					 							<label for="discapacidad">Candidados con discapacidad. <b>*</b></label>
 					 						</p>
 					 					</div>
 
 					 					<div class="col-lg-12">
 					 						<span class="pf-title">Agregar video</span>
 					 						<div class="pf-field">
-					 							<input type="text" placeholder="Link/Url Youtube (Opcional)" />
+					 							<input type="text" placeholder="Link/Url Youtube (Opcional)" id="video" name="video" />
 					 						</div>
 					 					</div>
 
@@ -346,18 +385,151 @@
 <script>
 	$(document).ready(function() {
 		$('#post').on('click', function(){
-			$.notify("Oferta publicada satisfactoriamente.", {
-              className:"success", 
-              globalPosition: "bottom center"
-            });
 
-            $('#step1').removeClass('active');
-            $('#step2').addClass('active');
+			var titulo = $('#titulo').val();
+			var descripcion = $('#descripcion').val();
+			var area = $('#area').val();
+			var sector = $('#sector').val();
+			var provincia = $('#provincia').val();
+			var localidad = $('#localidad').val();
+			var salario = $('#salario').val();
+			var plan = $('#plan').val();
+			var disp = $('#disp').val();
+			var discapacidad = $('#discapacidad').is(':checked') ? 1 : 0;
+
+			if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && plan != 0 && disp != 0) {
+
+				var datos = $('#form_oferta').serialize();
+				
+				$.ajaxSetup({
+			         headers: {
+			           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			         }
+				});
+				$.ajax({
+					url: 'registrar_post',
+					type: 'POST',
+					dataType: 'json',
+					data: datos,
+					beforeSend: function(){
+						$(this).text("Publicando...").prop("disabled", true);
+					},
+					success: function(response){
+
+						if (response.status == 1) {
+							$.notify("Oferta publicada satisfactoriamente.", {
+				              className:"success", 
+				              globalPosition: "bottom center"
+				            });
+
+				            $('#step1').removeClass('active');
+				            $('#step2').addClass('active');
+
+				            $('#form_oferta')[0].reset();
+
+				            setTimeout(function(){
+				            	window.location.assign("ofertas")
+				            }, 3000);
+						} else {
+							$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
+				              className:"error", 
+				              globalPosition: "bottom center"
+				            });
+						}
+						
+					},
+					error: function(error){
+						$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
+			              className:"error", 
+			              globalPosition: "bottom center"
+			            });
+					},
+					complete: function(){
+						$(this).text("Publicar").prop("disabled", false);
+					}
+				});
+
+			} else {
+				$.notify("Debes completar todos los campos obligatorios.", {
+	              className:"error", 
+	              globalPosition: "bottom center"
+	            });
+			}
+            
 		});
 	});
+
+	function getSector(id_area){
+
+		if (id_area != 0) {
+			$.ajax({
+				url: '../sectores/'+id_area,
+				type: 'GET',
+				dataType: 'json',
+				beforeSend: function(){
+					$('#sector').html('<option value="">Cargando...</option>').prop('disabled', true).trigger('chosen:updated');
+				},
+				success: function(response){
+					if (response.status == 1) {
+						let html = '<option value="0">Seleccionar</option>';
+						response.sectores.forEach(function(sector){
+							html += '<option value="'+sector.id+'">'+sector.nombre+'</option>';
+						});
+						$('#sector').html(html).trigger('chosen:updated');
+					} else {
+						alert("Error al cargar los sectores");
+					}
+				},
+				error: function(){
+					alert("Lo sentimos, ha ocurrido un error inesperado. Por favor recargue la pagina");
+					$('#sector').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
+				},
+				complete: function(){
+					$('#sector').prop('disabled', false).trigger('chosen:updated');
+				}
+			});
+		} else {
+			$('#sector').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
+		}
+		
+	}
+
+	function getLocalidad(id_provincia){
+
+		if (id_provincia != 0) {
+			$.ajax({
+				url: '../localidades/'+id_provincia,
+				type: 'GET',
+				dataType: 'json',
+				beforeSend: function(){
+					$('#localidad').html('<option value="">Cargando...</option>').prop('disabled', true).trigger('chosen:updated');
+				},
+				success: function(response){
+					if (response.status == 1) {
+						let html = '<option value="0">Seleccionar</option>';
+						response.localidades.forEach(function(localidad){
+							html += '<option value="'+localidad.id+'">'+localidad.localidad+'</option>';
+						});
+						$('#localidad').html(html).trigger('chosen:updated');
+					} else {
+						alert("Error al cargar las localidades");
+					}
+				},
+				error: function(){
+					alert("Lo sentimos, ha ocurrido un error inesperado. Por favor recargue la pagina");
+					$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
+				},
+				complete: function(){
+					$('#localidad').prop('disabled', false).trigger('chosen:updated');
+				}
+			});
+		} else {
+			$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
+		}
+
+	}
 </script>
 
 
 </body>
 </html>
-

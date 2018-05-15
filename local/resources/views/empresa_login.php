@@ -33,13 +33,14 @@
 									<img src="local/resources/views/images/logo_d.png" style="width: 200px;">
 							</div> 
 								<span>Bienvenido! Inicie sesión para acceder a su panel</span>
-								<form style="padding: 10px;">
+								<form style="padding: 10px;" action="loguear" method="post">
+									<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 									<div class="cfield">
-										<input type="text" placeholder="Correo electrónico" />
+										<input type="text" placeholder="Correo electrónico" name="correo" />
 										<i class="la la-user"></i>
 									</div>
 									<div class="cfield">
-										<input type="password" placeholder="********" />
+										<input type="password" placeholder="********" name="pass" />
 										<i class="la la-key"></i>
 									</div>
 									 
