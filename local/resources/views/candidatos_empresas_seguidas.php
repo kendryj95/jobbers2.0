@@ -34,35 +34,37 @@
 				 	<div class="col-lg-9 column" >
 				 		<div class="padding-left">
 					 		  <div class="manage-jobs-sec addscroll">
-					 			<h3>Mis favoritos</h3>
-						 		<table class="alrt-table">
+					 			<h3>Mis empresas seguidas</h3>
+						 		<table>
 						 			<thead>
 						 				<tr>
-						 					<td>Detalle</td>
-						 					<td class="text-right"></td>
+						 					<td>Empresa</td>
+						 					<td>Reputación</td>
+						 					<td>Ofertas</td> 
+						 					<td>Ver</td>
 						 				</tr>
 						 			</thead>
-						 			<tbody>
-						 				<?php 
-						 				/*foreach ($datos as $key ) {
-						 					echo '<tr>
+						 			<tbody> 
+						 				<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="'.$key->url.'" title="">'.$key->titulo.'</a></h3>
-						 							<span>'.$key->descripcion.'</span>
+						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
+						 							<span><i class="la la-map-marker"></i>Dirección /</span> 
+						 							<span><i class=""></i>Área</span>
 						 						</div>
 						 					</td>
 						 					<td>
-						 						<ul class="action_job">
-						 						<li><span>Ver</span><a href="'.$key->url.'" title=""><i class="la la-eye"></i></a></li>
-						 						<li><span>Eliminar</span><a href="adminfavoritosdel/'.$key->id.'" title=""><i class="la la-trash-o"></i></a></li> 
-						 						</ul> 
-						 						<span>'.$key->decrip.'</span>
+						 						<span class="status active">Proximamente</span>
 						 					</td>
-						 				</tr>';
-						 				}*/
-						 				?>
-						 			 
+						 					<td>
+						 						<span class="status active">5</span>
+						 					</td>
+						 					<td>
+						 						<ul class="action_job">
+						 							<li><span>Ver empresa</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+						 						</ul>
+						 					</td>
+						 				</tr> 
 						 			</tbody>
 						 		</table>
 					 		</div>

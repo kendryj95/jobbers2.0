@@ -34,27 +34,13 @@
       </style>
       
    </head>
-   <body>
+<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)"> 
       <div class="theme-layout" id="scrollup">
          <!--Header responsive-->
          <?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
          <?php include('local/resources/views/includes/header_candidatos.php');?>
          <!--fin Header responsive-->
-         <section class="overlape" style="padding: 0px;">
-            <div class="block no-padding">
-               <div data-velocity="-.1" style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div>
-               <!-- PARALLAX BACKGROUND IMAGE -->
-               <div class="container fluid">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="inner-header" style="height:100px;padding:0px;padding-top: 30px;">
-                           <h3 style="font-size: 26px;font-weight: 300;">Daniel Maidana</h3>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
+         
          <section>
             <div class="block no-padding"> 
 

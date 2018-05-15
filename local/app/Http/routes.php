@@ -28,6 +28,17 @@ Route::get('candifavoritos', 'con_candidato_favoritos@index');
 Route::get('candimaletin', 'con_maletin@indexcandidato'); 
 Route::post('listar_arch_candi', 'con_maletin@listar_arch_candi');
 Route::get('candiconfiguracion', 'con_candidatos_configuracion@index'); 
+
+Route::get('candipostulaciones', function (){return view('candidatos_postulaciones');});
+Route::get('candidato', function (){return view('candidatos_perfil_publico');});
+Route::get('candicv', function (){return view('candidatos_cv');}); 
+Route::get('candiempseg', function (){return view('candidatos_empresas_seguidas');}); 
+Route::get('candipostulaciones', function (){return view('candidatos_postulaciones');});
+Route::get('candisoporte', function (){return view('candidato_soporte');});
+Route::get('candirecomendaciones', function (){return view('candidato_recomendaciones');});
+Route::get('canditienda', function (){return view('candidato_tienda');});
+Route::get('candireferidos', function (){return view('candidato_referidos');});
+Route::get('candiredes', function (){return view('candidatos_redes');});
 });
 
 
