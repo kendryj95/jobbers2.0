@@ -11,7 +11,7 @@ class con_login extends Controller
 {
     public function log(Request $request)
     {
-    	$sql="SELECT *,count(id) as cantidad FROM tbl_usuarios WHERE correo='".$_POST['correo']."' AND clave='".$_POST['pass']."'";
+    	$sql="SELECT *,count(id) as cantidad FROM tbl_usuarios WHERE correo='".$_POST['correo']."' AND clave='".md5($_POST['pass'])."'";
     	try {
     		$datos=DB::select($sql);
     		if($datos[0]->cantidad)
