@@ -50,7 +50,7 @@ class con_publiaciones extends Controller
         INNER JOIN tbl_provincias t2 ON t1.provincia = t2.id
         INNER JOIN tbl_localidades t3 ON t1.localidad = t3.id
         INNER JOIN tbl_actividades_empresa t4 ON t1.sector = t4.id 
-        LEFT JOIN tbl_archivos t5 ON t1.id_imagen = t5.id"; 
+        LEFT JOIN tbl_archivos t5 ON t1.id_imagen = t5.id"; // Aqui va el id de la empresa 
 
     	try {
     		$datos=DB::select($sql);

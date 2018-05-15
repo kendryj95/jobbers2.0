@@ -18,11 +18,11 @@
 <div class="theme-layout" id="scrollup">
 	
 	<!--Header responsive-->
-	<?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
-	<?php include('local/resources/views/includes/header_candidatos.php');?>
+	<?php include('local/resources/views/includes/header_responsive_administrator.php');?>
+	<?php include('local/resources/views/includes/header_administrator.php');?>
 	<!--fin Header responsive-->
-	
- 
+	 
+
 	<section>
 		<div class="block no-padding">
 			<div class="container">
@@ -32,34 +32,40 @@
 				 	<div class="col-lg-9 column">
 				 		<div class="padding-left">
 					 		<div class="manage-jobs-sec addscroll">
-					 			<h3>Cambiar datos de acceso.</h3> 
+					 			<h3>Mis redes sociales</h3> 
 					 		</div>
 					 	</div>
 					 	<div class="profile-form-edit" style="margin: 0px;">
 								 			<form action="adminconfigcrear" method="POST" style="margin: 0px;">
 								 				<input name="_token" type="hidden" value="vPRFyJZr6mYH9DCcTaV5VEJJQUMUR82fzCrFhXzz" id="my_token">
 								 				<div class="row">
-								 					<div class="col-lg-4">
-								 						<span class="pf-title">Nombre</span>
+								 					<div class="col-lg-12">
+								 						<span class="pf-title">Facebook</span>
 								 						<div class="pf-field">
 								 							<input name="nombre" type="text" placeholder="Correo electrónico">
 								 						</div>
 								 					</div> 
-								 					<div class="col-lg-4">
-								 						<span class="pf-title">Correo</span>
+								 					<div class="col-lg-12">
+								 						<span class="pf-title">Twitter</span>
 								 						<div class="pf-field">
-								 							<input name="correo" type="text" placeholder="Correo electrónico">
-								 						</div>
-								 					</div>
-
-								 					<div class="col-lg-4">
-								 						<span class="pf-title">Clave</span>
-								 						<div class="pf-field">
-								 							<input placeholder="Clave" name="clave" type="password" placeholder="">
+								 							<input name="nombre" type="text" placeholder="Correo electrónico">
 								 						</div>
 								 					</div>  
+								 					<div class="col-lg-12">
+								 						<span class="pf-title">Linkendin</span>
+								 						<div class="pf-field">
+								 							<input name="nombre" type="text" placeholder="Correo electrónico">
+								 						</div>
+								 					</div>  
+								 					<div class="col-lg-12">
+								 						<span class="pf-title">Google +</span>
+								 						<div class="pf-field">
+								 							<input name="nombre" type="text" placeholder="Correo electrónico">
+								 						</div>
+								 						<a href="#" class="status" style="font-size: 13px;">¿Cómo puedo colocar mis redes sociales en Jobbers?</a>
+								 					</div>  
 								 					<div class="col-lg-12" style="margin-bottom: 50px;">
-								 						<button type="submit">Actualizar</button>
+								 						<button type="submit">Guardar</button>
 								 					</div>
 								 				</div>
 								 			</form> 
@@ -74,7 +80,7 @@
 </div>
 
 <?php include("local/resources/views/includes/aside_right_administrator.php");?>
- <?php include("local/resources/views/includes/general_footer.php");?>
+ 
 
 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
