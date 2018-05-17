@@ -5,7 +5,8 @@
 				<li class="inner-child">
 					<a href="#" title="Mi empresa"><i class="la la-file-text"></i>Mi empresa</a>
 					<ul>
-						<li><a href="#" title="Perfil">Perfil</a></li>
+						<li onclick="location.href='detalle?e=<?= session()->get("emp_ide") ?>'"><a href="detalle?e=<?= session()->get("emp_ide") ?>" title="Mi Perfil">Mi Perfil</a></li>
+						<li onclick="location.href='perfil?e=<?= session()->get("emp_ide") ?>'"><a href="perfil?e=<?= session()->get("emp_ide") ?>" title="Editar Perfil">Editar Perfil</a></li>
 					</ul>
 				</li>
 				<li class="inner-child">

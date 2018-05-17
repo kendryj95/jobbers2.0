@@ -50,14 +50,18 @@ Route::get('empresa', 'con_empresa@login');
 Route::get('empresa/registro', 'con_empresa@registro_view');
 Route::post('empresa/exists', 'con_empresa@exist_empresa'); // Verifica si existe la empresa o no.
 Route::post('empresa/registro_success', 'con_empresa@registro'); // Verifica si existe la empresa o no.
+Route::get('empresa/detalle', 'con_empresa@detail');
 
 Route::group(['middleware' => 'log_e'], function () 
 {	
+Route::get('empresa/perfil', 'con_empresa@profile');
 Route::get('empresa/new_post', 'con_empresa@newPost');
 Route::get('empresa/ofertas', 'con_empresa@ofertas');
 Route::get('empresa/planes', 'con_empresa@planes');
 Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
 Route::post('empresa/registrar_post', 'con_empresa@registerPost');
+Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');
+
 });
 
 
