@@ -85,7 +85,7 @@ class con_empresa extends Controller
 
   public function ofertas()
   {
-  	$sql1 = DB::select("SELECT COUNT(*) AS total_ofertas FROM tbl_publicacion");
+  	$sql1 = DB::select("SELECT COUNT(*) AS total_ofertas FROM tbl_publicacion WHERE id_empresa=?", [session()->get("emp_ide")]);
   	$total_ofertas = $sql1[0]->total_ofertas;
 
   	$ofertas = DB::select("SELECT
@@ -97,8 +97,8 @@ class con_empresa extends Controller
 							FROM
 							tbl_publicacion pub
 							INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
-							INNER JOIN tbl_localidades l ON pub.id_localidad=l.id;"
-						);
+							INNER JOIN tbl_localidades l ON pub.id_localidad=l.id
+							WHERE pub.id_empresa=?", [session()->get("emp_ide")]);
 
   	$params = [
   		"total_ofertas" => $total_ofertas,
