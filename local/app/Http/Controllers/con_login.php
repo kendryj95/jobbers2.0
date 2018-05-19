@@ -11,10 +11,12 @@ class con_login extends Controller
 {
     public function log(Request $request)
     {
+ 
     	$sql="
         SELECT t1.*,count(t1.id) as cantidad,t3.nombre_aleatorio as imagen FROM tbl_usuarios t1
         LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id = t2.id_usuario
-        LEFT JOIN tbl_archivos t3 ON t3.id = t2.id WHERE t1.correo='".$_POST['correo']."' AND t1.clave= '".$_POST['pass']."'";  
+        LEFT JOIN tbl_archivos t3 ON t3.id = t2.id WHERE t1.correo='".$_POST['correo']."' AND t1.clave= '".md5($_POST['pass'])."'";  
+ 
     	try {
     		$datos=DB::select($sql);
     		if($datos[0]->cantidad)
@@ -26,8 +28,26 @@ class con_login extends Controller
     			{	
     				$prefijo="empresa";
     				$sufijo="emp_";
-    				$ruta="";//Ruta del panel de arministracion de empresas
-    				 
+    				$ruta="empresa/ofertas";//Ruta del panel de arministracion de empresas
+
+                    $sql = "SELECT
+                            e.id AS id_empresa,
+                            a.archivo AS imagen,
+                            e.nombre AS nombre_empresa,
+                            ep.id_plan
+                            FROM tbl_empresa e
+                            INNER JOIN tbl_archivos a ON e.id_imagen=a.id
+                            INNER JOIN tbl_empresas_planes ep ON e.id=ep.id_empresa
+                            WHERE e.id_usuario=?";
+
+                    $datos_emp = DB::select($sql,[$datos[0]->id]);
+
+                    /** VARIABLES DE SESSION ESPECIFICAS PARA EMPRESA **/
+
+                    $request->session()->set($sufijo.'ide', $datos_emp[0]->id_empresa);
+                    $request->session()->set($sufijo.'imagen', $datos_emp[0]->imagen);
+                    $request->session()->set($sufijo.'nombre_empresa', $datos_emp[0]->nombre_empresa);
+    				$request->session()->set($sufijo.'plan', $datos_emp[0]->id_plan);
     			}
     			else if($datos[0]->tipo_usuario==2)
     			{

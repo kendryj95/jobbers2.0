@@ -342,7 +342,7 @@
 									alert('Empresa registrada satisfactoriamente.');
 
 									setTimeout(function(){
-										window.location.assign("../inicio");
+										window.location.assign("../empresa");
 									}, 3000);
 								} else {
 									alert("Lo sentimos, ha ocurrido un error en el registro. Por favor intentelo de nuevo.");

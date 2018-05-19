@@ -23,64 +23,9 @@
 
 <div class="theme-layout" id="scrollup">
 	
-	<div class="responsive-header">
-		<div class="responsive-menubar">
-			<div class="res-logo"><a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" alt="" /></a></div>
-			<div class="menu-resaction">
-				<div class="res-openmenu">
-					<img src="images/icon.png" alt="" /> Menu
-				</div>
-				<div class="res-closemenu">
-					<img src="images/icon2.png" alt="" /> Close
-				</div>
-			</div>
-		</div>
-		<div class="responsive-opensec">
-			<div class="btn-extars">
-				<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
-				<ul class="account-btns">
-					<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
-					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
-				</ul>
-			</div><!-- Btn Extras -->
-			<form class="res-search">
-				<input type="text" placeholder="Job title, keywords or company name" />
-				<button type="submit"><i class="la la-search"></i></button>
-			</form>
-			<div class="responsivemenu">
-				<ul>
-						<li class="">
-							<a href="../inicio" title="">Home</a>
-						</li>
-					</ul>
-			</div>
-		</div>
-	</div>
+	<?php include("includes/header_responsive_empresa.php") ?>
 	
-	<header class="stick-top">
-		<div class="menu-sec">
-			<div class="container">
-				<div class="logo">
-					<a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" style="width: 120px;"></a>
-				</div><!-- Logo -->
-				<div class="btns-profiles-sec">
-					<span><img src="http://placehold.it/50x50" alt="" /> Jobbers Argentina <i class="la la-angle-down"></i></span>
-					<ul>
-						<li><a href="#" title=""><i class="la la-file-text"></i> Company Profile</a></li>
-						<li><a href="#" title=""><i class="la la-briefcase"></i> Manage Jobs</a></li>
-						<li><a href="#" title=""><i class="la la-line-chart"></i> Transactions</a></li>
-						<li><a href="#" title=""><i class="la la-magnet"></i> Resumes</a></li>
-						<li><a href="#" title=""><i class="la la-folder-open"></i> Packages</a></li>
-						<li><a href="#" title=""><i class="la la-leaf"></i> Post a New Job</a></li>
-						<li><a href="#" title=""><i class="la la-phone"></i> Job Alerts</a></li>
-						<li><a href="#" title=""><i class="la la-key"></i> Change Password</a></li>
-						<li><a href="#" title=""><i class="la la-history"></i> Logout</a></li>
-					</ul>
-				</div>
-				<?php include "includes/header_empresa.php" ?>
-			</div>
-		</div>
-	</header>
+	<?php include "includes/header_empresa.php" ?>
 
 	<section class="overlape">
 		<div class="block no-padding">
@@ -89,7 +34,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="inner-header">
-							<h3>Bienvenido Jobbers Argentina</h3>
+							<h3>Bienvenido <?= session()->get("emp_nombre_empresa") ?> </h3>
 						</div>
 					</div>
 				</div>
@@ -109,9 +54,9 @@
 				 		 		<div class="manage-jobs-sec">
 				 		 			<h3>Listado de ofertas de trabajo</h3>
 				 		 			<div class="extra-job-info">
-				 			 			<span><i class="la la-clock-o"></i><strong>9</strong> Ofertas publicadas</span>
-				 			 			<span><i class="la la-file-text"></i><strong>20</strong> Postulados en total</span>
-				 			 			<span><i class="la la-users"></i><strong>18</strong> Jobbers Activos</span>
+				 			 			<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
+				 			 			<span><i class="la la-file-text"></i><strong>0</strong> Postulados en total</span>
+				 			 			<span><i class="la la-users"></i><strong>0</strong> Jobbers Activos</span>
 				 			 		</div>
 				 			 		<table>
 				 			 			<thead>
@@ -124,111 +69,33 @@
 				 			 				</tr>
 				 			 			</thead>
 				 			 			<tbody>
+				 			 				<?php foreach ($ofertas as $oferta): ?>
 				 			 				<tr>
 				 			 					<td>
 				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+				 			 							<h3><a href="#" title=""><?= $oferta->titulo ?></a></h3>
+				 			 							<span><i class="la la-map-marker"></i><?= $oferta->ubicacion ?></span>
 				 			 						</div>
 				 			 					</td>
 				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
+				 			 						<a href="candidatos-postulados"><span class="applied-field">0 Postulado(s)</span></a>
 				 			 					</td>
 				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
+				 			 						<span><?= $oferta->fcrea_fvenc ?></span>
 				 			 					</td>
 				 			 					<td>
-				 			 						<span class="status active">Activo</span>
+				 			 						<span class="status active"><?= $oferta->estatus ?></span>
 				 			 					</td>
 				 			 					<td>
 				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+				 			 							<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>" title=""><i class="la la-eye"></i></a></li>
 				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
 				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
 				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
 				 			 						</ul>
 				 			 					</td>
 				 			 				</tr>
-				 			 				<tr>
-				 			 					<td>
-				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-				 			 						</div>
-				 			 					</td>
-				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span class="status active">Activo</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-				 			 						</ul>
-				 			 					</td>
-				 			 				</tr>
-				 			 				<tr>
-				 			 					<td>
-				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-				 			 						</div>
-				 			 					</td>
-				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span class="status">Inactivo</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-				 			 						</ul>
-				 			 					</td>
-				 			 				</tr>
-				 			 				<tr>
-				 			 					<td>
-				 			 						<div class="table-list-title">
-				 			 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-				 			 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-				 			 						</div>
-				 			 					</td>
-				 			 					<td>
-				 			 						<a href="candidatos-postulados"><span class="applied-field">3+ Postulado(s)</span></a>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span>October 27, 2017</span><br />
-				 			 						<span>April 25, 2011</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<span class="status active">Activo</span>
-				 			 					</td>
-				 			 					<td>
-				 			 						<ul class="action_job">
-				 			 							<li><span>Ver Oferta</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-				 			 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-				 			 							<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-				 			 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-				 			 						</ul>
-				 			 					</td>
-				 			 				</tr>
-
+				 			 				<?php endforeach ?>
 				 			 			</tbody>
 				 			 		</table>
 				 		 		</div>

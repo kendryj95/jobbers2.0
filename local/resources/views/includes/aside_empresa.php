@@ -5,7 +5,8 @@
 				<li class="inner-child">
 					<a href="#" title="Mi empresa"><i class="la la-file-text"></i>Mi empresa</a>
 					<ul>
-						<li><a href="#" title="Perfil">Perfil</a></li>
+						<li onclick="location.href='detalle?e=<?= session()->get("emp_ide") ?>'"><a href="detalle?e=<?= session()->get("emp_ide") ?>" title="Mi Perfil">Mi Perfil</a></li>
+						<li onclick="location.href='perfil?e=<?= session()->get("emp_ide") ?>'"><a href="perfil?e=<?= session()->get("emp_ide") ?>" title="Editar Perfil">Editar Perfil</a></li>
 					</ul>
 				</li>
 				<li class="inner-child">
@@ -21,6 +22,7 @@
 						<li onclick="location.href='planes'"><a href="planes" title="Manejar Planes">Manejar Planes</a></li>
 					</ul>
 				</li>
+				<li onclick="location.href='../logout'"><a href="../logout" title=""><i class="la la-unlink"></i>Logout</a></li>
 				<!-- <li class="inner-child">
 					<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>
 					<ul>

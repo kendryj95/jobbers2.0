@@ -15,6 +15,10 @@ class log_empresa
      */
     public function handle($request, Closure $next)
     {
+        if ($request->session()->get('empresa')==null)
+        {
+            return redirect('inicio');            
+        } else 
         return $next($request);
     }
 }
