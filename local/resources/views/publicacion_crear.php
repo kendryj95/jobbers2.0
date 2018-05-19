@@ -272,6 +272,7 @@
         <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
         <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
         <?php include("local/resources/views/includes/referencias_down.php");?>
+        
             <script type="text/javascript">
 
                 function localidades(id)

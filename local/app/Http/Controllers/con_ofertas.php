@@ -12,7 +12,7 @@ class con_ofertas extends Controller
     public function index()
     {
     	$vista=View::make("ofertas");
-    	//$sql_antiguedad="";
+    	 
     	$sql="SELECT t1.direccion, t1.id, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp  FROM tbl_publicacion t1
 			LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
 			LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
@@ -32,7 +32,8 @@ class con_ofertas extends Controller
     	$sql_provincias="SELECT * FROM tbl_provincias";
     	$sql_localidades="SELECT * FROM tbl_localidades";
     	$sql_experiencia="SELECT * FROM tbl_experiencia";
-
+        $sql_favoritos="SELECT t1.id,t2.id_referencia FROM tbl_publicacion t1
+        LEFT JOIN tbl_favoritos t2 ON t2.id_referencia =t1.id AND t2.id_tipo = 3 AND t2.id_usuario=".session()->get("cand_id")."";
 
     	try {
     		//$antiguedad=DB::select($sql_antiguedad);
@@ -44,10 +45,12 @@ class con_ofertas extends Controller
     		$provincia=DB::select($sql_provincias);
     		$localidad=DB::select($sql_localidades); 
     		$experiencia=DB::select($sql_experiencia); 
+            $favoritos=DB::select($sql_favoritos); 
 
     		$publicaciones=DB::select($sql); 
 
     		//$vista->antiguedad=$antiguedad;
+            $vista->favoritos=$favoritos; 
     		$vista->disponibilidad=$disponibilidad;
     		$vista->sector=$sector; 
     		$vista->experiencia=$experiencia; 

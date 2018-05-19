@@ -1,3 +1,6 @@
+<?php
+    $mi_tokken=csrf_token();
+?>
 <!DOCTYPE html>
 <html>
    <head>
@@ -10,7 +13,7 @@
       <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
       <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
       <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-      <meta name="csrf-token" content="<?php echo csrf_token(); ?>">
+      <meta name="csrf-token" content="<?php echo $mi_tokken;?>">
       
       <link rel="stylesheet" type="text/css" href="local/resources/views/plugins/imagen/css/jquery.Jcrop.min.css" />
 
@@ -68,9 +71,7 @@
                               <h3>
                                  Mis Archivos 
                                  <ul class="action_job" style="float: right;"> 
-                                    <li onClick="listar_archivos()" style="font-size: 15px;cursor: pointer;" class="status"> Actualizar </li> 
-                                    
-                                    
+                                    <li onClick="listar_archivos()" style="font-size: 15px;cursor: pointer;" class="status"> Actualizar </li>  
                                  </ul>
                               </h3>
                               <table class="table" style="margin: 0px;margin-left: 10px;">
@@ -120,9 +121,8 @@
       <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
       <script src="local/resources/views/plugins/imagen/js/jquery.Jcrop.min.js" type="text/javascript"></script>
       <script src="local/resources/views/plugins/dropzone.js" type="text/javascript"></script> 
-      <?php include("local/resources/views/includes/referencias_down.php");?>
-      
-      <?php include("local/resources/views/includes/ajax/administrator_maletin.php");?>
+      <?php include("local/resources/views/includes/referencias_down.php");?> 
+     
       <script type="text/javascript">
          $(document).ready(function() {
              listar_archivos(); 
@@ -153,5 +153,6 @@
           }
       }
       ?>
+       <?php include("local/resources/views/includes/ajax/administrator_maletin.php");?>
    </body>
 </html>

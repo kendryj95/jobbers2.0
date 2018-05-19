@@ -68,6 +68,10 @@
 							 				echo '<div class="emply-btns"> 
 										 			<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
 										 		</div>';
+
+										 	echo '<div class="emply-btns"> 
+										 			<a class="followus" href="../candipostular/'.$datos[0]->id.'" title=""><i class="la la-file-text"></i> Postularme</a>
+										 		</div>';
 							 			}?>
 								 		
 				 					</div>

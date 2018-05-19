@@ -41,7 +41,7 @@
 				 					</li>	
 				 					<li><a href="#" title=""><i class="la la-support"></i>Soporte</a></li>
 				 					<li><a href="configuracion" title=""><i class="la la-gear"></i>Configuración</a></li>
-				 					 
+				 					<li><a href="adminpagos" title=""><i class="fa fa-lightbulb-o" style="padding-left: 5px;"></i>Tips</a></li>
 				 					<li><a href="adminpagos" title=""><i class="la la-money"></i>Pagos</a></li>
 				 					<li><a href="adminkardex" title=""><i class="la la-user-secret"></i>Kardex</a></li>
 				 					<li><a href="admsalir" title=""><i class="la la-arrow-left"></i>Salir</a></li>

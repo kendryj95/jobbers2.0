@@ -14,7 +14,7 @@
 			</div>
 			<p class="remember-label"> 
 			</p>
-			<a href="#" title="">Olvidé mi clave</a>
+			<a href="recuperarclave" title="">Olvidé mi clave</a>
 			<button type="submit">Entrar</button>
 		</form>
 		<div class="extra-login"> 

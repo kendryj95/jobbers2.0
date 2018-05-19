@@ -1,3 +1,6 @@
+<?php
+    $mi_tokken=csrf_token();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,6 +11,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="CreativeLayers">
+    <meta name="csrf-token" content="<?php echo $mi_tokken;?>">
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
     <link rel="stylesheet" href="local/resources/views/css/icons.css">
@@ -256,16 +260,18 @@
                   {
                     $estado="Activa";
                     if(!$estado==1){$estado="Inactiva";}
-                    echo'<div class="job-listing wtabs">
+                    echo'
+                    <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+                    <div class="job-listing wtabs">
                         <div class="job-title-sec">
                           <div class="c-logo"> 
                             <img src="uploads/'.$key->imagen.'" alt="" style="max-width: 98px;"> 
                           </div>
                           <h3>
-                            <a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'
+                            <a href="detalleoferta/'.$key->id.'" title=""><span id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
                             </a>
                           </h3>
-                          <span>'.$key->nombre.'
+                          <span id="titulo_'.$key->id.'">'.$key->nombre.'
                           </span>
                           <div class="job-lctn">
                             <i class="la la-map-marker">
@@ -275,29 +281,17 @@
                         <div class="job-style-bx">
                           <span class="job-is ft">'.$key->disponibilidad.'
                           </span>
-                          <span class="fav-job">
-                            <i class="la la-heart-o">
+                          <span id="fav_'.$key->id.'" class="fav-job">
+                            <i onClick="set_favoritos('.$key->id.')" class="la la-heart-o">
                             </i>
                           </span>
                           <i>Vistas '.$key->vistos.' / <span class="status">'.$estado.'</span> / '.$key->tmp.'
                           </i>
                         </div></div>';
                   }?>
-                  
+
                   </div> 
-                </div>
-                <!--
-                  <div class="viewmore">
-                  <span>
-                    <i>
-                    </i>
-                    <i>
-                    </i>
-                    <i>
-                    </i>View More
-                  </span>
-                </div>
-                -->
+                </div> 
               </div>
             </div>
           </div>
@@ -322,6 +316,48 @@
   <script src="local/resources/views/js/select-chosen.js" type="text/javascript">
   </script>
   <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
+  </script>
+<script type="text/javascript">
+                    <?php foreach ($favoritos as $key): ?>
+                      <?php 
+                        if($key!==null)
+                        {
+                          echo'$("#fav_'.$key->id_referencia.'").addClass("active");';
+                        }
+                      ?>
+                    <?php endforeach ?> 
+                  </script>
+  <script type="text/javascript">
+    function set_favoritos(vid)
+    {
+        vtipo=3;
+        vtitulo=$("#titulo_"+ vid).html();
+        vurl=$("#url_"+ vid).html();
+        vdescripcion=$("#descripcion_"+ vid).html();
+       
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax({
+            data:{id:vid,tipo:vtipo,url:vurl,titulo:vtitulo,descripcion:vdescripcion},
+            url: 'candisetfavorite',
+            type: 'post', 
+            success: function(data)
+            { 
+              
+                  if(data==2)
+                  {
+                    alert("Ya le ha dado favorito");
+                  }
+                  else if(data==0)
+                  {
+                    alert("Ha ocurrido un error");
+                  } 
+            } 
+        })   
+    }
   </script>
   </body>
 </html>

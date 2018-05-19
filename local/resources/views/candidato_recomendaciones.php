@@ -34,7 +34,7 @@
                                                 <h3>Mis Recomendaciones</h3>
                                             </div> 
                                             <div class="profile-form-edit">
-                                                <form action="publiacionescreg" method="POST">
+                                                <form action="candirecomendar" method="POST">
                                                    
                                                     <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                                     <div class="row">  
@@ -60,27 +60,27 @@
                                                                             <td>#</td> 
                                                                             <td>Estatus</td>
                                                                             <td>Pts Obtenidos</td> 
-                                                                            <td>Action</td>
+                                                                            <td>Descripción</td>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody> 
-                                                                        <tr>
+                                                                        <?php foreach ($datos as $key) {
+                                                                            echo'<tr>
                                                                             <td>
                                                                                 <span class="applied-field">1.</span><br> 
                                                                             </td> 
                                                                             <td>
-                                                                                <span class="applied-field">Pendiente...</span><br>
+                                                                                <span class="applied-field">'.$key->estatus.'</span><br>
                                                                                 
                                                                             </td> 
                                                                             <td>
-                                                                                <span class="status active">5</span>
+                                                                                <span class="status active">'.$key->pts.'</span>
                                                                             </td>
-                                                                            <td>
-                                                                                <ul class="action_job">
-                                                                                    <li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-                                                                                </ul>
+                                                                             <td>
+                                                                                <span class="applied-field">'.$key->descripcion.'</span><br> 
                                                                             </td>
-                                                                        </tr> 
+                                                                        </tr> ';
+                                                                        }?>
                                                                     </tbody>
                                                                 </table>
                                 <!--Fin Top candidatos-->

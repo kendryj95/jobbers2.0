@@ -14,6 +14,9 @@ Route::get('ofertas', 'con_ofertas@index');
 Route::get('detalleoferta/{id}', 'con_ofertas@detalle'); 
 Route::post('loguear', 'con_login@log');
 Route::get('logout', 'con_login@salir');
+Route::get('login', 'con_login@logincandidato');
+Route::get('recuperarclave', 'con_login@recuperar');
+Route::post('recuperarclave', 'con_login@enviar');
  
 //********************************************************//
 //*                 RUTAS PARA LOS CANDIDATOS            *//
@@ -23,20 +26,30 @@ Route::group(['middleware' => 'log_c'], function ()
 {	
 Route::get('candidashboard', 'con_candidato_dashboard@dashboard');
 Route::get('candifavoritos', 'con_candidato_favoritos@index');
+Route::get('candifaveliminar/{id}', 'con_candidato_favoritos@eliminar');
+Route::post('candisetfavorite', 'con_candidato_favoritos@set_favorite');
 Route::get('candimaletin', 'con_maletin@indexcandidato'); 
-Route::post('listar_arch_candi', 'con_maletin@listar_arch_candi');
+Route::post('listar_arch', 'con_maletin@listar_arch');
+Route::post('actarch', 'con_maletin@alias');//Actualiza los alias
+Route::get('delarchivo/{id}', 'con_maletin@eliminar'); //Elimina los archivos
+Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos
 Route::get('candiconfiguracion', 'con_candidatos_configuracion@index'); 
+Route::post('candisetprofilepic', 'con_candidatos_configuracion@set_profile_pic'); 
+Route::post('candiactualizardatos', 'con_candidatos_configuracion@actualizardatos'); 
 
-Route::get('candipostulaciones', function (){return view('candidatos_postulaciones');});
+Route::get('candipostulaciones', 'con_candidato_postulaciones@index');
+Route::get('candipostular/{id}', 'con_candidato_postulaciones@postular'); 
 Route::get('candidato', function (){return view('candidatos_perfil_publico');});
 Route::get('candicv', function (){return view('candidatos_cv');}); 
-Route::get('candiempseg', function (){return view('candidatos_empresas_seguidas');}); 
-Route::get('candipostulaciones', function (){return view('candidatos_postulaciones');});
+Route::get('candiempseg', function (){return view('candidatos_empresas_seguidas');});  
 Route::get('candisoporte', function (){return view('candidato_soporte');});
-Route::get('candirecomendaciones', function (){return view('candidato_recomendaciones');});
+Route::get('candirecomendaciones', 'con_candidato_recomendaciones@index'); 
+Route::post('candirecomendar', 'con_candidato_recomendaciones@recomendar'); 
 Route::get('canditienda', function (){return view('candidato_tienda');});
 Route::get('candireferidos', function (){return view('candidato_referidos');});
-Route::get('candiredes', function (){return view('candidatos_redes');});
+Route::get('candiredes', 'con_candidato_redes@index');
+Route::post('candiredescrear', 'con_candidato_redes@crear');
+
 });
 
 
@@ -92,10 +105,10 @@ Route::group(['middleware' => 'log_a'], function ()
  	//Publiacaciones
  	Route::get('publiacionesver', 'con_publiaciones@index');
 	Route::get('publiacionescrear', 'con_publiaciones@create');
-	Route::post('listar_arch', 'con_maletin@listar_arch');
+	/*Route::post('listar_arch', 'con_maletin@listar_arch');
 	Route::post('actarch', 'con_maletin@alias');//Actualiza los alias
 	Route::get('delarchivo/{id}', 'con_maletin@eliminar'); //Elimina los archivos
-	Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos
+	Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos*/
 	Route::get('admsalir', 'con_administrator_login@salir'); 
 });
 

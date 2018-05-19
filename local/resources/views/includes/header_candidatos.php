@@ -5,10 +5,10 @@
 					<a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
 				</div><!-- Logo -->
 				<div class="my-profiles-sec">
-					<span><img src="http://placehold.it/50x50" alt="" /><?php echo session()->get('adm_nombre');?><i class="la la-bars"></i></span>
+					<span><img style=" width: 50px;height: 50px;" src="uploads/<?php echo session()->get('cand_img');?>" alt="" /><?php echo session()->get('candidato');?><!--<i class="la la-bars"></i>--></span>
 				</div>
 				<div class="wishlist-dropsec">
-					<span><i class="la la-heart"></i><strong>3</strong></span>
+					<!--<span><i class="la la-heart"></i><strong>3</strong></span>-->
 					<div class="wishlist-dropdown">
 						<ul class="scrollbar">
 							<li>
@@ -73,7 +73,7 @@
 				<div class="row">
 					<div class="col-lg-12" >
 						<div class="inner-header" style="height:100px;padding:0px;padding-top: 30px;">
-							<h3 style="font-size: 26px;font-weight: 300;">Nombre de usuario</h3>
+							<h3 style="font-size: 26px;font-weight: 300;"><?php echo session()->get('candidato');?></h3>
 						</div>
 					</div>
 				</div>

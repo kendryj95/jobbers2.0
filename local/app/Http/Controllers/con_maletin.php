@@ -12,8 +12,8 @@ use File;
 use DB;
 class con_maletin extends Controller
 {
+     
     var $ruta="";
-
     public function index()
     {
     	return view("administrator_maletin");
@@ -28,9 +28,10 @@ class con_maletin extends Controller
     {
 
         $identificador=$this->validar_user();
-    	$sql="SELECT * FROM tbl_archivos WHERE id_usuario = ".$identificador."";
+    	$sql="SELECT * FROM tbl_archivos WHERE id_usuario =".session()->get($identificador).""; 
     	$datos=DB::select($sql);
     	echo json_encode($datos); 
+
     }
 
 	public function descargar($file)
@@ -41,7 +42,7 @@ class con_maletin extends Controller
 	public function eliminar($id)
     {
          $identificador=$this->validar_user();
-    	$sql="DELETE FROM tbl_archivos WHERE id=".$id." AND id_usuario =".$identificador."" ;
+    	$sql="DELETE FROM tbl_archivos WHERE id=".$id." AND id_usuario =".session()->get($identificador).""; 
     	try {
     		DB::delete($sql);
     		return  Redirect("".$this->ruta."?info=del");
@@ -53,7 +54,7 @@ class con_maletin extends Controller
     public function alias()
     {
          $identificador=$this->validar_user();
-    	$sql="UPDATE tbl_archivos SET alias='".$_POST['alias']."' WHERE id=".$_POST['id_alias']." AND id_usuario =".$identificador."" ;
+    	$sql="UPDATE tbl_archivos SET alias='".$_POST['alias']."' WHERE id=".$_POST['id_alias']." AND id_usuario =".session()->get($identificador).""; 
     	try {
     		DB::update($sql);
     		return  Redirect("".$this->ruta."?info=up");
@@ -66,9 +67,7 @@ class con_maletin extends Controller
 
             $identificador=$this->validar_user();
 			$file = Input::file('file');
-			$destinationPath = 'uploads';
-			// If the uploads fail due to file system, you can try doing public_path().'/uploads' 
-			//$filename = str_random(12);
+			$destinationPath = 'uploads'; 
 			$original = $file->getClientOriginalName();
 			$extension =$file->getClientOriginalExtension(); 
 			$filename ="admin_". str_random(12).".".strtolower($extension);
@@ -103,7 +102,7 @@ class con_maletin extends Controller
     		}
 
 			$upload_success = Input::file('file')->move($destinationPath, $filename);
-			$sql="INSERT INTO tbl_archivos VALUES (null,".$identificador.",'".$original."','".$extension."','','".$filename."','".$tipo_documento."',null);";
+			$sql="INSERT INTO tbl_archivos VALUES (null,".session()->get($identificador).",'".$original."','".$extension."','','".$filename."','".$tipo_documento."',null);";
 
 			if( $upload_success ) {
 				try {
@@ -121,8 +120,8 @@ class con_maletin extends Controller
         $identificador="";
         if(session()->get('tipo_usuario')==3)
         {
-            $identificador="admin_id";
             $this->ruta="adminmalerinver";
+            $identificador="admin_id"; 
         }
         else if(session()->get('tipo_usuario')==1)
         {
@@ -130,11 +129,10 @@ class con_maletin extends Controller
         }
 
         else if(session()->get('tipo_usuario')==2)
-        {
+        {       
                 $this->ruta="candimaletin";
-                $identificador=2;
-        }
-
+                $identificador="cand_id";
+        } 
         return $identificador;
     }
 

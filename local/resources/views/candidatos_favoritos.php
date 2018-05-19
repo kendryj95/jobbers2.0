@@ -21,10 +21,7 @@
 	<?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
 	<?php include('local/resources/views/includes/header_candidatos.php');?>
 	<!--fin Header responsive-->
-	
-
-	 
-
+	  
 	<section >
 		<div class="block no-padding">
 			<div class="container">
@@ -35,32 +32,38 @@
 				 		<div class="padding-left">
 					 		  <div class="manage-jobs-sec addscroll">
 					 			<h3>Mis favoritos</h3>
-						 		<table class="alrt-table">
+						 		<table class="alrt-table ">
 						 			<thead>
 						 				<tr>
-						 					<td>Detalle</td>
-						 					<td class="text-right"></td>
+						 					<td>Descripción</td>
+						 					<td>Tipo</td> 
+						 					<td class="text-right">Acción</td>
 						 				</tr>
 						 			</thead>
 						 			<tbody>
 						 				<?php 
-						 				/*foreach ($datos as $key ) {
+						 				foreach ($datos as $key ) {
 						 					echo '<tr>
-						 					<td>
+						 					<td class="text-left">
 						 						<div class="table-list-title">
 						 							<h3><a href="'.$key->url.'" title="">'.$key->titulo.'</a></h3>
-						 							<span>'.$key->descripcion.'</span>
+						 							<span>'.substr($key->descripcion, 0,20).'...</span>
 						 						</div>
 						 					</td>
-						 					<td>
-						 						<ul class="action_job">
-						 						<li><span>Ver</span><a href="'.$key->url.'" title=""><i class="la la-eye"></i></a></li>
-						 						<li><span>Eliminar</span><a href="adminfavoritosdel/'.$key->id.'" title=""><i class="la la-trash-o"></i></a></li> 
-						 						</ul> 
-						 						<span>'.$key->decrip.'</span>
+						 					<td class="text-left">
+						 						<div class="table-list-title">
+						 							<h3><a class="status" href="'.$key->url.'" title="">'.$key->tipo.'</a></h3> 
+						 						</div>
+						 					</td>
+						 					 <td class="text-left">
+						 						<ul class="action_job " >
+						 						<li ><span>Ver</span><a  href="'.$key->url.'" title=""><i class="la la-eye " ></i></a></li> 
+						 					 	
+						 					 	<li ><span>Eliminar</span><a  href="candifaveliminar/'.$key->id.'" title=""><i class="la la-trash" ></i></a></li> 
+						 						</ul>
 						 					</td>
 						 				</tr>';
-						 				}*/
+						 				}
 						 				?>
 						 			 
 						 			</tbody>

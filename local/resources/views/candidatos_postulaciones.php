@@ -35,34 +35,36 @@
 						 		<table>
 						 			<thead>
 						 				<tr>
-						 					<td>Empresa</td> 
 						 					<td>Publicación</td>
-						 					<td>Postulados</td>
+						 					<td>Empresa</td>  
+						 					<td>Postulados</td> 
 						 					<td>Ver</td>
 						 				</tr>
 						 			</thead>
 						 			<tbody> 
-						 				<tr>
+						 				<?php foreach ($datos as $key) {
+						 					echo'<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						 							<span><i class="la la-map-marker"></i>Dirección /</span> 
-						 							<span><i class=""></i>Área</span>
+						 							<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3>
+						 							<span>'.substr($key->descripcion, 0,20).'...</span><br> 
+						 							<span><i class="la la-map-marker status"></i>'.$key->dir.'</span>  
 						 						</div>
 						 					</td>
 						 					 
 						 					<td>
-						 						<span class="applied-field">Se solicita ingeniero...</span>
+						 						<span class="applied-field">'.$key->nombre.'</span>
 						 					</td>
 						 					<td>
-						 						<span class="status active">5</span>
+						 						<span id="postu_'.$key->id.'" class="status active">5</span>
 						 					</td>
 						 					<td>
 						 						<ul class="action_job">
-						 							<li><span>Ver publiación</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+						 							<li><span>Ver publiación</span><a href="detalleoferta/'.$key->id.'" title=""><i class="la la-eye"></i></a></li>
 						 						</ul>
 						 					</td>
-						 				</tr> 
+						 				</tr> ';
+						 				};?>
 						 			</tbody>
 						 		</table>
 					 		</div>
@@ -201,7 +203,17 @@
 	$( document ).ready(function() {
     	 
 	});
+	<?php foreach ($postulados as $key): ?>
+                      <?php 
+                        if($key!==null)
+                        {
+                          echo'$("#postu_'.$key->id_publicacion.'").html("'.$key->postulador.'");';
+                        }
+                      ?>
+   <?php endforeach ?> 
 </script>
+
+ 
 </body>
 </html>
 

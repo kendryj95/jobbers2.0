@@ -22,6 +22,7 @@ class con_administrator_login extends Controller
     		$datos=DB::select($sql);
     		if($datos[0]->cantidad)
     		{
+                $this->limpiar_variables_session($request);
     			$request->session()->set('admin', $datos[0]->correo);
                 $request->session()->set('adm_nombre', $datos[0]->nombre);
                 $request->session()->set('adm_id', $datos[0]->id);
@@ -42,5 +43,19 @@ class con_administrator_login extends Controller
 		$request->session()->forget('admin'); 
         return redirect('administrator');
 	}
+
+
+    public function limpiar_variables_session(Request $request)
+    {
+        $request->session()->forget('candidato'); 
+        $request->session()->forget('empresa');
+        $request->session()->forget('cand_id'); 
+        $request->session()->forget('emp_id');
+        $request->session()->forget('admin');
+        $request->session()->forget('adm_id'); 
+        $request->session()->forget('adm_nombre'); 
+        $request->session()->forget('tipo_usuario'); 
+        $request->session()->flush();
+    }
 
 }
