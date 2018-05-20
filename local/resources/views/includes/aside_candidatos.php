@@ -18,6 +18,9 @@
 				 						<a href="candidato" title=""><i class="la la-user"></i>Perfil Público</a> 
 				 					</li>
 				 					<li >
+				 						<a href="candiperfil" title=""><i class="la la-user"></i>Mi perfil</a> 
+				 					</li>
+				 					<li >
 				 						<a href="candicv" title=""><i class="la la-file-text"></i>Curriculum</a> 
 				 					</li>
 				 					<li >

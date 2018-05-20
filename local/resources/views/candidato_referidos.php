@@ -22,10 +22,7 @@
         <!--Header responsive-->
         <?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
         <?php include('local/resources/views/includes/header_candidatos.php');?>
-                <!--fin Header responsive-->
-
-                
-
+                <!--fin Header responsive--> 
                 <section>
                     <div class="block no-padding">
                         <div class="container">
@@ -45,11 +42,11 @@
                                                         <div class="col-lg-12">
                                                             <span class="pf-title">Mi link de referido.</span>
                                                             <div class="pf-field">
-                                                                <input value="http://www.jobbers.com.net/r/victor" name="direccion" type="text" placeholder="¿Con qué tiene problemas?">
+                                                                <input value="http://www.jobbers.com.net/r/<?php echo session()->get("cand_token").'/2'?>" name="direccion" type="text" placeholder="¿Con qué tiene problemas?" id="id_token"/>
                                                             </div>
                                                         </div> 
                                                         <div class="col-lg-12" style="margin-bottom: 50px;">
-                                                            <button type="submit">Copiar link</button>
+                                                            <button data-clipboard-target="#id_token" id="btn_copiar" type="button">Copiar link</button>
                                                         </div> 
                                                     </div>
                                                 </form>
@@ -62,21 +59,25 @@
                                                                         <tr>
                                                                             <td>#</td>
                                                                             <td>Usuario</td>
-                                                                            <td>Fecha de refistros</td>
+                                                                            <td>Fecha de registro</td>
                                                                             <td>Pts. Obtenidos</td>  
                                                                             <td>Ver</td>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody> 
-                                                                        <tr>
+                                                                        <?php 
+                                                                        $contador=0;
+                                                                        foreach ($datos as $key) {
+                                                                            $contador++;
+                                                                            echo'<tr>
                                                                             <td>
-                                                                                <span class="applied-field">1.</span><br> 
+                                                                                <span class="applied-field">'.$contador.'.</span><br> 
                                                                             </td>
                                                                             <td>
-                                                                                <span class="status">A48S9569</span><br> 
+                                                                                <span class="status">'.substr($key->token, 0,10).'</span><br> 
                                                                             </td>
                                                                             <td>
-                                                                                <span class="applied-field">Victor Fernandez</span><br> 
+                                                                                <span class="applied-field">****'.substr($key->correo, -15).'</span><br> 
                                                                             </td> 
                                                                             <td>
                                                                                 <span class="status active">+5</span>
@@ -86,7 +87,10 @@
                                                                                     <li><span>Ver estado</span><a href="#" title=""><i class="la la-eye"></i></a></li>
                                                                                 </ul>
                                                                             </td>
-                                                                        </tr> 
+                                                                        </tr>';
+                                                                        }
+                                                                        ?>
+                                                                         
                                                                     </tbody>
                                                                 </table>
                                 <!--Fin Top candidatos-->
@@ -112,6 +116,10 @@
         <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
         <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
         <?php include("local/resources/views/includes/referencias_down.php");?>
+        <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
+        <script type="text/javascript">
+            var clipboard = new Clipboard('#btn_copiar');
+        </script>
             
 </body>
 
