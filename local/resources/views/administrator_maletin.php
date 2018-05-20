@@ -13,24 +13,23 @@
       <meta name="csrf-token" content="<?php echo csrf_token(); ?>">
       
       <link rel="stylesheet" type="text/css" href="local/resources/views/plugins/imagen/css/jquery.Jcrop.min.css" />
-
       <link rel="stylesheet" type="text/css" href="http://www.dropzonejs.com/css/dropzone.css?v=1524508426" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style type="text/css">
-         .dropzone {
-         border: 2px dashed #0087F7;
-         border-radius: 5px;
-         background: white;
-         }
-         .dropzone .dz-message {
-         font-weight: 400;
-         }
-         .dropzone .dz-message .note {
-         font-size: 0.8em;
-         font-weight: 200;
-         display: block;
-         margin-top: 1.4rem;
-         }
+      .dropzone {
+      border: 2px dashed #0087F7;
+      border-radius: 5px;
+      background: white;
+      }
+      .dropzone .dz-message {
+      font-weight: 400;
+      }
+      .dropzone .dz-message .note {
+      font-size: 0.8em;
+      font-weight: 200;
+      display: block;
+      margin-top: 1.4rem;
+      }
       </style>
       
    </head>
@@ -57,12 +56,10 @@
          </section>
          <section>
             <div class="block no-padding">
-
-                
- 
- 
- 
-
+               
+               
+               
+               
                <div class="container">
                   <div class="row no-gape">
                      <?php include("includes/aside_administrator.php");?>
@@ -79,53 +76,53 @@
                                  Copiar archivos.
                                  <br>
                                  <span class="note needsclick">Puede arrastar los archivos al area selecionada.
-                              </div>
-                           </form>
-                        </div>
-                        <div class="padding-left">
-                           <div class="manage-jobs-sec addscroll" style="padding-top: 0px;">
-                              <h3>
-                                 Mis Archivos 
-                                 <ul class="action_job" style="float: right;"> 
-                                    <li onClick="listar_archivos()" style="font-size: 15px;cursor: pointer;" class="status"> Actualizar </li> 
+                                 </div>
+                              </form>
+                           </div>
+                           <div class="padding-left">
+                              <div class="manage-jobs-sec addscroll" style="padding-top: 0px;">
+                                 <h3>
+                                 Mis Archivos
+                                 <ul class="action_job" style="float: right;">
+                                    <li onClick="listar_archivos()" style="font-size: 15px;cursor: pointer;" class="status"> Actualizar </li>
                                     
                                     
                                  </ul>
-                              </h3>
-                              <table class="table" style="margin: 0px;margin-left: 10px;">
-                                 <tbody id="tabla_archivos">
-                                 </tbody>
-                              </table>
+                                 </h3>
+                                 <table class="table" style="margin: 0px;margin-left: 10px;">
+                                    <tbody id="tabla_archivos">
+                                    </tbody>
+                                 </table>
+                              </div>
                            </div>
+                           <!-- Button trigger modal -->
+                           
+                           <!--paginacion-->
+                           <div class="pagination" style="margin-bottom: 50px;">
+                              <ul style="margin: 0 auto;">
+                                 <li class="prev"><a href=""><i class="la la-long-arrow-left"></i> Anterior</a></li>
+                                 <li><a href="">1</a></li>
+                                 <li class="active"><a href="">2</a></li>
+                                 <li><a href="">3</a></li>
+                                 <li><span class="delimeter">...</span></li>
+                                 <li><a href="">14</a></li>
+                                 <li class="next"><a href="">Siguiente <i class="la la-long-arrow-right"></i></a></li>
+                              </ul>
+                           </div>
+                           <!-- Pagination -->
                         </div>
-                        <!-- Button trigger modal -->
-                       
-                        <!--paginacion-->
-                        <div class="pagination" style="margin-bottom: 50px;">
-                           <ul style="margin: 0 auto;">
-                              <li class="prev"><a href=""><i class="la la-long-arrow-left"></i> Anterior</a></li>
-                              <li><a href="">1</a></li>
-                              <li class="active"><a href="">2</a></li>
-                              <li><a href="">3</a></li>
-                              <li><span class="delimeter">...</span></li>
-                              <li><a href="">14</a></li>
-                              <li class="next"><a href="">Siguiente <i class="la la-long-arrow-right"></i></a></li>
-                           </ul>
-                        </div>
-                        <!-- Pagination -->
                      </div>
                   </div>
                </div>
             </div>
-      </div> 
-      </section>
-<style type="text/css">
-    .modal_usar_como:hover
-    { 
-       background-color: #f2f2f2;
-    }  
-</style>
-<?php include("local/resources/views/includes/modales/administrator_maletin.php");?>
+         </section>
+         <style type="text/css">
+         .modal_usar_como:hover
+         {
+         background-color: #f2f2f2;
+         }
+         </style>
+         <?php include("local/resources/views/includes/modales/administrator_maletin.php");?>
       </div>
       <?php include("local/resources/views/includes/aside_right_administrator.php");?>
       
@@ -135,40 +132,40 @@
       <script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
       <script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
       <script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-      <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
+      <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
       <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
       <script src="local/resources/views/plugins/imagen/js/jquery.Jcrop.min.js" type="text/javascript"></script>
-      <script src="local/resources/views/plugins/dropzone.js" type="text/javascript"></script> 
+      <script src="local/resources/views/plugins/dropzone.js" type="text/javascript"></script>
       <?php include("local/resources/views/includes/referencias_down.php");?>
       <?php include("local/resources/views/includes/ajax/administrator_maletin.php");?>
       <script type="text/javascript">
-         $(document).ready(function() {
-             listar_archivos(); 
-         });
-      </script>  
+      $(document).ready(function() {
+      listar_archivos();
+      });
+      </script>
       <?php
       if(isset($_GET['info']))
       {
-        if($_GET['info']=="del")
-          {
-            echo '
-            <script>
-            $.notify("Archivo eliminado con éxito.", {
-              className:"success", 
-              globalPosition: "bottom center"
-            });
-            </script>';
-          }
-          else if($_GET['info']=="up")
-          {
-            echo '
-            <script>
-            $.notify("Archivo actualizado con éxito.", {
-              className:"success", 
-              globalPosition: "bottom center"
-            });
-            </script>';
-          }
+      if($_GET['info']=="del")
+      {
+      echo '
+      <script>
+      $.notify("Archivo eliminado con éxito.", {
+      className:"success",
+      globalPosition: "bottom center"
+      });
+      </script>';
+      }
+      else if($_GET['info']=="up")
+      {
+      echo '
+      <script>
+      $.notify("Archivo actualizado con éxito.", {
+      className:"success",
+      globalPosition: "bottom center"
+      });
+      </script>';
+      }
       }
       ?>
    </body>

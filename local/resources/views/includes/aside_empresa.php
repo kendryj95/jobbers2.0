@@ -24,44 +24,44 @@
 				</li>
 				<li onclick="location.href='../logout'"><a href="../logout" title=""><i class="la la-unlink"></i>Logout</a></li>
 				<!-- <li class="inner-child">
-					<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>
-					<ul>
-						<li><a href="#" title="">My Profile</a></li>
-						<li><a href="#" title="">Social Network</a></li>
-						<li><a href="#" title="">Contact Information</a></li>
-					</ul>
+						<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>
+						<ul>
+								<li><a href="#" title="">My Profile</a></li>
+								<li><a href="#" title="">Social Network</a></li>
+								<li><a href="#" title="">Contact Information</a></li>
+						</ul>
 				</li>
 				<li class="inner-child">
-					<a href="#" title=""><i class="la la-user"></i>Packages</a>
-					<ul>
-						<li><a href="#" title="">My Profile</a></li>
-						<li><a href="#" title="">Social Network</a></li>
-						<li><a href="#" title="">Contact Information</a></li>
-					</ul>
+						<a href="#" title=""><i class="la la-user"></i>Packages</a>
+						<ul>
+								<li><a href="#" title="">My Profile</a></li>
+								<li><a href="#" title="">Social Network</a></li>
+								<li><a href="#" title="">Contact Information</a></li>
+						</ul>
 				</li>
 				<li class="inner-child">
-					<a href="#" title=""><i class="la la-file-text"></i>Post a New Job</a>
-					<ul>
-						<li><a href="#" title="">My Profile</a></li>
-						<li><a href="#" title="">Social Network</a></li>
-						<li><a href="#" title="">Contact Information</a></li>
-					</ul>
+						<a href="#" title=""><i class="la la-file-text"></i>Post a New Job</a>
+						<ul>
+								<li><a href="#" title="">My Profile</a></li>
+								<li><a href="#" title="">Social Network</a></li>
+								<li><a href="#" title="">Contact Information</a></li>
+						</ul>
 				</li>
 				<li class="inner-child">
-					<a href="#" title=""><i class="la la-flash"></i>Job Alerts</a>
-					<ul>
-						<li><a href="#" title="">My Profile</a></li>
-						<li><a href="#" title="">Social Network</a></li>
-						<li><a href="#" title="">Contact Information</a></li>
-					</ul>
+						<a href="#" title=""><i class="la la-flash"></i>Job Alerts</a>
+						<ul>
+								<li><a href="#" title="">My Profile</a></li>
+								<li><a href="#" title="">Social Network</a></li>
+								<li><a href="#" title="">Contact Information</a></li>
+						</ul>
 				</li>
-				<li class="inner-child"> 
-					<a href="#" title=""><i class="la la-lock"></i>Change Password</a>
-					<ul>
-						<li><a href="#" title="">My Profile</a></li>
-						<li><a href="#" title="">Social Network</a></li>
-						<li><a href="#" title="">Contact Information</a></li>
-					</ul>
+				<li class="inner-child">
+						<a href="#" title=""><i class="la la-lock"></i>Change Password</a>
+						<ul>
+								<li><a href="#" title="">My Profile</a></li>
+								<li><a href="#" title="">Social Network</a></li>
+								<li><a href="#" title="">Contact Information</a></li>
+						</ul>
 				</li>
 				<li><a href="#" title=""><i class="la la-unlink"></i>Logout</a></li> -->
 			</ul>

@@ -1,5 +1,5 @@
 <?php
-    $mi_tokken=csrf_token();
+$mi_tokken=csrf_token();
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,7 +53,7 @@
                     <input type="text" placeholder="Buscar">
                     <i class="la la-search">
                     </i>
-                  </div> 
+                  </div>
                 </div>
               </div>
               <div class="widget">
@@ -75,7 +75,7 @@
                   <input type="radio" name="choose" id="erewr">
                   <label for="erewr">Últimos 30 días
                   </label>
-                  <br> 
+                  <br>
                 </div>
               </div>
               <div class="widget">
@@ -83,70 +83,70 @@
                 </h3>
                 <div class="type_widget" style="">
                   <?php
-                    $contador=0;
-                    foreach($provincia as $key)
+                  $contador=0;
+                  foreach($provincia as $key)
                   {
-                    echo'<p class="flchek">
+                  echo'<p class="flchek">
                     <input type="checkbox" name="choosetype" id="'.$key->id.'">
                     <label for="'.$key->id.'">'.$key->provincia.'
                     </label>
                   </p>';
                   if($contador>10){break;}
                   $contador++;
-                  }?> 
+                  }?>
                 </div>
               </div>
               <div class="widget">
                 <h3 class="sb-title open">Localidad
                 </h3>
                 <div class="type_widget" style="">
-                   <?php
-                    $contador=0;
-                    foreach($localidad as $key)
+                  <?php
+                  $contador=0;
+                  foreach($localidad as $key)
                   {
-                    echo'<p class="flchek">
+                  echo'<p class="flchek">
                     <input type="checkbox" name="choosetype" id="'.$key->id.'">
                     <label for="'.$key->id.'">'.$key->localidad.'
                     </label>
                   </p>';
                   if($contador>10){break;}
                   $contador++;
-                  }?> 
+                  }?>
                 </div>
               </div>
               <div class="widget">
                 <h3 class="sb-title open">Disponibilidad
                 </h3>
                 <div class="type_widget" style="">
-                   <?php 
-                    foreach($disponibilidad as $key)
+                  <?php
+                  foreach($disponibilidad as $key)
                   {
-                    echo'<p class="flchek">
-                    <input type="checkbox" name="choosetype" id="'.$key->id.'">
-                    <label for="'.$key->id.'">'.$key->nombre.'
-                    </label>
-                  </p>'; 
-                  }?> 
-                </div>
-              </div>
-               
-                <div class="widget">
-                <h3 class="sb-title active">Sector
-                </h3>
-                <div class="specialism_widget" style="display: block;">
-                  <div class="simple-checkbox">
-                   <?php
-                    $contador=0;
-                    foreach($sector as $key)
-                  {
-                    echo'<p class="flchek">
+                  echo'<p class="flchek">
                     <input type="checkbox" name="choosetype" id="'.$key->id.'">
                     <label for="'.$key->id.'">'.$key->nombre.'
                     </label>
                   </p>';
-                  if($contador>10){break;}
-                  $contador++;
-                  }?> 
+                  }?>
+                </div>
+              </div>
+              
+              <div class="widget">
+                <h3 class="sb-title active">Sector
+                </h3>
+                <div class="specialism_widget" style="display: block;">
+                  <div class="simple-checkbox">
+                    <?php
+                    $contador=0;
+                    foreach($sector as $key)
+                    {
+                    echo'<p class="flchek">
+                      <input type="checkbox" name="choosetype" id="'.$key->id.'">
+                      <label for="'.$key->id.'">'.$key->nombre.'
+                      </label>
+                    </p>';
+                    if($contador>10){break;}
+                    $contador++;
+                    }?>
                   </div>
                 </div>
               </div>
@@ -158,15 +158,15 @@
                     <?php
                     $contador=0;
                     foreach($area as $key)
-                  {
+                    {
                     echo'<p class="flchek">
-                    <input type="checkbox" name="choosetype" id="'.$key->id.'">
-                    <label for="'.$key->id.'">'.$key->nombre.'
-                    </label>
-                  </p>';
-                  if($contador>10){break;}
-                  $contador++;
-                  }?> 
+                      <input type="checkbox" name="choosetype" id="'.$key->id.'">
+                      <label for="'.$key->id.'">'.$key->nombre.'
+                      </label>
+                    </p>';
+                    if($contador>10){break;}
+                    $contador++;
+                    }?>
                   </div>
                 </div>
               </div>
@@ -178,35 +178,35 @@
                     <?php
                     $contador=0;
                     foreach($salario as $key)
-                  {
+                    {
                     echo'<p class="flchek">
-                    <input type="checkbox" name="choosetype" id="'.$key->id.'">
-                    <label for="'.$key->id.'">'.$key->salario.'
-                    </label>
-                  </p>';
-                  if($contador>10){break;}
-                  $contador++;
-                  }?> 
+                      <input type="checkbox" name="choosetype" id="'.$key->id.'">
+                      <label for="'.$key->id.'">'.$key->salario.'
+                      </label>
+                    </p>';
+                    if($contador>10){break;}
+                    $contador++;
+                    }?>
                   </div>
                 </div>
               </div>
-               
+              
               <div class="widget">
                 <h3 class="sb-title active">Experiencia
                 </h3>
                 <div class="specialism_widget" style="display: block;">
                   <div class="simple-checkbox">
-                   <?php 
+                    <?php
                     foreach($experiencia as $key)
-                  {
+                    {
                     $datos="Sin experiencia";
                     if($key->descripcion!="Sin experiencia"){$datos=$key->descripcion." Años";}
                     echo'<p class="flchek">
-                    <input type="checkbox" name="choosetype" id="'.$key->id.'">
-                    <label for="'.$key->id.'">'.$datos.'
-                    </label>
-                  </p>'; 
-                  }?>  
+                      <input type="checkbox" name="choosetype" id="'.$key->id.'">
+                      <label for="'.$key->id.'">'.$datos.'
+                      </label>
+                    </p>';
+                    }?>
                   </div>
                 </div>
               </div>
@@ -215,24 +215,24 @@
                 </h3>
                 <div class="specialism_widget" style="display: block;">
                   <div class="simple-checkbox">
-                    <?php 
+                    <?php
                     foreach($genero as $key)
-                  { 
+                    {
                     echo'<p class="flchek">
-                    <input type="checkbox" name="choosetype" id="'.$key->id.'">
-                    <label for="'.$key->id.'">'.$key->descripcion.'
-                    </label>
-                  </p>'; 
-                  }?>  
+                      <input type="checkbox" name="choosetype" id="'.$key->id.'">
+                      <label for="'.$key->id.'">'.$key->descripcion.'
+                      </label>
+                    </p>';
+                    }?>
                   </div>
                 </div>
-              </div> 
+              </div>
             </aside>
             <div class="col-lg-9 column">
               <div class="modrn-joblist">
-                 
+                
                 <!-- Tags Bar -->
-                <div class="filterbar"> 
+                <div class="filterbar">
                   <div class="sortby-sec">
                     <span>Filtrar
                     </span>
@@ -246,7 +246,7 @@
                       <option>Mis Favoritas
                       </option>
                     </select>
-                     
+                    
                   </div>
                   <h5>Ofertas de trabajo
                   </h5>
@@ -258,106 +258,105 @@
                   <a href=""></a>
                   <?php foreach($publicaciones as $key)
                   {
-                    $estado="Activa";
-                    if(!$estado==1){$estado="Inactiva";}
-                    echo'
-                    <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
-                    <div class="job-listing wtabs">
-                        <div class="job-title-sec">
-                          <div class="c-logo"> 
-                            <img src="uploads/'.$key->imagen.'" alt="" style="max-width: 98px;"> 
-                          </div>
-                          <h3>
-                            <a href="detalleoferta/'.$key->id.'" title=""><span id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
-                            </a>
-                          </h3>
-                          <span id="titulo_'.$key->id.'">'.$key->nombre.'
-                          </span>
-                          <div class="job-lctn">
-                            <i class="la la-map-marker">
-                            </i>'.$key->provincia.', '.$key->localidad.'
-                          </div>
-                        </div>
-                        <div class="job-style-bx">
-                          <span class="job-is ft">'.$key->disponibilidad.'
-                          </span>
-                          <span id="fav_'.$key->id.'" class="fav-job">
-                            <i onClick="set_favoritos('.$key->id.')" class="la la-heart-o">
-                            </i>
-                          </span>
-                          <i>Vistas '.$key->vistos.' / <span class="status">'.$estado.'</span> / '.$key->tmp.'
-                          </i>
-                        </div></div>';
+                  $estado="Activa";
+                  if(!$estado==1){$estado="Inactiva";}
+                  echo'
+                  <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+                  <div class="job-listing wtabs">
+                    <div class="job-title-sec">
+                      <div class="c-logo">
+                        <img src="uploads/'.$key->imagen.'" alt="" style="max-width: 98px;">
+                      </div>
+                      <h3>
+                      <a href="detalleoferta/'.$key->id.'" title=""><span id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
+                    </a>
+                    </h3>
+                    <span id="titulo_'.$key->id.'">'.$key->nombre.'
+                    </span>
+                    <div class="job-lctn">
+                      <i class="la la-map-marker">
+                      </i>'.$key->provincia.', '.$key->localidad.'
+                    </div>
+                  </div>
+                  <div class="job-style-bx">
+                    <span class="job-is ft">'.$key->disponibilidad.'
+                    </span>
+                    <span id="fav_'.$key->id.'" class="fav-job">
+                      <i onClick="set_favoritos('.$key->id.')" class="la la-heart-o">
+                      </i>
+                    </span>
+                    <i>Vistas '.$key->vistos.' / <span class="status">'.$estado.'</span> / '.$key->tmp.'
+                    </i>
+                  </div></div>';
                   }?>
-
-                  </div> 
-                </div> 
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <?php include("local/resources/views/includes/general_footer.php");?>
     </div>
-  <?php include("local/resources/views/includes/login_register_modal.php");?>
-  <script src="local/resources/views/js/jquery.min.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/modernizr.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/script.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/wow.min.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/slick.min.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/parallax.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/select-chosen.js" type="text/javascript">
-  </script>
-  <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
-  </script>
+  </section>
+  <?php include("local/resources/views/includes/general_footer.php");?>
+</div>
+<?php include("local/resources/views/includes/login_register_modal.php");?>
+<script src="local/resources/views/js/jquery.min.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/modernizr.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/script.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/wow.min.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/slick.min.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/parallax.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/select-chosen.js" type="text/javascript">
+</script>
+<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
+</script>
 <script type="text/javascript">
-                    <?php foreach ($favoritos as $key): ?>
-                      <?php 
-                        if($key!==null)
-                        {
-                          echo'$("#fav_'.$key->id_referencia.'").addClass("active");';
-                        }
-                      ?>
-                    <?php endforeach ?> 
-                  </script>
-  <script type="text/javascript">
-    function set_favoritos(vid)
-    {
-        vtipo=3;
-        vtitulo=$("#titulo_"+ vid).html();
-        vurl=$("#url_"+ vid).html();
-        vdescripcion=$("#descripcion_"+ vid).html();
-       
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-        $.ajax({
-            data:{id:vid,tipo:vtipo,url:vurl,titulo:vtitulo,descripcion:vdescripcion},
-            url: 'candisetfavorite',
-            type: 'post', 
-            success: function(data)
-            { 
-              
-                  if(data==2)
-                  {
-                    alert("Ya le ha dado favorito");
-                  }
-                  else if(data==0)
-                  {
-                    alert("Ha ocurrido un error");
-                  } 
-            } 
-        })   
-    }
-  </script>
-  </body>
+<?php foreach ($favoritos as $key): ?>
+<?php
+if($key!==null)
+{
+echo'$("#fav_'.$key->id_referencia.'").addClass("active");';
+}
+?>
+<?php endforeach ?>
+</script>
+<script type="text/javascript">
+function set_favoritos(vid)
+{
+vtipo=3;
+vtitulo=$("#titulo_"+ vid).html();
+vurl=$("#url_"+ vid).html();
+vdescripcion=$("#descripcion_"+ vid).html();
+
+$.ajaxSetup({
+headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
+$.ajax({
+data:{id:vid,tipo:vtipo,url:vurl,titulo:vtitulo,descripcion:vdescripcion},
+url: 'candisetfavorite',
+type: 'post',
+success: function(data)
+{
+
+if(data==2)
+{
+alert("Ya le ha dado favorito");
+}
+else if(data==0)
+{
+alert("Ha ocurrido un error");
+}
+}
+})
+}
+</script>
+</body>
 </html>
