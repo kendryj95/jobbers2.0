@@ -51,6 +51,8 @@ Route::get('canditienda', function () {return view('candidato_tienda');});
 Route::get('candireferidos', 'con_candidato_referidos@index');
 Route::get('candiredes', 'con_candidato_redes@index');
 Route::post('candiredescrear', 'con_candidato_redes@crear');
+Route::post('candidatosper', 'con_candidato_perfil_publico@datos_personales');
+
 });
 //********************************************************//
 //*                RUTAS PARA LAS EMPRESAS               *//
