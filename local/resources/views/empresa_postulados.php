@@ -21,67 +21,12 @@
 	<body>
 		<div class="theme-layout" id="scrollup">
 			
-			<div class="responsive-header">
-				<div class="responsive-menubar">
-					<div class="res-logo"><a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" alt="" /></a></div>
-					<div class="menu-resaction">
-						<div class="res-openmenu">
-							<img src="../local/resources/views/images/icon.png" alt="" /> Menu
-						</div>
-						<div class="res-closemenu">
-							<img src="../local/resources/views/images/icon2.png" alt="" /> Close
-						</div>
-					</div>
-				</div>
-				<div class="responsive-opensec">
-					<div class="btn-extars">
-						<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
-						<ul class="account-btns">
-							<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
-							<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
-						</ul>
-						</div><!-- Btn Extras -->
-						<form class="res-search">
-							<input type="text" placeholder="Job title, keywords or company name" />
-							<button type="submit"><i class="la la-search"></i></button>
-						</form>
-						<div class="responsivemenu">
-							<ul>
-								<li class="">
-									<a href="../inicio" title="">Home</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				
-				<header class="stick-top">
-					<div class="menu-sec">
-						<div class="container">
-							<div class="logo">
-								<a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" style="width: 120px;"></a>
-								</div><!-- Logo -->
-								<div class="btns-profiles-sec">
-									<span><img src="http://placehold.it/50x50" alt="" /> Jobbers Argentina <i class="la la-angle-down"></i></span>
-									<ul>
-										<li><a href="#" title=""><i class="la la-file-text"></i> Company Profile</a></li>
-										<li><a href="#" title=""><i class="la la-briefcase"></i> Manage Jobs</a></li>
-										<li><a href="#" title=""><i class="la la-line-chart"></i> Transactions</a></li>
-										<li><a href="#" title=""><i class="la la-magnet"></i> Resumes</a></li>
-										<li><a href="#" title=""><i class="la la-folder-open"></i> Packages</a></li>
-										<li><a href="#" title=""><i class="la la-leaf"></i> Post a New Job</a></li>
-										<li><a href="#" title=""><i class="la la-phone"></i> Job Alerts</a></li>
-										<li><a href="#" title=""><i class="la la-key"></i> Change Password</a></li>
-										<li><a href="#" title=""><i class="la la-history"></i> Logout</a></li>
-									</ul>
-								</div>
-								<?php include "includes/header_empresa.php" ?>
-							</div>
-						</div>
-					</header>
+			<?php include("includes/header_responsive_empresa.php") ?>
+			
+			<?php include "includes/header_empresa.php" ?>
 					<section class="overlape">
 						<div class="block no-padding">
-							<div data-velocity="-.1" style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+							<div data-velocity="-.1" style="background: url(../local/resources/views/images/empresa_gral.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 							<div class="container fluid">
 								<div class="row">
 									<div class="col-lg-12">

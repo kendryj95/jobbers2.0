@@ -12,6 +12,8 @@ class con_login extends Controller
     public function log(Request $request)
     {
 
+        $this->limpiarVariablesSession($request);
+
         $sql = "
         SELECT t1.*,count(t1.id) as cantidad,t3.nombre_aleatorio as imagen,t1.token FROM tbl_usuarios t1
         LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id = t2.id_usuario
@@ -30,7 +32,7 @@ class con_login extends Controller
 
                     $sql = "SELECT
                             e.id AS id_empresa,
-                            a.archivo AS imagen,
+                            a.nombre_aleatorio AS imagen,
                             e.nombre AS nombre_empresa,
                             ep.id_plan
                             FROM tbl_empresa e
@@ -51,7 +53,7 @@ class con_login extends Controller
                     $sufijo  = "cand_";
                     $ruta    = "candidashboard";
                 }
-                $this->limpiarVariablesSession($request);
+                
                 $request->session()->set($prefijo, $datos[0]->correo);
                 $request->session()->set($sufijo . 'id', $datos[0]->id);
                 $request->session()->set($sufijo . 'img', $datos[0]->imagen);

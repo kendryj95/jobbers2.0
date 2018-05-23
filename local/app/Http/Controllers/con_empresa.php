@@ -299,6 +299,67 @@ class con_empresa extends Controller
                     "status" => $response,
                 ]);
                 break;
+            case 3:
+
+            	$response = '';
+
+            	DB::beginTransaction();
+
+            	try {
+
+            	    DB::update("UPDATE tbl_empresa SET id_imagen=? WHERE id=?", [$_REQUEST['id_imagen'], session()->get("emp_ide")]);
+
+            	    $data = DB::select("SELECT nombre_aleatorio AS imagen FROM tbl_archivos WHERE id=?",[$_REQUEST['id_imagen']]);
+
+            	    $request->session()->set("emp_imagen", $data[0]->imagen);
+
+            	    DB::commit();
+
+            	    $response = 1;
+
+            	} catch (Exception $e) {
+            	    DB::rollback();
+            	    $response = 2;
+            	}
+
+            	echo json_encode([
+            	    "status" => $response,
+            	]);
+
+            	break;
+            case 4:
+
+            	$response = '';
+
+            	$pass_act = md5($_REQUEST['pass_act']);
+            	$pass_new = md5($_REQUEST['pass_new']);
+
+            	$pass_coincide = DB::select("SELECT id FROM tbl_usuarios WHERE clave=? AND id=?",[$pass_act, session()->get("emp_id")]);
+
+            	if ($pass_coincide) {
+            		DB::beginTransaction();
+
+            		try {
+
+            		    DB::update("UPDATE tbl_usuarios SET clave=? WHERE id=?", [$pass_new, session()->get("emp_id")]);
+
+            		    DB::commit();
+
+            		    $response = 1;
+
+            		} catch (Exception $e) {
+            		    DB::rollback();
+            		    $response = 3;
+            		}
+            	} else {
+            		$response = 2;
+            	}
+
+            	echo json_encode([
+            	    "status" => $response,
+            	]);
+
+            	break;
         }
     }
 
@@ -310,7 +371,7 @@ class con_empresa extends Controller
         if ($id_empresa) {
 
             $sql = "SELECT
-        a.archivo AS imagen,
+        a.nombre_aleatorio AS imagen,
         e.nombre AS nombre_empresa,
         e.descripcion,
         e.facebook,

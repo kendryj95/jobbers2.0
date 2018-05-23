@@ -21,6 +21,9 @@ Route::get('sectores/{id_area}', 'con_gral@getSectores');
 Route::post('register', 'con_login@register');
 Route::post('regreferido', 'con_login@regReferido');
 Route::get('r/{token}/{tipo}', 'con_login@vregreferidos');
+Route::post('subir', 'con_maletin@postUpload');
+Route::post('listar_arch', 'con_maletin@listarArch');
+
 //********************************************************//
 //*                 RUTAS PARA LOS CANDIDATOS            *//
 //********************************************************//
@@ -30,14 +33,12 @@ Route::get('candifavoritos', 'con_candidato_favoritos@index');
 Route::get('candifaveliminar/{id}', 'con_candidato_favoritos@eliminar');
 Route::post('candisetfavorite', 'con_candidato_favoritos@setFavorite');
 Route::get('candimaletin', 'con_maletin@indexcandidato');
-Route::post('listar_arch', 'con_maletin@listarArch');
 Route::post('actarch', 'con_maletin@alias'); //Actualiza los alias
 Route::get('delarchivo/{id}', 'con_maletin@eliminar'); //Elimina los archivos
 Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos
 Route::get('candiconfiguracion', 'con_candidatos_configuracion@index');
 Route::post('candisetprofilepic', 'con_candidatos_configuracion@setProfilePic');
 Route::post('candiactualizardatos', 'con_candidatos_configuracion@actualizardatos');
-Route::post('subir', 'con_maletin@postUpload');
 Route::get('candipostulaciones', 'con_candidato_postulaciones@index');
 Route::get('candipostular/{id}', 'con_candidato_postulaciones@postular');
 Route::get('candidato', 'con_candidato_perfil_publico@perfilPublico');

@@ -114,9 +114,11 @@ function formatDate($dateMayor, $dateMenor){
 													<div class="job-details">
 														<p><?= $empresa[0]->descripcion ?></p>
 													</div>
+													<?php if (count($ofertas) > 0): ?>
 													<div class="recent-jobs">
 														<h3>Ofertas de la Empresa</h3>
 														<div class="job-list-modern">
+															
 															<div class="job-listings-sec no-border">
 																<?php foreach ($ofertas as $oferta): ?>
 																<div class="job-listing wtabs noimg">
@@ -132,8 +134,10 @@ function formatDate($dateMayor, $dateMenor){
 																</div>
 																<?php endforeach ?><!-- Job -->
 															</div>
+															
 														</div>
 													</div>
+													<?php endif ?>
 												</div>
 												<div class="col-lg-4 column">
 													<div class="job-overview">
