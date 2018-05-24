@@ -27,6 +27,12 @@ class con_candidato_perfil_publico extends Controller
         $sql_generos="SELECT * FROM tbl_generos";
         $sql_discapacidad="SELECT * FROM tbl_discapacidad";
 
+        $sql_salarios="SELECT * FROM tbl_rango_salarios";
+        $sql_disponibilidad="SELECT * FROM tbl_disponibilidad";
+        $sql_cargos="SELECT * FROM tbl_cargos";
+
+
+
         $bandera_datos_personales=0;
         $sql_datos_personales="
         SELECT *, count(*) as cantidad FROM tbl_candidato_datos_personales WHERE id_usuario=".session()->get('cand_id')."";
@@ -57,8 +63,18 @@ class con_candidato_perfil_publico extends Controller
             $paises= DB::select($sql_paises);
             $discapacidad= DB::select($sql_discapacidad);
             $generos= DB::select($sql_generos);
+
+            $salarios= DB::select($sql_salarios);
+            $disponibilidad= DB::select($sql_disponibilidad);
+            $cargos= DB::select($sql_cargos);
+
             $vista->datos  = $datos;
             $vista->imagen = $imagen;
+
+            $vista->salarios = $salarios;
+            $vista->disponibilidad = $disponibilidad;
+            $vista->cargos = $cargos; 
+
 
             if ($pic[0]->cantidad == 1) {
                 $con_imagen = 1;
@@ -127,5 +143,38 @@ class con_candidato_perfil_publico extends Controller
                     return redirect("candiperfil");
                  
             }
-           } 
+        } 
+
+        public function datos_preferencias_laborales()
+    {
+        $sql_preferencias_laborales="
+        SELECT *, count(*) as cantidad FROM tbl_candidato_preferencias_laborales WHERE id_usuario=".session()->get('cand_id')."";
+         
+            $datos=DB::select($sql_preferencias_laborales);
+            if($datos[0]->cantidad!=0)
+            {
+                
+                $sql="UPDATE tbl_candidato_preferencias_laborales SET
+                id_remuneracion_pre=".$_POST['remuneracion'].", 
+                id_jornada=".$_POST['jornada'].", 
+                WHERE id_usuario=".session()->get('cand_id')." 
+                ";
+                 DB::update($sql);
+                return redirect("candiperfil");
+            }
+            else
+            {
+                 $sql="INSERT INTO tbl_candidato_preferencias_laborales VALUES
+                (
+                null,
+                ".session()->get('cand_id').",
+                ".$_POST['remuneracion'].", 
+                ".$_POST['jornada'].", 
+                null 
+                )"; 
+                    DB::insert($sql);
+                    return redirect("candiperfil");
+                 
+            }
+        } 
 }

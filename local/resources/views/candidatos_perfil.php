@@ -237,7 +237,6 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-12">
                                                 <span class="pf-title">¿Cómo te describes?</span>
                                                 <div class="pf-field">
-
                                                     <textarea name="sobremi"><?php echo trim($up_desc);?></textarea>
                                                 </div>
                                             </div>
@@ -249,39 +248,78 @@ $mi_tokken = csrf_token();
                                     </form>
                                     <div class="social-edit">
                                         <h3>Preferencias laborales</h3>
-                                        <form>
+                                        <form method="POST" action="candipreflab">
+                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
                                             <div class="row">
-                                                <div class="col-lg-4">
-                                                    <span class="pf-title">Remuneración Pretendida</span>
+                                                <div class="col-lg-6">
+                                                    <span class="pf-title">Remuneración</span>
                                                     <div class="pf-field">
-                                                        <select name="sexo" data-placeholder="Allow In Search" class="chosen">
+                                                        <select id="remuneracion"  name="remuneracion" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
-                                                            <option value="">Masculino</option>
-                                                            <option value="">Femenino</option>
-                                                            <option value="">Otros</option>
+                                                            <?php
+                                                            foreach ($salarios as $key) {
+                                                            echo'<option value="'.$key->id.'">'.$key->salario.'</option>';
+                                                            }
+                                                            ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-6">
                                                     <span class="pf-title">Jornada</span>
                                                     <div class="pf-field">
-                                                        <select name="sexo" data-placeholder="Allow In Search" class="chosen">
+                                                        <select name="jornada" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
-                                                            <option value="">Diurna</option>
-                                                            <option value="">Nocturna</option>
-                                                            <option value="">Mixta</option>
+                                                            <?php
+                                                            foreach ($disponibilidad as $key) {
+                                                            echo'<option value="'.$key->id.'">'.$key->nombre.'</option>';
+                                                            }
+                                                            ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
-                                                    <span class="pf-title">Cargo</span>
+                                                <div class="col-lg-6">
+                                                    <span class="pf-title">Cargos pretendidos</span>
                                                     <div class="pf-field">
-                                                        <select name="sexo" data-placeholder="Allow In Search" class="chosen">
+                                                        <select name="cargos" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
+                                                            <?php
+                                                            foreach ($cargos as $key) {
+                                                            echo'<option value="'.$key->id.'">'.$key->descripcion.'</option>';
+                                                            }
+                                                            ?>
                                                         </select>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-lg-12">
+                                                    <div class="social-edit" style="margin-bottom: 0px;margin-top: 15px;">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <style type="text/css">
+                                                                .addedTag span
+                                                                {
+                                                                margin-bottom: 20px;
+                                                                }
+                                                                </style>
+                                                                <div class="pf-field no-margin" style="margin-top: 10px;">
+                                                                    <ul class="tags">
+                                                                        <li  class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
+                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
+                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
+                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
+                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
+                                                                        <li class="addedTag">Digital & Creative<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Digital"></li>
+                                                                        <li class="addedTag">Agency<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Agency"></li>
+                                                                        <li class="tagAdd taglist">
+                                                                            <input type="text" id="search-field">
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
                                                     <button type="submit">Guardar</button>
                                                 </div>
                                             </div>
@@ -600,18 +638,17 @@ $mi_tokken = csrf_token();
     }
     function set_select(id,valor)
     {
-    $("#"+id).val(valor);   
+    $("#"+id).val(valor);
     $('#'+id+'_chosen > a > span').html($("#"+id+"_"+valor).html());
     }
     </script>
-
-   <script type="text/javascript"> 
-      <?php echo "set_select('tipo_id',".$up_t_id.");";?>
-      <?php echo "set_select('sexo',".$up_sexo.");";?>
-      <?php echo "set_select('discapacidad',".$up_discapacidad.");";?>
-      <?php echo "set_select('hijos',".$up_hijos.");";?>
-      <?php echo "set_select('nacionalidad',".$up_nacionalidad.");";?>
-      <?php echo "set_select('edo_civil',".$up_edo_civil.");";?>
-   </script>
+    <script type="text/javascript">
+    <?php echo "set_select('tipo_id',".$up_t_id.");";?>
+    <?php echo "set_select('sexo',".$up_sexo.");";?>
+    <?php echo "set_select('discapacidad',".$up_discapacidad.");";?>
+    <?php echo "set_select('hijos',".$up_hijos.");";?>
+    <?php echo "set_select('nacionalidad',".$up_nacionalidad.");";?>
+    <?php echo "set_select('edo_civil',".$up_edo_civil.");";?>
+    </script>
 </body>
 </html>
