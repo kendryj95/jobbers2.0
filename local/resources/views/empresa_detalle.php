@@ -38,7 +38,7 @@ function formatDate($dateMayor, $dateMenor){
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		
-	</head>
+</head>
 	<body>
 		<div class="theme-layout" id="scrollup">
 			<?php
@@ -53,7 +53,7 @@ function formatDate($dateMayor, $dateMenor){
 			?>
 			<section class="overlape">
 				<div class="block no-padding">
-					<div data-velocity="-.1" style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+					<div data-velocity="-.1" style="background: url(../local/resources/views/images/detalle.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">
@@ -114,9 +114,11 @@ function formatDate($dateMayor, $dateMenor){
 													<div class="job-details">
 														<p><?= $empresa[0]->descripcion ?></p>
 													</div>
+													<?php if (count($ofertas) > 0): ?>
 													<div class="recent-jobs">
 														<h3>Ofertas de la Empresa</h3>
 														<div class="job-list-modern">
+															
 															<div class="job-listings-sec no-border">
 																<?php foreach ($ofertas as $oferta): ?>
 																<div class="job-listing wtabs noimg">
@@ -132,8 +134,10 @@ function formatDate($dateMayor, $dateMenor){
 																</div>
 																<?php endforeach ?><!-- Job -->
 															</div>
+															
 														</div>
 													</div>
+													<?php endif ?>
 												</div>
 												<div class="col-lg-4 column">
 													<div class="job-overview">

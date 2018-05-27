@@ -23,6 +23,8 @@ $mi_tokken = csrf_token();
             <?php include 'local/resources/views/includes/header_candidatos.php';?>
             <!--fin Header responsive-->
             <!--Modal imagenes-->
+            <?php include('local/resources/views/includes/modal_cand_educacion.php');?>
+            <?php include('local/resources/views/includes/modal_cand_experiencia.php');?>
             <style type="text/css">
             @media (min-width: 576px) {
             .modal-dialog {
@@ -39,6 +41,7 @@ $mi_tokken = csrf_token();
             }
             </style>
             <!-- Modal -->
+            
             <div style="overflow: hidden;" class="modal fade" id="modal_imagenes" tabindex="-1" role="dialog" aria-labelledby="modal_imagenesLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -107,6 +110,7 @@ $mi_tokken = csrf_token();
                                     </div>
                                 </div>
                                 <?php
+                                
                                 //Datos personales
                                 $up_nombres="";
                                 $up_apellidos="";
@@ -133,6 +137,37 @@ $mi_tokken = csrf_token();
                                 $up_fecha=$datos_personales_up[0]->fecha_nac;
                                 $up_desc=$datos_personales_up[0]->sobre_mi;
                                 
+                                }
+                                // Prefenrencias laborales
+                                $up_remuneracion="";
+                                $up_jornada="";
+                                if($bandera_preferencias_laborales==1)
+                                {
+                                $up_remuneracion=$preferencias_laborales_up[0]->id_remuneracion_pre;
+                                $up_jornada=$preferencias_laborales_up[0]->id_jornada;
+                                }
+                                //Datos de contacto
+                                //infocontacto[0]
+                                $up_telefono_contac="";
+                                $up_correo_contac="";
+                                $up_sitio_contac="";
+                                $up_pais_contac="";
+                                $up_provincia_contac="";
+                                $up_localidad_contac="";
+                                $up_direccion_contac="";
+                                $up_latitud_contac="";
+                                $up_longitud_contac="";
+                                if($bandera_datos_contacto==1)
+                                {
+                                $up_telefono_contac=$infocontacto[0]->telefono;
+                                $up_correo_contac=$infocontacto[0]->correo;
+                                $up_sitio_contac=$infocontacto[0]->web;
+                                $up_pais_contac=$infocontacto[0]->id_pais;
+                                $up_provincia_contac=$infocontacto[0]->id_provincia;
+                                $up_localidad_contac=$infocontacto[0]->id_localidad;
+                                $up_direccion_contac=$infocontacto[0]->direccion;
+                                $up_latitud_contac=$infocontacto[0]->latitud;
+                                $up_longitud_contac=$infocontacto[0]->logitud;
                                 }
                                 ?>
                                 <div class="profile-form-edit">
@@ -267,7 +302,7 @@ $mi_tokken = csrf_token();
                                                 <div class="col-lg-6">
                                                     <span class="pf-title">Jornada</span>
                                                     <div class="pf-field">
-                                                        <select name="jornada" data-placeholder="Allow In Search" class="chosen">
+                                                        <select id="jorna" name="jornada" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
                                                             <?php
                                                             foreach ($disponibilidad as $key) {
@@ -280,7 +315,7 @@ $mi_tokken = csrf_token();
                                                 <div class="col-lg-6">
                                                     <span class="pf-title">Cargos pretendidos</span>
                                                     <div class="pf-field">
-                                                        <select name="cargos" data-placeholder="Allow In Search" class="chosen">
+                                                        <select id="cbn_cargos" onChange="set_cargo(this.value,this.id,'categorias_cargos',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
                                                             <?php
                                                             foreach ($cargos as $key) {
@@ -303,17 +338,8 @@ $mi_tokken = csrf_token();
                                                                 }
                                                                 </style>
                                                                 <div class="pf-field no-margin" style="margin-top: 10px;">
-                                                                    <ul class="tags">
-                                                                        <li  class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                                        <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li><li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                                        <li class="addedTag">Digital & Creative<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Digital"></li>
-                                                                        <li class="addedTag">Agency<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Agency"></li>
-                                                                        <li class="tagAdd taglist">
-                                                                            <input type="text" id="search-field">
-                                                                        </li>
+                                                                    <ul class="tags" id="categorias_cargos">
+                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -326,35 +352,49 @@ $mi_tokken = csrf_token();
                                         </form>
                                     </div>
                                 </div>
+                                <?php
+                                $facebook="";
+                                $instagram="";
+                                $twitter="";
+                                $linkendin="";
+                                foreach ($redes as $key ) {
+                                if($key->id_red_social=="1"){$facebook=$key->red_social;}
+                                if($key->id_red_social=="3"){$instagram=$key->red_social;}
+                                if($key->id_red_social=="5"){$linkendin=$key->red_social;}
+                                if($key->id_red_social=="2"){$twitter=$key->red_social;}
+                                }
+                                ?>
                                 <div class="social-edit">
                                     <h3>Redes sociales</h3>
-                                    <form>
+                                    <form action="candiredescrear" method="post">
+                                        <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
+                                        <input type="hidden" name="pagina" value="perfil">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Facebook</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="www.facebook.com/TeraPlaner" />
+                                                    <input name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?> " />
                                                     <i class="fa fa-facebook"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Twitter</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="www.twitter.com/TeraPlaner" />
+                                                    <input name="twitter" value="<?php echo $twitter;?>" type="text" placeholder="www.twitter.com/TeraPlaner" />
                                                     <i class="fa fa-twitter"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span class="pf-title">Google</span>
+                                                <span class="pf-title">Instragram</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="www.google-plus.com/TeraPlaner" />
-                                                    <i class="la la-google"></i>
+                                                    <input name="instagram" value="<?php echo $instagram;?>" type="text" placeholder="www.google-plus.com/TeraPlaner" />
+                                                    <i class="la la-instagram"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Linkedin</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="www.Linkedin.com/TeraPlaner" />
+                                                    <input name="linkendin" value="<?php echo $linkendin;?>" type="text" placeholder="www.Linkedin.com/TeraPlaner" />
                                                     <i class="la la-linkedin"></i>
                                                 </div>
                                             </div>
@@ -365,76 +405,83 @@ $mi_tokken = csrf_token();
                                     </form>
                                 </div>
                                 <div class="contact-edit">
-                                    <h3>Información de contácto</h3>
-                                    <form>
+                                    <h3>Información de contacto</h3>
+                                    <form action="candicontac" method="post">
+                                        <input type="hidden"  name="_token" value="<?php echo $mi_tokken;?>">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Teléfono</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="+90 538 963 58 96" />
+                                                    <input value="<?php echo $up_telefono_contac;?>" name="telefono" type="text" placeholder="+90 538 963 58 96" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Correo</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="demo@jobhunt.com" />
+                                                    <input value="<?php echo $up_correo_contac;?>" name="correo" type="text" placeholder="demo@jobbers.com" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Sitio Web</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="www.jobhun.com" />
+                                                    <input value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">País</span>
                                                 <div class="pf-field">
-                                                    <select data-placeholder="Please Select Specialism" class="chosen">
-                                                        <option>Web Development</option>
-                                                        <option>Web Designing</option>
-                                                        <option>Art & Culture</option>
-                                                        <option>Reading & Writing</option>
+                                                    <select id="pais_contac" name="pais" data-placeholder="Please Select Specialism" class="chosen">
+                                                        <option value="">Seleccionar</option>
+                                                        <?php
+                                                        foreach ($paises as $key) {
+                                                        echo '<option value="'.$key->id.'">'.$key->descripcion.'</option>';
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Provincia</span>
                                                 <div class="pf-field">
-                                                    <select data-placeholder="Please Select Specialism" class="chosen">
-                                                        <option>Web Development</option>
-                                                        <option>Web Designing</option>
-                                                        <option>Art & Culture</option>
-                                                        <option>Reading & Writing</option>
+                                                    <select id="provincia_contac" name="provincia" data-placeholder="Please Select Specialism" class="chosen">
+                                                        <option value="">Seleccionar</option>
+                                                        <?php
+                                                        foreach ($provincias as $key) {
+                                                        echo '<option value="'.$key->id.'">'.$key->provincia.'</option>';
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Localidad</span>
                                                 <div class="pf-field">
-                                                    <select data-placeholder="Please Select Specialism" class="chosen">
-                                                        <option>Web Development</option>
-                                                        <option>Web Designing</option>
-                                                        <option>Art & Culture</option>
-                                                        <option>Reading & Writing</option>
+                                                    <select id="localidad_contac" name="localidad" data-placeholder="Please Select Specialism" class="chosen">
+                                                        <option value="">Seleccionar</option>
+                                                        <?php
+                                                        foreach ($localidades as $key) {
+                                                        echo '<option value="'.$key->id.'">'.$key->localidad.'</option>';
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6" style="margin-top: 15px;">
-                                                <span class="pf-title">Pocisión geográfica</span>
+                                            <div class="col-lg-6" style="">
+                                                <span class="pf-title">Dirección</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="Collins Street West, Victoria 8007, Australia." />
+                                                    <input value="<?php echo $up_direccion_contac;?>" name="direccion" type="text" placeholder="Buenos Aires, Argentina" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <span class="pf-title">Latitud</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="41.1589654" />
+                                                    <input value="<?php echo $up_latitud_contac;?>" name="latitud" type="text" placeholder="41.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <span class="pf-title">Longitud</span>
                                                 <div class="pf-field">
-                                                    <input type="text" placeholder="21.1589654" />
+                                                    <input value="<?php echo $up_longitud_contac;?>" name="longitud" type="text" placeholder="21.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -443,165 +490,193 @@ $mi_tokken = csrf_token();
                                         </div>
                                     </form>
                                 </div>
+                                
+                                
                                 <div class="padding-left" style="margin-bottom: 100px;margin-top: -50px;">
                                     <div class="manage-jobs-sec">
-                                        <div class="border-title"><h3>Educación</h3><a href="#" title=""><i class="la la-plus"></i> Agregar estudios</a></div>
-                                        <div class="edu-history-sec">
-                                            <div class="edu-history">
-                                                <i class="la la-graduation-cap"></i>
-                                                <div class="edu-hisinfo">
-                                                    <h3>University</h3>
-                                                    <i>2008 - 2012</i>
-                                                    <span>Middle East Technical University <i>Computer Science</i></span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                                </div>
-                                                <ul class="action_job">
-                                                    <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                    <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="border-title"><h3>Exprriencia laboral</h3><a href="#" title=""><i class="la la-plus"></i> Agregar experiencia</a></div>
-                                        <div class="edu-history-sec">
-                                            <div class="edu-history style2">
-                                                <i></i>
-                                                <div class="edu-hisinfo">
-                                                    <h3>Web Designer <span>Inwave Studio</span></h3>
-                                                    <i>2008 - 2012</i>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                                </div>
-                                                <ul class="action_job">
-                                                    <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                    <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="border-title"><h3>Portafolio</h3><a href="#" title=""><i class="la la-plus"></i> Agregar a portafolio</a></div>
-                                        <div class="mini-portfolio">
-                                            <div class="mp-row">
-                                                <div class="mp-col">
-                                                    <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                        <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mp-col">
-                                                    <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                        <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mp-col">
-                                                    <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                        <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mp-col">
-                                                    <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                        <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-title"><h3>Habilidades</h3><a href="#" title=""><i class="la la-plus"></i> Agregar habilidad</a></div>
-                                        <div class="social-edit" style="margin-bottom: 0px;">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        
-                                                        <div class="pf-field no-margin" style="margin-top: 10px;">
-                                                            <ul class="tags">
-                                                                <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                                <li class="addedTag">Digital & Creative<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Digital"></li>
-                                                                <li class="addedTag">Agency<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Agency"></li>
-                                                                <li class="tagAdd taglist">
-                                                                    <input type="text" id="search-field">
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                        <div class="border-title"><h3>Educación</h3>
+                                            <a href="#" title="" data-toggle="modal" data-target="#modal_educ_cand" onClick="limpiar_mod_educ()">
+                                            <i class="la la-plus"></i> Agregar estudios</a></div>
+                                            <?php foreach ($educacion as $key): ?>
+                                            <input type="hidden" id="estudios" value="<?php echo $key->id_area_estudio;?>" />
+                                            <input type="hidden" id="nivel_es" value="<?php echo $key->id_nivel_estudio;?>" />
+                                            <input type="hidden" id="pais" value="<?php echo $key->id_pais;?>" />
+                                            <input type="hidden" id="titulo_" value="<?php echo $key->titulo;?>" />
+                                            
+                                            <div class="edu-history-sec">
+                                                <div class="edu-history">
+                                                    <i class="la la-graduation-cap"></i>
+                                                    <div class="edu-hisinfo">
+                                                        <h3 id="universidad_<?php echo $key->id;?>"><?php echo $key->nombre_institucion;?></h3>
+                                                        <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?> - <?php echo $key->hasta;?></i>
+                                                        <span><?php echo $key->titulo;?>
+                                                            <i><?php echo $key->descripcion;?></i>
+                                                            <i><?php echo $key->nivel;?></i>
+                                                            <i><?php echo $key->estudios;?></i>
+                                                        </span>
+                                                        <p></p>
                                                     </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="progress-sec" style="margin-bottom: 0px;">
-                                            <div class="progress-sec with-edit">
-                                                <span>Adobe Photoshop</span>
-                                                <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
-                                                <ul class="action_job">
-                                                    <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="progress-sec with-edit">
-                                                <span>Production In Html</span>
-                                                <div class="progressbar"> <div class="progress" style="width: 60%;"><span>60%</span></div> </div>
-                                                <ul class="action_job">
-                                                    <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="progress-sec with-edit">
-                                                <span>Graphic Design</span>
-                                                <div class="progressbar"> <div class="progress" style="width: 75%;"><span>75%</span></div> </div>
-                                                <ul class="action_job">
-                                                    <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="social-edit">
-                                                    <form>
-                                                        <button type="submit">Guardar</button>
-                                                    </form></div>
+                                                    <ul class="action_job">
+                                                        <li><span>Editar</span><a onClick="limpiar_mod_educ(<?php echo $key->id;?>),set_educacion(<?php echo $key->id;?>)" title=""><i class="la la-pencil"></i></a></li>
+                                                        <li><span>Eliminar</span><a href="candidelestudios/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="border-title" style="margin: 0px;margin-top: -50px;"><h3>Idiomas</h3><a href="#" title=""><i class="la la-plus"></i> Agregar idioma</a></div>
-                                    <div class="social-edit">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-lg-12" style="margin-top: 20px;">
-                                                    
-                                                    <div class="pf-field no-margin" style="margin-top: 10px;">
-                                                        <ul class="tags">
-                                                            <li class="addedTag">Ingles<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Photoshop"></li>
-                                                            <li class="addedTag">Francés<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Digital"></li>
-                                                            <li class="tagAdd taglist">
-                                                                <input type="text" id="search-field">
-                                                            </li>
+                                            <?php endforeach ?>
+                                            <div class="border-title"><h3>Experiencia laboral</h3><a href="#" title=""  data-toggle="modal" data-target="#modal_educ_expe"><i class="la la-plus"></i> Agregar experiencia</a></div>
+                                            <div class="edu-history-sec">
+                                                <?php foreach ($experiencias as $key): ?>
+                                                <input type="hidden" id="e_sector_<?php echo $key->id;?>" value="<?php echo $key->id_sector;?>">
+                                                <div class="edu-history style2">
+                                                    <i></i>
+                                                    <div class="edu-hisinfo">
+                                                        <h3 id="e_empresa_<?php echo $key->id;?>"><?php echo $key->nombre_empresa;?></h3> <span><?php echo $key->sector;?></span></h3>
+                                                        <i id="e_periodo_<?php echo $key->id;?>"><?php echo $key->desde;?> - <?php echo $key->hasta;?></i>
+                                                        <i id="e_cargo_<?php echo $key->id;?>"><?php echo $key->cargo;?></i>
+                                                        <p id="e_descripcion_<?php echo $key->id;?>"><?php echo $key->descripcion;?></p>
+                                                    </div>
+                                                    <ul class="action_job">
+                                                        <li><span>Editar</span><a onClick="limpiar_mod_expe(<?php echo $key->id;?>),set_experiencia(<?php echo $key->id;?>)" title=""><i class="la la-pencil"></i></a></li>
+                                                        <li><span>Eliminar</span><a href="candidelexpe/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <?php endforeach ?>
+                                                
+                                            </div>
+                                            <!--
+                                            v<div class="border-title"><h3>Portafolio</h3><a href="#" title=""><i class="la la-plus"></i> Agregar a portafolio</a></div>
+                                            <div class="mini-portfolio">
+                                                <div class="mp-row">
+                                                    <div class="mp-col">
+                                                        <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+                                                        <ul class="action_job">
+                                                            <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+                                                            <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mp-col">
+                                                        <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+                                                        <ul class="action_job">
+                                                            <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+                                                            <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mp-col">
+                                                        <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+                                                        <ul class="action_job">
+                                                            <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+                                                            <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mp-col">
+                                                        <div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+                                                        <ul class="action_job">
+                                                            <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+                                                            <li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="progress-sec" style="margin-bottom:100px;">
-                                        <div class="progress-sec with-edit">
-                                            <span>Inglés</span>
-                                            <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
-                                            <ul class="action_job">
-                                                <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="progress-sec with-edit">
-                                            <span>Francés</span>
-                                            <div class="progressbar"> <div class="progress" style="width: 60%;"><span>60%</span></div> </div>
-                                            <ul class="action_job">
-                                                <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="social-edit">
-                                                <form>
-                                                    <button type="submit">Guardar</button>
-                                                </form></div>
+                                            -->
+                                            <!--HAbilidadez-->
+                                            <div class="border-title"><h3>Habilidades</h3><a title=""><i class="la la-plus" ></i> Agregar habilidad</a></div>
+                                            <div class="social-edit" style="margin-bottom: 0px;">
+                                                <form id="form_habilidades" method="POST" action="candisethabilidad">
+                                                    <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="pf-field">
+                                                                <select id="cbn_habilidad" onChange="set_cargo(this.value,this.id,'categorias_habilidad',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
+                                                                    <option value="">Seleccionar</option>
+                                                                    <?php
+                                                                    foreach ($habilidades as $key) {
+                                                                    echo'<option value="'.$key->id.'">'.$key->descripcion.'</option>';
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="social-edit" style="margin-bottom: 0px;margin-top: 15px;">
+                                                                
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <style type="text/css">
+                                                                        .addedTag span
+                                                                        {
+                                                                        margin-bottom: 20px;
+                                                                        }
+                                                                        </style>
+                                                                        <div class="pf-field no-margin" style="margin-top: 10px;">
+                                                                            <ul class="tags" id="categorias_habilidad">
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button onClick='$("#form_habilidades").submit()' type="submit">Guardar</button>
+                                                </form>
+                                                
+                                            </div>
+                                            <div class="progress-sec" style="margin-bottom: 0px;">
+                                                <!--
+                                                <div class="progress-sec with-edit">
+                                                    <span>Adobe Photoshop</span>
+                                                    <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
+                                                    <ul class="action_job">
+                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                -->
+                                                <div class="col-lg-12">
+                                                    <div class="social-edit">
+                                                        
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <!--Idiomas-->
+                                        <div class="border-title"><h3>Idiomas</h3><a title=""><i class="la la-plus" ></i> Agregar idioma</a></div>
+                                            <div class="social-edit" style="margin-bottom: 0px;">
+                                                <form id="form_idiomas" method="POST" action="candisetidioma">
+                                                    <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="pf-field">
+                                                                <select id="cbn_idioma" onChange="set_cargo(this.value,this.id,'categorias_idioma',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
+                                                                    <option value="">Seleccionar</option>
+                                                                    <?php
+                                                                    foreach ($idiomas as $key) {
+                                                                    echo'<option value="'.$key->id.'">'.$key->descripcion.'</option>';
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="social-edit" style="margin-bottom: 0px;margin-top: 15px;">
+                                                                
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <style type="text/css">
+                                                                        .addedTag span
+                                                                        {
+                                                                        margin-bottom: 20px;
+                                                                        }
+                                                                        </style>
+                                                                        <div class="pf-field no-margin" style="margin-top: 10px;">
+                                                                            <ul class="tags" id="categorias_idioma">
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button onClick='$("#form_idiomas").submit()' type="submit">Guardar</button>
+                                                </form> 
+                                            </div> 
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -636,10 +711,97 @@ $mi_tokken = csrf_token();
     }
     })
     }
+    //Funciones
     function set_select(id,valor)
     {
     $("#"+id).val(valor);
-    $('#'+id+'_chosen > a > span').html($("#"+id+"_"+valor).html());
+    $("#"+id).trigger('chosen:updated');
+    }
+    function set_valor(id,valor)
+    {
+    $("#"+id).val(valor);
+    $("#"+id).trigger('chosen:updated');
+    }
+    
+    //Modal educacion
+    function limpiar_mod_educ(id)
+    {
+    $("#tipo").val("1");
+    $("#identificador").val(id);
+    $("#nivel").val("");
+    $("#desde").val("");
+    $("#hasta").val("");
+    $("#universidad").val("");
+    $("#area_estudio").val("");
+    $("#titulo_obtener").val("");
+    $("#uni_pais").val("");
+    $("#nivel").trigger('chosen:updated');
+    $("#desde").trigger('chosen:updated');
+    $("#hasta").trigger('chosen:updated');
+    $("#area_estudio").trigger('chosen:updated');
+    $("#uni_pais").trigger('chosen:updated');
+    }
+    function set_educacion(id)
+    {
+    $("#tipo").val("2");
+    periodo=$("#periodo_"+id).html();
+    periodos=periodo.split(" - ");
+    $("#nivel").val($("#nivel_es").val());
+    $("#desde").val(periodos[0]);
+    $("#hasta").val(periodos[1]);
+    $("#universidad").val($("#universidad_"+id).html());
+    $("#area_estudio").val($("#estudios").val());
+    $("#titulo_obtener").val($("#titulo_").val());
+    $("#uni_pais").val($("#pais").val());
+    $("#nivel").trigger('chosen:updated');
+    $("#desde").trigger('chosen:updated');
+    $("#hasta").trigger('chosen:updated');
+    $("#area_estudio").trigger('chosen:updated');
+    $("#uni_pais").trigger('chosen:updated');
+    $("#modal_educ_cand").modal("show");
+    }
+    
+    //Fin modal educacion
+    //Modal experiancia laboral
+    function limpiar_mod_expe(id)
+    {
+    $("#expe_tipo").val("1");
+    $("#expe_identificador").val(id);
+    $("#expe_sector").val("");
+    $("#expe_desde").val("");
+    $("#expe_hasta").val("");
+    $("#expe_empresa").val("");
+    $("#expe_cargo").val("");
+    $("#expe_descripcion").val("");
+    $("#expe_sector").trigger('chosen:updated');
+    $("#expe_desde").trigger('chosen:updated');
+    $("#expe_hasta").trigger('chosen:updated');
+    }
+    function set_experiencia(id)
+    {
+    $("#expe_tipo").val("2");
+    periodo=$("#e_periodo_"+id).html();
+    periodos=periodo.split(" - ");
+    $("#expe_desde").val(periodos[0]);
+    $("#expe_hasta").val(periodos[1]);
+    $("#expe_sector").val($("#e_sector_"+id).val());
+    $("#expe_empresa").val($("#e_empresa_"+id).html());
+    $("#expe_cargo").val($("#e_cargo_"+id).html());
+    $("#expe_descripcion").val($("#e_descripcion_"+id).html());
+    $("#expe_sector").trigger('chosen:updated');
+    $("#expe_desde").trigger('chosen:updated');
+    $("#expe_hasta").trigger('chosen:updated');
+    $("#modal_educ_expe").modal("show");
+    }
+    
+    //Fin modal experiancia laboral
+    function set_cargo(valor,id,id_control,tipo)
+    {
+    texto="";
+    if(tipo==1){texto=$("#"+id+" option:selected").text();}
+    if(tipo==2){texto=id;}
+    agregar=' <li  class="addedTag">'+texto+'<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="cand_cargos[]" value="'+valor+'"></li>';
+    $("#"+id_control).append(agregar);
     }
     </script>
     <script type="text/javascript">
@@ -649,6 +811,23 @@ $mi_tokken = csrf_token();
     <?php echo "set_select('hijos',".$up_hijos.");";?>
     <?php echo "set_select('nacionalidad',".$up_nacionalidad.");";?>
     <?php echo "set_select('edo_civil',".$up_edo_civil.");";?>
+    <?php echo "set_valor('remuneracion',".$up_remuneracion.");";?>
+    <?php echo "set_valor('jorna',".$up_jornada.");";?>
+    <?php echo "set_select('pais_contac',".$up_pais_contac.");";?>
+    <?php echo "set_select('provincia_contac',".$up_provincia_contac.");";?>
+    <?php echo "set_select('localidad_contac',".$up_localidad_contac.");";?>
+    //Listado datos cargos
     </script>
+    <?php
+    foreach ($habilidades_listado as $key) {
+    echo '<script>set_cargo("'.$key->id.'","'.$key->descripcion.'","categorias_habilidad",2);</script>';
+    }
+    foreach ($cargos_lista as $key) {
+    echo '<script>set_cargo("'.$key->id_cargo.'","'.$key->descripcion.'","categorias_cargos",2);</script>';
+    }
+     foreach ($idiomas_listado as $key) {
+    echo '<script>set_cargo("'.$key->id.'","'.$key->descripcion.'","categorias_idioma",2);</script>';
+    }
+    ?>
 </body>
 </html>

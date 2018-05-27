@@ -10983,6 +10983,40 @@ footer.ft .scrollup {
 .res-logo>a {
     float: left;
 }
+
+.img_profile_empresa {
+    width: 100%;
+}
+
+.img_profile_empresa .preview_img {
+    padding: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 16px;
+    min-height: 100px;
+    cursor: pointer;
+}
+
+.img_profile_empresa .preview_img .img_detail {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+
+.img_profile_empresa .preview_img .img_detail img {
+    width: 100%;
+}
+
+.img_active {
+    background: #141f72;
+}
+
+
 /* Cross Browser Compatibility */
 
 header, .res-openmenu, .res-closemenu, .responsivemenu>ul>li.menu-item-has-children>a, .responsivemenu>ul>li ul>li a, .menu-sec nav>ul>li, .menu-sec nav>ul>li *, .chosen-container, .responsivemenu>ul>li.menu-item-has-children>a::before, .responsivemenu>ul>li.menu-item-has-children>a::after, .contact-textinfo>a.fill, .contact-textinfo>a, .chosen-container *, .emply-resume-list, .p-category, .p-category *, .job-listing, .job-listing *, .my-blog, .my-blog *, .link_widgets, .link_widgets *, .link_widgets a:before, .quick-select, .quick-select *, .top-compnay, .top-compnay *, .team, .team *, .sb-title::after, .sb-title::before, .sb-title, .emply-list, .emply-list *, .mportolio a, .profile-sidebar, .post-job-btn, .account-popup>form button, .login-social a, .job-search form button, .or-browser>a, .scroll-to, .scroll-to *, .browse-all-cat a, .simple-text-block a, .social *, .job-grid, .job-grid *, .top-compnay *, .subscription-sec form button, .social-links, .social-links *, .links a, .find-cand form>button, .download-text ul *, .team-detail *, header.style4 .account-btns>li a, .tab-sec, .tab-sec *, .subscribe_widget form button, .who-am, .who-am *, #toggle-widget h2::before, .emlthis, .emlthis *, .pagination, .pagination *, .apply-thisjob, .apply-alternative a, .share-bar *, .quick-form-job form button, .alpha-pag *, .emply-text>ul>li *, .emply-text>ul>li:before, .job-single-head.style2>a, .job-overview ul>li *, .emply-btns>a, .upload-info>a, .upload-info>button, .profile-form-edit>form button, .social-edit>form button, .contact-edit .srch-lctn, .contact-edit>form button, .action_job *, .table-list-title *, .tree_widget-sec>ul>li>ul *, .contact-popup form>button, .change-password form button, .shortlists>a, .action-inner .download-cv a, .follow-companies>ul li .job-listing.wtabs .go-unfollow, .border-title>a, .border-title>a *, .resumeadd-form button, .coverletter-sec>form button, .blogpost, .blogpost *, .tags_widget>a, .sidebar-links a, .sidebar-links a i, .mb-info>h3, .post-hist *, .commentform-sec>form button, .service *, .contact-form>form button, .error-sec form button, .error-sec h6 a, .menu-sec, .top-company-sec button.slick-arrow, .top-company-sec button.slick-arrow:before, .how-to-sec, .how-to-sec *, .responsivemenu li, .responsivemenu {
