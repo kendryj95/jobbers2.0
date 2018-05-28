@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include('local/resources/views/includes/referencias_top.php');?>
 		<!-- Styles -->
-		<link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
-		<link rel="stylesheet" href="local/resources/views/css/icons.css">
-		<link rel="stylesheet" href="local/resources/views/css/animate.min.css">
-		<link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
-		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
-		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
+		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
+		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
 		<div class="theme-layout" id="scrollup">
 			<!--Header responsive-->
-			<?php include('local/resources/views/includes/header_responsive_candidatos.php');?>
-			<?php include('local/resources/views/includes/header_candidatos.php');?>
+			<?php include('local/resources/views/includes/general_header.php');?>
+			<?php include('local/resources/views/includes/general_header_responsive.php');?>
 			<!--fin Header responsive-->
 			<section class="overlape">
 				<div class="block no-padding">
-					<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_candidato_dash.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
+					<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_candidato.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">
@@ -40,9 +39,9 @@
 											<div class="col-lg-6">
 												<div class="action-inner style2">
 													<div class="download-cv">
-														<a href="#" title="">Download CV <i class="la la-download"></i></a>
+														<a href="#" title="">Descargar CV <i class="la la-download"></i></a>
 													</div>
-													<a href="#" title=""><i class="la la-map-marker"></i>Istanbul / Turkey</a>
+													<a href="#" title=""><i class="la la-map-marker"></i><?php echo $datos_datos_contacto[0]->provincia;?> / <?php echo $datos_datos_contacto[0]->localidad;?></a>
 												</div>
 											</div>
 										</div>
@@ -61,15 +60,8 @@
 								<div class="cand-single-user">
 									<div class="share-bar circle"></div>
 									<div class="can-detail-s">
-										<div class="cst"><img src="http://placehold.it/145x145" alt=""></div>
-										<h3>David CARLOS</h3>
-										<span><i>UX / UI Designer</i> at Atract Solutions</span>
-										<p>creativelayers088@gmail.com</p>
-										<p>Member Since, 2017</p>
-										<p><i class="la la-map-marker"></i>Istanbul / Turkey</p>
-										<div class="skills-badge">
-											<span>Photoshop</span><span>Designer</span><span>Ilustrator</span>
-										</div>
+										<div class="cst"><img style="width: 144px;height: 144px;" src="../uploads/<?php echo $datos_foto[0]->foto;?>" alt=""></div>
+										<h3  style="margin-bottom: 20px;"><?php echo $datos_personales[0]->nombres ." ".$datos_personales[0]->apellidos;?></h3> 
 									</div>
 									<div class="download-cv"></div>
 								</div>
@@ -79,163 +71,104 @@
 											<div class="cand-details">
 												<div class="job-overview style2">
 													<ul>
-														<li><i class="la la-money"></i><h3>Offerd Salary</h3><span>£15,000 - £20,000</span></li>
-														<li><i class="la la-mars-double"></i><h3>Gender</h3><span>Female</span></li>
-														<li><i class="la la-thumb-tack"></i><h3>Career Level</h3><span>Executive</span></li>
-														<li><i class="la la-puzzle-piece"></i><h3>Industry</h3><span>Management</span></li>
-														<li><i class="la la-shield"></i><h3>Experience</h3><span>2 Years</span></li>
-														<li><i class="la la-line-chart "></i><h3>Qualification</h3><span>Bachelor Degree</span></li>
+														<li><i class="la la-money"></i><h3>Salario pretendido</h3><span><?php echo $datos_preferencias_lab[0]->salario;?></span></li>
+														<li><i class="la la-mars-double"></i><h3>Genero</h3><span><?php echo $datos_personales[0]->genero;?></span></li>
+														<li><i class="la la-thumb-tack"></i><h3>Disponibilidad</h3><span><?php echo $datos_preferencias_lab[0]->nombre;?></span></li>
+														<li><i class="la la-money"></i><h3>Discapacidad</h3><span><?php echo $datos_personales[0]->discapacidad;?></span></li>
+														<li><i class="la la-mars-double"></i><h3>Hijos</h3><span><?php echo $datos_personales[0]->hijos;?></span></li>
+														<li><i class="la la-thumb-tack"></i><h3>Estado civil</h3><span><?php echo $datos_personales[0]->edo_civil;?></span></li>
 													</ul>
 													</div><!-- Job Overview -->
-													<h2>Candidates About</h2>
-													<p>Hello my name is Mark William Connor and I’m a Web Designer &amp; Web Developer from Melbourne, Australia. In pharetra orci dignissim, blandit mi semper, ultricies diam. Suspendisse malesuada suscipit nunc non volutpat. Sed porta nulla id orci laoreet tempor non consequat enim. Sed vitae aliquam velit. Aliquam ante erat, blandit at pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam. </p>
-													<p>Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam. Mauris nec erat ut libero vulputate pulvinar.</p>
+													<h2>Acerca de <?php echo $datos_personales[0]->nombres;?></h2>
+													<p style="text-align: justify;"> <?php echo $datos_personales[0]->sobre_mi;?></p>
 													<div class="edu-history-sec">
-														<h2>Education</h2>
+														<h2>Educación</h2>
+														<?php foreach ($datos_educacion as $key): ?>
 														<div class="edu-history">
 															<i class="la la-graduation-cap"></i>
 															<div class="edu-hisinfo">
-																<h3>University</h3>
-																<i>2008 - 2012</i>
-																<span>Middle East Technical University <i>Computer Science</i></span>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+																<h3><?php echo $datos_educacion[0]->nombre_institucion;?></h3>
+																<i><?php echo $datos_educacion[0]->desde;?> - <?php echo $datos_educacion[0]->hasta;?></i>
+																<span><?php echo $datos_educacion[0]->titulo;?><i><?php echo $datos_educacion[0]->area_estudio;?></i></span>
+																<p></p>
 															</div>
 														</div>
-														<div class="edu-history">
-															<i class="la la-graduation-cap"></i>
-															<div class="edu-hisinfo">
-																<h3>High School</h3>
-																<i>2008 - 2012</i>
-																<span>Tomms College <i>Bachlors in Fine Arts</i></span>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-															</div>
-														</div>
+														<?php endforeach ?>
 													</div>
 													<div class="edu-history-sec">
-														<h2>Work &amp; Experience</h2>
-														<div class="edu-history style2">
+														<h2>Experiencia laboral</h2>
+														<?php foreach ($datos_experiencias as $key): ?>
+															<div class="edu-history style2">
 															<i></i>
 															<div class="edu-hisinfo">
-																<h3>Web Designer <span>Inwave Studio</span></h3>
-																<i>2008 - 2012</i>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+																<h3><?php echo $key->nombre_empresa?> <span><?php echo $key->nombre?></span></h3>
+																<i><?php echo $key->desde;?> - <?php echo $key->hasta;?></i>
+																<p><?php echo $key->descripcion?></p>
 															</div>
-														</div>
-														<div class="edu-history style2">
-															<i></i>
-															<div class="edu-hisinfo">
-																<h3>CEO Founder <span>Inwave Studio</span></h3>
-																<i>2008 - 2012</i>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-															</div>
-														</div>
+														</div> 
+														<?php endforeach ?>
+														
 													</div>
+													<!--
 													<div class="mini-portfolio">
-														<h2>Portfolio</h2>
-														<div class="mp-row">
-															<div class="mp-col">
-																<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-															</div>
-															<div class="mp-col">
-																<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-															</div>
-															<div class="mp-col">
-																<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-															</div>
-															<div class="mp-col">
-																<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
-															</div>
-														</div>
-													</div>
-													<div class="progress-sec">
-														<h2>Professional Skills</h2>
-														<div class="progress-sec style2">
-															<span>Adobe Photoshop</span>
-															<div class="progressbar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-																<div class="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-															</div>
-															<p>80%</p>
-														</div>
-														<div class="progress-sec style2">
-															<span>Production In Html</span>
-															<div class="progressbar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-																<div class="progress"><i></i><i></i><i></i><i></i><i></i></div>
-															</div>
-															<p>50%</p>
-														</div>
-														<div class="progress-sec style2">
-															<span>Graphic Design</span>
-															<div class="progressbar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-																<div class="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-															</div>
-															<p>100%</p>
-														</div>
-													</div>
-													<div class="edu-history-sec">
-														<h2>Awards</h2>
-														<div class="edu-history style2">
-															<i></i>
-															<div class="edu-hisinfo">
-																<h3>Perfect Attendance Programs</h3>
-																<i>2008 - 2012</i>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-															</div>
-														</div>
-														<div class="edu-history style2">
-															<i></i>
-															<div class="edu-hisinfo">
-																<h3>Top Performer Recognition</h3>
-																<i>2008 - 2012</i>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-															</div>
-														</div>
-														<div class="edu-history style2">
-															<i></i>
-															<div class="edu-hisinfo">
-																<h3>King LLC</h3>
-																<i>2008 - 2012</i>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-															</div>
-														</div>
-													</div>
+																	<h2>Portfolio</h2>
+																	<div class="mp-row">
+																					<div class="mp-col">
+																									<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+																					</div>
+																					<div class="mp-col">
+																									<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+																					</div>
+																					<div class="mp-col">
+																									<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+																					</div>
+																					<div class="mp-col">
+																									<div class="mportolio"><img src="http://placehold.it/165x115" alt=""><a href="#" title=""><i class="la la-search"></i></a></div>
+																					</div>
+																	</div>
+													</div>-->
+													
 													<div class="companyies-fol-sec">
-														<h2>Companies Followed By</h2>
+														<h2>Habilidades</h2>
+														<div class="skills-badge" style="min-width: 500px;">
+															<?php foreach ($datos_habilidades as $key): ?>
+															<?php echo "<span>".$key->habilidad."</span>";?>
+															<?php endforeach ?>
+														</div>
+													</div>
+
+													<div class="companyies-fol-sec">
+														<h2>Idiomas</h2>
+														<div class="skills-badge" style="min-width: 500px;">
+															<?php foreach ($datos_idiomas as $key): ?>
+															<?php echo "<span>".$key->descripcion."</span>";?>
+															<?php endforeach ?>
+														</div>
+													</div>
+
+													<div class="companyies-fol-sec">
+														<h2>Empresas seguidas</h2>
 														<div class="cmp-follow">
 															<div class="row">
 																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
 																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>King LLC</span></a>
 																</div>
-																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>Telimed</span></a>
-																</div>
-																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>Ucesas</span></a>
-																</div>
-																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>TeraPlaner</span></a>
-																</div>
-																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>Cubico</span></a>
-																</div>
-																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>Airbnb</span></a>
-																</div>
 															</div>
 														</div>
-													</div>
+													</div> 
 												</div>
 											</div>
 											<div class="col-lg-3 column">
 												<div class="job-overview style3">
 													Publicidad, marcadores
 													<!--<ul>
-															<li><i class="la la-briefcase"></i><h3>Candidates About</h3></li>
-															<li><i class="la la-graduation-cap"></i><h3>Education</h3></li>
-															<li><i class="la la-file-text"></i><h3>Work Experience</h3></li>
-															<li><i class="la la-puzzle-piece"></i><h3>Portfolio</h3></li>
-															<li><i class="la la-thumb-tack"></i><h3>Professional Skills</h3></li>
-															<li><i class="la la-line-chart "></i><h3>Awards</h3></li>
-															<li><i class="la la-user "></i><h3>Companies Followed By</h3></li>
+																		<li><i class="la la-briefcase"></i><h3>Candidates About</h3></li>
+																		<li><i class="la la-graduation-cap"></i><h3>Education</h3></li>
+																		<li><i class="la la-file-text"></i><h3>Work Experience</h3></li>
+																		<li><i class="la la-puzzle-piece"></i><h3>Portfolio</h3></li>
+																		<li><i class="la la-thumb-tack"></i><h3>Professional Skills</h3></li>
+																		<li><i class="la la-line-chart "></i><h3>Awards</h3></li>
+																		<li><i class="la la-user "></i><h3>Companies Followed By</h3></li>
 													</ul>
 													<a href="#" title="" class="save-resume">Save Resume</a>
 													<a href="#" title="" class="contct-user">Contact David</a>-->
@@ -331,15 +264,15 @@
 					</div>
 					<?php include("local/resources/views/includes/aside_right_administrator.php");?>
 					<?php include("local/resources/views/includes/general_footer.php");?>
-					<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/script.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
-					<script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/slick.min.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/parallax.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+					<script src="../local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
 					<script type="text/javascript">
 						$( document ).ready(function() {
 						

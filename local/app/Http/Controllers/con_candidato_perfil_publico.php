@@ -1,15 +1,93 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers; 
 use DB;
-use View;
-
+use View; 
 class con_candidato_perfil_publico extends Controller
 {
-    public function perfilPublico()
+    public function perfilPublico($id)
     {
-        return view("candidatos_perfil_publico");
+        $vista=View::make("candidatos_perfil_publico"); 
+
+        $sql_datos_personales="SELECT t1.*,t2.descripcion as identificacion,
+        t3.descripcion as edo_civil, 
+        t4.descripcion as discapacidad,
+        t5.descripcion as genero,
+        t6.nacionalidad as nacionalidad
+        FROM `tbl_candidato_datos_personales` t1
+        LEFT JOIN tbl_tipo_indentificacion t2 ON t2.id = t1.id_tipo_identificacion 
+        LEFT JOIN tbl_estados_civiles t3 On t3.id = t1.id_edo_civil
+        LEFT JOIN tbl_discapacidad t4 ON t4.id = t1.id_discapacidad
+        LEFT JOIN tbl_generos t5 ON t5.id = t1.id_sexo
+        LEFT JOIN tbl_paises t6 ON t6.id = t1.id_nacionalidad
+        WHERE t1.id_usuario = ".$id."";
+
+        $sql_preferencias_laborales="SELECT t1.*,t2.salario,t3.nombre FROM `tbl_candidato_preferencias_laborales` t1
+        LEFT JOIN tbl_rango_salarios t2 ON t2.id = t1.id_remuneracion_pre
+        LEFT JOIN tbl_disponibilidad t3 ON t3.id = t1.id_jornada
+        WHERE t1.id_usuario = ".$id."";
+
+        $sql_datos_contacto ="SELECT t2.descripcion as pais,
+        t1.*,
+        t3.provincia,
+        t4.localidad
+        FROM `tbl_candidato_info_contacto` t1
+        LEFT JOIN tbl_paises t2 ON t2.id = t1.id_pais
+        LEFT JOIN tbl_provincias t3 ON t3.id = t1.id_provincia
+        LEFT JOIN tbl_localidades t4 ON t4.id = t1.id_localidad
+        WHERE t1.id_usuario = ".$id."";
+
+        $sql_datos_educacion ="SELECT 
+        t2.descripcion as nivel,
+        t3.descripcion as pais,
+        t4.nombre as area_estudio,
+        t1.* FROM `tbl_candidatos_educacion` t1
+        LEFT JOIN tbl_nivel_estudio t2 ON t2.id = t1.id_nivel_estudio
+        LEFT JOIN tbl_paises t3 ON t3.id = t1.id_pais
+        LEFT JOIN tbl_areas_estudio t4 ON t4.id = t1.id_area_estudio
+        WHERE t1.id_usuario = ".$id."";
+        
+        $sql_habilidades ="SELECT 
+        t2.descripcion as habilidad, 
+        t1.* 
+        FROM tbl_candidato_habilidades t1
+        LEFT JOIN tbl_habilidades t2 ON t2.id = t1.id_habilidad
+        WHERE t1.id_usuario = ".$id."";
+
+        $sql_foto ="SELECT t1.*,t2.nombre_aleatorio as foto FROM tbl_usuarios_foto_perfil t1
+        LEFT JOIN tbl_archivos t2 ON t2.id = t1.id_foto
+        WHERE t1.id_usuario = ".$id."";
+
+        $sql_idiomas ="SELECT t1.*,t2.descripcion FROM `tbl_candidato_idioma` t1
+        LEFT JOIN tbl_idiomas t2 ON t2.id =t1.id_idioma
+        WHERE t1.id_usuario =  ".$id."";
+
+        $sql_experiencias ="SELECT t1.*,t2.nombre FROM `tbl_candidato_experiencia_laboral` t1
+        LEFT JOIN tbl_areas_sectores t2 ON t2.id = t1.id_sector
+        WHERE t1.id_usuario = ".$id."";
+
+        try {
+            $datos_experiencias=DB::select($sql_experiencias);
+            $datos_idiomas=DB::select($sql_idiomas);
+            $datos_foto=DB::select($sql_foto);
+            $datos_personales=DB::select($sql_datos_personales);
+            $datos_preferencias_lab=DB::select($sql_preferencias_laborales);
+            $datos_datos_contacto=DB::select($sql_datos_contacto);
+            $datos_educacion=DB::select($sql_datos_educacion);
+            $datos_habilidades=DB::select($sql_habilidades);
+            $vista->datos_experiencias=$datos_experiencias;
+            $vista->datos_idiomas=$datos_idiomas;
+            $vista->datos_foto=$datos_foto;
+            $vista->datos_habilidades=$datos_habilidades;
+            $vista->datos_educacion=$datos_educacion;
+            $vista->datos_personales=$datos_personales;
+            $vista->datos_datos_contacto=$datos_datos_contacto;
+            $vista->datos_preferencias_lab=$datos_preferencias_lab;
+            return $vista;
+        } catch (Exception $e) {
+            
+        }
+
     }
 
     public function perfil()
