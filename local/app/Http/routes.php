@@ -7,6 +7,7 @@ Route::get('inicio', 'con_index@index');
 Route::get('nosotros', function () {return view('nosotros');});
 Route::get('contacto', function () {return view('contacto');});
 Route::get('noticias', function () {return view('noticias');});
+Route::get('terminos', function () {return view('terminos');});
 Route::get('fag', 'con_administrator_faq@detalle_preguntas');
 Route::get('detallenoticia', function () {return view('detalle_noticia');});
 Route::get('ofertas', 'con_ofertas@index');
@@ -24,7 +25,7 @@ Route::get('r/{token}/{tipo}', 'con_login@vregreferidos');
 Route::post('subir', 'con_maletin@postUpload');
 Route::post('listar_arch', 'con_maletin@listarArch');
 Route::get('candidato/{id}', 'con_candidato_perfil_publico@perfilPublico');
-
+Route::post('regcontato', 'con_contacto@create');
 //********************************************************//
 //*                 RUTAS PARA LOS CANDIDATOS            *//
 //********************************************************//
@@ -41,8 +42,7 @@ Route::get('candiconfiguracion', 'con_candidatos_configuracion@index');
 Route::post('candisetprofilepic', 'con_candidatos_configuracion@setProfilePic');
 Route::post('candiactualizardatos', 'con_candidatos_configuracion@actualizardatos');
 Route::get('candipostulaciones', 'con_candidato_postulaciones@index');
-Route::get('candipostular/{id}', 'con_candidato_postulaciones@postular');
-
+Route::get('candipostular/{id}', 'con_candidato_postulaciones@postular'); 
 Route::get('candiperfil', 'con_candidato_perfil_publico@perfil');
 Route::get('candicv', function () {return view('candidatos_cv');});
 Route::get('candiempseg', function () {return view('candidatos_empresas_seguidas');});

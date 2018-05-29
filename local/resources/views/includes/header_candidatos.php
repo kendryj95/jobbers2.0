@@ -1,3 +1,11 @@
+<?php
+			$back="";
+			if(isset($atras) && $atras==1)
+			{
+			$back="../";	
+			} 
+
+			?>
 <header class="stick-top">
 	<div class="menu-sec">
 		<div class="container">

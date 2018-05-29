@@ -33,7 +33,7 @@ class con_administrator_faq extends Controller
         }
 
     }
-    public function detallePreguntas()
+    public function detalle_preguntas()
     {
         $sql   = "SELECT * FROM tbl_faq";
         $vista = View::make('faq');

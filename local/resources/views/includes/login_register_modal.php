@@ -2,7 +2,7 @@
 	<div class="account-popup">
 		<span class="close-popup"><i class="la la-close"></i></span>
 		<h3>Login de usuarios</h3>
-		<form action="loguear" method="POST">
+		<form action="<?php echo $back;?>loguear" method="POST">
 			<div class="cfield">
 				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 				<input type="text" placeholder="Correo" name="correo" />
@@ -33,7 +33,7 @@
 				<span onClick="set_tipo(2)">Candidato</span>
 				<span onClick="set_tipo(1)">Empresa</span>
 			</div>
-			<form action="register" method="POST">
+			<form action="<?php echo $back;?>register" method="POST">
 				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 				<input id="tipo" name="tipo" type="hidden" value="">
 				<div class="cfield">

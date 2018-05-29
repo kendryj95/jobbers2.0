@@ -71,6 +71,7 @@ class con_login extends Controller
 
     public function salir(Request $request)
     {
+        $this->limpiarVariablesSession($request);
         $request->session()->forget('candidato');
         $request->session()->forget('empresa');
         return redirect('inicio');

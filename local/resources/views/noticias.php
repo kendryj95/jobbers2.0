@@ -18,8 +18,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	</head>
 	<body>
-		<?php include("local/resources/views/includes/menu_top_responsive.php")?>
-		<?php include("local/resources/views/includes/header_con_imagen.php");?>
+		<?php include('local/resources/views/includes/general_header.php');?>
+		<?php include('local/resources/views/includes/general_header_responsive.php');?>
 		<section class="overlape">
 			<div class="block no-padding">
 				<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_noticias.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
