@@ -46,7 +46,7 @@
 												<div class="job-thumb"> <img src="../uploads/<?php echo $datos[0]->img_empresa;?>" alt=""></div>
 												<div class="job-single-info3">
 													<h3><?php echo $datos[0]->empresa;?></h3>
-													<span><i class="la la-map-marker"></i><?php echo $datos[0]->direccion;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
+													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
 													<ul class="tags-jobs">
 														<li><i class="la la-file-text"></i> Postulados 1</li>
 														<li><i class="la la-calendar-o"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
@@ -59,15 +59,16 @@
 												<div class="share-bar">
 													<a href="#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
 												</div>
-												<?php if(session()->get('tipo_usuario')==2)
-												{
-													echo '<div class="emply-btns">
-																<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
-														</div>';
-													echo '<div class="emply-btns">
-																<a class="followus" href="../candipostular/'.$datos[0]->id.'" title=""><i class="la la-file-text"></i> Postularme</a>
-														</div>';
-												}?>
+												<?php if(session()->get('tipo_usuario')==2): ?>
+
+													<div class="emply-btns">
+														<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
+													</div>
+												
+													<div class="emply-btns">
+														<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
+													</div>
+												<?php endif; ?>
 												
 											</div>
 										</div>
@@ -77,6 +78,16 @@
 											<div class="col-lg-8 column">
 												<div class="job-details">
 													<h3><?php echo $datos[0]->titulo;?></h3>
+
+													<?php 
+
+														if ($datos[0]->video) {
+															echo $datos[0]->video;
+														}
+
+													 ?>
+
+													<br>
 													<p><?php echo $datos[0]->descripcion;?> </p>
 													
 												</div>
@@ -108,7 +119,7 @@
 													<ul>
 														<li><i class="la la-eye"></i><h3>Vistas </h3><span> </span></li>
 														<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
-														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->dir_empresa;?></span></li>
+														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->direccion;?></span></li>
 														<!--
 														<li><i class="la la-bars"></i><h3>Categoría</h3><span>Arts, Design, Media</span></li> -->
 														<li><i class="la la-users"></i><h3>Equipo de trabajo</h3><span>0</span></li>

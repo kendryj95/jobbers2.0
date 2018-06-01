@@ -82,6 +82,40 @@ class con_empresa extends Controller
         return view('empresa_new_post', $params);
     }
 
+    public function editPost($id_post)
+    {
+    	$sql   = "SELECT * FROM tbl_publicacion WHERE id=?";
+    	$areas            = DB::select("SELECT id, nombre AS area FROM tbl_areas ORDER BY nombre");
+        $provincias       = DB::select("SELECT * FROM tbl_provincias");
+        $planes_estado    = DB::select("SELECT * FROM tbl_planes_estado");
+        $disponibilidades = DB::select("SELECT * FROM tbl_disponibilidad");
+        $salarios         = DB::select("SELECT * FROM tbl_rango_salarios");
+        $localidades 		  = [];
+        $sectores 		  = [];
+
+    	$oferta = DB::select($sql, [$id_post]);
+
+    	if ($oferta) {
+
+    		$localidades = DB::select("SELECT * FROM tbl_localidades WHERE id_provincia=?", [$oferta[0]->id_provincia]);
+    		$sectores = DB::select("SELECT * FROM tbl_areas_sectores WHERE id_area=?", [$oferta[0]->id_area]);
+
+    		$params = [
+    		    "areas"            => $areas,
+    		    "provincias"       => $provincias,
+    		    "planes"           => $planes_estado,
+    		    "disponibilidades" => $disponibilidades,
+    		    "salarios"         => $salarios,
+    		    "oferta"		   => $oferta,
+    		    "localidades"      => $localidades,
+    		    "sectores"         => $sectores
+    		];
+    		return view("empresa_edit_post", $params);
+    	} else {
+    		return redirect("empresa/ofertas");
+    	}
+    }
+
     public function ofertas()
     {
         $sql1          = DB::select("SELECT COUNT(*) AS total_ofertas FROM tbl_publicacion WHERE id_empresa=?", [session()->get("emp_ide")]);
@@ -199,19 +233,65 @@ class con_empresa extends Controller
         $direccion    = $_REQUEST["direccion"];
         $plan         = $_REQUEST["plan"];
         $disp         = $_REQUEST["disp"];
-        $discapacidad = isset($_REQUEST["disp"]) ? 1 : 0;
+        $discapacidad = isset($_REQUEST["discapacidad"]) ? 1 : 0;
         $video        = $_REQUEST["video"];
 
-        $query      = DB::select("SELECT id FROM tbl_empresa WHERE id_usuario=?", [session()->get("emp_id")]);
-        $id_empresa = $query[0]->id;
+        $id_empresa = session()->get("emp_ide");
 
-        $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,estatus,fecha_venc,id_salario,id_plan_estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, 1, null, $salario, $plan];
+        $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,id_plan_estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        $fecha_venc = strtotime("+15 day", strtotime(date('Y-m-d H:i:s')));
+        $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
+
+        $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, 1, $fecha_venc, $salario, $plan];
 
         DB::beginTransaction();
 
         try {
             DB::insert($sql, $params);
+
+            DB::commit();
+            $response = 1;
+        } catch (Exception $e) {
+            DB::rollback();
+            $response = 2;
+        }
+
+        echo json_encode([
+            "status" => $response,
+        ]);
+
+    }
+
+    public function updatePost()
+    {
+
+        $response = '';
+
+        $id_post       = $_REQUEST["id_post"];
+        $titulo       = $_REQUEST["titulo"];
+        $descripcion  = $_REQUEST["descripcion"];
+        $area         = $_REQUEST["area"];
+        $sector       = $_REQUEST["sector"];
+        $provincia    = $_REQUEST["provincia"];
+        $localidad    = $_REQUEST["localidad"];
+        $salario      = $_REQUEST["salario"];
+        $direccion    = $_REQUEST["direccion"];
+        $plan         = $_REQUEST["plan"];
+        $disp         = $_REQUEST["disp"];
+        $discapacidad = isset($_REQUEST["discapacidad"]) ? 1 : 0;
+        $video        = $_REQUEST["video"];
+
+        $id_empresa = session()->get("emp_ide");
+
+        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, id_salario=?, id_plan_estado=? WHERE id=? AND id_empresa=?";
+
+        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $salario, $plan, $id_post, $id_empresa];
+
+        DB::beginTransaction();
+
+        try {
+            DB::update($sql, $params);
 
             DB::commit();
             $response = 1;
@@ -414,5 +494,56 @@ class con_empresa extends Controller
             return Redirect("inicio");
         }
 
+    }
+
+    public function accionPost($accion, $id_post)
+    {
+    	switch ($accion) {
+    		case 1: // Pausar Publicación
+    			
+    			DB::beginTransaction();
+    			try {
+    				
+    				DB::update("UPDATE tbl_publicacion SET estatus=0 WHERE id=?", [$id_post]);
+    				DB::commit();
+
+    				return redirect("empresa/ofertas?response=1");
+    			} catch (Exception $e) {
+    				DB::rollback();
+    				return redirect("empresa/ofertas?response=2");
+    			}
+    			break;
+    		
+    		case 2: // Habilitar Publicación
+    			
+    			DB::beginTransaction();
+    			try {
+    				
+    				DB::update("UPDATE tbl_publicacion SET estatus=1 WHERE id=?", [$id_post]);
+    				DB::commit();
+
+    				return redirect("empresa/ofertas?response=1");
+    			} catch (Exception $e) {
+    				DB::rollback();
+    				return redirect("empresa/ofertas?response=2");
+    			}
+
+    			break;
+    		case 3: // Eliminar Publicación
+
+    			DB::beginTransaction();
+    			try {
+    				
+    				DB::delete("DELETE FROM tbl_publicacion WHERE id=?", [$id_post]);
+    				DB::commit();
+
+    				return redirect("empresa/ofertas?response=3");
+    			} catch (Exception $e) {
+    				DB::rollback();
+    				return redirect("empresa/ofertas?response=4");
+    			}
+
+    			break;
+    	}
     }
 }

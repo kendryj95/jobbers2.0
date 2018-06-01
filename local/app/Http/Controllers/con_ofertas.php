@@ -67,7 +67,7 @@ class con_ofertas extends Controller
     public function detalle($id)
     {
         $vista = View::make('detalle_oferta');
-        $sql   = "SELECT t2.id as id_empresa, t1.tmp,t1.id, t1.titulo,t1.discapacidad,t1.vistos,t1.descripcion,t1.id_experiencia,t1.id_genero,t1.fecha_venc,t1.direccion,t1.estatus, t9.nombre ,t7.nombre as sector, t8.nombre as area, t2.nombre as empresa,IF(t5.nombre_aleatorio is null,'empresa.jpg',t5.nombre_aleatorio) as img_empresa,IF(t6.nombre_aleatorio is null,'0.jpg',t6.nombre_aleatorio) as img_publicacion,concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
+        $sql   = "SELECT t2.id as id_empresa, t1.tmp,t1.id, t1.titulo,t1.discapacidad,t1.vistos,t1.descripcion,t1.id_experiencia,t1.id_genero,t1.fecha_venc,t1.direccion,t1.estatus, t1.video_youtube AS video, t9.nombre ,t7.nombre as sector, t8.nombre as area, t2.nombre as empresa,IF(t5.nombre_aleatorio is null,'empresa.jpg',t5.nombre_aleatorio) as img_empresa,IF(t6.nombre_aleatorio is null,'0.jpg',t6.nombre_aleatorio) as img_publicacion,concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
             LEFT JOIN tbl_empresa t2 ON t2.id = t1.id_empresa
             LEFT JOIN tbl_provincias t3 ON t3.id = t2.provincia
             LEFT JOIN tbl_localidades t4 ON t4.id = t2.localidad
