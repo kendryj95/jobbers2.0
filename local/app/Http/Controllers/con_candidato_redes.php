@@ -22,7 +22,7 @@ class con_candidato_redes extends Controller
             if ($this->validarRed(1)) {
                 $sql = "
                 INSERT INTO tbl_redes
-                VALUES(null," . session()->get("cand_id") . ",1,2," . $_POST['facebook'] . ",null)";
+                VALUES(null," . session()->get("cand_id") . ",1,2,'" . $_POST['facebook'] . "',null)";
                 DB::insert($sql);
             } else {
                 $sql = "
@@ -36,7 +36,7 @@ class con_candidato_redes extends Controller
             if ($this->validarRed(2)) {
                 $sql = "
                 INSERT INTO tbl_redes
-                VALUES(null," . session()->get("cand_id") . ",2,2," . $_POST['twitter'] . ",null)";
+                VALUES(null," . session()->get("cand_id") . ",2,2,'" . $_POST['twitter'] . "',null)";
                 DB::insert($sql);
             } else {
                 $sql = "
@@ -51,7 +51,7 @@ class con_candidato_redes extends Controller
             if ($this->validarRed(5)) {
                 $sql = "
                 INSERT INTO tbl_redes
-                VALUES(null," . session()->get("cand_id") . ",5,2," . $_POST['linkendin'] . ",null)";
+                VALUES(null," . session()->get("cand_id") . ",5,2,'" . $_POST['linkendin'] . "',null)";
                 DB::insert($sql);
             } else {
                 $sql = "
@@ -66,7 +66,7 @@ class con_candidato_redes extends Controller
             if ($this->validarRed(3)) {
                 $sql = "
                 INSERT INTO tbl_redes
-                VALUES(null," . session()->get("cand_id") . ",3,2," . $_POST['instagram'] . ",null)";
+                VALUES(null," . session()->get("cand_id") . ",3,2,'" . $_POST['instagram'] . "',null)";
                 DB::insert($sql);
             } else {
                 $sql = "
@@ -78,7 +78,14 @@ class con_candidato_redes extends Controller
 
         }
 
-        return redirect("candiredes");
+        if(isset($_POST['pagina']) && $_POST['pagina']!="")
+        {
+            return redirect("candiperfil");
+        }
+        else
+        {
+            return redirect("candiredes");
+        }
     }
 
     public function validarRed($red) //valida si el usuario no ha insertado ya la red social

@@ -30,8 +30,13 @@ class con_ofertas extends Controller
         $sql_provincias     = "SELECT * FROM tbl_provincias";
         $sql_localidades    = "SELECT * FROM tbl_localidades";
         $sql_experiencia    = "SELECT * FROM tbl_experiencia";
+        $condicion=0;
+        if(session()->get("cand_id")!=null && session()->get("cand_id")=='')
+        {
+            $condicion=session()->get("cand_id");
+        } 
         $sql_favoritos      = "SELECT t1.id,t2.id_referencia FROM tbl_publicacion t1
-        LEFT JOIN tbl_favoritos t2 ON t2.id_referencia =t1.id AND t2.id_tipo = 3 AND t2.id_usuario=" . session()->get("cand_id") . "";
+        LEFT JOIN tbl_favoritos t2 ON t2.id_referencia =t1.id AND t2.id_tipo = 3 AND t2.id_usuario=" .$condicion. "";
 
         try {
             //$antiguedad=DB::select($sql_antiguedad);

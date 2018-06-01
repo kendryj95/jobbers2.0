@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Jobbers Argentina</title>
+		<title>Jobhunt</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	</head>
 	<body>
+		
 		<!--Header responsive-->
 		<?php include("local/resources/views/includes/menu_top_responsive.php");?>
 		<?php include("local/resources/views/includes/menu_top.php");?>
@@ -28,7 +29,8 @@
 						<div class="col-lg-12">
 							<div class="inner2">
 								<div class="inner-title2">
-									<h3>Contacto jobbers</h3> 
+									<h3>¿Qué es Jobbers?</h3>
+									<span>Te contamos un poco...</span>
 								</div>
 							</div>
 						</div>
@@ -40,53 +42,36 @@
 			<div class="block">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-6 column">
-							<div class="contact-form">
-								<h3>Completa el formulario</h3>
-								<form action="regcontato" method="POST">
-									<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
-									<div class="row">
-										<div class="col-lg-12">
-											<span class="pf-title">Nombre completo</span>
-											<div class="pf-field">
-												<input name="nombres" type="text" placeholder="Nombre">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<span class="pf-title">Correo</span>
-											<div class="pf-field">
-												<input name="correo" type="text" placeholder="Correo">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<span class="pf-title">Asunto</span>
-											<div class="pf-field">
-												<input name="asunto" type="text" placeholder="Asunto">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<span class="pf-title">Mensaje</span>
-											<div  class="pf-field">
-												<textarea name="mensaje"></textarea>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<button type="submit">Enviar</button>
-										</div>
+						<div class="col-lg-12">
+							<div class="about-us">
+								<div class="row">
+									<div class="col-lg-12">
+										<h3>Nuestra empresa</h3>
 									</div>
-								</form>
-							</div>
-						</div>
-						<div class="col-lg-6 column">
-							<div class="contact-textinfo">
-								<h3>Datos de Jobbers</h3>
-								<ul>
-									<li><i class="la la-map-marker"></i><span>Cordoba, Artentina.</span></li>
-									<li><i class="la la-phone"></i><span>Teléfono : Proximamente</span></li>
-									<li><i class="la la-fax"></i><span>Fax : Proximamente</span></li>
-									<li><i class="la la-envelope-o"></i><span>Correo : administracion@jobbersargentina.net</span></li>
-								</ul>
-								 
+									<div class="col-lg-7" style="text-align: justify;">
+										<p>
+											<strong>Somos Jobbers!</strong>
+										Brindamos herramientas, ante las problemáticas sociales y culturales, para dar solución a los desencuentros entre postulantes y empresas, reduciendo tiempos y costos de empleabilidad.</p>
+										<p><strong>¿Quiénes Somos?</strong>
+										Somos un equipo de profesionales con vocación de trabajo hacia la comunidad. Nos enfocamos en brindar herramientas digitales para dar soluciones concretas e inteligentes.</p>
+										<p><strong>¿Quiénes Somos?</strong>
+										Nuestra misión es lograr que personas y empresas tengan a su alcance la mejor forma de encontrarse. Trabajamos a través del campo virtual y personal para mejorar los procedimientos, tiempos y calidad en los reclutamientos, tanto en los ofrecimientos como en la demanda de trabajo.</p>
+										<p><strong>¿Quiénes Somos?</strong>
+										Mediante nuestras propias investigaciones, con aliados en reclutamiento y desarrollo en todo el mundo, buscamos ser la red de empleo y educación laboral con impacto social más grande de Argentina.</p>
+										<p>Los valores del equipo Jobbers:</p>
+										
+										<p style="margin-top: -10px;">- Mucha energía</p>
+										<p style="margin-top: -20px;">- Inteligencia emocional</p>
+										<p style="margin-top: -20px;">- Credibilidad</p>
+										<p style="margin-top: -20px;">- Mirada hacia el futuro</p>
+										<p style="margin-top: -20px;">- Creatividad sin límites</p>
+										<p style="margin-top: -20px;">- Respeto mutuo</p>
+										
+									</div>
+									<div class="col-lg-5">
+										<img src="local/resources/views/images/daniel.png" style="width: 432px;border-radius: 15px;" alt="">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

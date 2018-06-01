@@ -23,8 +23,8 @@ $mi_tokken=csrf_token();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   </head>
   <body>
-    <?php include("local/resources/views/includes/menu_top_responsive.php");?>
-    <?php include("local/resources/views/includes/header_con_imagen.php");?>
+    <?php include('local/resources/views/includes/general_header.php');?>
+      <?php include('local/resources/views/includes/general_header_responsive.php');?>
     <section class="overlape">
       <div class="block no-padding">
         <div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_publiacaciones.jpg) repeat scroll 10% 422.28px transparent;" class="parallax scrolly-invisible no-parallax">
@@ -252,7 +252,13 @@ $mi_tokken=csrf_token();
                   </h5>
                 </div>
               </div>
-              <!-- MOdern Job LIst -->
+          <?php 
+          $bandera_favorito=0;
+          if(session()->get('tipo_usuario')>0)
+              {
+                $bandera_favorito=1;
+              }
+              ?>
               <div class="job-list-modern">
                 <div class="job-listings-sec">
                   <a href=""></a>
@@ -260,6 +266,14 @@ $mi_tokken=csrf_token();
                   {
                   $estado="Activa";
                   if(!$estado==1){$estado="Inactiva";}
+                  $corazon='';
+                  if($bandera_favorito==1)
+                  {
+                    $corazon='<span id="fav_'.$key->id.'" class="fav-job">
+                      <i onClick="set_favoritos('.$key->id.')" class="la la-heart-o">
+                      </i>
+                    </span>';
+                  }
                   echo'
                   <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
                   <div class="job-listing wtabs">
@@ -280,11 +294,8 @@ $mi_tokken=csrf_token();
                   </div>
                   <div class="job-style-bx">
                     <span class="job-is ft">'.$key->disponibilidad.'
-                    </span>
-                    <span id="fav_'.$key->id.'" class="fav-job">
-                      <i onClick="set_favoritos('.$key->id.')" class="la la-heart-o">
-                      </i>
-                    </span>
+                    </span> 
+                    '.$corazon.'
                     <i>Vistas '.$key->vistos.' / <span class="status">'.$estado.'</span> / '.$key->tmp.'
                     </i>
                   </div></div>';

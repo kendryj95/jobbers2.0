@@ -17,7 +17,7 @@ class con_login extends Controller
         $sql = "
         SELECT t1.*,count(t1.id) as cantidad,t3.nombre_aleatorio as imagen,t1.token FROM tbl_usuarios t1
         LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id = t2.id_usuario
-        LEFT JOIN tbl_archivos t3 ON t3.id = t2.id WHERE t1.correo='" . $_POST['correo'] . "' AND t1.clave= '" . md5($_POST['pass']) . "'";
+        LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto WHERE t1.correo='" . $_POST['correo'] . "' AND t1.clave= '" . md5($_POST['pass']) . "'";
 
         try {
             $datos = DB::select($sql);
@@ -48,6 +48,7 @@ class con_login extends Controller
                     $request->session()->set($sufijo . 'imagen', $datos_emp[0]->imagen);
                     $request->session()->set($sufijo . 'nombre_empresa', $datos_emp[0]->nombre_empresa);
                     $request->session()->set($sufijo . 'plan', $datos_emp[0]->id_plan);
+                
                 } else if ($datos[0]->tipo_usuario == 2) {
                     $prefijo = "candidato";
                     $sufijo  = "cand_";
@@ -70,6 +71,7 @@ class con_login extends Controller
 
     public function salir(Request $request)
     {
+        $this->limpiarVariablesSession($request);
         $request->session()->forget('candidato');
         $request->session()->forget('empresa');
         return redirect('inicio');
