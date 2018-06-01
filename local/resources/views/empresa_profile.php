@@ -251,7 +251,7 @@
 				</div>
 			</section>
 			<br>
-			<?php include("includes/general_footer.php") ?>
+			<?php include("includes/general_footer_empresas.php") ?>
 		</div>
 
 				<div  id="upload_pic" class="modal" tabindex="-1" role="dialog">

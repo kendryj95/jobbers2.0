@@ -197,7 +197,7 @@
 				</div>
 			</section>
 			<br>
-			<?php include("includes/general_footer.php") ?>
+			<?php include("includes/general_footer_empresas.php") ?>
 		</div>
 		
 				<script src="../../local/resources/views/js/jquery.min.js" type="text/javascript"></script>

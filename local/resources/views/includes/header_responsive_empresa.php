@@ -1,12 +1,25 @@
+<?php  
+
+$dir = '';
+if ($_SERVER["SERVER_NAME"] == "localhost") {
+	$dir = "/jobbers2";
+} else {
+	$dir = "/jobbersv2";
+}
+
+?>
+
+
+
 <div class="responsive-header">
 	<div class="responsive-menubar">
-		<div class="res-logo"><a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" alt="" /></a></div>
+		<div class="res-logo"><a href="<?= $dir ?>/inicio" title=""><img src="<?= $dir ?>/local/resources/views/images/logo_d.png" alt="" /></a></div>
 		<div class="menu-resaction">
 			<div class="res-openmenu">
-				<img src="../local/resources/views/images/icon.png" alt="" /> Menu
+				<img src="<?= $dir ?>/local/resources/views/images/icon.png" alt="" /> Menu
 			</div>
 			<div class="res-closemenu">
-				<img src="../local/resources/views/images/icon2.png" alt="" /> Close
+				<img src="<?= $dir ?>/local/resources/views/images/icon2.png" alt="" /> Close
 			</div>
 		</div>
 	</div>
@@ -25,7 +38,7 @@
 			<div class="responsivemenu">
 				<ul>
 					<li class="">
-						<a href="../inicio" title="">Home</a>
+						<a href="<?= $dir ?>/inicio" title="">Home</a>
 					</li>
 				</ul>
 			</div>
