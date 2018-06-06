@@ -50,7 +50,7 @@
 										<h3>Listado de ofertas de trabajo</h3>
 										<div class="extra-job-info">
 											<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
-											<span><i class="la la-file-text"></i><strong>0</strong> Postulados en total</span>
+											<span><i class="la la-file-text"></i><strong><?= $total_postulados ?></strong> Postulados en total</span>
 											<span><i class="la la-users"></i><strong>0</strong> Jobbers Activos</span>
 										</div>
 										<table>
@@ -74,7 +74,11 @@
 														</div>
 													</td>
 													<td>
-														<a href="candidatos-postulados"><span class="applied-field">0 Postulado(s)</span></a>
+														<?php if ($oferta->postulados != 0): ?>
+														<a href="candidatos-postulados/<?= $oferta->id ?>"><span class="applied-field"><?= $oferta->postulados ?> Postulado(s)</span></a>
+														<?php else: ?>
+														<a href="#"><span class="applied-field">0 Postulado(s)</span></a>
+														<?php endif ?>
 													</td>
 													<td>
 														<span><?= $oferta->fcrea_fvenc ?></span>

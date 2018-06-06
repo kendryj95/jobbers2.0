@@ -120,22 +120,34 @@ class con_empresa extends Controller
     {
         $sql1          = DB::select("SELECT COUNT(*) AS total_ofertas FROM tbl_publicacion WHERE id_empresa=?", [session()->get("emp_ide")]);
         $total_ofertas = $sql1[0]->total_ofertas;
+        $sql2 = DB::select("SELECT COUNT(*) AS total_postulados FROM tbl_postulaciones p INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id WHERE pb.id_empresa=?", [session()->get("emp_ide")]);
+        $total_postulados = $sql2[0]->total_postulados;
 
-        $ofertas = DB::select("SELECT
-              pub.id,
-              pub.titulo,
-              CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
-              CONCAT(pub.tmp,',<br>',pub.fecha_venc) AS fcrea_fvenc,
-              IF(pub.estatus=1,'Activo','Inactivo') AS estatus
-              FROM
-              tbl_publicacion pub
-              INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
-              INNER JOIN tbl_localidades l ON pub.id_localidad=l.id
-              WHERE pub.id_empresa=?", [session()->get("emp_ide")]);
+        $ofertas = DB::select("
+        		SELECT
+				r.*
+				FROM
+				(
+				  SELECT
+	              pub.id,
+	              pub.titulo,
+	              CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
+	              CONCAT(pub.tmp,',<br>',pub.fecha_venc) AS fcrea_fvenc,
+	              IF(pub.estatus=1,'Activo','Inactivo') AS estatus,
+				  (SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
+				  (SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion
+	              FROM
+	              tbl_publicacion pub
+	              INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
+	              INNER JOIN tbl_localidades l ON pub.id_localidad=l.id
+	              WHERE pub.id_empresa=?
+				) r
+				ORDER BY postulados, ultima_fecha_postulacion DESC", [session()->get("emp_ide")]);
 
         $params = [
             "total_ofertas" => $total_ofertas,
             "ofertas"       => $ofertas,
+            "total_postulados" => $total_postulados
         ];
         return view('empresa_ofertas', $params);
     }
@@ -145,9 +157,48 @@ class con_empresa extends Controller
         return view('empresa_planes');
     }
 
-    public function postulados()
+    public function postulados($id_publicacion)
     {
-        return view('empresa_postulados');
+    	$sql = "
+    	SELECT 
+		p.id_usuario,
+		pb.id AS id_publicacion, 
+		p.tmp AS fecha_postulacion, 
+		pb.titulo AS titulo_oferta, 
+		CONCAT(cdp.nombres,' ',cdp.apellidos) AS nombre_candidato, 
+		TIMESTAMPDIFF(YEAR,cdp.fecha_nac,CURDATE()) AS edad_candidato,
+		g.descripcion AS sexo_candidato,
+		ce.titulo AS profesion_candidato 
+		FROM tbl_postulaciones p 
+		INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id 
+		LEFT JOIN tbl_candidato_datos_personales cdp ON p.id_usuario= cdp.id_usuario
+		LEFT JOIN tbl_generos g ON cdp.id_sexo=g.id
+		LEFT JOIN tbl_candidatos_educacion ce ON p.id_usuario=ce.id_usuario
+		WHERE p.id_publicacion=?
+		ORDER BY fecha_postulacion DESC";
+
+		$filtro_experiencia_laboral = DB::select("SELECT * FROM tbl_actividades_empresa ORDER BY nombre");
+		$filtro_salario = DB::select("SELECT * FROM tbl_rango_salarios");
+		$filtro_provincia = DB::select("SELECT * FROM tbl_provincias");
+		$filtro_idioma = DB::select("SELECT * FROM tbl_idiomas");
+		$filtro_area_estudios = DB::select("SELECT * FROM tbl_area_estudios ORDER BY descripcion");
+
+    	$oferta_postulado = DB::select($sql, [$id_publicacion]);
+
+    	if ($oferta_postulado) {
+    		$params = [
+    			"postulados" => $oferta_postulado,
+    			"filtro_experiencia_laboral" => $filtro_experiencia_laboral,
+    			"filtro_salario" => $filtro_salario,
+    			"filtro_provincia" => $filtro_provincia,
+    			"filtro_idioma" => $filtro_idioma,
+    			"filtro_area_estudios" => $filtro_area_estudios
+    		];
+
+        	return view('empresa_postulados', $params);
+    	} else {
+    		return redirect("empresa/ofertas");
+    	}
     }
 
     public function existEmpresa()
@@ -335,6 +386,7 @@ class con_empresa extends Controller
                     DB::update("UPDATE tbl_usuarios SET correo=? WHERE id=?", [$correo, session()->get("emp_id")]);
 
                     $request->session()->set("empresa", $correo);
+                    $request->session()->set("emp_nombre_empresa", $nombre_empresa);
 
                     DB::commit();
                     $response = 1;

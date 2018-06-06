@@ -3584,7 +3584,7 @@ header.style4 .menu-sec nav>ul>li.menu-item-has-children>a::before {
     float: left;
     width: 70%;
 }
-.job-listing.wtabs .job-title-sec>span {
+.job-listing.wtabs .job-title-sec>a>span {
     color: #1e83f0;
     display: table;
     float: none;
@@ -8827,6 +8827,14 @@ input[type="file"] {
     background: #f8f9fc;
 }
 .table-list-title>i {
+    font-family: Open Sans;
+    font-size: 14px;
+    color: #8b91dd;
+    font-style: normal;
+    margin-bottom: 1px;
+    float: left;
+}
+.table-list-title>a {
     font-family: Open Sans;
     font-size: 14px;
     color: #8b91dd;
