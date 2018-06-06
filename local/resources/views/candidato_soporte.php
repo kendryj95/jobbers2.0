@@ -31,25 +31,33 @@
                                         <h3>Soporte</h3>
                                     </div>
                                     <div class="profile-form-edit">
-                                        <form action="publiacionescreg" method="POST">
-                                            
+                                        <form action="candisoporte" method="POST"> 
                                             <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                             <div class="row">
                                                 
                                                 <div class="col-lg-12">
                                                     <span class="pf-title">Título</span>
                                                     <div class="pf-field">
-                                                        <input name="direccion" type="text" placeholder="¿Con qué tiene problemas?">
+                                                        <input name="titulo" type="text" placeholder="¿Con qué tiene problemas?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12" style="margin-top: -30px;margin-bottom: 10px;">
+                                                    <span class="pf-title">Categoría</span>
+                                                    <div class="pf-field">
+                                                        <select class="form-control" name="categoria">
+                                                            <option value="1">No se como hacerlo</option>
+                                                            <option value="2">Falla del sistema</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12" style="margin-top: -20px;">
                                                     <span class="pf-title">Expliquenos cuál es su problema.</span>
                                                     <div class="pf-field">
-                                                        <textarea placeholder="Detalle..." name="descripcion" style="resize: none;min-height: 75px;padding: 10px;"></textarea>
+                                                        <textarea placeholder="Detalle..." name="detalle" style="resize: none;min-height: 75px;padding: 10px;"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12" style="margin-bottom: 50px;">
-                                                    <button type="submit">Agregar</button>
+                                                    <button type="submit">Generar ticket</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -62,32 +70,40 @@
                                                     <tr>
                                                         <td>#</td>
                                                         <td>Tikect</td>
-                                                        <td>Estatus</td>
-                                                        <td>Mensajes</td>
-                                                        <td>Action</td>
+                                                        <td>Estatus</td> 
+                                                        <td>Ver</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
+                                                    <?php
+
+                                                    $contador=1;
+                                                     foreach ($datos as $key):
+                                                        $menu='<ul class="action_job">
+                                                                <li><span>Ver estado</span><a href="candisoported/'.$key->codigo.'" title=""><i class="la la-eye"></i></a></li>
+                                                            </ul>';
+                                                        if($key->conver=="")
+                                                        {
+                                                            $menu="";
+                                                        }
+                                                        ?>
+                                                       <tr>
                                                         <td>
-                                                            <span class="applied-field">1.</span><br>
+                                                            <span class="applied-field"><?php echo $contador++;?></span><br>
                                                         </td>
                                                         <td>
-                                                            <span class="status">A48S9569</span><br>
+                                                            <span class="status"><?php echo $key->codigo;?></span><br>
                                                         </td>
                                                         <td>
-                                                            <span class="applied-field">Pendiente...</span><br>
-                                                            
+                                                            <span class="applied-field"><?php echo $key->descripcion;?></span><br> 
                                                         </td>
+                                                        
                                                         <td>
-                                                            <span class="status active">+5</span>
+                                                            <?php echo $menu;?>
                                                         </td>
-                                                        <td>
-                                                            <ul class="action_job">
-                                                                <li><span>Ver estado</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
+                                                    </tr> 
+                                                    <?php endforeach ?>
+                                                    
                                                 </tbody>
                                             </table>
                                             <!--Fin Top candidatos-->

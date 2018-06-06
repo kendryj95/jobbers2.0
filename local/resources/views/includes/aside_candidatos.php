@@ -14,7 +14,7 @@
 					<a href="candipostulaciones" title=""><i class="la la-clipboard"></i>Postulaciones</a>
 				</li>
 				<li >
-					<a href="candidato" title=""><i class="la la-user"></i>Perfil Público</a>
+					<a href="candidato/<?php echo session()->get('cand_id');?>" title=""><i class="la la-user"></i>Perfil público</a>
 				</li>
 				<li >
 					<a href="candiperfil" title=""><i class="la la-user"></i>Mi perfil</a>
