@@ -123,7 +123,7 @@ $mi_tokken = csrf_token();
                                 $up_id="";
                                 $up_fecha="";
                                 $up_desc="";
-                                if($bandera_datos_personales==1)
+                                if(isset($bandera_datos_personales) && $bandera_datos_personales==1)
                                 {
                                 $up_nombres=$datos_personales_up[0]->nombres;
                                 $up_apellidos=$datos_personales_up[0]->apellidos;

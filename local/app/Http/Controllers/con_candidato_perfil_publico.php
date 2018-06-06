@@ -156,14 +156,14 @@ class con_candidato_perfil_publico extends Controller
             if($datos[0]->cantidad!=0)
             {
                 
-                $bandera_datos_personales=1;
-                $vista->bandera_datos_contacto=$bandera_datos_personales;
+                $bandera_datos_contacto=1;
+                $vista->bandera_datos_contacto=$bandera_datos_contacto;
                 $vista->infocontacto=$datos;
             }
             else
             {
                 $bandera_datos_contacto=0;
-                $vista->bandera_datos_contacto=  $bandera_datos_personales;
+                $vista->bandera_datos_contacto=  $bandera_datos_contacto;
             }
         } catch (Exception $e) {
             
