@@ -10979,9 +10979,11 @@ footer.ft .scrollup {
 .res-logo>a {
     float: left;
 }
+
 .img_profile_empresa {
     width: 100%;
 }
+
 .img_profile_empresa .preview_img {
     padding: 10px;
     position: relative;
@@ -10991,6 +10993,7 @@ footer.ft .scrollup {
     min-height: 100px;
     cursor: pointer;
 }
+
 .img_profile_empresa .preview_img .img_detail {
     border-radius: 20px;
     overflow: hidden;
@@ -11000,6 +11003,7 @@ footer.ft .scrollup {
     display: block;
     z-index: 10;
 }
+
 .img_profile_empresa .preview_img .img_detail img {
     width: 100%;
 }

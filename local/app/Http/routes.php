@@ -95,11 +95,14 @@ Route::get('empresa/detalle', 'con_empresa@detail');
 Route::group(['middleware' => 'log_e'], function () {
 Route::get('empresa/perfil', 'con_empresa@profile');
 Route::get('empresa/new_post', 'con_empresa@newPost');
+Route::get('empresa/edit_post/{id_post}', 'con_empresa@editPost');
 Route::get('empresa/ofertas', 'con_empresa@ofertas');
 Route::get('empresa/planes', 'con_empresa@planes');
 Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
 Route::post('empresa/registrar_post', 'con_empresa@registerPost');
+Route::post('empresa/actualizar_post', 'con_empresa@updatePost');
 Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');
+Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 });
 //********************************************************//
 //*       RUTAS PARA EL ADMINISYTRADOR DE SISTEMA        *//

@@ -65,10 +65,11 @@
 											</thead>
 											<tbody>
 												<?php foreach ($ofertas as $oferta): ?>
+													<?php $titulo = strlen($oferta->titulo) > 39 ? substr($oferta->titulo, 0, 39) . "..." : $oferta->titulo ?>
 												<tr>
 													<td>
 														<div class="table-list-title">
-															<h3><a href="#" title=""><?= $oferta->titulo ?></a></h3>
+															<h3><a href="../detalleoferta/<?= $oferta->id ?>" title="<?= $oferta->titulo ?>"><?= $titulo ?></a></h3>
 															<span><i class="la la-map-marker"></i><?= $oferta->ubicacion ?></span>
 														</div>
 													</td>
@@ -84,9 +85,10 @@
 													<td>
 														<ul class="action_job">
 															<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>" title=""><i class="la la-eye"></i></a></li>
-															<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-															<li><span>Pausar</span><a href="#" title=""><i class="la la-pause"></i></a></li>
-															<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+															<li><span>Editar</span><a href="edit_post/<?= $oferta->id ?>" title=""><i class="la la-pencil"></i></a></li>
+															<?php $pausar_continuar = $oferta->estatus == 'Activo' ? '<span>Pausar</span><a href="post/1/'.$oferta->id.'" title=""><i class="la la-pause"></i></a>' : '<span>Habilitar</span><a href="post/2/'.$oferta->id.'" title=""><i class="la la-play"></i></a>' ?>
+															<li><?= $pausar_continuar ?></li>
+															<li><span>Eliminar</span><a href="post/3/<?= $oferta->id ?>" title=""><i class="la la-trash-o"></i></a></li>
 														</ul>
 													</td>
 												</tr>
@@ -101,85 +103,9 @@
 				</div>
 			</section>
 			<br>
-			<?php include("includes/general_footer.php") ?>
+			<?php include("includes/general_footer_empresas.php") ?>
 		</div>
-		<div class="account-popup-area signin-popup-box">
-			<div class="account-popup">
-				<span class="close-popup"><i class="la la-close"></i></span>
-				<h3>User Login</h3>
-				<span>Click To Login With Demo User</span>
-				<div class="select-user">
-					<span>Candidate</span>
-					<span>Employer</span>
-				</div>
-				<form>
-					<div class="cfield">
-						<input type="text" placeholder="Username" />
-						<i class="la la-user"></i>
-					</div>
-					<div class="cfield">
-						<input type="password" placeholder="********" />
-						<i class="la la-key"></i>
-					</div>
-					<p class="remember-label">
-						<input type="checkbox" name="cb" id="cb1"><label for="cb1">Remember me</label>
-					</p>
-					<a href="#" title="">Forgot Password?</a>
-					<button type="submit">Login</button>
-				</form>
-				<div class="extra-login">
-					<span>Or</span>
-					<div class="login-social">
-						<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-						<a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
-					</div>
-				</div>
-			</div>
-			</div><!-- LOGIN POPUP -->
-			<div class="account-popup-area signup-popup-box">
-				<div class="account-popup">
-					<span class="close-popup"><i class="la la-close"></i></span>
-					<h3>Sign Up</h3>
-					<div class="select-user">
-						<span>Candidate</span>
-						<span>Employer</span>
-					</div>
-					<form>
-						<div class="cfield">
-							<input type="text" placeholder="Username" />
-							<i class="la la-user"></i>
-						</div>
-						<div class="cfield">
-							<input type="password" placeholder="********" />
-							<i class="la la-key"></i>
-						</div>
-						<div class="cfield">
-							<input type="text" placeholder="Email" />
-							<i class="la la-envelope-o"></i>
-						</div>
-						<div class="dropdown-field">
-							<select data-placeholder="Please Select Specialism" class="chosen">
-								<option>Web Development</option>
-								<option>Web Designing</option>
-								<option>Art & Culture</option>
-								<option>Reading & Writing</option>
-							</select>
-						</div>
-						<div class="cfield">
-							<input type="text" placeholder="Phone Number" />
-							<i class="la la-phone"></i>
-						</div>
-						<button type="submit">Signup</button>
-					</form>
-					<div class="extra-login">
-						<span>Or</span>
-						<div class="login-social">
-							<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-							<a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
-						</div>
-					</div>
-				</div>
-				</div><!-- SIGNUP POPUP -->
+		
 				<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 				<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 				<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
@@ -193,13 +119,39 @@
 				<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
 				<script>
 					$(document).ready(function() {
+
+
+						<?php if (isset($_REQUEST['response'])): ?>
+							<?php if ($_REQUEST['response'] == 1): ?>
+								$.notify("Se ha cambiado el estatus de la oferta satisfactoriamente.", {
+									className:"success",
+									globalPosition: "bottom center"
+								});
+							<?php elseif ($_REQUEST['response'] == 2): ?>
+								$.notify("Ha ocurrido un error al intentar cambiar el estatus de la oferta.", {
+									className:"error",
+									globalPosition: "bottom center"
+								});
+							<?php elseif ($_REQUEST['response'] == 3): ?>
+								$.notify("Se ha eliminado la oferta satisfactoriamente.", {
+									className:"success",
+									globalPosition: "bottom center"
+								});
+							<?php else: ?>
+								$.notify("Ha ocurrido un error al intentar eliminar la oferta.", {
+									className:"error",
+									globalPosition: "bottom center"
+								});
+							<?php endif; ?>
+						<?php endif; ?>
+
 						$('#post').on('click', function(){
 							$.notify("Oferta publicada satisfactoriamente.", {
-				className:"success",
-				globalPosition: "bottom center"
-				});
-				$('#step1').removeClass('active');
-				$('#step2').addClass('active');
+								className:"success",
+								globalPosition: "bottom center"
+							});
+							$('#step1').removeClass('active');
+							$('#step2').addClass('active');
 						});
 					});
 				</script>
