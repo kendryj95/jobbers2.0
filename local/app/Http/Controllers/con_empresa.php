@@ -192,7 +192,8 @@ class con_empresa extends Controller
     			"filtro_salario" => $filtro_salario,
     			"filtro_provincia" => $filtro_provincia,
     			"filtro_idioma" => $filtro_idioma,
-    			"filtro_area_estudios" => $filtro_area_estudios
+    			"filtro_area_estudios" => $filtro_area_estudios,
+    			"id_publicacion" => $id_publicacion
     		];
 
         	return view('empresa_postulados', $params);
