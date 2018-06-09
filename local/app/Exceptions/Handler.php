@@ -45,6 +45,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        
+        // return response()->view('errors.error', [], 500);
         return parent::render($request, $e);
     }
 }

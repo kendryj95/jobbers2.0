@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
+		
+	<?php $atras=1;?>
 		<div class="theme-layout" id="scrollup">
 			<!--Header responsive-->
 			<?php include('local/resources/views/includes/general_header.php');?>
@@ -28,22 +30,48 @@
 										<div class="row">
 											<div class="col-lg-6">
 												<div class="text-socail">
-													<a href="#" title=""><i class="fa fa-facebook"></i></a>
-													<a href="#" title=""><i class="fa fa-twitter"></i></a>
-													<a href="#" title=""><i class="la la-instagram"></i></a>
-													<a href="#" title=""><i class="la la-pinterest"></i></a>
-													<a href="#" title=""><i class="la la-dribbble"></i></a>
-													<a href="#" title=""><i class="la la-google"></i></a>
+													<?php
+													//datos_redes_sociales
+													 
+													foreach ($datos_redes_sociales as $key) {
+														if ($key->descripcion=="Facebook" && $key->red_social!="") {
+													 
+														echo '<a target="_blank" href="'.$key->red_social.'" title=""><i class="fa fa-facebook"></i></a>';
+															}
+
+															if ($key->descripcion=="Twitter" && $key->red_social!="") {
+														echo '<a target="_blank" href="'.$key->red_social.'" title=""><i class="fa fa-twitter"></i></a>';
+															}
+
+															if ($key->descripcion=="Instagram" && $key->red_social!="") {
+														echo '<a target="_blank" href="'.$key->red_social.'" title=""><i class="fa fa-instagram"></i></a>';
+															}
+
+															if ($key->descripcion=="Youtube" && $key->red_social!="") {
+														echo '<a target="_blank" href="'.$key->red_social.'" title=""><i class="fa fa-youtube"></i></a>';
+															}
+
+															if ($key->descripcion=="Linkedin" && $key->red_social!="") {
+														echo '<a target="_blank" href="'.$key->red_social.'" title=""><i class="fa fa-linkedin"></i></a>';
+															}
+													
+													}
+													?>  
 												</div>
 											</div>
+											 
+										
 											<div class="col-lg-6">
 												<div class="action-inner style2">
+													<?php if($datos_cv_descargable[0]->cantidad!=0): ?>
 													<div class="download-cv">
-														<a href="#" title="">Descargar CV <i class="la la-download"></i></a>
+														<a target="_blank" href="../descargar/<?php echo $datos_cv_descargable[0]->nombre_aleatorio;?>" title="">Descargar CV <i class="la la-download"></i></a>
 													</div>
+													<?php endif ?> 
 													<a href="#" title=""><i class="la la-map-marker"></i><?php echo $datos_datos_contacto[0]->provincia;?> / <?php echo $datos_datos_contacto[0]->localidad;?></a>
 												</div>
 											</div>
+										
 										</div>
 									</div>
 								</div>
@@ -74,9 +102,9 @@
 														<li><i class="la la-money"></i><h3>Salario pretendido</h3><span><?php echo $datos_preferencias_lab[0]->salario;?></span></li>
 														<li><i class="la la-mars-double"></i><h3>Genero</h3><span><?php echo $datos_personales[0]->genero;?></span></li>
 														<li><i class="la la-thumb-tack"></i><h3>Disponibilidad</h3><span><?php echo $datos_preferencias_lab[0]->nombre;?></span></li>
-														<li><i class="la la-money"></i><h3>Discapacidad</h3><span><?php echo $datos_personales[0]->discapacidad;?></span></li>
-														<li><i class="la la-mars-double"></i><h3>Hijos</h3><span><?php echo $datos_personales[0]->hijos;?></span></li>
-														<li><i class="la la-thumb-tack"></i><h3>Estado civil</h3><span><?php echo $datos_personales[0]->edo_civil;?></span></li>
+														<li><i class="la la-wheelchair"></i><h3>Discapacidad</h3><span><?php echo $datos_personales[0]->discapacidad;?></span></li>
+														<li><i class="la la-child"></i><h3>Hijos</h3><span><?php echo $datos_personales[0]->hijos;?></span></li>
+														<li><i class="la la-diamond"></i><h3>Estado civil</h3><span><?php echo $datos_personales[0]->edo_civil;?></span></li>
 													</ul>
 													</div><!-- Job Overview -->
 													<h2>Acerca de <?php echo $datos_personales[0]->nombres;?></h2>
@@ -149,11 +177,25 @@
 													<div class="companyies-fol-sec">
 														<h2>Empresas seguidas</h2>
 														<div class="cmp-follow">
-															<div class="row">
-																<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-																	<a href="#" title=""><img src="http://placehold.it/80x80" alt=""><span>King LLC</span></a>
+															<div class="cmp-follow"><div class="row">
+														<?php
+														$contador=0;
+														foreach ($datos_empresas_seguidas as $key): 
+
+															$foto="../uploads/0.jpg";
+															if($key->nombre_aleatorio!="")
+															{
+																$foto="../uploads/".$key->nombre_aleatorio;
+															}
+														?>
+														<?php if ($contador<5): ?>
+														 	<div class="col-sm-2">
+																	<a href="#" title=""><img style="width: 80px;height: 80px;" src="<?php echo $foto;?>" alt=""><span><?php echo $key->nombre?></span></a>
 																</div>
+														 <?php $contador++; endif ?>  
+														<?php endforeach ?>
 															</div>
+														</div> 
 														</div>
 													</div> 
 												</div>
@@ -181,89 +223,10 @@
 							</div>
 						</div>
 					</section>
-					<footer>
-						<div class="block">
-							<div class="container">
-								<div class="row">
-									<div class="col-lg-3 column">
-										<div class="widget">
-											<div class="about_widget">
-												<div class="logo">
-													<a href="#" title=""><img src="http://placehold.it/178x40" alt=""></a>
-												</div>
-												<span>Collin Street West, Victor 8007, Australia.</span>
-												<span>+1 246-345-0695</span>
-												<span>info@jobhunt.com</span>
-												<div class="social">
-													<a href="#" title=""><i class="fa fa-facebook"></i></a>
-													<a href="#" title=""><i class="fa fa-twitter"></i></a>
-													<a href="#" title=""><i class="fa fa-linkedin"></i></a>
-													<a href="#" title=""><i class="fa fa-pinterest"></i></a>
-													<a href="#" title=""><i class="fa fa-behance"></i></a>
-												</div>
-												</div><!-- About Widget -->
-											</div>
-										</div>
-										<div class="col-lg-4 column">
-											<div class="widget">
-												<h3 class="footer-title">Frequently Asked Questions</h3>
-												<div class="link_widgets">
-													<div class="row">
-														<div class="col-lg-6">
-															<a href="#" title="">Privacy &amp; Seurty </a>
-															<a href="#" title="">Terms of Serice</a>
-															<a href="#" title="">Communications </a>
-															<a href="#" title="">Referral Terms </a>
-															<a href="#" title="">Lending Licnses </a>
-															<a href="#" title="">Disclaimers </a>
-														</div>
-														<div class="col-lg-6">
-															<a href="#" title="">Support </a>
-															<a href="#" title="">How It Works </a>
-															<a href="#" title="">For Employers </a>
-															<a href="#" title="">Underwriting </a>
-															<a href="#" title="">Contact Us</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-2 column">
-											<div class="widget">
-												<h3 class="footer-title">Find Jobs</h3>
-												<div class="link_widgets">
-													<div class="row">
-														<div class="col-lg-12">
-															<a href="#" title="">US Jobs</a>
-															<a href="#" title="">Canada Jobs</a>
-															<a href="#" title="">UK Jobs</a>
-															<a href="#" title="">Emplois en Fnce</a>
-															<a href="#" title="">Jobs in Deuts</a>
-															<a href="#" title="">Vacatures China</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 column">
-											<div class="widget">
-												<div class="download_widget">
-													<a href="#" title=""><img src="http://placehold.it/230x65" alt=""></a>
-													<a href="#" title=""><img src="http://placehold.it/230x65" alt=""></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="bottom-line">
-								<span>© 2018 Jobhunt All rights reserved. Design by Creative Layers</span>
-								<a href="#scrollup" class="scrollup" title=""><i class="la la-arrow-up"></i></a>
-							</div>
-						</footer>
+					 <?php include("local/resources/views/includes/general_footer.php");?>
 					</div>
-					<?php include("local/resources/views/includes/aside_right_administrator.php");?>
-					<?php include("local/resources/views/includes/general_footer.php");?>
+				 
+					
 					<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 					<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 					<script src="../local/resources/views/js/script.js" type="text/javascript"></script>

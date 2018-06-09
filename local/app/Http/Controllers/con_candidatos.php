@@ -10,6 +10,7 @@ class con_candidatos extends Controller
 {
     public function index()
     {
+    	$sql="";
     	$vista=View::make('candidatos');
     	return $vista;
     }
