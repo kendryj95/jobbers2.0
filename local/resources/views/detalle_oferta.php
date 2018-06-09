@@ -49,7 +49,7 @@
 													<h3><?php echo $datos[0]->empresa;?></h3>
 													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
 													<ul class="tags-jobs">
-														<li><i class="la la-file-text"></i> Postulados 1</li>
+														<li><i class="la la-file-text"></i> Postulados <?= $cantidad_postulados ?></li>
 														<li><i class="la la-calendar-o"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
 														<li><i class="la la-eye"></i> Vistas <?php echo $datos[0]->vistos;?></li>
 													</ul>

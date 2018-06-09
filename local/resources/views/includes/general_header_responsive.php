@@ -1,3 +1,15 @@
+<?php  
+
+$dir = '';
+if ($_SERVER["SERVER_NAME"] == "localhost") {
+	$dir = "/jobbers2";
+} else {
+	$dir = "/jobbersv2";
+}
+
+?>
+
+
 <div class="responsive-header">
 	<div class="responsive-menubar">
 		<div class="res-logo"><a href="index.html" title=""><img src="http://placehold.it/178x40" alt="" /></a></div>

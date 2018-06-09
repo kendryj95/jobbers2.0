@@ -29,6 +29,7 @@ Route::post('regcontato', 'con_contacto@create');
 Route::get('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
+Route::post('postulados/filtrar', 'con_postulados@filtrar');
 
 
 //********************************************************//
@@ -102,7 +103,7 @@ Route::get('empresa/new_post', 'con_empresa@newPost');
 Route::get('empresa/edit_post/{id_post}', 'con_empresa@editPost');
 Route::get('empresa/ofertas', 'con_empresa@ofertas');
 Route::get('empresa/planes', 'con_empresa@planes');
-Route::get('empresa/candidatos-postulados', 'con_empresa@postulados');
+Route::get('empresa/candidatos-postulados/{id_publicacion}', 'con_empresa@postulados');
 Route::post('empresa/registrar_post', 'con_empresa@registerPost');
 Route::post('empresa/actualizar_post', 'con_empresa@updatePost');
 Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');

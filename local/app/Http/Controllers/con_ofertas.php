@@ -11,7 +11,7 @@ class con_ofertas extends Controller
     {
         $vista = View::make("ofertas");
 
-        $sql = "SELECT t1.direccion, t1.id, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp  FROM tbl_publicacion t1
+        $sql = "SELECT t1.direccion, t1.id, t1.id_empresa, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp  FROM tbl_publicacion t1
             LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
             LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
             LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
@@ -101,6 +101,8 @@ class con_ofertas extends Controller
                 SELECT count(*) as cantidad
                 FROM tbl_publicacion
                 WHERE id_empresa= " . $datos[0]->id_empresa . " and estatus = 1 GROUP by id_empresa";
+            $cantidad_postulados = DB::select("SELECT COUNT(*) AS count FROM tbl_postulaciones WHERE id_publicacion=?", [$id]);
+            $vista->cantidad_postulados = $cantidad_postulados[0]->count;
             $cantidad_ofertas        = DB::select($sql_cantidad_ofertas);
             $vista->cantidad_ofertas = $cantidad_ofertas;
             return $vista;

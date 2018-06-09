@@ -182,6 +182,7 @@ class con_candidato_perfil_publico extends Controller
             }
             else
             {
+
                 $bandera_datos_contacto=0;
                 $vista->bandera_datos_contacto=  $bandera_datos_contacto;
             }
