@@ -22,6 +22,12 @@ class con_candidato_perfil_publico extends Controller
         LEFT JOIN tbl_paises t6 ON t6.id = t1.id_nacionalidad
         WHERE t1.id_usuario = ".$id."";
 
+        $sql_empresas_seguidas="SELECT t1.id_empresa,t2.nombre,t4.nombre_aleatorio FROM tbl_candidato_empresas_seguidas t1
+        LEFT JOIN tbl_empresa t2 ON t2.id = t1.id_empresa
+        LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id_empresa
+        LEFT JOIN tbl_archivos t4 ON t4.id = t3.id_foto
+        WHERE t1.id_usuario = ".$id."";
+
         $sql_preferencias_laborales="SELECT t1.*,t2.salario,t3.nombre FROM `tbl_candidato_preferencias_laborales` t1
         LEFT JOIN tbl_rango_salarios t2 ON t2.id = t1.id_remuneracion_pre
         LEFT JOIN tbl_disponibilidad t3 ON t3.id = t1.id_jornada
@@ -66,7 +72,17 @@ class con_candidato_perfil_publico extends Controller
         LEFT JOIN tbl_areas_sectores t2 ON t2.id = t1.id_sector
         WHERE t1.id_usuario = ".$id."";
 
+        $sql_cv_descargable="SELECT t1.*,count(t1.id) as cantidad ,t2.nombre_aleatorio from tbl_candidato_cv_fisico t1
+        INNER JOIN tbl_archivos t2 ON t1.id_cv = t2.id
+        WHERE t1.id_usuario = ".$id." and t1.mostrar=1";
+
+        $sql_redes_sociales="SELECT t1.id,t1.descripcion,t2.red_social from tbl_redes_sociales t1
+        LEFT JOIN tbl_redes t2 on t2.id_red_social = t1.id and t2.id_usuario=".$id."";
+
         try {
+            $datos_redes_sociales=DB::select($sql_redes_sociales);
+            $datos_cv_descargable=DB::select($sql_cv_descargable);
+            $datos_empresas_seguidas=DB::select($sql_empresas_seguidas);
             $datos_experiencias=DB::select($sql_experiencias);
             $datos_idiomas=DB::select($sql_idiomas);
             $datos_foto=DB::select($sql_foto);
@@ -83,6 +99,10 @@ class con_candidato_perfil_publico extends Controller
             $vista->datos_personales=$datos_personales;
             $vista->datos_datos_contacto=$datos_datos_contacto;
             $vista->datos_preferencias_lab=$datos_preferencias_lab;
+            $vista->datos_empresas_seguidas=$datos_empresas_seguidas; 
+            $vista->datos_cv_descargable=$datos_cv_descargable;
+            $vista->datos_redes_sociales=$datos_redes_sociales;
+
             return $vista;
         } catch (Exception $e) {
             
@@ -123,7 +143,7 @@ class con_candidato_perfil_publico extends Controller
             LEFT JOIN tbl_paises t4 ON t1.id_pais = t4.id
             WHERE t1.id_usuario=".session()->get("cand_id")."";
         $sql_experiencias="SELECT t1.*,t2.nombre as sector FROM `tbl_candidato_experiencia_laboral` t1
-        LEFT JOIN tbl_areas_sectores t2 ON t1.id_sector = t2.id
+        LEFT JOIN tbl_actividades_empresa t2 ON t1.id_actividad_empresa = t2.id
         WHERE t1.id_usuario=".session()->get("cand_id")."";
         $sql_habilidades_listado="SELECT t1.*,t2.descripcion FROM tbl_candidato_habilidades t1
         LEFT JOIN tbl_habilidades t2 ON t1.id_habilidad = t2.id 

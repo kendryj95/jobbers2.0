@@ -61,16 +61,13 @@
 													<a href="#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
 												</div>
 												<?php if(session()->get('tipo_usuario')==2): ?>
-
 													<div class="emply-btns">
-														<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
-													</div>
-												
+														<a class="followus" href="../candiseguir/<?php echo $datos[0]->id_empresa;?>" title=""><i class="la la-paper-plane"></i> Seguir</a>
+													</div>												
 													<div class="emply-btns">
-														<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
+														<a class="followus" href="../candipostular/<?php echo $datos[0]->id;?>" title=""><i class="la la-file-text"></i> Postularme</a>
 													</div>
-												<?php endif; ?>
-												
+												<?php endif; ?>												
 											</div>
 										</div>
 									</div>

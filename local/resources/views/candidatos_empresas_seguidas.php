@@ -36,30 +36,33 @@
 													<td>Empresa</td>
 													<td>Reputación</td>
 													<td>Ofertas</td>
-													<td>Ver</td>
+													<td>No seguir</td>
 												</tr>
 											</thead>
 											<tbody>
+												
+												<?php foreach ($datos as $key): ?>
 												<tr>
 													<td>
 														<div class="table-list-title">
-															<h3><a href="#" title="">Web Designer / Developer</a></h3>
-															<span><i class="la la-map-marker"></i>Dirección /</span>
-															<span><i class=""></i>Área</span>
+															<h3><a href="#" title=""><?php echo $key->empresa;?></a></h3>
+															<span><i class="la la-map-marker"></i><?php echo $key->direccion;?></span>
 														</div>
 													</td>
 													<td>
 														<span class="status active">Proximamente</span>
 													</td>
 													<td>
-														<span class="status active">5</span>
+														<span class="status active"><?php echo $key->cantidad;?></span>
 													</td>
 													<td>
 														<ul class="action_job">
-															<li><span>Ver empresa</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+															<li><span>Ver empresa</span><a href="canddelseg/<?php echo $key->id_empresa?>" title=""><i class="la la-trash"></i></a></li>
 														</ul>
 													</td>
 												</tr>
+												<?php endforeach ?>
+												
 											</tbody>
 										</table>
 									</div>

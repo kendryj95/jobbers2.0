@@ -526,7 +526,7 @@ $mi_tokken = csrf_token();
                                             <div class="border-title"><h3>Experiencia laboral</h3><a href="#" title=""  data-toggle="modal" data-target="#modal_educ_expe"><i class="la la-plus"></i> Agregar experiencia</a></div>
                                             <div class="edu-history-sec">
                                                 <?php foreach ($experiencias as $key): ?>
-                                                <input type="hidden" id="e_sector_<?php echo $key->id;?>" value="<?php echo $key->id_sector;?>">
+                                                <input type="hidden" id="e_sector_<?php echo $key->id;?>" value="<?php echo $key->id_actividad_empresa;?>">
                                                 <div class="edu-history style2">
                                                     <i></i>
                                                     <div class="edu-hisinfo">
