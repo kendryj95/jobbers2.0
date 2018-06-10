@@ -15,9 +15,12 @@ $mi_tokken = csrf_token();
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
         <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
         <div class="theme-layout" id="scrollup">
+            
+           
             <!--Header responsive-->
             <?php include 'local/resources/views/includes/header_responsive_candidatos.php';?>
             <?php include 'local/resources/views/includes/header_candidatos.php';?>
@@ -88,11 +91,13 @@ $mi_tokken = csrf_token();
                         <div class="row no-gape">
                             <?php include 'local/resources/views/includes/aside_candidatos.php';?>
                             <div class="col-lg-9 column">
+                            
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
                                         <h3>Mi perfil</h3>
                                     </div>
-                                </div>
+
+                                </div> 
                                 <div class="text-center">
                                     <?php
                                     $imagen = "seleccionar.jpg";
@@ -171,19 +176,19 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <div class="profile-form-edit">
-                                    <form action="candidatosper" method="POST">
+                                    <form  id="form_datos_per"  action="candidatosper" method="POST">
                                         <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Nombres</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_nombres;?>" name="nombres" type="text" placeholder="Victor" />
+                                                    <input id="datos_per_nombres" value="<?php echo $up_nombres;?>" name="nombres" type="text" placeholder="Victor" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Apellidos</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_apellidos;?>" name="apellidos" type="text" placeholder="Fernández" />
+                                                    <input id="datos_per_apellidos" value="<?php echo $up_apellidos;?>" name="apellidos" type="text" placeholder="Fernández" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -200,14 +205,14 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Nº de identificación</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_id;?>" name="id" type="text" placeholder="" />
+                                                    <input id="datos_per_n_identificacion" value="<?php echo $up_id;?>" name="id" type="text" placeholder="" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Estado civil</span>
                                                 <div class="pf-field">
                                                     <select id="edo_civil" name="edo_civil" name="sexo" data-placeholder="Allow In Search" class="chosen">
-                                                        <option value="">Soltero</option>
+                                                        <option value="4">Seleccionar</option>
                                                         <?php foreach ($edo as $key) {
                                                         echo '<option id="edo_civil_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
                                                         }?>
@@ -240,7 +245,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Fecha de nacimiento</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_fecha;?>" name="fecha_nac" type="date" placeholder="" />
+                                                    <input id="datos_per_fecha_nac" value="<?php echo $up_fecha;?>" name="fecha_nac" type="date" placeholder="" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -272,18 +277,18 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-12">
                                                 <span class="pf-title">¿Cómo te describes?</span>
                                                 <div class="pf-field">
-                                                    <textarea name="sobremi"><?php echo trim($up_desc);?></textarea>
+                                                    <textarea id="datos_per_descripcion" name="sobremi"><?php echo trim($up_desc);?></textarea>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-lg-12">
-                                                <button type="submit">Guardar</button>
+                                                <button type="button" onClick="datos_per_validar()">Guardar</button>
                                             </div>
                                         </div>
                                     </form>
                                     <div class="social-edit">
                                         <h3>Preferencias laborales</h3>
-                                        <form method="POST" action="candipreflab">
+                                        <form id="form_preferencias_lab" method="POST" action="candipreflab">
                                             <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -346,7 +351,7 @@ $mi_tokken = csrf_token();
                                                         </div>
                                                         
                                                     </div>
-                                                    <button type="submit">Guardar</button>
+                                                    <button type="button" onClick="preferencias_lab_validar()">Guardar</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -373,28 +378,28 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Facebook</span>
                                                 <div class="pf-field">
-                                                    <input name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?> " />
+                                                    <input id="facebook" name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?> " />
                                                     <i class="fa fa-facebook"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Twitter</span>
                                                 <div class="pf-field">
-                                                    <input name="twitter" value="<?php echo $twitter;?>" type="text" placeholder="www.twitter.com/TeraPlaner" />
+                                                    <input  id="twitter" name="twitter" value="<?php echo $twitter;?>" type="text" placeholder="Twitter" />
                                                     <i class="fa fa-twitter"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Instragram</span>
                                                 <div class="pf-field">
-                                                    <input name="instagram" value="<?php echo $instagram;?>" type="text" placeholder="www.google-plus.com/TeraPlaner" />
+                                                    <input  id="instagram" name="instagram" value="<?php echo $instagram;?>" type="text" placeholder="Instragram" />
                                                     <i class="la la-instagram"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Linkedin</span>
                                                 <div class="pf-field">
-                                                    <input name="linkendin" value="<?php echo $linkendin;?>" type="text" placeholder="www.Linkedin.com/TeraPlaner" />
+                                                    <input  id="linkendin" name="linkendin" value="<?php echo $linkendin;?>" type="text" placeholder="linkendin" />
                                                     <i class="la la-linkedin"></i>
                                                 </div>
                                             </div>
@@ -406,25 +411,25 @@ $mi_tokken = csrf_token();
                                 </div>
                                 <div class="contact-edit">
                                     <h3>Información de contacto</h3>
-                                    <form action="candicontac" method="post">
+                                    <form id="form_contact" action="candicontac" method="post">
                                         <input type="hidden"  name="_token" value="<?php echo $mi_tokken;?>">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Teléfono</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_telefono_contac;?>" name="telefono" type="text" placeholder="+90 538 963 58 96" />
+                                                    <input id="telefono" value="<?php echo $up_telefono_contac;?>" name="telefono" type="text" placeholder="+90 538 963 58 96" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Correo</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_correo_contac;?>" name="correo" type="text" placeholder="demo@jobbers.com" />
+                                                    <input id="correo" value="<?php echo $up_correo_contac;?>" name="correo" type="text" placeholder="demo@jobbers.com" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Sitio Web</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
+                                                    <input id="sitio_web" value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -432,10 +437,11 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="pais_contac" name="pais" data-placeholder="Please Select Specialism" class="chosen">
                                                         <option value="">Seleccionar</option>
+                                                        <option value="10">Argentina</option>
                                                         <?php
-                                                        foreach ($paises as $key) {
-                                                        echo '<option value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                        }
+                                                        //foreach ($paises as $key) {
+                                                        //echo '<option value="'.$key->id.'">'.$key->descripcion.'</option>';
+                                                        //}
                                                         ?>
                                                     </select>
                                                 </div>
@@ -469,23 +475,23 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-6" style="">
                                                 <span class="pf-title">Dirección</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_direccion_contac;?>" name="direccion" type="text" placeholder="Buenos Aires, Argentina" />
+                                                    <input  id="direccion" value="<?php echo $up_direccion_contac;?>" name="direccion" type="text" placeholder="Buenos Aires, Argentina" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <span class="pf-title">Latitud</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_latitud_contac;?>" name="latitud" type="text" placeholder="41.1589654" />
+                                                    <input  id="latitud" value="<?php echo $up_latitud_contac;?>" name="latitud" type="text" placeholder="41.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <span class="pf-title">Longitud</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $up_longitud_contac;?>" name="longitud" type="text" placeholder="21.1589654" />
+                                                    <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="text" placeholder="21.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <button type="submit">Guardar</button>
+                                                <button type="button" onClick="contac_validar()">Guardar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -820,14 +826,97 @@ $mi_tokken = csrf_token();
     </script>
     <?php
     foreach ($habilidades_listado as $key) {
-    echo '<script>set_cargo("'.$key->id.'","'.$key->descripcion.'","categorias_habilidad",2);</script>';
+    echo '<script>set_cargo("'.$key->id_habilidad.'","'.$key->descripcion.'","categorias_habilidad",2);</script>';
     }
     foreach ($cargos_lista as $key) {
     echo '<script>set_cargo("'.$key->id_cargo.'","'.$key->descripcion.'","categorias_cargos",2);</script>';
     }
      foreach ($idiomas_listado as $key) {
-    echo '<script>set_cargo("'.$key->id.'","'.$key->descripcion.'","categorias_idioma",2);</script>';
+    echo '<script>set_cargo("'.$key->id_idioma.'","'.$key->descripcion.'","categorias_idioma",2);</script>';
     }
     ?>
+    <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
+        <script>
+          
+          </script>      
+    <?php endif ?>  
+    
+<script type="text/javascript">
+    function notificacion(mensaje)
+    {
+        $.notify(mensaje, {
+          className:"info",
+          globalPosition: "bottom right"
+          });
+    }
+    //Validaciones datos personales.
+   function datos_per_validar()
+   {
+        if($("#datos_per_nombres").val()==""){notificacion("Debe colocar su nombre.")}
+        else if($("#datos_per_apellidos").val()==""){notificacion("Debe colocar su apellido.")}
+        else if($("#tipo_id").val()==""){notificacion("Debe colocar su tipo de identifiación.")}
+        else if($("#datos_per_n_identificacion").val()==""){notificacion("Debe colocar su número de identificación.")}
+        else if($("#edo_civil").val()=="4"){notificacion("Debe colocar su estado civil.")}
+        else if($("#discapacidad").val()==""){notificacion("Debe colocar si tiene alguna discapacidad.")}
+        else if($("#sexo").val()==""){notificacion("Debe colocar su sexo.")}
+        else if($("#datos_per_fecha_nac").val()==""){notificacion("Debe colocar su fecha de nacimiento.")} 
+        else if($("#nacionalidad").val()==""){notificacion("Debe colocar su nacionalidad.")} 
+        else
+        {
+            $("#form_datos_per").submit();
+        }
+   }
+
+    function preferencias_lab_validar()
+   {
+        if($("#remuneracion").val()==""){notificacion("Debe colocar la remuneración pretendida.")}
+        else if($("#jorna").val()==""){notificacion("Debe colocar su jornada de preferencia.")}
+        else if($("#cbn_cargo").val()==""){notificacion("Debe colocar su tipo de identifiación.")}
+        
+        else
+        {
+            $("#form_preferencias_lab").submit();
+        }
+   } 
+     function contac_validar()
+       {
+            if($("#telefono").val()==""){notificacion("Debe colocar su número de teléfono.")}
+            else if($("#correo").val()==""){notificacion("Debe colocar su correo.")} 
+            else if($("#pais_contac").val()==""){notificacion("Debe colocar su país.")}
+            else if($("#provincia_contac").val()==""){notificacion("Debe colocar su provincia.")} 
+            else if($("#localidad_contac").val()==""){notificacion("Debe colocar su localidad.")} 
+            else if($("#direccion").val()==""){notificacion("Debe colocar su dirección.")}  
+            else
+            {
+                $("#form_contact").submit();
+            }
+       } 
+    function form_estudios_validar()
+       {
+            if($("#nivel").val()==""){notificacion("Debe colocar el nivel de estudio.")}
+            else if($("#desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
+            else if($("#hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
+            else if($("#universidad").val()==""){notificacion("Debe colocar la universidad.")} 
+            else if($("#titulo_obtener").val()==""){notificacion("Debe colocar el título que obtuvo.")} 
+            else if($("#uni_pais").val()==""){notificacion("Debe colocar el país donde curso los estudios.")}
+            else if($("#area_estudio").val()==""){notificacion("Debe colocar el area de estudio.")} 
+            else
+            {
+                $("#form_estudios").submit();
+            }
+       } 
+   function form_experiencia_validar()
+       {
+            if($("#expe_sector").val()==""){notificacion("Debe colocar el sector en el que trabajó.")}
+            else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
+            else if($("#expe_hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
+            else if($("#expe_empresa").val()==""){notificacion("Debe colocar el nombre de la empresa.")} 
+            else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}  
+            else
+            {
+                $("#form_experiencia").submit();
+            }
+       } 
+</script>
 </body>
 </html>

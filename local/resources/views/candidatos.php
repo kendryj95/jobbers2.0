@@ -23,14 +23,14 @@
     <?php include('local/resources/views/includes/general_header_responsive.php');?>
     <section class="overlape">
       <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url(local/resources/views/images/empresas_header.jpg) repeat scroll 10% 422.28px transparent;" class="parallax scrolly-invisible no-parallax">
+        <div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_candidatos.jpg) repeat scroll 10% 422.28px transparent;" class="parallax scrolly-invisible no-parallax">
         </div>
         <!-- PARALLAX BACKGROUND IMAGE -->
         <div class="container fluid">
           <div class="row">
             <div class="col-lg-12">
               <div class="inner-header">
-                <h3 style="font-size: 36px;">Jobbes tiene los mejores perfiles
+                <h3 style="font-size: 36px;">Jobbers tiene los mejores perfiles
                 </h3>
                 <h3 style="font-size: 22px;margin-top: -40px;">para los mejores puestos de trabajo.
                 </h3>
@@ -130,10 +130,7 @@
 
               <div class="widget">
                 <h3 class="sb-title open">Localidad</h3>
-                <div class="specialism_widget" style="">
-                  <div class="field_w_search">
-                    <input type="text" placeholder="Search Spaecialisms">
-                  </div>
+                <div class="specialism_widget" style=""> 
                   <!-- Search Widget -->
                   <div class="simple-checkbox scrollbar ss-container">
                     <div class="ss-wrapper">
@@ -539,6 +536,9 @@
     <script src="local/resources/views/js/select-chosen.js" type="text/javascript">
     </script>
     <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+    swal("Hello world!");
   </script>
 
   <style type="text/css">

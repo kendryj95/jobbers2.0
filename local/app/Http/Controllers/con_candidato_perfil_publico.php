@@ -69,7 +69,7 @@ class con_candidato_perfil_publico extends Controller
         WHERE t1.id_usuario =  ".$id."";
 
         $sql_experiencias ="SELECT t1.*,t2.nombre FROM `tbl_candidato_experiencia_laboral` t1
-        LEFT JOIN tbl_areas_sectores t2 ON t2.id = t1.id_sector
+        LEFT JOIN tbl_actividades_empresa t2 ON t2.id = t1.id_actividad_empresa
         WHERE t1.id_usuario = ".$id."";
 
         $sql_cv_descargable="SELECT t1.*,count(t1.id) as cantidad ,t2.nombre_aleatorio from tbl_candidato_cv_fisico t1
@@ -126,7 +126,7 @@ class con_candidato_perfil_publico extends Controller
         $sql_disponibilidad="SELECT * FROM tbl_disponibilidad";
         $sql_niveles="SELECT * FROM tbl_nivel_estudio";
         $sql_area_estudios="SELECT * FROM tbl_areas_estudio";
-        $sql_area_sector="SELECT * FROM tbl_areas_sectores"; 
+        $sql_area_sector="SELECT * FROM  tbl_actividades_empresa"; 
         $sql_cargos="SELECT * FROM tbl_cargos";
         $sql_habilidades="SELECT * FROM tbl_habilidades";  
         $sql_idiomas="SELECT * FROM tbl_idiomas";        
@@ -283,8 +283,19 @@ class con_candidato_perfil_publico extends Controller
     {
         $sql_datos_personales="
         SELECT *, count(*) as cantidad FROM tbl_candidato_datos_personales WHERE id_usuario=".session()->get('cand_id')."";
-         
-            $datos=DB::select($sql_datos_personales);
+     
+        //Validacion
+        if($_POST['nombres']==""){return redirect("candiperfil?result=Debe colocar su nombre");} 
+        else if($_POST['apellidos']==""){return redirect("candiperfil?result=Debe colocar su apellido");} 
+        else if($_POST['t_id']==""){return redirect("candiperfil?result=Debe colocar su el tipo de identifición");} 
+        else if($_POST['id']==""){return redirect("candiperfil?result=Debe colocar su identifiación");} 
+        else if($_POST['sexo']==""){return redirect("candiperfil?result=Debe colocar su sexo");} 
+        else if($_POST['fecha_nac']==""){return redirect("candiperfil?result=Debe colocar su fecha de cacimiento");} 
+        else if($_POST['nacionalidad']==""){return redirect("candiperfil?result=Debe colocar su nacionalidad");}
+        else
+        {
+           
+             $datos=DB::select($sql_datos_personales);
             if($datos[0]->cantidad!=0)
             {
                 
@@ -303,6 +314,7 @@ class con_candidato_perfil_publico extends Controller
                 WHERE id_usuario=".session()->get('cand_id')." 
                 ";
                  DB::update($sql);
+                 $this->porcentaje_carga(-1,"datos_personales",$_POST);
                 return redirect("candiperfil");
             }
             else
@@ -323,13 +335,15 @@ class con_candidato_perfil_publico extends Controller
                 '".$_POST['hijos']."',
                 '".$_POST['sobremi']."',
                 null 
-                )";
-
-             
+                )"; 
                     DB::insert($sql);
-                    return redirect("candiperfil");
-                 
+                    $this->porcentaje_carga(-1,"datos_personales",$_POST);
+                    return redirect("candiperfil"); 
+
             }
+             
+        }  
+           
         } 
 
     //Informacion de contacto
@@ -357,6 +371,7 @@ class con_candidato_perfil_publico extends Controller
                 WHERE id_usuario=".session()->get('cand_id')." 
                 ";
                  DB::update($sql);
+                 $this->porcentaje_carga(-1, "contacto", $_POST);
                 return redirect("candiperfil");
             }
             else
@@ -377,6 +392,7 @@ class con_candidato_perfil_publico extends Controller
                 null 
                 )"; 
                     DB::insert($sql);
+                    $this->porcentaje_carga(-1,'contacto',$_POST);
                     return redirect("candiperfil"); 
             }
         } 
@@ -386,8 +402,7 @@ class con_candidato_perfil_publico extends Controller
         
         $sql_preferencias_laborales="
         SELECT *, count(*) as cantidad FROM tbl_candidato_preferencias_laborales WHERE id_usuario=".session()->get('cand_id')."";
-         
-            $datos=DB::select($sql_preferencias_laborales);
+        $datos=DB::select($sql_preferencias_laborales);
             if($datos[0]->cantidad!=0)
             {
                 
@@ -400,11 +415,15 @@ class con_candidato_perfil_publico extends Controller
                  if(isset($_POST['cand_cargos']) && $_POST['cand_cargos']!="")
                  {
                     $this->agregar_arr($_POST['cand_cargos'],"tbl_candidatos_cargos");
+                    array_push($_POST['cand_cargos'] ,$_POST['remuneracion']);
+                    array_push($_POST['cand_cargos'] ,$_POST['jornada']);
+                     $this->porcentaje_carga(0,"preferencias_laborales",$_POST['cand_cargos']);
                  }
                  else
                  {
                     $this->del_arr("tbl_candidatos_cargos");
                  }
+                
                 return redirect("candiperfil");
             }
             else
@@ -420,14 +439,16 @@ class con_candidato_perfil_publico extends Controller
                 if(isset($_POST['cand_cargos']) && $_POST['cand_cargos']!="")
                 {
                     $this->agregar_arr($_POST['cand_cargos'],"tbl_candidatos_cargos");
+                    array_push($_POST['cand_cargos'] ,$_POST['remuneracion']);
+                    array_push($_POST['cand_cargos'] ,$_POST['jornada']);
+                    $this->porcentaje_carga(0,"preferencias_laborales",$_POST['cand_cargos']); 
                 }
                 else
                  {
                     $this->del_arr("tbl_candidatos_cargos");
-                 }
-               $this->agregar_arr($_POST['cand_cargos'],"tbl_candidatos_cargos");
-               DB::insert($sql);
-                return redirect("candiperfil"); 
+                 } 
+               DB::insert($sql); 
+               return redirect("candiperfil"); 
             }
         }
 
@@ -447,9 +468,19 @@ class con_candidato_perfil_publico extends Controller
     function set_habilidad()
     { 
         //return "Hola";
+        
         try {
-            $this->agregar_arr($_POST['cand_cargos'],"tbl_candidato_habilidades");
-            return redirect("candiperfil"); 
+            if($_POST['cargos']!="")
+            {
+                $this->agregar_arr($_POST['cand_cargos'],"tbl_candidato_habilidades");
+                $this->porcentaje_carga(0,'habilidad',$_POST['cand_cargos']);
+                return redirect("candiperfil"); 
+            }
+            else
+            {
+                $this->del_arr("tbl_candidato_habilidades");
+                return redirect("candiperfil"); 
+            } 
         } catch (Exception $e) {
             
         }
@@ -458,8 +489,18 @@ class con_candidato_perfil_publico extends Controller
     { 
         //return "Hola";
         try {
-            $this->agregar_arr($_POST['cand_cargos'],"tbl_candidato_idioma");
-            return redirect("candiperfil"); 
+            if($_POST['cargos']!="")
+            {
+                 $this->agregar_arr($_POST['cand_cargos'],"tbl_candidato_idioma");
+           $this->porcentaje_carga(0,'idiomas',$_POST['cand_cargos']);
+            return redirect("candiperfil");                 
+            }
+        else
+        {
+            $this->del_arr("tbl_candidato_idioma");
+             return redirect("candiperfil");
+        }
+           
         } catch (Exception $e) {
             
         }
@@ -476,6 +517,10 @@ class con_candidato_perfil_publico extends Controller
 
        $sql="SELECT count(*) as cantidad FROM tbl_candidatos_educacion WHERE id_usuario=".session()->get('cand_id')."";
        $datos=DB::select($sql);
+
+       $sql_educacion="SELECT  educacion FROM tbl_candidato_porcentaje_carga WHERE id_usuario=".session()->get('cand_id')."";
+       $datos_educacion=DB::select($sql_educacion);
+
        if($_POST['tipo']==2)
        {
         $sql="UPDATE tbl_candidatos_educacion SET
@@ -488,7 +533,7 @@ class con_candidato_perfil_publico extends Controller
         hasta='".$_POST['hasta']."'
         WHERE id=".$_POST['identificador']." AND id_usuario=".session()->get('cand_id')."
          ";
-         DB::update($sql);
+         DB::update($sql); 
          return redirect("candiperfil");
        }
        else
@@ -508,6 +553,7 @@ class con_candidato_perfil_publico extends Controller
 
            try {
                   DB::insert($sql);
+                  $this->porcentaje_carga($datos_educacion[0]->educacion+1,'educacion',$_GET);
                   return redirect("candiperfil");
               } catch (Exception $e) {
                  
@@ -517,11 +563,19 @@ class con_candidato_perfil_publico extends Controller
 
        function del_education($id)
        {
+        $sql="SELECT count(*) as cantidad FROM tbl_candidatos_educacion WHERE id_usuario=".session()->get('cand_id')."";
+        $datos=DB::select($sql);
+
+        $sql_educacion="SELECT  educacion FROM tbl_candidato_porcentaje_carga WHERE id_usuario=".session()->get('cand_id')."";
+        $datos_educacion=DB::select($sql_educacion);
+
+
         $sql="DELETE FROM  tbl_candidatos_educacion
         WHERE id=".$id." and id_usuario=".session()->get('cand_id')."";
 
         try {
             DB::delete($sql);
+            $this->porcentaje_carga($datos_educacion[0]->educacion-1,'educacion',$_POST);
             return redirect("candiperfil");
         } catch (Exception $e) {
             
@@ -532,12 +586,18 @@ class con_candidato_perfil_publico extends Controller
        {
             $sql="SELECT count(*) as cantidad FROM tbl_candidato_experiencia_laboral WHERE id_usuario=".session()->get('cand_id')."";
            $datos=DB::select($sql);
+
+           $sql_experiencia="SELECT  experiencia FROM tbl_candidato_porcentaje_carga WHERE id_usuario=".session()->get('cand_id')."";
+            $datos_experiencia=DB::select($sql_experiencia);
+
+
+
            if($_POST['tipo']==2)
            {
             $sql="UPDATE tbl_candidato_experiencia_laboral SET 
             nombre_empresa='".$_POST['empresa']."',
             cargo='".$_POST['cargo']."',
-            id_sector=".$_POST['sector'].",
+            id_actividad_empresa=".$_POST['sector'].",
             descripcion='".$_POST['descripcion']."', 
             desde='".$_POST['desde']."',
             hasta='".$_POST['hasta']."'
@@ -562,6 +622,7 @@ class con_candidato_perfil_publico extends Controller
 
                try {
                       DB::insert($sql);
+                      $this->porcentaje_carga($datos_experiencia[0]->experiencia+1,'experiencia',$_GET);
                       return redirect("candiperfil");
                   } catch (Exception $e) {
                      
@@ -569,16 +630,49 @@ class con_candidato_perfil_publico extends Controller
             }  
        }
 
-       function del_expe($id)
+     public  function del_expe($id)
        {
         $sql="DELETE FROM  tbl_candidato_experiencia_laboral
-        WHERE id=".$id." and id_usuario=".session()->get('cand_id')."";
+        WHERE id=".$id." and id_usuario=".session()->get('cand_id').""; 
 
+        $sql_experiencias="SELECT experiencia FROM tbl_candidato_porcentaje_carga WHERE id_usuario=".session()->get('cand_id')."";
+        $datos_experiencias=DB::select($sql_experiencias);
         try {
             DB::delete($sql);
+            $this->porcentaje_carga($datos_experiencias[0]->experiencia-1,'experiencia',$_POST);;
             return redirect("candiperfil");
         } catch (Exception $e) {
             
         }
        }
+
+       public function porcentaje_carga($resta,$campo,$arreglo)
+       {
+            $valor=$resta;
+            foreach ($arreglo as $key) {
+                if ($key!="") {
+                    $valor++;
+                }
+            } 
+      
+            $sql="SELECT count(id) as cantidad FROM tbl_candidato_porcentaje_carga WHERE id_usuario = ".session()->get('cand_id')."";
+            $sql_actualizar="UPDATE tbl_candidato_porcentaje_carga SET ".$campo." = ".$valor." 
+            WHERE id_usuario =".session()->get('cand_id')."";
+            $sql_insertar="INSERT INTO tbl_candidato_porcentaje_carga (".$campo.",id_usuario) VALUES (".$valor.",".session()->get('cand_id').")";
+            try {
+                $datos=DB::select($sql);
+                if($datos[0]->cantidad==1)
+                {
+                    DB::update($sql_actualizar);
+                }
+                else
+                {
+                    DB::insert($sql_insertar);
+                }
+                
+            } catch (Exception $e) {
+                
+            }
+       }
+
 }
