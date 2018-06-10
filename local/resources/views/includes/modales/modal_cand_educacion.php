@@ -202,7 +202,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary" onclick="$('#form_estudios').submit();">Guardar</button>
+        <button type="button" class="btn btn-primary" onClick="form_estudios_validar()">Guardar</button>
       </div>
     </div>
   </div>

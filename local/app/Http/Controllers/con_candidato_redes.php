@@ -18,7 +18,7 @@ class con_candidato_redes extends Controller
     }
     public function crear()
     {
-        if (isset($_POST['facebook']) && $_POST['facebook'] != "") {
+        if (isset($_POST['facebook'])) {
             if ($this->validarRed(1)) {
                 $sql = "
                 INSERT INTO tbl_redes
@@ -27,12 +27,12 @@ class con_candidato_redes extends Controller
             } else {
                 $sql = "
                 UPDATE tbl_redes
-                SET red_social='" . $_POST['facebook'] . "' WHERE id_usuario=" . session()->get("cand_id") . "
-                AND id_red_social=1";
+                SET red_social='".$_POST['facebook']."' WHERE id_usuario=" . session()->get("cand_id") . "
+                AND id_red_social=1"; 
                 DB::update($sql);
             }
         }
-        if (isset($_POST['twitter']) && $_POST['twitter'] != "") {
+        if (isset($_POST['twitter'])) {
             if ($this->validarRed(2)) {
                 $sql = "
                 INSERT INTO tbl_redes
@@ -41,13 +41,13 @@ class con_candidato_redes extends Controller
             } else {
                 $sql = "
                 UPDATE tbl_redes
-                SET red_social='" . $_POST['twitter'] . "' WHERE id_usuario=" . session()->get("cand_id") . "
+                SET red_social='".$_POST['twitter']."' WHERE id_usuario=" . session()->get("cand_id") . "
                 AND id_red_social=2";
                 DB::update($sql);
             }
 
         }
-        if (isset($_POST['linkendin']) && $_POST['linkendin'] != "") {
+        if (isset($_POST['linkendin'])) {
             if ($this->validarRed(5)) {
                 $sql = "
                 INSERT INTO tbl_redes
@@ -56,13 +56,13 @@ class con_candidato_redes extends Controller
             } else {
                 $sql = "
                 UPDATE tbl_redes
-                SET red_social='" . $_POST['linkendin'] . "' WHERE id_usuario=" . session()->get("cand_id") . "
+                SET red_social='".$_POST['linkendin']."' WHERE id_usuario=" . session()->get("cand_id") . "
                 AND id_red_social=5";
                 DB::update($sql);
             }
 
         }
-        if (isset($_POST['instagram']) && $_POST['instagram'] != "") {
+        if (isset($_POST['instagram'])) {
             if ($this->validarRed(3)) {
                 $sql = "
                 INSERT INTO tbl_redes
@@ -71,13 +71,13 @@ class con_candidato_redes extends Controller
             } else {
                 $sql = "
                 UPDATE tbl_redes
-                SET red_social='" . $_POST['instagram'] . "' WHERE id_usuario=" . session()->get("cand_id") . "
+                SET red_social='".$_POST['instagram']."' WHERE id_usuario=" . session()->get("cand_id") . "
                 AND id_red_social=3";
                 DB::update($sql);
             }
 
         }
-
+        $this->porcentaje_carga(-2,'redes',$_POST);
         if(isset($_POST['pagina']) && $_POST['pagina']!="")
         {
             return redirect("candiperfil");
@@ -100,4 +100,32 @@ class con_candidato_redes extends Controller
             return 0;
         }
     }
+    public function porcentaje_carga($resta,$campo,$arreglo)
+       {
+            $valor=$resta;
+            foreach ($arreglo as $key) {
+                if ($key!="") {
+                    $valor++;
+                }
+            } 
+      
+            $sql="SELECT count(id) as cantidad FROM tbl_candidato_porcentaje_carga WHERE id_usuario = ".session()->get('cand_id')."";
+            $sql_actualizar="UPDATE tbl_candidato_porcentaje_carga SET ".$campo." = ".$valor." 
+            WHERE id_usuario =".session()->get('cand_id')."";
+            $sql_insertar="INSERT INTO tbl_candidato_porcentaje_carga (".$campo.",id_usuario) VALUES (".$valor.",".session()->get('cand_id').")";
+            try {
+                $datos=DB::select($sql);
+                if($datos[0]->cantidad==1)
+                {
+                    DB::update($sql_actualizar);
+                }
+                else
+                {
+                    DB::insert($sql_insertar);
+                }
+                
+            } catch (Exception $e) {
+                
+            }
+       }
 }

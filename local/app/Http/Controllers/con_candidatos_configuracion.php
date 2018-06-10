@@ -38,7 +38,7 @@ class con_candidatos_configuracion extends Controller
 
     public function setProfilePic(Request $request)
     {
-        $sql         = "SELECT count(*) as cantidad FROM tbl_usuarios_foto_perfil WHERE id_usuario = " . session()->get("cand_id") . "";
+        $sql       = "SELECT count(*) as cantidad FROM tbl_usuarios_foto_perfil WHERE id_usuario = " . session()->get("cand_id") . "";
         $sql_agregar = "INSERT INTO tbl_usuarios_foto_perfil
         VALUES(null," . session()->get("cand_id") . "," . $_POST['id_imagen'] . ",null)";
         $sql_act = "UPDATE tbl_usuarios_foto_perfil
@@ -51,9 +51,11 @@ class con_candidatos_configuracion extends Controller
                 WHERE t1.id_usuario=" . session()->get("cand_id") . "";
                 $datos = DB::select($sql);
                 $request->session()->set("cand_img", $datos[0]->nombre_aleatorio);
+                $this->porcentaje_carga(1,"foto",$_GET);
                 return Redirect("candiconfiguracion?info=Imagen actualizada con extito.");
             } else {
                 DB::insert($sql_agregar);
+                $this->porcentaje_carga(1,"foto",$_GET);
                 return Redirect("candiconfiguracion?info=Imagen actualizada con extito.");
             }
         } catch (Exception $e) {
@@ -86,5 +88,34 @@ class con_candidatos_configuracion extends Controller
             return Redirect("candiconfiguracion?info=Debe colocar correo y clave para la actualización en sistema.");
         }
     }
+
+    public function porcentaje_carga($resta,$campo,$arreglo)
+       {
+            $valor=$resta;
+            foreach ($arreglo as $key) {
+                if ($key!="") {
+                    $valor++;
+                }
+            } 
+      
+            $sql="SELECT count(id) as cantidad FROM tbl_candidato_porcentaje_carga WHERE id_usuario = ".session()->get('cand_id')."";
+            $sql_actualizar="UPDATE tbl_candidato_porcentaje_carga SET ".$campo." = ".$valor." 
+            WHERE id_usuario =".session()->get('cand_id')."";
+            $sql_insertar="INSERT INTO tbl_candidato_porcentaje_carga (".$campo.",id_usuario) VALUES (".$valor.",".session()->get('cand_id').")";
+            try {
+                $datos=DB::select($sql);
+                if($datos[0]->cantidad==1)
+                {
+                    DB::update($sql_actualizar);
+                }
+                else
+                {
+                    DB::insert($sql_insertar);
+                }
+                
+            } catch (Exception $e) {
+                
+            }
+       }
 
 }

@@ -96,7 +96,7 @@
                   <select id="hasta" name="hasta" data-placeholder="Egreso" class="chosen">
                     <option value="">Seleccionar</option>
                     <option value="En proceso">En proceso</option>
-                    <option value="abandonado">Abandonado</option>
+                    <option value="Avandonado">Abandonado</option>
                     <option value="2018">2018</option> 
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
@@ -202,7 +202,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary" onclick="$('#form_estudios').submit();">Guardar</button>
+        <button type="button" class="btn btn-primary" onClick="form_estudios_validar()">Guardar</button>
       </div>
     </div>
   </div>
