@@ -30,6 +30,8 @@ Route::get('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
 Route::post('postulados/filtrar', 'con_postulados@filtrar');
+Route::post('postulados/calificar-marcar', 'con_postulados@calificarMarcar');
+Route::post('postulados/info', 'con_postulados@getCalificacionMarcador');
 
 
 //********************************************************//

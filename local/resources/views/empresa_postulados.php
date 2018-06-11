@@ -9,6 +9,7 @@
 		<meta name="author" content="CreativeLayers">
 		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 		<!-- Styles -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"">
 		<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/bootstrap-grid.css" />
 		<link rel="stylesheet" href="../../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../../local/resources/views/css/animate.min.css">
@@ -126,6 +127,35 @@
 												</div>
 											</div>
 										</div>
+										<div class="widget">
+											<h3 class="sb-title closed">Calificacion</h3>
+											<div class="specialism_widget">
+												<div class="simple-checkbox">
+													<p><input class="calificacion" type="radio" name="calificacion" id="calificacion_0" value="0" checked="checked"><label for="calificacion_0">Sin Definir</label></p>
+													<p><input class="calificacion" type="radio" name="calificacion" id="calificacion_1" value="1"><label for="calificacion_1">★</label></p>
+													<p><input class="calificacion" type="radio" name="calificacion" id="calificacion_2" value="2"><label for="calificacion_2">★★</label></p>
+													<p><input class="calificacion" type="radio" name="calificacion" id="calificacion_3" value="3"><label for="calificacion_3">★★★</label></p>
+													<p><input class="calificacion" type="radio" name="calificacion" id="calificacion_4" value="4"><label for="calificacion_4">★★★★</label></p>
+													<p><input class="calificacion" type="radio" name="calificacion" id="calificacion_5" value="5"><label for="calificacion_5">★★★★★</label></p>
+													
+												</div>
+											</div>
+										</div>
+										<div class="widget">
+											<h3 class="sb-title closed">Marcador</h3>
+											<div class="specialism_widget">
+												<div class="simple-checkbox">
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_0" value="0" checked="checked"><label for="marcador_0">Sin Definir</label></p>
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_1" value="1"><label for="marcador_1">Descartado</label></p>
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_2" value="2"><label for="marcador_2">Contactado</label></p>
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_3" value="3"><label for="marcador_3">En proceso</label></p>
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_4" value="4"><label for="marcador_4">Evaluando</label></p>
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_5" value="5"><label for="marcador_5">Finalista</label></p>
+													<p><input class="marcador" type="radio" name="marcador" id="marcador_6" value="6"><label for="marcador_6">Contratado</label></p>
+													
+												</div>
+											</div>
+										</div>
 									</aside>
 									<div class="col-lg-8 column">
 										<div class="padding-left">
@@ -137,6 +167,7 @@
 															<td>Candidato</td>
 															<td>Ocupación</td>
 															<td>Fecha postulación</td>
+															<td>Etapa</td>
 															<td></td>
 														</tr>
 													</thead>
@@ -145,21 +176,29 @@
 														<tr>
 															<td>
 																<div class="table-list-title">
-																	<a href="#"><?= $postulado->nombre_candidato ?></a><br />
+																	<a href="../../candidato/<?= $postulado->id_usuario ?>" target="_blank"><?= $postulado->nombre_candidato ?></a>
+																	<?php if ($postulado->calificacion): ?>
+																		<br>
+																		<span style="color: #FFDE00"><?= $postulado->calificacion ?></span>
+																	<?php endif ?>
+																	<br />
 																	<span>Edad: <?= $postulado->edad_candidato ?>&nbsp; Sexo: <?= $postulado->sexo_candidato ?></span>
 																</div>
 															</td>
 															<td>
 																<div class="table-list-title">
-																	<h3><a href="#" title=""><?= $postulado->profesion_candidato ?></a></h3>
+																	<h3><a href="https://www.google.co.ve/search?q=<?= $postulado->profesion_candidato ?>" title="" target="_blank"><?= $postulado->profesion_candidato ?></a></h3>
 																</div>
 															</td>
 															<td>
 																<span><?= $postulado->fecha_postulacion ?></span><br />
 															</td>
 															<td>
+																<span><?= $postulado->marcador ? $postulado->marcador : 'Normald' ?></span>
+															</td>
+															<td>
 																<ul class="action_job">
-																	<!-- <li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li> -->
+																	<li><span>Calificar y Marcar</span><a href="javascript:void(0)" data-toggle="modal" data-target="#action" title="" class="btnAction" data-id="<?= $postulado->id_usuario ?>" data-idpub="<?= $id_publicacion ?>"><i class="la la-star"></i> / <i class="la la-thumb-tack"></i></a></li>
 																</ul>
 															</td>
 														</tr>
@@ -176,8 +215,62 @@
 					<br>
 					<?php include("includes/general_footer_empresas.php") ?>
 				</div>
+
+						<div id="action" class="modal" tabindex="-1" role="dialog">
+					         <div class="modal-dialog" role="document">
+					           <div class="modal-content">
+					             <div class="modal-header">
+					               <h5 class="modal-title">Calificar y Marcar - <span class="candidate"></span></h5>
+					               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                 <span aria-hidden="true">&times;</span>
+					               </button>
+					             </div>
+					             <div class="modal-body" style="padding: 10px;"> 
+					               <div class="container-action">
+					               	<!-- <p style="text-align: center;"><b><em>Cargando...</em></b></p> -->
+					               	<div class="row">
+					               		<div class="col-lg-6">
+					               			<input type="hidden" value="" id="id_usuario">
+					               			<input type="hidden" value="" id="id_publicacion">
+					               			<span class="pf-title">Calificación </span>
+											<div class="pf-field">
+												<select data-placeholder="Calificacion" class="chosen" name="" id="calificacion">
+													<option value="">Seleccionar</option>
+													<option value="1">★</option>
+													<option value="2">★★</option>
+													<option value="3">★★★</option>
+													<option value="4">★★★★</option>
+													<option value="5">★★★★★</option>
+												</select>
+											</div>
+					               		</div>
+					               		<div class="col-lg-6">
+					               			<span class="pf-title">Marcadores </span>
+											<div class="pf-field">
+												<select data-placeholder="Marcador" class="chosen" name="" id="marcador">
+													<option value="">Seleccionar</option>
+													<option value="1">Descartado</option>
+													<option value="2">Contactado</option>
+													<option value="3">En proceso</option>
+													<option value="4">Evaluando</option>
+													<option value="5">Contratado</option>
+													<option value="6">Finalista</option>
+												</select>
+											</div>
+					               		</div>
+					               	</div>
+					               </div>
+					             </div>
+					             <div class="modal-footer">
+					               <button type="button" class="btn btn-xs btn-primary" id="aplicarAction">Aplicar</button>
+					               <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">Salir</button>
+					             </div>
+					           </div>
+					         </div>
+						</div> 
 				
 						<script src="../../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+						<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
 						<script src="../../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 						<script src="../../local/resources/views/js/script.js" type="text/javascript"></script>
 						<script src="../../local/resources/views/js/wow.min.js" type="text/javascript"></script>
@@ -190,7 +283,7 @@
 						<script src="../../local/resources/views/plugins/notify.js" type="text/javascript"></script>
 						<script>
 							
-							var selector = ".sexo, .exp, .salario, .edad, .area, .provincia, .idioma";
+							var selector = ".sexo, .exp, .salario, .edad, .area, .provincia, .idioma, .calificacion, .marcador";
 							
 							$(document).ready(function() {
 
@@ -205,6 +298,80 @@
 									$('.clear-filters').hide();
 									$('.filters').show();
 								}
+
+								$('.btnAction').on('click', function(){
+
+									var $btn = $(this);
+
+									$('#action #id_usuario').val($btn.attr('data-id'));
+									$('#action #id_publicacion').val($btn.attr('data-idpub'));
+
+									$.ajaxSetup({
+										headers: {
+										'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+										}
+									});
+									$.ajax({
+										url: '../../postulados/info',
+										type: 'POST',
+										dataType: 'json',
+										data: {
+											id_usuario: $btn.attr('data-id'),
+											id_publicacion: $btn.attr('data-idpub')
+										},
+										success: function(response){
+											console.log(response);
+
+											$('#action .candidate').text(response.info[0].nombre);
+
+											if (response.info[0].calificacion) {
+
+												$('#action #calificacion').val(response.info[0].calificacion).trigger('chosen:updated');
+											}
+
+											if (response.info[0].marcador) {
+
+												$('#action #marcador').val(response.info[0].marcador).trigger('chosen:updated');
+											}
+										},
+										error: function(error){
+											console.log(error)
+										}
+									});
+									
+								});
+
+								$('#aplicarAction').on('click', function(){
+
+										$.ajaxSetup({
+											headers: {
+											'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+											}
+										});
+										$.ajax({
+											url: '../../postulados/calificar-marcar',
+											type: 'POST',
+											dataType: 'json',
+											data: {
+												id_usuario: $('#id_usuario').val(),
+												calificacion: $('#calificacion').val(),
+												marcador: $('#marcador').val(),
+												id_publicacion: $('#id_publicacion').val()
+											},
+											success: function(response){
+												if (response.status == 1) {
+													filtrar();
+													$('#action').modal('hide');
+												} else {
+													console.log("Ha ocurrido un error");
+												}
+											},
+											error: function(error){
+												console.log('Error: ', error);
+											}
+										});
+									
+								});
 								
 								
 
@@ -222,6 +389,8 @@
 								$('.area[value=0]').prop('checked', true);
 								$('.provincia[value=0]').prop('checked', true);
 								$('.idioma[value=0]').prop('checked', true);
+								$('.calificacion[value=0]').prop('checked', true);
+								$('.marcador[value=0]').prop('checked', true);
 
 								filtrar();
 							}
@@ -245,6 +414,8 @@
 										area: $('.area:checked').val(),
 										provincia: $('.provincia:checked').val(),
 										idioma: $('.idioma:checked').val(),
+										calificacion: $('.calificacion:checked').val(),
+										marcador: $('.marcador:checked').val(),
 										id_publicacion: <?= $id_publicacion ?>
 									},
 									success: function(response){
@@ -254,13 +425,56 @@
 										if (response.postulados.length>0) {
 
 											response.postulados.forEach(function(p){
-												html += '<tr><td><div class="table-list-title"><a href="#">'+p.nombre_candidato +'</a><br/><span>Edad: '+ p.edad_candidato +'&nbsp; Sexo: '+ p.sexo_candidato +'</span></div></td><td><div class="table-list-title"><h3><a href="#" title="">'+ p.profesion_candidato +'</a></h3></div></td><td><span>'+p.fecha_postulacion +'</span><br/></td><td><ul class="action_job"></ul></td></tr>';
+												let estrellas = p.calificacion ? '<br><span style="color: #FFDE00">'+p.calificacion+'</span>' : '';
+												html += '<tr><td><div class="table-list-title"><a href="'+p.id_usuario+'" target="_blank">'+p.nombre_candidato +'</a>'+estrellas+'<br/><span>Edad: '+ p.edad_candidato +'&nbsp; Sexo: '+ p.sexo_candidato +'</span></div></td><td><div class="table-list-title"><h3><a href="https://www.google.co.ve/search?q='+p.profesion_candidato+'" title="" target="_blank">'+ p.profesion_candidato +'</a></h3></div></td><td><span>'+p.fecha_postulacion +'</span><br/></td><td><span>'+p.marcador+'</span></td><td><ul class="action_job"><li><span>Calificar y Marcar</span><a href="javascript:void(0)" data-toggle="modal" data-target="#action" title="" class="btnAction" data-id="'+p.id_usuario+'" data-idpub="<?= $id_publicacion ?>"><i class="la la-star"></i> / <i class="la la-thumb-tack"></i></a></li></ul></td></tr>';
 											});
 										} else {
 											html = '<tr><td colspan="4" align="center">"Sin resultados"</td></tr>';
 										}
 
 										$('#table_postulados tbody').html(html);
+
+										$('.btnAction').on('click', function(){
+
+											var $btn = $(this);
+
+											$('#action #id_usuario').val($btn.attr('data-id'));
+											$('#action #id_publicacion').val($btn.attr('data-idpub'));
+
+											$.ajaxSetup({
+												headers: {
+												'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+												}
+											});
+											$.ajax({
+												url: '../../postulados/info',
+												type: 'POST',
+												dataType: 'json',
+												data: {
+													id_usuario: $btn.attr('data-id'),
+													id_publicacion: $btn.attr('data-idpub')
+												},
+												success: function(response){
+													console.log(response);
+
+													$('#action .candidate').text(response.info[0].nombre);
+
+													if (response.info[0].calificacion) {
+
+														$('#action #calificacion').val(response.info[0].calificacion).trigger('chosen:updated');
+													}
+
+													if (response.info[0].marcador) {
+
+														$('#action #marcador').val(response.info[0].marcador).trigger('chosen:updated');
+													}
+												},
+												error: function(error){
+													console.log(error)
+												}
+											});
+											
+										});
 									},
 									error: function(error){
 										console.log("Error", error);

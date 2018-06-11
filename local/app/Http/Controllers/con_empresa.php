@@ -168,12 +168,25 @@ class con_empresa extends Controller
 		CONCAT(cdp.nombres,' ',cdp.apellidos) AS nombre_candidato, 
 		TIMESTAMPDIFF(YEAR,cdp.fecha_nac,CURDATE()) AS edad_candidato,
 		g.descripcion AS sexo_candidato,
-		ce.titulo AS profesion_candidato 
+		ce.titulo AS profesion_candidato,
+		(
+		CASE cc.calificacion
+		WHEN 1 THEN '★'
+		WHEN 2 THEN '★★'
+		WHEN 3 THEN '★★★'
+		WHEN 4 THEN '★★★★'
+		WHEN 5 THEN '★★★★★'
+		END
+		) AS calificacion,
+		m.nombre AS marcador
 		FROM tbl_postulaciones p 
 		INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id 
 		LEFT JOIN tbl_candidato_datos_personales cdp ON p.id_usuario= cdp.id_usuario
 		LEFT JOIN tbl_generos g ON cdp.id_sexo=g.id
 		LEFT JOIN tbl_candidatos_educacion ce ON p.id_usuario=ce.id_usuario
+		LEFT JOIN tbl_candidato_calificaciones cc ON p.id_usuario=cc.id_usuario
+		LEFT JOIN tbl_candidato_marcadores cm ON p.id_usuario=cm.id_usuario
+		LEFT JOIN tbl_marcadores m ON cm.id_marcador=m.id
 		WHERE p.id_publicacion=?
 		ORDER BY fecha_postulacion DESC";
 
