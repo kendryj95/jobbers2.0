@@ -10,22 +10,29 @@
 		<meta name="author" content="CreativeLayers">
 		<!-- Styles -->
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
 		<link rel="stylesheet" href="local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="local/resources/views/css/animate.min.css">
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
-		
+		<link rel="stylesheet" type="text/css" href="local/resources/views/plugins/botones/assets/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="local/resources/views/plugins/botones/bootstrap-social.css" />
+ 		 
 	</head>
 	<body>
+		
 		<div class="theme-layout" id="scrollup">
 			
-			
+			<!-- Modal -->
 			<?php include('local/resources/views/includes/general_header_responsive.php');?>
 			<?php include('local/resources/views/includes/general_header.php');?>
+			
 			<section>
+				
 				<div class="block no-padding">
 					<div class="container fluid">
 						<div class="row">
@@ -79,10 +86,44 @@
 				</div>
 			</section>
 			<section>
+				<div class="modal fade" id="modal_redes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="row">
+									<div class="text-center" style="padding-top: 20px;padding-bottom: 20px;"> 
+									<img style="margin: 0 auto;width: 40%;" src="https://www.mktv.mx/wp-content/uploads/2017/07/source.gif">
+								<h3>Hola Jobbers!</h3>
+								<h5>Ya somos <strong>6.180</strong> Jobbers, y vamos por más!</h5>
+								</div>
+								<div class="col-sm-6" style="margin-bottom: 10px;">
+									<a  target="_blank"  href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jobbersargentina.net" class="btn btn-block btn-social btn-facebook"  >
+									<span class="fa fa-facebook"></span>Compartir
+								</a> 
+								</div>
+								<div class="col-sm-6" style="margin-bottom: 10px;">
+								<a  target="_blank"  href="https://twitter.com/home?status=http%3A//www.jobbersargentina.net" class="btn btn-block btn-social btn-twitter"  >
+									<span class="fa fa-twitter"></span>Compartir
+								</a></div>
+								<div class="col-sm-6" style="margin-bottom: 10px;">
+								<a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//www.jobbersargentina.net&title=Jobbers&summary=&source=" class="btn btn-block btn-social btn-linkedin" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-bitbucket']);">
+									<span class="fa fa-linkedin"></span>Compartir
+								</a></div>
+								<div class="col-sm-6" style="margin-bottom: 10px;">
+								<a  target="_blank"  href="https://plus.google.com/share?url=http%3A//www.jobbersargentina.net" class="btn btn-block btn-social btn-google"  >
+									<span class="fa fa-google"></span>Compartir
+								</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="block">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">
+								<div class="" data-href="http://www.jobbersargentina.net" data-layout="button" data-size="small" data-mobile-iframe="true"></div>
+								<!-- Button trigger modal -->
 								<div class="heading">
 									<h2>Últimas ofertas</h2>
 									<span>Las mejores empresas buscan los mejores talentos.</span>
@@ -92,14 +133,14 @@
 										echo
 										'
 										<div class="job-listing">
-												<div class="job-title-sec">
-														<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>
-														<h3><a href="#" title="">'.$key->titulo.'</a></h3>
-														<span>'.$key->empresa.'</span>
-												</div>
-												<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
-												<span class="fav-job"><i class="la la-heart-o"></i></span>
-												<span class="job-is ft">'.$key->nombre.'</span>
+																<div class="job-title-sec">
+																						<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>
+																						<h3><a href="#" title="">'.$key->titulo.'</a></h3>
+																						<span>'.$key->empresa.'</span>
+																</div>
+																<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
+																<span class="fav-job"><i class="la la-heart-o"></i></span>
+																<span class="job-is ft">'.$key->nombre.'</span>
 										</div>
 										';
 									}?>
@@ -113,107 +154,7 @@
 						</div>
 					</div>
 				</section>
-				<!--Categorias
-				<section id="scroll-here">
-						<div class="block">
-								<div class="container">
-										<div class="row">
-												<div class="col-lg-12">
-														<div class="heading">
-																<h2>Lo más buscado</h2>
-																<span>37 Ofertas - 0 nuevas ofertas.</span>
-														</div>
-														<div class="cat-sec">
-																<div class="row no-gape">
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-bullhorn"></i>
-																								<span>Design, Art & Multimedia</span>
-																								<p>(22 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-graduation-cap"></i>
-																								<span>Education Training</span>
-																								<p>(6 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-line-chart "></i>
-																								<span>Accounting / Finance</span>
-																								<p>(3 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-users"></i>
-																								<span>Human Resource</span>
-																								<p>(3 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="cat-sec">
-																<div class="row no-gape">
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-phone"></i>
-																								<span>Telecommunications</span>
-																								<p>(22 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-cutlery"></i>
-																								<span>Restaurant / Food Service</span>
-																								<p>(6 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-building"></i>
-																								<span>Construction / Facilities</span>
-																								<p>(3 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-6">
-																				<div class="p-category">
-																						<a href="#" title="">
-																								<i class="la la-user-md"></i>
-																								<span>Health</span>
-																								<p>(3 open positions)</p>
-																						</a>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="col-lg-12">
-														<div class="browse-all-cat">
-																<a href="ofertas" title="">Ver todas las ofertas</a>
-														</div>
-												</div>
-										</div>
-								</div>
-						</div>
-				</section>
-				Fin Categorias-->
+				
 				<section>
 					<div class="block double-gap-top double-gap-bottom">
 						<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_inicio_2.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color"></div>
@@ -231,53 +172,6 @@
 					</div>
 				</section>
 				
-				<!--
-				<section>
-						<div class="block">
-								<div data-velocity="-.1" style="background: url(http://placehold.it/1920x1000) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color light"></div>
-								<div class="container">
-										<div class="row">
-												<div class="col-lg-12">
-														<div class="heading light">
-																<h2>Qué opinan nuestros Jobbers</h2>
-																<span>Cientos de Jobbers comparten sus vivencias</span>
-														</div>
-														<div class="reviews-sec" id="reviews-carousel">
-																<div class="col-lg-6">
-																		<div class="reviews">
-																				<img src="http://placehold.it/101x101" alt="" />
-																				<h3>Augusta Silva <span>Web designer</span></h3>
-																				<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-																		</div>
-																</div>
-																<div class="col-lg-6">
-																		<div class="reviews">
-																				<img src="http://placehold.it/101x101" alt="" />
-																				<h3>Ali Tufan <span>Web designer</span></h3>
-																				<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-																		</div>
-																</div>
-																<div class="col-lg-6">
-																		<div class="reviews">
-																				<img src="http://placehold.it/101x101" alt="" />
-																				<h3>Augusta Silva <span>Web designer</span></h3>
-																				<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-																		</div>
-																</div>
-																<div class="col-lg-6">
-																		<div class="reviews">
-																				<img src="http://placehold.it/101x101" alt="" />
-																				<h3>Ali Tufan <span>Web designer</span></h3>
-																				<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-																		</div>
-																</div>
-														</div>
-												</div>
-										</div>
-									</div>
-						</div>
-				</section>
-				-->
 				<section>
 					<div class="block">
 						<div class="container">
@@ -290,7 +184,7 @@
 									<div class="comp-sec">
 										<?php foreach ($logos_empresas as $key) {
 											echo'<div class="company-img">
-												<a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:180px;" /></a>
+																<a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:180px;" /></a>
 										</div>';
 										}?>
 									</div>
@@ -314,11 +208,11 @@
 											<?php foreach ($tips as $key) {
 												$cadena=explode("?", $key->descripcion);
 												echo '<div class="col-lg-4">
-													<div class="my-blog">
-																<div class="blog-thumb">
-																		<a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="min-height:300px;"/></a>
-																		<div class="blog-metas">
-																				<a href="#" title="">'.$cadena[0].'</a>
+																	<div class="my-blog">
+																								<div class="blog-thumb">
+																														<a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="min-height:300px;"/></a>
+																														<div class="blog-metas">
+																																				<a href="#" title="">'.$cadena[0].'</a>
 															<!--<a href="#" title="">0 Comments</a>-->
 														</div>
 													</div>
@@ -356,12 +250,16 @@
 			</div>
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			
-			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+			<script src="local/resources/views/plugins/botones/assets/js/jquery.js" type="text/javascript"></script> 
 			<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/script.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+			<script type="text/javascript">
+				$("#modal_redes").modal("show");
+			</script>
 		</body>
 	</html>
