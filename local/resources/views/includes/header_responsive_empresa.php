@@ -39,6 +39,8 @@ if ($_SERVER["SERVER_NAME"] == "localhost") {
 				<ul>
 					<li class="">
 						<a href="<?= $dir ?>/inicio" title="">Home</a>
+						<?php $nombre_plan = session()->get("emp_plan")[0]->nombre ?>
+						<a href="planes" title="">Plan: <?= strtoupper($nombre_plan); ?></a>
 					</li>
 				</ul>
 			</div>

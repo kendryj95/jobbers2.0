@@ -314,7 +314,10 @@
 										});
 										$('#localidad').html(html).trigger('chosen:updated');
 									} else {
-										alert("Error al cargar las localidades");
+										$.notify("Error al cargar las localidades", {
+											className:"error",
+											globalPosition: "bottom center"
+										});
 									}
 								},
 								error: function(){
