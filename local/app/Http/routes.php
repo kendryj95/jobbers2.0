@@ -29,9 +29,19 @@ Route::post('regcontato', 'con_contacto@create');
 Route::get('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
+
+//********************************************************//
+//*           RUTAS PARA EL PROCESO DE POSTULADOS 		  *//
+//********************************************************//
 Route::post('postulados/filtrar', 'con_postulados@filtrar');
 Route::post('postulados/calificar-marcar', 'con_postulados@calificarMarcar');
 Route::post('postulados/info', 'con_postulados@getCalificacionMarcador');
+
+//********************************************************//
+//*           RUTAS PARA EL PROCESO DE PAGOS 			  *//
+//********************************************************//
+Route::post('pagos/requestMP', 'con_pagos@requestMP');
+Route::post('pagos/update', 'con_pagos@updatePlan');
 
 
 //********************************************************//

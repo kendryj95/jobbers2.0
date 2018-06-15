@@ -14,6 +14,8 @@
 				<ul>
 					<li class="">
 						<a href="../inicio" title="">Home</a>
+						<?php $nombre_plan = session()->get("emp_plan")[0]->nombre ?>
+						<a href="planes" title="">Plan: <?= strtoupper($nombre_plan); ?></a>
 					</li>
 					
 			</nav><!-- Menus -->

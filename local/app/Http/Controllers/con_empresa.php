@@ -154,7 +154,14 @@ class con_empresa extends Controller
 
     public function planes()
     {
-        return view('empresa_planes');
+    	$plan = DB::select("SELECT * FROM tbl_planes WHERE id <> 1");
+    	$beneficios_planes = DB::select("SELECT pb.alias_gratis, pb.alias_premium, GROUP_CONCAT(id_plan ORDER BY id_plan ASC SEPARATOR ',') AS planes_asignados FROM tbl_planes_beneficios pb INNER JOIN tbl_beneficios_per_plan bpp ON pb.id=bpp.id_beneficio GROUP BY id_beneficio");
+
+    	$params = [
+    		"plan" => $plan,
+    		"beneficios_planes" => $beneficios_planes
+    	];
+        return view('empresa_planes', $params);
     }
 
     public function postulados($id_publicacion)

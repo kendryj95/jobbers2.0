@@ -47,7 +47,29 @@ class con_login extends Controller
                     $request->session()->set($sufijo . 'ide', $datos_emp[0]->id_empresa);
                     $request->session()->set($sufijo . 'imagen', $datos_emp[0]->imagen);
                     $request->session()->set($sufijo . 'nombre_empresa', $datos_emp[0]->nombre_empresa);
-                    $request->session()->set($sufijo . 'plan', $datos_emp[0]->id_plan);
+
+                    $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
+
+                    switch ($plan[0]->id_plan) {
+                        case 2:
+                            $timestamp_today = strtotime(date("Y-m-d H:i:s"));
+                            $timestamp_vencimiento = strtotime("+35 day", strtotime($plan[0]->tmp));
+
+                            if ($timestamp_today >= $timestamp_vencimiento) {
+                                $db->query("UPDATE tbl_empresas_planes SET id_plan=1, tmp=".date("Y-m-d H:i:s")." WHERE id_empresa=".$datos_emp[0]->id_empresa);
+                                $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
+                                $request->session()->set($sufijo . 'plan', $plan);
+                            } else {
+                                $request->session()->set($sufijo . 'plan', $plan);
+                            }
+                            break;
+                        
+                        default:
+
+                            $request->session()->set($sufijo . 'plan', $plan);
+
+                            break;
+                    }
                 
                 } else if ($datos[0]->tipo_usuario == 2) {
                     $prefijo = "candidato";
