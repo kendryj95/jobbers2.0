@@ -78,7 +78,7 @@ class con_candidato_perfil_publico extends Controller
 
         $sql_redes_sociales="SELECT t1.id,t1.descripcion,t2.red_social from tbl_redes_sociales t1
         LEFT JOIN tbl_redes t2 on t2.id_red_social = t1.id and t2.id_usuario=".$id."";
-
+        $sql_porcentaje="SELECT *, count(*) as cantidad FROM tbl_candidato_porcentaje_carga WHERE id_usuario = ".$id."";
         try {
             $datos_redes_sociales=DB::select($sql_redes_sociales);
             $datos_cv_descargable=DB::select($sql_cv_descargable);
@@ -102,6 +102,12 @@ class con_candidato_perfil_publico extends Controller
             $vista->datos_empresas_seguidas=$datos_empresas_seguidas; 
             $vista->datos_cv_descargable=$datos_cv_descargable;
             $vista->datos_redes_sociales=$datos_redes_sociales;
+
+            $porcentaje_carga=DB::select($sql_porcentaje);
+            if($porcentaje_carga[0]->cantidad==0)
+            {
+               return redirect('candidatos?result=El perfil al que intenta acceder no se encuentra disponible.');
+            }       
 
             return $vista;
         } catch (Exception $e) {

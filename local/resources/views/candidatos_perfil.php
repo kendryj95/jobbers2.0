@@ -18,9 +18,7 @@ $mi_tokken = csrf_token();
         
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
-        <div class="theme-layout" id="scrollup">
-            
-           
+        <div class="theme-layout" id="scrollup"> 
             <!--Header responsive-->
             <?php include 'local/resources/views/includes/header_responsive_candidatos.php';?>
             <?php include 'local/resources/views/includes/header_candidatos.php';?>

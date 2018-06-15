@@ -88,7 +88,14 @@
 								<div class="cand-single-user">
 									<div class="share-bar circle"></div>
 									<div class="can-detail-s">
-										<div class="cst"><img style="width: 144px;height: 144px;" src="../uploads/<?php echo $datos_foto[0]->foto;?>" alt=""></div>
+										<?php
+										$imagen="";
+										if(isset($datos_foto[0]->foto))
+										{
+											$imagen=$datos_foto[0]->foto;
+										}
+										?>
+										<div class="cst"><img style="width: 144px;height: 144px;" src="../uploads/<?php echo $imagen;?>" alt=""></div>
 										<h3  style="margin-bottom: 20px;"><?php echo $datos_personales[0]->nombres ." ".$datos_personales[0]->apellidos;?></h3> 
 									</div>
 									<div class="download-cv"></div>

@@ -9,14 +9,13 @@
     <meta name="keywords" content="">
     <meta name="author" content="CreativeLayers">
     <!-- Styles -->
+
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
     <link rel="stylesheet" href="local/resources/views/css/icons.css">
-    <link rel="stylesheet" href="local/resources/views/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   </head>
   <body>
     <?php include('local/resources/views/includes/general_header.php');?>
@@ -45,290 +44,190 @@
         <div class="container">
           <div class="row no-gape">
             <aside class="col-lg-3 column border-right">
-               <div class="widget" >
-                <h3 class="sb-title open">Habilidades</h3>
-                <div class="specialism_widget" style=""> 
-                  <!-- Search Widget -->
-                  <div class="simple-checkbox scrollbar ss-container"  >
-                    <div class="ss-wrapper">
-                      <div class="ss-content">
-                        <p>
-                          <input type="checkbox" name="spealism" id="as">
-                          <label for="as">Accountancy (2)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="asd">
-                          <label for="asd">Banking (2)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="errwe">
-                          <label for="errwe">Charity &amp; Voluntary (3)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="fdg">
-                          <label for="fdg">Digital &amp; Creative (4)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="sc">
-                          <label for="sc">Estate Agency (3)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="aw">
-                          <label for="aw">Graduate (2)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="ui">
-                          <label for="ui">IT Contractor (7)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="saas">
-                          <label for="saas">Charity &amp; Voluntary (3)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="rrrt">
-                          <label for="rrrt">Digital &amp; Creative (4)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="eweew">
-                          <label for="eweew">Estate Agency (3)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="bnbn">
-                          <label for="bnbn">Graduate (2)</label>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="spealism" id="ffd">
-                          <label for="ffd">IT Contractor (7)</label>
-                        </p>
+              <form id="form_filtros" method="POST" action="candidatos">
+                <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+               
+                  <div class="widget" >
+                    <h3 class="sb-title open">Habilidades</h3>
+                    <div class="specialism_widget" style="">
+                      <!-- Search Widget -->
+                      
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content"> 
+                            <?php
+                            $aux=array();
+                            ?>
+                            <?php foreach ($datos_habilidades as $key): ?>
+                            <?php if (in_array($key->descripcion, $aux)!=1): ?>
+                            <p>
+                              <input onclick="filtros_set()" type="checkbox" name="habilidad[]" id="as_habilidad_<?php echo str_replace(' ','_',$key->descripcion);?>" value="<?php echo $key->descripcion;?>">
+                              <label id="label_as_habilidad_<?php echo str_replace(' ','_',$key->descripcion);?>" for="as_habilidad_<?php echo $key->descripcion;?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad;?>)</label>
+                            </p>
+                            <?php array_push($aux, $key->descripcion);?>
+                            <?php endif ?>
+                            <?php endforeach ?>
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                       </div>
                     </div>
-                    <div class="ss-scroll" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                   </div>
-                </div>
-              </div>
 
-              <div class="widget">
-                <h3 class="sb-title open">Provincia</h3>
-                <div class="specialism_widget" style="">
-                  <div class="field_w_search">
-                    <input type="text" placeholder="Search Spaecialisms">
-                  </div>
-                  <!-- Search Widget -->
-                  <div class="simple-checkbox scrollbar ss-container">
-                    <div class="ss-wrapper">
-                      <div class="ss-content"> 
-                        <p>
-                          <input type="checkbox" name="spealism" id="asd">
-                          <label for="asd">Banking (2)</label>
-                        </p> 
+                  <div class="widget" >
+                    <h3 class="sb-title open">Provincia</h3>
+                    <div class="specialism_widget" style="">
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content">
+                            <?php
+                            $aux=array();
+                            ?>
+                            <?php foreach ($datos_provincia as $key): ?>
+                            <?php if (in_array($key->provincia, $aux)!=1): ?>
+                            <p>
+                              <input onclick="filtros_set()" type="checkbox" name="provincias[]" id="as_provincia_<?php echo $key->id_provincia;?>" value="<?php echo $key->id_provincia;?>">
+                              <label for="as_provincia_<?php echo $key->id_provincia;?>" id="label_as_provincia_<?php echo $key->id_provincia;?>" ><?php echo $key->provincia;?> (<?php echo $key->cantidad;?>)</label>
+                            </p>
+                            <?php array_push($aux, $key->provincia);?>
+                            <?php endif ?>
+                            <?php endforeach ?>
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                       </div>
                     </div>
-                    <div class="ss-scroll" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                   </div>
-                </div>
-              </div>
 
-              <div class="widget">
-                <h3 class="sb-title open">Localidad</h3>
-                <div class="specialism_widget" style=""> 
-                  <!-- Search Widget -->
-                  <div class="simple-checkbox scrollbar ss-container">
-                    <div class="ss-wrapper">
-                      <div class="ss-content"> 
-                        <p>
-                          <input type="checkbox" name="spealism" id="asd">
-                          <label for="asd">Banking (2)</label>
-                        </p> 
+                  <div class="widget" >
+                    <h3 class="sb-title open">Localidades</h3>
+                    <div class="specialism_widget" style="">
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content">
+                            <?php
+                            $aux=array();
+                            ?>
+                            <?php foreach ($datos_localidades as $key): ?>
+                            <?php if (in_array($key->localidad, $aux)!=1): ?>
+                            <p>
+                              <input onclick="filtros_set()" type="checkbox" name="localidad[]" id="as_localidad_<?php echo $key->id_localidad;?>" value="<?php echo $key->id_localidad;?>">
+                              <label for="as_localidad_<?php echo $key->id_localidad;?>" id="label_as_localidad_<?php echo $key->id_localidad;?>"><?php echo $key->localidad;?> (<?php echo $key->cantidad;?>)</label>
+                            </p>
+                            <?php array_push($aux, $key->localidad);?>
+                            <?php endif ?>
+                            <?php endforeach ?>
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                       </div>
                     </div>
-                    <div class="ss-scroll" style="height: 58.5859%; top: 0%; right: -329px;"></div>
-                  </div>
-                </div>
-              </div>
+                  </div> 
 
-              <div class="widget">
-                <h3 class="sb-title open">Disonibilidad</h3>
-                <div class="posted_widget" style="">
-                  <input type="radio" name="choose" id="232">
-                  <label for="232">Last Hour</label>
-                  <br>
-                  <input type="radio" name="choose" id="wwqe">
-                  <label for="wwqe">Last 24 hours</label>
-                  <br>
-                  <input type="radio" name="choose" id="erewr">
-                  <label for="erewr">Last 7 days</label>
-                  <br>
-                  <input type="radio" name="choose" id="qwe">
-                  <label for="qwe">Last 14 days</label>
-                  <br>
-                  <input type="radio" name="choose" id="wqe">
-                  <label for="wqe">Last 30 days</label>
-                  <br>
-                  <input type="radio" name="choose" id="qweqw">
-                  <label class="nm" for="qweqw">All</label>
-                  <br>
-                </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title open">Idiomas</h3>
-                <div class="posted_widget" style="">
-                  <input type="radio" name="choose" id="232">
-                  <label for="232">Last Hour</label>
-                  <br>
-                  <input type="radio" name="choose" id="wwqe">
-                  <label for="wwqe">Last 24 hours</label>
-                  <br>
-                  <input type="radio" name="choose" id="erewr">
-                  <label for="erewr">Last 7 days</label>
-                  <br>
-                  <input type="radio" name="choose" id="qwe">
-                  <label for="qwe">Last 14 days</label>
-                  <br>
-                  <input type="radio" name="choose" id="wqe">
-                  <label for="wqe">Last 30 days</label>
-                  <br>
-                  <input type="radio" name="choose" id="qweqw">
-                  <label class="nm" for="qweqw">All</label>
-                  <br>
-                </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title open">Tipo de trabajo</h3>
-                <div class="type_widget" style="">
-                  <p class="flchek">
-                    <input type="checkbox" name="choosetype" id="33r">
-                    <label for="33r">Freelance (9)</label>
-                  </p>
-                  <p class="ftchek">
-                    <input type="checkbox" name="choosetype" id="dsf">
-                    <label for="dsf">Full Time (8)</label>
-                  </p>
-                  <p class="ischek">
-                    <input type="checkbox" name="choosetype" id="sdd">
-                    <label for="sdd">Internship (8)</label>
-                  </p>
-                  <p class="ptchek">
-                    <input type="checkbox" name="choosetype" id="sadd">
-                    <label for="sadd">Part Time (5)</label>
-                  </p>
-                  <p class="tpchek">
-                    <input type="checkbox" name="choosetype" id="assa">
-                    <label for="assa">Temporary (5)</label>
-                  </p>
-                  <p class="vtchek">
-                    <input type="checkbox" name="choosetype" id="ghgf">
-                    <label for="ghgf">Volunteer (8)</label>
-                  </p>
-                </div>
-              </div>
-             
-              <div class="widget">
-                <h3 class="sb-title closed">Salario pretendido</h3>
-                <div class="specialism_widget" style="display: none;">
-                  <div class="simple-checkbox">
-                    <p>
-                      <input type="checkbox" name="smplechk" id="1">
-                      <label for="1">10k - 20k</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="2">
-                      <label for="2">20k - 30k</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="3">
-                      <label for="3">30k - 40k</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="4">
-                      <label for="4">40k - 50k</label>
-                    </p>
+                  <div class="widget" >
+                    <h3 class="sb-title open">Disponibilidad</h3>
+                    <div class="specialism_widget" style="">
+                      <!-- Search Widget -->
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content">
+                            
+                            <?php
+                            foreach ($datos_disponibilidad as $key):?>
+                            <p>
+                              <input onclick="filtros_set()" value="<?php echo $key->id_jornada?>" type="checkbox" name="disponibilidad[]" id="disponibilidad_<?php echo $key->id_jornada?>">
+
+                              <label for="disponibilidad_<?php echo $key->id_jornada?>" id="label_disponibilidad_<?php echo $key->id_jornada?>"><?php echo $key->nombre;?> (<?php echo $key->cantidad;?>)</label>
+                            </p>
+                            <?php endforeach?>
+                            
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title closed">Career Level</h3>
-                <div class="specialism_widget" style="display: none;">
-                  <div class="simple-checkbox">
-                    <p>
-                      <input type="checkbox" name="smplechk" id="5">
-                      <label for="5">Intermediate</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="6">
-                      <label for="6">Normal</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="7">
-                      <label for="7">Special</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="8">
-                      <label for="8">Experienced</label>
-                    </p>
+
+                  <div class="widget"  >
+                    <h3 class="sb-title open">Idiomas</h3>
+                    <div class="specialism_widget" style="">
+                      <!-- Search Widget -->
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content">
+                            
+                            <?php foreach ($datos_idioma as $key): ?>
+                            <p>
+                              <input onclick="filtros_set()" value="<?php echo $key->descripcion?>" type="checkbox" name="idiomas[]" id="as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>">
+
+                              <label for="as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>" id="label_as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad?>)</label>
+                            </p>
+                            <?php endforeach ?>
+                            
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="widget"   >
+                    <h3 class="sb-title open">Genero</h3>
+                    <div class="specialism_widget" style="">
+                      <!-- Search Widget -->
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content"> 
+                              <?php foreach ($datos_generos as $key): ?>
+                              <p>
+                                <input value="<?php echo $key->id_sexo?>" onclick="filtros_set()" type="checkbox" name="sexo[]" id="as_genero_<?php echo $key->id_sexo?>">
+                                <label for="as_genero_<?php echo $key->id_sexo?>" id="label_as_genero_<?php echo $key->id_sexo?>"><?php echo $key->descripcion;?>  (<?php echo $key->cantidad?>)</label>
+                              </p>
+                              <?php endforeach ?> 
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title closed">Experiencia</h3>
-                <div class="specialism_widget" style="display: none;">
-                  <div class="simple-checkbox">
-                    <p>
-                      <input type="checkbox" name="smplechk" id="9">
-                      <label for="9">1Year to 2Year</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="10">
-                      <label for="10">2Year to 3Year</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="11">
-                      <label for="11">3Year to 4Year</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="12">
-                      <label for="12">4Year to 5Year</label>
-                    </p>
+                  <div class="widget" >
+                    <h3 class="sb-title open">Salarios</h3>
+                    <div class="specialism_widget" style="">
+                      <!-- Search Widget -->
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content"> 
+                              <?php foreach ($datos_salarios as $key): ?>
+                              <p>
+                                <input value="<?php echo $key->id_remuneracion_pre?>" onclick="filtros_set()" type="checkbox" name="salarios[]" id="as_salarios_<?php echo $key->id_remuneracion_pre?>">
+                                <label  for="as_salarios_<?php echo $key->id_remuneracion_pre?>" id="label_as_salarios_<?php echo $key->id_remuneracion_pre?>"><?php echo $key->salario;?>  (<?php echo $key->cantidad?>)</label>
+                              </p>
+                              <?php endforeach ?> 
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title closed">Genero</h3>
-                <div class="specialism_widget" style="display: none;">
-                  <div class="simple-checkbox">
-                    <p>
-                      <input type="checkbox" name="smplechk" id="13">
-                      <label for="13">Male</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="14">
-                      <label for="14">Female</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="15">
-                      <label for="15">Others</label>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title closed">Cargos pretendidos</h3>
-                <div class="specialism_widget" style="display: none;">
-                  <div class="simple-checkbox">
-                    <p>
-                      <input type="checkbox" name="smplechk" id="16">
-                      <label for="16">Meezan Job</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="17">
-                      <label for="17">Speicalize Jobs</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" name="smplechk" id="18">
-                      <label for="18">Business Jobs</label>
-                    </p>
-                  </div>
-                </div>
-              </div>
+                  <div class="widget" >
+                    <h3 class="sb-title open">Cargos</h3>
+                    <div class="specialism_widget" style="">
+                      <!-- Search Widget -->
+                      <div class="simple-checkbox scrollbar ss-container"  >
+                        <div class="ss-wrapper">
+                          <div class="ss-content"> 
+                              <?php foreach ($datos_cargos as $key): ?>
+                              <p>
+                                <input value="<?php echo $key->descripcion?>" onclick="filtros_set()" class="control_seleccionado" type="checkbox" name="cargos[]" id="as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>">
+                                <label  for="as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>" id="label_as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad?>)</label>
+                              </p>
+                              <?php endforeach ?> 
+                          </div>
+                        </div>
+                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                      </div>
+                    </div>
+                  </div> 
+              </form>
                
               <div class="widget">
                 <div class="subscribe_widget">
@@ -339,213 +238,182 @@
             </aside>
             <div class="col-lg-9 column">
               <div class="modrn-joblist">
-                <div class="tags-bar">
-                  <span>Full Time<i class="close-tag">x</i></span>
-                  <span>UX/UI Design<i class="close-tag">x</i></span>
-                  <span>Istanbul<i class="close-tag">x</i></span>
-                  <div class="action-tags"> 
-                    <a href="#" title=""><i class="la la-trash-o"></i> Limpiar</a>
+                <div class="tags-bar" id="filtros">
+                  
+                  <div class="action-tags">
+                    <a title="" onClick="limpiar()"><i class="la la-trash-o"></i> Quitar filtros</a>
                   </div>
                 </div>
                 <!-- Tags Bar -->
                 <div class="filterbar">
-                 
-                  <div class="sortby-sec"> 
-                    <select data-placeholder="20 por página" class="chosen" style="display: none;">
-                      <option>15 Por página</option>
-                      <option>30 Por página</option>
-                      <option>45 Por página</option>
-                      <option>60 Por página</option>
-                    </select>
-                    <div class="chosen-container chosen-container-single chosen-container-single-nosearch" title="" style="width: 99px;">
-                      <div class="chosen-drop">
-                        <div class="chosen-search">
-                          <input class="chosen-search-input" type="text" autocomplete="off" readonly="">
-                        </div>
-                      <ul class="chosen-results"></ul>
+                  <h5><?php echo count($datos_candidatos);?> candidatos</h5>
+                </div>
+              </div>
+             
+              
+              <!-- MOdern Job LIst -->
+              <div class="job-list-modern">
+                <div class="job-listings-sec">
+                  
+                  <?php
+                  //Ejemplo
+                  ?>
+                  <?php
+                  foreach ($datos_candidatos as $key):
+                  $imagen="uploads/empresa.jpg";
+                  $nombre="Sin nombre";
+                  $direccion=$key->localidades." / ".$key->direccion;
+                  $disponibilidad='<span class="job-is ft">'.$key->disponibilidad.'</span>';
+                  if($key->foto!="")
+                  {
+                  $imagen='uploads/'.$key->foto;
+                  }
+                  if($key->nombre!="")
+                  {
+                  $nombre=$key->nombre;
+                  }
+                  if($key->localidades=="" && $key->direccion=="")
+                  {
+                  $direccion="Sin dirección";
+                  }
+                  if($key->disponibilidad=="")
+                  {
+                  $disponibilidad="";
+                  }
+                  ?>
+                  <div class="job-listing wtabs">
+                    <div class="job-title-sec">
+                      <div class="c-logo"> <img style="width: 98px;" src="<?php echo $imagen;?>" alt=""> </div>
+                      <h3><a href="candidato/<?php echo $key->id;?>" title=""><?php echo $nombre;?></a></h3>
+                      <span><i class="la la-map-marker"></i><?php echo $direccion;?></span>
+                      <div class="job-lctn"></div>
+                    </div>
+                    <div class="job-style-bx">
+                      <?php echo $disponibilidad;?>
+                      <i></i>
                     </div>
                   </div>
-                </div>
-                <h5>98 candidatos</h5>
+                  <?php endforeach ?>
+                </div> 
               </div>
-            </div>
-            <!-- MOdern Job LIst -->
-            <div class="job-list-modern">
-              <div class="job-listings-sec">
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Web Designer / Developer</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is ft">Full time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">C Developer (Senior) C .Net</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is pt ">Part time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Regional Sales Manager South</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is ft ">Full time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Marketing Dairector</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is ft ">Full time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Application Developer</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is pt ">Part time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Social Media and Public</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is fl ">Freelance</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">C Developer (Senior) C .Net</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is pt ">Part time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Regional Sales Manager South</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is ft ">Full time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Marketing Dairector</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is ft ">Full time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-                <div class="job-listing wtabs">
-                  <div class="job-title-sec">
-                    <div class="c-logo"> <img src="http://placehold.it/98x51" alt=""> </div>
-                    <h3><a href="#" title="">Application Developer</a></h3>
-                    <span>Massimo Artemisis</span>
-                    <div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-                  </div>
-                  <div class="job-style-bx">
-                    <span class="job-is pt ">Part time</span>
-                    <span class="fav-job"><i class="la la-heart-o"></i></span>
-                    <i>5 months ago</i>
-                  </div>
-                </div>
-                <!-- Job -->
-              </div>
-              <div class="viewmore"><span><i></i><i></i><i></i>View More</span></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </section>
     <?php include("local/resources/views/includes/general_footer.php");?>
     <?php include("local/resources/views/includes/login_register_modal.php");?>
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript">
     </script>
-    <script src="local/resources/views/js/modernizr.js" type="text/javascript">
-    </script>
     <script src="local/resources/views/js/script.js" type="text/javascript">
-    </script>
-    <script src="local/resources/views/js/wow.min.js" type="text/javascript">
-    </script>
-    <script src="local/resources/views/js/slick.min.js" type="text/javascript">
-    </script>
-    <script src="local/resources/views/js/parallax.js" type="text/javascript">
     </script>
     <script src="local/resources/views/js/select-chosen.js" type="text/javascript">
     </script>
-    <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
-  </script>
-  <script type="text/javascript">
-    swal("Hello world!");
-  </script>
-
-  <style type="text/css">
+    <script src="local/resources/views/plugins/notify.js" type="text/javascript"></script>
+    <style type="text/css">
     .ss-content
     {
-      overflow-x: hidden;
+    overflow-x: hidden;
     }
-  </style>
-</body>
+    </style>
+    <script type="text/javascript">
+      function filtros_set_var(id,descripcion)
+      { 
+        $("#filtros").append('<span>'+descripcion+'</span>'); 
+      }
+      function filtros_set()
+      {  
+        $("#form_filtros").submit()
+      }
+      function set_check(parametro)
+      {
+        $("#"+parametro).attr('checked', 'true');
+      }
+      function limpiar()
+      {
+         
+        $('input[type="checkbox"]').prop('checked' , false);
+        $("#form_filtros").submit()
+      }
+    </script>
+     <?php 
+              if(isset($variables['habilidad']) && count($variables['habilidad']) > 0)
+              {
+                foreach ($variables['habilidad'] as $key) { 
+                  echo '';
+                }
+              } 
+              ?>
+ 
+      <?php if (isset($variables['habilidad']) && count($variables['habilidad'])>0): ?>
+           <?php foreach ($variables['habilidad'] as $key): ?>
+           <script>filtros_set_var('as_habilidad_<?php echo str_replace(' ','_',$key);?>',$("#label_as_habilidad_<?php echo str_replace(' ','_',$key);?>").html());</script>
+           <script>set_check("as_habilidad_<?php echo str_replace(' ','_',$key);?>");</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+      <?php if (isset($variables['provincias']) && count($variables['provincias'])>0): ?>
+           <?php foreach ($variables['provincias'] as $key): ?>
+           <script>filtros_set_var(<?php echo $key;?>,$("#label_as_provincia_"+<?php echo $key;?>).html());</script>
+           <script>set_check("as_provincia_"+<?php echo $key;?>);</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+      <?php if (isset($variables['localidad']) && count($variables['localidad'])>0): ?>
+           <?php foreach ($variables['localidad'] as $key): ?>
+           <script>filtros_set_var(<?php echo $key;?>,$("#label_as_localidad_"+<?php echo $key;?>).html());</script>
+           <script>set_check("as_localidad_"+<?php echo $key;?>);</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+      <?php if (isset($variables['idiomas']) && count($variables['idiomas'])>0): ?>
+           <?php foreach ($variables['idiomas'] as $key): ?>
+           <script>filtros_set_var('<?php echo str_replace(' ','_',$key);?>',$("#label_as_idiomas_<?php echo str_replace(' ','_',$key);?>").html());</script>
+           <script>set_check("as_idiomas_<?php echo str_replace(' ','_',$key);?>");</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+       <?php if (isset($variables['sexo']) && count($variables['sexo'])>0): ?>
+           <?php foreach ($variables['sexo'] as $key): ?>
+           <script>filtros_set_var(<?php echo $key;?>,$("#label_as_genero_"+<?php echo $key;?>).html());</script>
+           <script>set_check("as_genero_"+<?php echo $key;?>);</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+      <?php if (isset($variables['cargos']) && count($variables['cargos'])>0): ?>
+           <?php foreach ($variables['cargos'] as $key): ?>
+           <script>filtros_set_var('<?php echo str_replace(' ','_',$key);?>',$("#label_as_cargos_<?php echo str_replace(' ','_',$key);?>").html());</script>
+           <script>set_check("as_cargos_<?php echo str_replace(' ','_',$key);?>");</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+      <?php if (isset($variables['salarios']) && count($variables['salarios'])>0): ?>
+           <?php foreach ($variables['salarios'] as $key): ?>
+           <script>filtros_set_var(<?php echo $key;?>,$("#label_as_salarios_"+<?php echo $key;?>).html());</script>
+           <script>set_check("as_salarios_"+<?php echo $key;?>);</script>
+         <?php endforeach ?>
+      <?php endif ?>
+
+       <?php if (isset($variables['disponibilidad']) && count($variables['disponibilidad'])>0): ?>
+           <?php foreach ($variables['disponibilidad'] as $key): ?>
+           <script>filtros_set_var(<?php echo $key;?>,$("#label_disponibilidad_"+<?php echo $key;?>).html());</script>
+           <script>set_check("disponibilidad_"+<?php echo $key;?>);</script>
+         <?php endforeach ?>
+      <?php endif ?> 
+    <script type="text/javascript">
+       function notificacion(mensaje)
+        {
+            $.notify(mensaje, {
+              className:"info",
+              globalPosition: "bottom right"
+              });
+        }
+    </script>
+    
+    <?php if (isset($_GET['result'])): ?>
+      <script type="text/javascript">notificacion('<?php echo $_GET['result'];?>');</script>
+    <?php endif ?>
+    <?php 
+?>
+  </body>
 </html>

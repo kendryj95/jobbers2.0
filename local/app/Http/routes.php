@@ -27,6 +27,7 @@ Route::post('listar_arch', 'con_maletin@listarArch');
 Route::get('candidato/{id}', 'con_candidato_perfil_publico@perfilPublico');
 Route::post('regcontato', 'con_contacto@create');
 Route::get('candidatos', 'con_candidatos@index');
+Route::post('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
 Route::post('postulados/filtrar', 'con_postulados@filtrar');
@@ -86,6 +87,8 @@ Route::post('candiaddmensaje', 'con_soporte@add_mensajes_cand');
 Route::get('candiempseg','con_candidato_seguir@index'); 
 Route::get('candiseguir/{id}', 'con_candidato_seguir@seguir');
 Route::get('canddelseg/{id}', 'con_candidato_seguir@eliminar');
+
+Route::post('testcontrolador', 'con_candidatos@test_controlador');
 
 });
 //********************************************************//
