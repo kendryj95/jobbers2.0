@@ -11,6 +11,7 @@ Route::get('terminos', function () {return view('terminos');});
 Route::get('fag', 'con_administrator_faq@detalle_preguntas');
 Route::get('detallenoticia', function () {return view('detalle_noticia');});
 Route::get('ofertas', 'con_ofertas@index');
+Route::post('ofertas', 'con_ofertas@index');
 Route::get('detalleoferta/{id}', 'con_ofertas@detalle');
 Route::post('loguear', 'con_login@log');
 Route::get('logout', 'con_login@salir');

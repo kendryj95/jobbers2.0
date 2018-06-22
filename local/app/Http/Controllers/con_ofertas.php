@@ -11,7 +11,106 @@ class con_ofertas extends Controller
     {
         $vista = View::make("ofertas");
 
-        $sql = "SELECT t1.direccion, t1.id, t1.id_empresa, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp  FROM tbl_publicacion t1
+        $condiciones = "";
+
+        if(isset($_POST['antiguedad']))
+        {
+            if ($_POST["antiguedad"] != 1) {
+                
+                $values = [
+                    " AND t1.tmp=CURDATE()", // Hoy
+                    " AND t1.tmp BETWEEN (CURDATE()-7) AND CURDATE()", // Ultima Semana
+                    " AND t1.tmp BETWEEN (CURDATE()-30) AND CURDATE()" // Ultimos 30 días
+                ];
+                
+                $condiciones .= $values[$_POST["antiguedad"] - 2];
+            }
+        }
+
+        if(isset($_POST['provincias']) && count($_POST['provincias']))
+        {
+            $temp= []; 
+            foreach ($_POST['provincias'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_provincia IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['localidades']) && count($_POST['localidades']))
+        {
+            $temp= []; 
+            foreach ($_POST['localidades'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_localidad IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['disponibilidades']) && count($_POST['disponibilidades']))
+        {
+            $temp= []; 
+            foreach ($_POST['disponibilidades'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_disponibilidad IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['areas']) && count($_POST['areas']))
+        {
+            $temp= []; 
+            foreach ($_POST['areas'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_area IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['sectores']) && count($_POST['sectores']))
+        {
+            $temp= []; 
+            foreach ($_POST['sectores'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_sector IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['salarios']) && count($_POST['salarios']))
+        {
+            $temp= []; 
+            foreach ($_POST['salarios'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_salario IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['experiencias']) && count($_POST['experiencias']))
+        {
+            $temp= []; 
+            foreach ($_POST['experiencias'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_experiencia IN (".implode(",", $temp).")";
+        }
+
+        if(isset($_POST['generos']) && count($_POST['generos']))
+        {
+            $temp= []; 
+            foreach ($_POST['generos'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_genero IN (".implode(",", $temp).")";
+        }
+
+
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
+
+        $consulta_general="FROM tbl_publicacion t1
             LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
             LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
             LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
@@ -19,17 +118,37 @@ class con_ofertas extends Controller
             LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
-            WHERE t1.estatus = 1
-            GROUP BY t1.id
-            ";
-        $sql_disponibilidad = "SELECT * FROM tbl_disponibilidad";
-        $sql_sector         = "SELECT * FROM tbl_areas_sectores";
-        $sql_area           = "SELECT * FROM tbl_areas";
-        $sql_salario        = "SELECT * FROM tbl_rango_salarios";
-        $sql_genero         = "SELECT * FROM tbl_generos";
-        $sql_provincias     = "SELECT * FROM tbl_provincias";
-        $sql_localidades    = "SELECT * FROM tbl_localidades";
-        $sql_experiencia    = "SELECT * FROM tbl_experiencia";
+            WHERE t1.estatus = 1 ".$condiciones."
+            GROUP BY t1.id";
+        
+        $sql_ofertas=$peticion." ".$consulta_general;
+
+        // return $sql_ofertas;
+
+        $peticion="SELECT t1.id";
+
+        $sql_antiguedad = "SELECT
+                            (
+                            SELECT COUNT(id) FROM tbl_publicacion
+                            ) AS cantidad_todo,
+                            (
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE tmp=CURDATE()
+                            ) AS cantidad_hoy,
+                            (
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE tmp BETWEEN (CURDATE()-7) AND CURDATE()
+                            ) AS cantidad_last_week,
+                            (
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE tmp BETWEEN (CURDATE()-30) AND CURDATE()
+                            ) AS cantidad_last_thirty_days";
+
+        $sql_disponibilidad = "SELECT d.nombre, p.id_disponibilidad, COUNT(p.id_disponibilidad) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_disponibilidad d ON p.id_disponibilidad=d.id WHERE p.id_disponibilidad IN (SELECT t1.id_disponibilidad $consulta_general) GROUP BY p.id_disponibilidad";
+        $sql_sector         = "SELECT a_sec.nombre, p.id_sector, COUNT(p.id_sector) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_areas_sectores a_sec ON p.id_sector=a_sec.id WHERE p.id_sector IN (SELECT t1.id_sector $consulta_general) GROUP BY p.id_sector";
+        $sql_area           = "SELECT a.nombre, p.id_area, COUNT(p.id_area) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_areas a ON p.id_area=a.id WHERE p.id_area IN (SELECT t1.id_area $consulta_general) GROUP BY p.id_area";
+        $sql_salario        = "SELECT s.salario, p.id_salario, COUNT(p.id_salario) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_rango_salarios s ON p.id_salario=s.id WHERE p.id_salario IN (SELECT t1.id_salario $consulta_general) GROUP BY p.id_salario";
+        $sql_genero         = "SELECT g.descripcion, p.id_genero, COUNT(p.id_genero) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_generos g ON p.id_genero=g.id WHERE p.id_genero IN (SELECT t1.id_genero $consulta_general) GROUP BY p.id_genero";
+        $sql_provincias     = "SELECT pv.provincia, p.id_provincia, COUNT(p.id_provincia) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_provincias pv ON p.id_provincia=pv.id WHERE p.id_provincia IN (SELECT t1.id_provincia $consulta_general) GROUP BY p.id_provincia";
+        $sql_localidades    = "SELECT l.localidad, p.id_localidad, COUNT(p.id_localidad) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_localidades l ON p.id_localidad=l.id WHERE p.id_localidad IN (SELECT t1.id_localidad $consulta_general) GROUP BY p.id_localidad";
+        $sql_experiencia    = "SELECT e.descripcion, p.id_experiencia, COUNT(p.id_experiencia) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_experiencia e ON p.id_experiencia=e.id WHERE p.id_experiencia IN (SELECT t1.id_experiencia $consulta_general) GROUP BY p.id_experiencia";
         $condicion=0;
         if(session()->get("cand_id")!=null && session()->get("cand_id")=='')
         {
@@ -40,6 +159,7 @@ class con_ofertas extends Controller
 
         try {
             //$antiguedad=DB::select($sql_antiguedad);
+            $antiguedad = DB::select($sql_antiguedad);
             $disponibilidad = DB::select($sql_disponibilidad);
             $sector         = DB::select($sql_sector);
             $area           = DB::select($sql_area);
@@ -50,10 +170,11 @@ class con_ofertas extends Controller
             $experiencia    = DB::select($sql_experiencia);
             $favoritos      = DB::select($sql_favoritos);
 
-            $publicaciones = DB::select($sql);
+            $publicaciones = DB::select($sql_ofertas);
 
             //$vista->antiguedad=$antiguedad;
             $vista->favoritos      = $favoritos;
+            $vista->antiguedad = $antiguedad;
             $vista->disponibilidad = $disponibilidad;
             $vista->sector         = $sector;
             $vista->experiencia    = $experiencia;
@@ -63,6 +184,7 @@ class con_ofertas extends Controller
             $vista->provincia      = $provincia;
             $vista->localidad      = $localidad;
             $vista->publicaciones  = $publicaciones;
+            $vista->variables  = $_POST;
             return $vista;
         } catch (Exception $e) {
 
