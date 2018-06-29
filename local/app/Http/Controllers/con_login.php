@@ -84,7 +84,7 @@ class con_login extends Controller
                 $request->session()->set('tipo_usuario', $datos[0]->tipo_usuario);
                 return Redirect($ruta);
             } else {
-                return Redirect("login?error=Clave o correo incorrectos.");
+                return Redirect("login?error=Clave o Correo incorrectos");
             }
         } catch (Exception $e) {
 
@@ -132,10 +132,10 @@ class con_login extends Controller
                         });
                         return redirect("login?info=La clave ha sido enviada a su correo.");
                     } catch (Exception $e) {
-                        return redirect("login?info=Ha ocurrido un error");
+                        return redirect("recuperarclave?info=Ha ocurrido un error");
                     }
                 } else {
-                    return redirect("login?info=Este correo no se encuentra registrado.");
+                    return redirect("recuperarclave?info=Este correo no se encuentra registrado.");
                 }
             } catch (Exception $e) {
 
@@ -190,7 +190,7 @@ class con_login extends Controller
         VALUES(null,'" . $_POST['correo'] . "','','" . md5($_POST['clave']) . "'," . $_POST['tipo'] . ",'" . $this->aleatorio(45) . "',1,'',null)";
         try {
             DB::insert($sql);
-            return Redirect("login");
+            return Redirect("login?success=Registrado Satisfactoriamente");
         } catch (Exception $e) {
 
         }

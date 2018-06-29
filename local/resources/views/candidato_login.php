@@ -32,6 +32,7 @@
 											<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
 										</div>
 										<span>Bienvenido a Jobbers</span>
+											
 										<form style="padding: 10px;" action="loguear" method="post">
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 											<div class="cfield">
@@ -42,6 +43,13 @@
 												<input name="pass" type="password" placeholder="********" />
 												<i class="la la-key"></i>
 											</div>
+											<?php if (isset($_REQUEST["error"])): ?>
+											<p style="color: red"><i class="la la-close"></i> <?= $_REQUEST["error"] ?></p>
+											<?php elseif (isset($_REQUEST["success"])): ?>
+											<p style="color: green"><i class="la la-check-circle"></i> <?= $_REQUEST["success"] ?></p>
+											<?php elseif (isset($_REQUEST["info"])): ?>
+											<p style="color: red"><i class="la la-info-circle"></i> <?= $_REQUEST["info"] ?></p>
+											<?php endif ?>
 											<p class="remember-label">
 											</p>
 											<a href="recuperarclave" title="">Olvidé mi clave</a>

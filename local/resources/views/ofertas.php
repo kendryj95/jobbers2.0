@@ -412,6 +412,15 @@ function set_check(parametro)
   $("#"+parametro).attr('checked', 'true');
 }
 
+<?php if (isset($variables['title'])): ?>
+     filtros_set_var("<?= $variables['title'] ?>");
+<?php endif ?>
+
+<?php if (isset($variables['provincia_index'])): ?>
+     filtros_set_var($("#label_prov_<?= $variables['provincia_index'] ?>").text());
+     set_check("prov_<?= $variables['provincia_index'] ?>");
+<?php endif ?>
+
 <?php if (isset($variables['antiguedad'])): ?>
      filtros_set_var($("#label_ant_<?= $variables['antiguedad'] ?>").text());
      set_check("ant_<?= $variables['antiguedad'] ?>");

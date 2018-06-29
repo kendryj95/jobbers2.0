@@ -38,6 +38,9 @@
 												<input name="correo" type="text" placeholder="Correo electrónico" />
 												<i class="la la-user"></i>
 											</div>
+											<?php if (isset($_REQUEST["info"])): ?>
+											<p style="color: red"><i class="la la-info-circle"></i> <?= $_REQUEST["info"] ?></p>
+											<?php endif ?>
 											<button type="submit">Recuperar</button>
 										</form>
 									</div>

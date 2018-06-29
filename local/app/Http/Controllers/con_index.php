@@ -30,13 +30,17 @@ class con_index extends Controller
         $sql_tips = "SELECT t1.*,t2.nombre_aleatorio FROM `tbl_tips` t1
         INNER JOIN tbl_archivos t2 ON t1.id_archivo = t2.id LIMIT 0,3";
 
+        $sql_provincias = "SELECT * FROM tbl_provincias ORDER BY provincia";
+
         try {
             $ultimas_publicaciones        = DB::select($sql_ultimas_ofertas);
             $logos_empresas               = DB::select($sql_logos_empresas);
             $tips                         = DB::select($sql_tips);
+            $provincias                         = DB::select($sql_provincias);
             $vista->tips                  = $tips;
             $vista->logos_empresas        = $logos_empresas;
             $vista->ultimas_publicaciones = $ultimas_publicaciones;
+            $vista->provincias = $provincias;
             return $vista;
         } catch (Exception $e) {
 

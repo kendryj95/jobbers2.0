@@ -13,6 +13,18 @@ class con_ofertas extends Controller
 
         $condiciones = "";
 
+        if(isset($_POST['title']))
+        {
+            
+            $condiciones .= " AND t1.titulo LIKE '%$_POST[title]%'";
+        }
+
+        if(isset($_POST['provincia_index']))
+        {
+            
+            $condiciones .= " AND t1.id_provincia = $_POST[provincia_index]";
+        }
+
         if(isset($_POST['antiguedad']))
         {
             if ($_POST["antiguedad"] != 1) {

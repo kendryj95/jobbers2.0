@@ -47,20 +47,22 @@
 										<div class="job-search">
 											<h3>En Jobbers encuentra lo que necesitas</h3>
 											<span>Programadores, contadores, médicos</span>
-											<form>
+											<form action="ofertas" method="post">
+												<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 												<div class="row">
 													<div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
 														<div class="job-field">
-															<input type="text" placeholder="Palabra clave..." />
+															<input type="text" placeholder="Palabra clave..." name="title" />
 															<i class="la la-keyboard-o"></i>
 														</div>
 													</div>
 													<div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
 														<div class="job-field">
-															<select data-placeholder="City, province or region" class="chosen-city">
-																<option>Lugar</option>
-																<option>Buenos Aires</option>
-																<option>Córdoba</option>
+															<select data-placeholder="City, province or region" class="chosen-city" name="provincia_index">
+																<option value="">Lugar</option>
+																<?php foreach ($provincias as $prov): ?>
+																<option value="<?= $prov->id ?>"><?= $prov->provincia ?></option>
+																<?php endforeach ?>
 															</select>
 															<i class="la la-map-marker"></i>
 														</div>
@@ -133,15 +135,16 @@
 										echo
 										'
 										<div class="job-listing">
-																<div class="job-title-sec">
-																						<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>
-																						<h3><a href="#" title="">'.$key->titulo.'</a></h3>
-																						<span>'.$key->empresa.'</span>
-																</div>
-																<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
-																<span class="fav-job"><i class="la la-heart-o"></i></span>
-																<span class="job-is ft">'.$key->nombre.'</span>
+											
 										</div>
+										<div class="job-title-sec">
+											<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>
+											<h3><a href="#" title="">'.$key->titulo.'</a></h3>
+											<span>'.$key->empresa.'</span>
+										</div>
+										<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
+										<span class="fav-job"><i class="la la-heart-o"></i></span>
+										<span class="job-is ft">'.$key->nombre.'</span>
 										';
 									}?>
 								</div>
