@@ -69,7 +69,12 @@
 
 				if ($('#correo').val() != "" && $('#clave').val() != "") {
 					if (correo) {
-						$('#form_register').submit();
+						if ($('#clave').val().length >= 8 && $('#clave').val().length <= 12) {
+
+							$('#form_register').submit();
+						} else {
+							$('#error').html('<i class="la la-close"></i> La contraseña debe contener entre 8 y 12 caracteres').show();
+						}
 					} else {
 						$('#error').html('<i class="la la-close"></i> Correo Electronico no valido').show();
 					}

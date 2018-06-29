@@ -185,9 +185,10 @@ class con_login extends Controller
     }
     public function register()
     {
+        $correo = trim(strtolower($_POST['correo']));
         $sql = "
         INSERT INTO tbl_usuarios
-        VALUES(null,'" . $_POST['correo'] . "','','" . md5($_POST['clave']) . "'," . $_POST['tipo'] . ",'" . $this->aleatorio(45) . "',1,'',null)";
+        VALUES(null,'" . $correo . "','','" . md5($_POST['clave']) . "'," . $_POST['tipo'] . ",'" . $this->aleatorio(45) . "',1,'',null)";
         try {
             DB::insert($sql);
             return Redirect("login?success=Registrado Satisfactoriamente");
