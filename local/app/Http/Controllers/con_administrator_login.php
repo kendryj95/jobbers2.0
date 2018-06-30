@@ -24,7 +24,7 @@ class con_administrator_login extends Controller
                 $request->session()->set('admin', $datos[0]->correo);
                 $request->session()->set('adm_nombre', $datos[0]->nombre);
                 $request->session()->set('adm_id', $datos[0]->id);
-                $request->session()->set('tipo_usuario', 2);
+                $request->session()->set('tipo_usuario', 3);
                 return Redirect("admindashboard");
             } else {
                 return Redirect("administrator?error=1");

@@ -11,9 +11,6 @@
 					<a href="empresas" title=""><i class="la la-industry"></i>Empresas</a>
 				</li>
 				<li >
-					<a href="candidatos" title=""><i class="la la-group"></i>Candidatos</a>
-				</li>
-				<li >
 					<a href="candipostulaciones" title=""><i class="la la-clipboard"></i>Postulaciones</a>
 				</li>
 				<li >

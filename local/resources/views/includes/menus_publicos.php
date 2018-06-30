@@ -7,9 +7,11 @@
 	<li class="">
 		<a href="<?php echo $back;?>ofertas" title="">Empleos</a>
 	</li>
+	<?php if (session()->get("candidato") == null): ?>
 	<li class="">
 		<a href="<?php echo $back;?>candidatos" title="">Candidatos</a>
 	</li>
+	<?php endif ?>
 	<li class="">
 		<a href="<?php echo $back;?>noticias" title="">Noticias</a>
 	</li>

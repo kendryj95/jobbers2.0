@@ -10,7 +10,7 @@
 	<div class="menu-sec">
 		<div class="container">
 			<div class="logo">
-				<a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
+				<a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
 				</div><!-- Logo -->
 				<div class="my-profiles-sec">
 					<span><img style=" width: 50px;height: 50px;" src="uploads/<?php echo session()->get('cand_img');?>" alt="" /><?php echo session()->get('candidato');?><!--<i class="la la-bars"></i>--></span>

@@ -243,7 +243,7 @@
 								<div class="col-lg-12">
 									<div class="simple-text">
 										<h3>¿Alguna duda?</h3>
-										<span>Escríbenos a <a href="#" style="text-decoration: underline;"><strong>Dudas Jobbers</strong></a> será una placer ayudarte</span>
+										<span>Escríbenos a <a href="contacto" style="text-decoration: underline;"><strong>Dudas Jobbers</strong></a> será una placer ayudarte</span>
 									</div>
 								</div>
 							</div>
