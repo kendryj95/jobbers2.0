@@ -63,7 +63,7 @@
 						fjs.parentNode.insertBefore(js, fjs);
 						}(document, 'script', 'facebook-jssdk'));</script>
 
-						<div class="fb-like" data-href="https://www.facebook.com/tecnovy/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+						<div class="fb-like" data-href="https://www.facebook.com/jobbersarg/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 					</div>
 				</div>
 			</div>
