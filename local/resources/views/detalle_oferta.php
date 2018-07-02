@@ -139,13 +139,13 @@
 												<div class="job-overview">
 													<h3>Información de empresa</h3>
 													<ul>
-														<li><i class="la la-eye"></i><h3>Vistas </h3><span> </span></li>
+														<li><i class="la la-eye"></i><h3>Vistas </h3><span> <?= $datos[0]->vistos ?> </span></li>
 														<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
 														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->direccion;?></span></li>
 														<!--
 														<li><i class="la la-bars"></i><h3>Categoría</h3><span>Arts, Design, Media</span></li> -->
-														<li><i class="la la-users"></i><h3>Equipo de trabajo</h3><span>0</span></li>
-														<li><i class="la la-user"></i><h3>Seguidores</h3><span>15</span></li>
+														<!-- <li><i class="la la-users"></i><h3>Equipo de trabajo</h3><span>0</span></li> -->
+														<!-- <li><i class="la la-user"></i><h3>Seguidores</h3><span>15</span></li> -->
 													</ul>
 													</div><!-- Job Overview -->
 													<div class="quick-form-job">

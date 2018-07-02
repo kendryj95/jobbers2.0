@@ -305,6 +305,7 @@ $mi_tokken=csrf_token();
                     </h3>
                     <a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
                       </span></a>
+                      <br>
                     <div class="job-lctn">
                       <i class="la la-map-marker">
                       </i>'.$key->provincia.', '.$key->localidad.'

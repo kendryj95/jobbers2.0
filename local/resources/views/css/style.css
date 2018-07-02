@@ -3584,6 +3584,9 @@ header.style4 .menu-sec nav>ul>li.menu-item-has-children>a::before {
     float: left;
     width: 70%;
 }
+.job-listing.wtabs .job-title-sec>a {
+    float: left;
+}
 .job-listing.wtabs .job-title-sec>a>span {
     color: #1e83f0;
     display: table;
