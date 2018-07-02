@@ -263,7 +263,14 @@
 			<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 			<script type="text/javascript">
-				$("#modal_redes").modal("show");
+				var calendario = new Date();
+
+				fecha = parseInt(calendario.getDay()) + 1;
+
+				if (fecha === 5 || fecha === 10 || fecha === 15 || fecha === 20 || fecha === 25 || fecha === 30) {
+
+					$("#modal_redes").modal("show");
+				}
 			</script>
 		</body>
 	</html>
