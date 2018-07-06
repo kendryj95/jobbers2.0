@@ -369,7 +369,7 @@ $mi_tokken = csrf_token();
                                 ?>
                                 <div class="social-edit">
                                     <h3>Redes sociales</h3>
-                                    <form action="candiredescrear" method="post">
+                                    <form action="candiredescrear" method="post" id="form_candiredescrear">
                                         <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                         <input type="hidden" name="pagina" value="perfil">
                                         <div class="row">
@@ -397,12 +397,12 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Linkedin</span>
                                                 <div class="pf-field">
-                                                    <input  id="linkendin" name="linkendin" value="<?php echo $linkendin;?>" type="text" placeholder="linkendin" />
+                                                    <input  id="linkendin" name="linkendin" value="<?php echo $linkendin;?>" type="text" placeholder="linkedin" />
                                                     <i class="la la-linkedin"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <button type="submit">Guardar</button>
+                                                <button type="button" onclick="redes_validar()">Guardar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -618,7 +618,7 @@ $mi_tokken = csrf_token();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button onClick='$("#form_habilidades").submit()' type="submit">Guardar</button>
+                                                    <button onclick="habilidades_validar()" type="button">Guardar</button>
                                                 </form>
                                                 
                                             </div>
@@ -676,7 +676,7 @@ $mi_tokken = csrf_token();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button onClick='$("#form_idiomas").submit()' type="submit">Guardar</button>
+                                                    <button onclick="idiomas_validar()" type="button">Guardar</button>
                                                 </form> 
                                             </div> 
                                         </div>
@@ -859,6 +859,8 @@ $mi_tokken = csrf_token();
         else if($("#sexo").val()==""){notificacion("Debe colocar su sexo.")}
         else if($("#datos_per_fecha_nac").val()==""){notificacion("Debe colocar su fecha de nacimiento.")} 
         else if($("#nacionalidad").val()==""){notificacion("Debe colocar su nacionalidad.")} 
+        else if($("#hijos").val()==""){notificacion("Debe colocar si tiene hijos.")} 
+        else if($("#datos_per_descripcion").val()==""){notificacion("Debe colocar tu descripción")} 
         else
         {
             $("#form_datos_per").submit();
@@ -876,14 +878,65 @@ $mi_tokken = csrf_token();
             $("#form_preferencias_lab").submit();
         }
    } 
+
+   function redes_validar()
+   {
+     var band = true;
+
+     // Validar link de facebook
+     var fb = /^(https:\/\/((www.facebook)|(facebook)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
+     //Validar link de twitter
+     var tw = /^(https:\/\/((www.twitter)|(twitter)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
+     //Validar link de Instagram
+     var ig = /^(https:\/\/((www.instagram)|(instagram)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
+     //Validar link de perfil de Linkedin
+     var lkd = /^(https:\/\/((www.linkedin)|(linkedin)).com\/in\/)[A-Za-z0-9.\-\_\/]+(\/)?$/;
+
+     if ($('#facebook').val() != "") {
+        if (!fb.test($('#facebook').val())) {
+            notificacion("El formato del link es invalido. Si no posees Facebook deja el campo en blanco.");
+            band = false;
+        }
+     }
+
+     if ($('#twitter').val() != "") {
+        if (!tw.test($('#twitter').val())) {
+            notificacion("El formato del link es invalido. Si no posees Twitter deja el campo en blanco.");
+            band = false;
+        }
+     }
+
+     if ($('#instagram').val() != "") {
+        if (!ig.test($('#instagram').val())) {
+            notificacion("El formato del link es invalido. Si no posees Instagram deja el campo en blanco.");
+            band = false;
+        }
+     }
+
+     if ($('#linkendin').val() != "") {
+        if (!lkd.test($('#linkendin').val())) {
+            notificacion("El formato del link es invalido. Si no posees Linkedin deja el campo en blanco.");
+            band = false;
+        }
+     }
+
+     if (band) {
+        $('#form_candiredescrear').submit();
+     }
+   }
+
      function contac_validar()
        {
+            //Validar URL de sitio web
+            var web = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+
             if($("#telefono").val()==""){notificacion("Debe colocar su número de teléfono.")}
             else if($("#correo").val()==""){notificacion("Debe colocar su correo.")} 
             else if($("#pais_contac").val()==""){notificacion("Debe colocar su país.")}
             else if($("#provincia_contac").val()==""){notificacion("Debe colocar su provincia.")} 
             else if($("#localidad_contac").val()==""){notificacion("Debe colocar su localidad.")} 
             else if($("#direccion").val()==""){notificacion("Debe colocar su dirección.")}  
+            else if(!web.test($('#sitio_web').val())){notificacion("La Url del sitio web es invalido. Si no posees pagina web deja el campo en blanco.")}  
             else
             {
                 $("#form_contact").submit();
@@ -914,6 +967,22 @@ $mi_tokken = csrf_token();
             {
                 $("#form_experiencia").submit();
             }
+       }
+
+       function habilidades_validar()
+       {
+        if ($('#cbn_habilidad').val() == "") {notificacion("Debe seleccionar una habilidad.")}
+        else {
+            $('#form_habilidades').submit();
+        }
+       }
+
+       function idiomas_validar()
+       {
+        if ($('#cbn_idioma').val() == "") {notificacion("Debe seleccionar un idioma.")}
+        else {
+            $('#form_idiomas').submit();
+        }
        } 
 </script>
 </body>

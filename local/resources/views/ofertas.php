@@ -133,7 +133,7 @@ $mi_tokken=csrf_token();
                 </div>
                 
                 <div class="widget">
-                  <h3 class="sb-title active">Area
+                  <h3 class="sb-title active">Área
                   </h3>
                   <div class="specialism_widget" style="display: block;">
                     <div class="simple-checkbox">
@@ -179,7 +179,7 @@ $mi_tokken=csrf_token();
                 </div>
                 
                 <div class="widget">
-                  <h3 class="sb-title active">Oferta Salarial
+                  <h3 class="sb-title active">Oferta salarial
                   </h3>
                   <div class="specialism_widget" style="display: block;">
                     <div class="simple-checkbox">
@@ -221,7 +221,7 @@ $mi_tokken=csrf_token();
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="sb-title active">Genero
+                  <h3 class="sb-title active">Género
                   </h3>
                   <div class="specialism_widget" style="display: block;">
                     <div class="simple-checkbox">
@@ -305,6 +305,7 @@ $mi_tokken=csrf_token();
                     </h3>
                     <a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
                       </span></a>
+                      <br>
                     <div class="job-lctn">
                       <i class="la la-map-marker">
                       </i>'.$key->provincia.', '.$key->localidad.'
@@ -314,7 +315,7 @@ $mi_tokken=csrf_token();
                     <span class="job-is ft">'.$key->disponibilidad.'
                     </span> 
                     '.$corazon.'
-                    <i>Vistas '.$key->vistos.' / <span class="status">'.$estado.'</span> / '.$key->tmp.'
+                    <i>Vistas '.$key->vistos.' / '.$key->tmp.'
                     </i>
                   </div></div>';
                   }?>
@@ -412,11 +413,11 @@ function set_check(parametro)
   $("#"+parametro).attr('checked', 'true');
 }
 
-<?php if (isset($variables['title'])): ?>
+<?php if (isset($variables['title']) && $variables['title'] != ""): ?>
      filtros_set_var("<?= $variables['title'] ?>");
 <?php endif ?>
 
-<?php if (isset($variables['provincia_index'])): ?>
+<?php if (isset($variables['provincia_index']) && $variables['provincia_index'] != ""): ?>
      filtros_set_var($("#label_prov_<?= $variables['provincia_index'] ?>").text());
      set_check("prov_<?= $variables['provincia_index'] ?>");
 <?php endif ?>

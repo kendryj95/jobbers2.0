@@ -19,7 +19,7 @@ class con_ofertas extends Controller
             $condiciones .= " AND t1.titulo LIKE '%$_POST[title]%'";
         }
 
-        if(isset($_POST['provincia_index']))
+        if(isset($_POST['provincia_index']) && $_POST['provincia_index'] != "")
         {
             
             $condiciones .= " AND t1.id_provincia = $_POST[provincia_index]";
@@ -205,6 +205,9 @@ class con_ofertas extends Controller
 
     public function detalle($id)
     {
+
+        DB::update("UPDATE tbl_publicacion SET vistos=(vistos + 1) WHERE id=?",[$id]);
+
         $vista = View::make('detalle_oferta');
         $sql   = "SELECT t2.id as id_empresa, t1.tmp,t1.id, t1.titulo,t1.discapacidad,t1.vistos,t1.descripcion,t1.id_experiencia,t1.id_genero,t1.fecha_venc,t1.direccion,t1.estatus, t1.video_youtube AS video, t9.nombre ,t7.nombre as sector, t8.nombre as area, t2.nombre as empresa,IF(t5.nombre_aleatorio is null,'empresa.jpg',t5.nombre_aleatorio) as img_empresa,IF(t6.nombre_aleatorio is null,'0.jpg',t6.nombre_aleatorio) as img_publicacion,concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
             LEFT JOIN tbl_empresa t2 ON t2.id = t1.id_empresa

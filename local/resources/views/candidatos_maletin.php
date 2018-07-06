@@ -125,6 +125,18 @@ $mi_tokken=csrf_token();
     $(document).ready(function() {
     listar_archivos();
     });
+
+    function maletin_validar()
+    {
+      if ($('#alias').val() == "") {
+        $.notify("Debes colocar un alias.", {
+        className:"error",
+        globalPosition: "bottom center"
+        });
+      } else {
+        $('#formulario_alias').submit();
+      }
+    }
     </script>
     <?php
     if(isset($_GET['info']))

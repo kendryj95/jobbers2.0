@@ -33,25 +33,25 @@
 											<div class="row no-gape">
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
-														<a href="#" title="">
+														<a href="candipostulaciones" title="">
 															<i class="la la-briefcase"></i>
 															<span>Postulaciones</span>
-															<p>14 Postulaciones</p>
+															<p><?= $postulaciones ?> Postulaciones</p>
 														</a>
 													</div>
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category view-resume-list">
-														<a href="#" title="">
+														<a href="candidato/<?= session()->get('cand_id') ?>" title="">
 															<i class="la la-eye"></i>
 															<span>Perfil público</span>
-															<p>22 Vistos</p>
+															<!-- <p>22 Vistos</p> -->
 														</a>
 													</div>
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
-														<a href="#" title="">
+														<a href="candicv" title="">
 															<i class="la la-file-text "></i>
 															<span>Mi CV</span>
 															<p>&nbsp;</p>
@@ -65,16 +65,16 @@
 												
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category follow-companies-popup">
-														<a href="#" title="">
+														<a href="candiempseg" title="">
 															<i class="la la-user"></i>
 															<span>Empresa Seguidas</span>
-															<p>56 Empresas</p>
+															<p><?= $empresas_seguidas ?> Empresas</p>
 														</a>
 													</div>
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
-														<a href="#" title="">
+														<a href="candiperfil" title="">
 															<i class="la la-file"></i>
 															<span>Mi perfil</span>
 															<p>Ver Perfil</p>
@@ -86,13 +86,13 @@
 														<a href="candifavoritos" title="">
 															<i class="la la-heart"></i>
 															<span>Favoritos</span>
-															<p>5 Favoritos</p>
+															<p><?= $favoritos ?> Favoritos</p>
 														</a>
 													</div>
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
-														<a href="#" title="">
+														<a href="candisoporte" title="">
 															<i class="la la-support"></i>
 															<span>Soporte</span>
 															<p>&nbsp;</p>
@@ -101,7 +101,7 @@
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
-														<a href="#" title="">
+														<a href="canditienda" title="">
 															<i class="la la-cart-arrow-down"></i>
 															<span>Tienda Jobbers</span>
 															<p>&nbsp;</p>
@@ -110,10 +110,10 @@
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
-														<a href="#" title="">
+														<a href="candirecomendaciones" title="">
 															<i class="la la-check"></i>
 															<span>Recomendaciones</span>
-															<p>5 Recomendaciones</p>
+															<p><?= $recomendaciones ?> Recomendaciones</p>
 														</a>
 													</div>
 												</div>

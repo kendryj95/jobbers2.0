@@ -117,23 +117,23 @@ $mi_tokken=csrf_token();
                                     </div>
                                 </div>
                                 <div class="profile-form-edit" style="margin: 0px;">
-                                    <form action="candiactualizardatos" method="POST" style="margin: 0px;">
+                                    <form action="candiactualizardatos" method="POST" style="margin: 0px;" id="form_candiactualizardatos">
                                         <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Correo</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $datos[0]->correo;?>" name="correo" type="text" placeholder="Correo electrónico">
+                                                    <input value="<?php echo $datos[0]->correo;?>" name="correo" id="correo" type="text" placeholder="Correo electrónico">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Clave</span>
                                                 <div class="pf-field">
-                                                    <input placeholder="Clave" name="clave" type="password" placeholder="">
+                                                    <input placeholder="Clave" name="clave" id="clave" type="password" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12" style="margin-bottom: 50px;">
-                                                <button type="submit">Actualizar</button>
+                                                <button type="button" onclick="actualizar_datos()">Actualizar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -171,6 +171,23 @@ $mi_tokken=csrf_token();
     
     }
     })
+    }
+
+    function actualizar_datos()
+    {
+        if ($('#correo').val() == "") {
+            $.notify("Debes colocar el correo electronico", {
+              className:"error",
+              globalPosition: "bottom right"
+              });
+        } else if ($('#clave').val() == "") {
+            $.notify("Debes colocar la contraseña", {
+              className:"error",
+              globalPosition: "bottom right"
+              });
+        } else {
+            $('#form_candiactualizardatos').submit();
+        }
     }
     </script>
 </body>

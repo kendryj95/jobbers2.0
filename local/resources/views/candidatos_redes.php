@@ -44,37 +44,37 @@
 										if($key->id_red_social=="2"){$twitter=$key->red_social;}
 									}
 									?>
-									<form action="candiredescrear" method="POST" style="margin: 0px;">
+									<form action="candiredescrear" method="POST" style="margin: 0px;" id="form_candiredescrear">
 										<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 										<div class="row">
 											<div class="col-lg-12">
 												<span class="pf-title">Facebook</span>
 												<div class="pf-field">
-													<input value="<?php echo $facebook;?>" name="facebook" type="text" placeholder="Facebook">
+													<input value="<?php echo $facebook;?>" name="facebook" id="facebook" type="text" placeholder="Facebook">
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<span class="pf-title">Twitter</span>
 												<div class="pf-field">
-													<input value="<?php echo $twitter;?>" name="twitter" type="text" placeholder="Twitter">
+													<input value="<?php echo $twitter;?>" name="twitter" id="twitter" type="text" placeholder="Twitter">
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<span class="pf-title">Linkendin</span>
 												<div class="pf-field">
-													<input value="<?php echo $linkendin;?>" name="linkendin" type="text" placeholder="Linkendin">
+													<input value="<?php echo $linkendin;?>" name="linkendin" id="linkendin" type="text" placeholder="Linkendin">
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<span class="pf-title">Instagram</span>
 												<div class="pf-field">
-													<input value="<?php echo $instagram;?>" name="instagram" type="text" placeholder="Instagram">
+													<input value="<?php echo $instagram;?>" name="instagram" id="instagram" type="text" placeholder="Instagram">
 												</div>
 												<a href="#" class="status" style="font-size: 13px;">¿Cómo puedo colocar mis redes sociales en Jobbers?</a>
 											</div>
 											<div class="col-lg-12" style="margin-bottom: 50px;">
-												<button type="submit">Guardar</button>
-											</div>
+												<button type="button" onclick="redes_validar()">Guardar</button>
+											</div> 
 										</div>
 									</form>
 								</div>
@@ -97,10 +97,65 @@
 	<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
 	<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
 	<script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
+	<?php include "local/resources/views/includes/referencias_down.php";?>
 	<script type="text/javascript">
 		$( document ).ready(function() {
 		
 		});
+
+		function notificacion(mensaje)
+		{
+		    $.notify(mensaje, {
+		      className:"info",
+		      globalPosition: "bottom right"
+		      });
+		}
+
+		function redes_validar()
+		{
+		  var band = true;
+
+		  // Validar link de facebook
+		  var fb = /^(https:\/\/((www.facebook)|(facebook)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
+		  //Validar link de twitter
+		  var tw = /^(https:\/\/((www.twitter)|(twitter)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
+		  //Validar link de Instagram
+		  var ig = /^(https:\/\/((www.instagram)|(instagram)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
+		  //Validar link de perfil de Linkedin
+		  var lkd = /^(https:\/\/((www.linkedin)|(linkedin)).com\/in\/)[A-Za-z0-9.\-\_\/]+(\/)?$/;
+
+		  if ($('#facebook').val() != "") {
+		     if (!fb.test($('#facebook').val())) {
+		         notificacion("El formato del link es invalido. Si no posees Facebook deja el campo en blanco.");
+		         band = false;
+		     }
+		  }
+
+		  if ($('#twitter').val() != "") {
+		     if (!tw.test($('#twitter').val())) {
+		         notificacion("El formato del link es invalido. Si no posees Twitter deja el campo en blanco.");
+		         band = false;
+		     }
+		  }
+
+		  if ($('#instagram').val() != "") {
+		     if (!ig.test($('#instagram').val())) {
+		         notificacion("El formato del link es invalido. Si no posees Instagram deja el campo en blanco.");
+		         band = false;
+		     }
+		  }
+
+		  if ($('#linkendin').val() != "") {
+		     if (!lkd.test($('#linkendin').val())) {
+		         notificacion("El formato del link es invalido. Si no posees Linkedin deja el campo en blanco.");
+		         band = false;
+		     }
+		  }
+
+		  if (band) {
+		     $('#form_candiredescrear').submit();
+		  }
+		}
 	</script>
 </body>
 </html>
