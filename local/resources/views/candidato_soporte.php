@@ -31,14 +31,14 @@
                                         <h3>Soporte</h3>
                                     </div>
                                     <div class="profile-form-edit">
-                                        <form action="candisoporte" method="POST"> 
+                                        <form action="candisoporte" method="POST" id="form_candisoporte"> 
                                             <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                             <div class="row">
                                                 
                                                 <div class="col-lg-12">
                                                     <span class="pf-title">Título</span>
                                                     <div class="pf-field">
-                                                        <input name="titulo" type="text" placeholder="¿Con qué tiene problemas?">
+                                                        <input name="titulo" id="titulo" type="text" placeholder="¿Con qué tiene problemas?">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12" style="margin-top: -30px;margin-bottom: 10px;">
@@ -53,11 +53,11 @@
                                                 <div class="col-lg-12" style="margin-top: -20px;">
                                                     <span class="pf-title">Expliquenos cuál es su problema.</span>
                                                     <div class="pf-field">
-                                                        <textarea placeholder="Detalle..." name="detalle" style="resize: none;min-height: 75px;padding: 10px;"></textarea>
+                                                        <textarea placeholder="Detalle..." name="detalle" id="detalle" style="resize: none;min-height: 75px;padding: 10px;"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12" style="margin-bottom: 50px;">
-                                                    <button type="submit">Generar ticket</button>
+                                                    <button type="button" onclick="generar_ticket()">Generar ticket</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -127,6 +127,25 @@
         <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
         <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
         <?php include("local/resources/views/includes/referencias_down.php");?>
+
+        <script>
+            function generar_ticket()
+            {
+                if ($('#titulo').val() == "") {
+                    $.notify("Debes colocar un titulo.", {
+                    className:"error",
+                    globalPosition: "bottom center"
+                    });
+                } else if ($('#detalle').val() == ""){
+                    $.notify("Debes colocar una descripción de tu problema.", {
+                    className:"error",
+                    globalPosition: "bottom center"
+                    });
+                } else {
+                    $('#form_candisoporte').submit();
+                }
+            }
+        </script>
         
     </body>
 </html>

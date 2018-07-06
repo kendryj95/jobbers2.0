@@ -30,18 +30,18 @@
                                         <h3>Mis Recomendaciones</h3>
                                     </div>
                                     <div class="profile-form-edit">
-                                        <form action="candirecomendar" method="POST">
+                                        <form action="candirecomendar" method="POST" id="form_candirecomendar">
                                             
                                             <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                             <div class="row">
                                                 <div class="col-lg-12" style="margin-top: -20px;">
                                                     <span class="pf-title">¿Qué te gustaría ver en Jobbers?</span>
                                                     <div class="pf-field">
-                                                        <textarea placeholder="Detalle..." name="descripcion" style="resize: none;min-height: 75px;padding: 10px;"></textarea>
+                                                        <textarea placeholder="Detalle..." name="descripcion" id="descripcion" style="resize: none;min-height: 75px;padding: 10px;"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12" style="margin-bottom: 50px;">
-                                                    <button type="submit">Agregar</button>
+                                                    <button type="button" onclick="add_recomendacion()">Agregar</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -99,6 +99,20 @@
         <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
         <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
         <?php include("local/resources/views/includes/referencias_down.php");?>
+
+        <script>
+            function add_recomendacion()
+            {
+                if ($('#descripcion').val() == "") {
+                    $.notify("Debes colocar una descripción de la recomendación para la plataforma", {
+                    className:"error",
+                    globalPosition: "bottom center"
+                    });
+                } else {
+                    $('#form_candirecomendar').submit();
+                }
+            }
+        </script>
         
     </body>
 </html>
