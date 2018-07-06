@@ -1,7 +1,7 @@
 <footer>
 	<div class="block">
 		<div class="container">
-			<div class="row">
+			<div class="row align-responsive">
 				<div class="col-lg-3 column">
 					<div class="widget">
 						<div class="about_widget">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 					
-					<div class="col-lg-5" style="background-color: #fff;padding: 20px;border-radius: 10px;">
+					<div class="col-lg-5" style="background-color: #fff;padding: 20px;border-radius: 10px; margin-top: 40px; margin-bottom: 20px">
 						<div id="fb-root"></div>
 						<script>(function(d, s, id) {
 						var js, fjs = d.getElementsByTagName(s)[0];
