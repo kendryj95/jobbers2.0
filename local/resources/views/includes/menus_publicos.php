@@ -1,5 +1,5 @@
 
-<nav style="float: left;">
+<nav>
 <ul>
 	<li class="">
 		<a href="<?php echo $back;?>inicio" title="">Inicio</a>
