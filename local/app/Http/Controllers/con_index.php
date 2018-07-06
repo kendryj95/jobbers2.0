@@ -16,7 +16,7 @@ class con_index extends Controller
     public function index()
     {
         $vista               = View::make("index");
-        $sql_ultimas_ofertas = 'SELECT t1.id,t2.nombre_aleatorio, t1.titulo,CONCAT(t3.provincia," / ",t4.localidad) as direccion,UPPER(t5.nombre) as empresa,t6.nombre, t1.tmp FROM tbl_publicacion t1
+        $sql_ultimas_ofertas = 'SELECT t1.id,t2.nombre_aleatorio, t1.titulo,CONCAT(t3.provincia," / ",t4.localidad) as direccion,UPPER(t5.nombre) as empresa,t6.nombre, t1.tmp, t1.id_empresa FROM tbl_publicacion t1
             LEFT JOIN tbl_archivos t2 ON t2.id = t1.id_imagen
             LEFT JOIN tbl_provincias t3 ON t3.id = t1.id_provincia
             LEFT JOIN tbl_localidades t4 ON t4.id = t1.id_localidad

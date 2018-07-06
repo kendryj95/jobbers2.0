@@ -139,8 +139,8 @@
 										</div>
 										<div class="job-title-sec">
 											<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>
-											<h3><a href="#" title="">'.$key->titulo.'</a></h3>
-											<span>'.$key->empresa.'</span>
+											<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3>
+											<a href="empresa/detalle?e='.$key->id_empresa.'" target="_blank"><span>'.$key->empresa.'</span></a>
 										</div>
 										<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
 										<span class="fav-job"><i class="la la-heart-o"></i></span>

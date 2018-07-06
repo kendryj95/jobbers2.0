@@ -171,7 +171,7 @@
                     </div>
                   </div> 
                   <div class="widget"   >
-                    <h3 class="sb-title open">Genero</h3>
+                    <h3 class="sb-title open">Género</h3>
                     <div class="specialism_widget" style="">
                       <!-- Search Widget -->
                       <div class="simple-checkbox scrollbar ss-container"  >
