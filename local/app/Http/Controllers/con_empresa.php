@@ -15,7 +15,12 @@ class con_empresa extends Controller
 
     public function ver()
     {
-        return view('empresas_ver');
+        $empresas = DB::select("SELECT e.id AS id_empresa, e.nombre AS nombre_empresa, e.descripcion, CONCAT(l.localidad,', ',p.provincia) AS direccion, l.localidad, p.provincia, a.nombre_aleatorio AS imagen, asec.nombre AS sector FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id LEFT JOIN tbl_localidades l ON e.localidad=l.id LEFT JOIN tbl_archivos a ON e.id_imagen=a.id LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id");
+
+        $params = [
+            "empresas" => $empresas
+        ];
+        return view('empresas_ver', $params);
     }
     public function index()
     {

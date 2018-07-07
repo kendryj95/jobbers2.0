@@ -44,6 +44,9 @@
 					<input name="clave" id="clave" type="password" placeholder="*****" />
 					<i class="la la-key"></i>
 				</div>
+				<div class="simple-checkbox">
+				  <p><input type="checkbox" name="condiciones" id="condiciones"><label for="condiciones">Acepto <a href="terminos" style="color: #10c9e5">términos, condiciones y políticas de privacidad</a>.</label></p>
+				</div>
 				<p id="error" style="color: red; display: none"></p>
 				<button type="button" onclick="registrar()">Registrarme</button>
 			</form>
@@ -71,7 +74,13 @@
 					if (correo) {
 						if ($('#clave').val().length >= 8 && $('#clave').val().length <= 12) {
 
-							$('#form_register').submit();
+							if ($('#condiciones').is(':checked')) {
+
+								$('#form_register').submit();
+							} else {
+								$('#error').html('<i class="la la-close"></i> Debes aceptar los términos, políticas y condiciones para continuar con el registro').show();
+							}
+
 						} else {
 							$('#error').html('<i class="la la-close"></i> La contraseña debe contener entre 8 y 12 caracteres').show();
 						}

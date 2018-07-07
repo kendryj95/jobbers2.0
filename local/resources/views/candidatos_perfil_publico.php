@@ -10,6 +10,14 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+		  (adsbygoogle = window.adsbygoogle || []).push({
+		    google_ad_client: "ca-pub-1968505410020323",
+		    enable_page_level_ads: true
+		  });
+		</script>
 	</head>
 	<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
 		
@@ -110,7 +118,7 @@
 														<li><i class="la la-mars-double"></i><h3>Genero</h3><span><?php echo $datos_personales[0]->genero;?></span></li>
 														<li><i class="la la-thumb-tack"></i><h3>Disponibilidad</h3><span><?php echo $datos_preferencias_lab[0]->nombre;?></span></li>
 														<li><i class="la la-wheelchair"></i><h3>Discapacidad</h3><span><?php echo $datos_personales[0]->discapacidad;?></span></li>
-														<li><i class="la la-child"></i><h3>Hijos</h3><span><?php echo $datos_personales[0]->hijos;?></span></li>
+														<li><i class="la la-child"></i><h3>Hijos</h3><span><?php echo $datos_personales[0]->hijos == 0 ? 'Sin hijos' : $datos_personales[0]->hijos . ' hijos' ?></span></li>
 														<li><i class="la la-diamond"></i><h3>Estado civil</h3><span><?php echo $datos_personales[0]->edo_civil;?></span></li>
 													</ul>
 													</div><!-- Job Overview -->
@@ -209,7 +217,7 @@
 											</div>
 											<div class="col-lg-3 column">
 												<div class="job-overview style3">
-													Publicidad, marcadores
+													Publicidad
 													<!--<ul>
 																		<li><i class="la la-briefcase"></i><h3>Candidates About</h3></li>
 																		<li><i class="la la-graduation-cap"></i><h3>Education</h3></li>

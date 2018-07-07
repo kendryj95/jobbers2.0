@@ -41,7 +41,7 @@
 													</div>
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-12">
-													<div class="p-category view-resume-list">
+													<div class="p-category">
 														<a href="candidato/<?= session()->get('cand_id') ?>" title="">
 															<i class="la la-eye"></i>
 															<span>Perfil público</span>
@@ -173,86 +173,45 @@
 						<div class="follow-companiesec">
 							<div class="follow-companies">
 								<span class="close-follow-company"><i class="la la-close"></i></span>
-								<h3>Follow Companies.</h3>
+								<h3>Empresas seguidas</h3>
 								<ul id="scrollbar">
-									<li>
-										<div class="job-listing wtabs">
-											<div class="job-title-sec">
-												<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-												<h3><a href="#" title="">Web Designer / Developer</a></h3>
-												<div class="job-lctn">Sacramento, California</div>
-											</div>
-											<a href="#" title="" class="go-unfollow">Unfollow</a>
-											</div><!-- Job -->
-										</li>
+									<?php if (count($list_empresas_seguidas) > 0): ?>
+										<?php foreach ($list_empresas_seguidas as $val): ?>
 										<li>
 											<div class="job-listing wtabs">
 												<div class="job-title-sec">
-													<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-													<h3><a href="#" title="">Tix Dog</a></h3>
-													<div class="job-lctn">Sacramento, California</div>
+													<?php $imagen = $val->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$val->imagen ?>
+													<div class="c-logo"> <img src="<?= $imagen ?>" alt="logo de empresa" /> </div>
+													<h3><a href="#" title=""><?= $val->nombre_empresa ?></a></h3>
+													<div class="job-lctn"><?= $val->direccion ?></div>
 												</div>
 												<a href="#" title="" class="go-unfollow">Unfollow</a>
-												</div><!-- Job -->
-											</li>
-											<li>
-												<div class="job-listing wtabs">
-													<div class="job-title-sec">
-														<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-														<h3><a href="#" title="">StarHealth</a></h3>
-														<div class="job-lctn">Sacramento, California</div>
-													</div>
-													<a href="#" title="" class="go-unfollow">Unfollow</a>
-													</div><!-- Job -->
-												</li>
-												<li>
-													<div class="job-listing wtabs">
-														<div class="job-title-sec">
-															<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-															<h3><a href="#" title="">Altes Bank</a></h3>
-															<div class="job-lctn">Sacramento, California</div>
-														</div>
-														<a href="#" title="" class="go-unfollow">Unfollow</a>
-														</div><!-- Job -->
-													</li>
-													<li>
-														<div class="job-listing wtabs">
-															<div class="job-title-sec">
-																<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-																<h3><a href="#" title="">StarHealth</a></h3>
-																<div class="job-lctn">Sacramento, California</div>
-															</div>
-															<a href="#" title="" class="go-unfollow">Unfollow</a>
-															</div><!-- Job -->
-														</li>
-														<li>
-															<div class="job-listing wtabs">
-																<div class="job-title-sec">
-																	<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-																	<h3><a href="#" title="">Altes Bank</a></h3>
-																	<div class="job-lctn">Sacramento, California</div>
-																</div>
-																<a href="#" title="" class="go-unfollow">Unfollow</a>
-																</div><!-- Job -->
-															</li>
-														</ul>
-													</div>
-													
-												</div>
-												<?php include("local/resources/views/includes/general_footer.php");?>
-												<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/script.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
-												<script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
-												<script type="text/javascript">
-													$( document ).ready(function() {
-													
-													});
-												</script>
-											</body>
-										</html>
+											</div><!-- Job -->
+										</li>
+										<?php endforeach; ?>
+									<?php else: ?>
+										<li>
+											<p style="text-align: center;">Sin registros</p>
+										</li>
+									<?php endif; ?>
+								</ul>
+							</div>
+							
+						</div>
+		<?php include("local/resources/views/includes/general_footer.php");?>
+		<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/script.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+		<script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+			
+			});
+		</script>
+	</body>
+</html>

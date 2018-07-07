@@ -81,7 +81,7 @@ $mi_tokken=csrf_token();
                   <!-- Button trigger modal -->
                   
                   <!--paginacion-->
-                  <div class="pagination" style="margin-bottom: 50px;">
+                  <!-- <div class="pagination" style="margin-bottom: 50px;">
                     <ul style="margin: 0 auto;">
                       <li class="prev"><a href=""><i class="la la-long-arrow-left"></i> Anterior</a></li>
                       <li><a href="">1</a></li>
@@ -91,7 +91,7 @@ $mi_tokken=csrf_token();
                       <li><a href="">14</a></li>
                       <li class="next"><a href="">Siguiente <i class="la la-long-arrow-right"></i></a></li>
                     </ul>
-                  </div>
+                  </div> -->
                   <!-- Pagination -->
                 </div>
               </div>

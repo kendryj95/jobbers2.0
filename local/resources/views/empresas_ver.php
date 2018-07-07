@@ -92,91 +92,24 @@
             </aside>
             <div class="col-lg-9 column">
               <div class="emply-list-sec">
+                <?php foreach ($empresas as $empresa): ?>
+                  <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
                 <div class="emply-list">
-                  <div class="emply-list-thumb">
-                    <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
-                  </div>
-                  <div class="emply-list-info">
-                    <div class="emply-pstn">4 Open Position</div>
-                    <h3><a href="#" title="">King LLC</a></h3>
-                    <span>Accountancy, Human Resources</span>
-                    <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                    <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
-                  </div>
-                  </div><!-- Employe List -->
-                  <div class="emply-list">
                     <div class="emply-list-thumb">
-                      <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
+                      <a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><img src="<?= $imagen ?>" alt="logo de la empresa"></a>
                     </div>
                     <div class="emply-list-info">
-                      <div class="emply-pstn">4 Open Position</div>
-                      <h3><a href="#" title="">Telimed</a></h3>
-                      <span>Accounting Assistant, Arts, Design, and Media</span>
-                      <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                      <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
+                      <!-- <div class="emply-pstn">4 Open Position</div> -->
+                      <h3><a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><?= $empresa->nombre_empresa ?></a></h3>
+                      <span><?= $empresa->sector ?></span>
+                      <h6><i class="la la-map-marker"></i> <?= $empresa->direccion ?></h6>
+                      <?php $description = strlen($empresa->descripcion) > 180 ? substr($empresa->descripcion, 0, 180) . '...' : $empresa->descripcion ?>
+                      <p><?= $description ?></p>
                     </div>
-                    </div><!-- Employe List -->
-                    <div class="emply-list">
-                      <div class="emply-list-thumb">
-                        <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
-                      </div>
-                      <div class="emply-list-info">
-                        <div class="emply-pstn">4 Open Position</div>
-                        <h3><a href="#" title="">Ucess</a></h3>
-                        <span>Arts, Design, and Media, Web Developer</span>
-                        <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                        <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
-                      </div>
-                      </div><!-- Employe List -->
-                      <div class="emply-list">
-                        <div class="emply-list-thumb">
-                          <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
-                        </div>
-                        <div class="emply-list-info">
-                          <div class="emply-pstn">4 Open Position</div>
-                          <h3><a href="#" title="">Airbnb</a></h3>
-                          <span>Arts, Design, and Media</span>
-                          <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                          <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
-                        </div>
-                        </div><!-- Employe List -->
-                        <div class="emply-list">
-                          <div class="emply-list-thumb">
-                            <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
-                          </div>
-                          <div class="emply-list-info">
-                            <div class="emply-pstn">4 Open Position</div>
-                            <h3><a href="#" title="">TeraPlaner</a></h3>
-                            <span>Financial Services, Sales &amp; Marketing</span>
-                            <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                            <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
-                          </div>
-                          </div><!-- Employe List -->
-                          <div class="emply-list">
-                            <div class="emply-list-thumb">
-                              <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
-                            </div>
-                            <div class="emply-list-info">
-                              <div class="emply-pstn">4 Open Position</div>
-                              <h3><a href="#" title="">King LLC</a></h3>
-                              <span>Accountancy, Human Resources</span>
-                              <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                              <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
-                            </div>
-                            </div><!-- Employe List -->
-                            <div class="emply-list">
-                              <div class="emply-list-thumb">
-                                <a href="#" title=""><img src="http://placehold.it/80x80" alt=""></a>
-                              </div>
-                              <div class="emply-list-info">
-                                <div class="emply-pstn">4 Open Position</div>
-                                <h3><a href="#" title="">King LLC</a></h3>
-                                <span>Accountancy, Human Resources</span>
-                                <h6><i class="la la-map-marker"></i> Toronto, Ontario</h6>
-                                <p>The Heavy Equipment / Grader Operator  is responsible for operating one or several types construction equipment, such as front end loader, roller, bulldozer, or excavator to move,…</p>
-                              </div>
-                              </div><!-- Employe List -->
-                              <div class="pagination">
+                </div><!-- Employe List -->
+                <?php endforeach; ?>
+                        
+                              <!-- <div class="pagination">
                                 <ul>
                                   <li class="prev"><a href=""><i class="la la-long-arrow-left"></i> Prev</a></li>
                                   <li><a href="">1</a></li>
@@ -186,7 +119,7 @@
                                   <li><a href="">14</a></li>
                                   <li class="next"><a href="">Next <i class="la la-long-arrow-right"></i></a></li>
                                 </ul>
-                                </div><!-- Pagination -->
+                                </div> --><!-- Pagination -->
                               </div>
                             </div>
                           </div>
