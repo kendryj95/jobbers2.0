@@ -14,7 +14,7 @@ $back="../";
 				</div><!-- Logo -->
 				<div class="btn-extars">
 					<!-- Btn Extras -->
-					 <nav>
+					 <nav style="float: left">
 
 					 	<?php include("local/resources/views/includes/menus_publicos.php");?>
 					 		
