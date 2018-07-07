@@ -84,7 +84,7 @@ class con_login extends Controller
                 $request->session()->set('tipo_usuario', $datos[0]->tipo_usuario);
                 return Redirect($ruta);
             } else {
-                return Redirect("login?error=Clave o Correo incorrectos");
+                return Redirect("login?error=Clave o correo incorrectos");
             }
         } catch (Exception $e) {
 
