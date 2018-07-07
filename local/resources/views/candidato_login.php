@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 		
 	</head>
-	<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-position: center;">
+	<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-position: center; background-size: cover;">
 		<div class="theme-layout" id="scrollup">
 			
 			<section>
@@ -44,11 +44,11 @@
 												<i class="la la-key"></i>
 											</div>
 											<?php if (isset($_REQUEST["error"])): ?>
-											<p style="color: red"><i class="la la-close"></i> <?= $_REQUEST["error"] ?></p>
+											<p style="color: red"><?= $_REQUEST["error"] ?></p>
 											<?php elseif (isset($_REQUEST["success"])): ?>
-											<p style="color: green"><i class="la la-check-circle"></i> <?= $_REQUEST["success"] ?></p>
+											<p style="color: green"><?= $_REQUEST["success"] ?></p>
 											<?php elseif (isset($_REQUEST["info"])): ?>
-											<p style="color: red"><i class="la la-info-circle"></i> <?= $_REQUEST["info"] ?></p>
+											<p style="color: red"><?= $_REQUEST["info"] ?></p>
 											<?php endif ?>
 											<p class="remember-label">
 											</p>

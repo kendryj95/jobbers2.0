@@ -112,7 +112,18 @@
         <?php include("local/resources/views/includes/referencias_down.php");?>
         <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
         <script type="text/javascript">
-        var clipboard = new Clipboard('#btn_copiar');
+        $(document).ready(function() {
+            $('#btn_copiar').on('click', function() {
+                
+                var clipboard = new Clipboard('#btn_copiar');
+
+                $.notify("Link de referido copiado exitosamente.", {
+                className:"success",
+                globalPosition: "bottom center"
+                });
+                
+            });
+        });
         </script>
         
     </body>

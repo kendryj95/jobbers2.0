@@ -69,8 +69,8 @@
                                                 <thead>
                                                     <tr>
                                                         <td>#</td>
-                                                        <td>Tikect</td>
-                                                        <td>Estatus</td> 
+                                                        <td>Ticket</td>
+                                                        <td>Status</td> 
                                                         <td>Ver</td>
                                                     </tr>
                                                 </thead>
