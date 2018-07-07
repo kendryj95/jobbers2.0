@@ -12187,7 +12187,8 @@ header.style5 .post-job-btn:hover {
 }
 
 .bottom-line .scrollup {
-    position: absolute;
+    position: fixed;
+    z-index: 999;
     right: 70px;
     bottom: 44px;
     width: 50px;
