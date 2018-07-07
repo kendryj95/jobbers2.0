@@ -10,7 +10,7 @@
 $back="";
 if(isset($atras) && $atras==1)
 {
-$back="../";	
+$back="../administrator_candidatos_ver.php";	
 } 
 
 ?>
@@ -29,56 +29,24 @@ $back="../";
 		</div>
 	</div>
 	<div class="responsive-opensec">
-		<!-- <div class="btn-extars"> -->
-			<!-- <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a> -->
-			<!-- <ul class="account-btns">
-				<li class="signup-popup"><a title=""><i class="la la-key"></i> Registrar</a></li>
-				<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Entrar</a></li>
-			</ul> -->
-			<!-- </div>Btn Extras -->
-			<!-- <form class="res-search">
-				<input type="text" placeholder="Job title, keywords or company name" />
-				<button type="submit"><i class="la la-search"></i></button>
-			</form> -->
+		<div class="btn-extars">
+			<?php if (session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1): ?>
+				<?php if (session()->get('tipo_usuario')==2): ?>
+					<a href="<?= $back ?>candidashboard" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
+				<?php elseif (session()->get('tipo_usuario')==1): ?>
+					<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
+				<?php endif; ?>
+			<?php else: ?>
+				<ul class="account-btns">
+					<li class="signup-popup"><a title=""><i class="la la-key"></i> Registrar</a></li>
+					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Entrar</a></li>
+				</ul>
+			<?php endif; ?>
+			 </div><!--Btn Extras -->
+			
 			<div class="responsivemenu">
-				<!-- <?php include("local/resources/views/includes/menus_publicos.php");?> -->
-					<ul>
-						<li class="">
-							<a href="<?php echo $back;?>inicio" title="">Inicio</a>
-						</li>
-						<li class="">
-							<a href="<?php echo $back;?>ofertas" title="">Empleos</a>
-						</li>
-						<?php if (session()->get("candidato") == null): ?>
-						<li class="">
-							<a href="<?php echo $back;?>candidatos" title="">Candidatos</a>
-						</li>
-						<?php endif ?>
-						<li class="">
-							<a href="<?php echo $back;?>noticias" title="">Noticias</a>
-						</li>
-					</ul>
-				<?php if(session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1)
-				{
-					if(session()->get('tipo_usuario')==2)
-					{
-						echo'<a href="'.$back.'candidashboard" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>';
-					}
-					if(session()->get('tipo_usuario')==1)
-					{
-						echo'<a href="#" title="" class="post-job-btn "><i class="la la-plus"></i>Mi panel</a>';
-					}
+				 <?php include("local/resources/views/includes/menus_publicos.php");?> 
 					
-				}
-				else
-				{
-					echo'
-					<ul class="account-btns">
-					<li class="signup-popup" style="margin-top: 15px; margin-bottom: 15px"><a title=""><i class="la la-key"></i> Registrar</a></li>
-					<li class="signin-popup" style="margin-top: 15px; margin-bottom: 15px"><a title=""><i class="la la-external-link-square"></i> Entrar</a></li>
-					</ul>';
-				}
-				?>
 			</div>
 		</div>
 	</div>
