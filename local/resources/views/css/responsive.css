@@ -230,7 +230,7 @@
         width: auto;
         padding: 10px 30px;
         margin-right: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
     .tags-jobs>li {
         margin-right: 15px;
@@ -482,7 +482,9 @@
         margin-bottom: 10px;
     }
     .job-single-info3>.job-is {
-        margin-right: 85px;
+        display: inline-block;
+        float: none;
+        /* margin-right: 85px; */
         margin-top: 10px;
     }
     .tags-jobs>li {
