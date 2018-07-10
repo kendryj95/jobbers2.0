@@ -69,7 +69,7 @@
 										
 									</div>
 									<div class="col-lg-5">
-										<img src="local/resources/views/images/daniel.png" style="width: 432px;border-radius: 15px;" alt="">
+										<img src="local/resources/views/images/daniel.png" class="img-fluid" style="border-radius: 15px;" alt="">
 									</div>
 								</div>
 							</div>

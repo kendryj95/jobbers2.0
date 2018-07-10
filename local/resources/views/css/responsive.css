@@ -9,6 +9,9 @@
 @media (max-width:1300px) {}
 
 @media (max-width:1200px) {
+    .mt-responsive {
+        margin-top: 110px;
+    }
     .error-sec {
         width: 100%;
         padding: 0 100px;
@@ -49,6 +52,7 @@
     }
     .responsive-header {
         display: block;
+        position: fixed;
     }
     .blogpost.style2 .blog-postdetail {
         padding-left: 30px;
@@ -133,6 +137,12 @@
     .tags-jobs>li {
         margin-right: 10px;
         margin-bottom: 10PX;
+    }
+}
+
+@media (min-width: 1200px) {
+    .slideHome {
+        height: 700px;
     }
 }
 
@@ -467,6 +477,24 @@
 }
 
 @media (max-width:768px) {
+    .job-single-info3>span {
+        float: initial;
+        margin-bottom: 10px;
+    }
+    .job-single-info3>.job-is {
+        margin-right: 85px;
+        margin-top: 10px;
+    }
+    .tags-jobs>li {
+        text-align: center;
+        float: initial;
+    }
+    .mt-social-resp {
+        margin-top: 15px;
+    }
+    .mt-col-footer {
+        margin-top: 0px;
+    }
     .logo a,
     .social a {
         float: initial;
@@ -1145,12 +1173,13 @@
     }
     .job-single-head3 {
         display: inline-block;
+        text-align: center;
     }
     .job-single-head3.emplye .job-thumb {
         float: none;
         display: inline-block;
         text-align: center;
-        width: 100%;
+        width: auto;
     }
     .job-thumb img {
         float: left;

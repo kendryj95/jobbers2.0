@@ -16,10 +16,10 @@ if ($_SERVER["SERVER_NAME"] == "localhost") {
 		<div class="res-logo"><a href="<?= $dir ?>/inicio" title=""><img src="<?= $dir ?>/local/resources/views/images/logo_d.png" alt="" /></a></div>
 		<div class="menu-resaction">
 			<div class="res-openmenu">
-				<img src="<?= $dir ?>/local/resources/views/images/icon.png" alt="" /> Menu
+				<img src="<?= $dir ?>/local/resources/views/images/icon.png" alt="" /> Menú
 			</div>
 			<div class="res-closemenu">
-				<img src="<?= $dir ?>/local/resources/views/images/icon2.png" alt="" /> Close
+				<img src="<?= $dir ?>/local/resources/views/images/icon2.png" alt="" /> Cerrar
 			</div>
 		</div>
 	</div>

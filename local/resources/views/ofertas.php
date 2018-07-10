@@ -25,7 +25,7 @@ $mi_tokken=csrf_token();
   <body>
     <?php include('local/resources/views/includes/general_header.php');?>
       <?php include('local/resources/views/includes/general_header_responsive.php');?>
-    <section class="overlape">
+    <section class="overlape mt-responsive">
       <div class="block no-padding">
         <div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_publiacaciones.jpg) repeat scroll 10% 422.28px transparent;" class="parallax scrolly-invisible no-parallax">
         </div>

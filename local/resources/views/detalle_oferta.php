@@ -53,7 +53,8 @@
 												<div class="job-thumb"> <img src="../uploads/<?php echo $datos[0]->img_empresa;?>" alt=""></div>
 												<div class="job-single-info3">
 													<h3><?php echo $datos[0]->empresa;?></h3>
-													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
+													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span>
+													<div class="job-is ft"><?php echo $datos[0]->nombre;?></div>
 													<ul class="tags-jobs">
 														<li><i class="la la-file-text"></i> Postulados <?= $cantidad_postulados ?></li>
 														<li><i class="la la-calendar-o"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
@@ -95,17 +96,17 @@
 										<span class="fa fa-facebook"></span>Compartir
 									</a>
 								</div>
-								<div class="col-sm-3" style="padding-left: 0px;">
+								<div class="col-sm-3 mt-social-resp" style="padding-left: 0px;">
 									<a  target="_blank"  href="https://twitter.com/home?status=http%3A//www.jobbersargentina.net/jobbersv2/detalleoferta/<?php echo $datos[0]->id;?>" class="btn btn-block btn-social btn-twitter"  >
 										<span class="fa fa-twitter"></span>Compartir
 									</a>
 								</div>
-								<div class="col-sm-3" style="padding-left: 0px;">
+								<div class="col-sm-3 mt-social-resp" style="padding-left: 0px;">
 									<a  target="_blank"  href="https://plus.google.com/share?url=http%3A//www.jobbersargentina.net/jobbersv2/detalleoferta/<?php echo $datos[0]->id;?>" class="btn btn-block btn-social btn-google"  >
 										<span class="fa fa-google"></span>Compartir
 									</a>
 								</div>
-								<div class="col-sm-3" style="padding-left: 0px;">
+								<div class="col-sm-3 mt-social-resp" style="padding-left: 0px;">
 									<a  target="_blank"  href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//www.jobbersargentina.net/jobbersv2/detalleoferta/<?php echo $datos[0]->id;?>&title=Jobbers&summary=&source=" class="btn btn-block btn-social btn-linkedin"  >
 										<span class="fa fa-linkedin"></span>Compartir
 									</a>

@@ -31,7 +31,7 @@
 			<?php include('local/resources/views/includes/general_header_responsive.php');?>
 			<?php include('local/resources/views/includes/general_header.php');?>
 			
-			<section>
+			<section class="mt-responsive">
 				
 				<div class="block no-padding">
 					<div class="container fluid">
@@ -242,7 +242,7 @@
 								<div class="col-lg-12">
 									<div class="simple-text">
 										<h3>¿Alguna duda?</h3>
-										<span>Escríbenos a <a href="contacto" style="text-decoration: underline;"><strong>Dudas Jobbers</strong></a> será una placer ayudarte</span>
+										<span>Escríbenos a <a href="contacto" style="text-decoration: underline;"><strong>Contacto Jobbers</strong></a> será una placer ayudarte</span>
 									</div>
 								</div>
 							</div>

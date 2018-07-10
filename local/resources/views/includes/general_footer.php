@@ -23,12 +23,11 @@
 					</div>
 					<div class="col-lg-2 column">
 						<div class="widget">
-							<h3 class="footer-title">Jobbers</h3>
 							<div class="link_widgets">
 								<div class="row">
-									<div class="col-lg-12">
+									<div class="col-lg-12 mt-col-footer">
 										<a href="<?php echo $back;?>terminos" title="">Politicas de Jobbers</a>
-										<a href="<?php echo $back;?>fag" title="">Preguntas Frecuentes</a>
+										<a href="<?php echo $back;?>fag" title="">Preguntas frecuentes</a>
 										<a href="<?php echo $back;?>noticias" title="">Noticias</a>
 										<a href="<?php echo $back;?>contacto" title="">Contáctanos</a>
 										<a href="<?php echo $back;?>nosotros" title="">¿Qué es Jobbers?</a>
@@ -39,10 +38,9 @@
 					</div>
 					<div class="col-lg-2 column">
 						<div class="widget">
-							<h3 class="footer-title">Menu</h3>
 							<div class="link_widgets">
 								<div class="row">
-									<div class="col-lg-12">
+									<div class="col-lg-12 mt-col-footer">
 										<a href="<?php echo $back;?>inicio" title="">Inicio</a>
 										<a href="<?php echo $back;?>ofertas" title="">Ofertas de trabajo </a>
 										<a href="<?php echo $back;?>" title="">Candidatos</a>

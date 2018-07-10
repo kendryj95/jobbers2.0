@@ -73,7 +73,7 @@
 									</div>
 								</div>
 							</header>
-							<section class="overlape" style="padding: 0px;">
+							<section class="overlape mt-responsive" style="padding: 0px;">
 								<div class="block no-padding">
 									<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_candidato_dash.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 									<div class="container fluid" >

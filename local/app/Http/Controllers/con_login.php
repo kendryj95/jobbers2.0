@@ -191,7 +191,7 @@ class con_login extends Controller
         VALUES(null,'" . $correo . "','','" . md5($_POST['clave']) . "'," . $_POST['tipo'] . ",'" . $this->aleatorio(45) . "',1,'',null)";
         try {
             DB::insert($sql);
-            return Redirect("login?success=Registrado Satisfactoriamente");
+            return Redirect("login?success=Registrado satisfactoriamente");
         } catch (Exception $e) {
 
         }

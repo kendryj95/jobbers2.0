@@ -743,9 +743,10 @@ button {
     min-height: 1px;
 }
 
-.slideHome {
-    height: 700px !important;
-}
+
+/* .slideHome {
+    height: 100vh !important;
+} */
 
 [dir='rtl'] .slick-slide {
     float: right;
@@ -12942,4 +12943,14 @@ header.style4 .account-btns>li a,
     -ms-transition: all 0.4s ease 0s;
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
+}
+
+
+/* Clases Nuevas Rama Frontend */
+
+
+/* Footer */
+
+.mt-col-footer {
+    margin-top: 45px;
 }
