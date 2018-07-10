@@ -1,11 +1,11 @@
 <?php  
 
-// $dir = '';
-// if ($_SERVER["SERVER_NAME"] == "localhost") {
-// 	$dir = "/jobbers2.0";
-// } else {
-// 	$dir = "/jobbersv2";
-// }
+$dir = '';
+if ($_SERVER["SERVER_NAME"] == "localhost") {
+	$dir = "/jobbers2.0";
+} else {
+	$dir = "/jobbersv2";
+}
 
 $back="";
 if(isset($atras) && $atras==1)
