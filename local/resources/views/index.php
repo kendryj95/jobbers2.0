@@ -141,7 +141,6 @@
 										<a href="empresa/detalle?e='.$key->id_empresa.'" target="_blank"><span>'.$key->empresa.'</span></a>
 									</div>
 									<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
-									<span class="fav-job"><i class="la la-heart-o"></i></span>
 									<span class="job-is ft">'.$key->nombre.'</span>
 										</div>
 										
