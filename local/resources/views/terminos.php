@@ -22,8 +22,8 @@
 		<!--Header responsive-->
 		<?php include("local/resources/views/includes/menu_top_responsive.php");?>
 		<?php include("local/resources/views/includes/menu_top.php");?>
-		<section>
-			<div class="block no-padding  gray">
+		<section class="mt-responsive">
+			<div class="block no-padding  gray" style="padding-top: 50px;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">

@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<div class="bottom-line">
-			<span>© 2016 <span style="color: #fff;">jobbersargentina</span> todos los derecho resevados.</span>
+			<span>© 2016 <span style="color: #fff;">jobbersargentina</span> todos los derechos resevados.</span>
 			<a href="#scrollup" class="scrollup" title=""><i class="la la-arrow-up"></i></a>
 		</div>
 	</footer>
