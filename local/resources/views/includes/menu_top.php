@@ -6,14 +6,48 @@
       } 
 
       ?>
-<header class="gradient">
+<style>
+  .menu-sec nav>ul>li>a,
+  .account-btns>li a{
+    color: #232323;
+  }
+</style>
+<header class="stick-top forsticky">
   <div class="menu-sec">
     <div class="container">
       <div class="logo">
         <a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
         </div><!-- Logo -->
         <div class="btn-extars">
-           <?php include("local/resources/views/includes/menus_publicos.php");?>
-          </div>
+					<!-- Btn Extras -->
+					 <nav style="float: left">
+
+					 	<?php include("local/resources/views/includes/menus_publicos.php");?>
+					 		
+					 </nav>
+					 
+					 <?php if(session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1)
+					 {
+					 	if(session()->get('tipo_usuario')==2)
+					 	{
+					 		echo'<a href="'.$back.'candidashboard" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>';
+					 	}
+					 	if(session()->get('tipo_usuario')==1)
+					 	{
+					 		echo'<a href="#" title="" class="post-job-btn "><i class="la la-plus"></i>Mi panel</a>';
+					 	}
+					 	
+					 }
+					 else
+					 {
+					 	echo'
+					 	<ul class="account-btns" style="margin-top:5px;">
+					 		<li class="signup-popup"><a title=""><i class="la la-key"></i>Registrar</a></li>
+					 		<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i>Entrar</a></li>
+					 	</ul>
+					 	</div>';
+					 }
+					 ?>
+					</div>
         </div>
       </header>

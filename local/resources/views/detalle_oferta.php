@@ -23,7 +23,7 @@
 		<?php $atras=1;?>
 		<?php include('local/resources/views/includes/general_header.php');?>
 		<?php include('local/resources/views/includes/general_header_responsive.php');?>
-		<section class="overlape">
+		<section class="overlape mt-responsive">
 			<div class="block no-padding">
 				<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_detalle_oferta.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 				<div class="container fluid">
@@ -51,11 +51,12 @@
 										<div class="col-lg-10">
 											<div class="job-single-head3 emplye">
 												<div class="job-thumb"> <img src="../uploads/<?php echo $datos[0]->img_empresa;?>" alt=""></div>
-												<div class="job-single-info3">
+												<div class="job-single-info3 text-center">
 													<h3><?php echo $datos[0]->empresa;?></h3>
-													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span>
+													<!-- <span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span> -->
 													<div class="job-is ft"><?php echo $datos[0]->nombre;?></div>
 													<ul class="tags-jobs">
+														<li><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></li>
 														<li><i class="la la-file-text"></i> Postulados <?= $cantidad_postulados ?></li>
 														<li><i class="la la-calendar-o"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
 														<li><i class="la la-eye"></i> Vistas <?php echo $datos[0]->vistos;?></li>

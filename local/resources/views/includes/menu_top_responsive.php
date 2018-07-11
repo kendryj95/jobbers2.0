@@ -5,6 +5,11 @@ if(isset($atras) && $atras==1)
 $back="../administrator_candidatos_ver.php";	
 } 
 ?>
+<style>
+	.responsive-opensec .btn-extars .account-btns li>a{
+		color: #96a0bd;
+	}
+</style>
 <div class="theme-layout" id="scrollup">
 	<div class="responsive-header">
 		<div class="responsive-menubar">
