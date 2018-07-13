@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
         'log_e'      => \App\Http\Middleware\log_empresa::class,
         'log_c'      => \App\Http\Middleware\log_candidato::class,
         'log_s'      => \App\Http\Middleware\log_soportistas::class,
+        'log_r'      => \App\Http\Middleware\log_r::class,
 
     ];
 }

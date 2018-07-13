@@ -6,10 +6,11 @@ Route::get('/', 'con_index@index');
 Route::get('inicio', 'con_index@index');
 Route::get('nosotros', function () {return view('nosotros');});
 Route::get('contacto', function () {return view('contacto');});
-Route::get('noticias', function () {return view('noticias');});
+Route::get('noticias',  'con_noticias@index');
+Route::post('noticias',  'con_noticias@index');
+Route::get('noticias/{id}', 'con_noticias@noticia');
 Route::get('terminos', function () {return view('terminos');});
-Route::get('fag', 'con_administrator_faq@detalle_preguntas');
-Route::get('detallenoticia', function () {return view('detalle_noticia');});
+Route::get('fag', 'con_administrator_faq@detalle_preguntas'); 
 Route::get('ofertas', 'con_ofertas@index');
 Route::post('ofertas', 'con_ofertas@index');
 Route::get('detalleoferta/{id}', 'con_ofertas@detalle');
@@ -31,7 +32,25 @@ Route::get('candidatos', 'con_candidatos@index');
 Route::post('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
+Route::get('redaptores',  function () {return view('noticias_login');});  
+Route::post('logredaptores', 'con_noticias_dashboard@login');
 
+//********************************************************//
+//*                RUTAS PARA LOS REDAPTORES             *//
+//********************************************************// s
+Route::group(['middleware' => 'log_r'], function () {
+Route::get('notipublicaciones', 'con_noticias_dashboard@publicaciones');
+Route::post('addpublicacion', 'con_noticias_dashboard@add_publicacion');
+Route::post('addcategoria', 'con_noticias_dashboard@add_categoria');
+Route::get('noticategorias', 'con_noticias_dashboard@categorias');
+Route::get('panelnoticias', 'con_noticias_dashboard@index');
+Route::get('categoriadel/{id}', 'con_noticias_dashboard@del_categoria');
+Route::get('noticiadel/{id}', 'con_noticias_dashboard@del_publicacion');
+Route::get('noticiaestado/{idnoticia}/{estado}', 'con_noticias_dashboard@set_estado');
+Route::get('panelnoticias/{id}', 'con_noticias_dashboard@editar_noticia');
+Route::post('editpublicacion', 'con_noticias_dashboard@edit_publicacion');
+Route::get('redaptoressalir', 'con_noticias_dashboard@salir');  
+});
 //********************************************************//
 //*           RUTAS PARA EL PROCESO DE POSTULADOS 		  *//
 //********************************************************//
