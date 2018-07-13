@@ -263,8 +263,10 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 			<script type="text/javascript">
 				var calendario = new Date();
+				
+				fecha = parseInt(calendario.getDate());
 
-				fecha = parseInt(calendario.getDay()) + 1;
+				console.log(fecha);
 
 				if (fecha === 5 || fecha === 10 || fecha === 15 || fecha === 20 || fecha === 25 || fecha === 30) {
 
