@@ -15,10 +15,11 @@ class con_noticias extends Controller
     	$condiciones="";
     	if(isset($_POST['categoria']) && $_POST['categoria']!="")
     	{
-    		$condiciones=$condiciones." WHERE id_categoria =".$_POST['categoria']."";
+    		$condiciones=$condiciones." AND id_categoria =".$_POST['categoria']."";
     	}
-    	$sql="SELECT * FROM tbl_noticias" .$condiciones;
-    	$sql_categorias="SELECT * FROM tbl_categorias_noticias";
+    	$sql="SELECT * FROM tbl_noticias WHERE estado='1' " .$condiciones;
+       
+    	$sql_categorias="SELECT * FROM tbl_categorias_noticias ";
     	try {
     		$datos=DB::select($sql);
     		$datos_categorias=DB::select($sql_categorias);
@@ -33,8 +34,8 @@ class con_noticias extends Controller
     public function noticia($id)
     {
     	$vista=View::make("noticias_detalle"); 
-    	$sql="SELECT *,count(id) as cantidad FROM tbl_noticias WHERE id =".$id."";
-    	$sql_datos="SELECT * FROM tbl_noticias LIMIT 0,5";
+    	$sql="SELECT *,count(id) as cantidad FROM tbl_noticias WHERE id =".$id." ";
+    	$sql_datos="SELECT * FROM tbl_noticias WHERE estado = '1' LIMIT 0,5";
     	$sql_categorias="SELECT * FROM tbl_categorias_noticias";
     	try {
     		$datos=DB::select($sql);

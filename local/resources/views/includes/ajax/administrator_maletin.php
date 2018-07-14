@@ -22,7 +22,7 @@
                          {
                             iconosImagen='<li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></ a></li><li><span>Ajustar</span><a href="#" title=""><i class="la la-cog"></i></a></li>';
                             usarComo='<span class="status"><a class="" style="text-decoration: underline;" data-toggle="modal" data-target="#modal_usar_como">Usar cómo</a></span>';
-                            url='<img style="max-width:128px;max-height:128px;" src="uploads/'+datos["nombre_aleatorio"]+'">';
+                            url='<img style="max-width:128px;max-height:128px;" src="uploads/min/'+datos["nombre_aleatorio"]+'">';
                              
 
                          }

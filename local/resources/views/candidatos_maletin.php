@@ -66,11 +66,13 @@ $mi_tokken=csrf_token();
                   </div>
                   <div class="padding-left">
                     <div class="manage-jobs-sec addscroll" style="padding-top: 0px;">
+                     
                       <h3>
                       Mis Archivos
                       <ul class="action_job" style="float: right;">
                         <li onClick="listar_archivos()" style="font-size: 15px;cursor: pointer;" class="status"> Actualizar </li>
-                      </ul>
+                      </ul><br>
+                       <span style="font-size: 10px;font-weight: 500;">* Max 5 archivos</span> 
                       </h3>
                       <table class="table" style="margin: 0px;margin-left: 10px;">
                         <tbody id="tabla_archivos">

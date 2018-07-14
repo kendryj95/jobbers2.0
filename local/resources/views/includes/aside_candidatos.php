@@ -23,7 +23,7 @@
 					<a href="candicv" title=""><i class="la la-file-text"></i>Curriculum</a>
 				</li>
 				<li >
-					<a href="candiempseg" title=""><i class="la la-industry"></i>Empresas Seguidas</a>
+					<a href="candiempseg" title=""><i class="la la-industry"></i>Empresas seguidas</a>
 				</li>
 				<li >
 					<a href="candireferidos" title=""><i class="la la-users"></i>Referidos</a>

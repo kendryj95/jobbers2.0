@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         SantiGraviano\LaravelMercadoPago\Providers\MercadoPagoServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
@@ -156,6 +157,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
+
+
 
     ],
 
@@ -203,7 +207,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'MP' => SantiGraviano\LaravelMercadoPago\Facades\MP::class,
-
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

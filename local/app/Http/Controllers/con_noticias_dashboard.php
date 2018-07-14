@@ -41,19 +41,30 @@ class con_noticias_dashboard extends Controller
     }
    public function add_publicacion()
    { 
-   	 	$file            = Input::file('imagen_noticia');
-        $destinationPath = 'imagenes_noticias';
-        $original        = $file->getClientOriginalName();
-        $extension       = $file->getClientOriginalExtension();
-        $filename        = str_random(12) . "." . strtolower($extension); 
-        $upload_success = Input::file('imagen_noticia')->move($destinationPath, $filename);
+   		$file="";
+   		$destinationPath = 'imagenes_noticias';
+		$original        ="";
+		$extension       ="";
+		$filename        =""; 
+		$upload_success ="";
+   	 	if(Input::file('imagen_noticia')!="")
+   	 		{
+   	 			$file            = Input::file('imagen_noticia');
+   	 			$destinationPath = 'imagenes_noticias';
+		        $original        = $file->getClientOriginalName();
+		        $extension       = $file->getClientOriginalExtension();
+		        $filename        = str_random(12) . "." . strtolower($extension); 
+		        $upload_success = Input::file('imagen_noticia')->move($destinationPath, $filename);
+   	 		} 
         $sql="INSERT INTO tbl_noticias VALUES(
    		null,
    		1,
    		".$_POST['noticias_categoria'].",
    		'".$filename."','".$_POST['noticia_titulo']."','".$_POST['noticias_tags']."','".$_POST['noticias_descripcion']."','1',null
-   		);";  
-        if ($upload_success) {
+   		);"; 
+   		if ($file!="")
+   		{
+   			 if ($upload_success) {
             try {
                 DB::insert($sql); 
                 return Redirect("panelnoticias");
@@ -62,6 +73,15 @@ class con_noticias_dashboard extends Controller
         } else {
             return Response::json('error', 400);
         } 
+   		} 
+   		else
+   		{
+   			 try {
+                DB::insert($sql); 
+                return Redirect("panelnoticias");
+            } catch (Exception $e) {
+            }
+   		} 
    } 
  
       public function publicaciones()

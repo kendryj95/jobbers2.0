@@ -40,7 +40,12 @@
 								<?php foreach ($datos as $key): ?>
 								<div class="blogpost style2">
 										
-									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title=""><img style="width: 322px;height: 280px;border-radius: 10px;border:1px solid #e0e0e0;" src="imagenes_noticias/<?php echo $key->foto;?>" alt="" /></a> </div>
+									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title="">
+
+										<?php if ($key->foto!=""): ?>
+											<img style="width: 322px;height: 280px;border-radius: 10px;border:1px solid #e0e0e0;" src="imagenes_noticias/<?php echo $key->foto;?>" alt="" />
+										<?php endif ?> 
+									</a> </div>
 								
 									<div class="blog-postdetail">
 										<ul class="post-metas"><li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $key->tmp;?></a></li><li><a class="metascomment" href="#" title=""></ul>

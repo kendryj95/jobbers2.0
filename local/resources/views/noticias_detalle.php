@@ -4,8 +4,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Jobbers Argentina</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
+		<meta name="description" content="<?php echo $datos[0]->descripcion;?>">
+		<meta name="keywords" content="<?php echo $datos[0]->tags;?>">
 		<meta name="author" content="CreativeLayers"> 
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css"> 
@@ -37,7 +37,11 @@
 				<div class="row">
 					<div class="col-lg-9 column">
 						<div class="blog-single">
-							<div class="bs-thumb"><img style="height: 340px;max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt=""></div>
+							<div class="bs-thumb"> 
+								<?php if ($datos[0]->foto!=""): ?>
+									<img style="height: 340px;max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt="">
+								<?php endif ?>  
+							</div>
 							<ul class="post-metas"> <li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $datos[0]->tmp;?></a></li></ul>
 							<h2><?php echo $datos[0]->titulo;?></h2>
 							 <?php echo $datos[0]->descripcion?>

@@ -13,15 +13,11 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!-- Latest compiled and minified JavaScript -->
-		<link rel="stylesheet" href="local/resources/views/css/icons.css">
-		<link rel="stylesheet" href="local/resources/views/css/animate.min.css">
+		<link rel="stylesheet" href="local/resources/views/css/icons.css"> 
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
-		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-		<link rel="stylesheet" type="text/css" href="local/resources/views/plugins/botones/assets/css/font-awesome.css" />
-		<link rel="stylesheet" type="text/css" href="local/resources/views/plugins/botones/bootstrap-social.css" />
- 		 
+		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" /> 
 	</head>
 	<body>
 		
@@ -211,23 +207,23 @@
 											<?php foreach ($tips as $key) {
 												$cadena=explode("?", $key->descripcion);
 												echo '<div class="col-lg-4">
-																	<div class="my-blog">
-																								<div class="blog-thumb">
-																														<a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="min-height:300px;"/></a>
-																														<div class="blog-metas">
-																																				<a href="#" title="">'.$cadena[0].'</a>
-															<!--<a href="#" title="">0 Comments</a>-->
-														</div>
-													</div>
-													<div class="blog-details" style="min-height:230px;">
-														<h3><a href="#" title=""><p>'.$cadena[1].'</p>
-														<!--<a href="#" title="">Ver<i class="la la-long-arrow-right"></i></a>-->
-													</div>
-												</div>
+											    <div class="my-blog">
+											        <div class="blog-thumb">
+											            <a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="min-height:300px;"/></a>
+											            <div class="blog-metas">
+											                <a href="#" title="">'.$cadena[0].'</a>
+											                <!--<a href="#" title="">0 Comments</a>-->
+											            </div>
+											        </div>
+											        <div class="blog-details" style="min-height:230px;">
+											            <h3>
+											                <a href="#" title="">
+											                    <p>'.$cadena[1].'</p>
+											                    <!--<a href="#" title="">Ver<i class="la la-long-arrow-right"></i></a>-->
+											        </div>
+											    </div>
 											</div>';
-											}?>
-											
-											
+											}?> 
 										</div>
 									</div>
 								</div>
@@ -254,22 +250,14 @@
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			
 			<script src="local/resources/views/plugins/botones/assets/js/jquery.js" type="text/javascript"></script> 
-			<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/script.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+			 
+			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script> 
+			<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
 			<script type="text/javascript">
-				var calendario = new Date();
-				
-				fecha = parseInt(calendario.getDate());
-
-				console.log(fecha);
-
-				if (fecha === 5 || fecha === 10 || fecha === 15 || fecha === 20 || fecha === 25 || fecha === 30) {
-
+				var calendario = new Date(); 
+				fecha = parseInt(calendario.getDate()); 
+				console.log(fecha); 
+				if (fecha === 5 || fecha === 10 || fecha === 15 || fecha === 20 || fecha === 25 || fecha === 30) { 
 					$("#modal_redes").modal("show");
 				}
 			</script>

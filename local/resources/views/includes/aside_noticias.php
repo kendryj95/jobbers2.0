@@ -8,7 +8,10 @@
 				</li>
 				<li >
 					<a href="<?php echo $back;?>noticategorias" title=""><i class="la la-group"></i>Categorias</a>
-				</li> 
+				</li>
+				<li >
+					<a href="<?php echo $back;?>noticias" title=""><i class="la la-file-text"></i>Ver noticias</a>
+				</li>  
 				<li><a href="<?php echo $back;?>redaptoressalir" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 			</ul>
 		</div>
