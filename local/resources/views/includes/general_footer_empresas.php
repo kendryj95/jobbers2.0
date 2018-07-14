@@ -1,12 +1,12 @@
 <footer>
 	<div class="block">
 		<div class="container">
-			<div class="row">
+			<div class="row align-responsive">
 				<div class="col-lg-3 column">
 					<div class="widget">
 						<div class="about_widget">
 							<div class="logo">
-								<a href="#" title=""><img src="<?= $dir ?>/local/resources/views/images/jobbers_logo_144.jpg" alt="" /></a>
+								<a href="#" title=""><img src="<?php echo $dir;?>local/resources/views/images/jobbers_logo_144.jpg" alt="" /></a>
 							</div>
 							<span>Cordoba, Argentina.</span>
 							<span>administracion@jobbersargentina.net</span>
@@ -23,15 +23,14 @@
 					</div>
 					<div class="col-lg-2 column">
 						<div class="widget">
-							<h3 class="footer-title">Jobbers</h3>
 							<div class="link_widgets">
 								<div class="row">
-									<div class="col-lg-12">
-										<a href="<?= $dir ?>/terminos" title="">Politicas de Jobbers</a>
-										<a href="<?= $dir ?>/fag" title="">Preguntas Frecuentes</a>
-										<a href="<?= $dir ?>/noticias" title="">Noticias</a>
-										<a href="<?= $dir ?>/contacto" title="">Contáctanos</a>
-										<a href="<?= $dir ?>/nosotros" title="">¿Qué es Jobbers?</a>
+									<div class="col-lg-12 mt-col-footer">
+										<a href="<?php echo $dir;?>terminos" title="">Politicas de Jobbers</a>
+										<a href="<?php echo $dir;?>fag" title="">Preguntas frecuentes</a>
+										<a href="<?php echo $dir;?>noticias" title="">Noticias</a>
+										<a href="<?php echo $dir;?>contacto" title="">Contáctanos</a>
+										<a href="<?php echo $dir;?>nosotros" title="">¿Qué es Jobbers?</a>
 									</div>
 								</div>
 							</div>
@@ -39,21 +38,20 @@
 					</div>
 					<div class="col-lg-2 column">
 						<div class="widget">
-							<h3 class="footer-title">Menu</h3>
 							<div class="link_widgets">
 								<div class="row">
-									<div class="col-lg-12">
-										<a href="<?= $dir ?>/inicio" title="">Inicio</a>
-										<a href="<?= $dir ?>/ofertas" title="">Ofertas de trabajo </a>
-										<a href="<?= $dir ?>/" title="">Candidatos</a>
-										<a href="<?= $dir ?>/empresas" title="">Empresas</a>
+									<div class="col-lg-12 mt-col-footer">
+										<a href="<?php echo $dir;?>inicio" title="">Inicio</a>
+										<a href="<?php echo $dir;?>ofertas" title="">Ofertas de trabajo </a>
+										<a href="<?php echo $dir;?>" title="">Candidatos</a>
+										<a href="<?php echo $dir;?>empresas" title="">Empresas</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="col-lg-5" style="background-color: #fff;padding: 20px;border-radius: 10px;">
+					<div class="col-lg-5" style="background-color: #fff;padding: 20px;border-radius: 10px; margin-top: 40px; margin-bottom: 20px">
 						<div id="fb-root"></div>
 						<script>(function(d, s, id) {
 						var js, fjs = d.getElementsByTagName(s)[0];
@@ -69,7 +67,7 @@
 			</div>
 		</div>
 		<div class="bottom-line">
-			<span>© 2016 <span style="color: #fff;">jobbersargentina</span> todos los derecho resevados.</span>
+			<span>© 2016 <span style="color: #fff;">jobbersargentina</span> todos los derechos resevados.</span>
 			<a href="#scrollup" class="scrollup" title=""><i class="la la-arrow-up"></i></a>
 		</div>
 	</footer>

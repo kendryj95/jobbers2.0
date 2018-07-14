@@ -34,7 +34,7 @@
 					 	}
 					 	if(session()->get('tipo_usuario')==1)
 					 	{
-					 		echo'<a href="#" title="" class="post-job-btn "><i class="la la-plus"></i>Mi panel</a>';
+					 		echo'<a href="empresa/ofertas" title="" class="post-job-btn "><i class="la la-plus"></i>Mi panel</a>';
 					 	}
 					 	
 					 }

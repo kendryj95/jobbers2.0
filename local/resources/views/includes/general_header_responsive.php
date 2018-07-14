@@ -34,7 +34,7 @@ $back="../administrator_candidatos_ver.php";
 				<?php if (session()->get('tipo_usuario')==2): ?>
 					<a href="<?= $back ?>candidashboard" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
 				<?php elseif (session()->get('tipo_usuario')==1): ?>
-					<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
+					<a href="empresa/ofertas" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
 				<?php endif; ?>
 			<?php else: ?>
 				<ul class="account-btns">
