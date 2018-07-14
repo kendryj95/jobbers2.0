@@ -47,50 +47,62 @@
             <aside class="col-lg-3 column border-right" style="padding-left: 0px;
               ">
               
-              <div class="widget">
-                <h3 class="sb-title open">Área</h3>
-                <div class="specialism_widget" style="">
-                  <div class="simple-checkbox">
-                    <p><input type="checkbox" name="spealism" id="as"><label for="as">Accountancy (2)</label></p>
-                    <p><input type="checkbox" name="spealism" id="asd"><label for="asd">Banking (2)</label></p>
-                    <p><input type="checkbox" name="spealism" id="errwe"><label for="errwe">Charity &amp; Voluntary (3)</label></p>
-                    <p><input type="checkbox" name="spealism" id="fdg"><label for="fdg">Digital &amp; Creative (4)</label></p>
-                    <p><input type="checkbox" name="spealism" id="sc"><label for="sc">Estate Agency (3)</label></p>
-                    <p><input type="checkbox" name="spealism" id="aw"><label for="aw">Graduate (2)</label></p>
-                    <p><input type="checkbox" name="spealism" id="ui"><label for="ui">IT Contractor (7)</label></p>
+              <form action="empresas" method="POST" id="form_filter">
+                <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+                <div class="widget">
+                  <h3 class="sb-title open">Cargo</h3>
+                  <div class="search_widget_job">
+                    <div class="field_w_search">
+                      <input type="text" name="cargo" id="cargo" value="<?= isset($_POST["cargo"]) ? $_POST["cargo"] : "" ?>" placeholder="Ej: Operador">
+                      <i class="la la-search">
+                      </i>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title open">Provincia</h3>
-                <div class="specialism_widget" style="">
-                  <div class="simple-checkbox">
-                    <p><input type="checkbox" name="spealism" id="t1"><label for="t1">1 - 10</label></p>
-                    <p><input type="checkbox" name="spealism" id="t2"><label for="t2">100 - 200</label></p>
-                    <p><input type="checkbox" name="spealism" id="t3"><label for="t3">201 - 301</label></p>
-                    <p><input type="checkbox" name="spealism" id="t4"><label for="t4">301 - 401</label></p>
-                    <p><input type="checkbox" name="spealism" id="t5"><label for="t5">401 - 501</label></p>
-                    <p><input type="checkbox" name="spealism" id="t6"><label for="t6">501 - 601</label></p>
-                    <p><input type="checkbox" name="spealism" id="t7"><label for="t7">601 - 701</label></p>
+                <div class="widget">
+                  <h3 class="sb-title open">Industrias</h3>
+                  <div class="specialism_widget" style="">
+                    <div class="simple-checkbox">
+                      <?php foreach ($sectores as $sect): ?>
+                      <p><input type="checkbox" onclick="filter()" name="sectores[]" value="<?= $sect->id_sector ?>" id="sect_<?= $sect->id_sector ?>"><label for="sect_<?= $sect->id_sector ?>" id="label_sect_<?= $sect->id_sector ?>"><?= $sect->sector ?> </label>&nbsp;(<?= $sect->cantidad ?>)</p>
+                      <?php endforeach; ?>
                   </div>
                 </div>
-              </div>
-              <div class="widget">
-                <h3 class="sb-title open">Localidad</h3>
-                <div class="specialism_widget" style="">
-                  <div class="simple-checkbox">
-                    <p><input type="checkbox" name="spealism" id="t1"><label for="t1">1 - 10</label></p>
-                    <p><input type="checkbox" name="spealism" id="t2"><label for="t2">100 - 200</label></p>
-                    <p><input type="checkbox" name="spealism" id="t3"><label for="t3">201 - 301</label></p>
-                    <p><input type="checkbox" name="spealism" id="t4"><label for="t4">301 - 401</label></p>
-                    <p><input type="checkbox" name="spealism" id="t5"><label for="t5">401 - 501</label></p>
-                    <p><input type="checkbox" name="spealism" id="t6"><label for="t6">501 - 601</label></p>
-                    <p><input type="checkbox" name="spealism" id="t7"><label for="t7">601 - 701</label></p>
+                <div class="widget">
+                  <h3 class="sb-title open">Provincia</h3>
+                  <div class="specialism_widget" style="">
+                    <div class="simple-checkbox">
+                      <?php foreach ($provincias as $prov): ?>
+                      <p><input type="checkbox" onclick="filter()" name="provincias[]" value="<?= $prov->id_provincia ?>" id="prov_<?= $prov->id_provincia ?>"><label for="prov_<?= $prov->id_provincia ?>" id="label_prov_<?= $prov->id_provincia ?>"><?= $prov->provincia ?></label>&nbsp; (<?= $prov->cantidad ?>)</p>
+                        <?php endforeach; ?>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div class="widget">
+                  <h3 class="sb-title open">Localidad</h3>
+                  <div class="specialism_widget" style="">
+                    <div class="simple-checkbox">
+                      <?php foreach ($localidades as $loc): ?>
+                      <p><input type="checkbox" onclick="filter()" name="localidades[]" value="<?= $loc->id_localidad ?>" id="loc_<?= $loc->id_localidad ?>"><label for="loc_<?= $loc->id_localidad ?>" id="label_loc_<?= $loc->id_localidad ?>"><?= $loc->localidad ?></label>&nbsp; (<?= $loc->cantidad ?>)</p>
+                      <?php endforeach; ?>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </aside>
             <div class="col-lg-9 column">
+              <div class="modrn-joblist">
+                <div class="tags-bar" id="filtros">
+                  
+                  <div class="action-tags">
+                    <a title="" onclick="limpiar()"><i class="la la-trash-o"></i> Quitar filtros</a>
+                  </div>
+                </div>
+                <!-- Tags Bar -->
+                <div class="filterbar">
+                  <h5><?php echo count($empresas);?> Empresas</h5>
+                </div>
+              </div>
               <div class="emply-list-sec">
                 <?php foreach ($empresas as $empresa): ?>
                   <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
@@ -101,7 +113,7 @@
                     <div class="emply-list-info">
                       <!-- <div class="emply-pstn">4 Open Position</div> -->
                       <h3><a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><?= $empresa->nombre_empresa ?></a></h3>
-                      <span><?= $empresa->sector ?></span>
+                      <span><i class="fa fa-cubes"></i> <?= $empresa->sector ?></span>
                       <h6><i class="la la-map-marker"></i> <?= $empresa->direccion ?></h6>
                       <?php $description = strlen($empresa->descripcion) > 180 ? substr($empresa->descripcion, 0, 180) . '...' : $empresa->descripcion ?>
                       <p><?= $description ?></p>
@@ -144,6 +156,56 @@
                   <script src="local/resources/views/js/select-chosen.js" type="text/javascript">
                   </script>
                   <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
+                  </script>
+
+                  <script>
+                    function filter()
+                    {
+                      $('#form_filter').submit();
+                    }
+
+                    function limpiar()
+                    {
+                       
+                      $('input[type="checkbox"]').prop('checked' , false);
+                      $('#cargo').val("");
+                      $("#form_filter").submit();
+                    }
+
+                    function filtros_set_var(descripcion)
+                    { 
+                      $("#filtros").append('<span>'+descripcion+'</span>'); 
+                    }
+
+                    function set_check(parametro)
+                    {
+                      $("#"+parametro).attr('checked', 'true');
+                    }
+
+                    <?php if (isset($variables['cargo']) && $variables['cargo'] != ""): ?>
+                         filtros_set_var("<?= $variables['cargo'] ?>");
+                    <?php endif ?>
+
+                    <?php if (isset($variables['provincias']) && count($variables['provincias'])>0): ?>
+                         <?php foreach ($variables['provincias'] as $key): ?>
+                         filtros_set_var($("#label_prov_<?= $key ?>").text());
+                         set_check("prov_<?= $key ?>");
+                       <?php endforeach; ?>
+                    <?php endif; ?>
+
+                    <?php if (isset($variables['sectores']) && count($variables['sectores'])>0): ?>
+                         <?php foreach ($variables['sectores'] as $key): ?>
+                         filtros_set_var($("#label_sect_<?= $key ?>").text());
+                         set_check("sect_<?= $key ?>");
+                       <?php endforeach; ?>
+                    <?php endif; ?>
+
+                    <?php if (isset($variables['localidades']) && count($variables['localidades'])>0): ?>
+                         <?php foreach ($variables['localidades'] as $key): ?>
+                         filtros_set_var($("#label_loc_<?= $key ?>").text());
+                         set_check("loc_<?= $key ?>");
+                       <?php endforeach; ?>
+                    <?php endif; ?>
                   </script>
                 </body>
               </html>

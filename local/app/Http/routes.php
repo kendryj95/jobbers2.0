@@ -127,6 +127,7 @@ Route::post('testcontrolador', 'con_candidatos@test_controlador');
 //*                RUTAS PARA LAS EMPRESAS               *//
 //********************************************************//
 Route::get('empresas', 'con_empresa@ver');
+Route::post('empresas', 'con_empresa@ver');
 Route::get('empresa', 'con_empresa@login');
 Route::get('empresa/registro', 'con_empresa@registroView');
 Route::post('empresa/exists', 'con_empresa@existEmpresa'); // Verifica si existe la empresa o no.

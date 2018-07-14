@@ -15,10 +15,96 @@ class con_empresa extends Controller
 
     public function ver()
     {
-        $empresas = DB::select("SELECT e.id AS id_empresa, e.nombre AS nombre_empresa, e.descripcion, CONCAT(l.localidad,', ',p.provincia) AS direccion, l.localidad, p.provincia, a.nombre_aleatorio AS imagen, asec.nombre AS sector FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id LEFT JOIN tbl_localidades l ON e.localidad=l.id LEFT JOIN tbl_archivos a ON e.id_imagen=a.id LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id");
+
+        $condiciones = "";
+
+        if(isset($_POST['cargo']) && $_POST['cargo'] != "")
+        {
+            
+            $condiciones .= " WHERE e.nombre LIKE '%$_POST[cargo]%'";
+        }
+
+        if(isset($_POST['sectores']) && count($_POST['sectores']))
+        {
+            $temp= []; 
+            foreach ($_POST['sectores'] as $key) {
+                $temp[] = $key;
+            }
+
+            if ($condiciones != "") {
+                $condiciones .= " AND e.sector IN (".implode(",", $temp).")";
+            } else {
+
+                $condiciones .= " WHERE e.sector IN (".implode(",", $temp).")";
+            }
+
+        }
+
+        if(isset($_POST['provincias']) && count($_POST['provincias']))
+        {
+            $temp= []; 
+            foreach ($_POST['provincias'] as $key) {
+                $temp[] = $key;
+            }
+
+            if ($condiciones != "") {
+                $condiciones .= " AND e.provincia IN (".implode(",", $temp).")";
+            } else {
+                $condiciones .= " WHERE e.provincia IN (".implode(",", $temp).")";
+            }
+        }
+
+        if(isset($_POST['localidades']) && count($_POST['localidades']))
+        {
+            $temp= []; 
+            foreach ($_POST['localidades'] as $key) {
+                $temp[] = $key;
+            }
+
+            if ($condiciones != "") {
+                $condiciones .= " AND e.localidad IN (".implode(",", $temp).")";
+            } else {
+                $condiciones .= " WHERE e.localidad IN (".implode(",", $temp).")";
+            }
+        }
+
+        $peticion = "
+        SELECT 
+        e.id AS id_empresa, 
+        e.nombre AS nombre_empresa, 
+        e.descripcion, 
+        CONCAT(l.localidad,', ',p.provincia) AS direccion, 
+        l.localidad, 
+        p.provincia, 
+        a.nombre_aleatorio AS imagen, 
+        asec.nombre AS sector";
+
+        $consulta_gral = "
+        FROM tbl_empresa e 
+        LEFT JOIN tbl_provincias p ON e.provincia=p.id 
+        LEFT JOIN tbl_localidades l ON e.localidad=l.id 
+        LEFT JOIN tbl_archivos a ON e.id_imagen=a.id 
+        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
+        $condiciones GROUP BY id_empresa";
+
+        $empresas = DB::select($peticion . " " . $consulta_gral);
+
+        $sql_provincias = "SELECT p.provincia, e.provincia AS id_provincia, COUNT(e.provincia) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id WHERE p.id IN (SELECT e.provincia $consulta_gral) GROUP BY id_provincia";
+
+        $sql_sectores = "SELECT asec.nombre AS sector, e.sector AS id_sector, COUNT(e.sector) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id WHERE asec.id IN (SELECT e.sector $consulta_gral) GROUP BY id_sector";
+
+        $sql_localidades = "SELECT l.localidad, e.localidad AS id_localidad, COUNT(e.localidad) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_localidades l ON e.localidad=l.id WHERE l.id IN (SELECT e.localidad $consulta_gral) GROUP BY id_localidad";
+
+        $sectores = DB::select($sql_sectores);
+        $provincias = DB::select($sql_provincias);
+        $localidades = DB::select($sql_localidades);
 
         $params = [
-            "empresas" => $empresas
+            "empresas" => $empresas,
+            "provincias" => $provincias,
+            "sectores" => $sectores,
+            "localidades" => $localidades,
+            "variables" => $_POST,
         ];
         return view('empresas_ver', $params);
     }
