@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 		
 	</head>
-	<body style="background-image: url('local/resources/views/images/fondo_soportista.jpg');background-repeat: no-repeat;background-position: center;">
+	<body style="background-image: url('local/resources/views/images/fondo_soportista.jpg'); background-size: cover; background-repeat: no-repeat;background-position: center; height: 100vh">
 		<div class="theme-layout" id="scrollup">
 			
 			<section>

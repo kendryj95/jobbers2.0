@@ -1,11 +1,11 @@
 <?php  
 
-// $dir = '';
-// if ($_SERVER["SERVER_NAME"] == "localhost") {
-// 	$dir = "/jobbers2.0";
-// } else {
-// 	$dir = "/jobbersv2";
-// }
+$dir = '';
+if ($_SERVER["SERVER_NAME"] == "localhost") {
+	$dir = "/jobbers2.0";
+} else {
+	$dir = "/jobbersv2";
+}
 
 $back="";
 if(isset($atras) && $atras==1)
@@ -21,10 +21,10 @@ $back="../administrator_candidatos_ver.php";
 		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>
 		<div class="menu-resaction">
 			<div class="res-openmenu">
-				<img src="local/resources/views/images/icon.png" alt="" /> Menú
+				<img src="<?= $dir ?>/local/resources/views/images/icon.png" alt="" /> Menú
 			</div>
 			<div class="res-closemenu">
-				<img src="local/resources/views/images/icon2.png" alt="" /> Cerrar
+				<img src="<?= $dir ?>/local/resources/views/images/icon2.png" alt="" /> Cerrar
 			</div>
 		</div>
 	</div>

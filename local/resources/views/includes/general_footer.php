@@ -8,7 +8,7 @@
 							<div class="logo">
 								<a href="#" title=""><img src="<?php echo $back;?>local/resources/views/images/jobbers_logo_144.jpg" alt="" /></a>
 							</div>
-							<span>Cordoba, Argentina.</span>
+							<span>Córdoba, Argentina.</span>
 							<span>administracion@jobbersargentina.net</span>
 							<div class="social">
 								<a href="https://www.facebook.com/jobbersarg/" title=""><i class="fa fa-facebook"></i></a>
