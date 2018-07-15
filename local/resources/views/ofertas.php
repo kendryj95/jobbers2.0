@@ -266,7 +266,7 @@ $mi_tokken=csrf_token();
                     </div>
                   </div>
 
-                  <h5>Ofertas de trabajo
+                  <h5><?= count($publicaciones) ?> Ofertas de trabajo
                   </h5>
                 </div>
               </div>
