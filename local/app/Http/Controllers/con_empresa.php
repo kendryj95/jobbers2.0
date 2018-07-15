@@ -68,6 +68,8 @@ class con_empresa extends Controller
             }
         }
 
+
+
         $peticion = "
         SELECT 
         e.id AS id_empresa, 
@@ -88,6 +90,28 @@ class con_empresa extends Controller
         $condiciones GROUP BY id_empresa";
 
         $empresas = DB::select($peticion . " " . $consulta_gral);
+        $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa");
+
+        /**
+        * PAGINACIÓN
+        */
+
+        $tamPag = 3;
+        $numReg = count($empresas);
+        $paginas = ceil($numReg/$tamPag);
+        $limit = "";
+        $paginaAct = "";
+        if (!isset($_GET['pag'])) {
+            $paginaAct = 1;
+            $limit = 0;
+        } else {
+            $paginaAct = $_GET['pag'];
+            $limit = ($paginaAct-1) * $tamPag;
+        }
+
+        $empresas = DB::select($peticion . " " . $this->consultaGral($condiciones, $limit, $tamPag));
+
+        ####################
 
         $sql_provincias = "SELECT p.provincia, e.provincia AS id_provincia, COUNT(e.provincia) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id WHERE p.id IN (SELECT e.provincia $consulta_gral) GROUP BY id_provincia";
 
@@ -101,13 +125,32 @@ class con_empresa extends Controller
 
         $params = [
             "empresas" => $empresas,
+            "totalEmpresas" => $totalEmpresas[0]->count,
             "provincias" => $provincias,
             "sectores" => $sectores,
             "localidades" => $localidades,
             "variables" => $_POST,
+            "paginas" => $paginas,
+            "paginaAct" => $paginaAct
         ];
         return view('empresas_ver', $params);
     }
+
+
+    private function consultaGral($condiciones, $limit, $tamPag)
+    {
+        
+        $consulta_gral = "
+        FROM tbl_empresa e 
+        LEFT JOIN tbl_provincias p ON e.provincia=p.id 
+        LEFT JOIN tbl_localidades l ON e.localidad=l.id 
+        LEFT JOIN tbl_archivos a ON e.id_imagen=a.id 
+        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
+        $condiciones GROUP BY id_empresa LIMIT $limit, $tamPag";
+
+        return $consulta_gral;
+    }
+
     public function index()
     {
         return view('administrator_empresas_ver');
