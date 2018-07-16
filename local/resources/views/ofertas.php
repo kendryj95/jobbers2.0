@@ -266,7 +266,7 @@ $mi_tokken=csrf_token();
                     </div>
                   </div>
 
-                  <h5><?= count($publicaciones) ?> Ofertas de trabajo
+                  <h5><?= $totalPublicaciones ?> Ofertas de trabajo
                   </h5>
                 </div>
               </div>
@@ -319,6 +319,45 @@ $mi_tokken=csrf_token();
                     </i>
                   </div></div>';
                   }?>
+
+                  <div class="pagination">
+                    <ul>
+                      <?php  
+                        if (isset($_GET['pag'])) {
+                          if ($_GET['pag'] != 1) {
+                            $previous = intval($_GET['pag']) - 1;
+                          } else {
+                            $previous = 1;
+                          }
+                        } else {
+                          $previous = 1;
+                        }
+                      ?>
+                      <li class="prev"><a href="ofertas?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Prev</a></li>
+                      <!-- <li><a href="">1</a></li>
+                      <li class="active"><a href="">2</a></li>
+                      <li><a href="">3</a></li>
+                      <li><span class="delimeter">...</span></li>
+                      <li><a href="">14</a></li> -->
+                      <?php for ($i=0;$i<$paginas;$i++): ?>
+                        <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
+                        <li class="<?= $active ?>"><a href="ofertas?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+                      <?php endfor; ?>
+                      <?php  
+                        if (isset($_GET['pag'])) {
+                          if ($_GET['pag'] != $paginas) {
+                            $next = intval($_GET['pag']) + 1;
+                          } else {
+                            $next = $paginas;
+                          }
+                        } else {
+                          $next = 2;
+                        }
+                      ?>
+                      <li class="next"><a href="ofertas?pag=<?= $next ?>">Next <i class="la la-long-arrow-right"></i></a></li>
+                    </ul>
+                  </div> <!-- Pagination -->
+
                 </div>
               </div>
             </div>

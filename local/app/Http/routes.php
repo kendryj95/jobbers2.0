@@ -32,11 +32,11 @@ Route::get('candidatos', 'con_candidatos@index');
 Route::post('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
-Route::get('redaptores',  function () {return view('noticias_login');});  
-Route::post('logredaptores', 'con_noticias_dashboard@login');
+Route::get('redactores',  function () {return view('noticias_login');});  
+Route::post('logredactores', 'con_noticias_dashboard@login');
 
 //********************************************************//
-//*                RUTAS PARA LOS REDAPTORES             *//
+//*                RUTAS PARA LOS REDACTORES             *//
 //********************************************************// s
 Route::group(['middleware' => 'log_r'], function () {
 Route::get('notipublicaciones', 'con_noticias_dashboard@publicaciones');
@@ -49,7 +49,7 @@ Route::get('noticiadel/{id}', 'con_noticias_dashboard@del_publicacion');
 Route::get('noticiaestado/{idnoticia}/{estado}', 'con_noticias_dashboard@set_estado');
 Route::get('panelnoticias/{id}', 'con_noticias_dashboard@editar_noticia');
 Route::post('editpublicacion', 'con_noticias_dashboard@edit_publicacion');
-Route::get('redaptoressalir', 'con_noticias_dashboard@salir');  
+Route::get('redactoressalir', 'con_noticias_dashboard@salir');  
 });
 //********************************************************//
 //*           RUTAS PARA EL PROCESO DE POSTULADOS 		  *//

@@ -9,6 +9,9 @@
 @media (max-width:1300px) {}
 
 @media (max-width:1200px) {
+    .res-logo>a img {
+        width: 120px;
+    }
     .mt-responsive {
         margin-top: 110px;
     }
@@ -146,12 +149,15 @@
     }
 }
 
+@media (min-width: 1024px) {
+    .blogpost.style2 {
+        max-width: 100%;
+    }
+}
+
 @media (max-width:1024px) {
     .align-responsive {
         text-align: center;
-    }
-    .res-logo>a img {
-        width: 120px;
     }
     .column {
         float: left;
@@ -477,6 +483,24 @@
 }
 
 @media (max-width:768px) {
+    .post-metas>li,
+    .post-metas>li a,
+    .post-metas>li a i {
+        float: initial;
+    }
+    .post-metas>li {
+        margin-right: 0px;
+    }
+    .bbutton {
+        margin-top: 20px;
+        float: initial;
+    }
+    /* .post-metas>li a{
+        float: initial;
+    }
+    .post-metas>li a i{
+        float: initial;
+    } */
     .job-single-info3>span {
         float: initial;
         margin-bottom: 10px;
@@ -545,6 +569,7 @@
     }
     .blogpost.style2 {
         display: inline;
+        text-align: center
     }
     .blogpost.style2 .blog-posthumb {
         display: inline-block;
@@ -965,6 +990,20 @@
 }
 
 @media (max-width:520px) {
+    .blogpost.style2 .blog-posthumb {
+        float: initial;
+    }
+    .blog-posthumb>a {
+        float: initial;
+    }
+    .blog-posthumb>a img {
+        display: block;
+        float: initial;
+        margin: auto;
+    }
+    .d-none {
+        display: none;
+    }
     .error-sec form>input {
         float: left;
         width: 100%;

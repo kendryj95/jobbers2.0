@@ -87,7 +87,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_localidades l ON e.localidad=l.id 
         LEFT JOIN tbl_archivos a ON e.id_imagen=a.id 
         LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
-        $condiciones GROUP BY id_empresa";
+        $condiciones GROUP BY e.id";
 
         $empresas = DB::select($peticion . " " . $consulta_gral);
         $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa");
@@ -146,7 +146,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_localidades l ON e.localidad=l.id 
         LEFT JOIN tbl_archivos a ON e.id_imagen=a.id 
         LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
-        $condiciones GROUP BY id_empresa LIMIT $limit, $tamPag";
+        $condiciones GROUP BY e.id LIMIT $limit, $tamPag";
 
         return $consulta_gral;
     }

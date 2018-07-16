@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 		
 	</head>
-	<body style="background-image: url('local/resources/views/images/fondo_soportista.jpg');background-repeat: no-repeat;background-position: center;">
+	<body style="background-image: url('local/resources/views/images/fondo_soportista.jpg'); background-size: cover; background-repeat: no-repeat;background-position: center; height: 100vh">
 		<div class="theme-layout" id="scrollup">
 			
 			<section>
@@ -30,8 +30,8 @@
 										<div class="text-center">
 											<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
 										</div>
-										<span>Redaptores Jobbers</span>
-										<form style="padding: 10px;" action="logredaptores" method="post">
+										<span>Redactores Jobbers</span>
+										<form style="padding: 10px;" action="logredactores" method="post">
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 											<div class="cfield">
 												<input name="correo" type="text" placeholder="Correo electrónico" />

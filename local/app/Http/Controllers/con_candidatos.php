@@ -186,6 +186,23 @@ class con_candidatos extends Controller
 
             try {
                 $datos_candidatos=DB::select($sql_candidatos); 
+                $total_datos_candidatos=DB::select("SELECT COUNT(*) AS count $consulta_general");
+
+                ####### PAGINACIÓN #########
+                $tamPag = 3;
+                $numReg = count($datos_candidatos);
+                $paginas = ceil($numReg/$tamPag);
+                $limit = "";
+                $paginaAct = "";
+                if (!isset($_GET['pag'])) {
+                    $paginaAct = 1;
+                    $limit = 0;
+                } else {
+                    $paginaAct = $_GET['pag'];
+                    $limit = ($paginaAct-1) * $tamPag;
+                }
+
+                $datos_candidatos=DB::select($this->consultaPagination($condiciones,$limit,$tamPag)); 
 
                 $datos_habilidades=DB::select($sql_habilidades);
                 $datos_provincias=DB::select($sql_provincias);
@@ -207,6 +224,9 @@ class con_candidatos extends Controller
                 $vista->datos_salarios=$datos_salarios;
                 $vista->datos_candidatos=$datos_candidatos;
                 $vista->variables=$_POST;
+                $vista->total_datos_candidatos=$total_datos_candidatos[0]->count;
+                $vista->paginas=$paginas;
+                $vista->paginaAct=$paginaAct;
 
              return $vista;
             } catch (Exception $e) {
@@ -214,6 +234,26 @@ class con_candidatos extends Controller
             }
         }
     	
+    }
+
+    private function consultaPagination($condiciones,$limit,$tamPag)
+    {
+        $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
+
+        $consulta_general="FROM tbl_usuarios t1
+            LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
+            LEFT JOIN tbl_candidato_info_contacto t3 ON t3.id_usuario = t1.id
+            LEFT JOIN tbl_candidato_preferencias_laborales t6 ON t6.id_usuario = t1.id
+            LEFT JOIN tbl_disponibilidad t7 ON t7.id = t6.id_jornada
+            LEFT JOIN tbl_provincias t4 ON t4.id = t3.id_provincia
+            LEFT JOIN tbl_localidades t5 ON t5.id = t3.id_localidad
+            LEFT JOIN tbl_usuarios_foto_perfil t8 ON t8.id_usuario = t1.id
+            LEFT JOIN tbl_archivos t9 ON t9.id = t8.id_foto
+            LEFT JOIN vista_filtros_candidatos_v3 t10 ON t10.f_id = t1.id
+            WHERE t1.tipo_usuario = 2 ".$condiciones."
+            AND t1.id_estatus = 1 LIMIT $limit,$tamPag";
+
+            return $peticion . " " . $consulta_general;
     }
 
     function test_controlador()
