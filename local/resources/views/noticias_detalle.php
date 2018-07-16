@@ -17,13 +17,13 @@
 		<?php $atras=1;?>
 		<?php include('local/resources/views/includes/general_header.php');?>
 		<?php include('local/resources/views/includes/general_header_responsive.php');?>
-		<section class="overlape">
-			<div class="block no-padding">
-				<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_noticias.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+		<section class="overlape mt-responsive">
+			<div class="block no-padding d-none">
+			<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_noticias.jpg) repeat scroll 50% -6vh transparent;" class="parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
 				<div class="container fluid">
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="inner-header">
+							<div class="inner-header img-header-news">
 								<h3></h3>
 							</div>
 						</div>
@@ -39,7 +39,7 @@
 						<div class="blog-single">
 							<div class="bs-thumb"> 
 								<?php if ($datos[0]->foto!=""): ?>
-									<img style="height: 340px;max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt="">
+									<img style="max-height: 340px;max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt="">
 								<?php endif ?>  
 							</div>
 							<ul class="post-metas"> <li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $datos[0]->tmp;?></a></li></ul>

@@ -18,7 +18,7 @@
 			<?php include('local/resources/views/includes/header_noticias.php');?>
 			<!--fin Header responsive-->
 			
-			<section style="margin-bottom: 20px;">
+			<section class="overlape mt-responsive">
 				<div class="block no-padding" >
 					<div class="container">
 						<div class="row no-gape" style="min-height: 500px;">
