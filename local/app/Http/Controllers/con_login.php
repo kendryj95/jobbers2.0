@@ -36,14 +36,15 @@ class con_login extends Controller
                             e.nombre AS nombre_empresa,
                             ep.id_plan
                             FROM tbl_empresa e
-                            INNER JOIN tbl_archivos a ON e.id_imagen=a.id
-                            INNER JOIN tbl_empresas_planes ep ON e.id=ep.id_empresa
+                            LEFT JOIN tbl_archivos a ON e.id_imagen=a.id
+                            LEFT JOIN tbl_empresas_planes ep ON e.id=ep.id_empresa
                             WHERE e.id_usuario=?";
 
                     $datos_emp = DB::select($sql, [$datos[0]->id]);
 
                     /** VARIABLES DE SESSION ESPECIFICAS PARA EMPRESA **/
 
+                    $request->session()->set($prefijo, $datos[0]->correo);
                     $request->session()->set($sufijo . 'ide', $datos_emp[0]->id_empresa);
                     $request->session()->set($sufijo . 'imagen', $datos_emp[0]->imagen);
                     $request->session()->set($sufijo . 'nombre_empresa', $datos_emp[0]->nombre_empresa);
@@ -186,11 +187,21 @@ class con_login extends Controller
     public function register()
     {
         $correo = trim(strtolower($_POST['correo']));
-        $sql = "
-        INSERT INTO tbl_usuarios
-        VALUES(null,'" . $correo . "','','" . md5($_POST['clave']) . "'," . $_POST['tipo'] . ",'" . $this->aleatorio(45) . "',1,'',null)";
+        
+        $sql = "INSERT INTO tbl_usuarios(correo,usuario,clave,tipo_usuario,token,id_estatus,token_referido)VALUES(?,'',?,?,?,1,'')";
+
         try {
-            DB::insert($sql);
+            DB::insert($sql, [$correo, md5($_POST['clave']), $_POST['tipo'], $this->aleatorio(45)]);
+
+            if ($_POST['tipo'] == 1) {
+                $id_usuario = DB::getPdo()->lastInsertId();
+                $sql1 = "INSERT INTO tbl_empresa(id_usuario,nombre,responsable,razon_social,cuit,telefono,id_imagen) VALUES(?,'','','','','',1)";
+                DB::insert($sql1, [$id_usuario]);
+
+                $sql2 = "INSERT INTO tbl_empresas_planes(id_empresa,id_plan) VALUES (?,1)";
+                $id_empresa = DB::getPdo()->lastInsertId();
+                DB::insert($sql2, [$id_empresa]);
+            }
             return Redirect("login?success=Registrado satisfactoriamente");
         } catch (Exception $e) {
 
