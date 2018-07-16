@@ -12,7 +12,7 @@
 				<li >
 					<a href="<?php echo $back;?>noticias" title=""><i class="la la-file-text"></i>Ver noticias</a>
 				</li>  
-				<li><a href="<?php echo $back;?>redaptoressalir" title=""><i class="la la-arrow-left"></i>Salir</a></li>
+				<li><a href="<?php echo $back;?>redactoressalir" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 			</ul>
 		</div>
 	</div>
