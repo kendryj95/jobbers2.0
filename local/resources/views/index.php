@@ -34,10 +34,9 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-featured-sec">
+									<!-- Para efecto de slider agregar mas elementos a la lista. -->
 									<ul class="main-slider-sec text-arrows">
 										<li class="slideHome"><img src="local/resources/views/images/fondo_inicio.jpg" alt="" /></li>
-										<li class="slideHome"><img src="http://placehold.it/1600x800" alt="" /></li>
-										<li class="slideHome"><img src="http://placehold.it/1600x800" alt="" /></li>
 									</ul>
 									<div class="job-search-sec">
 										<div class="job-search">

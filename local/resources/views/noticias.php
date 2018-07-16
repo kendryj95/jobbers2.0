@@ -18,7 +18,7 @@
 		<?php include('local/resources/views/includes/general_header.php');?>
 		<?php include('local/resources/views/includes/general_header_responsive.php');?>
 		<section class="overlape mt-responsive">
-			<div class="block no-padding">
+			<div class="block no-padding d-none">
 				<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_noticias.jpg) repeat scroll 50% -6vh transparent;" class="parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
 				<div class="container fluid">
 					<div class="row">
@@ -38,12 +38,12 @@
 						<div class="col-lg-9 column">
 							<div class="bloglist-sec">
 								<?php foreach ($datos as $key): ?>
-								<div class="blogpost style2">
+								<div class="col-sm-6 blogpost style2">
 										
 									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title="">
 
 										<?php if ($key->foto!=""): ?>
-											<img style="width: 322px;height: 280px;border-radius: 10px;border:1px solid #e0e0e0;" src="imagenes_noticias/<?php echo $key->foto;?>" alt="" />
+											<img style="width: 322px;max-height: 280px;border-radius: 10px;border:1px solid #e0e0e0;" src="imagenes_noticias/<?php echo $key->foto;?>" alt="" />
 										<?php endif ?> 
 									</a> </div>
 								
@@ -76,7 +76,7 @@
 									<div class="widget">
 										
 										<div class="widget">
-											<h3>Categorias</h3>
+											<h3>Categorías</h3>
 											<div class="sidebar-links">
 												<?php foreach ($datos_categorias as $key): ?>
 													<form id="form_id_<?php echo $key->id;?>" action="noticias" method="POST">
@@ -117,5 +117,6 @@
 			</div>
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>   
+			<script src="local/resources/views/js/script.js" type="text/javascript"></script>   
 		</body>
 	</html>
