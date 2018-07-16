@@ -199,7 +199,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="heading">
-										<h2>Jobbers Tips</h2>
+										<h2>Tips Jobbers</h2>
 										<span>Sigue nuestros consejos y encontrarás el empleo que buscas.</span>
 									</div>
 									<div class="blog-sec">
@@ -250,7 +250,7 @@
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			
 			<script src="local/resources/views/plugins/botones/assets/js/jquery.js" type="text/javascript"></script> 
-			 
+			<script src="local/resources/views/js/script.js" type="text/javascript"></script> 
 			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script> 
 			<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
 			<script type="text/javascript">
