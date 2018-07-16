@@ -183,6 +183,26 @@ class con_ofertas extends Controller
             $favoritos      = DB::select($sql_favoritos);
 
             $publicaciones = DB::select($sql_ofertas);
+            $totalPublicaciones = DB::select("SELECT COUNT(*) AS count FROM tbl_publicacion WHERE estatus=1");
+
+            ####### PAGINACIÓN ########
+
+            $tamPag = 3;
+            $numReg = count($publicaciones);
+            $paginas = ceil($numReg/$tamPag);
+            $limit = "";
+            $paginaAct = "";
+            if (!isset($_GET['pag'])) {
+                $paginaAct = 1;
+                $limit = 0;
+            } else {
+                $paginaAct = $_GET['pag'];
+                $limit = ($paginaAct-1) * $tamPag;
+            }
+
+            $sql_ofertas = $this->consultaPagination($condiciones, $limit, $tamPag);
+
+            $publicaciones = DB::select($sql_ofertas);
 
             //$vista->antiguedad=$antiguedad;
             $vista->favoritos      = $favoritos;
@@ -197,10 +217,31 @@ class con_ofertas extends Controller
             $vista->localidad      = $localidad;
             $vista->publicaciones  = $publicaciones;
             $vista->variables  = $_POST;
+            $vista->paginas  = $paginas;
+            $vista->paginaAct  = $paginaAct;
+            $vista->totalPublicaciones  = $totalPublicaciones[0]->count;
             return $vista;
         } catch (Exception $e) {
 
         }
+    }
+
+    private function consultaPagination($condiciones, $limit, $tamPag)
+    {
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
+
+        $consulta_general="FROM tbl_publicacion t1
+            LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
+            LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
+            LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
+            LEFT JOIN tbl_areas t5 ON t1.id_area = t5.id
+            LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
+            LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
+            LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
+            WHERE t1.estatus = 1 ".$condiciones."
+            GROUP BY t1.id LIMIT $limit,$tamPag";
+
+            return $peticion . " " . $consulta_general;
     }
 
     public function detalle($id)

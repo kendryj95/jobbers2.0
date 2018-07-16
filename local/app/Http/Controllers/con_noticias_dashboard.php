@@ -214,7 +214,7 @@ class con_noticias_dashboard extends Controller
 	   		}
 	   		else
 	   		{
-	   			return Redirect("redaptores");
+	   			return Redirect("redactores");
 	   		}
 	   	} catch (Exception $e) {
 	   		
@@ -225,6 +225,6 @@ class con_noticias_dashboard extends Controller
     { 
         $request->session()->forget('redaptores');
         $request->session()->forget('nombre');
-        return redirect('redaptores');
+        return redirect('redactores');
     }
 }

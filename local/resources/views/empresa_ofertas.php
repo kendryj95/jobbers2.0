@@ -31,7 +31,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="inner-header">
-									<h3>Bienvenido <?= session()->get("emp_nombre_empresa") ?> </h3>
+									<h3>Bienvenido <?= session()->get("emp_nombre_empresa") != "" ? session()->get("emp_nombre_empresa") : session()->get("empresa") ?> </h3>
 								</div>
 							</div>
 						</div>

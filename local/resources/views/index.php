@@ -68,9 +68,9 @@
 												</div>
 											</form>
 											<div class="or-browser">
-												<!--<span>Or browse job offers by </span>
-												<a href="#" title="">category</a>-->
+												
 											</div>
+											<h4>Hoy somos 2.369 Jobbers</h4> 
 										</div>
 									</div>
 									<div class="scroll-to">
@@ -159,7 +159,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="simple-text-block">
-										<h3>Con Jobbers Llegas a cientos de empresas</h3>
+										<h3>Con Jobbers llegas a cientos de empresas</h3>
 										<span>Publica tu CV en Jobbers y encuentra el empleo que necesitas.</span>
 										<?php $url_cv = session()->get('candidato')==null ? "login" : "candicv" ?>
 										<a href="<?= $url_cv ?>" title="Adjuntar CV">Cargar mi CV</a>

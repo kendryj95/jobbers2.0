@@ -24,11 +24,11 @@ class con_index extends Controller
             LEFT JOIN tbl_disponibilidad t6 ON t6.id = t1.id_disponibilidad
             ORDER BY t1.id ASC LIMIT 0,5';
         $sql_logos_empresas = "SELECT t1.id,t2.nombre_aleatorio FROM tbl_empresa t1
-        INNER JOIN tbl_archivos t2 ON t2.id = t1.id_imagen
+        LEFT JOIN tbl_archivos t2 ON t2.id = t1.id_imagen
         LIMIT 0,5";
 
         $sql_tips = "SELECT t1.*,t2.nombre_aleatorio FROM `tbl_tips` t1
-        INNER JOIN tbl_archivos t2 ON t1.id_archivo = t2.id LIMIT 0,3";
+        LEFT JOIN tbl_archivos t2 ON t1.id_archivo = t2.id LIMIT 0,3";
 
         $sql_provincias = "SELECT * FROM tbl_provincias ORDER BY provincia";
 
