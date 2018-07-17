@@ -49,15 +49,7 @@ $mi_tokken=csrf_token();
             <aside class="col-lg-3 column border-right">
               <form action="ofertas" method="POST" id="form_filter">
                 <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
-                <!-- <div class="widget">
-                  <div class="search_widget_job">
-                    <div class="field_w_search">
-                      <input type="text" placeholder="Buscar">
-                      <i class="la la-search">
-                      </i>
-                    </div>
-                  </div>
-                </div> -->
+                
                 <div class="widget">
                   <h3 class="sb-title open">Antiguedad
                   </h3>
@@ -283,7 +275,14 @@ $mi_tokken=csrf_token();
                   <?php foreach($publicaciones as $key)
                   {
                   $estado="Activa";
+                  $imagen="";
                   if(!$estado==1){$estado="Inactiva";}
+                  if($key->imagen!="")
+                  {
+                    $imagen='<div class="c-logo">
+                        <img src="uploads/'.$key->imagen.'" alt="" style="max-width: 98px;">
+                      </div>';
+                  }
                   $corazon='';
                   if($bandera_favorito==1)
                   {
@@ -295,11 +294,9 @@ $mi_tokken=csrf_token();
                   echo'
                   <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
                   <div class="job-listing wtabs">
-                    <div class="job-title-sec">
-                      <div class="c-logo">
-                        <img src="uploads/'.$key->imagen.'" alt="" style="max-width: 98px;">
-                      </div>
-                      <h3>
+                    <div class="job-title-sec" style="padding-left:25px;";>
+                      '.$imagen.'
+                      <h3 style="font-size:24px;";>
                       <a href="detalleoferta/'.$key->id.'" title=""><span id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
                     </a>
                     </h3>

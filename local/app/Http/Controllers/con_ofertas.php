@@ -187,7 +187,7 @@ class con_ofertas extends Controller
 
             ####### PAGINACIÓN ########
 
-            $tamPag = 3;
+            $tamPag = 20;
             $numReg = count($publicaciones);
             $paginas = ceil($numReg/$tamPag);
             $limit = "";
