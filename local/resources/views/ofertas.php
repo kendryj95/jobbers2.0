@@ -296,8 +296,8 @@ $mi_tokken=csrf_token();
                   <div class="job-listing wtabs">
                     <div class="job-title-sec" style="padding-left:25px;";>
                       '.$imagen.'
-                      <h3 style="font-size:24px;";>
-                      <a href="detalleoferta/'.$key->id.'" title=""><span id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
+                      <h3>
+                      <a href="detalleoferta/'.$key->id.'" title=""><span style="font-size:18px;" id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
                     </a>
                     </h3>
                     <a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
