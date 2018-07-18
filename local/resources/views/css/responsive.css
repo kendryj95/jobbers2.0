@@ -144,6 +144,9 @@
 }
 
 @media (min-width: 1200px) {
+    .btn-extars {
+        margin-top: 10px;
+    }
     .slideHome {
         height: 700px;
     }
@@ -152,6 +155,9 @@
 @media (min-width: 1024px) {
     .blogpost.style2 {
         max-width: 100%;
+    }
+    .btn-showfilter {
+        display: none;
     }
 }
 
@@ -486,6 +492,21 @@
 }
 
 @media (max-width:768px) {
+    .btn-showfilter {
+        margin-top: 35px;
+    }
+    .btn-showfilter>button {
+        float: none;
+    }
+    #side-offers {
+        display: none;
+        padding-top: 0px;
+        margin-top: 10px;
+    }
+    #offers .filterbar,
+    #offers .tags-bar {
+        margin-top: 0px;
+    }
     .post-metas>li,
     .post-metas>li a,
     .post-metas>li a i {
@@ -732,6 +753,7 @@
         width: 100%;
         text-align: center;
         display: inline-block;
+        padding-left: 0px !important;
     }
     .job-title-sec .c-logo {
         float: none;
