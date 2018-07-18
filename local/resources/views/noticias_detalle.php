@@ -32,14 +32,14 @@
 			</div>
 		</section>
 		
-		<div class="block">
+		<div class="block" style="padding-bottom: 0px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-9 column">
 						<div class="blog-single">
 							<div class="bs-thumb"> 
 								<?php if ($datos[0]->foto!=""): ?>
-									<img style="max-height: 340px;max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt="">
+									<img style="max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt="">
 								<?php endif ?>  
 							</div>
 							<ul class="post-metas"> <li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $datos[0]->tmp;?></a></li></ul>

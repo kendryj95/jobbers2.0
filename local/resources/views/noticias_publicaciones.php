@@ -21,7 +21,7 @@
 					<div class="container" style="min-height: 500px;">
 						<div class="row no-gape">
 							<?php include('local/resources/views/includes/aside_noticias.php');?>
-							<div class="col-lg-9 column">
+							<div class="col-lg-8 offset-lg-2 col-xl-9 offset-xl-0 column">
 								<div class="padding-left">
 									<div class="manage-jobs-sec addscroll">
 										<h3>Publicaciones</h3>

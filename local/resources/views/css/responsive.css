@@ -156,6 +156,9 @@
 }
 
 @media (max-width:1024px) {
+    .manage-jobs-sec>table {
+        width: 100%;
+    }
     .align-responsive {
         text-align: center;
     }
@@ -175,9 +178,9 @@
     .container.fluid {
         padding: 0;
     }
-    .manage-jobs-sec>table {
+    /* .manage-jobs-sec>table {
         width: 1000px;
-    }
+    } */
     .manage-jobs-sec.addscroll {
         overflow-x: scroll;
         overflow-y: hidden;
@@ -990,6 +993,9 @@
 }
 
 @media (max-width:520px) {
+    .manage-jobs-sec>table {
+        width: calc(100% + 90px);
+    }
     .blogpost.style2 .blog-posthumb {
         float: initial;
     }

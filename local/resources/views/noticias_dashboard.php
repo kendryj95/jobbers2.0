@@ -5,6 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
         <link rel="stylesheet" href="local/resources/views/css/icons.css"> 
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" /> 
+        <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" /> 
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,12 +19,12 @@
 			<?php include('local/resources/views/includes/header_noticias.php');?>
 			<!--fin Header responsive-->
 			
-			<section class="overlape mt-responsive">
-				<div class="block no-padding" >
+			<section class="overlape">
+				<div class="block no-padding pb-50" >
 					<div class="container">
 						<div class="row no-gape" style="min-height: 500px;">
 							<?php include('local/resources/views/includes/aside_noticias.php');?>
-							<div class="col-lg-9 column"> 
+							<div class="col-xl-9 column"> 
 								<div class="padding-left">
 									<div class="manage-jobs-sec">
 										<h3>Publicaciones</h3> 
@@ -104,6 +105,7 @@
 				}
 			</script>
 			 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>  
+			 <script src="local/resources/views/js/script.js" type="text/javascript"></script>  
 	        <script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
 	        <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
 				<script>
