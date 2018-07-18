@@ -4257,6 +4257,7 @@ header.style4 .menu-sec nav>ul>li.menu-item-has-children>a::before {
 .job-listing.wtabs .job-title-sec {
     float: left;
     width: 70%;
+    padding-left: 25px;
 }
 
 .job-listing.wtabs .job-title-sec>a>span {
