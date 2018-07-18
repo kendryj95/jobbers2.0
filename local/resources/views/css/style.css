@@ -5183,8 +5183,8 @@ section.overlape {
 .pagination li.active a,
 .pagination li a:hover {
     color: #ffffff;
-    background-color: #8b91dd;
-    border-color: #8b91dd;
+    background-color: #2e3192;
+    border-color: #2e3192;
 }
 
 .pagination li .delimeter {
