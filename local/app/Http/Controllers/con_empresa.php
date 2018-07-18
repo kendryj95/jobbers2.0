@@ -96,7 +96,7 @@ class con_empresa extends Controller
         * PAGINACIÓN
         */
 
-        $tamPag = 3;
+        $tamPag = 20;
         $numReg = count($empresas);
         $paginas = ceil($numReg/$tamPag);
         $limit = "";

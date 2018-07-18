@@ -294,7 +294,8 @@
                     </div>
                   </div>
                   <?php endforeach ?>
-
+                  
+              <?php if ($paginas > 0): ?>
                   <div class="pagination">
                     <ul>
                       <?php  
@@ -308,16 +309,27 @@
                           $previous = 1;
                         }
                       ?>
-                      <li class="prev"><a href="candidatos?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Prev</a></li>
+                      <li class="prev"><a href="candidatos?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Atrás</a></li>
                       <!-- <li><a href="">1</a></li>
                       <li class="active"><a href="">2</a></li>
                       <li><a href="">3</a></li>
                       <li><span class="delimeter">...</span></li>
                       <li><a href="">14</a></li> -->
-                      <?php for ($i=0;$i<$paginas;$i++): ?>
-                        <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
-                        <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
-                      <?php endfor; ?>
+                      <?php if ($paginas >= 1 && $paginas <= 5): ?>
+                        <?php for ($i=0;$i<$paginas;$i++): ?>
+                          <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
+                          <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+                        <?php endfor; ?>
+                      <?php else: ?>
+                        <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
+                          <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+                          <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
+                        <?php endfor; ?>
+                        <?php if (($paginaAct+4) < $paginas): ?>
+                        <li><span class="delimeter">...</span></li>
+                        <li><a href="candidatos?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
+                        <?php endif ?>
+                      <?php endif; ?>
                       <?php  
                         if (isset($_GET['pag'])) {
                           if ($_GET['pag'] != $paginas) {
@@ -329,9 +341,10 @@
                           $next = 2;
                         }
                       ?>
-                      <li class="next"><a href="candidatos?pag=<?= $next ?>">Next <i class="la la-long-arrow-right"></i></a></li>
+                      <li class="next"><a href="candidatos?pag=<?= $next ?>">Siguiente <i class="la la-long-arrow-right"></i></a></li>
                     </ul>
                   </div> <!-- Pagination -->
+              <?php endif; ?>
                 </div> 
               </div>
             </div>
