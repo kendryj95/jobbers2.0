@@ -429,7 +429,7 @@ $mi_tokken=csrf_token();
   </script>
   <script type="text/javascript">
     $('#showFilters').click(function () {
-      $('#side-offers').fadeIn();
+      $('#side-offers').fadeToggle();
     })
 
     <?php foreach ($favoritos as $key): ?>
