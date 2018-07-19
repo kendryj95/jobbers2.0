@@ -189,7 +189,7 @@ class con_candidatos extends Controller
                 $total_datos_candidatos=DB::select("SELECT COUNT(*) AS count $consulta_general");
 
                 ####### PAGINACIÓN #########
-                $tamPag = 3;
+                $tamPag = 20;
                 $numReg = count($datos_candidatos);
                 $paginas = ceil($numReg/$tamPag);
                 $limit = "";

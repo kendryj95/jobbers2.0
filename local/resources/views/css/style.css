@@ -4257,6 +4257,7 @@ header.style4 .menu-sec nav>ul>li.menu-item-has-children>a::before {
 .job-listing.wtabs .job-title-sec {
     float: left;
     width: 70%;
+    padding-left: 25px;
 }
 
 .job-listing.wtabs .job-title-sec>a>span {
@@ -5182,8 +5183,8 @@ section.overlape {
 .pagination li.active a,
 .pagination li a:hover {
     color: #ffffff;
-    background-color: #8b91dd;
-    border-color: #8b91dd;
+    background-color: #2e3192;
+    border-color: #2e3192;
 }
 
 .pagination li .delimeter {
