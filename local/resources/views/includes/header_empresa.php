@@ -7,7 +7,7 @@
 			<div class="btns-profiles-sec">
 				<span><img src="../uploads/<?= session()->get("emp_imagen") ?>" alt="logo_empresa" width="50" height="50" /> <?= session()->get("emp_nombre_empresa") ?> <i class="la la-angle-down"></i></span>
 				<ul>
-					<li><a href="../logout" title=""><i class="la la-history"></i> Logout</a></li>
+					<li><a href="../logout" title=""><i class="la la-history"></i> Salir</a></li>
 				</ul>
 			</div>
 			<nav>

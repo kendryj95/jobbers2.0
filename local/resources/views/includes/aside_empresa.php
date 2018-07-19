@@ -22,7 +22,7 @@
 						<li onclick="location.href='planes'"><a href="planes" title="Manejar Planes">Manejar Planes</a></li>
 					</ul>
 				</li>
-				<li onclick="location.href='../logout'"><a href="../logout" title=""><i class="la la-unlink"></i>Logout</a></li>
+				<li onclick="location.href='../logout'"><a href="../logout" title=""><i class="la la-unlink"></i>Salir</a></li>
 				<!-- <li class="inner-child">
 						<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>
 						<ul>
