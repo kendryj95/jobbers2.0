@@ -6,7 +6,7 @@
 					<div class="widget">
 						<div class="about_widget">
 							<div class="logo">
-								<a href="#" title=""><img src="<?php echo $dir;?>local/resources/views/images/jobbers_logo_144.jpg" alt="" /></a>
+								<a href="#" title=""><img src="../local/resources/views/images/jobbers_logo_144.jpg" alt="" /></a>
 							</div>
 							<span>Cordoba, Argentina.</span>
 							<span>administracion@jobbersargentina.net</span>
@@ -26,11 +26,11 @@
 							<div class="link_widgets">
 								<div class="row">
 									<div class="col-lg-12 mt-col-footer">
-										<a href="<?php echo $dir;?>terminos" title="">Politicas de Jobbers</a>
-										<a href="<?php echo $dir;?>fag" title="">Preguntas frecuentes</a>
-										<a href="<?php echo $dir;?>noticias" title="">Noticias</a>
-										<a href="<?php echo $dir;?>contacto" title="">Contáctanos</a>
-										<a href="<?php echo $dir;?>nosotros" title="">¿Qué es Jobbers?</a>
+										<a href="../terminos" title="">Politicas de Jobbers</a>
+										<a href="../fag" title="">Preguntas frecuentes</a>
+										<a href="../noticias" title="">Noticias</a>
+										<a href="../contacto" title="">Contáctanos</a>
+										<a href="../nosotros" title="">¿Qué es Jobbers?</a>
 									</div>
 								</div>
 							</div>
@@ -41,10 +41,10 @@
 							<div class="link_widgets">
 								<div class="row">
 									<div class="col-lg-12 mt-col-footer">
-										<a href="<?php echo $dir;?>inicio" title="">Inicio</a>
-										<a href="<?php echo $dir;?>ofertas" title="">Ofertas de trabajo </a>
-										<a href="<?php echo $dir;?>" title="">Candidatos</a>
-										<a href="<?php echo $dir;?>empresas" title="">Empresas</a>
+										<a href="../inicio" title="">Inicio</a>
+										<a href="../ofertas" title="">Ofertas de trabajo </a>
+										<a href="../candidatos" title="">Candidatos</a>
+										<a href="../empresas" title="">Empresas</a>
 									</div>
 								</div>
 							</div>
