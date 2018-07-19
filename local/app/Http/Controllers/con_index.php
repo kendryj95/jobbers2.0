@@ -32,12 +32,16 @@ class con_index extends Controller
 
         $sql_provincias = "SELECT * FROM tbl_provincias ORDER BY provincia";
 
+        $sql_count_jobbers = "SELECT COUNT(*) AS count FROM tbl_usuarios WHERE tipo_usuario=2";
+
         try {
             $ultimas_publicaciones        = DB::select($sql_ultimas_ofertas);
             $logos_empresas               = DB::select($sql_logos_empresas);
             $tips                         = DB::select($sql_tips);
-            $provincias                         = DB::select($sql_provincias);
+            $count_jobbers                = DB::select($sql_count_jobbers);
+            $provincias                   = DB::select($sql_provincias);
             $vista->tips                  = $tips;
+            $vista->count_jobbers         = number_format($count_jobbers[0]->count, 0, '', '.');
             $vista->logos_empresas        = $logos_empresas;
             $vista->ultimas_publicaciones = $ultimas_publicaciones;
             $vista->provincias = $provincias;

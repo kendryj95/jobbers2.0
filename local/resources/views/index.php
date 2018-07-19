@@ -70,7 +70,7 @@
 											<div class="or-browser">
 												
 											</div>
-											<h4>Hoy somos 2.369 Jobbers</h4> 
+											<h4>Hoy somos <?= $count_jobbers ?> Jobbers</h4> 
 										</div>
 									</div>
 									<div class="scroll-to">
@@ -91,7 +91,7 @@
 									<div class="text-center" style="padding-top: 20px;padding-bottom: 20px;"> 
 									<img style="margin: 0 auto;width: 40%;" src="https://www.mktv.mx/wp-content/uploads/2017/07/source.gif">
 								<h3>Hola Jobbers!</h3>
-								<h5>Ya somos <strong>6.180</strong> Jobbers, y vamos por más!</h5>
+								<h5>Ya somos <strong><?= $count_jobbers ?></strong> Jobbers, y vamos por más!</h5>
 								</div>
 								<div class="col-sm-6" style="margin-bottom: 10px;">
 									<a  target="_blank"  href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jobbersargentina.net" class="btn btn-block btn-social btn-facebook"  >
