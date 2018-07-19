@@ -11,14 +11,20 @@ $back="";
 if(isset($atras) && $atras==1)
 {
 $back="../administrator_candidatos_ver.php";	
-} 
+}
+
+$back2="";
+if(isset($atras) && $atras==1)
+{
+$back2="../";	
+}  
 
 ?>
 
 
 <div class="responsive-header">
 	<div class="responsive-menubar">
-		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>
+		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="<?= $back2 ?>inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>
 		<div class="menu-resaction">
 			<div class="res-openmenu">
 				<img src="<?= $dir ?>/local/resources/views/images/icon.png" alt="" /> Menú

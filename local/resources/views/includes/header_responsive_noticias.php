@@ -17,7 +17,7 @@ $back="../administrator_candidatos_ver.php";
 <div class="responsive-header">
 	<div class="responsive-menubar">
 		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;">
-			<a href="index.html" title="">
+			<a href="<?php echo $back;?>" title="">
 				<img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" />
 			</a>
 		</div>
