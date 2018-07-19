@@ -45,7 +45,7 @@
 														<a href="candidato/<?= session()->get('cand_id') ?>" title="">
 															<i class="la la-eye"></i>
 															<span>Perfil público</span>
-															<!-- <p>22 Vistos</p> -->
+															<p>&nbsp;</p>
 														</a>
 													</div>
 												</div>
