@@ -27,7 +27,7 @@
 								<div class="row">
 									<div class="col-lg-12 mt-col-footer">
 										<a href="../terminos" title="">Politicas de Jobbers</a>
-										<a href="../fag" title="">Preguntas frecuentes</a>
+										<!-- <a href="../fag" title="">Preguntas frecuentes</a> -->
 										<a href="../noticias" title="">Noticias</a>
 										<a href="../contacto" title="">Contáctanos</a>
 										<a href="../nosotros" title="">¿Qué es Jobbers?</a>
