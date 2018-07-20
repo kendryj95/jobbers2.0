@@ -105,6 +105,7 @@
               </div>
               <div class="emply-list-sec">
                 <?php foreach ($empresas as $empresa): ?>
+
                   <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
                 <div class="emply-list">
                     <div class="emply-list-thumb">
@@ -112,7 +113,8 @@
                     </div>
                     <div class="emply-list-info">
                       <!-- <div class="emply-pstn">4 Open Position</div> -->
-                      <h3><a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><?= $empresa->nombre_empresa ?></a></h3>
+                      <h3><a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><?= $empresa->nombre_empresa ?></a>
+                       </h3>
                       <span><i class="fa fa-cubes"></i> <?= $empresa->sector ?></span>
                       <h6><i class="la la-map-marker"></i> <?= $empresa->direccion ?></h6>
                       <?php $description = strlen($empresa->descripcion) > 180 ? substr($empresa->descripcion, 0, 180) . '...' : $empresa->descripcion ?>
