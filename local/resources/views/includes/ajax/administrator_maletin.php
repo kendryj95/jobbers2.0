@@ -35,7 +35,7 @@
                          {
                             nombre=datos["alias"];
                          }
-                         tabla = tabla + '<tr><td><div class="emply-resume-thumb">'+url+'</div></td><td><div class="table-list-title"><h3><a href="#" title="">' + nombre + '</a></h3></div></td><td >'+usarComo+'</td><td><span class="status active">' + datos["tipo_documento"] + '</span></td> <td style="text-align:right;"><ul class="action_job">'+iconosImagen+'<li><li><span>Nuevo alias</span><a data-toggle="modal" data-target="#modal_alias" href="#" title=""><i class="la la-pencil" onClick="set_id('+datos["id"]+')"></i></a></li><li><span>Descargar</span><a href="descargar/'+datos["nombre_aleatorio"]+'" target="_blank" title=""><i class="la la-arrow-down"></i></a></li><li><span>Eliminar</span><a href="delarchivo/'+datos["id"]+'" title=""><i class="la la-trash-o"></i></a></li></ul></td></tr>';
+                         tabla = tabla + '<tr><td><div class="emply-resume-thumb">'+url+'</div></td><td><div class="table-list-title"><h3><a href="#" title="">' + nombre + '</a></h3></div></td><td><span class="status active">' + datos["tipo_documento"] + '</span></td> <td style="text-align:right;"><ul class="action_job">'+iconosImagen+'<li><li><span>Nuevo alias</span><a data-toggle="modal" data-target="#modal_alias" href="#" title=""><i class="la la-pencil" onClick="set_id('+datos["id"]+')"></i></a></li><li><span>Descargar</span><a href="descargar/'+datos["nombre_aleatorio"]+'" target="_blank" title=""><i class="la la-arrow-down"></i></a></li><li><span>Eliminar</span><a href="delarchivo/'+datos["id"]+'" title=""><i class="la la-trash-o"></i></a></li></ul></td></tr>';
          
                      });
          
