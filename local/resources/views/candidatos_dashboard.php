@@ -44,7 +44,7 @@
 													<div class="p-category">
 														<a href="candidato/<?= session()->get('cand_id') ?>" title="">
 															<i class="la la-eye"></i>
-															<span>Perfil público</span>
+															<span>Mi perfil</span>
 															<p>&nbsp;</p>
 														</a>
 													</div>
@@ -76,7 +76,7 @@
 													<div class="p-category">
 														<a href="candiperfil" title="">
 															<i class="la la-file"></i>
-															<span>Mi perfil</span>
+															<span>Mi información</span>
 															<p>Ver Perfil</p>
 														</a>
 													</div>
