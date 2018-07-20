@@ -13,7 +13,7 @@
 			<nav>
 				<ul>
 					<li class="">
-						<a href="../inicio" title="">Home</a>
+						<a href="../inicio" title="">Inicio</a>
 						<?php $nombre_plan = session()->get("emp_plan")[0]->nombre ?>
 						<a href="planes" title="">Plan: <?= strtoupper($nombre_plan); ?></a>
 					</li>
