@@ -146,10 +146,22 @@
                                         <li class="<?= $active ?>"><a href="empresas?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
                                       <?php endfor; ?>
                                     <?php else: ?>
-                                      <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
-                                        <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-                                        <li class="<?= $active ?>"><a href="empresas?pag=<?= $i ?>"><?= $i ?></a></li>
-                                      <?php endfor; ?>
+                                      <?php if (($paginaAct+4) <= $paginas): ?>
+                                        <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
+                                          <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+                                          <li class="<?= $active ?>"><a href="empresas?pag=<?= $i ?>"><?= $i ?></a></li>
+                                        <?php endfor; ?>
+                                      <?php elseif ($paginaAct == $paginas): ?>
+                                        <?php for ($i=($paginaAct-4);$i<=$paginas;$i++): ?>
+                                          <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+                                          <li class="<?= $active ?>"><a href="empresas?pag=<?= $i ?>"><?= $i ?></a></li>
+                                        <?php endfor; ?>
+                                      <?php else: ?>
+                                        <?php for ($i=$paginaAct;$i<=$paginas;$i++): ?>
+                                          <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+                                          <li class="<?= $active ?>"><a href="empresas?pag=<?= $i ?>"><?= $i ?></a></li>
+                                        <?php endfor; ?>
+                                      <?php endif; ?>
                                       <?php if (($paginaAct+4) < $paginas): ?>
                                       <li><span class="delimeter">...</span></li>
                                       <li><a href="empresas?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
