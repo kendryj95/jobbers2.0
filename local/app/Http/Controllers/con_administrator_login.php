@@ -16,9 +16,9 @@ class con_administrator_login extends Controller
 
     public function login(Request $request)
     {
-        $sql = "SELECT count(*) as cantidad,correo,id,nombre FROM tbl_administrador WHERE correo='" . $_POST['correo'] . "' and clave='" . $_POST['clave'] . "' AND tipo_usuario=3";
+        $sql = "SELECT count(*) as cantidad,correo,id,nombre FROM tbl_administrador WHERE correo=? and clave=? AND tipo_usuario=3";
         try {
-            $datos = DB::select($sql);
+            $datos = DB::select($sql, [strtolower($_POST['correo']), $_POST['clave']]);
             if ($datos[0]->cantidad) {
                 $this->limpiarVariablesSession($request);
                 $request->session()->set('admin', $datos[0]->correo);

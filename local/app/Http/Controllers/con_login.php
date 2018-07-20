@@ -17,10 +17,10 @@ class con_login extends Controller
         $sql = "
         SELECT t1.*,count(t1.id) as cantidad,t3.nombre_aleatorio as imagen,t1.token FROM tbl_usuarios t1
         LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id = t2.id_usuario
-        LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto WHERE t1.correo='" . $_POST['correo'] . "' AND t1.clave= '" . md5($_POST['pass']) . "'";
+        LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto WHERE t1.correo=? AND t1.clave=?";
 
         try {
-            $datos = DB::select($sql);
+            $datos = DB::select($sql, [strtolower($_POST['correo']), md5($_POST['pass'])]);
             if ($datos[0]->cantidad) {
                 $prefijo = "";
                 $sufijo  = "";
@@ -42,36 +42,45 @@ class con_login extends Controller
 
                     $datos_emp = DB::select($sql, [$datos[0]->id]);
 
-                    /** VARIABLES DE SESSION ESPECIFICAS PARA EMPRESA **/
+                    if ($datos_emp) {
+                        /** VARIABLES DE SESSION ESPECIFICAS PARA EMPRESA **/
 
-                    $request->session()->set($prefijo, $datos[0]->correo);
-                    $request->session()->set($sufijo . 'ide', $datos_emp[0]->id_empresa);
-                    $request->session()->set($sufijo . 'imagen', $datos_emp[0]->imagen);
-                    $request->session()->set($sufijo . 'nombre_empresa', $datos_emp[0]->nombre_empresa);
+                        $request->session()->set($prefijo, $datos[0]->correo);
+                        $request->session()->set($sufijo . 'ide', $datos_emp[0]->id_empresa);
+                        $request->session()->set($sufijo . 'imagen', $datos_emp[0]->imagen);
+                        $request->session()->set($sufijo . 'nombre_empresa', $datos_emp[0]->nombre_empresa);
 
-                    $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
+                        $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=?", [$datos_emp[0]->id_empresa]);
 
-                    switch ($plan[0]->id_plan) {
-                        case 2:
-                            $timestamp_today = strtotime(date("Y-m-d H:i:s"));
-                            $timestamp_vencimiento = strtotime("+35 day", strtotime($plan[0]->tmp));
+                        if ($plan) {
+                            switch ($plan[0]->id_plan) {
+                                case 2:
+                                    $timestamp_today = strtotime(date("Y-m-d H:i:s"));
+                                    $timestamp_vencimiento = strtotime("+35 day", strtotime($plan[0]->tmp));
 
-                            if ($timestamp_today >= $timestamp_vencimiento) {
-                                $db->query("UPDATE tbl_empresas_planes SET id_plan=1, tmp=".date("Y-m-d H:i:s")." WHERE id_empresa=".$datos_emp[0]->id_empresa);
-                                $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
-                                $request->session()->set($sufijo . 'plan', $plan);
-                            } else {
-                                $request->session()->set($sufijo . 'plan', $plan);
+                                    if ($timestamp_today >= $timestamp_vencimiento) {
+                                        $db->query("UPDATE tbl_empresas_planes SET id_plan=1, tmp=".date("Y-m-d H:i:s")." WHERE id_empresa=".$datos_emp[0]->id_empresa);
+                                        $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
+                                        $request->session()->set($sufijo . 'plan', $plan);
+                                    } else {
+                                        $request->session()->set($sufijo . 'plan', $plan);
+                                    }
+                                    break;
+                                
+                                default:
+
+                                    $request->session()->set($sufijo . 'plan', $plan);
+
+                                    break;
                             }
-                            break;
-                        
-                        default:
+                        } else {
+                            return Redirect("login?error=Ha ocurrido un error inesperado, intentelo de nuevo por favor");
+                        }
 
-                            $request->session()->set($sufijo . 'plan', $plan);
-
-                            break;
+                    } else {
+                        return Redirect("login?error=Ha ocurrido un error inesperado, intentelo de nuevo por favor");
                     }
-                
+
                 } else if ($datos[0]->tipo_usuario == 2) {
                     $prefijo = "candidato";
                     $sufijo  = "cand_";

@@ -27,7 +27,7 @@
 								<div class="row">
 									<div class="col-lg-12 mt-col-footer">
 										<a href="<?php echo $back;?>terminos" title="">Politicas de Jobbers</a>
-										<a href="<?php echo $back;?>fag" title="">Preguntas frecuentes</a>
+										<!-- <a href="<?php echo $back;?>fag" title="">Preguntas frecuentes</a> -->
 										<a href="<?php echo $back;?>noticias" title="">Noticias</a>
 										<a href="<?php echo $back;?>contacto" title="">Contáctanos</a>
 										<a href="<?php echo $back;?>nosotros" title="">¿Qué es Jobbers?</a>

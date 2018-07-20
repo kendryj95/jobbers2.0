@@ -8,7 +8,7 @@ $back="../administrator_candidatos_ver.php";
 
 <div class="responsive-header">
 	<div class="responsive-menubar">
-		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>		<div class="menu-resaction">
+		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>		<div class="menu-resaction">
 			<div class="res-openmenu">
 				<img src="local/resources/views/images/icon.png" alt="" /> Menú
 			</div>
@@ -44,13 +44,13 @@ $back="../administrator_candidatos_ver.php";
 								<a href="candipostulaciones" title=""><i class="la la-clipboard"></i>Postulaciones</a>
 							</li>
 							<li >
-								<a href="candidato/<?php echo session()->get('cand_id');?>" title=""><i class="la la-user"></i>Perfil público</a>
+								<a href="candidato/<?php echo session()->get('cand_id');?>" title=""><i class="la la-user"></i>Mi perfil</a>
 							</li>
 							<li >
-								<a href="candiperfil" title=""><i class="la la-user"></i>Mi perfil</a>
+								<a href="candiperfil" title=""><i class="la la-user"></i>Mi información</a>
 							</li>
 							<li >
-								<a href="candicv" title=""><i class="la la-file-text"></i>Curriculum</a>
+								<a href="candicv" title=""><i class="la la-file-text"></i>Adjuntar curriculum</a>
 							</li>
 							<li >
 								<a href="candiempseg" title=""><i class="la la-industry"></i>Empresas Seguidas</a>

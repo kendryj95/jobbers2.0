@@ -69,9 +69,9 @@ class con_soportista extends Controller
     {	
     	 
     	 $sql="SELECT *,count(id) as cantidad FROM tbl_usuarios_soporte 
-    	 WHERE correo='".$_POST['correo']."' and clave='".$_POST['pass']."'"; 
+    	 WHERE correo=? and clave=?"; 
     	 try {
-    	  		$datos=DB::select($sql);
+    	  		$datos=DB::select($sql, [strtolower($_POST['correo']), $_POST['pass']]);
     	  		if($datos[0]->cantidad==1)
     	  		{
     	  			$request->session()->set('soportista_correo', $datos[0]->correo); 

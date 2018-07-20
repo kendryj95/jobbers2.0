@@ -51,24 +51,28 @@
 												<span class="pf-title">Facebook</span>
 												<div class="pf-field">
 													<input value="<?php echo $facebook;?>" name="facebook" id="facebook" type="text" placeholder="Facebook">
+													<i class="fa fa-facebook"></i>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<span class="pf-title">Twitter</span>
 												<div class="pf-field">
 													<input value="<?php echo $twitter;?>" name="twitter" id="twitter" type="text" placeholder="Twitter">
+													<i class="fa fa-twitter"></i>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<span class="pf-title">Linkendin</span>
 												<div class="pf-field">
 													<input value="<?php echo $linkendin;?>" name="linkendin" id="linkendin" type="text" placeholder="Linkendin">
+													<i class="fa fa-linkedin"></i>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<span class="pf-title">Instagram</span>
 												<div class="pf-field">
 													<input value="<?php echo $instagram;?>" name="instagram" id="instagram" type="text" placeholder="Instagram">
+													<i class="fa fa-instagram"></i>
 												</div>
 												<a href="#" class="status" style="font-size: 13px;">¿Cómo puedo colocar mis redes sociales en Jobbers?</a>
 											</div>
