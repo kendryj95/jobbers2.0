@@ -203,9 +203,9 @@ class con_noticias_dashboard extends Controller
 
 	  public function login(Request $request)
 	   {
-	   	$sql="SELECT *, count(id) as cantidad FROM tbl_usuarios_noticias WHERE correo='".$_POST['correo']."' AND clave='".$_POST['pass']."'";
+	   	$sql="SELECT *, count(id) as cantidad FROM tbl_usuarios_noticias WHERE correo=? AND clave=?";
 	   	try {
-	   		$datos=DB::select($sql);
+	   		$datos=DB::select($sql, [strtolower($_POST['correo']), $_POST['pass']]);
 	   		if($datos[0]->cantidad==1)
 	   		{
 	   			  $request->session()->set('redaptores', $datos[0]->id);
