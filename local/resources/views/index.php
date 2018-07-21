@@ -203,12 +203,12 @@
 									</div>
 									<div class="blog-sec">
 										<div class="row">
-											<?php foreach ($tips as $key) {
+											<?php foreach ($tips as $i => $key) {
 												$cadena=explode("?", $key->descripcion);
 												echo '<div class="col-lg-4">
 											    <div class="my-blog">
 											        <div class="blog-thumb">
-											            <a href="#" title=""><img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="min-height:300px;"/></a>
+											            <a href="#" title=""><img src="local/resources/views/images/tips_'.($i+1).'.jpg" alt="" style="min-height:300px;"/></a>
 											            <div class="blog-metas">
 											                <a href="#" title="">'.$cadena[0].'</a>
 											                <!--<a href="#" title="">0 Comments</a>-->
