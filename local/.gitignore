@@ -1,5 +1,4 @@
 /vendor
-../imagenes_noticias
 /node_modules
 /public/storage
 Homestead.yaml
