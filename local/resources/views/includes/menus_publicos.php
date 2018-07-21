@@ -6,6 +6,9 @@
 	<li class="">
 		<a href="<?php echo $back;?>ofertas" title="">Empleos</a>
 	</li>
+	<li class="">
+		<a href="<?php echo $back;?>empresas" title="">Empresas</a>
+	</li>
 	<?php if (session()->get("candidato") == null): ?>
 	<li class="">
 		<a href="<?php echo $back;?>candidatos" title="">Candidatos</a>

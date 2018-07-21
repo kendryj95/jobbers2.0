@@ -33,6 +33,7 @@
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">
+								<div class="overflow d-mobile"></div>
 								<div class="main-featured-sec">
 									<!-- Para efecto de slider agregar mas elementos a la lista. -->
 									<ul class="main-slider-sec text-arrows">
@@ -126,17 +127,27 @@
 									<span>Las mejores empresas buscan los mejores talentos.</span>
 								</div>
 								<div class="job-listings-sec">
-									<?php foreach ($ultimas_publicaciones as $key ) {
+								<?php foreach ($ultimas_publicaciones as $key ) {
+										$imagen="";
+										
+										if($key->nombre_aleatorio!="")
+										{
+											$imagen='<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>';
+										}
+										else{
+											$imagen='<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" /> </div>';
+										}
+
 										echo
 										'
 										<div class="job-listing">
 										<div class="job-title-sec">
-										<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>
+										'.$imagen.'
 										<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3>
 										<a href="empresa/detalle?e='.$key->id_empresa.'" target="_blank"><span>'.$key->empresa.'</span></a>
-									</div>
-									<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
-									<span class="job-is ft">'.$key->nombre.'</span>
+										</div>
+										<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
+										<span class="job-is ft">'.$key->nombre.'</span>
 										</div>
 										
 										';

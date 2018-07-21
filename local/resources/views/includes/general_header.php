@@ -35,7 +35,7 @@ $back="../";
 					 else
 					 {
 					 	echo'
-					 	<ul class="account-btns" style="margin-top:5px;">
+					 	<ul class="account-btns">
 					 		<li class="signup-popup"><a title=""><i class="la la-key"></i>Registrar</a></li>
 					 		<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i>Entrar</a></li>
 					 	</ul>
