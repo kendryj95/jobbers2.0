@@ -324,6 +324,19 @@ $mi_tokken=csrf_token();
                       </i>
                     </span>';
                   }
+                  $disponibilidad='';
+                  if($key->disponibilidad == 'FULL TIME'){
+                    $disponibilidad = '<span class="job-is ft">'.$key->disponibilidad.'</span>';
+                  }
+                  else if($key->disponibilidad == 'PART TIME'){
+                    $disponibilidad = '<span class="job-is pt">'.$key->disponibilidad.'</span>';
+                  }
+                  else if($key->disponibilidad == 'POR HORAS'){
+                    $disponibilidad = '<span class="job-is fl">'.$key->disponibilidad.'</span>';
+                  }
+                  else{
+                    $disponibilidad = '<span class="job-is tp">'.$key->disponibilidad.'</span>';
+                  }
                   echo'
                   <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
                   <div class="job-listing wtabs">
@@ -342,9 +355,8 @@ $mi_tokken=csrf_token();
                     </div>
                   </div>
                   <div class="job-style-bx">
-                    <span class="job-is ft">'.$key->disponibilidad.'
-                    </span> 
-                    '.$corazon.'
+                    
+                    '.$disponibilidad.$corazon.'
                     <i>Vistas '.$key->vistos.' / '.$key->tmp.'
                     </i>
                   </div></div>';
