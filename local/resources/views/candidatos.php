@@ -266,7 +266,7 @@
                   $disponibilidad='<span class="job-is ft">'.$key->disponibilidad.'</span>';
                   if($key->foto!="")
                   {
-                  $imagen='uploads/'.$key->foto;
+                  $imagen='uploads/min/'.$key->foto;
                   }
                   if($key->nombre!="")
                   {
@@ -283,7 +283,7 @@
                   ?>
                   <div class="job-listing wtabs">
                     <div class="job-title-sec">
-                      <div class="c-logo"> <img style="width: 98px;" src="<?php echo $imagen;?>" alt=""> </div>
+                      <div class="c-logo"> <img style="height: 98px; width: 98px;border-radius: 50%;margin-right: 25px;" src="<?php echo $imagen;?>" alt=""> </div>
                       <h3><a href="candidato/<?php echo $key->id;?>" title=""><?php echo $nombre;?></a></h3>
                       <span><i class="la la-map-marker"></i><?php echo $direccion;?></span>
                       <div class="job-lctn"></div>

@@ -145,11 +145,14 @@ Route::post('empresa/actualizar_post', 'con_empresa@updatePost');
 Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');
 Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 });
+
+Route::get('administrator', 'con_administrator_login@index');
+Route::get('administracion/panel', 'con_administrator_dashboard@index');
 //********************************************************//
 //*       RUTAS PARA EL ADMINISYTRADOR DE SISTEMA        *//
 //********************************************************//
 Route::post('admlog', 'con_administrator_login@login');
-Route::get('administrator', 'con_administrator_login@index');
+/*Route::get('administrator', 'con_administrator_login@index');
 Route::group(['middleware' => 'log_a'], function () {
 Route::get('admindashboard', 'con_administrator_dashboard@dashboard');
 Route::get('adminfavoritos', 'con_administrator_favoritos@index');
@@ -176,6 +179,7 @@ Route::get('publiacionescrear', 'con_publiaciones@create');
 /*Route::post('listar_arch', 'con_maletin@listar_arch');
 Route::post('actarch', 'con_maletin@alias');//Actualiza los alias
 Route::get('delarchivo/{id}', 'con_maletin@eliminar'); //Elimina los archivos
-Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos*/
+Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos
 Route::get('admsalir', 'con_administrator_login@salir');
 });
+*/
