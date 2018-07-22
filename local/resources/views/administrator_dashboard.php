@@ -37,8 +37,7 @@
 						 		</div>
 
 						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Recomendaciones</span>
-						 			 
+						 			<span><i class="la la-clock-o"></i><strong>9</strong>Recomendaciones</span> 
 						 		</div>
 						 		<table>
 						 			<thead>
