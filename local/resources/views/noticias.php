@@ -37,7 +37,12 @@
 					<div class="row">
 						<div class="col-lg-9 column">
 							<div class="bloglist-sec">
-								<?php foreach ($datos as $key): ?>
+								<?php foreach ($datos as $key):
+									//$noticia=substr($key->descripcion, 0,300)
+									$noticia=explode('<p>',$key->descripcion);
+									
+								?>
+								
 								<div class="col-sm-6 blogpost style2">
 										
 									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title="">
@@ -47,10 +52,10 @@
 										<?php endif ?> 
 									</a> </div>
 								
-									<div class="blog-postdetail">
+									<div class="blog-postdetail" style="text-align: justify;">
 										<ul class="post-metas"><li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $key->tmp;?></a></li><li><a class="metascomment" href="#" title=""></ul>
 										<h3><a href="noticias/<?php echo $key->id;?>" title=""><?php echo $key->titulo;?></a></h3>
-										<p><?php echo $key->descripcion;?></p>
+										<p><?php echo '<p>'.$noticia[1];?></p>
 										<a class="bbutton" href="noticias/<?php echo $key->id;?>" title="">Ver más <i class="la la-long-arrow-right"></i></a>
 									</div>
 									
