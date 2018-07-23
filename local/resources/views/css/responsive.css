@@ -492,6 +492,11 @@
 }
 
 @media (max-width:768px) {
+    #showFilters {
+        position: fixed;
+        bottom: 20px;
+        z-index: 8
+    }
     .job-listing .job-is {
         display: block;
         margin: 0 auto;

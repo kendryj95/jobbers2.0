@@ -452,9 +452,24 @@ $mi_tokken=csrf_token();
   <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
   </script>
   <script type="text/javascript">
-    $('#showFilters').click(function () {
-      $('#side-offers').fadeToggle();
-    })
+   var clicks = 1;
+    $('#showFilters').click(function(e) {
+
+      // Show or hide filters
+      if (clicks % 2 == 1) {
+        $('#side-offers').fadeIn();
+        $('#showFilters').html('Ocultar filtros <i class="fa fa-ban"></i>');
+        // Scroll Up
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop : $('html, body').offset().top
+        }, 500);
+      } else {
+        $('#side-offers').fadeOut();
+        $('#showFilters').html('Mostrar filtros <i class="fa fa-filter"></i>');
+      }
+      clicks++;
+    });
 
     <?php foreach ($favoritos as $key): ?>
     <?php

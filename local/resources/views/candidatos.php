@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   </head>
   <body>
     <?php include('local/resources/views/includes/general_header.php');?>
@@ -43,7 +44,10 @@
       <div class="block no-padding">
         <div class="container">
           <div class="row no-gape">
-            <aside class="col-lg-3 column border-right">
+          <div class="btn-showfilter">
+            <button class="btn btn-primary" id="showFilters">Mostrar filtros <i class="fa fa-filter"></i></button>
+          </div>
+            <aside class="col-lg-3 column border-right" id="side-offers">
               <form id="form_filtros" method="POST" action="candidatos">
                 <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
                
@@ -380,6 +384,25 @@
     }
     </style>
     <script type="text/javascript">
+      var clicks = 1;
+      $('#showFilters').click(function(e) {
+
+        // Show or hide filters
+        if (clicks % 2 == 1) {
+          $('#side-offers').fadeIn();
+          $('#showFilters').html('Ocultar filtros <i class="fa fa-ban"></i>');
+          // Scroll Up
+          e.preventDefault();
+          $('html, body').animate({
+              scrollTop : $('html, body').offset().top
+          }, 500);
+        } else {
+          $('#side-offers').fadeOut();
+          $('#showFilters').html('Mostrar filtros <i class="fa fa-filter"></i>');
+        }
+        clicks++;
+      });
+
       function filtros_set_var(id,descripcion)
       { 
         $("#filtros").append('<span>'+descripcion+'</span>'); 
