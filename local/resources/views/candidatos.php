@@ -16,7 +16,18 @@
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+=======
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1968505410020323",
+        enable_page_level_ads: true
+      });
+    </script>
+>>>>>>> b97ef2a7cb0eb8c962387a476a5761b272b76d0c
   </head>
   <body>
     <?php include('local/resources/views/includes/general_header.php');?>
