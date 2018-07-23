@@ -35,7 +35,7 @@
 			<div class="block">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-9 column">
+						<div class="col-lg-9 col-md-9 column">
 							<div class="bloglist-sec">
 								<?php foreach ($datos as $key):
 									//$noticia=substr($key->descripcion, 0,300)
@@ -43,7 +43,7 @@
 									
 								?>
 								
-								<div class="col-sm-6 blogpost style2">
+								<div class="col-sm-12 blogpost style2">
 										
 									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title="">
 
@@ -87,28 +87,28 @@
 									        <?php if ($paginas >= 1 && $paginas <= 5): ?>
 									          <?php for ($i=0;$i<$paginas;$i++): ?>
 									            <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
-									            <li class="<?= $active ?>"><a href="noticias?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+									            <li class="d-none <?= $active ?>"><a href="noticias?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
 									          <?php endfor; ?>
 									        <?php else: ?>
 									          <?php if (($paginaAct+4) <= $paginas): ?>
 									            <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
 									              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-									              <li class="<?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
+									              <li class="d-none <?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
 									            <?php endfor; ?>
 									          <?php elseif ($paginaAct == $paginas): ?>
 									            <?php for ($i=($paginaAct-4);$i<=$paginas;$i++): ?>
 									              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-									              <li class="<?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
+									              <li class="d-none <?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
 									            <?php endfor; ?>
 									          <?php else: ?>
 									            <?php for ($i=$paginaAct;$i<=$paginas;$i++): ?>
 									              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-									              <li class="<?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
+									              <li class="d-none <?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
 									            <?php endfor; ?>
 									          <?php endif; ?>
 									          <?php if (($paginaAct+4) < $paginas): ?>
-									          <li><span class="delimeter">...</span></li>
-									          <li><a href="noticias?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
+									          <li class="d-none"><span class="delimeter">...</span></li>
+									          <li class="d-none"><a href="noticias?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
 									          <?php endif ?>
 									        <?php endif; ?>
 									        <?php  
@@ -128,7 +128,7 @@
 									<?php endif; ?> 
 									</div>
 								</div>
-								<aside class="col-lg-3 column">
+								<aside class="col-lg-3 col-md-3 column">
 									<div class="widget">
 										
 										<div class="widget">
