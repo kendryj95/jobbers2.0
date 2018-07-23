@@ -88,7 +88,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
         LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
         LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
-        $condiciones GROUP BY e.id GROUP BY e.id";
+        $condiciones GROUP BY e.id";
 
         $empresas = DB::select($peticion . " " . $consulta_gral);
         $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa");
