@@ -18,17 +18,43 @@ class con_noticias extends Controller
     		$condiciones=$condiciones." AND id_categoria =".$_POST['categoria']."";
     	}
     	$sql="SELECT * FROM tbl_noticias WHERE estado='1' " .$condiciones;
+        $datos_noticias = DB::select($sql);
+
+        ####### PAGINACIÓN #########
+        $tamPag = 15;
+        $numReg = count($datos_noticias);
+        $paginas = ceil($numReg/$tamPag);
+        $limit = "";
+        $paginaAct = "";
+        if (!isset($_GET['pag'])) {
+            $paginaAct = 1;
+            $limit = 0;
+        } else {
+            $paginaAct = $_GET['pag'];
+            $limit = ($paginaAct-1) * $tamPag;
+        }
+
+        $datos_noticias=DB::select($this->consultaPagination($condiciones,$limit,$tamPag));
        
-    	$sql_categorias="SELECT * FROM tbl_categorias_noticias ";
+    	$sql_categorias="SELECT cn.id, cn.descripcion, COUNT(n.id_categoria) AS cantidad FROM tbl_categorias_noticias cn LEFT JOIN tbl_noticias n ON cn.id=n.id_categoria WHERE cn.id IN (SELECT n.id_categoria FROM tbl_noticias n WHERE estado='1' $condiciones)GROUP BY cn.id ORDER BY cantidad DESC";
     	try {
-    		$datos=DB::select($sql);
+    		$datos= $datos_noticias;
     		$datos_categorias=DB::select($sql_categorias);
     		$vista->datos=$datos;
-    		$vista->datos_categorias=$datos_categorias;
+            $vista->datos_categorias=$datos_categorias;
+            $vista->paginas=$paginas;
+    		$vista->paginaAct=$paginaAct;
     		return $vista;
     	} catch (Exception $e) {
     		
     	}
+    }
+
+    private function consultaPagination($condiciones,$limit,$tamPag)
+    {
+        $sql="SELECT * FROM tbl_noticias WHERE estado='1' " .$condiciones . " LIMIT $limit,$tamPag";
+
+        return $sql;
     }
 
     public function noticia($id)

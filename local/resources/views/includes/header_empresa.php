@@ -7,7 +7,12 @@
 			<div class="btns-profiles-sec">
 				<span><img src="../uploads/<?= session()->get("emp_imagen") ?>" alt="logo_empresa" width="50" height="50" /> <?= session()->get("emp_nombre_empresa") ?> <i class="la la-angle-down"></i></span>
 				<ul>
-					<li><a href="../logout" title=""><i class="la la-history"></i> Salir</a></li>
+					<li><a href="detalle?e=<?= session()->get("emp_ide") ?>" title=""><i class="la la-user"></i> Mi perfil</a></li>
+					<li><a href="perfil?e=<?= session()->get("emp_ide") ?>" title=""><i class="la la-file-text"></i> Editar perfil</a></li>
+					<li><a href="ofertas" title=""><i class="la la-folder"></i> Ver ofertas</a></li>
+					<li><a href="new_post" title=""><i class="la la-plus"></i> Nueva oferta</a></li>
+					<li><a href="planes" title=""><i class="la la-trophy"></i> Manejar planes</a></li>
+					<li><a href="../logout" title=""><i class="la la-sign-out"></i> Salir</a></li>
 				</ul>
 			</div>
 			<nav>

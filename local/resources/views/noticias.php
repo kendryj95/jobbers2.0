@@ -37,7 +37,12 @@
 					<div class="row">
 						<div class="col-lg-9 column">
 							<div class="bloglist-sec">
-								<?php foreach ($datos as $key): ?>
+								<?php foreach ($datos as $key):
+									//$noticia=substr($key->descripcion, 0,300)
+									$noticia=explode('<p>',$key->descripcion);
+									
+								?>
+								
 								<div class="col-sm-6 blogpost style2">
 										
 									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title="">
@@ -47,10 +52,10 @@
 										<?php endif ?> 
 									</a> </div>
 								
-									<div class="blog-postdetail">
+									<div class="blog-postdetail" style="text-align: justify;">
 										<ul class="post-metas"><li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $key->tmp;?></a></li><li><a class="metascomment" href="#" title=""></ul>
 										<h3><a href="noticias/<?php echo $key->id;?>" title=""><?php echo $key->titulo;?></a></h3>
-										<p><?php echo $key->descripcion;?></p>
+										<p><?php echo '<p>'.$noticia[1];?></p>
 										<a class="bbutton" href="noticias/<?php echo $key->id;?>" title="">Ver más <i class="la la-long-arrow-right"></i></a>
 									</div>
 									
@@ -59,17 +64,68 @@
 									<?php endforeach ?>
 									<!-- Blog Post -->
 									
-									<!--<div class="pagination">
-										<ul>
-											<li class="prev"><a href=""><i class="la la-long-arrow-left"></i> Atrás</a></li>
-											<li><a href="">1</a></li>
-											<li class="active"><a href="">2</a></li>
-											<li><a href="">3</a></li>
-											<li><span class="delimeter">...</span></li>
-											<li><a href="">14</a></li>
-											<li class="next"><a href="">Siguiente <i class="la la-long-arrow-right"></i></a></li>
-										</ul>
-										</div>--> 
+									<?php if ($paginas > 0): ?>
+									    <div class="pagination">
+									      <ul>
+									        <?php  
+									          if (isset($_GET['pag'])) {
+									            if ($_GET['pag'] != 1) {
+									              $previous = intval($_GET['pag']) - 1;
+									            } else {
+									              $previous = 1;
+									            }
+									          } else {
+									            $previous = 1;
+									          }
+									        ?>
+									        <li class="prev"><a href="noticias?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Atrás</a></li>
+									        <!-- <li><a href="">1</a></li>
+									        <li class="active"><a href="">2</a></li>
+									        <li><a href="">3</a></li>
+									        <li><span class="delimeter">...</span></li>
+									        <li><a href="">14</a></li> -->
+									        <?php if ($paginas >= 1 && $paginas <= 5): ?>
+									          <?php for ($i=0;$i<$paginas;$i++): ?>
+									            <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
+									            <li class="<?= $active ?>"><a href="noticias?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+									          <?php endfor; ?>
+									        <?php else: ?>
+									          <?php if (($paginaAct+4) <= $paginas): ?>
+									            <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
+									              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+									              <li class="<?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
+									            <?php endfor; ?>
+									          <?php elseif ($paginaAct == $paginas): ?>
+									            <?php for ($i=($paginaAct-4);$i<=$paginas;$i++): ?>
+									              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+									              <li class="<?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
+									            <?php endfor; ?>
+									          <?php else: ?>
+									            <?php for ($i=$paginaAct;$i<=$paginas;$i++): ?>
+									              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+									              <li class="<?= $active ?>"><a href="noticias?pag=<?= $i ?>"><?= $i ?></a></li>
+									            <?php endfor; ?>
+									          <?php endif; ?>
+									          <?php if (($paginaAct+4) < $paginas): ?>
+									          <li><span class="delimeter">...</span></li>
+									          <li><a href="noticias?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
+									          <?php endif ?>
+									        <?php endif; ?>
+									        <?php  
+									          if (isset($_GET['pag'])) {
+									            if ($_GET['pag'] != $paginas) {
+									              $next = intval($_GET['pag']) + 1;
+									            } else {
+									              $next = $paginas;
+									            }
+									          } else {
+									            $next = 2;
+									          }
+									        ?>
+									        <li class="next"><a href="noticias?pag=<?= $next ?>">Siguiente <i class="la la-long-arrow-right"></i></a></li>
+									      </ul>
+									    </div> <!-- Pagination -->
+									<?php endif; ?> 
 									</div>
 								</div>
 								<aside class="col-lg-3 column">
@@ -83,7 +139,7 @@
 														<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 														<input type="hidden" name="categoria" value="<?php echo $key->id;?>">
 													</form>
-													<a onClick="$('#form_id_<?php echo $key->id;?>').submit()" href="#" title=""><i class="la la-angle-right"></i><?php echo $key->descripcion;?></a> 
+													<a onClick="$('#form_id_<?php echo $key->id;?>').submit()" href="#" title=""><i class="la la-angle-right"></i><?php echo $key->descripcion;?> (<?= $key->cantidad ?>)</a> 
 												<?php endforeach ?> 
 											</div>
 										</div>

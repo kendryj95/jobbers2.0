@@ -30,15 +30,17 @@ class con_login extends Controller
                     $sufijo  = "emp_";
                     $ruta    = "empresa/ofertas"; //Ruta del panel de arministracion de empresas
 
-                    $sql = "SELECT
-                            e.id AS id_empresa,
-                            a.nombre_aleatorio AS imagen,
-                            e.nombre AS nombre_empresa,
-                            ep.id_plan
-                            FROM tbl_empresa e
-                            LEFT JOIN tbl_archivos a ON e.id_imagen=a.id
-                            LEFT JOIN tbl_empresas_planes ep ON e.id=ep.id_empresa
-                            WHERE e.id_usuario=?";
+                    $sql="
+                    SELECT t1.id_usuario as id_empresa,
+                    t1.nombre as nombre_empresa,
+                    t3.nombre_aleatorio as imagen,
+                    t4.id_plan 
+                    FROM tbl_empresa t1
+                    LEFT JOIN tbl_usuarios_foto_perfil t2 ON t2.id_usuario = t1.id_usuario
+                    LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto
+                    LEFT JOIN tbl_empresas_planes t4 ON t4.id_empresa = t1.id_usuario
+                    WHERE t1.id_usuario=?
+                    GROUP BY t1.id_usuario";
 
                     $datos_emp = DB::select($sql, [$datos[0]->id]);
 
