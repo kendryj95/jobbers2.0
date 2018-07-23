@@ -41,7 +41,7 @@
 											</div>
 											<div class="cfield">
 												<input name="pass" type="password" placeholder="********" />
-												<i class="la la-key"></i>
+												<i class="la la-eye" style="cursor: pointer;" onclick="show_hide(this)" title="Mostrar"></i>
 											</div>
 											<?php if (isset($_REQUEST["error"])): ?>
 											<p style="color: red"><?= $_REQUEST["error"] ?></p>
@@ -75,6 +75,24 @@
 			<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
 			<script src="local/resources/views/js/maps2.js" type="text/javascript"></script>
 			<link rel="stylesheet" type="text/css" href="local/resources/views/plugins/notify.js" />
+			<script>
+				function show_hide(btn)
+				{
+					var $btn = $(btn);
+
+					if ($btn.hasClass('la-eye')) {
+						$btn.removeClass('la-eye')
+							.addClass('la-eye-slash')
+							.attr('title', 'Mostrar');
+						$('input[name="pass"]').attr('type', 'text');
+					} else {
+						$btn.removeClass('la-eye-slash')
+							.addClass('la-eye')
+							.attr('title', 'Ocultar');
+						$('input[name="pass"]').attr('type', 'password');
+					}
+				}
+			</script>
 			
 			<!--Validaciones-->
 			<?php

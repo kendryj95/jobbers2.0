@@ -10,7 +10,7 @@
 			</div>
 			<div class="cfield">
 				<input type="password" placeholder="********" name="pass" />
-				<i class="la la-key"></i>
+				<i class="la la-eye" style="cursor: pointer;" onclick="show_hide(this)" title="Mostrar"></i>
 			</div>
 			<p class="remember-label">
 			</p>
@@ -41,8 +41,8 @@
 					<i class="la la-envelope-o"></i>
 				</div>
 				<div class="cfield">
-					<input name="clave" id="clave" type="password" placeholder="*****" />
-					<i class="la la-key"></i>
+					<input name="clave" id="clave" type="password" placeholder="********" />
+					<i class="la la-eye" style="cursor: pointer;" onclick="show_hide(this)" title="Mostrar"></i>
 				</div>
 				<div class="simple-checkbox">
 				  <p><input type="checkbox" name="condiciones" id="condiciones"><label for="condiciones">Acepto <a href="terminos" style="color: #10c9e5">términos, condiciones y políticas de privacidad</a>.</label></p>
@@ -60,6 +60,24 @@
 		</div>
 		</div><!-- SIGNUP POPUP -->
 		<script type="text/javascript">
+
+			function show_hide(btn)
+			{
+				var $btn = $(btn);
+
+				if ($btn.hasClass('la-eye')) {
+					$btn.removeClass('la-eye')
+						.addClass('la-eye-slash')
+						.attr('title', 'Mostrar');
+					$('input[name="clave"],input[name="pass"]').attr('type', 'text');
+				} else {
+					$btn.removeClass('la-eye-slash')
+						.addClass('la-eye')
+						.attr('title', 'Ocultar');
+					$('input[name="clave"],input[name="pass"]').attr('type', 'password');
+				}
+			}
+
 			function set_tipo(tipo)
 			{
 				$("#tipo").val(tipo);
@@ -76,7 +94,28 @@
 
 							if ($('#condiciones').is(':checked')) {
 
-								$('#form_register').submit();
+								$.ajaxSetup({
+									headers: {
+									'X-CSRF-TOKEN': $('#my_token').val()
+									}
+								});
+								$.ajax({
+									url: 'existEmail',
+									type: 'POST',
+									dataType: 'json',
+									data: {correo: $('#correo').val()},
+									success: function(response) {
+										if (response.data == 1) {
+											$('#error').html('<i class="la la-close"></i> Correo electrónico en uso intente de nuevo').show();
+										} else {
+											$('#form_register').submit();
+											// console.log("registrado");
+										}
+									},
+									error: function (error) {
+										$('#error').html('<i class="la la-close"></i> Ha ocurrido un error inesperado. Por for intentelo de nuevo').show();
+									}
+								});
 							} else {
 								$('#error').html('<i class="la la-close"></i> Debes aceptar los términos, políticas y condiciones para continuar con el registro').show();
 							}
