@@ -22,6 +22,7 @@ Route::post('recuperarclave', 'con_login@enviar');
 Route::get('localidades/{id_provincia}', 'con_gral@getLocalidades');
 Route::get('sectores/{id_area}', 'con_gral@getSectores');
 Route::post('register', 'con_login@register');
+Route::post('existEmail', 'con_login@existEmail');
 Route::post('regreferido', 'con_login@regReferido');
 Route::get('r/{token}/{tipo}', 'con_login@vregreferidos');
 Route::post('subir', 'con_maletin@postUpload');
