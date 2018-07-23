@@ -283,7 +283,7 @@
                   ?>
                   <div class="job-listing wtabs">
                     <div class="job-title-sec">
-                      <div class="c-logo"> <img style="width: 98px;" src="<?php echo $imagen;?>" alt=""> </div>
+                      <div class="c-logo"> <img style="width: 98px; height: auto; border-radius: 50%" src="<?php echo $imagen;?>" alt=""> </div>
                       <h3><a href="candidato/<?php echo $key->id;?>" title=""><?php echo $nombre;?></a></h3>
                       <span><i class="la la-map-marker"></i><?php echo $direccion;?></span>
                       <div class="job-lctn"></div>
@@ -318,28 +318,28 @@
                       <?php if ($paginas >= 1 && $paginas <= 5): ?>
                         <?php for ($i=0;$i<$paginas;$i++): ?>
                           <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
-                          <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+                          <li class=" d-none <?= $active ?>"><a href="candidatos?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
                         <?php endfor; ?>
                       <?php else: ?>
                         <?php if (($paginaAct+4) <= $paginas): ?>
                           <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
                             <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-                            <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
+                            <li class=" d-none <?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
                           <?php endfor; ?>
                         <?php elseif ($paginaAct == $paginas): ?>
                           <?php for ($i=($paginaAct-4);$i<=$paginas;$i++): ?>
                             <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-                            <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
+                            <li class=" d-none <?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
                           <?php endfor; ?>
                         <?php else: ?>
                           <?php for ($i=$paginaAct;$i<=$paginas;$i++): ?>
                             <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-                            <li class="<?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
+                            <li class=" d-none <?= $active ?>"><a href="candidatos?pag=<?= $i ?>"><?= $i ?></a></li>
                           <?php endfor; ?>
                         <?php endif; ?>
                         <?php if (($paginaAct+4) < $paginas): ?>
-                        <li><span class="delimeter">...</span></li>
-                        <li><a href="candidatos?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
+                        <li class="d-none"><span class="delimeter">...</span></li>
+                        <li class="d-none"><a href="candidatos?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
                         <?php endif ?>
                       <?php endif; ?>
                       <?php  

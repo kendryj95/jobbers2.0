@@ -1,7 +1,7 @@
 <header class="stick-top">
 	<div class="menu-sec">
 		<div class="container">
-			<div class="logo">
+			<div class="logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;">
 				<a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" style="width: 120px;"></a>
 			</div><!-- Logo -->
 			<div class="btns-profiles-sec">

@@ -8,6 +8,7 @@
 		<meta name="keywords" content="">
 		<meta name="author" content="CreativeLayers">
 		<!-- Styles -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
@@ -24,7 +25,7 @@
 			<?php include("includes/header_responsive_empresa.php") ?>
 			
 			<?php include "includes/header_empresa.php" ?>
-			<section class="overlape">
+			<section class="overlape mt-responsive">
 				<div class="block no-padding">
 					<div data-velocity="-.1" style="background: url(../local/resources/views/images/empresa_gral.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
@@ -44,9 +45,9 @@
 						<div class="row no-gape">
 							
 							<?php include("includes/aside_empresa.php") ?>
-							<div class="col-lg-9 column">
+							<div class="col-lg-12 col-xl-9 column">
 								<div class="padding-left">
-									<div class="manage-jobs-sec">
+									<div class="manage-jobs-sec empresa-offers-resp">
 										<h3>Listado de ofertas de trabajo</h3>
 										<div class="extra-job-info">
 											<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
