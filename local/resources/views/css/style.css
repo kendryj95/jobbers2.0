@@ -7900,6 +7900,10 @@ aside .widget.border:first-child {
     line-height: 50px;
 }
 
+.sticky .btns-profiles-sec>span {
+    color: #232323;
+}
+
 .btns-profiles-sec>span>img {
     float: left;
     -webkit-border-radius: 50%;
