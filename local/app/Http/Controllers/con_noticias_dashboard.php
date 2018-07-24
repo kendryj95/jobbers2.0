@@ -47,41 +47,53 @@ class con_noticias_dashboard extends Controller
 		$extension       ="";
 		$filename        =""; 
 		$upload_success ="";
-   	 	if(Input::file('imagen_noticia')!="")
-   	 		{
-   	 			$file            = Input::file('imagen_noticia');
-   	 			$destinationPath = 'imagenes_noticias';
+
+		$insert = true;
+
+		/** VALIDANDO **/
+
+   	 	if(Input::file('imagen_noticia')=="")
+   	 	{
+   	 		$insert = false;
+   	 	} elseif ($_POST['noticia_titulo'] == "") {
+   	 		$insert = false;
+   	 	} elseif ($_POST['noticias_categoria'] == "") {
+   	 		$insert = false;
+   	 	} elseif ($_POST['noticias_tags'] == "") {
+   	 		$insert = false;
+   	 	} elseif ($_POST['noticias_descripcion'] == "") {
+   	 		$insert = false;
+   	 	}
+
+   	 	if ($insert) {
+	   		$sql = "INSERT INTO tbl_noticias VALUES (null,?,?,?,?,?,?,'1',null)"; 
+
+	 		$file            = Input::file('imagen_noticia');
+
+	   		if ($file!="")
+	   		{
+	 			$destinationPath = 'imagenes_noticias';
 		        $original        = $file->getClientOriginalName();
 		        $extension       = $file->getClientOriginalExtension();
 		        $filename        = str_random(12) . "." . strtolower($extension); 
 		        $upload_success = Input::file('imagen_noticia')->move($destinationPath, $filename);
-   	 		} 
-        $sql="INSERT INTO tbl_noticias VALUES(
-   		null,
-   		1,
-   		".$_POST['noticias_categoria'].",
-   		'".$filename."','".$_POST['noticia_titulo']."','".$_POST['noticias_tags']."','".$_POST['noticias_descripcion']."','1',null
-   		);"; 
-   		if ($file!="")
-   		{
-   			 if ($upload_success) {
-            try {
-                DB::insert($sql); 
-                return Redirect("panelnoticias");
-            } catch (Exception $e) {
-            }
-        } else {
-            return Response::json('error', 400);
-        } 
-   		} 
-   		else
-   		{
-   			 try {
-                DB::insert($sql); 
-                return Redirect("panelnoticias");
-            } catch (Exception $e) {
-            }
-   		} 
+	   			if ($upload_success) {
+		            try {
+		                DB::insert($sql, [session()->get("redactores"), $_POST['noticias_categoria'], $filename, $_POST['noticia_titulo'], $_POST['noticias_tags'], $_POST['noticias_descripcion']]); 
+		                return Redirect("notipublicaciones");
+		            } catch (Exception $e) {
+		            }
+		        } else {
+		            return Response::json('error', 400);
+		        } 
+	   		} 
+	   		else
+	   		{
+	   			return Redirect("panelnoticias?error=Ha ocurrido un error al cargar la imagen o no has seleccionado ninguna.");
+	   		}
+   	 	} else {
+   	 		return Redirect("panelnoticias?error=Has dejado campos obligatorios vacios ó sin seleccionar.");
+   	 	}
    } 
  
       public function publicaciones()
@@ -208,7 +220,7 @@ class con_noticias_dashboard extends Controller
 	   		$datos=DB::select($sql, [strtolower($_POST['correo']), $_POST['pass']]);
 	   		if($datos[0]->cantidad==1)
 	   		{
-	   			  $request->session()->set('redaptores', $datos[0]->id);
+	   			  $request->session()->set('redactores', $datos[0]->id);
                   $request->session()->set('nombre', $datos[0]->nombre); 
 	   			return Redirect("panelnoticias");
 	   		}
