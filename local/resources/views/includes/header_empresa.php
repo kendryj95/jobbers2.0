@@ -1,8 +1,8 @@
-<header class="stick-top">
+<header class="stick-top forsticky">
 	<div class="menu-sec">
 		<div class="container">
 			<div class="logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;">
-				<a href="../inicio" title=""><img src="../local/resources/views/images/logo_d.png" style="width: 120px;"></a>
+			<a href="../inicio" title=""><img style="width: 120px;" class="hidesticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /><img style="width: 120px;" class="showsticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /></a>
 			</div><!-- Logo -->
 			<div class="btns-profiles-sec">
 				<span><img src="../uploads/<?= session()->get("emp_imagen") ?>" alt="logo_empresa" width="50" height="50" /> <?= session()->get("emp_nombre_empresa") ?> <i class="la la-angle-down"></i></span>
@@ -15,7 +15,7 @@
 					<li><a href="../logout" title=""><i class="la la-sign-out"></i> Salir</a></li>
 				</ul>
 			</div>
-			<nav>
+			<nav style="margin-top: 4px;">
 				<ul>
 					<li class="">
 						<a href="../inicio" title="">Inicio</a>

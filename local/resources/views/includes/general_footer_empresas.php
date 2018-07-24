@@ -6,7 +6,7 @@
 					<div class="widget">
 						<div class="about_widget">
 							<div class="logo">
-								<a href="#" title=""><img src="../local/resources/views/images/jobbers_logo_144.jpg" alt="" /></a>
+								<a href="#" title="" ><img src="https://www.jobbersargentina.net/img/logo_d.png" width="150" alt="" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"/></a>
 							</div>
 							<span>Cordoba, Argentina.</span>
 							<span>administracion@jobbersargentina.net</span>
