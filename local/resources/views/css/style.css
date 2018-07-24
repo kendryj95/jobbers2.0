@@ -6556,7 +6556,7 @@ aside .widget.border:first-child {
 .job-single-info3 .job-is {
     margin: 0;
     margin-left: 0px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     font-size: 12px;
 }
 
