@@ -665,20 +665,7 @@ $mi_tokken = csrf_token();
   outline: none;
 }
 </style></head><body>
-<!-- 
-
-A concept for a chat interface. 
-
-Try writing a new message! :)
-
-
-Follow me here:
-Twitter: https://twitter.com/thatguyemil
-Codepen: https://codepen.io/emilcarlsson/
-Website: http://emilcarlsson.se/
-
--->
-
+ 
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">

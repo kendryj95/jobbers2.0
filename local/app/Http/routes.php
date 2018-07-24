@@ -35,7 +35,7 @@ Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
 Route::get('redactores',  function () {return view('noticias_login');});  
 Route::post('logredactores', 'con_noticias_dashboard@login');
-
+Route::post('candimensajes_soporte', 'con_soporte@mensajes_cand');
 //********************************************************//
 //*                RUTAS PARA LOS REDACTORES             *//
 //********************************************************// s
@@ -114,13 +114,11 @@ Route::get('candidelexpe/{id}', 'con_candidato_perfil_publico@del_expe');
 Route::post('agregarcv', 'con_candidato_cv@add_cv');
 Route::post('candiselectsv', 'con_candidato_cv@select_cv');
 Route::get('candidelcv/{id}', 'con_candidato_cv@del_cv');
-Route::post('candisoporte', 'con_soporte@add_suport_candidato');
-Route::post('candimensajes_soporte', 'con_soporte@mensajes_cand');
+Route::post('candisoporte', 'con_soporte@add_suport_candidato'); 
 Route::post('candiaddmensaje', 'con_soporte@add_mensajes_cand');
 Route::get('candiempseg','con_candidato_seguir@index'); 
 Route::get('candiseguir/{id}', 'con_candidato_seguir@seguir');
-Route::get('canddelseg/{id}', 'con_candidato_seguir@eliminar');
-
+Route::get('canddelseg/{id}', 'con_candidato_seguir@eliminar'); 
 Route::post('testcontrolador', 'con_candidatos@test_controlador');
 
 });

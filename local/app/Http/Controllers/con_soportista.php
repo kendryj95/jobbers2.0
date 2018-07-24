@@ -9,7 +9,10 @@ use View;
 class con_soportista extends Controller
 {
     public function index($id)
-    {	$vista=View::make("soportista");
+    {	
+
+
+        $vista=View::make("soportista");
 
     	$sql_soporte="SELECT t1.id,t1.id_usuario,t1.titulo,upper(t1.codigo) as codigo,t3.nombre_aleatorio as foto FROM tbl_ticket_soporte t1
 		LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id_usuario = t2.id_usuario
@@ -24,6 +27,7 @@ class con_soportista extends Controller
 			WHERE t1.codigo='".$id."'
 			ORDER BY t2.tmp ASC
 			";
+
 		try {
 			$datos_soporte=DB::select($sql_soporte);
 			$conversacion=DB::select($sql_conversacion);
@@ -33,6 +37,7 @@ class con_soportista extends Controller
 			{
 				$vista->tikect=$conversacion[0]->id_tic;
 			}
+            //return "Hola";
 			return $vista;
 		} catch (Exception $e) {
 			
@@ -42,6 +47,7 @@ class con_soportista extends Controller
     public function responder()
     {	
 
+       
 
 
     	$sql="INSERT INTO tbl_conversacion_soporte VALUES(
@@ -53,8 +59,7 @@ class con_soportista extends Controller
     	null
     	);";
     	try {
-    		DB::insert($sql);
-    		echo "1";
+    		DB::insert($sql); 
     	} catch (Exception $e) {
     		
     	} 
