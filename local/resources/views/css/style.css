@@ -6556,7 +6556,7 @@ aside .widget.border:first-child {
 .job-single-info3 .job-is {
     margin: 0;
     margin-left: 0px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     font-size: 12px;
 }
 
@@ -7898,6 +7898,10 @@ aside .widget.border:first-child {
     font-family: Open Sans;
     font-size: 14px;
     line-height: 50px;
+}
+
+.sticky .btns-profiles-sec>span {
+    color: #232323;
 }
 
 .btns-profiles-sec>span>img {

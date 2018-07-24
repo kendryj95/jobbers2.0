@@ -8,6 +8,7 @@
 		<meta name="keywords" content="">
 		<meta name="author" content="CreativeLayers">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
@@ -23,6 +24,13 @@
 		    enable_page_level_ads: true
 		  });
 		</script>
+		<style>
+			@media(min-width: 768px){
+				.tags-jobs>li{
+					float: left;
+				}
+			}
+		</style>
 	</head>
 	<body>
 	  <?php $atras=1;?>
@@ -56,11 +64,11 @@
 												<div class="job-single-info3">
 
 													<h3><a href="../empresa/detalle?e=<?= $datos[0]->id_empresa ?>"><?php echo $datos[0]->empresa;?></a></h3>
-													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
+													<span><i class="la la-map-marker d-none"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
 													<ul class="tags-jobs">
-														<li><i class="la la-file-text"></i> Postulados <?= $cantidad_postulados ?></li>
-														<li><i class="la la-calendar-o"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
-														<li><i class="la la-eye"></i> Vistas <?php echo $datos[0]->vistos;?></li>
+														<li><i class="la la-file-text d-none"></i> Postulados <?= $cantidad_postulados ?></li>
+														<li><i class="la la-calendar-o d-none"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
+														<li><i class="la la-eye d-none"></i> Vistas <?php echo $datos[0]->vistos;?></li>
 													</ul>
 												</div>
 												</div><!-- Job Head -->
