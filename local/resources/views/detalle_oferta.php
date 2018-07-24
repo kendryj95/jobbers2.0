@@ -52,8 +52,9 @@
 									<div class="row">
 										<div class="col-lg-10">
 											<div class="job-single-head3 emplye">
-												<div class="job-thumb"> <img src="../uploads/<?php echo $datos[0]->img_empresa;?>" alt=""></div>
+												<div class="job-thumb"> <img src="../uploads/min/<?php echo $datos[0]->imagen;?>" alt=""></div>
 												<div class="job-single-info3">
+
 													<h3><a href="../empresa/detalle?e=<?= $datos[0]->id_empresa ?>"><?php echo $datos[0]->empresa;?></a></h3>
 													<span><i class="la la-map-marker"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
 													<ul class="tags-jobs">

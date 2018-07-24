@@ -250,12 +250,34 @@ class con_ofertas extends Controller
         DB::update("UPDATE tbl_publicacion SET vistos=(vistos + 1) WHERE id=?",[$id]);
 
         $vista = View::make('detalle_oferta');
-        $sql   = "SELECT t2.id as id_empresa, t1.tmp,t1.id, t1.titulo,t1.discapacidad,t1.vistos,t1.descripcion,t1.id_experiencia,t1.id_genero,t1.fecha_venc,t1.direccion,t1.estatus, t1.video_youtube AS video, t9.nombre ,t7.nombre as sector, t8.nombre as area, t2.nombre as empresa,IF(t5.nombre_aleatorio is null,'empresa.jpg',t5.nombre_aleatorio) as img_empresa,IF(t6.nombre_aleatorio is null,'0.jpg',t6.nombre_aleatorio) as img_publicacion,concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
+        $sql   = "
+        SELECT t2.id as id_empresa, 
+        t1.tmp,
+        t1.id, 
+        t1.titulo,
+        t1.discapacidad,
+        t1.vistos,
+        t1.descripcion,
+        t1.id_experiencia,
+        t1.id_genero,
+        t1.fecha_venc,
+        t1.direccion,
+        t1.estatus,
+        t1.video_youtube AS video,
+        t9.nombre,
+        t7.nombre as sector,
+        t8.nombre as area,
+        t2.nombre as empresa,
+        IF(t6.nombre_aleatorio is null,
+        'empresa.jpg',
+        t6.nombre_aleatorio) as imagen,
+
+            concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
             LEFT JOIN tbl_empresa t2 ON t2.id = t1.id_empresa
             LEFT JOIN tbl_provincias t3 ON t3.id = t2.provincia
             LEFT JOIN tbl_localidades t4 ON t4.id = t2.localidad
-            LEFT JOIN tbl_archivos t5 ON t5.id = t2.id_imagen
-            LEFT JOIN tbl_archivos t6 ON t6.id = t1.id_imagen
+            LEFT JOIN tbl_usuarios_foto_perfil t5 ON t5.id_usuario = t2.id_usuario
+            LEFT JOIN tbl_archivos t6 ON t6.id = t5.id_foto
             LEFT JOIN tbl_areas_sectores t7 ON t7.id = t1.id_sector
             LEFT JOIN tbl_areas t8 ON t8.id = t1.id_area
             LEFT JOIN tbl_disponibilidad t9 ON t9.id = t1.id_disponibilidad
