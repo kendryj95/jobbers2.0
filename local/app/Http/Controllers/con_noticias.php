@@ -17,7 +17,7 @@ class con_noticias extends Controller
     	{
     		$condiciones=$condiciones." AND id_categoria =".$_POST['categoria']."";
     	}
-    	$sql="SELECT * FROM tbl_noticias WHERE estado='1' " .$condiciones;
+    	$sql="SELECT * FROM tbl_noticias WHERE estado='1' $condiciones ORDER BY 1 DESC";
         $datos_noticias = DB::select($sql);
 
         ####### PAGINACIÓN #########
@@ -52,7 +52,7 @@ class con_noticias extends Controller
 
     private function consultaPagination($condiciones,$limit,$tamPag)
     {
-        $sql="SELECT * FROM tbl_noticias WHERE estado='1' " .$condiciones . " LIMIT $limit,$tamPag";
+        $sql="SELECT * FROM tbl_noticias WHERE estado='1' " .$condiciones . " ORDER BY 1 DESC LIMIT $limit,$tamPag";
 
         return $sql;
     }
