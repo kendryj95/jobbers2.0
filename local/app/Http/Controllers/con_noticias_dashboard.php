@@ -100,10 +100,30 @@ class con_noticias_dashboard extends Controller
 	   {
 
 	   	  $vista=View::make("noticias_publicaciones");
-	   	  $sql="SELECT * FROM tbl_noticias";
+	   	  $sql="SELECT * FROM tbl_noticias ORDER BY 1 DESC";
 	   	  try {
 	   	  	$datos=DB::select($sql);
+
+	   	  	####### PAGINACIÓN #########
+	   	  	$tamPag = 10;
+	   	  	$numReg = count($datos);
+	   	  	$paginas = ceil($numReg/$tamPag);
+	   	  	$limit = "";
+	   	  	$paginaAct = "";
+	   	  	if (!isset($_GET['pag'])) {
+	   	  	    $paginaAct = 1;
+	   	  	    $limit = 0;
+	   	  	} else {
+	   	  	    $paginaAct = $_GET['pag'];
+	   	  	    $limit = ($paginaAct-1) * $tamPag;
+	   	  	}
+
+	   	  	$sql="SELECT * FROM tbl_noticias ORDER BY 1 DESC LIMIT $limit,$tamPag";
+	   	  	$datos=DB::select($sql);
+
 	   	  	$vista->datos=$datos;
+	   	  	$vista->paginas=$paginas;
+	   	  	$vista->paginaAct=$paginaAct;
 	   	  	  return $vista;
 	   	  } catch (Exception $e) {
 	   	  	
