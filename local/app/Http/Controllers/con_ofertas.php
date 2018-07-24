@@ -30,9 +30,9 @@ class con_ofertas extends Controller
             if ($_POST["antiguedad"] != 1) {
                 
                 $values = [
-                    " AND t1.tmp=CURDATE()", // Hoy
-                    " AND t1.tmp BETWEEN (CURDATE()-7) AND CURDATE()", // Ultima Semana
-                    " AND t1.tmp BETWEEN (CURDATE()-30) AND CURDATE()" // Ultimos 30 días
+                    " AND DATE_FORMAT(t1.tmp,'%Y-%m-%d')=CURDATE()", // Hoy
+                    " AND DATE_FORMAT(t1.tmp,'%Y-%m-%d') BETWEEN (CURDATE()-7) AND CURDATE()", // Ultima Semana
+                    " AND DATE_FORMAT(t1.tmp,'%Y-%m-%d') BETWEEN (CURDATE()-30) AND CURDATE()" // Ultimos 30 días
                 ];
                 
                 $condiciones .= $values[$_POST["antiguedad"] - 2];
