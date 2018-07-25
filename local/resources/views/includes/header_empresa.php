@@ -12,6 +12,7 @@
 					<li><a href="ofertas" title=""><i class="la la-folder"></i> Ver ofertas</a></li>
 					<li><a href="new_post" title=""><i class="la la-plus"></i> Nueva oferta</a></li>
 					<li><a href="planes" title=""><i class="la la-trophy"></i> Manejar planes</a></li>
+					<li><a href="../candidatos" title=""><i class="la la-users"></i> Candidatos</a></li>
 					<li><a href="../logout" title=""><i class="la la-sign-out"></i> Salir</a></li>
 				</ul>
 			</div>

@@ -336,6 +336,31 @@
 								}
 								
 							});
+
+							var regex_num = /^\d+$/g;
+							var regex_tlf = /^([0-9\-\+]{7,15})+$/g;
+							var regex_dir= /^[\D][\w\s\/\-]+$/g;
+
+							if (!regex_num.test($('#cuit').val())) {
+								$.notify("Escriba un cuit valido.", {
+								className:"error",
+								globalPosition: "bottom center"
+								});
+								return 0;
+							} else if (!regex_tlf.test($('#telefono').val())) {
+								$.notify("Escriba un telefono valido.", {
+								className:"error",
+								globalPosition: "bottom center"
+								});
+								return 0;
+							} else if (!regex_dir.test($('#direccion').val())) {
+								$.notify("Escriba una dirección valida.", {
+								className:"error",
+								globalPosition: "bottom center"
+								});
+								return 0;
+							}
+
 							if (bandera) {
 								$.ajaxSetup({
 								headers: {
@@ -401,51 +426,60 @@
 
 							if (bandera) {
 								if ($('#pass_new').val() == $('#pass_new_conf').val()) {
-									$.ajaxSetup({
-										headers: {
-										'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-										}
-									});
-									$.ajax({
-										url: 'actualizar_profile',
-										type: 'POST',
-										dataType: 'json',
-										data: datos+"&op=4",
-										beforeSend: function(){
-											$btn.text("Actualizando...").prop("disabled", true);
-										},
-										success: function(response){
-											if (response.status == 1) {
-												$.notify("Contraseña actualizada satisfactoriamente.", {
-												className:"success",
-												globalPosition: "bottom center"
-												});
 
-												$('#form_contraseña')[0].reset();
-									
-											} else if (response.status == 2) {
-												$.notify("La contraseña actual no coincide con la que está registrada en el sistema.", {
-												className:"error",
-												globalPosition: "bottom center"
-												});
-											} else {
+									if ($('#pass_new').val().length >= 8 && $('#pass_new').val().length <= 12) {
+										$.ajaxSetup({
+											headers: {
+											'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+											}
+										});
+										$.ajax({
+											url: 'actualizar_profile',
+											type: 'POST',
+											dataType: 'json',
+											data: datos+"&op=4",
+											beforeSend: function(){
+												$btn.text("Actualizando...").prop("disabled", true);
+											},
+											success: function(response){
+												if (response.status == 1) {
+													$.notify("Contraseña actualizada satisfactoriamente.", {
+													className:"success",
+													globalPosition: "bottom center"
+													});
+
+													$('#form_contraseña')[0].reset();
+										
+												} else if (response.status == 2) {
+													$.notify("La contraseña actual no coincide con la que está registrada en el sistema.", {
+													className:"error",
+													globalPosition: "bottom center"
+													});
+												} else {
+													$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
+													className:"error",
+													globalPosition: "bottom center"
+													});
+												}
+												
+											},
+											error: function(error){
 												$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
 												className:"error",
 												globalPosition: "bottom center"
 												});
+											},
+											complete: function(){
+												$btn.text("Actualizar").prop("disabled", false);
 											}
-											
-										},
-										error: function(error){
-											$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
-											className:"error",
-											globalPosition: "bottom center"
-											});
-										},
-										complete: function(){
-											$btn.text("Actualizar").prop("disabled", false);
-										}
-									});
+										});
+									} else {
+										$.notify("Las contraseñas deben contener entre 8 y 12 caracteres.", {
+										className:"error",
+										globalPosition: "bottom center"
+										});
+									}
+									
 								} else {
 									$.notify("Las contraseñas no coinciden, intentelo de nuevo.", {
 									className:"error",
