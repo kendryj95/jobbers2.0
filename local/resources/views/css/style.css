@@ -5157,7 +5157,7 @@ section.overlape {
 .pagination ul {
     display: inline-block;
     list-style: outside none none;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 

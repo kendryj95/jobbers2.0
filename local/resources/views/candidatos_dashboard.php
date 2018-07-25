@@ -127,77 +127,45 @@
 				</div>
 			</section>
 		</div>
-		<?php include("local/resources/views/includes/aside_right_administrator.php");?>
-		<div class="view-resumesec">
-			<div class="view-resumes">
-				<span class="close-resume-popup"><i class="la la-close"></i></span>
-				<h3>13 Times Viewed By 8 Companies.</h3>
-				<div class="job-listing wtabs">
-					<div class="job-title-sec">
-						<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-						<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						<span>Massimo Artemisis</span>
-						<div class="job-lctn">Sacramento, California</div>
-					</div>
-					<span class="date-resume">11.02.2017</span>
-					</div><!-- Job -->
-					<div class="job-listing wtabs">
-						<div class="job-title-sec">
-							<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-							<h3><a href="#" title="">C Developer (Senior) C .Net</a></h3>
-							<span>Massimo Artemisis</span>
-							<div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-						</div>
-						<span class="date-resume">11.02.2017</span>
-						</div><!-- Job -->
+		
+		<div class="follow-companiesec">
+			<div class="follow-companies">
+				<span class="close-follow-company">
+					<i class="la la-close"></i>
+				</span>
+				<h3>Empresas seguidas</h3>
+				<ul id="scrollbar">
+					<?php if (count($list_empresas_seguidas) > 0): ?>
+					<?php foreach ($list_empresas_seguidas as $val): ?>
+					<li>
 						<div class="job-listing wtabs">
 							<div class="job-title-sec">
-								<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-								<h3><a href="#" title="">Web Designer / Developer</a></h3>
-								<span>Massimo Artemisis</span>
-								<div class="job-lctn">Sacramento, California</div>
-							</div>
-							<span class="date-resume">11.02.2017</span>
-							</div><!-- Job -->
-							<div class="job-listing wtabs">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="http://placehold.it/98x51" alt="" /> </div>
-									<h3><a href="#" title="">Web Designer / Developer</a></h3>
-									<span>Massimo Artemisis</span>
-									<div class="job-lctn">Sacramento, California</div>
+								<?php $imagen = $val->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$val->imagen ?>
+								<div class="c-logo">
+									<img src="<?= $imagen ?>" alt="logo de empresa" /> </div>
+								<h3>
+									<a href="#" title="">
+										<?= $val->nombre_empresa ?>
+									</a>
+								</h3>
+								<div class="job-lctn">
+									<?= $val->direccion ?>
 								</div>
-								<span class="date-resume">11.02.2017</span>
-								</div><!-- Job -->
 							</div>
+							<a href="#" title="" class="go-unfollow">Unfollow</a>
 						</div>
-						<div class="follow-companiesec">
-							<div class="follow-companies">
-								<span class="close-follow-company"><i class="la la-close"></i></span>
-								<h3>Empresas seguidas</h3>
-								<ul id="scrollbar">
-									<?php if (count($list_empresas_seguidas) > 0): ?>
-										<?php foreach ($list_empresas_seguidas as $val): ?>
-										<li>
-											<div class="job-listing wtabs">
-												<div class="job-title-sec">
-													<?php $imagen = $val->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$val->imagen ?>
-													<div class="c-logo"> <img src="<?= $imagen ?>" alt="logo de empresa" /> </div>
-													<h3><a href="#" title=""><?= $val->nombre_empresa ?></a></h3>
-													<div class="job-lctn"><?= $val->direccion ?></div>
-												</div>
-												<a href="#" title="" class="go-unfollow">Unfollow</a>
-											</div><!-- Job -->
-										</li>
-										<?php endforeach; ?>
-									<?php else: ?>
-										<li>
-											<p style="text-align: center;">Sin registros</p>
-										</li>
-									<?php endif; ?>
-								</ul>
-							</div>
-							
-						</div>
+						<!-- Job -->
+					</li>
+					<?php endforeach; ?>
+					<?php else: ?>
+					<li>
+						<p style="text-align: center;">Sin registros</p>
+					</li>
+					<?php endif; ?>
+				</ul>
+			</div>
+
+		</div>
 		<?php include("local/resources/views/includes/general_footer.php");?>
 		<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 		<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
