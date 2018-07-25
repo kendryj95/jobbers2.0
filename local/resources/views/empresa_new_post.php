@@ -67,7 +67,7 @@
 												<div class="col-lg-12">
 													<span class="pf-title">Titulo de la oferta <b>*</b></span>
 													<div class="pf-field">
-														<input type="text" placeholder="Designer" name="titulo" id="titulo" />
+														<input type="text" placeholder="Titulo" name="titulo" id="titulo" />
 													</div>
 												</div>
 												<div class="col-lg-12">

@@ -10,7 +10,7 @@
 					</ul>
 				</li>
 				<li class="inner-child">
-					<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Ofertas de Trabajo</a>
+					<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Oferta de Trabajo</a>
 					<ul>
 						<li onclick="location.href='ofertas'"><a href="ofertas" title="Ver Ofertas de Trab.">Ver ofertas</a></li>
 						<li onclick="location.href='new_post'"><a href="new_post" title="Nueva Oferta de Trab.">Nueva oferta</a></li>
