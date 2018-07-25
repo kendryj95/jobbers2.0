@@ -365,7 +365,7 @@ $mi_tokken=csrf_token();
                   <div class="job-style-bx">
                     
                     '.$disponibilidad.$corazon.'
-                    <i>Vistas '.$key->vistos.' / '.$key->tmp.'
+                    <i>Visitas '.$key->vistos.' / '.$key->tmp.'
                     </i>
                   </div></div>';
                   }?>

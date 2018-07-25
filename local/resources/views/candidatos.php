@@ -293,7 +293,7 @@
                 </div>
                 <!-- Tags Bar -->
                 <div class="filterbar">
-                  <h5><?php echo $total_datos_candidatos;?> candidatos</h5>
+                  <h5><?php echo count($datos_candidatos);?> candidatos</h5>
                 </div>
               </div>
              
