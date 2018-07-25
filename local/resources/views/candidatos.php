@@ -93,187 +93,206 @@
             <aside class="col-lg-3 column border-right" id="side-offers">
               <form id="form_filtros" method="POST" action="candidatos">
                 <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
-               
-                  <div class="widget" >
-                    <h3 class="sb-title open">Habilidades</h3>
-                    <div class="specialism_widget" style="">
-                      <!-- Search Widget -->
-                      
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content"> 
-                            <?php
-                            $aux=array();
-                            ?>
-                            <?php foreach ($datos_habilidades as $key): ?>
-                            <?php if (in_array($key->descripcion, $aux)!=1): ?>
-                            <p>
-                              <input onclick="filtros_set()" type="checkbox" name="habilidad[]" id="as_habilidad_<?php echo str_replace(' ','_',$key->descripcion);?>" value="<?php echo $key->descripcion;?>">
-                              <label id="label_as_habilidad_<?php echo str_replace(' ','_',$key->descripcion);?>" for="as_habilidad_<?php echo $key->descripcion;?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad;?>)</label>
-                            </p>
-                            <?php array_push($aux, $key->descripcion);?>
-                            <?php endif ?>
-                            <?php endforeach ?>
-                          </div>
-                        </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="widget" >
-                    <h3 class="sb-title open">Provincia</h3>
-                    <div class="specialism_widget" style="">
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content">
-                            <?php
-                            $aux=array();
-                            ?>
-                            <?php foreach ($datos_provincia as $key): ?>
-                            <?php if (in_array($key->provincia, $aux)!=1): ?>
-                            <p>
-                              <input onclick="filtros_set()" type="checkbox" name="provincias[]" id="as_provincia_<?php echo $key->id_provincia;?>" value="<?php echo $key->id_provincia;?>">
-                              <label for="as_provincia_<?php echo $key->id_provincia;?>" id="label_as_provincia_<?php echo $key->id_provincia;?>" ><?php echo $key->provincia;?> (<?php echo $key->cantidad;?>)</label>
-                            </p>
-                            <?php array_push($aux, $key->provincia);?>
-                            <?php endif ?>
-                            <?php endforeach ?>
-                          </div>
-                        </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="widget" >
-                    <h3 class="sb-title open">Localidades</h3>
-                    <div class="specialism_widget" style="">
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content">
-                            <?php
-                            $aux=array();
-                            ?>
-                            <?php foreach ($datos_localidades as $key): ?>
-                            <?php if (in_array($key->localidad, $aux)!=1): ?>
-                            <p>
-                              <input onclick="filtros_set()" type="checkbox" name="localidad[]" id="as_localidad_<?php echo $key->id_localidad;?>" value="<?php echo $key->id_localidad;?>">
-                              <label for="as_localidad_<?php echo $key->id_localidad;?>" id="label_as_localidad_<?php echo $key->id_localidad;?>"><?php echo $key->localidad;?> (<?php echo $key->cantidad;?>)</label>
-                            </p>
-                            <?php array_push($aux, $key->localidad);?>
-                            <?php endif ?>
-                            <?php endforeach ?>
-                          </div>
-                        </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
-                      </div>
-                    </div>
-                  </div> 
-
-                  <div class="widget" >
-                    <h3 class="sb-title open">Disponibilidad</h3>
-                    <div class="specialism_widget" style="">
-                      <!-- Search Widget -->
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content">
-                            
-                            <?php
-                            foreach ($datos_disponibilidad as $key):?>
-                            <p>
-                              <input onclick="filtros_set()" value="<?php echo $key->id_jornada?>" type="checkbox" name="disponibilidad[]" id="disponibilidad_<?php echo $key->id_jornada?>">
-
-                              <label for="disponibilidad_<?php echo $key->id_jornada?>" id="label_disponibilidad_<?php echo $key->id_jornada?>"><?php echo $key->nombre;?> (<?php echo $key->cantidad;?>)</label>
-                            </p>
-                            <?php endforeach?>
-                            
-                          </div>
-                        </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="widget"  >
-                    <h3 class="sb-title open">Idiomas</h3>
-                    <div class="specialism_widget" style="">
-                      <!-- Search Widget -->
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content">
-                            
-                            <?php foreach ($datos_idioma as $key): ?>
-                            <p>
-                              <input onclick="filtros_set()" value="<?php echo $key->descripcion?>" type="checkbox" name="idiomas[]" id="as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>">
-
-                              <label for="as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>" id="label_as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad?>)</label>
-                            </p>
-                            <?php endforeach ?>
-                            
-                          </div>
-                        </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
-                      </div>
-                    </div>
-                  </div> 
-                  <div class="widget"   >
-                    <h3 class="sb-title open">Género</h3>
-                    <div class="specialism_widget" style="">
-                      <!-- Search Widget -->
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content"> 
-                              <?php foreach ($datos_generos as $key): ?>
+                  
+                  <?php if (sizeof($datos_habilidades) != 0): ?>               
+                    <div class="widget" >
+                      <h3 class="sb-title open">Habilidades</h3>
+                      <div class="specialism_widget" style="">
+                        <!-- Search Widget -->
+                        
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content"> 
+                              <?php
+                              $aux=array();
+                              ?>
+                              <?php foreach ($datos_habilidades as $key): ?>
+                              <?php if (in_array($key->descripcion, $aux)!=1): ?>
                               <p>
-                                <input value="<?php echo $key->id_sexo?>" onclick="filtros_set()" type="checkbox" name="sexo[]" id="as_genero_<?php echo $key->id_sexo?>">
-                                <label for="as_genero_<?php echo $key->id_sexo?>" id="label_as_genero_<?php echo $key->id_sexo?>"><?php echo $key->descripcion;?>  (<?php echo $key->cantidad?>)</label>
+                                <input onclick="filtros_set()" type="checkbox" name="habilidad[]" id="as_habilidad_<?php echo str_replace(' ','_',$key->descripcion);?>" value="<?php echo $key->descripcion;?>">
+                                <label id="label_as_habilidad_<?php echo str_replace(' ','_',$key->descripcion);?>" for="as_habilidad_<?php echo $key->descripcion;?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad;?>)</label>
                               </p>
-                              <?php endforeach ?> 
+                              <?php array_push($aux, $key->descripcion);?>
+                              <?php endif ?>
+                              <?php endforeach ?>
+                            </div>
                           </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                         </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                       </div>
                     </div>
-                  </div>
-                  <div class="widget" >
-                    <h3 class="sb-title open">Salarios</h3>
-                    <div class="specialism_widget" style="">
-                      <!-- Search Widget -->
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content"> 
-                              <?php foreach ($datos_salarios as $key): ?>
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_provincia) != 0): ?>
+                    <div class="widget" >
+                      <h3 class="sb-title open">Provincia</h3>
+                      <div class="specialism_widget" style="">
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content">
+                              <?php
+                              $aux=array();
+                              ?>
+                              <?php foreach ($datos_provincia as $key): ?>
+                              <?php if (in_array($key->provincia, $aux)!=1): ?>
                               <p>
-                                <input value="<?php echo $key->id_remuneracion_pre?>" onclick="filtros_set()" type="checkbox" name="salarios[]" id="as_salarios_<?php echo $key->id_remuneracion_pre?>">
-                                <label  for="as_salarios_<?php echo $key->id_remuneracion_pre?>" id="label_as_salarios_<?php echo $key->id_remuneracion_pre?>"><?php echo $key->salario;?>  (<?php echo $key->cantidad?>)</label>
+                                <input onclick="filtros_set()" type="checkbox" name="provincias[]" id="as_provincia_<?php echo $key->id_provincia;?>" value="<?php echo $key->id_provincia;?>">
+                                <label for="as_provincia_<?php echo $key->id_provincia;?>" id="label_as_provincia_<?php echo $key->id_provincia;?>" ><?php echo $key->provincia;?> (<?php echo $key->cantidad;?>)</label>
                               </p>
-                              <?php endforeach ?> 
+                              <?php array_push($aux, $key->provincia);?>
+                              <?php endif ?>
+                              <?php endforeach ?>
+                            </div>
                           </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                         </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                       </div>
                     </div>
-                  </div>
-                  <div class="widget" >
-                    <h3 class="sb-title open">Cargos</h3>
-                    <div class="specialism_widget" style="">
-                      <!-- Search Widget -->
-                      <div class="simple-checkbox scrollbar ss-container"  >
-                        <div class="ss-wrapper">
-                          <div class="ss-content"> 
-                              <?php foreach ($datos_cargos as $key): ?>
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_localidades) != 0): ?>
+                    <div class="widget" >
+                      <h3 class="sb-title open">Localidades</h3>
+                      <div class="specialism_widget" style="">
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content">
+                              <?php
+                              $aux=array();
+                              ?>
+                              <?php foreach ($datos_localidades as $key): ?>
+                              <?php if (in_array($key->localidad, $aux)!=1): ?>
                               <p>
-                                <input value="<?php echo $key->descripcion?>" onclick="filtros_set()" class="control_seleccionado" type="checkbox" name="cargos[]" id="as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>">
-                                <label  for="as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>" id="label_as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad?>)</label>
+                                <input onclick="filtros_set()" type="checkbox" name="localidad[]" id="as_localidad_<?php echo $key->id_localidad;?>" value="<?php echo $key->id_localidad;?>">
+                                <label for="as_localidad_<?php echo $key->id_localidad;?>" id="label_as_localidad_<?php echo $key->id_localidad;?>"><?php echo $key->localidad;?> (<?php echo $key->cantidad;?>)</label>
                               </p>
-                              <?php endforeach ?> 
+                              <?php array_push($aux, $key->localidad);?>
+                              <?php endif ?>
+                              <?php endforeach ?>
+                            </div>
                           </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
                         </div>
-                        <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                      </div>
+                    </div> 
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_disponibilidad) != 0): ?>
+                    <div class="widget" >
+                      <h3 class="sb-title open">Disponibilidad</h3>
+                      <div class="specialism_widget" style="">
+                        <!-- Search Widget -->
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content">
+                              
+                              <?php
+                              foreach ($datos_disponibilidad as $key):?>
+                              <p>
+                                <input onclick="filtros_set()" value="<?php echo $key->id_jornada?>" type="checkbox" name="disponibilidad[]" id="disponibilidad_<?php echo $key->id_jornada?>">
+
+                                <label for="disponibilidad_<?php echo $key->id_jornada?>" id="label_disponibilidad_<?php echo $key->id_jornada?>"><?php echo $key->nombre;?> (<?php echo $key->cantidad;?>)</label>
+                              </p>
+                              <?php endforeach?>
+                              
+                            </div>
+                          </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                        </div>
                       </div>
                     </div>
-                  </div> 
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_idioma) != 0): ?> 
+                    <div class="widget"  >
+                      <h3 class="sb-title open">Idiomas</h3>
+                      <div class="specialism_widget" style="">
+                        <!-- Search Widget -->
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content">
+                              
+                              <?php foreach ($datos_idioma as $key): ?>
+                              <p>
+                                <input onclick="filtros_set()" value="<?php echo $key->descripcion?>" type="checkbox" name="idiomas[]" id="as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>">
+
+                                <label for="as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>" id="label_as_idiomas_<?php echo str_replace(' ','_',$key->descripcion);?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad?>)</label>
+                              </p>
+                              <?php endforeach ?>
+                              
+                            </div>
+                          </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                        </div>
+                      </div>
+                    </div> 
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_generos) != 0): ?>
+                    <div class="widget"   >
+                      <h3 class="sb-title open">Género</h3>
+                      <div class="specialism_widget" style="">
+                        <!-- Search Widget -->
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content"> 
+                                <?php foreach ($datos_generos as $key): ?>
+                                <p>
+                                  <input value="<?php echo $key->id_sexo?>" onclick="filtros_set()" type="checkbox" name="sexo[]" id="as_genero_<?php echo $key->id_sexo?>">
+                                  <label for="as_genero_<?php echo $key->id_sexo?>" id="label_as_genero_<?php echo $key->id_sexo?>"><?php echo $key->descripcion;?>  (<?php echo $key->cantidad?>)</label>
+                                </p>
+                                <?php endforeach ?> 
+                            </div>
+                          </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_salarios) != 0): ?>
+                    <div class="widget" >
+                      <h3 class="sb-title open">Salarios</h3>
+                      <div class="specialism_widget" style="">
+                        <!-- Search Widget -->
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content"> 
+                                <?php foreach ($datos_salarios as $key): ?>
+                                <p>
+                                  <input value="<?php echo $key->id_remuneracion_pre?>" onclick="filtros_set()" type="checkbox" name="salarios[]" id="as_salarios_<?php echo $key->id_remuneracion_pre?>">
+                                  <label  for="as_salarios_<?php echo $key->id_remuneracion_pre?>" id="label_as_salarios_<?php echo $key->id_remuneracion_pre?>"><?php echo $key->salario;?>  (<?php echo $key->cantidad?>)</label>
+                                </p>
+                                <?php endforeach ?> 
+                            </div>
+                          </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif ?>
+
+                  <?php if(sizeof($datos_cargos) != 0): ?>
+                    <div class="widget" >
+                      <h3 class="sb-title open">Cargos</h3>
+                      <div class="specialism_widget" style="">
+                        <!-- Search Widget -->
+                        <div class="simple-checkbox scrollbar ss-container"  >
+                          <div class="ss-wrapper">
+                            <div class="ss-content"> 
+                                <?php foreach ($datos_cargos as $key): ?>
+                                <p>
+                                  <input value="<?php echo $key->descripcion?>" onclick="filtros_set()" class="control_seleccionado" type="checkbox" name="cargos[]" id="as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>">
+                                  <label  for="as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>" id="label_as_cargos_<?php echo str_replace(' ','_',$key->descripcion);?>"><?php echo $key->descripcion;?> (<?php echo $key->cantidad?>)</label>
+                                </p>
+                                <?php endforeach ?> 
+                            </div>
+                          </div>
+                          <div class="" style="height: 58.5859%; top: 0%; right: -329px;"></div>
+                        </div>
+                      </div>
+                    </div> 
+                  <?php endif ?>
               </form>
                
               <div class="widget">

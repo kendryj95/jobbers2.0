@@ -84,28 +84,28 @@
 										        <?php if ($paginas >= 1 && $paginas <= 5): ?>
 										          <?php for ($i=0;$i<$paginas;$i++): ?>
 										            <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
-										            <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+										            <li class=" d-none d-md-block <?= $active ?>"><a href="notipublicaciones?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
 										          <?php endfor; ?>
 										        <?php else: ?>
 										          <?php if (($paginaAct+4) <= $paginas): ?>
 										            <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
 										              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-										              <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
+										              <li class=" d-none d-md-block <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
 										            <?php endfor; ?>
 										          <?php elseif ($paginaAct == $paginas): ?>
 										            <?php for ($i=($paginaAct-4);$i<=$paginas;$i++): ?>
 										              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-										              <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
+										              <li class=" d-none d-md-block <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
 										            <?php endfor; ?>
 										          <?php else: ?>
 										            <?php for ($i=$paginaAct;$i<=$paginas;$i++): ?>
 										              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
-										              <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
+										              <li class=" d-none d-md-block <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
 										            <?php endfor; ?>
 										          <?php endif; ?>
 										          <?php if (($paginaAct+4) < $paginas): ?>
-										          <li class="d-none"><span class="delimeter">...</span></li>
-										          <li class="d-none"><a href="notipublicaciones?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
+										          <li class="d-none d-md-block"><span class="delimeter">...</span></li>
+										          <li class="d-none d-md-block"><a href="notipublicaciones?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
 										          <?php endif ?>
 										        <?php endif; ?>
 										        <?php  
