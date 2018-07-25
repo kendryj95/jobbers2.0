@@ -10,7 +10,7 @@
 					</ul>
 				</li>
 				<li class="inner-child">
-					<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Ofertas de Trabajo</a>
+					<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Oferta de Trabajo</a>
 					<ul>
 						<li onclick="location.href='ofertas'"><a href="ofertas" title="Ver Ofertas de Trab.">Ver ofertas</a></li>
 						<li onclick="location.href='new_post'"><a href="new_post" title="Nueva Oferta de Trab.">Nueva oferta</a></li>
@@ -21,6 +21,9 @@
 					<ul>
 						<li onclick="location.href='planes'"><a href="planes" title="Manejar Planes">Manejar planes</a></li>
 					</ul>
+				</li>
+				<li >
+					<a href="../candidatos" title=""><i class="la la-users"></i>Candidatos</a>
 				</li>
 				<li onclick="location.href='../logout'"><a href="../logout" title=""><i class="la la-unlink"></i>Salir</a></li>
 				<!-- <li class="inner-child">

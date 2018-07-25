@@ -64,7 +64,7 @@ class con_login extends Controller
                                     $timestamp_vencimiento = strtotime("+35 day", strtotime($plan[0]->tmp));
 
                                     if ($timestamp_today >= $timestamp_vencimiento) {
-                                        $db->query("UPDATE tbl_empresas_planes SET id_plan=1, tmp=".date("Y-m-d H:i:s")." WHERE id_empresa=".$datos_emp[0]->id_empresa);
+                                        // DB::update("UPDATE tbl_empresas_planes SET id_plan=1, tmp='".date("Y-m-d H:i:s")."' WHERE id_empresa=".$datos_emp[0]->id_empresa);
                                         $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
                                         $request->session()->set($sufijo . 'plan', $plan);
                                     } else {

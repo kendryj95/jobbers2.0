@@ -46,7 +46,7 @@
 												<tr >
 													<td style="width: 60%;">
 														<div class="table-list-title">
-															<h3><a href="detalleoferta/2" title=""><?php echo $key->titulo;?></a></h3>
+															<h3><a href="noticias/<?php echo $key->id;?>" title=""><?php echo $key->titulo;?></a></h3>
 															<span><?php echo $key->tags;?></span><br>
 														</div>
 													</td>
@@ -60,7 +60,69 @@
 												</tr>
 												<?php endforeach ?>
 											</tbody>
-										</table> 
+										</table>
+										<?php if ($paginas > 0): ?>
+										    <div class="pagination">
+										      <ul>
+										        <?php  
+										          if (isset($_GET['pag'])) {
+										            if ($_GET['pag'] != 1) {
+										              $previous = intval($_GET['pag']) - 1;
+										            } else {
+										              $previous = 1;
+										            }
+										          } else {
+										            $previous = 1;
+										          }
+										        ?>
+										        <li class="prev"><a href="notipublicaciones?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Atrás</a></li>
+										        <!-- <li><a href="">1</a></li>
+										        <li class="active"><a href="">2</a></li>
+										        <li><a href="">3</a></li>
+										        <li><span class="delimeter">...</span></li>
+										        <li><a href="">14</a></li> -->
+										        <?php if ($paginas >= 1 && $paginas <= 5): ?>
+										          <?php for ($i=0;$i<$paginas;$i++): ?>
+										            <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>
+										            <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+										          <?php endfor; ?>
+										        <?php else: ?>
+										          <?php if (($paginaAct+4) <= $paginas): ?>
+										            <?php for ($i=$paginaAct;$i<=($paginaAct+4);$i++): ?>
+										              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+										              <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
+										            <?php endfor; ?>
+										          <?php elseif ($paginaAct == $paginas): ?>
+										            <?php for ($i=($paginaAct-4);$i<=$paginas;$i++): ?>
+										              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+										              <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
+										            <?php endfor; ?>
+										          <?php else: ?>
+										            <?php for ($i=$paginaAct;$i<=$paginas;$i++): ?>
+										              <?php $active = isset($_GET['pag']) ? ($i) == $_GET['pag'] ? 'active' : "" : ($i) == 1 ? 'active' : "" ?>
+										              <li class=" d-none <?= $active ?>"><a href="notipublicaciones?pag=<?= $i ?>"><?= $i ?></a></li>
+										            <?php endfor; ?>
+										          <?php endif; ?>
+										          <?php if (($paginaAct+4) < $paginas): ?>
+										          <li class="d-none"><span class="delimeter">...</span></li>
+										          <li class="d-none"><a href="notipublicaciones?pag=<?= $paginas ?>"><?= $paginas ?></a></li>
+										          <?php endif ?>
+										        <?php endif; ?>
+										        <?php  
+										          if (isset($_GET['pag'])) {
+										            if ($_GET['pag'] != $paginas) {
+										              $next = intval($_GET['pag']) + 1;
+										            } else {
+										              $next = $paginas;
+										            }
+										          } else {
+										            $next = 2;
+										          }
+										        ?>
+										        <li class="next"><a href="notipublicaciones?pag=<?= $next ?>">Siguiente <i class="la la-long-arrow-right"></i></a></li>
+										      </ul>
+										    </div> <!-- Pagination -->
+										<?php endif; ?> 
 									</div>
 								</div>
 							</div>

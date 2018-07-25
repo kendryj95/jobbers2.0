@@ -33,7 +33,7 @@
 											<div class="col-lg-12">
 												<p style="margin-bottom: 0px;">Imagen</p>
 												<div class="pf-field" style="height: 55px;"> 
-											  <input name="imagen_noticia" type="file" placeholder="" accept="image/*">
+											  <input name="imagen_noticia" id="imagen_noticia" type="file" placeholder="" accept="image/*">
 											</div> 
 											</div>
 											<p style="margin-bottom: 0px;margin-left: 20px;">Titulo</p>
@@ -85,30 +85,66 @@
 			<?php include("local/resources/views/includes/aside_right_administrator.php");?>
 			<?php include("local/resources/views/includes/general_footer.php");?>
 
-			<script type="text/javascript">
-				function validar_form()
-				{
-					if($("#noticia_titulo").val()=="")
-					{
-						alert("Debe colocar el titulo de la noticia.");
-						$("#noticia_titulo").focus();
-					} 
-					else if($("#noticias_tags").val()=="")
-					{
-						alert("Debe colocar almenos un tag.");
-						$("#noticias_tags").val().focus();
-					}
-					else 
-					{
-						$("#formulario").submit();
-					}
-				}
-			</script>
-			 <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>  
-			 <script src="local/resources/views/js/script.js" type="text/javascript"></script>  
+			
+			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>  
+			<script src="local/resources/views/js/script.js" type="text/javascript"></script>  
 	        <script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-	        <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
-				<script>
+	        <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
+	        <script src="local/resources/views/plugins/notify.js" type="text/javascript"></script> 
+			<script>
+
+			<?php if (isset($_GET['error']) && $_GET['error'] != ""): ?>
+				$.notify("<?= $_GET['error'] ?>", {
+					className:"error",
+					globalPosition: "bottom center"
+				});
+			<?php endif; ?>
+
+			function validar_form()
+			{
+				var descripcion = CKEDITOR.instances['editor'].getData();
+				
+				if (document.getElementById('imagen_noticia').files.length == 0) {
+					$.notify("Debe seleccionar una imagen para la noticia.", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+				}
+				else if($("#noticia_titulo").val()=="")
+				{
+					$.notify("Debe colocar el titulo de la noticia.", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+					$("#noticia_titulo").focus();
+				}
+				else if ($('#noticias_categoria').val() == ""){
+
+					$.notify("Debe seleccionar una categoria.", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+				} 
+				else if($("#noticias_tags").val()=="")
+				{
+					$.notify("Debe colocar al menos un tag.", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+					$("#noticias_tags").val().focus();
+				}
+				else if (descripcion == '') {
+					$.notify("Debe colocar la descripción de la noticia", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+					$("#editor").focus();
+				}
+				else 
+				{
+					$("#formulario").submit();
+				}
+			}
 			initSample();
 			</script> 
 		</body>
