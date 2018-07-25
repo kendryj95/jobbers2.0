@@ -683,7 +683,8 @@ class con_empresa extends Controller
         (SELECT MAX(tmp) FROM tbl_publicacion WHERE id_empresa=e.id) AS last_date_oferta,
         ae.nombre AS actividad_empresa
         FROM tbl_empresa e
-        LEFT JOIN tbl_archivos a ON e.id_imagen=a.id
+        LEFT JOIN tbl_usuarios_foto_perfil t1 ON e.id_usuario = t1.id_usuario
+        LEFT JOIN tbl_archivos a ON t1.id_foto=a.id
         LEFT JOIN tbl_provincias p ON e.provincia=p.id
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
         LEFT JOIN tbl_actividades_empresa ae ON e.sector=ae.id
