@@ -41,8 +41,16 @@
 					<i class="la la-envelope-o"></i>
 				</div>
 				<div class="cfield">
-					<input name="clave" id="clave" type="password" placeholder="********" />
+					<input name="correo2" id="correo2" type="email" placeholder="Confirmar correo" />
+					<i class="la la-at"></i>
+				</div>
+				<div class="cfield">
+					<input name="clave" id="clave" type="password" placeholder="Contraseña" />
 					<i class="la la-eye" style="cursor: pointer;" onclick="show_hide(this)" title="Mostrar"></i>
+				</div>
+				<div class="cfield">
+					<input name="clave2" id="clave2" type="password" placeholder="Confirmar contraseña" />
+					<i class="la la-lock"></i>
 				</div>
 				<div class="simple-checkbox">
 				  <p><input type="checkbox" name="condiciones" id="condiciones"><label for="condiciones">Acepto <a href="terminos" style="color: #10c9e5">términos, condiciones y políticas de privacidad</a>.</label></p>
@@ -86,36 +94,52 @@
 			function registrar()
 			{
 				var correo = isEmail($('#correo').val());
+				var correo2 = isEmail($('#correo2').val());
 				$('#error').hide();
 
 				if ($('#correo').val() != "" && $('#clave').val() != "") {
-					if (correo) {
+					if (correo && correo2) {
 						if ($('#clave').val().length >= 8 && $('#clave').val().length <= 12) {
 
 							if ($('#condiciones').is(':checked')) {
 
-								$.ajaxSetup({
-									headers: {
-									'X-CSRF-TOKEN': $('#my_token').val()
-									}
-								});
-								$.ajax({
-									url: 'existEmail',
-									type: 'POST',
-									dataType: 'json',
-									data: {correo: $('#correo').val()},
-									success: function(response) {
-										if (response.data == 1) {
-											$('#error').html('<i class="la la-close"></i> Correo electrónico en uso intente de nuevo').show();
+								if ($('#tipo').val() != "") {
+									
+									if ($('#correo').val() == $('#correo2').val()) {
+
+										if ($('#clave').val() == $('#clave2').val()) {
+
+											$.ajaxSetup({
+												headers: {
+												'X-CSRF-TOKEN': $('#my_token').val()
+												}
+											});
+											$.ajax({
+												url: 'existEmail',
+												type: 'POST',
+												dataType: 'json',
+												data: {correo: $('#correo').val()},
+												success: function(response) {
+													if (response.data == 1) {
+														$('#error').html('<i class="la la-close"></i> Correo electrónico en uso intente de nuevo').show();
+													} else {
+														$('#form_register').submit();
+														// console.log("registrado");
+													}
+												},
+												error: function (error) {
+													$('#error').html('<i class="la la-close"></i> Ha ocurrido un error inesperado. Por for intentelo de nuevo').show();
+												}
+											});
 										} else {
-											$('#form_register').submit();
-											// console.log("registrado");
+											$('#error').html('<i class="la la-close"></i> Las contraseñas no coinciden.').show();
 										}
-									},
-									error: function (error) {
-										$('#error').html('<i class="la la-close"></i> Ha ocurrido un error inesperado. Por for intentelo de nuevo').show();
+									} else {
+										$('#error').html('<i class="la la-close"></i> Los correos electronicos no coinciden.').show();
 									}
-								});
+								} else {
+									$('#error').html('<i class="la la-close"></i> Debes seleccionar un rol para poder registrarte.').show();
+								}
 							} else {
 								$('#error').html('<i class="la la-close"></i> Debes aceptar los términos, políticas y condiciones para continuar con el registro').show();
 							}
