@@ -121,7 +121,7 @@ class con_candidatos extends Controller
 
 
             $vista=View::make('candidatos');
-            $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
+            $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id, t2.nombres as nombre, t2.apellidos as apellido,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
 
             $consulta_general="FROM tbl_usuarios t1
                 LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
@@ -238,7 +238,7 @@ class con_candidatos extends Controller
 
     private function consultaPagination($condiciones,$limit,$tamPag)
     {
-        $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
+        $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id, t2.nombres as nombre, t2.apellidos as apellido,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
 
         $consulta_general="FROM tbl_usuarios t1
             LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
