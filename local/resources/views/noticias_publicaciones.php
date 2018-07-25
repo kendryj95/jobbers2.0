@@ -46,7 +46,7 @@
 												<tr >
 													<td style="width: 60%;">
 														<div class="table-list-title">
-															<h3><a href="detalleoferta/2" title=""><?php echo $key->titulo;?></a></h3>
+															<h3><a href="noticias/<?php echo $key->id;?>" title=""><?php echo $key->titulo;?></a></h3>
 															<span><?php echo $key->tags;?></span><br>
 														</div>
 													</td>
