@@ -292,7 +292,7 @@ class con_empresa extends Controller
 
         $params = [
             "total_ofertas" => $total_ofertas,
-            "ofertas"       => $ofertas,
+            "ofertas"       => array_reverse($ofertas),
             "total_postulados" => $total_postulados
         ];
         return view('empresa_ofertas', $params);
