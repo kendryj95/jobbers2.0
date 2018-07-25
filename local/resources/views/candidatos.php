@@ -1,8 +1,36 @@
 <?php  
-  function url_candidato($id)
+  function datos_candidato($id, $foto, $nombre, $apellido)
   {
-    return "candidato/$id";
-  }  
+    $url_candidato = "";
+    $url_candidato_imagen = "";
+    if (session()->get("empresa") == null) {
+      $url_candidato = "login";
+      $url_candidato_imagen = "local/resources/views/images/avatar.jpg";
+      $nombre = $nombre;
+    } elseif (session()->get("empresa") != "") {
+      if (session()->get("emp_plan")[0]->id_plan == 1) {
+        $url_candidato = "empresa/planes";
+        $url_candidato_imagen = "local/resources/views/images/avatar.jpg";
+        $nombre = $nombre;
+      } else {
+        $url_candidato = "candidato/$id";
+        $url_candidato_imagen = "uploads/min/$foto";
+        $nombre = $nombre . " " . $apellido;
+      }
+    } elseif (session()->get("candidato") == null || session()->get("candidato") != null) {
+      $url_candidato = "candidatos";
+      $url_candidato_imagen = "local/resources/views/images/avatar.jpg";
+      $nombre = $nombre;
+    }
+
+    return [
+      "candidato" => $url_candidato,
+      "imagen" => $url_candidato_imagen,
+      "nombre" => $nombre
+    ];
+  }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -275,19 +303,9 @@
                 <div class="job-listings-sec">
                   
                   <?php
-                    $url_candidato = "";
-                    if (session()->get("empresa") == null) {
-                      $url_candidato = "login";
-                    } elseif (session()->get("empresa") != null) {
-                      if (session()->get("emp_plan") == 1) {
-                        $url_candidato = "empresa/planes";
-                      }
-                    } elseif (session()->get("candidato") == null || session()->get("candidato") != null) {
-                      $url_candidato = "candidatos";
-                    }
-                  ?>
-                  <?php
                   foreach ($datos_candidatos as $key):
+
+                  $datos = datos_candidato($key->id, $key->foto, $key->nombre, $key->apellido);
                   $imagen="uploads/empresa.jpg";
                   $nombre="Sin nombre";
                   $direccion=$key->localidades." / ".$key->direccion;
@@ -311,8 +329,9 @@
                   ?>
                   <div class="job-listing wtabs">
                     <div class="job-title-sec">
-                      <div class="c-logo"> <img style="height: 98px; width: 98px;border-radius: 50%;margin-right: 25px;" src="<?php echo $imagen;?>" alt=""> </div>
-                      <h3><a href="candidato/<?php echo $key->id;?>" title=""><?php echo $nombre;?></a></h3>
+                      <div class="c-logo"> <img style="height: 98px; width: 98px;border-radius: 50%;margin-right: 25px;" src="<?php echo $datos["imagen"];?>" alt=""> </div>
+                      
+                      <h3><a href="<?php echo $datos["candidato"] ?>" title=""><?php echo $datos["nombre"];?></a></h3>
                       <span><i class="la la-map-marker"></i><?php echo $direccion;?></span>
                       <div class="job-lctn"></div>
                     </div>
