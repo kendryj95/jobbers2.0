@@ -59,7 +59,7 @@
 												<tr>
 													<td>Titulo</td>
 													<td>Postulados</td>
-													<td>Creado y Vencido</td>
+													<td>Creado y vencido</td>
 													<td>Status</td>
 													<td>Acciones</td>
 												</tr>
