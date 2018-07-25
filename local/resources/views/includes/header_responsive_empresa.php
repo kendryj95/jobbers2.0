@@ -49,6 +49,7 @@
 							<li onclick="location.href='planes'"><a href="planes" title="Manejar Planes">Manejar Planes</a></li>
 						</ul>
 					</li>
+					<li><a href="../candidatos" title=""><i class="la la-users"></i>Candidatos</a></li>
 					<li onclick="location.href='../logout'"><a href="../logout" title=""><i class="la la-unlink"></i>Salir</a></li>
 				</ul>
 			</div>
