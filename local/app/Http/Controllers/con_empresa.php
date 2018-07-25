@@ -68,6 +68,12 @@ class con_empresa extends Controller
             }
         }
 
+        if ($condiciones != "") {
+            $condiciones .= " AND e.nombre <> '' AND a.nombre_aleatorio IS NOT NULL";
+        } else {
+            $condiciones .= " WHERE e.nombre <> '' AND a.nombre_aleatorio IS NOT NULL";
+        }
+
 
 
         $peticion = "
@@ -91,7 +97,11 @@ class con_empresa extends Controller
         $condiciones GROUP BY e.id";
 
         $empresas = DB::select($peticion . " " . $consulta_gral);
-        $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa");
+        $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id 
+        LEFT JOIN tbl_localidades l ON e.localidad=l.id
+        LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
+        LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
+        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id $condiciones");
 
         /**
         * PAGINACIÓN

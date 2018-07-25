@@ -125,13 +125,15 @@
                       <!-- <div class="emply-pstn">4 Open Position</div> -->
                       <h3><a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><?= $empresa->nombre_empresa ?></a></h3>
                       <span><i class="fa fa-cubes"></i> <?= $empresa->sector ?></span>
+                      <?php if ($empresa->direccion != ""): ?>
                       <h6><i class="la la-map-marker"></i> <?= $empresa->direccion ?></h6>
+                      <?php endif ?>
                       <?php $description = strlen($empresa->descripcion) > 180 ? substr($empresa->descripcion, 0, 180) . '...' : $empresa->descripcion ?>
                       <p><?= $description ?></p>
                     </div>
                 </div><!-- Employe List -->
                 <?php endforeach; ?>
-                        
+                              <?php if ($paginas > 0): ?>
                                 <div class="pagination">
                                   <ul>
                                     <?php  
@@ -192,6 +194,7 @@
                                     <li class="next"><a href="empresas?pag=<?= $next ?>">Siguiente <i class="la la-long-arrow-right"></i></a></li>
                                   </ul>
                                 </div> <!-- Pagination -->
+                              <?php endif; ?>
                               </div>
                             </div>
                           </div>
