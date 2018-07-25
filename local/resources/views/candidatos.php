@@ -1,3 +1,10 @@
+<?php  
+  function url_candidato($id)
+  {
+    return "candidato/$id";
+  }  
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -268,14 +275,23 @@
                 <div class="job-listings-sec">
                   
                   <?php
-                  //Ejemplo
+                    $url_candidato = "";
+                    if (session()->get("empresa") == null) {
+                      $url_candidato = "login";
+                    } elseif (session()->get("empresa") != null) {
+                      if (session()->get("emp_plan") == 1) {
+                        $url_candidato = "empresa/planes";
+                      }
+                    } elseif (session()->get("candidato") == null || session()->get("candidato") != null) {
+                      $url_candidato = "candidatos";
+                    }
                   ?>
                   <?php
                   foreach ($datos_candidatos as $key):
                   $imagen="uploads/empresa.jpg";
                   $nombre="Sin nombre";
-                  $direccion=$key->direccion;
-                  //$disponibilidad='<span class="job-is ft">'.$key->disponibilidad.'</span>';
+                  $direccion=$key->localidades." / ".$key->direccion;
+                  $disponibilidad='<span class="job-is ft">'.$key->disponibilidad.'</span>';
                   if($key->foto!="")
                   {
                   $imagen='uploads/min/'.$key->foto;
@@ -284,14 +300,14 @@
                   {
                   $nombre=$key->nombre;
                   }
-                  if($key->direccion=="")
+                  if($key->localidades=="" && $key->direccion=="")
                   {
                   $direccion="Sin dirección";
                   }
-                 /* if($key->disponibilidad=="")
+                  if($key->disponibilidad=="")
                   {
                   $disponibilidad="";
-                  }*/
+                  }
                   ?>
                   <div class="job-listing wtabs">
                     <div class="job-title-sec">
@@ -301,7 +317,7 @@
                       <div class="job-lctn"></div>
                     </div>
                     <div class="job-style-bx">
-                      <?php //echo $disponibilidad;?>
+                      <?php echo $disponibilidad;?>
                       <i></i>
                     </div>
                   </div>

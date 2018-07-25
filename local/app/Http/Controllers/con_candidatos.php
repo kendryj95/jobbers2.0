@@ -121,18 +121,24 @@ class con_candidatos extends Controller
 
 
             $vista=View::make('candidatos');
-         $peticion ="SELECT t1.id_usuario,t1.nombres,concat(t3.descripcion,' / ',t5.provincia,' / ',t6.localidad) as direccion,t8.nombre_aleatorio as foto ";
+            $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
 
-            $consulta_general="FROM tbl_candidato_datos_personales t1
-                INNER JOIN tbl_candidato_info_contacto t2 ON t2.id_usuario = t1.id_usuario
-                INNER JOIN tbl_paises t3 ON t3.id = t2.id_pais 
-                INNER JOIN tbl_provincias t5 ON t5.id = t2.id_provincia 
-                INNER JOIN tbl_localidades t6 ON t6.id = t2.id_localidad
-                INNER JOIN tbl_usuarios_foto_perfil t7 ON t7.id_usuario  =t1.id_usuario
-                INNER JOIN tbl_archivos t8 ON t8.id = t7.id_foto
-                 ";
+            $consulta_general="FROM tbl_usuarios t1
+                LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
+                LEFT JOIN tbl_candidato_info_contacto t3 ON t3.id_usuario = t1.id
+                LEFT JOIN tbl_candidato_preferencias_laborales t6 ON t6.id_usuario = t1.id
+                LEFT JOIN tbl_disponibilidad t7 ON t7.id = t6.id_jornada
+                LEFT JOIN tbl_provincias t4 ON t4.id = t3.id_provincia
+                LEFT JOIN tbl_localidades t5 ON t5.id = t3.id_localidad
+                LEFT JOIN tbl_usuarios_foto_perfil t8 ON t8.id_usuario = t1.id
+                LEFT JOIN tbl_archivos t9 ON t9.id = t8.id_foto
+                LEFT JOIN vista_filtros_candidatos_v3 t10 ON t10.f_id = t1.id
+                WHERE t1.tipo_usuario = 2 ".$condiciones."
+                AND t1.id_estatus = 1
+                
+                ";
             
-                $sql_candidatos=$peticion."".$consulta_general; 
+                $sql_candidatos=$peticion."".$consulta_general;
             
             //return $peticion." ".$consulta_general;
             $peticion="SELECT t1.id";
@@ -234,33 +240,22 @@ class con_candidatos extends Controller
 
     private function consultaPagination($condiciones,$limit,$tamPag)
     {
-
-         $peticion ="SELECT t1.id_usuario as id,t1.nombres as  nombre,concat(t3.descripcion,' / ',t5.provincia,' / ',t6.localidad) as direccion,t8.nombre_aleatorio as foto ";
-
-            $consulta_general="FROM tbl_candidato_datos_personales t1
-                INNER JOIN tbl_candidato_info_contacto t2 ON t2.id_usuario = t1.id_usuario
-                INNER JOIN tbl_paises t3 ON t3.id = t2.id_pais 
-                INNER JOIN tbl_provincias t5 ON t5.id = t2.id_provincia 
-                INNER JOIN tbl_localidades t6 ON t6.id = t2.id_localidad
-                INNER JOIN tbl_usuarios_foto_perfil t7 ON t7.id_usuario  =t1.id_usuario
-                INNER JOIN tbl_archivos t8 ON t8.id = t7.id_foto
-                LIMIT $limit,$tamPag
-                 ";
-                  return $peticion . " " . $consulta_general;
-       /* $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,concat(t4.provincia,' / ',t5.localidad) as localidades ";
+        $peticion ="SELECT t9.nombre_aleatorio as foto, t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,concat(t4.provincia,' / ',t5.localidad) as localidades,t3.direccion,t7.nombre as disponibilidad,t10.*";
 
         $consulta_general="FROM tbl_usuarios t1
-            INNER JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
-            INNER JOIN tbl_candidato_info_contacto t3 ON t3.id_usuario = t1.id 
-            INNER JOIN tbl_provincias t4 ON t4.id = t3.id_provincia
-            INNER JOIN tbl_localidades t5 ON t5.id = t3.id_localidad
-            INNER JOIN tbl_usuarios_foto_perfil t8 ON t8.id_usuario = t1.id
-            INNER JOIN tbl_archivos t9 ON t9.id = t8.id_foto
-           
+            LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
+            LEFT JOIN tbl_candidato_info_contacto t3 ON t3.id_usuario = t1.id
+            LEFT JOIN tbl_candidato_preferencias_laborales t6 ON t6.id_usuario = t1.id
+            LEFT JOIN tbl_disponibilidad t7 ON t7.id = t6.id_jornada
+            LEFT JOIN tbl_provincias t4 ON t4.id = t3.id_provincia
+            LEFT JOIN tbl_localidades t5 ON t5.id = t3.id_localidad
+            LEFT JOIN tbl_usuarios_foto_perfil t8 ON t8.id_usuario = t1.id
+            LEFT JOIN tbl_archivos t9 ON t9.id = t8.id_foto
+            LEFT JOIN vista_filtros_candidatos_v3 t10 ON t10.f_id = t1.id
             WHERE t1.tipo_usuario = 2 ".$condiciones."
-            AND t1.id_estatus = 1 LIMIT $limit,$tamPag";*/
+            AND t1.id_estatus = 1 LIMIT $limit,$tamPag";
 
-           
+            return $peticion . " " . $consulta_general;
     }
 
     function test_controlador()
