@@ -22,6 +22,8 @@
 	</head>
 	<body>
 		<div class="theme-layout" id="scrollup">
+
+			<?php $atras = 1; ?>
 			
 			<?php include("includes/header_responsive_empresa.php") ?>
 			
