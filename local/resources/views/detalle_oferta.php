@@ -97,14 +97,33 @@
 												<div class="job-details">
 													<h3><?php echo $datos[0]->titulo;?></h3>
 
-													<?php 
+													<?php if ($datos[0]->video): ?>
+														<?php if (strstr($datos[0]->video, 'iframe')): ?>
 
-														if ($datos[0]->video) {
-															echo $datos[0]->video;
-														}
+															<?php echo $datos[0]->video ?>
 
-													 ?>
+														<?php 
 
+															 else:
+
+																$url = "";
+																if (strstr($datos[0]->video, '.be/')) {
+																	$explode = explode(".be/", $datos[0]->video);
+																	$url = $explode[1];
+																} elseif (strstr($datos[0]->video, '?v=')) {
+																	$explode = explode("?v=", $datos[0]->video);
+																	$url = $explode[1];
+																} 
+
+														?>
+
+															<iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $url ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+														<?php endif; ?>
+													 <?php endif; ?>
+
+													 
 													<br>
 													<p><?php echo $datos[0]->descripcion;?> </p>
 													
