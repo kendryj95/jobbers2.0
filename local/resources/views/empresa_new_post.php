@@ -196,8 +196,24 @@
 				<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
 				<script src="../local/resources/views/js/maps2.js" type="text/javascript"></script>
 				<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
+				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/tinymce.min.js"></script>
+				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/skins/custom/jquery.tinymce.min.js"></script>	
 				<script>
 					$(document).ready(function() {
+
+						tinymce.init({
+							selector: '#descripcion',
+							height: 150,
+							plugins: [
+								'advlist lists charmap print preview anchor',
+								'searchreplace visualblocks code fullscreen',
+								'insertdatetime table contextmenu paste code'
+							],
+							toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+							language: 'es'
+						});
+
+
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
 							var descripcion = $('#descripcion').val();
