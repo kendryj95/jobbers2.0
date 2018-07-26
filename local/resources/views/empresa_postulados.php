@@ -194,7 +194,7 @@
 																<span><?= $postulado->fecha_postulacion ?></span><br />
 															</td>
 															<td>
-																<span><?= $postulado->marcador ? $postulado->marcador : 'Normald' ?></span>
+																<span><?= $postulado->marcador ? $postulado->marcador : 'Normal' ?></span>
 															</td>
 															<td>
 																<ul class="action_job">

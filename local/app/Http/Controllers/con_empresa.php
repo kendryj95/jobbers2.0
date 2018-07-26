@@ -321,7 +321,7 @@ class con_empresa extends Controller
 		CONCAT(cdp.nombres,' ',cdp.apellidos) AS nombre_candidato, 
 		TIMESTAMPDIFF(YEAR,cdp.fecha_nac,CURDATE()) AS edad_candidato,
 		g.descripcion AS sexo_candidato,
-		ce.titulo AS profesion_candidato,
+		GROUP_CONCAT(ce.titulo SEPARATOR ', ') AS profesion_candidato,
 		(
 		CASE cc.calificacion
 		WHEN 1 THEN '★'
@@ -341,6 +341,7 @@ class con_empresa extends Controller
 		LEFT JOIN tbl_candidato_marcadores cm ON p.id_usuario=cm.id_usuario
 		LEFT JOIN tbl_marcadores m ON cm.id_marcador=m.id
 		WHERE p.id_publicacion=?
+        GROUP BY p.id_usuario
 		ORDER BY fecha_postulacion DESC";
 
 		$filtro_experiencia_laboral = DB::select("SELECT * FROM tbl_actividades_empresa ORDER BY nombre");
