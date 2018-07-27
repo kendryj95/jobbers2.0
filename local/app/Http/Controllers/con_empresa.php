@@ -269,6 +269,8 @@ class con_empresa extends Controller
         $sql2 = DB::select("SELECT COUNT(*) AS total_postulados FROM tbl_postulaciones p INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id WHERE pb.id_empresa=?", [session()->get("emp_ide")]);
         $total_postulados = $sql2[0]->total_postulados;
 
+        $total_jobbers = DB::select("SELECT COUNT(*) AS count FROM tbl_usuarios WHERE tipo_usuario=2");
+
         $ofertas = DB::select("
         		SELECT
 				r.*
@@ -293,7 +295,8 @@ class con_empresa extends Controller
         $params = [
             "total_ofertas" => $total_ofertas,
             "ofertas"       => array_reverse($ofertas),
-            "total_postulados" => $total_postulados
+            "total_postulados" => $total_postulados,
+            "total_jobbers" => $total_jobbers[0]->count
         ];
         return view('empresa_ofertas', $params);
     }

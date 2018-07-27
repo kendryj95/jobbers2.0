@@ -52,7 +52,7 @@
 										<div class="extra-job-info">
 											<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
 											<span><i class="la la-file-text"></i><strong><?= $total_postulados ?></strong> Postulados en total</span>
-											<span><i class="la la-users"></i><strong>0</strong> Jobbers Activos</span>
+											<span><i class="la la-users"></i><strong><?= $total_jobbers ?></strong> Jobbers Activos</span>
 										</div>
 										<table>
 											<thead>
