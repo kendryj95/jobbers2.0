@@ -61,8 +61,8 @@
 										<div class="col-lg-10">
 											<div class="job-single-head3 emplye">
 												<?php  
-													$imagen = $datos[0]->confidencial == 'NO' ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
-													$empresa = $datos[0]->confidencial == 'NO' ? '<a href="../empresa/detalle?e='.$datos[0]->id_empresa.'">'.$datos[0]->empresa.'</a>' : '<a href="javascript:void(0)">Confidencial</a>';
+													$imagen = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
+													$empresa = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? '<a href="../empresa/detalle?e='.$datos[0]->id_empresa.'">'.$datos[0]->empresa.'</a>' : '<a href="javascript:void(0)">Confidencial</a>';
 												?>
 												<div class="job-thumb"> <img src="<?= $imagen ?>" alt="Logo de empresa"></div>
 												<div class="job-single-info3">

@@ -316,7 +316,7 @@ $mi_tokken=csrf_token();
                 <?php foreach($publicaciones as $key)
                   {
 
-                  $confidencial = $key->confidencial == "NO" ? '<a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
+                  $confidencial = $key->confidencial == "NO" || $key->confidencial == null ? '<a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
                       </span></a>' : '<a href="javascript:void(0)"><span id="titulo_'.$key->id.'">Confidencial</span></a>';
                   $estado="Activa";
                   $imagen="";
