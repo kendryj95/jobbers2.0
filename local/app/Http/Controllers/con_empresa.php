@@ -443,7 +443,7 @@ class con_empresa extends Controller
         $response = '';
 
         $titulo       = $_REQUEST["titulo"];
-        $descripcion  = $_REQUEST["descripcion"];
+        $descripcion  = $_REQUEST["description"];
         $area         = $_REQUEST["area"];
         $sector       = $_REQUEST["sector"];
         $provincia    = $_REQUEST["provincia"];
@@ -452,17 +452,20 @@ class con_empresa extends Controller
         $direccion    = $_REQUEST["direccion"];
         $plan         = $_REQUEST["plan"];
         $disp         = $_REQUEST["disp"];
-        $discapacidad = isset($_REQUEST["discapacidad"]) ? 1 : 0;
+        $discapacidad = $_REQUEST["discapacidad"];
+        $confidencial = $_REQUEST["confidencial"];
         $video        = $_REQUEST["video"];
+
+        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $descripcion);
 
         $id_empresa = session()->get("emp_ide");
 
-        $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,id_plan_estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,id_plan_estado,confidencial) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $fecha_venc = strtotime("+15 day", strtotime(date('Y-m-d H:i:s')));
         $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
 
-        $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, 1, $fecha_venc, $salario, $plan];
+        $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, 1, $fecha_venc, $salario, $plan, $confidencial];
 
         DB::beginTransaction();
 
@@ -489,7 +492,7 @@ class con_empresa extends Controller
 
         $id_post       = $_REQUEST["id_post"];
         $titulo       = $_REQUEST["titulo"];
-        $descripcion  = $_REQUEST["descripcion"];
+        $descripcion  = $_REQUEST["description"];
         $area         = $_REQUEST["area"];
         $sector       = $_REQUEST["sector"];
         $provincia    = $_REQUEST["provincia"];
@@ -498,14 +501,17 @@ class con_empresa extends Controller
         $direccion    = $_REQUEST["direccion"];
         $plan         = $_REQUEST["plan"];
         $disp         = $_REQUEST["disp"];
-        $discapacidad = isset($_REQUEST["discapacidad"]) ? 1 : 0;
+        $discapacidad = $_REQUEST["discapacidad"];
+        $confidencial = $_REQUEST["confidencial"];
         $video        = $_REQUEST["video"];
+
+        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $descripcion);
 
         $id_empresa = session()->get("emp_ide");
 
-        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, id_salario=?, id_plan_estado=? WHERE id=? AND id_empresa=?";
+        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, id_salario=?, id_plan_estado=?, confidencial=? WHERE id=? AND id_empresa=?";
 
-        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $salario, $plan, $id_post, $id_empresa];
+        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $salario, $plan, $confidencial, $id_post, $id_empresa];
 
         DB::beginTransaction();
 

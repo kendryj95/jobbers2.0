@@ -155,12 +155,25 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-12">
-													<br>
-													<p class="vtchek">
-														<input type="checkbox" name="discapacidad" id="discapacidad">
-														<label for="discapacidad">Candidados con discapacidad. <b>*</b></label>
-													</p>
+												<div class="col-lg-6">
+													<span class="pf-title">Candidatos con discapacidad <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor seleccione" class="chosen" id="discapacidad" name="discapacidad">
+															<option value="">Seleccionar</option>
+															<option value="1">SÍ</option>
+															<option value="2">NO</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<span class="pf-title">Oferta confidencial <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor seleccione" class="chosen" id="confidencial" name="confidencial">
+															<option value="">Seleccionar</option>
+															<option value="1">SÍ</option>
+															<option value="2">NO</option>
+														</select>
+													</div>
 												</div>
 												<div class="col-lg-12">
 													<span class="pf-title">Agregar video</span>
@@ -213,10 +226,9 @@
 							language: 'es'
 						});
 
-
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
-							var descripcion = $('#descripcion').val();
+							var descripcion = tinyMCE.get('descripcion').getContent();
 							var area = $('#area').val();
 							var sector = $('#sector').val();
 							var provincia = $('#provincia').val();
@@ -224,8 +236,10 @@
 							var salario = $('#salario').val();
 							var plan = $('#plan').val();
 							var disp = $('#disp').val();
-							var discapacidad = $('#discapacidad').is(':checked') ? 1 : 0;
-							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && disp != 0) {
+							var discapacidad = $('#discapacidad').val();
+							var confidencial = $('#confidencial').val();
+
+							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && disp != 0 && discapacidad != "" && confidencial != "") {
 								var datos = $('#form_oferta').serialize();
 								
 								$.ajaxSetup({
@@ -237,7 +251,7 @@
 									url: 'registrar_post',
 									type: 'POST',
 									dataType: 'json',
-									data: datos,
+									data: datos+'&description='+descripcion,
 									beforeSend: function(){
 										$(this).text("Publicando...").prop("disabled", true);
 									},

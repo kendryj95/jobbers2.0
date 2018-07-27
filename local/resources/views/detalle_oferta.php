@@ -60,10 +60,14 @@
 									<div class="row">
 										<div class="col-lg-10">
 											<div class="job-single-head3 emplye">
-												<div class="job-thumb"> <img src="../uploads/min/<?php echo $datos[0]->imagen;?>" alt=""></div>
+												<?php  
+													$imagen = $datos[0]->confidencial == 'NO' ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
+													$empresa = $datos[0]->confidencial == 'NO' ? '<a href="../empresa/detalle?e='.$datos[0]->id_empresa.'">'.$datos[0]->empresa.'</a>' : '<a href="javascript:void(0)">Confidencial</a>';
+												?>
+												<div class="job-thumb"> <img src="<?= $imagen ?>" alt="Logo de empresa"></div>
 												<div class="job-single-info3">
 
-													<h3><a href="../empresa/detalle?e=<?= $datos[0]->id_empresa ?>"><?php echo $datos[0]->empresa;?></a></h3>
+													<h3><?= $empresa ?></h3>
 													<span><i class="la la-map-marker d-none"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
 													<ul class="tags-jobs">
 														<li><i class="la la-file-text d-none"></i> Postulados <?= $cantidad_postulados ?></li>
@@ -156,6 +160,8 @@
 													<ul>
 														<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
 														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->direccion;?></span></li>
+														<li><i class="la la-money"></i><h3>Salario</h3><span><?php echo $datos[0]->salario;?></span></li>
+														<li><i class="la la-medkit "></i><h3>Discapacitados</h3><span><?php echo $datos[0]->discapacidad;?></span></li>
 														<!--
 														<li><i class="la la-bars"></i><h3>Categoría</h3><span>Arts, Design, Media</span></li> -->
 														<!-- <li><i class="la la-users"></i><h3>Equipo de trabajo</h3><span>0</span></li> -->

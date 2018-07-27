@@ -315,6 +315,9 @@ $mi_tokken=csrf_token();
                 <a href=""></a>
                 <?php foreach($publicaciones as $key)
                   {
+
+                  $confidencial = $key->confidencial == "NO" ? '<a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
+                      </span></a>' : '<a href="javascript:void(0)"><span id="titulo_'.$key->id.'">Confidencial</span></a>';
                   $estado="Activa";
                   $imagen="";
                   if(!$estado==1){$estado="Inactiva";}
@@ -354,8 +357,7 @@ $mi_tokken=csrf_token();
                       <a href="detalleoferta/'.$key->id.'" title=""><span style="font-size:18px;" id="descripcion_'.$key->id.'">'.$key->titulo.'</span>
                     </a>
                     </h3>
-                    <a href="empresa/detalle?e='.$key->id_empresa.'"><span id="titulo_'.$key->id.'">'.$key->nombre.'
-                      </span></a>
+                      '.$confidencial.'
                       <br>
                     <div class="job-lctn">
                       <i class="la la-map-marker">

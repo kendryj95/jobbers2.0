@@ -21,6 +21,8 @@
 	</head>
 	<body>
 		<div class="theme-layout" id="scrollup">
+
+			<?php $atras = 1 ?>
 			
 			<?php include("includes/header_responsive_empresa.php") ?>
 			
@@ -169,13 +171,25 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-12">
-													<br>
-													<p class="vtchek">
-														<?php $checked = $oferta[0]->discapacidad == 'SI' ? 'checked' : '' ?>
-														<input type="checkbox" name="discapacidad" id="discapacidad" <?= $checked ?>>
-														<label for="discapacidad">Candidados con discapacidad. <b>*</b></label>
-													</p>
+												<div class="col-lg-6">
+													<span class="pf-title">Candidatos con discapacidad <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor seleccione" class="chosen" id="discapacidad" name="discapacidad">
+															<option value="">Seleccionar</option>
+															<option value="1" <?= $oferta[0]->discapacidad == 'SI' ? 'selected' : '' ?>>SÍ</option>
+															<option value="2" <?= $oferta[0]->discapacidad == 'NO' ? 'selected' : '' ?>>NO</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<span class="pf-title">Oferta confidencial <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor seleccione" class="chosen" id="confidencial" name="confidencial">
+															<option value="">Seleccionar</option>
+															<option value="1" <?= $oferta[0]->confidencial == 'SI' ? 'selected' : '' ?>>SÍ</option>
+															<option value="2" <?= $oferta[0]->confidencial == 'NO' ? 'selected' : '' ?>>NO</option>
+														</select>
+													</div>
 												</div>
 												<div class="col-lg-12">
 													<span class="pf-title">Agregar video</span>
@@ -228,10 +242,12 @@
 							toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
 							language: 'es'
 						});
+
+						
 						
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
-							var descripcion = $('#descripcion').val();
+							var descripcion = tinymce.get('descripcion').getContent();
 							var area = $('#area').val();
 							var sector = $('#sector').val();
 							var provincia = $('#provincia').val();
@@ -239,11 +255,12 @@
 							var salario = $('#salario').val();
 							var plan = $('#plan').val();
 							var disp = $('#disp').val();
-							var discapacidad = $('#discapacidad').is(':checked') ? 1 : 0;
+							var discapacidad = $('#discapacidad').val();
+							var confidencial = $('#confidencial').val();
 
 							var $btn = $(this);
 
-							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && plan != 0 && disp != 0) {
+							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && plan != 0 && disp != 0 && discapacidad != "" && confidencial != "") {
 								var datos = $('#form_oferta').serialize();
 								
 								$.ajaxSetup({
@@ -255,7 +272,7 @@
 									url: '../actualizar_post',
 									type: 'POST',
 									dataType: 'json',
-									data: datos,
+									data: datos+'&description='+descripcion,
 									beforeSend: function(){
 										$btn.text("Actualizando...").prop("disabled", true);
 									},
@@ -298,6 +315,17 @@
 				
 						});
 					});
+
+					<?php if (isset($oferta)): ?>
+						/*console.log(tinymce)
+						$('#descripcion').html('asndkansdkaskd')
+						tinymce.get('descripcion').setContent("asdbiuasndk");*/
+						$( window ).load(function(){         
+						  tinymce.activeEditor.setContent('<?= $oferta[0]->descripcion ?>');
+						});
+
+					<?php endif; ?>
+
 					function getSector(id_area){
 						if (id_area != 0) {
 							$.ajax({
