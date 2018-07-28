@@ -42,6 +42,9 @@
 												<input name="pass" type="password" placeholder="********" />
 												<i class="la la-key"></i>
 											</div>
+											<?php if (isset($_REQUEST["error"])): ?>
+											<p style="color: red"><?= $_REQUEST["error"] ?></p>
+											<?php endif ?>
 											<p class="remember-label">
 											</p> 
 											<button type="submit">Entrar</button>

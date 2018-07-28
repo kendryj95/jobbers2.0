@@ -57,12 +57,12 @@ $mi_tokken = csrf_token();
                             <div class="row">
                                 <?php
                                 foreach ($imagen as $key) {
-                                $imagen = "0.jpg";
+                                $imagen = "local/resources/views/images/avatar.jpg";
                                 if (!$key->nombre_aleatorio == "") {
-                                $imagen = $key->nombre_aleatorio;
+                                $imagen = "uploads/". $key->nombre_aleatorio;
                                 }
                                 echo ' <div class="col-sm-3 text-center" style="padding-top: 25px;">
-                                    <a href="#"> <img onClick="set_imagen(' . $key->id . ',' . "'$key->nombre_aleatorio'" . ')" src="uploads/' . $imagen . '" data-dismiss="modal" style="max-width: 200px;max-height: 200px;"> </a>
+                                    <a href="#"> <img onClick="set_imagen(' . $key->id . ',' . "'$key->nombre_aleatorio'" . ')" src="' . $imagen . '" data-dismiss="modal" style="max-width: 200px;max-height: 200px;"> </a>
                                 </div> ';
                                 }
                                 ?>
@@ -98,12 +98,12 @@ $mi_tokken = csrf_token();
                                 </div> 
                                 <div class="text-center">
                                     <?php
-                                    $imagen = "seleccionar.jpg";
+                                    $imagen = "local/resources/views/images/avatar.jpg";
                                     if ($con_imagen == 1) {
-                                    $imagen = $pic[0]->nombre_aleatorio;
+                                    $imagen = "uploads/". $pic[0]->nombre_aleatorio;
                                     }
                                     ?>
-                                    <span class="round"><a href="#" data-toggle="modal" data-target="#modal_imagenes"><img id="imagen_de_perfil" class="img-circle" src="uploads/<?php echo $imagen; ?>" style="border-radius: 50%;margin-top: 30px;height: 140px; width: 140px;"></a></span>
+                                    <span class="round"><a href="#" data-toggle="modal" data-target="#modal_imagenes"><img id="imagen_de_perfil" class="img-circle" src="<?php echo $imagen; ?>" style="border-radius: 50%;margin-top: 30px;height: 140px; width: 140px;"></a></span>
                                     <br>
                                     <a class="status" href="candimaletin" style="margin-top: 20px; font-size: 14px;text-decoration: none;">Subir imagen</a>
                                 </div>

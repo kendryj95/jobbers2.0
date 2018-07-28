@@ -85,7 +85,7 @@ class con_soportista extends Controller
     	  		}
     	  		else
     	  		{
-    	  			return redirect('loginsoporte');
+    	  			return redirect('loginsoporte?error=Correo o contraseña son incorrectos.');
     	  		}
     	  	} catch (Exception $e) {
     	  		
