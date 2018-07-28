@@ -18,63 +18,45 @@
 <body  style="background-image: url('https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg');"> 
 	<!--Header responsive-->
 	<div class="theme-layout" id="scrollup">
+		
 			<?php include('local/resources/views/includes/header_administrator.php');?> 
  <section>
+
+
 		<div class="block no-padding">
 			<div class="container">
 				 <div class="row no-gape">
 				 	<?php include('includes/administrator_menu_left.php');?> 
-				 	<div class="col-lg-9 column">
+				 	 <div class="col-lg-9 column">
 				 		<div class="padding-left">
-					 		<div class="manage-jobs-sec">
-					 			<h3>Panel</h3>
-					 			<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Empresas</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong>Cantidatos</span>
-						 			<span><i class="la la-users"></i><strong>18</strong>Noticias</span> 
-						 		</div>
-						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Ofertas</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong>Postulados</span>
-						 			<span><i class="la la-users"></i><strong>18</strong>Soporte</span> 
-						 		</div>
-
-						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Recomendaciones</span> 
-						 		</div>
+					 		<div class="manage-jobs-sec addscroll">
+					 			<h3>Solicitudes de contacto (25)
+					 			</h3> 
 						 		<table>
 						 			<thead>
 						 				<tr>
-						 					<td>Title</td>
-						 					<td>Applications</td>
-						 					<td>Created & Expired</td>
-						 					<td>Status</td>
-						 					<td>Action</td>
+						 					<td>Nombre</td>  
+						 					<td>Asunto</td>  
+						 					<td style="width:120px;">Opciones</td>
 						 				</tr>
 						 			</thead>
-						 			<tbody> 
+						 			<tbody>
 						 				<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+						 							<h3><a href="#" title="">Victor Fernandez</a></h3>
+						 							<span>victor.fernandez.18@hotmail.com</span>
 						 						</div>
-						 					</td>
+						 					</td> 
 						 					<td>
-						 						<span class="applied-field">3+ Applied</span>
-						 					</td>
-						 					<td>
-						 						<span>October 27, 2017</span><br />
-						 						<span>April 25, 2011</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">Active</span>
-						 					</td>
+						 						<div class="table-list-title">
+						 							<h3><a href="#" title="">Ayuda</a></h3> 
+						 						</div>
+						 					</td> 
 						 					<td>
 						 						<ul class="action_job">
-						 							<li><span>View Job</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 							<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-						 							<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+						 							<li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></a></li> 
+						 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
 						 						</ul>
 						 					</td>
 						 				</tr> 

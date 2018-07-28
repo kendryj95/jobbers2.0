@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Jobbers Argentina</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php echo $datos[0]->descripcion;?>">
+		<meta name="description" content="<?php echo $datos[0]->tags;?>">
 		<meta name="keywords" content="<?php echo $datos[0]->tags;?>">
 		<meta name="author" content="CreativeLayers"> 
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
@@ -45,11 +45,7 @@
 							<ul class="post-metas"> <li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $datos[0]->tmp;?></a></li></ul>
 							<h2><?php echo $datos[0]->titulo;?></h2>
 							 <?php echo $datos[0]->descripcion?>
-							<!--<div class="tags-share"> 
-								<div class="share-bar">
-									<a href="#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="share-google"><i class="la la-google"></i></a><span>Compartir</span>
-								</div>
-							</div>  -->
+							 
 						</div>
 					</div>
 					<aside class="col-lg-3 column">

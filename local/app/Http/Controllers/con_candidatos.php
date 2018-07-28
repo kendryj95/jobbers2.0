@@ -10,6 +10,7 @@ class con_candidatos extends Controller
     public function index(Request $request)
     {
 
+        return redirect('/');
         if ($request->session()->get("candidato") != null) {
             return redirect("candidashboard");
         } else {
@@ -134,11 +135,13 @@ class con_candidatos extends Controller
                 LEFT JOIN tbl_archivos t9 ON t9.id = t8.id_foto
                 LEFT JOIN vista_filtros_candidatos_v3 t10 ON t10.f_id = t1.id
                 WHERE t1.tipo_usuario = 2 ".$condiciones."
-                AND t1.id_estatus = 1";
+                AND t1.id_estatus = 1
+                GROUP BY t1.id
+                ";
             
                 $sql_candidatos=$peticion."".$consulta_general;
             
-            //return $peticion." ".$consulta_general;
+             
             $peticion="SELECT t1.id";
             $sql_habilidades="SELECT t2.descripcion,t1.id_habilidad,count(id_habilidad) as cantidad FROM tbl_candidato_habilidades t1
             LEFT JOIN tbl_habilidades t2 ON t2.id=t1.id_habilidad
@@ -186,6 +189,7 @@ class con_candidatos extends Controller
 
             try {
                 $datos_candidatos=DB::select($sql_candidatos); 
+                
                 $total_datos_candidatos=DB::select("SELECT COUNT(*) AS count $consulta_general");
 
                 ####### PAGINACIÓN #########
@@ -251,7 +255,10 @@ class con_candidatos extends Controller
             LEFT JOIN tbl_archivos t9 ON t9.id = t8.id_foto
             LEFT JOIN vista_filtros_candidatos_v3 t10 ON t10.f_id = t1.id
             WHERE t1.tipo_usuario = 2 ".$condiciones."
-            AND t1.id_estatus = 1 LIMIT $limit,$tamPag";
+
+            AND t1.id_estatus = 1 
+            GROUP BY t1.id
+            LIMIT $limit,$tamPag";
 
             return $peticion . " " . $consulta_general;
     }
