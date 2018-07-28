@@ -22,6 +22,8 @@
 	</head>
 	<body>
 		<div class="theme-layout" id="scrollup">
+
+			<?php $atras = 1; ?>
 			
 			<?php include("includes/header_responsive_empresa.php") ?>
 			
@@ -194,7 +196,7 @@
 																<span><?= $postulado->fecha_postulacion ?></span><br />
 															</td>
 															<td>
-																<span><?= $postulado->marcador ? $postulado->marcador : 'Normald' ?></span>
+																<span><?= $postulado->marcador ? $postulado->marcador : 'Normal' ?></span>
 															</td>
 															<td>
 																<ul class="action_job">

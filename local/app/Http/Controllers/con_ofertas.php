@@ -120,7 +120,7 @@ class con_ofertas extends Controller
         }
 
 
-        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
 
         $consulta_general="FROM tbl_publicacion t1
             LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
@@ -228,7 +228,7 @@ class con_ofertas extends Controller
 
     private function consultaPagination($condiciones, $limit, $tamPag)
     {
-        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
 
         $consulta_general="FROM tbl_publicacion t1
             LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
@@ -239,7 +239,7 @@ class con_ofertas extends Controller
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
             WHERE t1.estatus = 1 ".$condiciones."
-            GROUP BY t1.id LIMIT $limit,$tamPag";
+            GROUP BY t1.id ORDER BY t1.id DESC LIMIT $limit,$tamPag";
 
             return $peticion . " " . $consulta_general;
     }
@@ -264,6 +264,8 @@ class con_ofertas extends Controller
         t1.direccion,
         t1.estatus,
         t1.video_youtube AS video,
+        t1.confidencial,
+        IF(t1.id_salario <> 1, CONCAT(t10.salario,'$'), t10.salario) AS salario,
         t9.nombre,
         t7.nombre as sector,
         t8.nombre as area,
@@ -281,6 +283,7 @@ class con_ofertas extends Controller
             LEFT JOIN tbl_areas_sectores t7 ON t7.id = t1.id_sector
             LEFT JOIN tbl_areas t8 ON t8.id = t1.id_area
             LEFT JOIN tbl_disponibilidad t9 ON t9.id = t1.id_disponibilidad
+            LEFT JOIN tbl_rango_salarios t10 ON t1.id_salario=t10.id
             WHERE t1.id = " . $id . " AND t1.estatus = 1";
 
         try {

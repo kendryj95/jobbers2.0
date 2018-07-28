@@ -17,10 +17,13 @@
 		<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link  href="../../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.css" rel="stylesheet">
 		
 	</head>
 	<body>
 		<div class="theme-layout" id="scrollup">
+
+			<?php $atras = 1 ?>
 			
 			<?php include("includes/header_responsive_empresa.php") ?>
 			
@@ -169,13 +172,31 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-12">
-													<br>
-													<p class="vtchek">
-														<?php $checked = $oferta[0]->discapacidad == 'SI' ? 'checked' : '' ?>
-														<input type="checkbox" name="discapacidad" id="discapacidad" <?= $checked ?>>
-														<label for="discapacidad">Candidados con discapacidad. <b>*</b></label>
-													</p>
+												<div class="col-lg-4">
+													<span class="pf-title">Candidatos con discapacidad <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor seleccione" class="chosen" id="discapacidad" name="discapacidad">
+															<option value="">Seleccionar</option>
+															<option value="1" <?= $oferta[0]->discapacidad == 'SI' ? 'selected' : '' ?>>SÍ</option>
+															<option value="2" <?= $oferta[0]->discapacidad == 'NO' ? 'selected' : '' ?>>NO</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-4">
+													<span class="pf-title">Oferta confidencial <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor seleccione" class="chosen" id="confidencial" name="confidencial">
+															<option value="">Seleccionar</option>
+															<option value="1" <?= $oferta[0]->confidencial == 'SI' ? 'selected' : '' ?>>SÍ</option>
+															<option value="2" <?= $oferta[0]->confidencial == 'NO' ? 'selected' : '' ?>>NO</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-4">
+													<span class="pf-title">Fecha de expiracion de la oferta <b>*</b></span>
+													<div class="pf-field">
+														<input type="text" onkeypress="anularEvent(event)" placeholder="Fecha de expiracion" name="fecha_exp" id="fecha_exp" value="<?= $oferta[0]->fecha_exp ?>" />
+													</div>
 												</div>
 												<div class="col-lg-12">
 													<span class="pf-title">Agregar video</span>
@@ -211,11 +232,42 @@
 				<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
 				<script src="../../local/resources/views/js/maps2.js" type="text/javascript"></script>
 				<script src="../../local/resources/views/plugins/notify.js" type="text/javascript"></script>
+				<script type="text/javascript" src="../../local/resources/views/plugins/tinymce/tinymce.min.js"></script>
+				<script type="text/javascript" src="../../local/resources/views/plugins/tinymce/skins/custom/jquery.tinymce.min.js"></script>
+				<script src="../../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.js"></script>	
+				<script src="../../local/resources/views/plugins/datepicker_beta/dist/datepicker.es-ES.js"></script>
+
 				<script>
+					var calendario = new Date();
+					var dia = calendario.getDate()+1,
+						mes = calendario.getMonth() + 1,
+						anio = calendario.getFullYear();
+
 					$(document).ready(function() {
+
+						tinymce.init({
+							selector: '#descripcion',
+							height: 150,
+							plugins: [
+								'advlist lists charmap print preview anchor',
+								'searchreplace visualblocks code fullscreen',
+								'insertdatetime table contextmenu paste code'
+							],
+							toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+							language: 'es'
+						});
+
+						$('#fecha_exp').datepicker({
+						  autoHide: true,
+						  zIndex: 2048,
+						  language: 'es-ES',
+						  startDate: dia+'/'+mes+'/'+anio,
+						  endDate: "<?= session()->get('emp_plan_venc') ?>"
+						});
+						
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
-							var descripcion = $('#descripcion').val();
+							var descripcion = tinymce.get('descripcion').getContent();
 							var area = $('#area').val();
 							var sector = $('#sector').val();
 							var provincia = $('#provincia').val();
@@ -223,11 +275,13 @@
 							var salario = $('#salario').val();
 							var plan = $('#plan').val();
 							var disp = $('#disp').val();
-							var discapacidad = $('#discapacidad').is(':checked') ? 1 : 0;
+							var discapacidad = $('#discapacidad').val();
+							var confidencial = $('#confidencial').val();
+							var fecha_exp = $('#fecha_exp').val();
 
 							var $btn = $(this);
 
-							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && plan != 0 && disp != 0) {
+							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && plan != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
 								var datos = $('#form_oferta').serialize();
 								
 								$.ajaxSetup({
@@ -239,7 +293,7 @@
 									url: '../actualizar_post',
 									type: 'POST',
 									dataType: 'json',
-									data: datos,
+									data: datos+'&description='+descripcion,
 									beforeSend: function(){
 										$btn.text("Actualizando...").prop("disabled", true);
 									},
@@ -282,6 +336,17 @@
 				
 						});
 					});
+
+					<?php if (isset($oferta)): ?>
+						/*console.log(tinymce)
+						$('#descripcion').html('asndkansdkaskd')
+						tinymce.get('descripcion').setContent("asdbiuasndk");*/
+						$( window ).load(function(){         
+						  tinymce.activeEditor.setContent('<?= $oferta[0]->descripcion ?>');
+						});
+
+					<?php endif; ?>
+
 					function getSector(id_area){
 						if (id_area != 0) {
 							$.ajax({
@@ -346,6 +411,10 @@
 						} else {
 							$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
 						}
+					}
+					function anularEvent(e)
+					{
+						e.preventDefault();
 					}
 				</script>
 			</body>
