@@ -3,109 +3,50 @@ $mi_tokken = csrf_token();
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php include 'local/resources/views/includes/referencias_top.php';?>
-        <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
-        <link rel="stylesheet" href="local/resources/views/css/icons.css">
-        <link rel="stylesheet" href="local/resources/views/css/animate.min.css">
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-        <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-    </head>
-    <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
-        <div class="theme-layout" id="scrollup"> 
-            <!--Header responsive-->
-            <?php include 'local/resources/views/includes/header_responsive_candidatos.php';?>
-            <?php include 'local/resources/views/includes/header_candidatos.php';?>
-            <!--fin Header responsive-->
-            <!--Modal imagenes-->
-            <?php include('local/resources/views/includes/modal_cand_educacion.php');?>
-            <?php include('local/resources/views/includes/modal_cand_experiencia.php');?>
-            <style type="text/css">
-            @media (min-width: 576px) {
-            .modal-dialog {
-            max-width: none;
-            }
-            }
-            .modal-dialog {
-            width: 99%;
-            margin-right: 0px;
-            height: 95%;
-            }
-            .modal-content {
-            height: 95%;
-            }
-            </style>
-            <!-- Modal -->
-            
-            <div style="overflow: hidden;" class="modal fade" id="modal_imagenes" tabindex="-1" role="dialog" aria-labelledby="modal_imagenesLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header" style="min-height: 65px;">
-                            <h5 class="modal-title" id="modal_imagenesLabel">Mis imagenes
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body " style="padding: 0px;overflow-y: scroll;overflow-x: hidden;">
-                            <div class="row">
-                                <?php
-                                foreach ($imagen as $key) {
-                                $imagen = "0.jpg";
-                                if (!$key->nombre_aleatorio == "") {
-                                $imagen = $key->nombre_aleatorio;
-                                }
-                                echo ' <div class="col-sm-3 text-center" style="padding-top: 25px;">
-                                    <a href="#"> <img onClick="set_imagen(' . $key->id . ',' . "'$key->nombre_aleatorio'" . ')" src="uploads/' . $imagen . '" data-dismiss="modal" style="max-width: 200px;max-height: 200px;"> </a>
-                                </div> ';
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Fin modal imagenes-->
-            <script type="text/javascript">
-            function set_imagen(id,parametro)
-            {
-            $("#input_imagen").val(id);
-            set_imagen_val(id);
-            $('#imagen_de_perfil').attr('src', 'uploads/'+parametro);
-            }
-            </script>
-            <section>
-                <div class="block no-padding">
-                    <div class="container">
-                        <div class="row no-gape">
-                            <?php include 'local/resources/views/includes/aside_candidatos.php';?>
-                            <div class="col-lg-9 column">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Administración Jobbers</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="CreativeLayers"> 
+	<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/bootstrap-grid.css" />
+	<link rel="stylesheet" href="../../local/resources/views/css/icons.css">
+	<link rel="stylesheet" href="../../local/resources/views/css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/responsive.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/colors/colors.css" />
+	<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/chosen.css" /> 
+	<meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
+</head>
+<body  style="background-image: url('https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg');"> 
+	<!--Header responsive-->
+	<div class="theme-layout" id="scrollup">
+		<?php $atras=1;?>
+			<?php include('local/resources/views/includes/header_administrator.php');?> 
+ <section>
+
+
+		<div class="block no-padding">
+			<div class="container">
+				 <div class="row no-gape">
+				 	<?php include('includes/administrator_menu_left.php');?> 
+				 	<div class="col-lg-9 column">
                             
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
-                                        <h3>Mi perfil</h3>
-                                    </div>
-
-                                </div> 
-                                <div class="text-center">
-                                    <?php
-                                    $imagen = "seleccionar.jpg";
-                                    if ($con_imagen == 1) {
-                                    $imagen = $pic[0]->nombre_aleatorio;
-                                    }
-                                    ?>
-                                    <span class="round"><a href="#" data-toggle="modal" data-target="#modal_imagenes"><img id="imagen_de_perfil" class="img-circle" src="uploads/<?php echo $imagen; ?>" style="border-radius: 50%;margin-top: 30px;height: 140px; width: 140px;"></a></span>
-                                    <br>
-                                    <a class="status" href="candimaletin" style="margin-top: 20px; font-size: 14px;text-decoration: none;">Subir imagen</a>
+                                        <h3>Perfil - Victor Fernandez</h3>
+                                    </div> 
+                                </div>
+                                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Icons8_flat_businessman.svg/200px-Icons8_flat_businessman.svg.png" style="margin-left: 40%;">
+                                <div class="text-center">  
+                                   
+                                     <div class="profile-form-edit" style="padding-left: 30px;">
+												<p style="margin-bottom: 0px;">Imagen</p>
+												<div class="pf-field" style="height: 55px;"> 
+											  <input name="imagen_noticia" id="imagen_noticia" type="file" placeholder="" accept="image/*">
+											</div> 
+											</div>
                                 </div>
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
@@ -144,7 +85,7 @@ $mi_tokken = csrf_token();
                                 // Prefenrencias laborales
                                 $up_remuneracion="";
                                 $up_jornada="";
-                                if($bandera_preferencias_laborales==1)
+                                if(isset($bandera_preferencias_laborales) && $bandera_preferencias_laborales ==1)
                                 {
                                 $up_remuneracion=$preferencias_laborales_up[0]->id_remuneracion_pre;
                                 $up_jornada=$preferencias_laborales_up[0]->id_jornada;
@@ -160,7 +101,7 @@ $mi_tokken = csrf_token();
                                 $up_direccion_contac="";
                                 $up_latitud_contac="";
                                 $up_longitud_contac="";
-                                if($bandera_datos_contacto==1)
+                                if(isset($bandera_datos_contacto) && $bandera_datos_contacto==1)
                                 {
                                 $up_telefono_contac=$infocontacto[0]->telefono;
                                 $up_correo_contac=$infocontacto[0]->correo;
@@ -175,7 +116,7 @@ $mi_tokken = csrf_token();
                                 ?>
                                 <div class="profile-form-edit">
                                     <form  id="form_datos_per"  action="candidatosper" method="POST">
-                                        <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                        <input type="hidden" name="_token" value="">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Nombres</span>
@@ -194,9 +135,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="tipo_id" name="t_id" name="sexo" data-placeholder="Allow In Search" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php foreach ($identificacion as $key ) {
-                                                        echo'<option id="tipo_id_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                        }?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -211,9 +150,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="edo_civil" name="edo_civil" name="sexo" data-placeholder="Allow In Search" class="chosen">
                                                         <option value="4">Seleccionar</option>
-                                                        <?php foreach ($edo as $key) {
-                                                        echo '<option id="edo_civil_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                        }?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -223,9 +160,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="discapacidad" name="discapacidad" data-placeholder="Allow In Search" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php foreach ($discapacidad as $key) {
-                                                        echo '<option id="discapacidad_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                        }?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -234,9 +169,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="sexo" name="sexo" data-placeholder="Allow In Search" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php foreach ($generos as $key) {
-                                                        echo '<option id="sexo_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                        }?>
+                                                         
                                                     </select>
                                                 </div>
                                             </div>
@@ -266,16 +199,14 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="nacionalidad" name="nacionalidad" data-placeholder="Allow In Search" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php foreach ($paises as $key) {
-                                                        echo '<option id="nacionalidad_'.$key->id.'" value="'.$key->id.'">'.$key->nacionalidad.'</option> ';
-                                                        }?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <span class="pf-title">¿Cómo te describes?</span>
                                                 <div class="pf-field">
-                                                    <textarea id="datos_per_descripcion" name="sobremi"><?php echo trim($up_desc);?></textarea>
+                                                    <textarea id="datos_per_descripcion" name="sobremi"></textarea>
                                                 </div>
                                             </div>
                                             
@@ -287,18 +218,14 @@ $mi_tokken = csrf_token();
                                     <div class="social-edit">
                                         <h3>Preferencias laborales</h3>
                                         <form id="form_preferencias_lab" method="POST" action="candipreflab">
-                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                            <input type="hidden" name="_token" value="">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <span class="pf-title">Remuneración</span>
                                                     <div class="pf-field">
                                                         <select id="remuneracion"  name="remuneracion" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
-                                                            <?php
-                                                            foreach ($salarios as $key) {
-                                                            echo'<option value="'.$key->id.'">'.$key->salario.'</option>';
-                                                            }
-                                                            ?>
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -307,11 +234,7 @@ $mi_tokken = csrf_token();
                                                     <div class="pf-field">
                                                         <select id="jorna" name="jornada" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
-                                                            <?php
-                                                            foreach ($disponibilidad as $key) {
-                                                            echo'<option value="'.$key->id.'">'.$key->nombre.'</option>';
-                                                            }
-                                                            ?>
+                                                           
                                                         </select>
                                                     </div>
                                                 </div>
@@ -320,11 +243,7 @@ $mi_tokken = csrf_token();
                                                     <div class="pf-field">
                                                         <select id="cbn_cargos" onChange="set_cargo(this.value,this.id,'categorias_cargos',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
-                                                            <?php
-                                                            foreach ($cargos as $key) {
-                                                            echo'<option value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                            }
-                                                            ?>
+                                                           
                                                         </select>
                                                     </div>
                                                 </div>
@@ -360,12 +279,15 @@ $mi_tokken = csrf_token();
                                 $instagram="";
                                 $twitter="";
                                 $linkendin="";
-                                foreach ($redes as $key ) {
+                               if(isset($redes))
+                               {
+                               	 foreach ($redes as $key ) {
                                 if($key->id_red_social=="1"){$facebook=$key->red_social;}
                                 if($key->id_red_social=="3"){$instagram=$key->red_social;}
                                 if($key->id_red_social=="5"){$linkendin=$key->red_social;}
                                 if($key->id_red_social=="2"){$twitter=$key->red_social;}
                                 }
+                               }
                                 ?>
                                 <div class="social-edit">
                                     <h3>Redes sociales</h3>
@@ -410,7 +332,7 @@ $mi_tokken = csrf_token();
                                 <div class="contact-edit">
                                     <h3>Información de contacto</h3>
                                     <form id="form_contact" action="candicontac" method="post">
-                                        <input type="hidden"  name="_token" value="<?php echo $mi_tokken;?>">
+                                        <input type="hidden"  name="_token" value="">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Teléfono</span>
@@ -449,11 +371,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="provincia_contac" name="provincia" data-placeholder="Please Select Specialism" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php
-                                                        foreach ($provincias as $key) {
-                                                        echo '<option value="'.$key->id.'">'.$key->provincia.'</option>';
-                                                        }
-                                                        ?>
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -462,11 +380,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="localidad_contac" name="localidad" data-placeholder="Please Select Specialism" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php
-                                                        foreach ($localidades as $key) {
-                                                        echo '<option value="'.$key->id.'">'.$key->localidad.'</option>';
-                                                        }
-                                                        ?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -501,7 +415,8 @@ $mi_tokken = csrf_token();
                                         <div class="border-title"><h3>Educación</h3>
                                             <a href="#" title="" data-toggle="modal" data-target="#modal_educ_cand" onClick="limpiar_mod_educ()">
                                             <i class="la la-plus"></i> Agregar estudios</a></div>
-                                            <?php foreach ($educacion as $key): ?>
+                                           <?php if (isset($educacion)): ?>
+                                           	 <?php foreach ($educacion as $key): ?>
                                             <input type="hidden" id="estudios" value="<?php echo $key->id_area_estudio;?>" />
                                             <input type="hidden" id="nivel_es" value="<?php echo $key->id_nivel_estudio;?>" />
                                             <input type="hidden" id="pais" value="<?php echo $key->id_pais;?>" />
@@ -527,8 +442,10 @@ $mi_tokken = csrf_token();
                                                 </div>
                                             </div>
                                             <?php endforeach ?>
+                                           <?php endif ?>
                                             <div class="border-title"><h3>Experiencia laboral</h3><a href="#" title=""  data-toggle="modal" data-target="#modal_educ_expe"><i class="la la-plus"></i> Agregar experiencia</a></div>
                                             <div class="edu-history-sec">
+                                            	<?php if (isset($experiencias)): ?>
                                                 <?php foreach ($experiencias as $key): ?>
                                                 <input type="hidden" id="e_sector_<?php echo $key->id;?>" value="<?php echo $key->id_actividad_empresa;?>">
                                                 <div class="edu-history style2">
@@ -545,24 +462,19 @@ $mi_tokken = csrf_token();
                                                     </ul>
                                                 </div>
                                                 <?php endforeach ?>
-                                                
+                                               <?php endif ?>
                                             </div>
                                             
-                                            <!--HAbilidadez-->
                                             <div class="border-title"><h3>Habilidades</h3><a title=""><i class="la la-plus" ></i> Agregar habilidad</a></div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
                                                 <form id="form_habilidades" method="POST" action="candisethabilidad">
-                                                    <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                    <input type="hidden" name="_token" value="">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="pf-field">
                                                                 <select id="cbn_habilidad" onChange="set_cargo(this.value,this.id,'categorias_habilidad',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
                                                                     <option value="">Seleccionar</option>
-                                                                    <?php
-                                                                    foreach ($habilidades as $key) {
-                                                                    echo'<option value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                                    }
-                                                                    ?>
+                                                                   
                                                                 </select>
                                                             </div>
                                                             <div class="social-edit" style="margin-bottom: 0px;margin-top: 15px;">
@@ -589,15 +501,7 @@ $mi_tokken = csrf_token();
                                                 
                                             </div>
                                             <div class="progress-sec" style="margin-bottom: 0px;">
-                                                <!--
-                                                <div class="progress-sec with-edit">
-                                                    <span>Adobe Photoshop</span>
-                                                    <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                -->
+                                                
                                                 <div class="col-lg-12">
                                                     <div class="social-edit">
                                                         
@@ -610,18 +514,13 @@ $mi_tokken = csrf_token();
                                         <div class="border-title"><h3>Idiomas</h3><a title=""><i class="la la-plus" ></i> Agregar idioma</a></div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
                                                 <form id="form_idiomas" method="POST" action="candisetidioma">
-                                                    <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                    <input type="hidden" name="_token" value="">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="pf-field">
                                                                 <select id="cbn_idioma" onChange="set_cargo(this.value,this.id,'categorias_idioma',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
                                                                     <option value="">Seleccionar</option>
-                                                                    <?php
-                                                                    foreach ($idiomas as $key) {
-                                                                    echo'<option value="'.$key->id.'">'.$key->descripcion.'</option>';
-                                                                    }
-                                                                    ?>
-                                                                </select>
+                                                                   >
                                                             </div>
                                                             <div class="social-edit" style="margin-bottom: 0px;margin-top: 15px;">
                                                                 
@@ -649,307 +548,14 @@ $mi_tokken = csrf_token();
                                     </div> 
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <?php include "local/resources/views/includes/aside_right_administrator.php";?>
-    <?php include "local/resources/views/includes/general_footer.php";?>
-    <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/script.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
-    <?php include "local/resources/views/includes/referencias_down.php";?>
-    <script type="text/javascript">
-    function set_imagen_val(id) {
-    $.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-    $.ajax({
-    url: 'candisetprofilepic',
-    type: 'post',
-    data:{id_imagen:id},
-    success: function(data) {
-    }
-    })
-    }
-    //Funciones
-    function set_select(id,valor)
-    {
-    $("#"+id).val(valor);
-    $("#"+id).trigger('chosen:updated');
-    }
-    function set_valor(id,valor)
-    {
-    $("#"+id).val(valor);
-    $("#"+id).trigger('chosen:updated');
-    }
-    
-    //Modal educacion
-    function limpiar_mod_educ(id)
-    {
-    $("#tipo").val("1");
-    $("#identificador").val(id);
-    $("#nivel").val("");
-    $("#desde").val("");
-    $("#hasta").val("");
-    $("#universidad").val("");
-    $("#area_estudio").val("");
-    $("#titulo_obtener").val("");
-    $("#uni_pais").val("");
-    $("#nivel").trigger('chosen:updated');
-    $("#desde").trigger('chosen:updated');
-    $("#hasta").trigger('chosen:updated');
-    $("#area_estudio").trigger('chosen:updated');
-    $("#uni_pais").trigger('chosen:updated');
-    }
-    function set_educacion(id)
-    {
-    $("#tipo").val("2");
-    periodo=$("#periodo_"+id).html();
-    periodos=periodo.split(" - ");
-    $("#nivel").val($("#nivel_es").val());
-    $("#desde").val(periodos[0]);
-    $("#hasta").val(periodos[1]);
-    $("#universidad").val($("#universidad_"+id).html());
-    $("#area_estudio").val($("#estudios").val());
-    $("#titulo_obtener").val($("#titulo_").val());
-    $("#uni_pais").val($("#pais").val());
-    $("#nivel").trigger('chosen:updated');
-    $("#desde").trigger('chosen:updated');
-    $("#hasta").trigger('chosen:updated');
-    $("#area_estudio").trigger('chosen:updated');
-    $("#uni_pais").trigger('chosen:updated');
-    $("#modal_educ_cand").modal("show");
-    }
-    
-    //Fin modal educacion
-    //Modal experiancia laboral
-    function limpiar_mod_expe(id)
-    {
-    $("#expe_tipo").val("1");
-    $("#expe_identificador").val(id);
-    $("#expe_sector").val("");
-    $("#expe_desde").val("");
-    $("#expe_hasta").val("");
-    $("#expe_empresa").val("");
-    $("#expe_cargo").val("");
-    $("#expe_descripcion").val("");
-    $("#expe_sector").trigger('chosen:updated');
-    $("#expe_desde").trigger('chosen:updated');
-    $("#expe_hasta").trigger('chosen:updated');
-    }
-    function set_experiencia(id)
-    {
-    $("#expe_tipo").val("2");
-    periodo=$("#e_periodo_"+id).html();
-    periodos=periodo.split(" - ");
-    $("#expe_desde").val(periodos[0]);
-    $("#expe_hasta").val(periodos[1]);
-    $("#expe_sector").val($("#e_sector_"+id).val());
-    $("#expe_empresa").val($("#e_empresa_"+id).html());
-    $("#expe_cargo").val($("#e_cargo_"+id).html());
-    $("#expe_descripcion").val($("#e_descripcion_"+id).html());
-    $("#expe_sector").trigger('chosen:updated');
-    $("#expe_desde").trigger('chosen:updated');
-    $("#expe_hasta").trigger('chosen:updated');
-    $("#modal_educ_expe").modal("show");
-    }
-    
-    //Fin modal experiancia laboral
-    function set_cargo(valor,id,id_control,tipo)
-    {
-    texto="";
-    if(tipo==1){texto=$("#"+id+" option:selected").text();}
-    if(tipo==2){texto=id;}
-    agregar=' <li  class="addedTag">'+texto+'<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="cand_cargos[]" value="'+valor+'"></li>';
-    $("#"+id_control).append(agregar);
-    }
-    </script>
-    <script type="text/javascript">
-    <?php echo "set_select('tipo_id',".$up_t_id.");";?>
-    <?php echo "set_select('sexo',".$up_sexo.");";?>
-    <?php echo "set_select('discapacidad',".$up_discapacidad.");";?>
-    <?php echo "set_select('hijos',".$up_hijos.");";?>
-    <?php echo "set_select('nacionalidad',".$up_nacionalidad.");";?>
-    <?php echo "set_select('edo_civil',".$up_edo_civil.");";?>
-    <?php echo "set_valor('remuneracion',".$up_remuneracion.");";?>
-    <?php echo "set_valor('jorna',".$up_jornada.");";?>
-    <?php echo "set_select('pais_contac',".$up_pais_contac.");";?>
-    <?php echo "set_select('provincia_contac',".$up_provincia_contac.");";?>
-    <?php echo "set_select('localidad_contac',".$up_localidad_contac.");";?>
-    //Listado datos cargos
-    </script>
-    <?php
-    foreach ($habilidades_listado as $key) {
-    echo '<script>set_cargo("'.$key->id_habilidad.'","'.$key->descripcion.'","categorias_habilidad",2);</script>';
-    }
-    foreach ($cargos_lista as $key) {
-    echo '<script>set_cargo("'.$key->id_cargo.'","'.$key->descripcion.'","categorias_cargos",2);</script>';
-    }
-     foreach ($idiomas_listado as $key) {
-    echo '<script>set_cargo("'.$key->id_idioma.'","'.$key->descripcion.'","categorias_idioma",2);</script>';
-    }
-    ?>
-    <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
-        <script>
-          
-          </script>      
-    <?php endif ?>  
-    
-<script type="text/javascript">
-    function notificacion(mensaje)
-    {
-        $.notify(mensaje, {
-          className:"info",
-          globalPosition: "bottom right"
-          });
-    }
-    //Validaciones datos personales.
-   function datos_per_validar()
-   {
-        if($("#datos_per_nombres").val()==""){notificacion("Debe colocar su nombre.")}
-        else if($("#datos_per_apellidos").val()==""){notificacion("Debe colocar su apellido.")}
-        else if($("#tipo_id").val()==""){notificacion("Debe colocar su tipo de identifiación.")}
-        else if($("#datos_per_n_identificacion").val()==""){notificacion("Debe colocar su número de identificación.")}
-        else if($("#edo_civil").val()=="4"){notificacion("Debe colocar su estado civil.")}
-        else if($("#discapacidad").val()==""){notificacion("Debe colocar si tiene alguna discapacidad.")}
-        else if($("#sexo").val()==""){notificacion("Debe colocar su sexo.")}
-        else if($("#datos_per_fecha_nac").val()==""){notificacion("Debe colocar su fecha de nacimiento.")} 
-        else if($("#nacionalidad").val()==""){notificacion("Debe colocar su nacionalidad.")} 
-        else if($("#hijos").val()==""){notificacion("Debe colocar si tiene hijos.")} 
-        else if($("#datos_per_descripcion").val()==""){notificacion("Debe colocar tu descripción")} 
-        else
-        {
-            $("#form_datos_per").submit();
-        }
-   }
-
-    function preferencias_lab_validar()
-   {
-        if($("#remuneracion").val()==""){notificacion("Debe colocar la remuneración pretendida.")}
-        else if($("#jorna").val()==""){notificacion("Debe colocar su jornada de preferencia.")}
-        else if($("#cbn_cargo").val()==""){notificacion("Debe colocar su tipo de identifiación.")}
-        
-        else
-        {
-            $("#form_preferencias_lab").submit();
-        }
-   } 
-
-   function redes_validar()
-   {
-     var band = true;
-
-     // Validar link de facebook
-     var fb = /^(https:\/\/((www.facebook)|(facebook)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
-     //Validar link de twitter
-     var tw = /^(https:\/\/((www.twitter)|(twitter)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
-     //Validar link de Instagram
-     var ig = /^(https:\/\/((www.instagram)|(instagram)).com\/)[A-Za-z0-9.\-\_]+(\/)?$/;
-     //Validar link de perfil de Linkedin
-     var lkd = /^(https:\/\/((www.linkedin)|(linkedin)).com\/in\/)[A-Za-z0-9.\-\_\/]+(\/)?$/;
-
-     if ($('#facebook').val() != "") {
-        if (!fb.test($('#facebook').val())) {
-            notificacion("El formato del link es invalido. Si no posees Facebook deja el campo en blanco.");
-            band = false;
-        }
-     }
-
-     if ($('#twitter').val() != "") {
-        if (!tw.test($('#twitter').val())) {
-            notificacion("El formato del link es invalido. Si no posees Twitter deja el campo en blanco.");
-            band = false;
-        }
-     }
-
-     if ($('#instagram').val() != "") {
-        if (!ig.test($('#instagram').val())) {
-            notificacion("El formato del link es invalido. Si no posees Instagram deja el campo en blanco.");
-            band = false;
-        }
-     }
-
-     if ($('#linkendin').val() != "") {
-        if (!lkd.test($('#linkendin').val())) {
-            notificacion("El formato del link es invalido. Si no posees Linkedin deja el campo en blanco.");
-            band = false;
-        }
-     }
-
-     if (band) {
-        $('#form_candiredescrear').submit();
-     }
-   }
-
-     function contac_validar()
-       {
-            //Validar URL de sitio web
-            var web = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-
-            if($("#telefono").val()==""){notificacion("Debe colocar su número de teléfono.")}
-            else if($("#correo").val()==""){notificacion("Debe colocar su correo.")} 
-            else if($("#pais_contac").val()==""){notificacion("Debe colocar su país.")}
-            else if($("#provincia_contac").val()==""){notificacion("Debe colocar su provincia.")} 
-            else if($("#localidad_contac").val()==""){notificacion("Debe colocar su localidad.")} 
-            else if($("#direccion").val()==""){notificacion("Debe colocar su dirección.")}  
-            else if(!web.test($('#sitio_web').val())){notificacion("La Url del sitio web es invalido. Si no posees pagina web deja el campo en blanco.")}  
-            else
-            {
-                $("#form_contact").submit();
-            }
-       } 
-    function form_estudios_validar()
-       {
-            if($("#nivel").val()==""){notificacion("Debe colocar el nivel de estudio.")}
-            else if($("#desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
-            else if($("#hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
-            else if($("#universidad").val()==""){notificacion("Debe colocar la universidad.")} 
-            else if($("#titulo_obtener").val()==""){notificacion("Debe colocar el título que obtuvo.")} 
-            else if($("#uni_pais").val()==""){notificacion("Debe colocar el país donde curso los estudios.")}
-            else if($("#area_estudio").val()==""){notificacion("Debe colocar el area de estudio.")} 
-            else
-            {
-                $("#form_estudios").submit();
-            }
-       } 
-   function form_experiencia_validar()
-       {
-            if($("#expe_sector").val()==""){notificacion("Debe colocar el sector en el que trabajó.")}
-            else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
-            else if($("#expe_hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
-            else if($("#expe_empresa").val()==""){notificacion("Debe colocar el nombre de la empresa.")} 
-            else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}  
-            else
-            {
-                $("#form_experiencia").submit();
-            }
-       }
-
-       function habilidades_validar()
-       {
-        if ($('#cbn_habilidad').val() == "") {notificacion("Debe seleccionar una habilidad.")}
-        else {
-            $('#form_habilidades').submit();
-        }
-       }
-
-       function idiomas_validar()
-       {
-        if ($('#cbn_idioma').val() == "") {notificacion("Debe seleccionar un idioma.")}
-        else {
-            $('#form_idiomas').submit();
-        }
-       } 
-</script>
+				 </div>
+			</div>
+		</div>
+	</section>
+</div>
+<script src="../../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
+<script src="../../local/resources/views/js/script.js" type="text/javascript"></script> 
+<script src="../../local/resources/views/js/slick.min.js" type="text/javascript"></script> 
+  <script src="../../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
 </body>
 </html>

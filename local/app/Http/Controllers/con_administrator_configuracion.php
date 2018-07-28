@@ -4,24 +4,33 @@ namespace App\Http\Controllers;
 
 use DB;
 use Redirect;
-use view;
+use View;
 
 class con_administrator_configuracion extends Controller
 {
     public function index()
     {
-        return view("administrator_configuracion");
-    }
-
-    public function actualizar()
-    {
-        $sql = "UPDATE tbl_administrador SET correo='" . $_POST['correo'] . "',clave='" . $_POST['clave'] . "',nombre='" . $_POST['nombre'] . "' WHERE id=1";
+    	$vista=View::make("administrator_configuracion");
+    	$sql="SELECT * FROM tbl_administrador";
         try {
-            DB::update($sql);
-            return Redirect('configuracion');
+          $datos=DB::select($sql);
+          $vista->datos=$datos;
+          return $vista;
         } catch (Exception $e) {
-
+        	
         }
-        return view("administrator_configuracion");
+        
     }
+
+     public function actualizar()
+    {
+        $sql="UPDATE tbl_administrador SET correo='".$_POST['correo']."', clave='".$_POST['clave']."'";
+        try {
+        	DB::update($sql);
+        	return Redirect("administracion/configuracion?result=Datos actualizados con éxito.");
+        } catch (Exception $e) {
+        	
+        }
+        
+    } 
 }
