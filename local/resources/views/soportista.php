@@ -1,4 +1,4 @@
- 
+
 <?php 
 $mi_tokken = csrf_token();
 ?>
@@ -678,10 +678,10 @@ $mi_tokken = csrf_token();
             <ul>
             	 <?php $mi_foto="";?>
               <?php  foreach ($datos_soporte as $key):?>
-              	<?php $mi_foto= $key->foto;?>
+              	<?php $mi_foto= $key->foto == null ? "../local/resources/views/images/avatar.jpg" : "../uploads/". $key->foto;?>
                   <li class="contact">
                     <div class="wrap" onClick="location.href ='../soportista/<?php  echo $key->codigo;?>'"> 
-                        <img style="width: 40px;height: 40px;" src="../uploads/<?php  echo $key->foto;?>" alt="" />
+                        <img style="width: 40px;height: 40px;" src="<?php  echo $mi_foto;?>" alt="" />
                         <div class="meta">
                             <p class="name"><?php echo substr($key->titulo,0, 15);?>...</p>
                             <p class="preview"> </p>
@@ -712,7 +712,13 @@ $mi_tokken = csrf_token();
               $mensaje="sent";             
               $mi_codigo=$key->codigo;
               //$mi_id=$key->id;
-              $imagen="../uploads/".$key->nombre_aleatorio;
+              $imagen="";
+
+              if ($key->nombre_aleatorio == null) {
+                $imagen="../local/resources/views/images/avatar.jpg";
+              } else {
+                $imagen="../uploads/".$key->nombre_aleatorio;
+              }
               
               if($key->id_tipo_mensaje==2)
               {
@@ -738,7 +744,7 @@ $mi_tokken = csrf_token();
             <div class="wrap">
             <input id="mensaje" type="text" placeholder="Mensaje..." />
             <!--<i class="fa fa-paperclip attachment" aria-hidden="true"></i>-->
-            <button onclick="" type="button" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <button onclick="agregar_mensaje('<?= $mi_id ?>')" type="button" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
         </div>
         <?php endif ?>

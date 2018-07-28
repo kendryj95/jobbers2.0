@@ -18,63 +18,57 @@
 <body  style="background-image: url('https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg');"> 
 	<!--Header responsive-->
 	<div class="theme-layout" id="scrollup">
+		
 			<?php include('local/resources/views/includes/header_administrator.php');?> 
  <section>
+
+
 		<div class="block no-padding">
 			<div class="container">
 				 <div class="row no-gape">
 				 	<?php include('includes/administrator_menu_left.php');?> 
-				 	<div class="col-lg-9 column">
+				 	 <div class="col-lg-9 column">
 				 		<div class="padding-left">
-					 		<div class="manage-jobs-sec">
-					 			<h3>Panel</h3>
-					 			<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Empresas</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong>Cantidatos</span>
-						 			<span><i class="la la-users"></i><strong>18</strong>Noticias</span> 
+					 		<div class="manage-jobs-sec addscroll">
+					 			<h3>Candidatos 
+					 			</h3>
+					 			<div class="extra-job-info" style="margin-bottom: 30px;background-color: #f0f0f0;"> 
+						 			<span style=""><span style="font-size: 24px;">86</span><strong></strong></span>
+						 			<span><i class="la la-venus"></i><strong>20</strong><a href="noticias/categorias" title="">Hombres</a></span>
+						 			<span><i class="la la-mars"></i><strong>25</strong><a href="noticias/categorias" title="">Mujeres</a></span>
 						 		</div>
-						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Ofertas</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong>Postulados</span>
-						 			<span><i class="la la-users"></i><strong>18</strong>Soporte</span> 
-						 		</div>
-
-						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Recomendaciones</span> 
-						 		</div>
+						 	 	
+						 	 <form> 
+						 	 	<a href="nuevo" title="" style=""><span style="padding-left: 30px;text-decoration: underline; color: #009804;font-size: 16px;margin-top: -50px;">Nuevo candidato</span></a>
+						 	 <div class="pf-field" style="padding-left: 30px;margin-top: 25px;">
+													<input style="margin-bottom: 0px;" id="noticia_titulo" value="" name="noticia_titulo" type="text" placeholder="Buscador...">
+													<span style="color: #009804;font-size: 12px;margin-top: -50px;">*El buscador funciona por nombre, apellido o correo.</span>
+												</div>	 
+						 	 </form>
 						 		<table>
 						 			<thead>
 						 				<tr>
-						 					<td>Title</td>
-						 					<td>Applications</td>
-						 					<td>Created & Expired</td>
-						 					<td>Status</td>
-						 					<td>Action</td>
+						 					<td>Nombre</td>   
+						 					<td style="width:200px;">Opciones</td>
 						 				</tr>
 						 			</thead>
-						 			<tbody> 
+						 			
+						 			<tbody>
 						 				<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
+						 							<h3><a href="#" title="">Victor Fernandez</a></h3>
+						 							<span>Velezuela / Zulia / Maracaibo</span>
 						 						</div>
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">3+ Applied</span>
-						 					</td>
-						 					<td>
-						 						<span>October 27, 2017</span><br />
-						 						<span>April 25, 2011</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">Active</span>
-						 					</td>
+						 					</td>  
 						 					<td>
 						 						<ul class="action_job">
-						 							<li><span>View Job</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 							<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-						 							<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+						 							<li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+						 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+						 							<li><span>Descargar CV</span><a href="#" title=""><i class="la la-download"></i></a></li>
+						 							<li><span>Resumen</span><a href="#" title=""><i class="la la-file-text"></i></a></li>
+						 							<li><span>Enviar correo</span><a href="#" title=""><i class="la la-envelope"></i></a></li>
+						 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
 						 						</ul>
 						 					</td>
 						 				</tr> 

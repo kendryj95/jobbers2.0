@@ -3,41 +3,33 @@
 				 			<div class="tree_widget-sec">
 				 				<ul>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Inicio</a> 
+				 						<a href=" <?php echo $back;?>#" title=""><i class="la la-dashboard"></i>Inicio</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Empresas</a> 
+				 						<a href=" <?php echo $back;?>#" title=""><i class="la la-industry"></i>Empresas</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Candidatos</a> 
+				 						<a href=" <?php echo $back;?>candidatos" title=""><i class="la la-users"></i>Candidatos</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Facturación</a> 
+				 						<a href=" <?php echo $back;?>#" title=""><i class="la la-file-text"></i>Facturación</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Soporte</a> 
+				 						<a href=" <?php echo $back;?>contacto" title=""><i class="la la-support"></i>Contacto</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Noticias</a> 
+				 						<a href=" <?php echo $back;?>noticias" title=""><i class="la la-file-text"></i>Noticias</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Soportistas</a> 
+				 						<a href=" <?php echo $back;?>soportistas" title=""><i class="la la-user"></i>Soportistas</a> 
 				 					</li>
 				 					<li>
-				 						<a href="#" title=""><i class="la la-file-text"></i>Retactores</a> 
-				 					</li>
-				 					<!--
-									<li class="inner-child">
-				 						<a href="#" title=""><i class="la la-briefcase"></i>Manage Jobs</a>
-				 						<ul>
-				 							<li><a href="#" title="">My Profile</a></li>
-				 							<li><a href="#" title="">Social Network</a></li>
-				 							<li><a href="#" title="">Contact Information</a></li>
-				 						</ul>
-				 					</li>
-				 					-->
-				 					<li><a href="#" title=""><i class="la la-unlink"></i>Mi perfil</a></li>
-				 					<li><a href="#" title=""><i class="la la-unlink"></i>Salir</a></li>
+				 						<a href=" <?php echo $back;?>redactores" title=""><i class="la la-user"></i>Retactores</a> 
+				 					</li>  
+				 					<li>
+				 						<a href=" <?php echo $back;?>configuracion" title=""><i class="la la-gear"></i>Configuración</a> 
+				 					</li>  
+				 					<li><a href=" <?php echo $back;?>#" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 				 				</ul>
 				 			</div>
 				 		</div>

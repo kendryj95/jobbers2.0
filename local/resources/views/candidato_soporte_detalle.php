@@ -683,9 +683,8 @@ Website: http://emilcarlsson.se/
     <div id="sidepanel">
         <div id="profile">
             <div class="wrap">
-              
-              <?php echo'<script type="text/javascript">var foto_de_perfil="../uploads/'.session()->get("cand_img").'";</script>';?>
-                <img style="width: 40px;height: 40px;" id="profile-img" src="../uploads/<?php echo session()->get('cand_img');?>" class="online" alt="" />
+              <?php $imagen_candidato = session()->get('cand_img') == null ? "../local/resources/views/images/avatar.jpg" : "../uploads".session()->get('cand_img') ?>
+                <img style="width: 40px;height: 40px;" id="profile-img" src="<?php echo $imagen_candidato;?>" class="online" alt="" />
                 <p><?php echo session()->get('candidato');?></p>  
             </div>
         </div> 
@@ -724,7 +723,12 @@ Website: http://emilcarlsson.se/
              
               $mi_codigo=$key->codigo;
               $mi_id=$key->id;
-              $imagen="../uploads/".session()->get('cand_img')."";
+              if (session()->get('cand_img') == null) {
+                $imagen = "../local/resources/views/images/avatar.jpg";
+              } else {
+
+                $imagen="../uploads/".session()->get('cand_img')."";
+              }
               
               if($key->id_tipo_mensaje==2)
               {
@@ -750,7 +754,7 @@ Website: http://emilcarlsson.se/
             <div class="wrap">
             <input id="mensaje" type="text" placeholder="Mensaje..." />
             <!--<i class="fa fa-paperclip attachment" aria-hidden="true"></i>-->
-            <button onclick="" type="button" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <button onclick="agregar_mensaje('<?= $mi_id ?>')" type="button" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
@@ -798,28 +802,33 @@ $("#status-options ul li").click(function() {
 <script type="text/javascript">
  
  mi_codigo = '<?php echo $mi_codigo;?>';
- mi_id = '<?php echo $mi_id;?>'; 
+ mi_id = '<?php echo $mi_id;?>';
+
+var foto_de_perfil="<?= session()->get("cand_img") ?>" == "" ? "../local/resources/views/images/avatar.jpg" : "../uploads/<?= session()->get("cand_img") ?>";
+
 function agregar_mensaje(mi_id)
 { 
-  $.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-  $.ajax({
-    url: '../candiaddmensaje',
-    type: 'POST', 
-    data: {mensaje:$("#mensaje").val(),ticket:mi_id},
-  })
-  .done(function(data) {
-     mensaje='<li class="replies">'+
-                      '<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />'+
-                      '<p>'+$("#mensaje").val()+'</p>'+
-                  '</li>';  
-     //$("#identificador_mensajes").append(mensaje);
-     $("#mensaje").val("");
-     desplazar();
-  }) 
+  if ($("#mensaje").val() != "") {
+    $.ajaxSetup({
+      headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      });
+    $.ajax({
+      url: '../candiaddmensaje',
+      type: 'POST', 
+      data: {mensaje:$("#mensaje").val(),ticket:mi_id},
+    })
+    .done(function(data) {
+       mensaje='<li class="replies">'+
+                        '<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />'+
+                        '<p>'+$("#mensaje").val()+'</p>'+
+                    '</li>';  
+       //$("#identificador_mensajes").append(mensaje);
+       $("#mensaje").val("");
+       desplazar();
+    }) 
+  }
 }
 
 $(window).on('keydown', function(e) {

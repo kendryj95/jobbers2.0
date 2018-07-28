@@ -146,7 +146,42 @@ Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 });
 
 Route::get('administrator', 'con_administrator_login@index');
+
+Route::get('administracion/noticias', 'con_administrator_noticias@index');
+Route::get('administracion/noticias/publicar', 'con_administrator_noticias@publicar');
+Route::get('administracion/noticias/categorias', 'con_administrator_noticias@categorias');
+Route::get('administracion/noticias/{id}', 'con_administrator_noticias@editar')->where(['id' => '[0-9]+']);;
+
 Route::get('administracion/panel', 'con_administrator_dashboard@index');
+Route::get('administracion/configuracion', 'con_administrator_configuracion@index');
+Route::get('administracion/redactores', 'con_administrator_noticias@redactores');
+Route::get('administracion/redactores/{id}', 'con_administrator_noticias@redactores_editar')->where(['id' => '[0-9]+']);
+Route::get('administracion/redactores/bloquear/{id}', 'con_administrator_noticias@redactores_bloquear')->where(['id' => '[0-9]+']);
+Route::get('administracion/redactores/desbloquear/{id}', 'con_administrator_noticias@redactores_desbloquear')->where(['id' => '[0-9]+']);
+Route::get('administracion/redactores/nuevo', 'con_administrator_noticias@redactores_nuevo');
+
+Route::get('administracion/soportistas', 'con_administrator_soportistas@soportistas');
+Route::get('administracion/soportistas/{id}', 'con_administrator_soportistas@soportistas_editar')->where(['id' => '[0-9]+']);
+Route::get('administracion/soportistas/bloquear/{id}', 'con_administrator_soportistas@soportistas_bloquear')->where(['id' => '[0-9]+']);
+Route::get('administracion/soportistas/desbloquear/{id}', 'con_administrator_soportistas@soportistas_desbloquear')->where(['id' => '[0-9]+']);
+Route::get('administracion/soportistas/nuevo', 'con_administrator_soportistas@soportistas_nuevo');
+
+Route::get('administracion/contacto', 'con_administrator_contacto@index');
+Route::get('administracion/contacto/{id}', 'con_administrator_contacto@ver')->where(['id' => '[0-9]+']);
+
+Route::get('administracion/candidatos', 'con_administrator_candidatos@index');
+Route::get('administracion/candidatos/nuevo', 'con_administrator_candidatos@nuevo');
+Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
+Route::get('administracion/candidatos/resumen/{id}', 'con_administrator_candidatos@resumen')->where(['id' => '[0-9]+']);
+Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
+Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_candidatos@postulaciones')->where(['id' => '[0-9]+']);
+Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
+
+Route::post('administracion/actualizarconfiguracion', 'con_administrator_configuracion@actualizar');
+Route::post('administracion/actualizarredactor', 'con_administrator_noticias@actualizar_redactores');
+Route::post('administracion/nuevoredactor', 'con_administrator_noticias@nuevo_redactor');
+Route::post('administracion/nuevosoportista', 'con_administrator_soportistas@nuevo_soportista');
+Route::post('administracion/actualizarsoportista', 'con_administrator_soportistas@actualizar_soportista');
 //********************************************************//
 //*       RUTAS PARA EL ADMINISYTRADOR DE SISTEMA        *//
 //********************************************************//
