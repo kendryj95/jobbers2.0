@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link  href="../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.css" rel="stylesheet">
 		
 	</head>
 	<body>
@@ -155,7 +156,7 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-6">
+												<div class="col-lg-4">
 													<span class="pf-title">Candidatos con discapacidad <b>*</b></span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor seleccione" class="chosen" id="discapacidad" name="discapacidad">
@@ -165,7 +166,7 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-6">
+												<div class="col-lg-4">
 													<span class="pf-title">Oferta confidencial <b>*</b></span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor seleccione" class="chosen" id="confidencial" name="confidencial">
@@ -173,6 +174,12 @@
 															<option value="1">SÍ</option>
 															<option value="2">NO</option>
 														</select>
+													</div>
+												</div>
+												<div class="col-lg-4">
+													<span class="pf-title">Fecha de expiracion de la oferta <b>*</b></span>
+													<div class="pf-field">
+														<input type="text" onkeypress="anularEvent(event)" placeholder="Fecha de expiracion" name="fecha_exp" id="fecha_exp" />
 													</div>
 												</div>
 												<div class="col-lg-12">
@@ -210,8 +217,15 @@
 				<script src="../local/resources/views/js/maps2.js" type="text/javascript"></script>
 				<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
 				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/tinymce.min.js"></script>
-				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/skins/custom/jquery.tinymce.min.js"></script>	
+				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/skins/custom/jquery.tinymce.min.js"></script>
+				<script src="../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.js"></script>	
+				<script src="../local/resources/views/plugins/datepicker_beta/dist/datepicker.es-ES.js"></script>	
 				<script>
+					var calendario = new Date();
+					var dia = calendario.getDate()+1,
+						mes = calendario.getMonth() + 1,
+						anio = calendario.getFullYear();
+
 					$(document).ready(function() {
 
 						tinymce.init({
@@ -226,6 +240,14 @@
 							language: 'es'
 						});
 
+						$('#fecha_exp').datepicker({
+						  autoHide: true,
+						  zIndex: 2048,
+						  language: 'es-ES',
+						  startDate: dia+'/'+mes+'/'+anio,
+						  endDate: "<?= session()->get('emp_plan_venc') ?>"
+						});
+
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
 							var descripcion = tinyMCE.get('descripcion').getContent();
@@ -238,8 +260,9 @@
 							var disp = $('#disp').val();
 							var discapacidad = $('#discapacidad').val();
 							var confidencial = $('#confidencial').val();
+							var fecha_exp = $('#fecha_exp').val();
 
-							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && disp != 0 && discapacidad != "" && confidencial != "") {
+							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
 								var datos = $('#form_oferta').serialize();
 								
 								$.ajaxSetup({
@@ -361,6 +384,11 @@
 						} else {
 							$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
 						}
+					}
+
+					function anularEvent(e)
+					{
+						e.preventDefault();
 					}
 				</script>
 			</body>

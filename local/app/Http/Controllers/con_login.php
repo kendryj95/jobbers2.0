@@ -62,19 +62,28 @@ class con_login extends Controller
                                 case 2:
                                     $timestamp_today = strtotime(date("Y-m-d H:i:s"));
                                     $timestamp_vencimiento = strtotime("+35 day", strtotime($plan[0]->tmp));
+                                    $fecha_venc = date('d/m/Y', $timestamp_vencimiento);
 
                                     if ($timestamp_today >= $timestamp_vencimiento) {
-                                        // DB::update("UPDATE tbl_empresas_planes SET id_plan=1, tmp='".date("Y-m-d H:i:s")."' WHERE id_empresa=".$datos_emp[0]->id_empresa);
+                                        DB::update("UPDATE tbl_empresas_planes SET id_plan=1, tmp='".date("Y-m-d H:i:s")."' WHERE id_empresa=".$datos_emp[0]->id_empresa);
                                         $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
                                         $request->session()->set($sufijo . 'plan', $plan);
+                                        $timestamp_vencimiento = strtotime("+15 day", strtotime($plan[0]->tmp));
+                                        $fecha_venc = date('d/m/Y', $timestamp_vencimiento);
+                                        $request->session()->set($sufijo . 'plan_venc', $fecha_venc);
                                     } else {
                                         $request->session()->set($sufijo . 'plan', $plan);
+                                        $request->session()->set($sufijo . 'plan_venc', $fecha_venc);
                                     }
                                     break;
                                 
                                 default:
 
                                     $request->session()->set($sufijo . 'plan', $plan);
+
+                                    $timestamp_vencimiento = strtotime("+15 day", strtotime($plan[0]->tmp));
+                                    $fecha_venc = date('d/m/Y', $timestamp_vencimiento);
+                                    $request->session()->set($sufijo . 'plan_venc', $fecha_venc);
 
                                     break;
                             }

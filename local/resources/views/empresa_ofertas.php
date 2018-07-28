@@ -85,14 +85,18 @@
 														<span><?= $oferta->fcrea_fvenc ?></span>
 													</td>
 													<td>
-														<span class="status active"><?= $oferta->estatus ?></span>
+														<span class="status <?= $oferta->id_estatus == 1 ? 'active' : '' ?>"><?= $oferta->estatus ?></span>
 													</td>
 													<td>
 														<ul class="action_job">
 															<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>" title=""><i class="la la-eye"></i></a></li>
 															<li><span>Editar</span><a href="edit_post/<?= $oferta->id ?>" title=""><i class="la la-pencil"></i></a></li>
 															<?php $pausar_continuar = $oferta->estatus == 'Activo' ? '<span>Pausar</span><a href="post/1/'.$oferta->id.'" title=""><i class="la la-pause"></i></a>' : '<span>Habilitar</span><a href="post/2/'.$oferta->id.'" title=""><i class="la la-play"></i></a>' ?>
+															<?php if ($oferta->dias_venc < 0): ?>
 															<li><?= $pausar_continuar ?></li>
+															<?php else: ?>
+															<li><span>Renovar</span><a href="post/4/<?= $oferta->id ?>" title=""><i class="la la-refresh"></i></a></li>
+															<?php endif ?>
 															<li><span>Eliminar</span><a href="post/3/<?= $oferta->id ?>" title=""><i class="la la-trash-o"></i></a></li>
 														</ul>
 													</td>
@@ -142,8 +146,18 @@
 									className:"success",
 									globalPosition: "bottom center"
 								});
-							<?php else: ?>
+							<?php elseif ($_REQUEST['response'] == 4): ?>
 								$.notify("Ha ocurrido un error al intentar eliminar la oferta.", {
+									className:"error",
+									globalPosition: "bottom center"
+								});
+							<?php elseif ($_REQUEST['response'] == 5): ?>
+								$.notify("Se ha renovado la oferta satisfactoriamente.", {
+									className:"success",
+									globalPosition: "bottom center"
+								});
+							<?php else: ?>
+								$.notify("Ha ocurrido un error al intentar renovar la oferta.", {
 									className:"error",
 									globalPosition: "bottom center"
 								});

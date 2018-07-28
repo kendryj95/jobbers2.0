@@ -230,7 +230,7 @@ class con_empresa extends Controller
 
     public function editPost($id_post)
     {
-    	$sql   = "SELECT * FROM tbl_publicacion WHERE id=?";
+    	$sql   = "SELECT *, DATE_FORMAT(fecha_venc, '%d/%m/%Y') AS fecha_exp FROM tbl_publicacion WHERE id=?";
     	$areas            = DB::select("SELECT id, nombre AS area FROM tbl_areas ORDER BY nombre");
         $provincias       = DB::select("SELECT * FROM tbl_provincias");
         $planes_estado    = DB::select("SELECT * FROM tbl_planes_estado");
@@ -280,10 +280,12 @@ class con_empresa extends Controller
 	              pub.id,
 	              pub.titulo,
 	              CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
-	              CONCAT(pub.tmp,',<br>',pub.fecha_venc) AS fcrea_fvenc,
+	              CONCAT(DATE_FORMAT(pub.tmp,'%d/%m/%Y'),',<br>',DATE_FORMAT(pub.fecha_venc,'%d/%m/%Y')) AS fcrea_fvenc,
 	              IF(pub.estatus=1,'Activo','Inactivo') AS estatus,
 				  (SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
-				  (SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion
+				  (SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion,
+                  pub.fecha_venc,
+                  pub.estatus AS id_estatus
 	              FROM
 	              tbl_publicacion pub
 	              INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
@@ -291,6 +293,61 @@ class con_empresa extends Controller
 	              WHERE pub.id_empresa=?
 				) r
 				ORDER BY postulados, ultima_fecha_postulacion DESC", [session()->get("emp_ide")]);
+
+        $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=?", [session()->get("emp_ide")]);
+
+        if ($ofertas) {
+            foreach ($ofertas as $oferta) {
+                switch ($plan[0]->id_plan) {
+                    case 1:
+                        $timestamp_final = strtotime($oferta->fecha_venc);
+
+                        $timestamp_today = strtotime(date('Y-m-d'));
+
+                        if ($timestamp_today >= $timestamp_final) { // ¿Caducó?
+                            if ($oferta->id_estatus == 1) { // Si la publicacion caducó pero sigue estando activa, desactivarla.
+                                DB::update("UPDATE tbl_publicacion SET estatus=0 WHERE id=?",[$oferta->id]);
+                            }
+                        } 
+                        break;
+                    
+                    case 2:
+                        $timestamp_final = strtotime($oferta->fecha_venc);
+
+                        $timestamp_today = strtotime(date('Y-m-d'));
+
+                        if ($timestamp_today >= $timestamp_final) { // ¿Caducó?
+                            if ($oferta->id_estatus == 1) { // Si la publicacion caducó pero sigue estando activa, desactivarla.
+                                DB::update("UPDATE tbl_publicacion SET estatus=0 WHERE id=?",[$oferta->id]);
+                            }
+                        }
+                        break;
+                }
+            }
+
+            $ofertas = DB::select("
+                SELECT
+                r.*
+                FROM
+                (
+                  SELECT
+                  pub.id,
+                  pub.titulo,
+                  CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
+                  CONCAT(DATE_FORMAT(pub.tmp,'%d/%m/%Y'),',<br>',DATE_FORMAT(pub.fecha_venc,'%d/%m/%Y')) AS fcrea_fvenc,
+                  IF(pub.estatus=1,'Activo','Inactivo') AS estatus,
+                  (SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
+                  (SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion,
+                  pub.estatus AS id_estatus,
+                  DATEDIFF(NOW(), pub.fecha_venc) AS dias_venc
+                  FROM
+                  tbl_publicacion pub
+                  INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
+                  INNER JOIN tbl_localidades l ON pub.id_localidad=l.id
+                  WHERE pub.id_empresa=?
+                ) r
+                ORDER BY postulados, ultima_fecha_postulacion DESC", [session()->get("emp_ide")]);
+        }
 
         $params = [
             "total_ofertas" => $total_ofertas,
@@ -465,7 +522,9 @@ class con_empresa extends Controller
 
         $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,id_plan_estado,confidencial) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-        $fecha_venc = strtotime("+15 day", strtotime(date('Y-m-d H:i:s')));
+        $explode = explode('/', $_REQUEST['fecha_exp']);
+        $fecha_venc = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
+        $fecha_venc = strtotime($fecha_venc);
         $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
 
         $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, 1, $fecha_venc, $salario, $plan, $confidencial];
@@ -512,9 +571,14 @@ class con_empresa extends Controller
 
         $id_empresa = session()->get("emp_ide");
 
-        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, id_salario=?, id_plan_estado=?, confidencial=? WHERE id=? AND id_empresa=?";
+        $explode = explode('/', $_REQUEST['fecha_exp']);
+        $fecha_venc = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
+        $fecha_venc = strtotime($fecha_venc);
+        $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
 
-        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $salario, $plan, $confidencial, $id_post, $id_empresa];
+        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, fecha_venc=?, id_salario=?, id_plan_estado=?, confidencial=?, estatus=1 WHERE id=? AND id_empresa=?";
+
+        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $fecha_venc, $salario, $plan, $confidencial, $id_post, $id_empresa];
 
         DB::beginTransaction();
 
@@ -761,16 +825,41 @@ class con_empresa extends Controller
     			break;
     		case 3: // Eliminar Publicación
 
+                DB::beginTransaction();
+                try {
+                    
+                    DB::delete("DELETE FROM tbl_publicacion WHERE id=?", [$id_post]);
+                    DB::commit();
+
+                    return redirect("empresa/ofertas?response=3");
+                } catch (Exception $e) {
+                    DB::rollback();
+                    return redirect("empresa/ofertas?response=4");
+                }
+
+                break;
+
+            case 4: // Renovar Publicación
+
     			DB::beginTransaction();
     			try {
+
+                    $fecha_venc = '';
+                    if (session()->get('emp_plan')[0]->id_plan == 1) {
+                        $fecha_venc = strtotime('+15 day', strtotime(date('Y-m-d')));
+                        $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
+                    } else {
+                        $fecha_venc = strtotime('+35 day', strtotime(date('Y-m-d')));
+                        $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
+                    }
     				
-    				DB::delete("DELETE FROM tbl_publicacion WHERE id=?", [$id_post]);
+    				DB::update("UPDATE tbl_publicacion SET estatus=1, tmp=NOW(), fecha_venc='$fecha_venc' WHERE id=?", [$id_post]);
     				DB::commit();
 
-    				return redirect("empresa/ofertas?response=3");
+    				return redirect("empresa/ofertas?response=5");
     			} catch (Exception $e) {
     				DB::rollback();
-    				return redirect("empresa/ofertas?response=4");
+    				return redirect("empresa/ofertas?response=6");
     			}
 
     			break;
