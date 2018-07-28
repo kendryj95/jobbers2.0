@@ -68,7 +68,7 @@
 												<div class="job-single-info3">
 
 													<h3><?= $empresa ?></h3>
-													<span><i class="la la-map-marker d-none"></i><?php echo $datos[0]->dir_empresa;?></span><span class="job-is ft"><?php echo $datos[0]->nombre;?></span>
+													<span><i class="la la-map-marker d-none"></i><?php echo $datos[0]->dir_empresa;?></span>
 													<ul class="tags-jobs">
 														<li><i class="la la-file-text d-none"></i> Postulados <?= $cantidad_postulados ?></li>
 														<li><i class="la la-calendar-o d-none"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
@@ -77,7 +77,7 @@
 												</div>
 												</div><!-- Job Head -->
 											</div>
-											<div class="col-lg-2">
+											<!-- <div class="col-lg-2">
 												<div class="share-bar">
 													<a href="#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
 												</div>
@@ -92,7 +92,7 @@
 													</div>
 												<?php endif; ?>
 												
-											</div>
+											</div> -->
 										</div>
 									</div>
 									<div class="job-wide-devider">
@@ -162,6 +162,22 @@
 														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->direccion;?></span></li>
 														<li><i class="la la-money"></i><h3>Salario</h3><span><?php echo $datos[0]->salario;?></span></li>
 														<li><i class="la la-medkit "></i><h3>Discapacitados</h3><span><?php echo $datos[0]->discapacidad;?></span></li>
+														<li><i class="la la-bullhorn "></i>
+															<h3>Redes Sociales</h3>
+															<div class="share-bar">
+																<a href="#" title="" class="share-fb"><i class="fa fa-facebook" style="position: initial; font-size: initial; color: inherit;"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter" style="position: initial; font-size: initial; color: inherit;"></i></a>
+															</div>
+															<?php if(session()->get('tipo_usuario')==2): ?>
+
+																<div class="emply-btns">
+																	<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
+																</div>
+															
+																<div class="emply-btns">
+																	<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
+																</div>
+															<?php endif; ?>
+														</li>
 														<!--
 														<li><i class="la la-bars"></i><h3>Categoría</h3><span>Arts, Design, Media</span></li> -->
 														<!-- <li><i class="la la-users"></i><h3>Equipo de trabajo</h3><span>0</span></li> -->

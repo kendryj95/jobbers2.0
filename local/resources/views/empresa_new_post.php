@@ -19,6 +19,12 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		<link  href="../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.css" rel="stylesheet">
 		
+		<style>
+			.profile-form-edit>form button:hover{
+				background: inherit;
+				color: inherit;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="theme-layout" id="scrollup">
