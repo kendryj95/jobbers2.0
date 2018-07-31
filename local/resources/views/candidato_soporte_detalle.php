@@ -682,8 +682,7 @@ Website: http://emilcarlsson.se/
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">
-            <div class="wrap">
-              
+            <div class="wrap"> 
               <?php echo'<script type="text/javascript">var foto_de_perfil="../uploads/'.session()->get("cand_img").'";</script>';?>
                 <img style="width: 40px;height: 40px;" id="profile-img" src="../uploads/<?php echo session()->get('cand_img');?>" class="online" alt="" />
                 <p><?php echo session()->get('candidato');?></p>  

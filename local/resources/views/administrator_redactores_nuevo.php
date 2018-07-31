@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12" style="margin-bottom: 50px;">
-                                                <button type="button" onclick="validar();">Actualizar</button>
+                                                <button type="button" onclick="validar();">Agregar</button>
                                             </div>
                                         </div>
                                     </form>

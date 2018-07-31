@@ -3,7 +3,7 @@
 				 			<div class="tree_widget-sec">
 				 				<ul>
 				 					<li>
-				 						<a href=" <?php echo $back;?>#" title=""><i class="la la-dashboard"></i>Inicio</a> 
+				 						<a href=" <?php echo $back;?>panel" title=""><i class="la la-dashboard"></i>Inicio</a> 
 				 					</li>
 				 					<li>
 				 						<a href=" <?php echo $back;?>#" title=""><i class="la la-industry"></i>Empresas</a> 
@@ -16,6 +16,9 @@
 				 					</li>
 				 					<li>
 				 						<a href=" <?php echo $back;?>contacto" title=""><i class="la la-support"></i>Contacto</a> 
+				 					</li>
+				 					<li>
+				 						<a href=" <?php echo $back;?>contacto" title=""><i class="la la-support"></i>Recomendaciones</a> 
 				 					</li>
 				 					<li>
 				 						<a href=" <?php echo $back;?>noticias" title=""><i class="la la-file-text"></i>Noticias</a> 
