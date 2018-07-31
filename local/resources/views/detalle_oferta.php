@@ -24,13 +24,6 @@
 		    enable_page_level_ads: true
 		  });
 		</script>
-		<style>
-			@media(min-width: 768px){
-				.tags-jobs>li{
-					float: left;
-				}
-			}
-		</style>
 	</head>
 	<body>
 	  <?php $atras=1;?>

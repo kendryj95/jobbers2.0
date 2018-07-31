@@ -498,9 +498,9 @@
         z-index: 8
     }
     .job-listing .job-is {
-        display: block;
+        display: inline-block;
         margin: 0 auto;
-        margin-top: -10px;
+        /* margin-top: -10px; */
         float: none;
     }
     .btn-showfilter {
@@ -530,12 +530,6 @@
         margin-top: 20px;
         float: initial;
     }
-    /* .post-metas>li a{
-        float: initial;
-    }
-    .post-metas>li a i{
-        float: initial;
-    } */
     .job-single-info3>span {
         float: initial;
         margin-bottom: 10px;
@@ -548,7 +542,7 @@
     }
     .tags-jobs>li {
         text-align: center;
-        float: initial;
+        /* float: initial; */
     }
     .mt-social-resp {
         margin-top: 15px;
@@ -1022,6 +1016,18 @@
         margin: 0;
         margin-bottom: 0px;
         margin-bottom: 60px;
+    }
+}
+
+@media (min-width: 520px) {
+    .modal-candidato {
+        max-width: none;
+        width: 99%;
+        margin-right: 0px;
+        height: 95%;
+    }
+    .modal-candidato-content {
+        height: 95%;
     }
 }
 

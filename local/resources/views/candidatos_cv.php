@@ -153,7 +153,6 @@ $mi_tokken = csrf_token();
             </div>
         </section>
     </div>
-    <?php include "local/resources/views/includes/aside_right_administrator.php";?>
     <?php include "local/resources/views/includes/general_footer.php";?>
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
     <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>

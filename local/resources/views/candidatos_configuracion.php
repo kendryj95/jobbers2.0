@@ -25,28 +25,11 @@ $mi_tokken=csrf_token();
             <!--fin Header responsive-->
             
             <!--Modal imagenes-->
-            <style type="text/css">
-            @media (min-width: 576px) {
-            .modal-dialog {
-            max-width: none;
-            }
-            }
-            
-            .modal-dialog {
-            width: 99%;
-            margin-right: 0px;
-            height: 95%;
-            }
-            
-            .modal-content {
-            height: 95%;
-            
-            }
             </style>
             <!-- Modal -->
             <div style="overflow: hidden;" class="modal fade" id="modal_imagenes" tabindex="-1" role="dialog" aria-labelledby="modal_imagenesLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog modal-candidato" role="document">
+                    <div class="modal-content modal-candidato-content">
                         <div class="modal-header" style="min-height: 65px;">
                             <h5 class="modal-title" id="modal_imagenesLabel">Mis imagenes
                             </h5>
@@ -145,7 +128,6 @@ $mi_tokken=csrf_token();
             </div>
         </section>
     </div>
-    <?php include("local/resources/views/includes/aside_right_administrator.php");?>
     <?php include("local/resources/views/includes/general_footer.php");?>
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
     <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>

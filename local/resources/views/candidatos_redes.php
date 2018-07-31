@@ -90,7 +90,6 @@
 			</div>
 		</section>
 	</div>
-	<?php include("local/resources/views/includes/aside_right_administrator.php");?>
 	
 	<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 	<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
