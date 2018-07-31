@@ -86,7 +86,7 @@ function formatDate($dateMayor, $dateMenor){
 													<div class="job-thumb"> <img src="../uploads/<?= $empresa[0]->imagen ?>" alt="Imagen de la empresa" width="120" height="120" /></div>
 													<div class="job-single-info3">
 														<h3><?= $empresa[0]->nombre_empresa ?></h3>
-														<span><i class="la la-map-marker"></i><?= $empresa[0]->provincia_localidad ?></span><span class="job-is ft">Full time</span>
+														<span><i class="la la-map-marker"></i><?= $empresa[0]->provincia_localidad ?></span>
 														<ul class="tags-jobs">
 															<li><i class="la la-file-text"></i> Candidatos 0</li>
 															<li><i class="la la-calendar-o"></i> Ultima Oferta: <?= $empresa[0]->last_date_oferta ?></li>
@@ -95,7 +95,7 @@ function formatDate($dateMayor, $dateMenor){
 													</div>
 													</div><!-- Job Head -->
 												</div>
-												<div class="col-lg-2">
+												<!-- <div class="col-lg-2">
 													<div class="share-bar">
 														<?php if ($empresa[0]->facebook != "" || $empresa[0]->facebook != null): ?>
 														<a href="<?= $empresa[0]->facebook ?>" title="" class="share-fb"><i class="fa fa-facebook"></i></a>
@@ -112,8 +112,8 @@ function formatDate($dateMayor, $dateMenor){
 														<?php if ($empresa[0]->web != "" || $empresa[0]->web != null): ?>
 														<a href="<?= $empresa[0]->web ?>" title="" class="share-web"><i class="la la-globe"></i></a>
 														<?php endif ?>
-													</div
-												</div>
+													</div>
+												</div> -->
 											</div>
 										</div>
 										<div class="job-wide-devider">
@@ -154,6 +154,26 @@ function formatDate($dateMayor, $dateMenor){
 															<li><i class="la la-eye"></i><h3>Visitas </h3><span>0</span></li>
 															<li><i class="la la-file-text"></i><h3>Ofertas Publicadas</h3><span><?= $empresa[0]->total_ofertas ?></span></li>
 															<li><i class="la la-bars"></i><h3>Actividad/Industria</h3><span><?= $empresa[0]->actividad_empresa ?></span></li>
+															<li><i class="la la-bullhorn"></i>
+																<h3>Redes Sociales</h3>
+																<div class="share-bar">
+																	<?php if ($empresa[0]->facebook != "" || $empresa[0]->facebook != null): ?>
+																	<a href="<?= $empresa[0]->facebook ?>" title="" class="share-fb"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-facebook"></i></a>
+																	<?php endif ?>
+																	<?php if ($empresa[0]->instagram != "" || $empresa[0]->instagram != null): ?>
+																	<a href="<?= $empresa[0]->instagram ?>" title="" class="share-ig"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-instagram"></i></a>
+																	<?php endif ?>
+																	<?php if ($empresa[0]->twitter != "" || $empresa[0]->twitter != null): ?>
+																	<a href="<?= $empresa[0]->twitter ?>" title="" class="share-twitter"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-twitter"></i></a>
+																	<?php endif ?>
+																	<?php if ($empresa[0]->linkedin != "" || $empresa[0]->linkedin != null): ?>
+																	<a href="<?= $empresa[0]->linkedin ?>" title="" class="share-lkd"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-linkedin"></i></a>
+																	<?php endif ?>
+																	<?php if ($empresa[0]->web != "" || $empresa[0]->web != null): ?>
+																	<a href="<?= $empresa[0]->web ?>" title="" class="share-web"><i style="position: initial; font-size: initial; color:inherit;" class="la la-globe"></i></a>
+																	<?php endif ?>
+																</div>
+															</li>
 														</ul>
 														</div><!-- Job Overview -->
 													</div>

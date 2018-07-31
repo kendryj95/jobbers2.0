@@ -13,7 +13,8 @@
 				<a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
 				</div><!-- Logo -->
 				<div class="my-profiles-sec">
-					<span><img style=" width: 50px;height: 50px;" src="uploads/min/<?php echo session()->get('cand_img');?>" alt="" /><?php echo session()->get('candidato');?><!--<i class="la la-bars"></i>--></span>
+					<?php $imagen_header = session()->get('cand_img') == null || session()->get('cand_img') == "" ? "local/resources/views/images/avatar.jpg" : "uploads/min/".session()->get('cand_img') ?>
+					<span><img style=" width: 50px;height: 50px;" src="<?php echo $imagen_header;?>" alt="" /><?php echo session()->get('candidato');?><!--<i class="la la-bars"></i>--></span>
 				</div>
 				<div class="wishlist-dropsec">
 					<!--<span><i class="la la-heart"></i><strong>3</strong></span>-->
