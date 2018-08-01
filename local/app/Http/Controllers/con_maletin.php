@@ -82,7 +82,7 @@ class con_maletin extends Controller
         $original        = $file->getClientOriginalName();
         $extension       = $file->getClientOriginalExtension();
         $filename        = $identificador . str_random(12) . "." . strtolower($extension);
-
+        
         $tipo_documento = "";
 
         if ($extension == "jpeg" || $extension == "jpg" || $extension == "gif" || $extension == "png" || $extension == "raw" || $extension == "bmp") {

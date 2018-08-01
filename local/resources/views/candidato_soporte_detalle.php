@@ -682,9 +682,12 @@ Website: http://emilcarlsson.se/
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">
+ 
+       
             <div class="wrap">
               <?php $imagen_candidato = session()->get('cand_img') == null ? "../local/resources/views/images/avatar.jpg" : "../uploads".session()->get('cand_img') ?>
                 <img style="width: 40px;height: 40px;" id="profile-img" src="<?php echo $imagen_candidato;?>" class="online" alt="" />
+ 
                 <p><?php echo session()->get('candidato');?></p>  
             </div>
         </div> 
