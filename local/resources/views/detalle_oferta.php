@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		 
+		<meta property='og:image' content='http://jobbersargentina.net/jobbersv2/uploads/min/<?php echo $datos[0]->imagen;?>'/>
+
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Jobbers Argentina</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="CreativeLayers">
+		 
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
@@ -16,6 +17,11 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+		
+		<link href="../local/resources/views/plugins/btn_social/assets/css/bootstrap.css" rel="stylesheet">
+    	<link href="../local/resources/views/plugins/btn_social/assets/css/font-awesome.css" rel="stylesheet">
+     
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/plugins/btn_social/bootstrap-social.css" />
 
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
@@ -70,22 +76,7 @@
 												</div>
 												</div><!-- Job Head -->
 											</div>
-											<!-- <div class="col-lg-2">
-												<div class="share-bar">
-													<a href="#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
-												</div>
-												<?php if(session()->get('tipo_usuario')==2): ?>
-
-													<div class="emply-btns">
-														<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
-													</div>
-												
-													<div class="emply-btns">
-														<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
-													</div>
-												<?php endif; ?>
-												
-											</div> -->
+											 
 										</div>
 									</div>
 									<div class="job-wide-devider">
@@ -97,8 +88,7 @@
 													<?php if ($datos[0]->video): ?>
 														<?php if (strstr($datos[0]->video, 'iframe')): ?>
 
-															<?php echo $datos[0]->video ?>
-
+															<?php echo $datos[0]->video ?> 
 														<?php 
 
 															 else:
@@ -114,38 +104,34 @@
 
 														?>
 
-															<iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $url ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-
+															<iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $url ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> 
 														<?php endif; ?>
-													 <?php endif; ?>
-
-													 
+													 <?php endif; ?> 
 													<br>
-													<p><?php echo $datos[0]->descripcion;?> </p>
-													
-												</div>
-												<!--
-														<div class="recent-jobs">
-														<h3>Ofertas similares</h3>
-														<div class="job-list-modern">
-																<div class="job-listings-sec no-border">
-																		<div class="job-listing wtabs noimg">
-																				<div class="job-title-sec">
-																						<h3><a href="#" title="">Web Designer / Developer</a></h3>
-																						<span>Massimo Artemisis</span>
-																						<div class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</div>
-																				</div>
-																				<div class="job-style-bx">
-																						<span class="job-is ft">Full time</span>
-																						<span class="fav-job"><i class="la la-heart-o"></i></span>
-																						<i>5 months ago</i>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												-->
+													<p><?php echo $datos[0]->descripcion;?> </p> 
+													<div class="col-xs-12">
+														<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-facebook" href="https://www.facebook.com/sharer.php?s=100&p[url]=http%3A%2F%2Fjobbersargentina.net%2Fjobbersv2%2Fdetalleoferta%2F<?php echo $datos[0]->id;?>" target="_blank">
+										           	 <span class="fa fa-facebook"></span> Compartir
+										          	</a></p>
+													</div>
+													<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-linkedin" href="http://www.linkedin.com/shareArticle?url=http%3A%2F%2Fjobbersargentina.net%2Fjobbersv2%2Fdetalleoferta%2F<?php echo $datos[0]->id;?>"  target="_blank">
+										           	 <span class="fa fa-linkedin"></span> Compartir
+										          	</a></p>
+													</div>
+													<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-twitter"  href="https://twitter.com/share?url=http%3A%2F%2Fjobbersargentina.net%2Fjobbersv2%2Fdetalleoferta%2F<?php echo $datos[0]->id;?>" target="_blank">
+										           	 <span class="fa fa-twitter"></span> Compartir
+										          	</a></p>
+													</div>
+													<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-google" href="https://plus.google.com/share?url=http%3A%2F%2Fjobbersargentina.net%2Fjobbersv2%2Fdetalleoferta%2F470">
+										           	 <span class="fa fa-google"></span> Compartir
+										          	</a></p>
+													</div>
+													</div>
+												</div> 
 											</div>
 											<div class="col-lg-4 column">
 												<div class="job-overview">
@@ -170,11 +156,7 @@
 																	<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
 																</div>
 															<?php endif; ?>
-														</li>
-														<!--
-														<li><i class="la la-bars"></i><h3>Categoría</h3><span>Arts, Design, Media</span></li> -->
-														<!-- <li><i class="la la-users"></i><h3>Equipo de trabajo</h3><span>0</span></li> -->
-														<!-- <li><i class="la la-user"></i><h3>Seguidores</h3><span>15</span></li> -->
+														</li> 
 													</ul>
 													</div><!-- Job Overview -->
 													<div class="quick-form-job">
@@ -210,7 +192,8 @@
 			<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/slick.min.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/parallax.js" type="text/javascript"></script>
-			<script src="../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-			<script src="../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+			<script src="../local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
+			 <script src="../local/resources/views/plugins/btn_social/assets/js/docs.js">
+        </script>
 		</body>
 	</html>

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta property='og:image' content='https://jobbersargentina.net/jobbersv2/imagenes_noticias/<?php echo $datos[0]->foto;?>'/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Jobbers Argentina</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php echo $datos[0]->tags;?>">
-		<meta name="keywords" content="<?php echo $datos[0]->tags;?>">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
 		<meta name="author" content="CreativeLayers"> 
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css"> 
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/responsive.css" /> 
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" /> 
+			<link href="../local/resources/views/plugins/btn_social/assets/css/bootstrap.css" rel="stylesheet">
+    	<link href="../local/resources/views/plugins/btn_social/assets/css/font-awesome.css" rel="stylesheet">
+     
+		<link rel="stylesheet" type="text/css" href="../local/resources/views/plugins/btn_social/bootstrap-social.css" />
 	</head>
 	<body>
 		<?php $atras=1;?>
@@ -47,6 +52,28 @@
 							 <?php echo $datos[0]->descripcion?>
 							 
 						</div>
+						<div class="col-xs-12">
+														<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-facebook" href="https://www.facebook.com/sharer.php?s=100&p[url]=http://jobbersargentina.net/jobbersv2/noticias/<?php echo $datos[0]->id;?>" target="_blank">
+										           	 <span class="fa fa-facebook"></span> Compartir
+										          	</a></p>
+													</div>
+													<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-linkedin" href="http://www.linkedin.com/shareArticle?url=http://jobbersargentina.net/jobbersv2/noticias/<?php echo $datos[0]->id;?>"  target="_blank">
+										           	 <span class="fa fa-linkedin"></span> Compartir
+										          	</a></p>
+													</div>
+													<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-twitter"  href="https://twitter.com/share?url=http://jobbersargentina.net/jobbersv2/noticias/<?php echo $datos[0]->id;?>" target="_blank">
+										           	 <span class="fa fa-twitter"></span> Compartir
+										          	</a></p>
+													</div>
+													<div class="col-sm-3">
+														<p><a class="btn btn-block btn-social btn-google" href="https://plus.google.com/share?url=http://jobbersargentina.net/jobbersv2/noticias/470">
+										           	 <span class="fa fa-google"></span> Compartir
+										          	</a></p>
+													</div>
+													</div>
 					</div>
 					<aside class="col-lg-3 column">
 									<div class="widget">
@@ -91,6 +118,7 @@
 		</div>
 		<?php include("local/resources/views/includes/login_register_modal.php");?>
 		<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
-		<script src="../local/resources/views/js/script.js" type="text/javascript"></script> 
+		<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
+		 <script src="../local/resources/views/plugins/btn_social/assets/js/docs.js"> 
 	</body>
 </html>
