@@ -72,7 +72,6 @@
 				</div>
 			</section>
 		</div>
-		<?php include("local/resources/views/includes/aside_right_administrator.php");?>
 		<div class="view-resumesec">
 			<div class="view-resumes">
 				<span class="close-resume-popup"><i class="la la-close"></i></span>

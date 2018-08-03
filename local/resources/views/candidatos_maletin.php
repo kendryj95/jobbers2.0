@@ -18,22 +18,6 @@ $mi_tokken=csrf_token();
     <link rel="stylesheet" type="text/css" href="local/resources/views/plugins/imagen/css/jquery.Jcrop.min.css" />
     <link rel="stylesheet" type="text/css" href="http://www.dropzonejs.com/css/dropzone.css?v=1524508426" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style type="text/css">
-    .dropzone {
-    border: 2px dashed #0087F7;
-    border-radius: 5px;
-    background: white;
-    }
-    .dropzone .dz-message {
-    font-weight: 400;
-    }
-    .dropzone .dz-message .note {
-    font-size: 0.8em;
-    font-weight: 200;
-    display: block;
-    margin-top: 1.4rem;
-    }
-    </style>
     
   </head>
   <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
@@ -101,15 +85,8 @@ $mi_tokken=csrf_token();
           </div>
         </div>
       </section>
-      <style type="text/css">
-      .modal_usar_como:hover
-      {
-      background-color: #f2f2f2;
-      }
-      </style>
       <?php include("local/resources/views/includes/modales/administrator_maletin.php");?>
     </div>
-    <?php include("local/resources/views/includes/aside_right_administrator.php");?>
     
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
     <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>

@@ -18,6 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" /> 
+ 
 
 		<style>
 			.job-listing .job-is{
@@ -38,6 +39,7 @@
 		})();
 		</script>
 		<!--End of Tawk.to Script-->
+ 
 	</head>
 	<body>
 		

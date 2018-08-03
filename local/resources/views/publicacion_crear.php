@@ -14,24 +14,6 @@
     </head>
     <body>
         <!--Modal imagenes-->
-        <style type="text/css">
-        @media (min-width: 576px) {
-        .modal-dialog {
-        max-width: none;
-        }
-        }
-        
-        .modal-dialog {
-        width: 99%;
-        margin-right: 0px;
-        height: 95%;
-        }
-        
-        .modal-content {
-        height: 95%;
-        
-        }
-        </style>
         <!-- Modal -->
         <div style="overflow: hidden;" class="modal fade" id="modal_imagenes" tabindex="-1" role="dialog" aria-labelledby="modal_imagenesLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
