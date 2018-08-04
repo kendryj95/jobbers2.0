@@ -23,9 +23,7 @@
 	<div class="theme-layout" id="scrollup">
 			<?php $atars=2;?>
 			<?php include('local/resources/views/includes/header_administrator.php');?> 
- <section>
-
-
+ <section> 
 		<div class="block no-padding">
 			<div class="container">
 				 <div class="row no-gape">
