@@ -9,21 +9,47 @@ class con_administrator_empresas extends Controller
 {
     public function index()
     {
-        $vista = View::make("administrator_empresas_ver");
-        $sql   = "
-        SELECT t1.id,t1.nombre,t2.provincia,t3.localidad,t4.nombre,t1.descripcion,t5.nombre_aleatorio FROM tbl_empresa t1
-        INNER JOIN tbl_provincias t2 ON t1.provincia = t2.id
-        INNER JOIN tbl_localidades t3 ON t1.localidad = t3.id
-        INNER JOIN tbl_actividades_empresa t4 ON t1.sector = t4.id
-        LEFT JOIN tbl_archivos t5 ON t1.id_imagen = t5.id";
 
-        try {
-            $datos        = DB::select($sql);
-            $vista->datos = $datos;
-            return $vista;
-        } catch (Exception $e) {
+        $condicion = "";
+        $params_cond = [];
 
+        if (isset($_GET['buscador']) && $_GET['buscador'] != "") {
+            $condicion .= " AND e.nombre LIKE ? OR e.razon_social LIKE ? OR u.correo=?";
+            $params_cond = [
+                $_GET['buscador'].'%',
+                $_GET['buscador'].'%',
+                $_GET['buscador']
+            ];
         }
+
+        $sql = " 
+        SELECT
+        u.id AS id_usuario,
+        e.id AS id_empresa,
+        IF(e.nombre IS NULL OR e.nombre='', 'Sin nombre', e.nombre) AS nombre_empresa,
+        IF(e.provincia=0,'Sin ubicación',CONCAT(l.localidad,', ',pv.provincia)) AS ubicacion,
+        DATE_FORMAT(e.tmp, '%d/%m/%Y') AS fecha_registro,
+        p.descripcion AS plan,
+        u.correo
+        FROM tbl_usuarios u
+        INNER JOIN tbl_empresa e ON u.id=e.id_usuario
+        INNER JOIN tbl_empresas_planes ep ON e.id=ep.id_empresa
+        INNER JOIN tbl_planes p ON ep.id_plan=p.id
+        LEFT JOIN tbl_provincias pv ON e.provincia=pv.id
+        LEFT JOIN tbl_localidades l ON e.localidad=l.id
+        WHERE u.tipo_usuario=1 $condicion ORDER BY id_empresa DESC;
+        ";
+
+        $empresas = DB::select($sql, $params_cond);
+
+        $total_empresas = count($empresas);
+
+        $params = [
+            "empresas" => $empresas,
+            "total_empresas" => $total_empresas
+        ];
+
+        return view('administrator_empresas', $params);
     }
 
     public function create()

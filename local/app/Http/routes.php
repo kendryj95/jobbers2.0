@@ -179,6 +179,10 @@ Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@edita
 Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_candidatos@postulaciones')->where(['id' => '[0-9]+']);
 Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
 
+Route::get('administracion/empresas', 'con_administrator_empresas@index');
+
+
+
 Route::post('administracion/buscarnoticia', 'con_administrator_noticias@index');
 Route::post('administracion/actualizarconfiguracion', 'con_administrator_configuracion@actualizar');
 Route::post('administracion/actualizarredactor', 'con_administrator_noticias@actualizar_redactores');

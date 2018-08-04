@@ -6,7 +6,7 @@
 				 						<a href=" <?php echo $back;?>panel" title=""><i class="la la-dashboard"></i>Inicio</a> 
 				 					</li>
 				 					<li>
-				 						<a href=" <?php echo $back;?>#" title=""><i class="la la-industry"></i>Empresas</a> 
+				 						<a href=" <?php echo $back;?>empresas" title=""><i class="la la-industry"></i>Empresas</a> 
 				 					</li>
 				 					<li>
 				 						<a href=" <?php echo $back;?>candidatos" title=""><i class="la la-users"></i>Candidatos</a> 
