@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" /> 
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" /> 
+		<?php include("local/resources/views/includes/chat_soporte.php");?>
 	</head>
 	<body>
 		<?php include('local/resources/views/includes/general_header.php');?>

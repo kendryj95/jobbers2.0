@@ -14,6 +14,7 @@ $mi_tokken = csrf_token();
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
         <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
+        <?php include('local/resources/views/includes/chat_soporte.php');?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">

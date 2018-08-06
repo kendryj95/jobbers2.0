@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <?php include('local/resources/views/includes/chat_soporte.php');?>
     </head>
     <body>
         <!--Modal imagenes-->

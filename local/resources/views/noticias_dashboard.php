@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="local/resources/views/plugins/editor/ckeditor.js"></script>
 		<script src="local/resources/views/plugins/editor/samples/js/sample.js"></script>
+		<?php include("local/resources/views/includes/chat_soporte.php");?>
 	</head>
 	<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
 		<div class="theme-layout" id="scrollup">

@@ -17,13 +17,16 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 		<script>
 		  (adsbygoogle = window.adsbygoogle || []).push({
 		    google_ad_client: "ca-pub-1968505410020323",
 		    enable_page_level_ads: true
 		  });
 		</script>
+
+		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
 	<body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
 		

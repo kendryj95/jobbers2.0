@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" /> 
 			<link href="../local/resources/views/plugins/btn_social/assets/css/bootstrap.css" rel="stylesheet">
     	<link href="../local/resources/views/plugins/btn_social/assets/css/font-awesome.css" rel="stylesheet">
-     
+    	 <?php include("local/resources/views/includes/chat_soporte.php");?>
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/plugins/btn_social/bootstrap-social.css" />
 	</head>
 	<body>

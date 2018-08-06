@@ -7,7 +7,9 @@ $mi_tokken = csrf_token();
 <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
 <script src="https://use.typekit.net/hoy3lrg.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<?php include('local/resources/views/includes/chat_soporte.php');?>
 <style class="cp-pen-styles">body {
  
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;

@@ -19,7 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="http://www.dropzonejs.com/css/dropzone.css?v=1524508426" />
-		
+		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
 	<body>
 		<div class="theme-layout" id="scrollup">

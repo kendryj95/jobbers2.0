@@ -12,7 +12,8 @@
 	<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../local/resources/views/css/responsive.css" /> 
-	<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />  
+	<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
+	 
 </head>
 <body  style="background-image: url('https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg');"> 
 	<!--Header responsive-->

@@ -30,6 +30,7 @@
 		    enable_page_level_ads: true
 		  });
 		</script>
+		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
 	<body>
 	  <?php $atras=1;?>

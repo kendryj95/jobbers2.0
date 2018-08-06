@@ -36,8 +36,7 @@ function formatDate($dateMayor, $dateMenor){
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" /> 
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 		  (adsbygoogle = window.adsbygoogle || []).push({
@@ -45,7 +44,7 @@ function formatDate($dateMayor, $dateMenor){
 		    enable_page_level_ads: true
 		  });
 		</script>
-		
+		<?php include('local/resources/views/includes/chat_soporte.php');?>
 </head>
 	<body>
 		<div class="theme-layout" id="scrollup">
