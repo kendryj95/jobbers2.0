@@ -18,6 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" /> 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		<style>
 			.job-listing .job-is{
 				margin: 0 auto;

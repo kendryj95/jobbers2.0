@@ -18,10 +18,12 @@
 			<button type="submit">Entrar</button>
 		</form>
 		<div class="extra-login">
-			<!--<div class="login-social">
+			<span>Entrar con</span>
+		 <div class="login-social">
 					<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-					<a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
-			</div>-->
+					<a class="tw-login" href="#" title=""><i class="fa fa-linkedin"></i></a>
+					<a class="go-login" href="#" title=""><i class="fa fa-google"></i></a>
+			</div>
 		</div>
 	</div>
 	</div><!-- LOGIN POPUP -->
