@@ -35,4 +35,22 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'google' => [ 
+                'client_id' => '390464722025',
+                'client_secret' => 'tufmru2cpabp4ksl2fvd3ke2n8c9mp0u.apps.googleusercontent.com',
+                'redirect' => 'https://jobbersargentina.net/jobbers2.0/callback/google' 
+        ],
+
+    'facebook' => [
+            'client_id' => '1480600512039518',
+            'client_secret' => '7227b05bee5f2fc84ca31c766cfc7133',
+            'redirect' => 'https://jobbersargentina.net/jobbers2.0/callback/facebook'
+    ],
+
+    'linkedin' => [
+    'client_id' => '78l6qm3jy02g4n',
+    'client_secret' => '2oTQv4Qk2ZQ7NSna',
+    'redirect' => 'https://jobbersargentina.net/jobbers2.0/callback/linkedin',
+],
+
 ];

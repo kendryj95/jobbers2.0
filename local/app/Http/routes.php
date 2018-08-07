@@ -14,7 +14,10 @@ Route::get('fag', 'con_administrator_faq@detalle_preguntas');
 Route::get('ofertas', 'con_ofertas@index');
 Route::post('ofertas', 'con_ofertas@index');
 Route::get('detalleoferta/{id}', 'con_ofertas@detalle');
+
 Route::post('loguear', 'con_login@log');
+Route::get('socialmedia', 'con_login@log');
+
 Route::get('logout', 'con_login@salir');
 Route::get('login', 'con_login@logincandidato');
 Route::get('recuperarclave', 'con_login@recuperar');
@@ -34,8 +37,14 @@ Route::post('candidatos', 'con_candidatos@index');
 Route::get('loginsoporte', 'con_soportista@inicio');
 Route::post('logsoporte', 'con_soportista@login');
 Route::get('redactores',  function () {return view('noticias_login');});  
+Route::get('redes_users',  function () {return view('redes_users');});  
 Route::post('logredactores', 'con_noticias_dashboard@login');
 Route::post('candimensajes_soporte', 'con_soporte@mensajes_cand');
+
+Route::get('redes/{red}', 'con_log_social@redirectToProvider');
+Route::get('callback/{red}', 'con_log_social@callback');
+Route::post('addcallback', 'con_log_social@add_user');
+
 //********************************************************//
 //*                RUTAS PARA LOS REDACTORES             *//
 //********************************************************// s

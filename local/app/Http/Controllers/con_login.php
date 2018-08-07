@@ -12,17 +12,36 @@ class con_login extends Controller
     public function log(Request $request)
     {
 
-        $this->limpiarVariablesSession($request);
-
+        if(isset($_GET['token']) && isset($_GET['user']) && isset($_GET['secure']) && $_GET['token']!="" && $_GET['user']!="" && $_GET['secure']!="")
+        {
+            $sql="
+            SELECT count(id) as total 
+            FROM tbl_tokens_social_verification 
+            WHERE correo ='".$_GET['user']."' AND  token = '".$_GET['token']."'";
+           
+            $datos=DB::select($sql);
+            if($datos[0]->total==1)
+            {
+                $_POST['pass']="123654789";
+                $_POST['correo']=$_GET['user'];
+            } 
+            else
+            {
+                 return Redirect("login?error=Clave o correo incorrectos");
+            }
+        }
+       
+        $this->limpiarVariablesSession($request); 
         $sql = "
         SELECT t1.*,count(t1.id) as cantidad,t3.nombre_aleatorio as imagen,t1.token FROM tbl_usuarios t1
         LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id = t2.id_usuario
         LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto WHERE t1.correo=? AND t1.clave=?";
-
+         
         $correo = isset($_POST['correo']) ? strtolower($_POST['correo']) : false;
         $pass = isset($_POST['pass']) ? md5($_POST['pass']) : false;
 
         try {
+
             $datos = DB::select($sql, [$correo, $pass]);
             if ($datos[0]->cantidad) {
                 $prefijo = "";
