@@ -54,7 +54,7 @@ $mi_tokken=csrf_token();
     </div>
   </section>
   <section>
-    <div class="block no-padding">
+    <div class="block no-padding back-offers">
       <div class="container">
         <div class="row no-gape">
           <div class="btn-showfilter">
@@ -312,6 +312,55 @@ $mi_tokken=csrf_token();
               ?>
             <div class="job-list-modern">
               <div class="job-listings-sec">
+                <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+                <div class="job-listing wtabs" style="border-left: 3px solid #00aeef">
+                  <div class="job-title-sec" ;>
+                  <h5 class="title-recom">Empleo Recomendado</h5>
+                    <h3>
+                      <a href="detalleoferta/'.$key->id.'" title="">
+                        <span style="font-size:18px;" id="descripcion_'.$key->id.'">Titulo del empleo</span>
+                      </a>
+                    </h3>
+                    <a href="empresa/detalle?e=15001"><span id="titulo_477">Nombre de la empresa
+                      </span></a>
+                    <br>
+                    <div class="job-lctn">
+                      <i class="la la-map-marker">
+                      </i>Ubicacion de la empresa, ubicacion
+                    </div>
+                  </div>
+                  <div class="job-style-bx">
+
+                    <span class="job-is ft">FULL TIME</span>
+                    <i>Visitas 0 / 2018-07-27 21:32:11
+                    </i>
+                  </div>
+                </div>
+
+                <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+                <div class="job-listing wtabs borde-urgente">
+                <div class="urgente"><span>Oferta Destacada</span></div>
+                  <div class="job-title-sec" ;>
+                    <h3>
+                      <a href="detalleoferta/'.$key->id.'" title="">
+                        <span style="font-size:18px; color: #ef7300" id="descripcion_'.$key->id.'">Titulo del empleo</span>
+                      </a>
+                    </h3>
+                    <a href="#"><span style="color: #555555">Nombre de la empresa
+                      </span></a>
+                    <br>
+                    <div class="job-lctn">
+                      <i class="la la-map-marker">
+                      </i>Ubicacion de la empresa, ubicacion
+                    </div>
+                  </div>
+                  <div class="job-style-bx">
+
+                    <span class="job-is ft">FULL TIME</span>
+                    <i>Visitas 0 / 2018-07-27 21:32:11
+                    </i>
+                  </div>
+                </div>
                 <a href=""></a>
                 <?php foreach($publicaciones as $key)
                   {
