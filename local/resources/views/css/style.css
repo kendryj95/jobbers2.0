@@ -1898,24 +1898,14 @@ label::after {
     margin-bottom: 10px;
     padding: 20px 10px;
     background: #ffffff;
+    border: 1px solid #cccbcb;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.192);
     /* border-left: 2px solid #ffffff; */
     border-radius: 4px;
     padding-right: 30px;
-    border-right: 2px solid #00aeef;
-    border-left: 2px solid #2e3192;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-position: 0 0, 0 100%;
-    background-repeat: no-repeat;
-    -webkit-background-size: 100% 4px;
-    -moz-background-size: 100% 4px;
-    background-size: 100% 4px;
-    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzYWNmZDUiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhNGVkNSIgc3RvcC1vcGFjaXR5PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=), url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzYWNmZDUiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhNGVkNSIgc3RvcC1vcGFjaXR5PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
-    background-image: -webkit-linear-gradient(right, #00aeef 0%, #2e3192 100%), -webkit-linear-gradient(right, #00aeef 0%, #2e3192 100%);
-    background-image: -moz-linear-gradient(right, #00aeef 0%, #2e3192 100%), -moz-linear-gradient(right, #00aeef 0%, #2e3192 100%);
-    background-image: -o-linear-gradient(right, #00aeef 0%, #2e3192 100%), -o-linear-gradient(right, #00aeef 0%, #2e3192 100%);
-    background-image: linear-gradient(to left, #00aeef 0%, #2e3192 100%), linear-gradient(to left, #00aeef 0%, #2e3192 100%);
 }
 
 
@@ -13023,6 +13013,57 @@ header.style4 .account-btns>li a,
     height: 100%;
     position: absolute;
     display: none;
+}
+
+
+/* Ofertas */
+
+.back-offers {
+    background-color: #eeeeee;
+}
+
+#filtros {
+    background-color: #fff;
+    border-color: #cccbcb;
+}
+
+.borde-urgente {
+    border: 1px solid #ef7300;
+}
+
+.title-recom {
+    color: #00aeef;
+    font-weight: bolder;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.urgente {
+    background: #ef7300;
+    position: absolute;
+    padding: 1px 0 0 15px;
+    z-index: 1;
+    height: 25px;
+    top: 0;
+    left: 0;
+    color: #fff;
+}
+
+.urgente:after {
+    content: '';
+    width: 31px;
+    height: 25px;
+    top: 0;
+    right: -15px;
+    position: absolute;
+    background: #ef7300;
+    transform: skew(-20deg);
+    z-index: -1;
+}
+
+.urgente>span {
+    font-size: 12px;
+    z-index: 1;
 }
 
 
