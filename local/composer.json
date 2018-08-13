@@ -10,14 +10,16 @@
         "santigraviano/laravel-mercadopago": "^1.0",
         "intervention/image": "^2.4",
         "barryvdh/laravel-dompdf": "^0.8.2",
-        "laravel/socialite": "^2.0"
+        "laravel/socialite": "^2.0",
+        "codedge/laravel-fpdf": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "thujohn/pdf": "dev-master"
     },
     "autoload": {
         "classmap": [

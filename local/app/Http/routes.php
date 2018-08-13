@@ -47,7 +47,10 @@ Route::post('addcallback', 'con_log_social@add_user');
 
 //********************************************************//
 //*                RUTAS PARA LOS REDACTORES             *//
-//********************************************************// s
+//********************************************************//
+
+Route::get('reporte/{id}', 'con_cv@index');
+
 Route::group(['middleware' => 'log_r'], function () {
 Route::get('notipublicaciones', 'con_noticias_dashboard@publicaciones');
 Route::post('addpublicacion', 'con_noticias_dashboard@add_publicacion');

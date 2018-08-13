@@ -149,7 +149,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         SantiGraviano\LaravelMercadoPago\Providers\MercadoPagoServiceProvider::class,
-        
+        Codedge\Fpdf\FpdfServiceProvider::class,
         
 
         /*
@@ -177,6 +177,8 @@ return [
     */
 
     'aliases' => [
+        
+        'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
