@@ -81,25 +81,7 @@
 															<p>Ver Perfil</p>
 														</a>
 													</div>
-												</div>
-												<div class="col-lg-4 col-md-4 col-sm-12">
-													<div class="p-category">
-														<a href="candifavoritos" title="">
-															<i class="la la-heart"></i>
-															<span>Favoritos</span>
-															<p><?= $favoritos ?> Favoritos</p>
-														</a>
-													</div>
-												</div>
-												<div class="col-lg-4 col-md-4 col-sm-12">
-													<div class="p-category">
-														<a href="candisoporte" title="">
-															<i class="la la-support"></i>
-															<span>Soporte</span>
-															<p>&nbsp;</p>
-														</a>
-													</div>
-												</div>
+												</div> 
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="canditienda" title="">

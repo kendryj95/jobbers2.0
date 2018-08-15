@@ -93,26 +93,9 @@ $mi_tokken = csrf_token();
                             
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
-                                        <h3>Mi perfil</h3>
-                                    </div>
-
-                                </div> 
-                                <div class="text-center">
-                                    <?php
-                                    $imagen = "local/resources/views/images/avatar.jpg";
-                                    if ($con_imagen == 1) {
-                                    $imagen = "uploads/". $pic[0]->nombre_aleatorio;
-                                    }
-                                    ?>
-                                    <span class="round"><a href="#" data-toggle="modal" data-target="#modal_imagenes"><img id="imagen_de_perfil" class="img-circle" src="<?php echo $imagen; ?>" style="border-radius: 50%;margin-top: 30px;height: 140px; width: 140px;"></a></span>
-                                    <br>
-                                    <a class="status" href="candimaletin" style="margin-top: 20px; font-size: 14px;text-decoration: none;">Subir imagen</a>
-                                </div>
-                                <div class="padding-left">
-                                    <div class="manage-jobs-sec addscroll">
-                                        <h3>Datos personales</h3>
-                                    </div>
-                                </div>
+                                         <h3>Perfil</h3>
+                                    </div> 
+                                </div>   
                                 <?php
                                 
                                 //Datos personales
@@ -174,10 +157,26 @@ $mi_tokken = csrf_token();
                                 $up_longitud_contac=$infocontacto[0]->logitud;
                                 }
                                 ?>
-                                <div class="profile-form-edit">
+                                <div class="social-edit" style="padding: 0px;">  
+                                    <form  id="form_datos_per"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
+                                           <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                <span class="pf-title">Imagen</span>
+                                                <div class="pf-field">
+                                                   <input name="imagen_perfil" id="imagen_perfil" type="file" placeholder="" accept="image/*">
+                                                </div> 
+                                                <button type="submit" onClick="">Guardar</button> 
+                                    </form>
+                                </div>
+                                    <div class="padding-left" style="padding-top: 0px;">
+                                    <div class="manage-jobs-sec addscroll">
+                                         <h3>Datos personales</h3>
+                                    </div> 
+                                </div>  
+                                <div class="social-edit">
                                     <form  id="form_datos_per"  action="candidatosper" method="POST">
+                                     
                                         <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
-                                        <div class="row">
+                                        <div class="row"> 
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Nombres</span>
                                                 <div class="pf-field">
@@ -280,10 +279,13 @@ $mi_tokken = csrf_token();
                                                 </div>
                                             </div>
                                             
-                                            <div class="col-lg-12">
-                                                <button type="button" onClick="datos_per_validar()">Guardar</button>
-                                            </div>
+                                           
+
                                         </div>
+                                         <div class="col-lg-12">
+                                                <button type="button" onClick="datos_per_validar()">Guardar</button>
+
+                                            </div>
                                     </form>
                                     <div class="social-edit">
                                         <h3>Preferencias laborales</h3>
@@ -799,11 +801,7 @@ $mi_tokken = csrf_token();
     echo '<script>set_cargo("'.$key->id_idioma.'","'.$key->descripcion.'","categorias_idioma",2);</script>';
     }
     ?>
-    <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
-        <script>
-          
-          </script>      
-    <?php endif ?>  
+  
     
 <script type="text/javascript">
     function notificacion(mensaje)
@@ -813,6 +811,7 @@ $mi_tokken = csrf_token();
           globalPosition: "bottom right"
           });
     }
+
     //Validaciones datos personales.
    function datos_per_validar()
    {
@@ -951,5 +950,9 @@ $mi_tokken = csrf_token();
         }
        } 
 </script>
+  <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
+
+        <script>notificacion("<?php echo $_GET['result'];?>");</script>      
+    <?php endif ?>  
 </body>
 </html>

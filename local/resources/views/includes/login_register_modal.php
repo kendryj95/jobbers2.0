@@ -1,7 +1,7 @@
 <div class="account-popup-area signin-popup-box">
 	<div class="account-popup">
 		<span class="close-popup"><i class="la la-close"></i></span>
-		<h3>Login de usuarios</h3>
+		<h3>Jobbers Argentina</h3>
 		<form action="<?php echo $back;?>loguear" method="POST">
 			<div class="cfield">
 				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
@@ -15,7 +15,9 @@
 			<p class="remember-label">
 			</p>
 			<a href="recuperarclave" title="">Olvidé mi clave</a>
+
 			<button type="submit">Entrar</button>
+			<a class="signup-popup" href="#" title="">Registrarme</a>			
 		</form>
 		<div class="extra-login">
 			<span>Entrar con</span>

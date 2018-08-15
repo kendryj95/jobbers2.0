@@ -132,7 +132,8 @@ Route::get('candiempseg','con_candidato_seguir@index');
 Route::get('candiseguir/{id}', 'con_candidato_seguir@seguir');
 Route::get('canddelseg/{id}', 'con_candidato_seguir@eliminar'); 
 Route::post('testcontrolador', 'con_candidatos@test_controlador');
-
+Route::post('addcv', 'con_candidato_cv@addcv');
+Route::post('setprofilepic', 'con_candidato_perfil_publico@imagen_perfil');
 });
 //********************************************************//
 //*                RUTAS PARA LAS EMPRESAS               *//
