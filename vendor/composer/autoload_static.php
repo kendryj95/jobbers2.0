@@ -7,9 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
 {
     public static $files = array (
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -20,7 +18,6 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
-            'Symfony\\Polyfill\\Php70\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Translation\\' => 30,
@@ -32,8 +29,10 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+            'Psr\\Container\\' => 14,
         ),
         'L' => 
         array (
@@ -55,13 +54,13 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 26,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Php70\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
-        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -94,6 +93,10 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -101,6 +104,10 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
         ),
         'League\\OAuth1\\' => 
         array (
@@ -146,30 +153,14 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
         0 => __DIR__ . '/..' . '/nesbot/carbon/src',
-    );
-
-    public static $prefixesPsr0 = array (
-        'D' => 
-        array (
-            'Doctrine\\Common\\Inflector\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
-            ),
-        ),
-    );
-
-    public static $classMap = array (
-        'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
-        'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
-        'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
-        'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
-        'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
-        'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
-        'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -178,8 +169,6 @@ class ComposerStaticInitd11982c16b4f784517febe2972f8cd86
             $loader->prefixLengthsPsr4 = ComposerStaticInitd11982c16b4f784517febe2972f8cd86::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitd11982c16b4f784517febe2972f8cd86::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInitd11982c16b4f784517febe2972f8cd86::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd11982c16b4f784517febe2972f8cd86::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitd11982c16b4f784517febe2972f8cd86::$classMap;
 
         }, null, ClassLoader::class);
     }
