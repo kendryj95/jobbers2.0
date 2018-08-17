@@ -314,52 +314,52 @@ $mi_tokken=csrf_token();
             <div class="job-list-modern">
               <div class="job-listings-sec">
                 <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
-                <div class="job-listing wtabs" style="border-left: 3px solid #00aeef">
-                  <div class="job-title-sec" ;>
-                  <h5 class="title-recom">Empleo Recomendado</h5>
-                    <h3>
-                      <a href="detalleoferta/'.$key->id.'" title="">
-                        <span style="font-size:18px;" id="descripcion_'.$key->id.'">Titulo del empleo</span>
-                      </a>
-                    </h3>
-                    <a href="empresa/detalle?e=15001"><span id="titulo_477">Nombre de la empresa
-                      </span></a>
+                <div class="job-listing wtabs">
+                  <div class="job-title-sec container-desc-oferta">
+                  <h5 class="title-recom">Titulo de la oferta de trabajo <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
+                    <p class="time-pub"><i class="fa fa-calendar"></i> Publicada Hoy a las 10:58 Am - Termina: 08/12/2018</p>
+                    <p class="desc-oferta">Mauris pulvinar efficitur quam nec consequat. Vestibulum eu luctus eros. Praesent non erat ullamcorper, ultrices tellus sed, egestas massa. Nunc mollis ipsum non nunc aliquet blandit. Praesent ullamcorper, libero id maximus mollis, leo neque hendrerit ligula, a egestas augue ipsum at lectus. Donec a ligula porta, vulputate mauris quis, sodales elit. </p>
                     <br>
                     <div class="job-lctn">
-                      <i class="la la-map-marker">
-                      </i>Ubicacion de la empresa, ubicacion
+                      Cocacola&nbsp;
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      &nbsp;
+                      <i class="fa fa-eye"></i>11&nbsp;
+                      <i class="fa fa-heart red"></i>3&nbsp;
+                      <i class="fa fa-clock-o mr-0"></i>
+                      <span class="disponibilidad">FullTime</span>&nbsp;
+                      <i class="fa fa-wheelchair blue"></i>
+
+                      <div style="float: right">
+                        <a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
+                        <a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
+                        <a href=""><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                      </div>
                     </div>
                   </div>
-                  <div class="job-style-bx">
+                  <div class="job-style-bx container-img-oferta">
 
-                    <span class="job-is ft">FULL TIME</span>
-                    <i>Visitas 0 / 2018-07-27 21:32:11
-                    </i>
+                    <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
+                    <p class="nombre-img">Coca Cola</p>
                   </div>
                 </div>
 
                 <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
-                <div class="job-listing wtabs borde-urgente">
-                <div class="urgente"><span>Oferta Destacada</span></div>
-                  <div class="job-title-sec" ;>
+                <div class="job-listing wtabs borde-urgente" style="padding: 15px 0px;">
+                <div class="urgente"><span>Curso gratis</span></div>
+                  <div class="job-title-sec" style="width: 90%" ;>
                     <h3>
                       <a href="detalleoferta/'.$key->id.'" title="">
-                        <span style="font-size:18px; color: #ef7300" id="descripcion_'.$key->id.'">Titulo del empleo</span>
+                        <div style="font-size:22px; color: #494949" id="descripcion_'.$key->id.'">Curso de programador PHP  <span class="link-urgente">https://google.co.ve/search</span></div>
                       </a>
                     </h3>
-                    <a href="#"><span style="color: #555555">Nombre de la empresa
-                      </span></a>
+                    <p href="#"><span style="color: #555555; line-height: 18px; color: #494949">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum tincidunt velit at molestie. Donec mattis orci non risus auctor blandit.
+                      </span></p>
                     <br>
-                    <div class="job-lctn">
-                      <i class="la la-map-marker">
-                      </i>Ubicacion de la empresa, ubicacion
-                    </div>
-                  </div>
-                  <div class="job-style-bx">
-
-                    <span class="job-is ft">FULL TIME</span>
-                    <i>Visitas 0 / 2018-07-27 21:32:11
-                    </i>
                   </div>
                 </div>
                 <a href=""></a>
