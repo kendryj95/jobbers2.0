@@ -13042,6 +13042,10 @@ header.style4 .account-btns>li a,
     border: 1px solid #c7020c;
 }
 
+.borde-recomend {
+    border: 1px solid #ff7800;
+}
+
 .title-recom {
     color: #555555;
     font-weight: bolder;
@@ -13074,6 +13078,34 @@ header.style4 .account-btns>li a,
 }
 
 .urgente>span {
+    font-size: 12px;
+    z-index: 1;
+}
+
+.recomend {
+    background: #ff7800;
+    position: absolute;
+    padding: 1px 11px 0px 0px;
+    z-index: 1;
+    height: 25px;
+    top: 0;
+    right: 0;
+    color: #fff;
+}
+
+.recomend:after {
+    content: '';
+    width: 31px;
+    height: 25px;
+    top: 0;
+    left: -15px;
+    position: absolute;
+    background: #ff7800;
+    transform: skew(20deg);
+    z-index: -1;
+}
+
+.recomend>span {
     font-size: 12px;
     z-index: 1;
 }
@@ -13179,6 +13211,11 @@ header.style4 .account-btns>li a,
 .exclamation-icon {
     color: rgb(248, 196, 0);
     font-size: 28px !important;
+}
+
+.back-ofertas {
+    background: url('local/resources/views/images/back-ofertas.jpg');
+    background-size: cover;
 }
 
 

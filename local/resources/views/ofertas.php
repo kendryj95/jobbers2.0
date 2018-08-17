@@ -314,6 +314,55 @@ $mi_tokken=csrf_token();
             <div class="job-list-modern">
               <div class="job-listings-sec">
                 <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+                <div class="job-listing wtabs borde-recomend" style="background: url(local/resources/views/images/back-ofertas.jpg); background-size: cover">
+                <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
+                  <div class="job-title-sec container-desc-oferta">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5 class="title-recom">Coca Cola</h5>
+                      <p class="time-pub" style="margin-left: 20px;">Publicaciones: 485</p>
+                      <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
+                        Redes: 
+                            <a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="padding:6px; margin-left: 0px;"></i></span></a>
+                            <a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
+                            <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid" width="80" alt="">
+                    </div>
+                  </div>
+
+                  <h5 class="title-recom">Titulo de la oferta de trabajo <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
+                    <p class="time-pub"><i class="fa fa-calendar"></i> Publicada Hoy a las 10:58 Am - Termina: 08/12/2018</p>
+                    <p class="desc-oferta">Mauris pulvinar efficitur quam nec consequat. Vestibulum eu luctus eros. Praesent non erat ullamcorper, ultrices tellus sed, egestas massa. Nunc mollis ipsum non nunc aliquet blandit. Praesent ullamcorper, libero id maximus mollis, leo neque hendrerit ligula, a egestas augue ipsum at lectus. Donec a ligula porta, vulputate mauris quis, sodales elit. </p>
+                    <br>
+                    <div class="job-lctn">
+                      Cocacola&nbsp;
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      <i class="fa fa-star gold"></i>
+                      &nbsp;
+                      <i class="fa fa-eye"></i>11&nbsp;
+                      <i class="fa fa-heart red"></i>3&nbsp;
+                      <i class="fa fa-clock-o mr-0"></i>
+                      <span class="disponibilidad">FullTime</span>&nbsp;
+                      <i class="fa fa-wheelchair blue"></i>
+
+                      <div style="float: right">
+                        <a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
+                        <a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
+                        <a href=""><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-style-bx container-img-oferta">
+
+                    <img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
+                  </div>
+                </div>
                 <div class="job-listing wtabs">
                   <div class="job-title-sec container-desc-oferta">
                   <h5 class="title-recom">Titulo de la oferta de trabajo <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
