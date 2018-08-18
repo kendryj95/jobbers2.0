@@ -37,7 +37,7 @@
 						 		</div>
 						 	 	
 						 	 <form action="empresas" method="get" id="form_search"> 
-						 	 	<a href="#" title="" style=""><span style="padding-left: 30px;text-decoration: underline; color: #009804;font-size: 16px;margin-top: -50px;">Nueva Empresa</span></a> | <a href="empresas" title="" style=""><span style="text-decoration: underline; color: #009804;font-size: 16px;margin-top: -50px;"> Limpiar filtro </span></a>
+						 	 	<a href="empresas/create" title="" style=""><span style="padding-left: 30px;text-decoration: underline; color: #009804;font-size: 16px;margin-top: -50px;">Nueva Empresa</span></a> | <a href="empresas" title="" style=""><span style="text-decoration: underline; color: #009804;font-size: 16px;margin-top: -50px;"> Limpiar filtro </span></a>
 							 	<div class="pf-field" style="padding-left: 30px;margin-top: 25px;">
 									<input style="margin-bottom: 0px;" id="buscador" value="<?= isset($_GET['buscador']) ? $_GET['buscador'] : '' ?>" name="buscador" type="text" placeholder="Buscador...">
 									<i class="la la-search" style="cursor: pointer;" id="search"></i>
@@ -60,7 +60,7 @@
 						 				<tr>
 						 					<td>
 						 						<div class="table-list-title">
-						 							<h3><a href="#" title=""><?= $empresa->nombre_empresa ?></a></h3>
+						 							<h3><a href="../empresa/detalle?e=<?= $empresa->id_empresa ?>" title="" target="_blank"><?= $empresa->nombre_empresa ?></a></h3>
 						 							<span><i class="la la-map-marker"></i> <?= $empresa->ubicacion ?></span>
 						 						</div>
 						 					</td> 
@@ -81,9 +81,13 @@
 						 					</td>  
 						 					<td>
 						 						<ul class="action_job">
-						 							<li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+						 							<li><span>Ver</span><a href="../empresa/detalle?e=<?= $empresa->id_empresa ?>" title="" target="_blank"><i class="la la-eye"></i></a></li>
 						 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-						 							<li><span>Suspender</span><a href="#" title=""><i class="la la-power-off"></i></a></li>
+						 							<?php if ($empresa->estatus == 1): ?>
+						 							<li><span>Suspender</span><a href="../administracion/empresas/suspender-habilitar/0/<?= $empresa->id_empresa ?>" title=""><i class="la la-power-off"></i></a></li>
+						 							<?php else: ?>
+						 							<li><span>Habilitar</span><a href="../administracion/empresas/suspender-habilitar/1/<?= $empresa->id_empresa ?>" title=""><i class="la la-power-off"></i></a></li>
+						 							<?php endif; ?>
 						 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
 						 						</ul>
 						 					</td>
@@ -115,6 +119,16 @@
 			  });
 		}
 	});
+
+	<?php if (isset($_GET['r']) && $_GET['r'] == 1): ?>
+
+			$.notify("Se ha creado una nueva empresa satisfactoriamente.", {
+			className:"success",
+			globalPosition: "bottom center"
+			});
+
+
+	<?php endif; ?>
 </script> 
 
 </body>

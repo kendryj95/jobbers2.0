@@ -193,6 +193,9 @@ Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_ca
 Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
 
 Route::get('administracion/empresas', 'con_administrator_empresas@index');
+Route::get('administracion/empresas/create', 'con_administrator_empresas@create');
+Route::post('administracion/empresas/store', 'con_administrator_empresas@register');
+Route::get('administracion/empresas/suspender-habilitar/{accion}/{id}', 'con_administrator_empresas@suspender_habilitar')->where(['accion' => '[0-1]', 'id' => '[0-9]+']);
 
 
 
