@@ -61,7 +61,12 @@ $mi_tokken = csrf_token();
 
                                     </form>
                                     
+                                </div> 
+                                <div class="text-center">
+                                    <a style="display: none;" id="usando_jobbers" href="cvjobbers"><img style="" src="local/resources/views/images/sin_usar.jpg"></a>
+                                    <a target="_blank" style="display: none;" id="sin_usar_jobbers" href="reporte/<?php echo session()->get('cand_id');?>"><img style="" src="local/resources/views/images/usando.jpg"></a>
                                 </div>
+                            
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
                                         <h3>Mis curriculums</h3>
@@ -79,12 +84,18 @@ $mi_tokken = csrf_token();
                                         </thead>
 
                                         <tbody>
-                                            
+                                           
                                            <?php
                                            $contador=0;
+                                           $mostrar="";
                                             foreach ($datos as $key): ?>
                                              <?php
-                                             if($key->mostrar=="1"){$key->mostrar="checked";}else{$key->mostrar="";} 
+                                             if($key->mostrar=="1" && $mostrar=="")
+                                             {
+                                                $mostrar="1";
+                                             }
+                                             if($key->mostrar=="1"){$key->mostrar="checked";}else{$key->mostrar="";
+                                             } 
                                              $contador++;
                                                 if($key->alias==""){$key->alias="Curriculum (".$contador.")";}
                                                 ?>
@@ -130,6 +141,17 @@ $mi_tokken = csrf_token();
     }
 
     </script>
-
+ <?php if ($mostrar=="1"): ?>
+    <script>
+         $("#usando_jobbers").show();
+         $("#sin_usar_jobbers").hide();
+    </script>
+     <?php endif ?>
+     <?php if ($mostrar==""): ?>
+     <script>
+      $("#usando_jobbers").hide();
+         $("#sin_usar_jobbers").show();
+     </script>
+    <?php endif ?> 
 </body>
 </html>

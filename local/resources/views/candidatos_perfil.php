@@ -110,6 +110,7 @@ $mi_tokken = csrf_token();
                                 $up_id="";
                                 $up_fecha="";
                                 $up_desc="";
+                                $up_cuil="";
                                 if(isset($bandera_datos_personales) && $bandera_datos_personales==1)
                                 {
                                 $up_nombres=$datos_personales_up[0]->nombres;
@@ -123,7 +124,7 @@ $mi_tokken = csrf_token();
                                 $up_id=$datos_personales_up[0]->n_identificacion;
                                 $up_fecha=$datos_personales_up[0]->fecha_nac;
                                 $up_desc=$datos_personales_up[0]->sobre_mi;
-                                
+                                $up_cuil=$datos_personales_up[0]->cuil;
                                 }
                                 // Prefenrencias laborales
                                 $up_remuneracion="";
@@ -158,7 +159,7 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <div class="social-edit" style="padding: 0px;">  
-                                    <form  id="form_datos_per"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
+                                    <form  id="form_datos_imagen"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
                                                 <span class="pf-title">Imagen</span>
                                                 <div class="pf-field">
@@ -272,6 +273,12 @@ $mi_tokken = csrf_token();
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-4">
+                                                <span class="pf-title">Cuil</span>
+                                                <div class="pf-field">
+                                                     <input id="datos_per_cuil" value="<?php echo $up_cuil;?>" name="datos_per_cuil" type="text" placeholder="Cuil" />
+                                                </div>
+                                            </div>
                                             <div class="col-lg-12">
                                                 <span class="pf-title">¿Cómo te describes?</span>
                                                 <div class="pf-field">
@@ -379,7 +386,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Facebook</span>
                                                 <div class="pf-field">
-                                                    <input id="facebook" name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?> " />
+                                                    <input id="facebook" name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?>" />
                                                     <i class="fa fa-facebook"></i>
                                                 </div>
                                             </div>
@@ -433,7 +440,11 @@ $mi_tokken = csrf_token();
                                                     <input id="sitio_web" value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="row" style="background-color: #f3f3f3;border:1px solid #2e3192;padding: 15px;">
+                                                <div class="col-lg-12 text-center" style="font-weight: 600;">
+                                                      Dirección de domicilio  
+                                                </div>
+                                                <div class="col-lg-4">
                                                 <span class="pf-title">País</span>
                                                 <div class="pf-field">
                                                     <select id="pais_contac" name="pais" data-placeholder="Please Select Specialism" class="chosen">
@@ -473,22 +484,23 @@ $mi_tokken = csrf_token();
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6" style="">
+                                            <div class="col-lg-12" style="">
                                                 <span class="pf-title">Dirección</span>
                                                 <div class="pf-field">
                                                     <input  id="direccion" value="<?php echo $up_direccion_contac;?>" name="direccion" type="text" placeholder="Buenos Aires, Argentina" />
                                                 </div>
                                             </div>
+                                            </div>
                                             <div class="col-lg-3">
-                                                <span class="pf-title">Latitud</span>
+                                                
                                                 <div class="pf-field">
-                                                    <input  id="latitud" value="<?php echo $up_latitud_contac;?>" name="latitud" type="text" placeholder="41.1589654" />
+                                                    <input  id="latitud" value="<?php echo $up_latitud_contac;?>" name="latitud" type="hidden" placeholder="41.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
-                                                <span class="pf-title">Longitud</span>
+                                               
                                                 <div class="pf-field">
-                                                    <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="text" placeholder="21.1589654" />
+                                                    <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="hidden" placeholder="21.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -515,7 +527,7 @@ $mi_tokken = csrf_token();
                                                     <i class="la la-graduation-cap"></i>
                                                     <div class="edu-hisinfo">
                                                         <h3 id="universidad_<?php echo $key->id;?>"><?php echo $key->nombre_institucion;?></h3>
-                                                        <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?> - <?php echo $key->hasta;?></i>
+                                                        <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?></i>
                                                         <span><?php echo $key->titulo;?>
                                                             <i><?php echo $key->descripcion;?></i>
                                                             <i><?php echo $key->nivel;?></i>
@@ -552,7 +564,7 @@ $mi_tokken = csrf_token();
                                             </div>
                                             
                                             <!--HAbilidadez-->
-                                            <div class="border-title"><h3>Habilidades</h3><a title=""><i class="la la-plus" ></i> Agregar habilidad</a></div>
+                                            <div class="border-title"><h3>Habilidades</h3> </div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
                                                 <form id="form_habilidades" method="POST" action="candisethabilidad">
                                                     <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
@@ -610,7 +622,7 @@ $mi_tokken = csrf_token();
                                         </div>
 
                                         <!--Idiomas-->
-                                        <div class="border-title"><h3>Idiomas</h3><a title=""><i class="la la-plus" ></i> Agregar idioma</a></div>
+                                        <div class="border-title"><h3>Idiomas</h3> </div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
                                                 <form id="form_idiomas" method="POST" action="candisetidioma">
                                                     <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
@@ -911,7 +923,7 @@ $mi_tokken = csrf_token();
        {
             if($("#nivel").val()==""){notificacion("Debe colocar el nivel de estudio.")}
             else if($("#desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
-            else if($("#hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
+            else if($("#hasta_estudio").val()==""){notificacion("Debe colocar la fecha de fin.")}
             else if($("#universidad").val()==""){notificacion("Debe colocar la universidad.")} 
             else if($("#titulo_obtener").val()==""){notificacion("Debe colocar el título que obtuvo.")} 
             else if($("#uni_pais").val()==""){notificacion("Debe colocar el país donde curso los estudios.")}

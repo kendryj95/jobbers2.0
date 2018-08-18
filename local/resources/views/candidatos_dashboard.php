@@ -41,15 +41,7 @@
 														</a>
 													</div>
 												</div>
-												<div class="col-lg-4 col-md-4 col-sm-12">
-													<div class="p-category">
-														<a href="candidato/<?= session()->get('cand_id') ?>" title="">
-															<i class="la la-eye"></i>
-															<span>Mi perfil</span>
-															<p>&nbsp;</p>
-														</a>
-													</div>
-												</div>
+												
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="candicv" title="">
@@ -59,6 +51,15 @@
 														</a>
 													</div>
 												</div>
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="p-category">
+														<a href="candiperfil" title="">
+															<i class="la la-file"></i>
+															<span>Mi información</span>
+															<p>Ver Perfil</p>
+														</a>
+													</div>
+												</div> 
 											</div>
 										</div>
 										<div class="cat-sec">
@@ -73,15 +74,7 @@
 														</a>
 													</div>
 												</div>
-												<div class="col-lg-4 col-md-4 col-sm-12">
-													<div class="p-category">
-														<a href="candiperfil" title="">
-															<i class="la la-file"></i>
-															<span>Mi información</span>
-															<p>Ver Perfil</p>
-														</a>
-													</div>
-												</div> 
+												
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="canditienda" title="">

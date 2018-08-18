@@ -8,9 +8,7 @@ use DateTime;
 class con_cv extends Controller
 {
     public function index($id)
-    {
-
-
+    { 
     	$sql_datos_personales="
     	SELECT 
     	count(t1.id) as cantidad, 

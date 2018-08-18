@@ -72,4 +72,15 @@ public function select_cv()
 	
 } 
 
+public function seleccionar_cv_jobbers()
+{
+	 
+	$sql="UPDATE tbl_candidato_cv_fisico SET mostrar=0 WHERE id_usuario =".session()->get('cand_id').""; 
+	try {
+		DB::update($sql);  
+		return Redirect('candicv?result=Curriculum seleccionado con exito.');
+	} catch (Exception $e) {
+		
+	} 
+}  
 }
