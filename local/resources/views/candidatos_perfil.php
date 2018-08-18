@@ -544,7 +544,9 @@ $mi_tokken = csrf_token();
                                             <?php endforeach ?>
                                             <div class="border-title"><h3>Experiencia laboral</h3><a href="#" title=""  data-toggle="modal" data-target="#modal_educ_expe"><i class="la la-plus"></i> Agregar experiencia</a></div>
                                             <div class="edu-history-sec">
-                                                <?php foreach ($experiencias as $key): ?>
+                                                <?php foreach ($experiencias as $key): 
+                                                    if($key->hasta==""){$key->hasta="Trabajando actualmente";}
+                                                ?>
                                                 <input type="hidden" id="e_sector_<?php echo $key->id;?>" value="<?php echo $key->id_actividad_empresa;?>">
                                                 <div class="edu-history style2">
                                                     <i></i>
@@ -713,14 +715,14 @@ $mi_tokken = csrf_token();
     $("#tipo").val("1");
     $("#identificador").val(id);
     $("#nivel").val("");
-    $("#desde").val("");
+    $("#desde_estudio").val("");
     $("#hasta").val("");
     $("#universidad").val("");
     $("#area_estudio").val("");
     $("#titulo_obtener").val("");
     $("#uni_pais").val("");
     $("#nivel").trigger('chosen:updated');
-    $("#desde").trigger('chosen:updated');
+    $("#desde_estudio").trigger('chosen:updated');
     $("#hasta").trigger('chosen:updated');
     $("#area_estudio").trigger('chosen:updated');
     $("#uni_pais").trigger('chosen:updated');
@@ -731,14 +733,14 @@ $mi_tokken = csrf_token();
     periodo=$("#periodo_"+id).html();
     periodos=periodo.split(" - ");
     $("#nivel").val($("#nivel_es").val());
-    $("#desde").val(periodos[0]);
+    $("#desde_estudio").val(periodos[0]);
     $("#hasta").val(periodos[1]);
     $("#universidad").val($("#universidad_"+id).html());
     $("#area_estudio").val($("#estudios").val());
     $("#titulo_obtener").val($("#titulo_").val());
     $("#uni_pais").val($("#pais").val());
     $("#nivel").trigger('chosen:updated');
-    $("#desde").trigger('chosen:updated');
+    $("#desde_estudio").trigger('chosen:updated');
     $("#hasta").trigger('chosen:updated');
     $("#area_estudio").trigger('chosen:updated');
     $("#uni_pais").trigger('chosen:updated');
@@ -766,6 +768,18 @@ $mi_tokken = csrf_token();
     $("#expe_tipo").val("2");
     periodo=$("#e_periodo_"+id).html();
     periodos=periodo.split(" - ");
+    if(periodos[1]=="Trabajando actualmente")
+    {
+        $("#trabajando_act").prop( "checked", true );
+        $("#expe_hasta").hide();
+
+    }
+    else
+    {
+        $("#trabajando_act").prop( "checked", false );
+        $("#expe_hasta").show();
+    }
+
     $("#expe_desde").val(periodos[0]);
     $("#expe_hasta").val(periodos[1]);
     $("#expe_sector").val($("#e_sector_"+id).val());
@@ -774,7 +788,6 @@ $mi_tokken = csrf_token();
     $("#expe_descripcion").val($("#e_descripcion_"+id).html());
     $("#expe_sector").trigger('chosen:updated');
     $("#expe_desde").trigger('chosen:updated');
-    $("#expe_hasta").trigger('chosen:updated');
     $("#modal_educ_expe").modal("show");
     }
     
@@ -922,7 +935,7 @@ $mi_tokken = csrf_token();
     function form_estudios_validar()
        {
             if($("#nivel").val()==""){notificacion("Debe colocar el nivel de estudio.")}
-            else if($("#desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
+            else if($("#desde_estudio").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
             else if($("#hasta_estudio").val()==""){notificacion("Debe colocar la fecha de fin.")}
             else if($("#universidad").val()==""){notificacion("Debe colocar la universidad.")} 
             else if($("#titulo_obtener").val()==""){notificacion("Debe colocar el título que obtuvo.")} 
@@ -936,10 +949,24 @@ $mi_tokken = csrf_token();
    function form_experiencia_validar()
        {
             if($("#expe_sector").val()==""){notificacion("Debe colocar el sector en el que trabajó.")}
-            else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
-            else if($("#expe_hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
+            else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")}  
             else if($("#expe_empresa").val()==""){notificacion("Debe colocar el nombre de la empresa.")} 
-            else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}  
+            else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}
+            else if(!($("#trabajando_act").is(':checked')))
+            {  
+                           
+                if($("#expe_hasta").val()=="")
+                {
+                    notificacion("Debe colocar la fecha de culminacion de la jornada.")
+                }
+                else
+                {
+
+                        $("#form_experiencia").submit();
+                    
+                }
+            }
+        
             else
             {
                 $("#form_experiencia").submit();
@@ -962,9 +989,31 @@ $mi_tokken = csrf_token();
         }
        } 
 </script>
+
+<script>
+    
+    function set_trab_act()
+    {
+        if($("#trabajando_act").is(':checked'))
+        {
+            
+            $("#expe_hasta").show();
+        }
+        else
+        { 
+            $("#expe_hasta").val(''); 
+            $("#expe_hasta").hide();
+
+        }
+         
+    }
+        
+</script>
   <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
 
         <script>notificacion("<?php echo $_GET['result'];?>");</script>      
-    <?php endif ?>  
+    <?php endif ?>
+
+
 </body>
 </html>
