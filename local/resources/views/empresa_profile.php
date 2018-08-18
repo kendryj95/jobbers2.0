@@ -52,7 +52,7 @@
 									<div class="profile-title" id="mp">
 										<h3>Mi perfil</h3>
 										<div class="upload-img-bar">
-											<span><img src="../uploads/<?= session()->get("emp_imagen") ?>" alt="Imagen de perfil" /></span>
+											<span><img src="<?= $imagen_perfil ?>" alt="Imagen de perfil" /></span>
 											<div class="upload-info">
 												<a href="javascript:void(0)" title="" data-toggle="modal" data-target="#upload_pic">Subir</a>
 												<a href="javascript:void(0)" title="" data-toggle="modal" data-target="#usage_pic" id="change_pic">Cambiar Foto</a>
@@ -266,7 +266,7 @@
 				             <div class="modal-body" style="padding-top: 0px;"> 
 				               <div class="col-lg-12">
 				                   <div id="dropzone" class="padding-left" style="margin-top: 20px;margin-bottom: 20px; border: 3px dashed blue">
-				                      <form action="../subir" class="dropzone needsclick dz-clickable" id="demo-upload">
+				                      <form action="uploadImage" class="dropzone needsclick dz-clickable" id="demo-upload">
 				                         <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 				                         <div class="dz-message needsclick">
 				                            Copiar archivos.

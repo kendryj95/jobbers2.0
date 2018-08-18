@@ -95,7 +95,7 @@ class con_administrator_empresas extends Controller
                 
                 DB::insert("INSERT INTO tbl_usuarios VALUES (null,?,'',?,1,?,1,'',null)", [$correo, $pass, $this->aleatorio(45)]);
                 $id_usuario = DB::getPdo()->lastInsertId();
-                DB::insert("INSERT INTO tbl_empresa VALUES (null,?,?,?,?,?,?,?,?,?,?,?,1,?,null,null,null,null,null,null)", [$id_usuario, $nombre_empresa, $responsable, $razon_social, $cuit, $telefono, $descripcion, $pais, $provincia, $localidad, $actividad, $direccion]);
+                DB::insert("INSERT INTO tbl_empresa VALUES (null,?,?,?,?,?,?,?,?,?,?,?,1,?,null,null,null,null,null,null,1)", [$id_usuario, $nombre_empresa, $responsable, $razon_social, $cuit, $telefono, $descripcion, $pais, $provincia, $localidad, $actividad, $direccion]);
                 $id_empresa = DB::getPdo()->lastInsertId();
 
                 DB::insert("INSERT INTO tbl_empresas_planes VALUES (null,?,1,null)", [$id_empresa]);
@@ -136,6 +136,109 @@ class con_administrator_empresas extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public function edit($id)
+    {
+        $actividades_empresa = DB::select("SELECT * FROM tbl_actividades_empresa ORDER BY nombre");
+        $paises              = DB::select("SELECT * FROM tbl_paises ORDER BY descripcion");
+        $provincias          = DB::select("SELECT * FROM tbl_provincias");
+
+        $empresa = DB::select("SELECT e.*, u.correo FROM tbl_empresa e LEFT JOIN tbl_usuarios u ON e.id_usuario=u.id WHERE e.id=?", [$id]);
+
+        if ($empresa) {
+
+            $localidades = [];
+
+            if ($empresa[0]->provincia != 0) {
+                $localidades = DB::select("SELECT * FROM tbl_localidades WHERE id_provincia=?", [$empresa[0]->provincia]);
+            }
+
+            $params = [
+                "actividades" => $actividades_empresa,
+                "paises"      => $paises,
+                "provincias"  => $provincias,
+                "localidades" => $localidades,
+                "empresa" => $empresa
+            ];
+            return view('administrator_empresa_edit', $params);
+        }
+
+        return view('administrator/empresas');
+
+        
+    }
+
+    public function editStore(Request $request)
+    {
+
+        $this->validate($request, [
+            'correo' => 'required|email',
+            'nombre_empresa' => 'required',
+            'nombre_resp' => 'required',
+            'razon_social' => 'required',
+            'telefono' => 'required|numeric',
+            'descripcion_emp' => 'required',
+            'pais' => 'required',
+            'provincia' => 'required',
+            'localidad' => 'required',
+            'act_emp' => 'required',
+            'direccion' => 'required',
+        ],
+        [
+            'correo.required' => 'Correo es un campo obligatorio, no puede quedar vacío.',
+            'correo.email' => 'Correo no valido.',
+            'nombre_empresa.required' => 'Nombre de la empresa es un campo obligatorio, no puede quedar vacío.',
+            'nombre_resp.required' => 'Nombre del responsable es un campo obligatorio, no puede quedar vacío.',
+            'razon_social.required' => 'Razon social es un campo obligatorio, no puede quedar vacío.',
+            'telefono.required' => 'Telefono es un campo obligatorio, no puede quedar vacío.',
+            'telefono.numeric' => 'Telefono no valido.',
+            'descripcion_emp.required' => 'Descripción de la empresa es un campo obligatorio, no puede quedar vacío.',
+            'pais.required' => 'País es un campo obligatorio, no puede quedar vacío.',
+            'provincia.required' => 'Provincia es un campo obligatorio, no puede quedar vacío.',
+            'localidad.required' => 'Localidad es un campo obligatorio, no puede quedar vacío.',
+            'act_emp.required' => 'Actividad de la empresa es un campo obligatorio, no puede quedar vacío.',
+            'direccion.required' => 'Dirección es un campo obligatorio, no puede quedar vacío.',
+        ]);
+
+        $verificarEmail = DB::select("SELECT u.id FROM tbl_usuarios u INNER JOIN tbl_empresa e ON u.id=e.id_usuario WHERE u.correo=? AND e.id <> ?", [$request->correo, $request->id_empresa]);
+
+        if ($verificarEmail) {
+            return redirect('administracion/empresas');
+        } else {
+            DB::beginTransaction();
+
+            try {
+                
+                if ($request->pass == "") {
+                    DB::update("UPDATE tbl_usuarios SET correo=? WHERE id=?", [$request->correo, $request->id_usuario]);
+                } else {
+                    DB::update("UPDATE tbl_usuarios SET correo=?, clave=? WHERE id=?", [$request->correo, $request->pass, $request->id_usuario]);
+                }
+
+                DB::update("UPDATE tbl_empresa SET nombre=?, responsable=?, razon_social=?, cuit=?, telefono=?, descripcion=?, pais=?, provincia=?, localidad=?, sector=?, direccion=? WHERE id=?", [$request->nombre_empresa, $request->nombre_resp, $request->razon_social, $request->cuit, $request->telefono, $request->descripcion_emp, $request->pais, $request->provincia, $request->localidad, $request->act_emp, $request->direccion, $request->id_empresa]);
+
+                DB::commit();
+                return redirect('administracion/empresas?r=2');
+            } catch (Exception $e) {
+                DB::rollback();
+                return redirect('administracion/empresas/edit/'.$request->id_empresa.'?r=3');
+            }
+        }
+    }
+
+    public function delete($id)
+    {
+        DB::beginTransaction();
+
+        try {
+            DB::delete("DELETE FROM tbl_usuarios WHERE id=?", [$id]);
+            DB::commit();
+            return redirect('administracion/empresas?r=3');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect('administracion/empresas?r=4');
+        }
     }
 
 }

@@ -82,13 +82,13 @@
 						 					<td>
 						 						<ul class="action_job">
 						 							<li><span>Ver</span><a href="../empresa/detalle?e=<?= $empresa->id_empresa ?>" title="" target="_blank"><i class="la la-eye"></i></a></li>
-						 							<li><span>Editar</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
+						 							<li><span>Editar</span><a href="empresas/edit/<?= $empresa->id_empresa ?>" title=""><i class="la la-pencil"></i></a></li>
 						 							<?php if ($empresa->estatus == 1): ?>
 						 							<li><span>Suspender</span><a href="../administracion/empresas/suspender-habilitar/0/<?= $empresa->id_empresa ?>" title=""><i class="la la-power-off"></i></a></li>
 						 							<?php else: ?>
 						 							<li><span>Habilitar</span><a href="../administracion/empresas/suspender-habilitar/1/<?= $empresa->id_empresa ?>" title=""><i class="la la-power-off"></i></a></li>
 						 							<?php endif; ?>
-						 							<li><span>Eliminar</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
+						 							<li><span>Eliminar</span><a href="../administracion/empresas/delete/<?= $empresa->id_usuario ?>" title=""><i class="la la-trash-o"></i></a></li>
 						 						</ul>
 						 					</td>
 						 				</tr>
@@ -124,9 +124,29 @@
 
 			$.notify("Se ha creado una nueva empresa satisfactoriamente.", {
 			className:"success",
-			globalPosition: "bottom center"
+			globalPosition: "bottom right"
 			});
 
+	<?php elseif (isset($_GET['r']) && $_GET['r'] == 2): ?>
+
+		$.notify("Se ha editado la empresa satisfactoriamente.", {
+		className:"success",
+		globalPosition: "bottom right"
+		});
+
+	<?php elseif (isset($_GET['r']) && $_GET['r'] == 3): ?>
+
+		$.notify("Se ha eliminado la empresa satisfactoriamente.", {
+		className:"success",
+		globalPosition: "bottom right"
+		});
+
+	<?php elseif (isset($_GET['r']) && $_GET['r'] == 4): ?>
+
+		$.notify("Ha ocurrido un error inesperado. Vuelva intentarlo.", {
+		className:"error",
+		globalPosition: "bottom right"
+		});
 
 	<?php endif; ?>
 </script> 
