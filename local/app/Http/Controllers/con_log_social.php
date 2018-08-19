@@ -18,8 +18,7 @@ class con_log_social extends Controller
 		{ 
 		$token=$this->generateRandomString(74);
 		$user = Socialite::driver($proveedor)->stateless()->user();
-		$sql="SELECT count(id) as total,correo,token FROM tbl_tokens_social_verification WHERE correo='".$user->email."'";
-		 
+		$sql="SELECT count(id) as total,correo,token FROM tbl_tokens_social_verification WHERE correo='".$user->email."'";	 
 		$datos=DB::select($sql);
 			if($datos[0]->total==0)
 			{

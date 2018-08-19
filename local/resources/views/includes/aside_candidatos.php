@@ -3,7 +3,7 @@
 		<div class="tree_widget-sec">
 			<ul>
 				<li><a href="candidashboard" title=""><i class="la la-dashboard active"></i>Inicio</a></li>
-				<li><a href="candifavoritos" title=""><i class="la la-heart"></i>Mis favoritos</a></li>
+				<!--<li><a href="candifavoritos" title=""><i class="la la-heart"></i>Mis favoritos</a></li>-->
 				<li  >
 					<a href="ofertas" title=""><i class="la la-user-md"></i>Ofertas</a>
 				</li>
@@ -13,9 +13,9 @@
 				<li >
 					<a href="candipostulaciones" title=""><i class="la la-clipboard"></i>Postulaciones</a>
 				</li>
-				<li >
-					<a href="candidato/<?php echo session()->get('cand_id');?>" title=""><i class="la la-user"></i>Mi perfil</a>
-				</li>
+				<!--<li >
+					<a href="candidato/<?php //echo session()->get('cand_id');?>" title=""><i class="la la-user"></i>Mi perfil</a>
+				</li>-->
 				<li >
 					<a href="candiperfil" title=""><i class="la la-user"></i>Mi información</a>
 				</li>
@@ -25,12 +25,12 @@
 				<li >
 					<a href="candiempseg" title=""><i class="la la-industry"></i>Empresas seguidas</a>
 				</li>
-				<li >
+				<!--
+	<li >
 					<a href="candireferidos" title=""><i class="la la-users"></i>Referidos</a>
 				</li>
-				<li >
-					<a href="candisoporte" title=""><i class="la la-support"></i>Soporte</a>
-				</li>
+				-->
+				 
 				<li >
 					<a href="canditienda" title=""><i class="la la-cart-arrow-down"></i>Tienda</a>
 				</li>
@@ -40,7 +40,7 @@
 				<li >
 					<a href="candiredes" title=""><i class="la la-facebook"></i>Mis redes</a>
 				</li>
-				<li><a href="candimaletin" title=""><i class="fa fa-briefcase"></i>Mi Maletín</a></li>
+				<!--<li><a href="candimaletin" title=""><i class="fa fa-briefcase"></i>Mi Maletín</a></li>-->
 				<li >
 					<a href="noticias" title=""><i class="fa fa-newspaper-o"></i>Noticias</a>
 				</li>

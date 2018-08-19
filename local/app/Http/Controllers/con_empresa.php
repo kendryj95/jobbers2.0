@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use View;
+use Illuminate\Support\Facades\Input;
+use Response;
+use Image;
 
 class con_empresa extends Controller
 {
@@ -864,5 +867,68 @@ class con_empresa extends Controller
 
     			break;
     	}
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $identificador   = "emp_id";
+        $file            = Input::file('file');
+        $destinationPath = 'uploads';
+        $original        = $file->getClientOriginalName();
+        $extension       = $file->getClientOriginalExtension();
+        $filename        = $identificador . str_random(12) . "." . strtolower($extension);
+        
+        $tipo_documento = "";
+
+        if ($extension == "jpeg" || $extension == "jpg" || $extension == "gif" || $extension == "png" || $extension == "raw" || $extension == "bmp") {
+            $tipo_documento = "Imagen";
+        } else if ($extension == "exe") {
+            $tipo_documento = "Aplicación";
+        } else if ($extension == "sql") {
+            $tipo_documento = "Scripts";
+        } else if ($extension == "html" || $extension == "php" || $extension == "css" || $extension == "js" || $extension == "jar") {
+            $tipo_documento = "Código fuente";
+        } else if ($extension == "zip" || $extension == "rar") {
+            $tipo_documento = "Comprimido";
+        } else {
+            $tipo_documento = "Documento";
+        }
+
+        $upload_success = Input::file('file')->move($destinationPath, $filename);
+
+
+        $sql_contador="SELECT count(*) as cantidad FROM `tbl_archivos` WHERE id_usuario=".session()->get('emp_id')."";
+        
+        try {
+            $datos=DB::select($sql_contador);
+           
+            if($datos[0]->cantidad >= 5)
+            {
+               return Response::json('Sin espacio', 500);
+            }
+        } catch (Exception $e) {
+            
+        } 
+
+        $sql = "INSERT INTO tbl_archivos VALUES (null," . session()->get($identificador) . ",'" . $original . "','" . $extension . "','','" . $filename . "','" . $tipo_documento . "',null)";
+
+        if ($upload_success) {
+            try {
+                if($tipo_documento=="Imagen")
+                {  
+                    Image::make("uploads/".$filename)->resize(80, 80)->save("uploads/min/".$filename); 
+                    Image::make("uploads/".$filename)->resize(200, 200)->save("uploads/md/".$filename); 
+                }
+                DB::insert($sql);
+                $id_foto = DB::getPdo()->lastInsertId();
+
+                DB::update("UPDATE tbl_usuarios_foto_perfil SET id_foto=? WHERE id_usuario=?", [$id_foto ,session()->get('emp_id')]);
+
+                return Response::json('success', 200);
+            } catch (Exception $e) {
+            }
+        } else {
+            return Response::json('error', 400);
+        }
     }
 }

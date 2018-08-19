@@ -1,7 +1,7 @@
 <div class="account-popup-area signin-popup-box">
 	<div class="account-popup">
 		<span class="close-popup"><i class="la la-close"></i></span>
-		<h3>Login de usuarios</h3>
+		<h3>Jobbers Argentina</h3>
 		<form action="<?php echo $back;?>loguear" method="POST">
 			<div class="cfield">
 				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
@@ -15,14 +15,16 @@
 			<p class="remember-label">
 			</p>
 			<a href="recuperarclave" title="">Olvidé mi clave</a>
+
 			<button type="submit">Entrar</button>
+			<a class="signup-popup" href="#" title="">Registrarme</a>			
 		</form>
 		<div class="extra-login">
 			<span>Entrar con</span>
-		 <div class="login-social">
-					<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-					<a class="tw-login" href="#" title=""><i class="fa fa-linkedin"></i></a>
-					<a class="go-login" href="#" title=""><i class="fa fa-google"></i></a>
+		 	<div class="login-social">
+					<a class="fb-login" href="<?php echo $back;?>redes/facebook" title=""><i class="fa fa-facebook"></i></a>
+					<a class="tw-login" href="<?php echo $back;?>redes/linkedin" title=""><i class="fa fa-linkedin"></i></a>
+					<a class="go-login" href="<?php echo $back;?>redes/google" title=""><i class="fa fa-google"></i></a>
 			</div>
 		</div>
 	</div>
@@ -61,11 +63,12 @@
 				<button type="button" onclick="registrar()">Registrarme</button>
 			</form>
 			<div class="extra-login">
-				<!--<span>Or</span>
-				<div class="login-social">
-						<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-						<a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
-				</div>-->
+				<span>Entrar con</span>
+			<div class="login-social">
+					<a class="fb-login" href="<?php echo $back;?>redes/facebook" title=""><i class="fa fa-facebook"></i></a>
+					<a class="tw-login" href="<?php echo $back;?>redes/linkedin" title=""><i class="fa fa-linkedin"></i></a>
+					<a class="go-login" href="<?php echo $back;?>redes/google" title=""><i class="fa fa-google"></i></a>
+			</div>
 			</div>
 		</div>
 		</div><!-- SIGNUP POPUP -->

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers; 
 use DB;
 use View; 
+use Illuminate\Support\Facades\Input;
+use File;
+use Image;
 class con_candidato_perfil_publico extends Controller
 {
     public function perfilPublico($id)
@@ -681,4 +684,79 @@ class con_candidato_perfil_publico extends Controller
             }
        }
 
+       public function imagen_perfil()
+       {
+        if(Input::file('imagen_perfil')=="")
+        {
+            return Redirect("candiperfil?result=Debe seleccionar la imagen que desea actualizar.");
+        }
+        $file            =Input::file('imagen_perfil');
+        $original        = $file->getClientOriginalName();
+        $extension       = $file->getClientOriginalExtension();
+        $filename        = 'cand_profile_'. str_random(12) . "." . strtolower($extension);
+        $destinationPath="uploads"; 
+         $sql="SELECT t2.nombre_aleatorio, t2.id, t1.id_foto FROM `tbl_usuarios_foto_perfil` t1
+         LEFT JOIN tbl_archivos t2 ON t2.id=t1.id_foto
+         WHERE  t1.id_usuario =".session()->get('cand_id')."";
+        
+
+         try {
+             $datos=DB::select($sql); 
+              $sql_insert="INSERT INTO tbl_archivos VALUES 
+              (null,
+              ".session()->get('cand_id').",
+              '".$filename."',
+              '".$extension."',
+              '',
+              '".$filename."',
+              'Imagen',
+              null
+             );";
+             if(count($datos)==0)
+             {                 
+                 $upload_success = Input::file('imagen_perfil')->move($destinationPath, $filename);
+                 if($upload_success)
+                 {
+                    DB::insert($sql_insert);
+                    $datos=DB::select("SELECT id FROM tbl_archivos WHERE archivo = '".$filename."'");
+                    DB::insert("INSERT INTO tbl_usuarios_foto_perfil VALUES(null,".session()->get('cand_id').",".$datos[0]->id.",null);");
+                    Image::make("uploads/".$filename)->resize(80, 80)->save("uploads/min/".$filename); 
+                    Image::make("uploads/".$filename)->resize(200, 200)->save("uploads/md/".$filename);
+                    session()->set('cand_img',$filename);
+                    return Redirect("candiperfil?result=Imagen agregada con exito.");
+                 }                
+             }
+             else
+             {  
+                    $sql_profile="
+                 UPDATE 
+                 tbl_archivos SET 
+                 nombre_aleatorio='".$filename."',
+                 archivo='".$filename."',
+                 extencion='".$extension."'
+                  WHERE id=".$datos[0]->id." and id_usuario=".session()->get('cand_id')."";
+                 $upload_success = Input::file('imagen_perfil')->move($destinationPath, $filename);
+
+                  
+                 if($upload_success)
+                 {
+                    Image::make("uploads/".$filename)->resize(80, 80)->save("uploads/min/".$filename); 
+                    Image::make("uploads/".$filename)->resize(200, 200)->save("uploads/md/".$filename);
+                    File::delete(File::glob('uploads/'.$datos[0]->nombre_aleatorio.''));
+                    File::delete(File::glob('uploads/min/'.$datos[0]->nombre_aleatorio.''));
+                    File::delete(File::glob('uploads/md/'.$datos[0]->nombre_aleatorio.''));
+                    DB::update($sql_profile);
+                    session()->set('cand_img',$filename);
+                    return Redirect("candiperfil?result=Imagen actualizada con exito.");
+                 }
+             }
+         } catch (Exception $e) {
+             
+         }
+       }
+
+       public function subir($archivo, $tipo)
+       {
+        
+       }
 }

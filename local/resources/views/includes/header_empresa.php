@@ -15,7 +15,8 @@ $back="../";
 			<a href="<?= $back ?>../inicio" title=""><img style="width: 120px;" class="hidesticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /><img style="width: 120px;" class="showsticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /></a>
 			</div><!-- Logo -->
 			<div class="btns-profiles-sec">
-				<span><img src="<?= $back ?>../uploads/<?= session()->get("emp_imagen") ?>" alt="logo_empresa" width="50" height="50" /> <?= session()->get("emp_nombre_empresa") ?> <i class="la la-angle-down"></i></span>
+				<?php $imagen_perfil = session()->get("emp_imagen") == null || session()->get("emp_imagen") == '' ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.session()->get("emp_imagen")) ?>
+				<span><img src="<?= $imagen_perfil ?>" alt="logo_empresa" width="50" height="50" /> <?= session()->get("emp_nombre_empresa") ?> <i class="la la-angle-down"></i></span>
 				<ul>
 					<li><a href="<?= $back ?>detalle?e=<?= session()->get("emp_ide") ?>" title=""><i class="la la-user"></i> Mi perfil</a></li>
 					<li><a href="<?= $back ?>perfil?e=<?= session()->get("emp_ide") ?>" title=""><i class="la la-file-text"></i> Editar perfil</a></li>
