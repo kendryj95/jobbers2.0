@@ -13082,6 +13082,18 @@ header.style4 .account-btns>li a,
     z-index: 1;
 }
 
+.job-listing.wtabs .container-desc-curso {
+    width: 90%;
+}
+
+.desk {
+    display: block;
+}
+
+.mobile {
+    display: none;
+}
+
 .recomend {
     background: #ff7800;
     position: absolute;

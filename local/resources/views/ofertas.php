@@ -314,11 +314,13 @@ $mi_tokken=csrf_token();
             <div class="job-list-modern">
               <div class="job-listings-sec">
                 <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+
+                <!-- Oferta recomendada -->
                 <div class="job-listing wtabs borde-recomend" style="background: url(local/resources/views/images/back-ofertas.jpg); background-size: cover">
                 <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
                   <div class="job-title-sec container-desc-oferta">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                       <h5 class="title-recom">Coca Cola</h5>
                       <p class="time-pub" style="margin-left: 20px;">Publicaciones: 485</p>
                       <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
@@ -328,7 +330,7 @@ $mi_tokken=csrf_token();
                             <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
                       </p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                       <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid" width="80" alt="">
                     </div>
                   </div>
@@ -351,11 +353,16 @@ $mi_tokken=csrf_token();
                       <span class="disponibilidad">FullTime</span>&nbsp;
                       <i class="fa fa-wheelchair blue"></i>
 
-                      <div style="float: right">
+                      <div class="desk" style="float: right">
                         <a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
                         <a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
                         <a href=""><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
                       </div>
+                      <p class="container-media mobile" style="margin-bottom: 0;">
+                        <a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
+                        <a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
+                        <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+                      </p>
                     </div>
                   </div>
                   <div class="job-style-bx container-img-oferta">
@@ -363,7 +370,13 @@ $mi_tokken=csrf_token();
                     <img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
                   </div>
                 </div>
+
+                <!-- Oferta normal -->
                 <div class="job-listing wtabs">
+                <div class="mobile">
+                      <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
+                      <p class="nombre-img">Coca Cola</p>
+                    </div>
                   <div class="job-title-sec container-desc-oferta">
                   <h5 class="title-recom">Titulo de la oferta de trabajo <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
                     <p class="time-pub"><i class="fa fa-calendar"></i> Publicada Hoy a las 10:58 Am - Termina: 08/12/2018</p>
@@ -383,24 +396,32 @@ $mi_tokken=csrf_token();
                       <span class="disponibilidad">FullTime</span>&nbsp;
                       <i class="fa fa-wheelchair blue"></i>
 
-                      <div style="float: right">
+                      <div class="desk" style="float: right">
                         <a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
                         <a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
                         <a href=""><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
                       </div>
+                      <p class="container-media mobile" style="margin-bottom: 0px">
+                        <a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
+                        <a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
+                        <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+                      </p>
                     </div>
                   </div>
                   <div class="job-style-bx container-img-oferta">
 
-                    <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
-                    <p class="nombre-img">Coca Cola</p>
+                    <div class="desk">
+                      <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
+                      <p class="nombre-img">Coca Cola</p>
+                    </div>
                   </div>
                 </div>
 
+                <!-- CURSO GRATIS -->
                 <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
-                <div class="job-listing wtabs borde-urgente" style="padding: 15px 0px;">
+                <div class="job-listing wtabs borde-urgente">
                 <div class="urgente"><span>Curso gratis</span></div>
-                  <div class="job-title-sec" style="width: 90%" ;>
+                  <div class="job-title-sec container-desc-curso" ;>
                     <h3>
                       <a href="detalleoferta/'.$key->id.'" title="">
                         <div style="font-size:22px; color: #494949" id="descripcion_'.$key->id.'">Curso de programador PHP  <span class="link-urgente">https://google.co.ve/search</span></div>
