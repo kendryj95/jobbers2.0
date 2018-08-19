@@ -110,6 +110,7 @@ $mi_tokken = csrf_token();
                                 $up_id="";
                                 $up_fecha="";
                                 $up_desc="";
+                                $up_cuil="";
                                 if(isset($bandera_datos_personales) && $bandera_datos_personales==1)
                                 {
                                 $up_nombres=$datos_personales_up[0]->nombres;
@@ -123,7 +124,7 @@ $mi_tokken = csrf_token();
                                 $up_id=$datos_personales_up[0]->n_identificacion;
                                 $up_fecha=$datos_personales_up[0]->fecha_nac;
                                 $up_desc=$datos_personales_up[0]->sobre_mi;
-                                
+                                $up_cuil=$datos_personales_up[0]->cuil;
                                 }
                                 // Prefenrencias laborales
                                 $up_remuneracion="";
@@ -158,7 +159,7 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <div class="social-edit" style="padding: 0px;">  
-                                    <form  id="form_datos_per"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
+                                    <form  id="form_datos_imagen"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
                                                 <span class="pf-title">Imagen</span>
                                                 <div class="pf-field">
@@ -272,6 +273,12 @@ $mi_tokken = csrf_token();
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-4">
+                                                <span class="pf-title">Cuil</span>
+                                                <div class="pf-field">
+                                                     <input id="datos_per_cuil" value="<?php echo $up_cuil;?>" name="datos_per_cuil" type="text" placeholder="Cuil" />
+                                                </div>
+                                            </div>
                                             <div class="col-lg-12">
                                                 <span class="pf-title">¿Cómo te describes?</span>
                                                 <div class="pf-field">
@@ -379,7 +386,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Facebook</span>
                                                 <div class="pf-field">
-                                                    <input id="facebook" name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?> " />
+                                                    <input id="facebook" name="facebook" type="text" placeholder="Facebook" value="<?php echo $facebook;?>" />
                                                     <i class="fa fa-facebook"></i>
                                                 </div>
                                             </div>
@@ -433,7 +440,11 @@ $mi_tokken = csrf_token();
                                                     <input id="sitio_web" value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="row" style="background-color: #f3f3f3;border:1px solid #2e3192;padding: 15px;">
+                                                <div class="col-lg-12 text-center" style="font-weight: 600;">
+                                                      Dirección de domicilio  
+                                                </div>
+                                                <div class="col-lg-4">
                                                 <span class="pf-title">País</span>
                                                 <div class="pf-field">
                                                     <select id="pais_contac" name="pais" data-placeholder="Please Select Specialism" class="chosen">
@@ -473,22 +484,23 @@ $mi_tokken = csrf_token();
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6" style="">
+                                            <div class="col-lg-12" style="">
                                                 <span class="pf-title">Dirección</span>
                                                 <div class="pf-field">
                                                     <input  id="direccion" value="<?php echo $up_direccion_contac;?>" name="direccion" type="text" placeholder="Buenos Aires, Argentina" />
                                                 </div>
                                             </div>
+                                            </div>
                                             <div class="col-lg-3">
-                                                <span class="pf-title">Latitud</span>
+                                                
                                                 <div class="pf-field">
-                                                    <input  id="latitud" value="<?php echo $up_latitud_contac;?>" name="latitud" type="text" placeholder="41.1589654" />
+                                                    <input  id="latitud" value="<?php echo $up_latitud_contac;?>" name="latitud" type="hidden" placeholder="41.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
-                                                <span class="pf-title">Longitud</span>
+                                               
                                                 <div class="pf-field">
-                                                    <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="text" placeholder="21.1589654" />
+                                                    <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="hidden" placeholder="21.1589654" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -515,7 +527,7 @@ $mi_tokken = csrf_token();
                                                     <i class="la la-graduation-cap"></i>
                                                     <div class="edu-hisinfo">
                                                         <h3 id="universidad_<?php echo $key->id;?>"><?php echo $key->nombre_institucion;?></h3>
-                                                        <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?> - <?php echo $key->hasta;?></i>
+                                                        <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?></i>
                                                         <span><?php echo $key->titulo;?>
                                                             <i><?php echo $key->descripcion;?></i>
                                                             <i><?php echo $key->nivel;?></i>
@@ -532,7 +544,9 @@ $mi_tokken = csrf_token();
                                             <?php endforeach ?>
                                             <div class="border-title"><h3>Experiencia laboral</h3><a href="#" title=""  data-toggle="modal" data-target="#modal_educ_expe"><i class="la la-plus"></i> Agregar experiencia</a></div>
                                             <div class="edu-history-sec">
-                                                <?php foreach ($experiencias as $key): ?>
+                                                <?php foreach ($experiencias as $key): 
+                                                    if($key->hasta==""){$key->hasta="Trabajando actualmente";}
+                                                ?>
                                                 <input type="hidden" id="e_sector_<?php echo $key->id;?>" value="<?php echo $key->id_actividad_empresa;?>">
                                                 <div class="edu-history style2">
                                                     <i></i>
@@ -552,7 +566,7 @@ $mi_tokken = csrf_token();
                                             </div>
                                             
                                             <!--HAbilidadez-->
-                                            <div class="border-title"><h3>Habilidades</h3><a title=""><i class="la la-plus" ></i> Agregar habilidad</a></div>
+                                            <div class="border-title"><h3>Habilidades</h3> </div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
                                                 <form id="form_habilidades" method="POST" action="candisethabilidad">
                                                     <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
@@ -610,7 +624,7 @@ $mi_tokken = csrf_token();
                                         </div>
 
                                         <!--Idiomas-->
-                                        <div class="border-title"><h3>Idiomas</h3><a title=""><i class="la la-plus" ></i> Agregar idioma</a></div>
+                                        <div class="border-title"><h3>Idiomas</h3> </div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
                                                 <form id="form_idiomas" method="POST" action="candisetidioma">
                                                     <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
@@ -701,14 +715,14 @@ $mi_tokken = csrf_token();
     $("#tipo").val("1");
     $("#identificador").val(id);
     $("#nivel").val("");
-    $("#desde").val("");
+    $("#desde_estudio").val("");
     $("#hasta").val("");
     $("#universidad").val("");
     $("#area_estudio").val("");
     $("#titulo_obtener").val("");
     $("#uni_pais").val("");
     $("#nivel").trigger('chosen:updated');
-    $("#desde").trigger('chosen:updated');
+    $("#desde_estudio").trigger('chosen:updated');
     $("#hasta").trigger('chosen:updated');
     $("#area_estudio").trigger('chosen:updated');
     $("#uni_pais").trigger('chosen:updated');
@@ -719,14 +733,14 @@ $mi_tokken = csrf_token();
     periodo=$("#periodo_"+id).html();
     periodos=periodo.split(" - ");
     $("#nivel").val($("#nivel_es").val());
-    $("#desde").val(periodos[0]);
+    $("#desde_estudio").val(periodos[0]);
     $("#hasta").val(periodos[1]);
     $("#universidad").val($("#universidad_"+id).html());
     $("#area_estudio").val($("#estudios").val());
     $("#titulo_obtener").val($("#titulo_").val());
     $("#uni_pais").val($("#pais").val());
     $("#nivel").trigger('chosen:updated');
-    $("#desde").trigger('chosen:updated');
+    $("#desde_estudio").trigger('chosen:updated');
     $("#hasta").trigger('chosen:updated');
     $("#area_estudio").trigger('chosen:updated');
     $("#uni_pais").trigger('chosen:updated');
@@ -754,6 +768,18 @@ $mi_tokken = csrf_token();
     $("#expe_tipo").val("2");
     periodo=$("#e_periodo_"+id).html();
     periodos=periodo.split(" - ");
+    if(periodos[1]=="Trabajando actualmente")
+    {
+        $("#trabajando_act").prop( "checked", true );
+        $("#expe_hasta").hide();
+
+    }
+    else
+    {
+        $("#trabajando_act").prop( "checked", false );
+        $("#expe_hasta").show();
+    }
+
     $("#expe_desde").val(periodos[0]);
     $("#expe_hasta").val(periodos[1]);
     $("#expe_sector").val($("#e_sector_"+id).val());
@@ -762,7 +788,6 @@ $mi_tokken = csrf_token();
     $("#expe_descripcion").val($("#e_descripcion_"+id).html());
     $("#expe_sector").trigger('chosen:updated');
     $("#expe_desde").trigger('chosen:updated');
-    $("#expe_hasta").trigger('chosen:updated');
     $("#modal_educ_expe").modal("show");
     }
     
@@ -910,8 +935,8 @@ $mi_tokken = csrf_token();
     function form_estudios_validar()
        {
             if($("#nivel").val()==""){notificacion("Debe colocar el nivel de estudio.")}
-            else if($("#desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
-            else if($("#hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
+            else if($("#desde_estudio").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
+            else if($("#hasta_estudio").val()==""){notificacion("Debe colocar la fecha de fin.")}
             else if($("#universidad").val()==""){notificacion("Debe colocar la universidad.")} 
             else if($("#titulo_obtener").val()==""){notificacion("Debe colocar el título que obtuvo.")} 
             else if($("#uni_pais").val()==""){notificacion("Debe colocar el país donde curso los estudios.")}
@@ -924,10 +949,24 @@ $mi_tokken = csrf_token();
    function form_experiencia_validar()
        {
             if($("#expe_sector").val()==""){notificacion("Debe colocar el sector en el que trabajó.")}
-            else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")} 
-            else if($("#expe_hasta").val()==""){notificacion("Debe colocarla fecha de fin.")}
+            else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")}  
             else if($("#expe_empresa").val()==""){notificacion("Debe colocar el nombre de la empresa.")} 
-            else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}  
+            else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}
+            else if(!($("#trabajando_act").is(':checked')))
+            {  
+                           
+                if($("#expe_hasta").val()=="")
+                {
+                    notificacion("Debe colocar la fecha de culminacion de la jornada.")
+                }
+                else
+                {
+
+                        $("#form_experiencia").submit();
+                    
+                }
+            }
+        
             else
             {
                 $("#form_experiencia").submit();
@@ -950,9 +989,31 @@ $mi_tokken = csrf_token();
         }
        } 
 </script>
+
+<script>
+    
+    function set_trab_act()
+    {
+        if($("#trabajando_act").is(':checked'))
+        {
+            
+            $("#expe_hasta").show();
+        }
+        else
+        { 
+            $("#expe_hasta").val(''); 
+            $("#expe_hasta").hide();
+
+        }
+         
+    }
+        
+</script>
   <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
 
         <script>notificacion("<?php echo $_GET['result'];?>");</script>      
-    <?php endif ?>  
+    <?php endif ?>
+
+
 </body>
 </html>

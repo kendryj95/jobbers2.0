@@ -75,25 +75,27 @@ class con_candidato_perfil_publico extends Controller
         LEFT JOIN tbl_actividades_empresa t2 ON t2.id = t1.id_actividad_empresa
         WHERE t1.id_usuario = ".$id."";
 
-        $sql_cv_descargable="SELECT t1.*,count(t1.id) as cantidad ,t2.nombre_aleatorio from tbl_candidato_cv_fisico t1
-        INNER JOIN tbl_archivos t2 ON t1.id_cv = t2.id
-        WHERE t1.id_usuario = ".$id." and t1.mostrar=1";
+        $sql_cv_descargable="SELECT * FROM tbl_candidato_cv_fisico WHERE id_usuario = ".$id." and mostrar = 1";
 
         $sql_redes_sociales="SELECT t1.id,t1.descripcion,t2.red_social from tbl_redes_sociales t1
         LEFT JOIN tbl_redes t2 on t2.id_red_social = t1.id and t2.id_usuario=".$id."";
         $sql_porcentaje="SELECT *, count(*) as cantidad FROM tbl_candidato_porcentaje_carga WHERE id_usuario = ".$id."";
         try {
+
             $datos_redes_sociales=DB::select($sql_redes_sociales);
             $datos_cv_descargable=DB::select($sql_cv_descargable);
+
             $datos_empresas_seguidas=DB::select($sql_empresas_seguidas);
             $datos_experiencias=DB::select($sql_experiencias);
             $datos_idiomas=DB::select($sql_idiomas);
+
             $datos_foto=DB::select($sql_foto);
             $datos_personales=DB::select($sql_datos_personales);
             $datos_preferencias_lab=DB::select($sql_preferencias_laborales);
             $datos_datos_contacto=DB::select($sql_datos_contacto);
             $datos_educacion=DB::select($sql_datos_educacion);
             $datos_habilidades=DB::select($sql_habilidades);
+
             $vista->datos_experiencias=$datos_experiencias;
             $vista->datos_idiomas=$datos_idiomas;
             $vista->datos_foto=$datos_foto;
@@ -112,7 +114,7 @@ class con_candidato_perfil_publico extends Controller
                return redirect('candidatos?result=El perfil al que intenta acceder no se encuentra disponible.');
             }       
 
-            return $vista;
+            //return $vista;
         } catch (Exception $e) {
             
         }
@@ -290,6 +292,7 @@ class con_candidato_perfil_publico extends Controller
 
     public function datos_personales()
     {
+        
         $sql_datos_personales="
         SELECT *, count(*) as cantidad FROM tbl_candidato_datos_personales WHERE id_usuario=".session()->get('cand_id')."";
      
@@ -319,7 +322,8 @@ class con_candidato_perfil_publico extends Controller
                 fecha_nac='".$_POST['fecha_nac']."',
                 id_nacionalidad=".$_POST['nacionalidad'].",
                 hijos='".$_POST['hijos']."',
-                sobre_mi='".$_POST['sobremi']."'
+                sobre_mi='".$_POST['sobremi']."',
+                cuil='".$_POST['datos_per_cuil']."'
                 WHERE id_usuario=".session()->get('cand_id')." 
                 ";
                  DB::update($sql);
@@ -343,6 +347,7 @@ class con_candidato_perfil_publico extends Controller
                 ".$_POST['nacionalidad'].",
                 '".$_POST['hijos']."',
                 '".$_POST['sobremi']."',
+                '".$_POST['datos_per_cuil']."',
                 null 
                 )"; 
                     DB::insert($sql);

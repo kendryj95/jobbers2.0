@@ -48,8 +48,7 @@
 											<div class="col-lg-6">
 												<div class="text-socail">
 													<?php
-													//datos_redes_sociales
-													 
+													//datos_redes_sociales										 
 													foreach ($datos_redes_sociales as $key) {
 														if ($key->descripcion=="Facebook" && $key->red_social!="") {
 													 

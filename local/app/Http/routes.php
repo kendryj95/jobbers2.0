@@ -106,8 +106,7 @@ Route::get('candipostular/{id}', 'con_candidato_postulaciones@postular');
 Route::get('candiperfil', 'con_candidato_perfil_publico@perfil');
 Route::get('candicv', 'con_candidato_cv@index');
 Route::get('candisoporte', 'con_soporte@candidato');
-Route::get('candisoported/{id}', 'con_soporte@detalle');
-
+Route::get('candisoported/{id}', 'con_soporte@detalle'); 
 Route::get('candirecomendaciones', 'con_candidato_recomendaciones@index');
 Route::post('candirecomendar', 'con_candidato_recomendaciones@recomendar');
 Route::get('canditienda', function () {return view('candidato_tienda');});
@@ -134,6 +133,7 @@ Route::get('canddelseg/{id}', 'con_candidato_seguir@eliminar');
 Route::post('testcontrolador', 'con_candidatos@test_controlador');
 Route::post('addcv', 'con_candidato_cv@addcv');
 Route::post('setprofilepic', 'con_candidato_perfil_publico@imagen_perfil');
+Route::get('cvjobbers', 'con_candidato_cv@seleccionar_cv_jobbers');
 });
 //********************************************************//
 //*                RUTAS PARA LAS EMPRESAS               *//

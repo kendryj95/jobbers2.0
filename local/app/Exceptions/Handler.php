@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
+use Illuminate\Session\TokenMismatchException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -47,6 +47,15 @@ class Handler extends ExceptionHandler
     {
         
         // return response()->view('errors.error', [], 500);
+        return parent::render($request, $e);
+    }
+
+   public function render($request, Exception $e)
+    {
+        if ($e instanceof TokenMismatchException){
+            // Catch it here and do what you want. For example...
+            return redirect()->back()->withInput()->with('error', 'Intentelo de nuevo');
+        }
         return parent::render($request, $e);
     }
 }
