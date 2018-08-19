@@ -35,6 +35,9 @@
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 											<input name="email" type="hidden" value="<?php echo $_GET['user'];?>" id="my_token">
 											<input name="name" type="hidden" value="<?php echo $_GET['name'];?>" id="my_token">
+<input name="pic" type="hidden" value="<?php echo $_GET['pic'].'&v='.$_GET['v'].'&t='.$_GET['t'];?>" id="pic">
+
+											<input name="red" type="hidden" value="<?php echo $_GET['red'];?>" id="red">
 
 											<div class="pf-field" style="margin-bottom: 20px;">
 																<select name="tipo_user" data-placeholder="Allow In Search" class="chosen">
