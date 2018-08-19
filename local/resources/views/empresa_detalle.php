@@ -82,7 +82,8 @@ function formatDate($dateMayor, $dateMenor){
 										<div class="row">
 											<div class="col-lg-10">
 												<div class="job-single-head3 emplye">
-													<div class="job-thumb"> <img src="../uploads/<?= $empresa[0]->imagen ?>" alt="Imagen de la empresa" width="120" height="120" /></div>
+													<?php $imagen_perfil = $empresa[0]->imagen == null || $empresa[0]->imagen == '' ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$empresa[0]->imagen) ?>
+													<div class="job-thumb"> <img src="<?= $imagen_perfil ?>" alt="Imagen de la empresa" width="120" height="120" /></div>
 													<div class="job-single-info3">
 														<h3><?= $empresa[0]->nombre_empresa ?></h3>
 														<span><i class="la la-map-marker"></i><?= $empresa[0]->provincia_localidad ?></span>

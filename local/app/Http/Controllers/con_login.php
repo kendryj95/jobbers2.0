@@ -252,7 +252,7 @@ class con_login extends Controller
 
                 if ($_POST['tipo'] == 1) {
                     
-                    $sql1 = "INSERT INTO tbl_empresa(id_usuario,nombre,responsable,razon_social,cuit,telefono,id_imagen) VALUES(?,'','','','','',1)";
+                    $sql1 = "INSERT INTO tbl_empresa(id_usuario,nombre,responsable,razon_social,cuit,telefono,id_imagen) VALUES(?,'','','','','',0)";
                     DB::insert($sql1, [$id_usuario]);
                     $id_empresa = DB::getPdo()->lastInsertId();
 
