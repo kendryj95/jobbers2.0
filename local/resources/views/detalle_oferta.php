@@ -152,9 +152,24 @@
 																<div class="emply-btns">
 																	<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
 																</div>
+
+																<?php if (!$postulado): ?>
 															
 																<div class="emply-btns">
 																	<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
+																</div>
+
+																<?php else: ?>
+
+																	<div class="emply-btns">
+																		<a class="followus" href="javascript:void(0)" title="" style="background-color: #8b91dd;color: white"><i class="la la-file-text"></i> POSTULADO</a>
+																	</div>
+
+
+																<?php endif; ?>
+															<?php elseif (session()->get('candidato') == null): ?>
+																<div class="emply-btns">
+																	<a class="followus" href="<?= url('login') ?>?returnUrl=<?= url()->current() ?>&p=1&id_pub=<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
 																</div>
 															<?php endif; ?>
 														</li> 
@@ -194,7 +209,17 @@
 			<script src="../local/resources/views/js/slick.min.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/parallax.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
-			 <script src="../local/resources/views/plugins/btn_social/assets/js/docs.js">
-        </script>
+			<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
+			<script src="../local/resources/views/plugins/btn_social/assets/js/docs.js"></script>
+			<script>
+				<?php if (isset($_REQUEST['info']) && $_REQUEST['info'] != ""): ?>
+
+					$.notify("<?= $_REQUEST['info'] ?>", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+
+				<?php endif; ?>
+			</script>
 		</body>
 	</html>

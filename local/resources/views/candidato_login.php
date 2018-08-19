@@ -36,6 +36,11 @@
 											
 										<form style="padding: 10px;" action="loguear" method="post">
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
+											<?php if ((isset($_REQUEST['returnUrl']) && $_REQUEST['returnUrl'] != "") && (isset($_REQUEST['p']) && $_REQUEST['p'] == 1) && (isset($_REQUEST['id_pub']) && $_REQUEST['id_pub'] != "")): ?>
+											<input type="hidden" name="return_url" value="<?= $_REQUEST['returnUrl'] ?>">
+											<input type="hidden" name="postular" value="true">
+											<input type="hidden" name="id_pub" value="<?= $_REQUEST['id_pub'] ?>">
+											<?php endif; ?>
 											<div class="cfield">
 												<input name="correo" type="text" placeholder="Correo electrónico" />
 												<i class="la la-user"></i>

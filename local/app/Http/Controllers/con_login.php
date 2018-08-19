@@ -12,6 +12,7 @@ class con_login extends Controller
     public function log(Request $request)
     {
 
+        // dd($request->all());
         if(isset($_GET['token']) && isset($_GET['user']) && isset($_GET['secure']) && $_GET['token']!="" && $_GET['user']!="" && $_GET['secure']!="")
         {
             $sql="
@@ -125,12 +126,57 @@ class con_login extends Controller
                 $request->session()->set($sufijo . 'img', $datos[0]->imagen);
                 $request->session()->set($sufijo . 'token', $datos[0]->token);
                 $request->session()->set('tipo_usuario', $datos[0]->tipo_usuario);
-                return Redirect($ruta);
+
+                if (isset($request->return_url) && isset($request->id_pub)) { // Postulación cuando no tiene iniciada la sesion.
+                    $postulado = $this->postular_candidato($datos[0]->id, $request->id_pub);
+
+                    if ($postulado) {
+                        return Redirect("detalleoferta/".$request->id_pub);
+                    } else {
+                        return Redirect("detalleoferta/".$request->id_pub."?info=Ya te encuentras postulado a esta oferta.");
+                    }
+
+                } else {
+
+                    return Redirect($ruta);
+                }
+                // return Redirect($ruta);
             } else {
                 return Redirect("login?error=Clave o correo incorrectos");
             }
         } catch (Exception $e) {
 
+        }
+    }
+
+    private function postular_candidato($id, $id_pub)
+    {
+        $bandera = 0;
+        $sql     = "
+        SELECT count(*) as cantidad
+        FROM tbl_postulaciones
+        WHERE id_usuario=" . $id . " AND id_publicacion=" . $id_pub . "";
+        try {
+            $datos = DB::select($sql);
+            if ($datos[0]->cantidad == 0) {
+                $bandera = 1;
+            }
+        } catch (Exception $e) {
+
+        }
+
+        if ($bandera) {
+            $sql = "INSERT INTO tbl_postulaciones
+            VALUES(null," . $id . "," . $id_pub . ",null)";
+            try {
+                DB::insert($sql);
+                return true;
+            } catch (Exception $e) {
+
+            }
+        } else {
+            return false;
+            // return redirect("detalleoferta/" . $id . "?info=El usuario ya se encuentra postulado.");
         }
     }
 

@@ -300,6 +300,15 @@ class con_ofertas extends Controller
             $vistas=DB::select($sql_vistas);
 
             $vista->vistas=$vistas;*/
+
+            $postulado = false;
+            if (session()->get('candidato') != null) {
+                $check = DB::select("SELECT id FROM tbl_postulaciones WHERE id_usuario=? AND id_publicacion=?", [session()->get('cand_id'), $datos[0]->id]);
+                if ($check) {
+                    $postulado = true;
+                }
+            }
+
             $sql_cantidad_ofertas = "
                 SELECT count(*) as cantidad
                 FROM tbl_publicacion
@@ -308,6 +317,7 @@ class con_ofertas extends Controller
             $vista->cantidad_postulados = $cantidad_postulados[0]->count;
             $cantidad_ofertas        = DB::select($sql_cantidad_ofertas);
             $vista->cantidad_ofertas = $cantidad_ofertas;
+            $vista->postulado = $postulado;
             return $vista;
         } catch (Exception $e) {
 

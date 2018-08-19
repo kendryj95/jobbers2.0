@@ -57,7 +57,7 @@ GROUP BY id_publicacion";
 
             }
         } else {
-            return redirect("detalleoferta/" . $id . "?info=El usuario ya se encuentra postulado.");
+            return redirect("detalleoferta/" . $id . "?info=Ya te encuentras postulado a esta oferta.");
         }
     }
 }
