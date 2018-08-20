@@ -120,11 +120,12 @@ class con_ofertas extends Controller
         }
 
 
-        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp,t9.id_plan";
 
         $consulta_general="FROM tbl_publicacion t1
             LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
             LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
+            LEFT JOIN tbl_empresas_planes t9 ON t1.id_empresa = t9.id_empresa
             LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
             LEFT JOIN tbl_areas t5 ON t1.id_area = t5.id
             LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
@@ -204,6 +205,8 @@ class con_ofertas extends Controller
 
             $publicaciones = DB::select($sql_ofertas);
 
+            // dd($publicaciones);
+
             //$vista->antiguedad=$antiguedad;
             $vista->favoritos      = $favoritos;
             $vista->antiguedad = $antiguedad;
@@ -228,11 +231,13 @@ class con_ofertas extends Controller
 
     private function consultaPagination($condiciones, $limit, $tamPag)
     {
-        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,t1.fecha_venc,t1.vistos,t1.tmp";
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,DATE_FORMAT(t1.fecha_venc, '%d/%m/%Y') AS fecha_venc,t1.vistos,IF(DATE_FORMAT(t1.tmp, '%Y-%m-%d')=CURDATE(),'Hoy',DATE_FORMAT(t1.tmp, '%d/%m')) AS fecha_pub, DATE_FORMAT(t1.tmp, '%h:%i %p') AS hora_pub,t9.id_plan";
 
         $consulta_general="FROM tbl_publicacion t1
-            LEFT JOIN tbl_archivos t2 ON t1.id_imagen = t2.id
             LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
+            LEFT JOIN tbl_usuarios_foto_perfil t10 ON t3.id_usuario = t10.id_usuario
+            LEFT JOIN tbl_archivos t2 ON t10.id_foto = t2.id
+            LEFT JOIN tbl_empresas_planes t9 ON t1.id_empresa = t9.id_empresa
             LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
             LEFT JOIN tbl_areas t5 ON t1.id_area = t5.id
             LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
