@@ -30,31 +30,16 @@ $mi_tokken=csrf_token();
       enable_page_level_ads: true
     });
   </script>
+  <style>
+    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;}
+  </style>
   <?php include("local/resources/views/includes/chat_soporte.php");?>
 </head>
 
 <body>
   <?php include('local/resources/views/includes/general_header.php');?>
   <?php include('local/resources/views/includes/general_header_responsive.php');?>
-  <section class="overlape mt-responsive">
-    <div class="block no-padding">
-      <div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_publiacaciones.jpg) repeat scroll 10% 422.28px transparent;"
-        class="parallax scrolly-invisible no-parallax">
-      </div>
-      <!-- PARALLAX BACKGROUND IMAGE -->
-      <div class="container fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="inner-header">
-              <h3 style="font-size: 36px;">Ofertas de trabajo
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
+  <section class="section-offers">
     <div class="block no-padding back-offers">
       <div class="container">
         <div class="row no-gape">

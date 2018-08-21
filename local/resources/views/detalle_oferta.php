@@ -147,6 +147,7 @@
 															<div class="share-bar">
 																<a href="#" title="" class="share-fb"><i class="fa fa-facebook" style="position: initial; font-size: initial; color: inherit;"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter" style="position: initial; font-size: initial; color: inherit;"></i></a>
 															</div>
+														</li>
 															<?php if(session()->get('tipo_usuario')==2): ?>
 
 																<div class="emply-btns">
@@ -162,7 +163,7 @@
 																<?php else: ?>
 
 																	<div class="emply-btns">
-																		<a class="followus" href="javascript:void(0)" title="" style="background-color: #8b91dd;color: white"><i class="la la-file-text"></i> POSTULADO</a>
+																		<a class="followus" href="javascript:void(0)" title="" style="background-color: #33cc00; border-color:#33cc00; color: #fff"><i class="la la-check"></i> POSTULADO</a>
 																	</div>
 
 
@@ -172,7 +173,6 @@
 																	<a class="followus" href="<?= url('login') ?>?returnUrl=<?= url()->current() ?>&p=1&id_pub=<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
 																</div>
 															<?php endif; ?>
-														</li> 
 													</ul>
 													</div><!-- Job Overview -->
 													<div class="quick-form-job">
