@@ -210,7 +210,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Estado civil</span>
                                                 <div class="pf-field">
-                                                    <select id="edo_civil" name="edo_civil" name="sexo" data-placeholder="Allow In Search" class="chosen">
+                                                    <select id="edo_civil" name="edo_civil" name="sexo" data-placeholder="Estado civil" class="chosen">
                                                         <option value="4">Seleccionar</option>
                                                         <?php foreach ($edo as $key) {
                                                         echo '<option id="edo_civil_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
