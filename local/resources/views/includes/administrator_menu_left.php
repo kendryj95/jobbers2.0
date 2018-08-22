@@ -9,6 +9,9 @@
 				 						<a href="<?= url('administracion/empresas') ?>" title=""><i class="la la-industry"></i>Empresas</a> 
 				 					</li>
 				 					<li>
+				 						<a href="<?= url('administracion/empresas/plantillas') ?>" title=""><i class="la la-book"></i>Empresas - Plantillas ofertas</a> 
+				 					</li>
+				 					<li>
 				 						<a href="<?= url('administracion/candidatos') ?>" title=""><i class="la la-users"></i>Candidatos</a> 
 				 					</li>
 				 					<li>

@@ -219,6 +219,7 @@ class con_empresa extends Controller
         $planes_estado    = DB::select("SELECT * FROM tbl_planes_estado");
         $disponibilidades = DB::select("SELECT * FROM tbl_disponibilidad");
         $salarios         = DB::select("SELECT * FROM tbl_rango_salarios");
+        $plantillas       = DB::select("SELECT * FROM tbl_plantillas_ofertas");
 
         $params = [
             "areas"            => $areas,
@@ -226,6 +227,7 @@ class con_empresa extends Controller
             "planes"           => $planes_estado,
             "disponibilidades" => $disponibilidades,
             "salarios"         => $salarios,
+            "plantillas"       => $plantillas
         ];
 
         return view('empresa_new_post', $params);
@@ -239,6 +241,7 @@ class con_empresa extends Controller
         $planes_estado    = DB::select("SELECT * FROM tbl_planes_estado");
         $disponibilidades = DB::select("SELECT * FROM tbl_disponibilidad");
         $salarios         = DB::select("SELECT * FROM tbl_rango_salarios");
+        $plantillas       = DB::select("SELECT * FROM tbl_plantillas_ofertas");
         $localidades 		  = [];
         $sectores 		  = [];
 
@@ -257,7 +260,8 @@ class con_empresa extends Controller
     		    "salarios"         => $salarios,
     		    "oferta"		   => $oferta,
     		    "localidades"      => $localidades,
-    		    "sectores"         => $sectores
+    		    "sectores"         => $sectores,
+                "plantillas"       => $plantillas
     		];
     		return view("empresa_edit_post", $params);
     	} else {

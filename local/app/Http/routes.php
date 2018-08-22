@@ -203,6 +203,9 @@ Route::post('administracion/empresas/editstore', 'con_administrator_empresas@edi
 Route::get('administracion/empresas/suspender-habilitar/{accion}/{id}', 'con_administrator_empresas@suspender_habilitar')->where(['accion' => '[0-1]', 'id' => '[0-9]+']);
 Route::get('administracion/empresas/edit/{id}', 'con_administrator_empresas@edit')->where(['id' => '[0-9]+']);
 Route::get('administracion/empresas/delete/{id}', 'con_administrator_empresas@delete')->where(['id' => '[0-9]+']);
+Route::get('administracion/empresas/plantillas', 'con_administrator_empresas@plantillas');
+Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
+Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
 
 
 #########################################################################

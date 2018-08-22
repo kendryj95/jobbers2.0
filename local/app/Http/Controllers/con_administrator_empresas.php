@@ -241,4 +241,67 @@ class con_administrator_empresas extends Controller
         }
     }
 
+    public function plantillas()
+    {
+        $plantillas = DB::select("SELECT * FROM tbl_plantillas_ofertas");
+
+        return view('administrator_empresa_plantillas', compact('plantillas'));
+    }
+
+    public function plantillaStore(Request $request)
+    {
+        $this->validate($request,
+        [
+            "nombre_plantilla" => "required|unique:tbl_plantillas_ofertas",
+            "titulo" => "required",
+            "descripcion" => "required",
+        ],
+        [
+            "nombre_plantilla.required" => "Nombre de plantilla es un campo obligatorio.",
+            "nombre_plantilla.unique" => "Ya existe una plantilla con ese nombre.",
+            "titulo.required" => "Titulo de oferta es un campo obligatorio.",
+            "descripcion.required" => "Descripción de oferta es un campo obligatorio."
+        ]);
+
+        $id_empresa = isset($request->id_empresa) ? $request->id_empresa : null;
+        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $request->descripcion);
+
+        DB::beginTransaction();
+
+        switch ($request->accion) {
+            case 1: // accion para insertar
+                try {
+                    DB::insert("INSERT INTO tbl_plantillas_ofertas (id_empresa,nombre_plantilla,titulo_oferta,descripcion_oferta) VALUES (?,?,?,?)", [$id_empresa, $request->nombre_plantilla, $request->titulo, $descripcion]);
+                    DB::commit();
+
+                    return redirect('administracion/empresas/plantillas?r=1');
+                } catch (Exception $e) {
+                    DB::rollback();
+                    return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Intentelo de nuevo.']);
+                }
+                break;
+            
+            case 2:
+                try {
+                    DB::update("UPDATE tbl_plantillas_ofertas SET nombre_plantilla=?, titulo_oferta=?, descripcion_oferta=? WHERE id=?", [$request->nombre_plantilla, $request->titulo, $descripcion, $request->id_plantilla]);
+                    DB::commit();
+
+                    return redirect('administracion/empresas/plantillas?r=2');
+                } catch (Exception $e) {
+                    DB::rollback();
+                    return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Intentelo de nuevo.']);
+                }
+                break;
+        }
+    }
+
+    public function getInfoPlantilla($id)
+    {
+        $plantilla = DB::select("SELECT * FROM tbl_plantillas_ofertas WHERE id=?", [$id]);
+
+        echo json_encode([
+            "plantilla" => $plantilla[0]
+        ]);
+    }
+
 }
