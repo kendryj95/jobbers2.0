@@ -231,7 +231,7 @@ class con_ofertas extends Controller
 
     private function consultaPagination($condiciones, $limit, $tamPag)
     {
-        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,DATE_FORMAT(t1.fecha_venc, '%d/%m/%Y') AS fecha_venc,t1.vistos,IF(DATE_FORMAT(t1.tmp, '%Y-%m-%d')=CURDATE(),'Hoy',DATE_FORMAT(t1.tmp, '%d/%m')) AS fecha_pub, DATE_FORMAT(t1.tmp, '%h:%i %p') AS hora_pub,t9.id_plan";
+        $peticion ="SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t2.nombre_aleatorio as imagen,t3.nombre, t3.web, t3.facebook, t3.twitter, t3.instagram, t3.linkedin, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,DATE_FORMAT(t1.fecha_venc, '%d/%m/%Y') AS fecha_venc,t1.vistos,IF(DATE_FORMAT(t1.tmp, '%Y-%m-%d')=CURDATE(),'Hoy',DATE_FORMAT(t1.tmp, '%d/%m')) AS fecha_pub, DATE_FORMAT(t1.tmp, '%h:%i %p') AS hora_pub,t9.id_plan";
 
         $consulta_general="FROM tbl_publicacion t1
             LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
