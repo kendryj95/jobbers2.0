@@ -51,7 +51,7 @@
         margin-top: 20px;
     }
     header {
-        display: none;
+        display: none !important;
     }
     .responsive-header {
         display: block;
