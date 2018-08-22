@@ -263,6 +263,20 @@ class con_candidatos extends Controller
             return $peticion . " " . $consulta_general;
     }
 
+    function evaluacionJobbers(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            DB::insert("INSERT INTO tbl_evaluacion_jobbers (evaluacion, descripcion) VALUES (?,?)", [$request->evaluacion, $request->descripcion]);
+            DB::commit();
+            return redirect('detalleoferta/'.$request->id_pub.'?r=1');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect('detalleoferta/'.$request->id_pub.'?r=2');
+        }
+    }
+
     function test_controlador()
     {
     	//return Redirect('candidatos');
