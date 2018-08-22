@@ -23,15 +23,25 @@
 		<div class="theme-layout" id="scrollup">
 			
 			<section>
-				<div class="block remove-bottom">
+				<div class="block remove-bottom" style="padding: 5px;">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">
-								<div class="account-popup-area signin-popup-box static" style="padding: 20px;">
+								<div class="account-popup-area signin-popup-box static" style="padding: 5px;">
 									<div class="account-popup">
 										<div class="text-center">
 											<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
 										</div>
+
+										<div class="extra-login" style="margin-bottom: 10px">
+											<span>Entrar con</span>
+										 	<div class="login-social">
+													<a class="fb-login" href="<?= url('redes/facebook') ?>" title=""><i class="fa fa-facebook"></i></a>
+													<a class="tw-login" href="<?= url('redes/linkedin') ?>" title=""><i class="fa fa-linkedin"></i></a>
+													<a class="go-login" href="<?= url('redes/google') ?>" title=""><i class="fa fa-google"></i></a>
+											</div>
+										</div>
+
 										<span>Bienvenido a Jobbers</span>
 											
 										<form style="padding: 10px;" action="loguear" method="post">
