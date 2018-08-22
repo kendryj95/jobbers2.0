@@ -158,6 +158,7 @@ Route::post('empresa/actualizar_post', 'con_empresa@updatePost');
 Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');
 Route::post('empresa/uploadImage', 'con_empresa@uploadImage');
 Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
+Route::get('empresa/plantillas', 'con_empresa@plantillas');
 });
 
 Route::get('administrator', 'con_administrator_login@index');

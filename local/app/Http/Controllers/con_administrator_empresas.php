@@ -274,7 +274,12 @@ class con_administrator_empresas extends Controller
                     DB::insert("INSERT INTO tbl_plantillas_ofertas (id_empresa,nombre_plantilla,titulo_oferta,descripcion_oferta) VALUES (?,?,?,?)", [$id_empresa, $request->nombre_plantilla, $request->titulo, $descripcion]);
                     DB::commit();
 
-                    return redirect('administracion/empresas/plantillas?r=1');
+                    if ($id_empresa) {
+                        return redirect('empresa/plantillas?r=1');
+                    } else{
+
+                        return redirect('administracion/empresas/plantillas?r=1');
+                    }
                 } catch (Exception $e) {
                     DB::rollback();
                     return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Intentelo de nuevo.']);
@@ -286,7 +291,12 @@ class con_administrator_empresas extends Controller
                     DB::update("UPDATE tbl_plantillas_ofertas SET nombre_plantilla=?, titulo_oferta=?, descripcion_oferta=? WHERE id=?", [$request->nombre_plantilla, $request->titulo, $descripcion, $request->id_plantilla]);
                     DB::commit();
 
-                    return redirect('administracion/empresas/plantillas?r=2');
+                    if ($id_empresa) {
+                        return redirect('empresa/plantillas?r=2');
+                    } else{
+
+                        return redirect('administracion/empresas/plantillas?r=2');
+                    }
                 } catch (Exception $e) {
                     DB::rollback();
                     return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Intentelo de nuevo.']);

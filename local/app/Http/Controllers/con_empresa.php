@@ -219,7 +219,7 @@ class con_empresa extends Controller
         $planes_estado    = DB::select("SELECT * FROM tbl_planes_estado");
         $disponibilidades = DB::select("SELECT * FROM tbl_disponibilidad");
         $salarios         = DB::select("SELECT * FROM tbl_rango_salarios");
-        $plantillas       = DB::select("SELECT * FROM tbl_plantillas_ofertas");
+        $plantillas       = DB::select("SELECT * FROM tbl_plantillas_ofertas WHERE id_empresa IS NULL OR id_empresa=?", [session()->get('emp_ide')]);
 
         $params = [
             "areas"            => $areas,
@@ -241,7 +241,7 @@ class con_empresa extends Controller
         $planes_estado    = DB::select("SELECT * FROM tbl_planes_estado");
         $disponibilidades = DB::select("SELECT * FROM tbl_disponibilidad");
         $salarios         = DB::select("SELECT * FROM tbl_rango_salarios");
-        $plantillas       = DB::select("SELECT * FROM tbl_plantillas_ofertas");
+        $plantillas       = DB::select("SELECT * FROM tbl_plantillas_ofertas WHERE id_empresa IS NULL OR id_empresa=?", [session()->get('emp_ide')]);
         $localidades 		  = [];
         $sectores 		  = [];
 
@@ -934,5 +934,12 @@ class con_empresa extends Controller
         } else {
             return Response::json('error', 400);
         }
+    }
+
+    public function plantillas()
+    {
+        $plantillas = DB::select("SELECT * FROM tbl_plantillas_ofertas WHERE id_empresa=?", [session()->get('emp_ide')]);
+
+        return view('empresa_plantillas', compact('plantillas'));
     }
 }
