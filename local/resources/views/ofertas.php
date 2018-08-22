@@ -312,12 +312,20 @@ $mi_tokken=csrf_token();
                       <div class="col-6">
                         <h5 class="title-recom"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></h5>
                         <p class="time-pub" style="margin-left: 20px;">Publicaciones: <?= $pub->q_ofertas ?></p>
+                        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
                         <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
-                          Redes: 
-                              <a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="padding:6px; margin-left: 0px;"></i></span></a>
-                              <a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
-                              <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
+                          Redes:
+                              <?php if ($pub->facebook): ?> 
+                              <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="padding:6px; margin-left: 0px;"></i></span></a>
+                              <?php endif; ?>
+                              <?php if ($pub->linkedin): ?>
+                              <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
+                              <?php endif; ?>
+                              <?php if ($pub->twitter): ?>
+                              <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
+                              <?php endif; ?>
                         </p>
+                        <?php endif; ?>
                       </div>
                       <div class="col-6">
                         <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
@@ -337,23 +345,40 @@ $mi_tokken=csrf_token();
                         <i class="fa fa-star gold"></i>
                         &nbsp;
                         <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
-                        <i class="fa fa-heart red"></i>3&nbsp;
+                        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
                         <i class="fa fa-clock-o mr-0"></i>
                         <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
                         <?php if ($pub->discapacidad == 'SI'): ?>
                         <i class="fa fa-wheelchair blue"></i>
                         <?php endif; ?>
                   
+                        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
                         <div class="desk" style="float: right">
-                          <a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
-                          <a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-                          <a href=""><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                          <?php if ($pub->facebook): ?> 
+                          <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->linkedin): ?>
+                          <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->twitter): ?>
+                          <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                          <?php endif; ?>
                         </div>
+                        <?php endif; ?>
+
+                        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
                         <p class="container-media mobile" style="margin-bottom: 0;">
-                          <a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
-                          <a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
-                          <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+                          <?php if ($pub->facebook): ?> 
+                          <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->linkedin): ?>
+                          <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->twitter): ?>
+                          <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+                          <?php endif; ?>
                         </p>
+                        <?php endif; ?>
                       </div>
                     </div>
                     <div class="job-style-bx container-img-oferta">
@@ -367,7 +392,7 @@ $mi_tokken=csrf_token();
                 <!-- Oferta normal -->
                 <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
                   <div class="mobile">
-                        <img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
+                        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
                         <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                       </div>
                     <div class="job-title-sec container-desc-oferta">
@@ -384,23 +409,40 @@ $mi_tokken=csrf_token();
                         <i class="fa fa-star gold"></i>
                         &nbsp;
                         <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
-                        <i class="fa fa-heart red"></i>3&nbsp;
+                        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
                         <i class="fa fa-clock-o mr-0"></i>
                         <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
                         <?php if ($pub->discapacidad == 'SI'): ?>
                         <i class="fa fa-wheelchair blue"></i>
                         <?php endif; ?>
                   
+                        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
                         <div class="desk" style="float: right">
-                          <a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
-                          <a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-                          <a href=""><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                          <?php if ($pub->facebook): ?> 
+                          <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->linkedin): ?>
+                          <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->twitter): ?>
+                          <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                          <?php endif; ?>
                         </div>
-                        <p class="container-media mobile" style="margin-bottom: 0px">
-                          <a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
-                          <a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
-                          <a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+                        <?php endif; ?>
+                        
+                        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
+                        <p class="container-media mobile" style="margin-bottom: 0;">
+                          <?php if ($pub->facebook): ?> 
+                          <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->linkedin): ?>
+                          <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
+                          <?php endif; ?>
+                          <?php if ($pub->twitter): ?>
+                          <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+                          <?php endif; ?>
                         </p>
+                        <?php endif; ?>
                       </div>
                     </div>
                     <div class="job-style-bx container-img-oferta">

@@ -44,6 +44,7 @@ Route::post('candimensajes_soporte', 'con_soporte@mensajes_cand');
 Route::get('redes/{red}', 'con_log_social@redirectToProvider');
 Route::get('callback/{red}', 'con_log_social@callback');
 Route::post('addcallback', 'con_log_social@add_user');
+Route::post('evaluacion', 'con_candidatos@evaluacionJobbers');
 
 //********************************************************//
 //*                RUTAS PARA LOS REDACTORES             *//

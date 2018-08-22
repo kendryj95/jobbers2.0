@@ -43,12 +43,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
-    {
-        
-        // return response()->view('errors.error', [], 500);
-        return parent::render($request, $e);
-    }
+  
 
    public function render($request, Exception $e)
     {
@@ -56,6 +51,7 @@ class Handler extends ExceptionHandler
             // Catch it here and do what you want. For example...
             return redirect()->back()->withInput()->with('error', 'Intentelo de nuevo');
         }
+         // return response()->view('errors.error', [], 500);
         return parent::render($request, $e);
     }
 }
