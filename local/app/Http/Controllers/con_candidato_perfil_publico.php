@@ -328,7 +328,16 @@ class con_candidato_perfil_publico extends Controller
                 ";
                  DB::update($sql);
                  $this->porcentaje_carga(-1,"datos_personales",$_POST);
-                return redirect("candiperfil");
+                 if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    { 
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {  
+                         return redirect("candiperfil");
+                    }
             }
             else
             {
@@ -350,9 +359,21 @@ class con_candidato_perfil_publico extends Controller
                 '".$_POST['datos_per_cuil']."',
                 null 
                 )"; 
+                    return "Entro";
                     DB::insert($sql);
                     $this->porcentaje_carga(-1,"datos_personales",$_POST);
-                    return redirect("candiperfil"); 
+
+                    if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    { 
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".session()->get('cand_id'));
+                    }
+                    else
+                    {  
+                         return redirect("candiperfil");
+                    }
+                    
 
             }
              
@@ -386,7 +407,16 @@ class con_candidato_perfil_publico extends Controller
                 ";
                  DB::update($sql);
                  $this->porcentaje_carga(-1, "contacto", $_POST);
-                return redirect("candiperfil");
+                if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
             }
             else
             {
@@ -407,7 +437,16 @@ class con_candidato_perfil_publico extends Controller
                 )"; 
                     DB::insert($sql);
                     $this->porcentaje_carga(-1,'contacto',$_POST);
-                    return redirect("candiperfil"); 
+                   if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    } 
             }
         } 
             
@@ -438,7 +477,16 @@ class con_candidato_perfil_publico extends Controller
                     $this->del_arr("tbl_candidatos_cargos");
                  }
                 
-                return redirect("candiperfil");
+                if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
             }
             else
             {
@@ -462,18 +510,29 @@ class con_candidato_perfil_publico extends Controller
                     $this->del_arr("tbl_candidatos_cargos");
                  } 
                DB::insert($sql); 
-               return redirect("candiperfil"); 
+               if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
             }
         }
 
     function agregar_arr($datos,$tabla)
     {    
+
        if(isset($datos) && $datos!="")
        {
           $sql="DELETE FROM ".$tabla." WHERE id_usuario = ".session()->get('cand_id')."";
             DB::delete($sql);
             foreach ($datos as $key) {
                 $sql="INSERT INTO ".$tabla." VALUES(null,".session()->get('cand_id').",".$key.",null)";
+
                 DB::insert($sql);
             } 
        }       
@@ -484,16 +543,35 @@ class con_candidato_perfil_publico extends Controller
         //return "Hola";
         
         try {
-            if($_POST['cargos']!="")
+            if(isset($_POST['cand_cargos']) && count($_POST['cand_cargos'])>0)
             {
                 $this->agregar_arr($_POST['cand_cargos'],"tbl_candidato_habilidades");
                 $this->porcentaje_carga(0,'habilidad',$_POST['cand_cargos']);
-                return redirect("candiperfil"); 
+                
+                if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    } 
             }
             else
             {
                 $this->del_arr("tbl_candidato_habilidades");
-                return redirect("candiperfil"); 
+                if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    } 
             } 
         } catch (Exception $e) {
             
@@ -501,18 +579,39 @@ class con_candidato_perfil_publico extends Controller
     }
     function set_idioma()
     { 
-        //return "Hola";
+        
         try {
-            if($_POST['cargos']!="")
+            if(isset($_POST['cand_cargos']) && count($_POST['cand_cargos'])>0)
             {
+
                  $this->agregar_arr($_POST['cand_cargos'],"tbl_candidato_idioma");
-           $this->porcentaje_carga(0,'idiomas',$_POST['cand_cargos']);
-            return redirect("candiperfil");                 
+                    
+                    $this->porcentaje_carga(0,'idiomas',$_POST['cand_cargos']);
+                    
+                    if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }                 
             }
         else
         {
             $this->del_arr("tbl_candidato_idioma");
-             return redirect("candiperfil");
+             if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
         }
            
         } catch (Exception $e) {
@@ -548,7 +647,16 @@ class con_candidato_perfil_publico extends Controller
         WHERE id=".$_POST['identificador']." AND id_usuario=".session()->get('cand_id')."
          ";
          DB::update($sql); 
-         return redirect("candiperfil");
+         if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
        }
        else
        {
@@ -568,7 +676,16 @@ class con_candidato_perfil_publico extends Controller
            try {
                   DB::insert($sql);
                   $this->porcentaje_carga($datos_educacion[0]->educacion+1,'educacion',$_GET);
-                  return redirect("candiperfil");
+                  if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
               } catch (Exception $e) {
                  
               }   
@@ -590,7 +707,16 @@ class con_candidato_perfil_publico extends Controller
         try {
             DB::delete($sql);
             $this->porcentaje_carga($datos_educacion[0]->educacion-1,'educacion',$_POST);
-            return redirect("candiperfil");
+            if(isset($_GET['admin_control']) && $_GET['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
         } catch (Exception $e) {
             
         }
@@ -618,7 +744,16 @@ class con_candidato_perfil_publico extends Controller
             WHERE id=".$_POST['identificador']." AND id_usuario=".session()->get('cand_id')."
              ";
              DB::update($sql);
-             return redirect("candiperfil");
+             if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    { 
+                         $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
            }
            else
            {
@@ -637,7 +772,16 @@ class con_candidato_perfil_publico extends Controller
                try {
                       DB::insert($sql);
                       $this->porcentaje_carga($datos_experiencia[0]->experiencia+1,'experiencia',$_GET);
-                      return redirect("candiperfil");
+                      if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
                   } catch (Exception $e) {
                      
                   }   
@@ -654,7 +798,16 @@ class con_candidato_perfil_publico extends Controller
         try {
             DB::delete($sql);
             $this->porcentaje_carga($datos_experiencias[0]->experiencia-1,'experiencia',$_POST);;
-            return redirect("candiperfil");
+            if(isset($_GET['admin_control']) && $_GET['admin_control']!="")
+                    { 
+                         $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id);
+                    }
+                    else
+                    {
+                         return redirect("candiperfil");
+                    }
         } catch (Exception $e) {
             
         }
@@ -691,10 +844,24 @@ class con_candidato_perfil_publico extends Controller
 
        public function imagen_perfil()
        {
-        if(Input::file('imagen_perfil')=="")
-        {
-            return Redirect("candiperfil?result=Debe seleccionar la imagen que desea actualizar.");
-        }
+
+                if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                       
+                         if(Input::file('imagen_perfil')=="")
+                        {  $id=session()->get('cand_id');
+                            session()->forget('cand_id');
+                           return redirect("administracion/candidatos/".$id."?result=Debe seleccionar la imagen que desea actualizar");
+                        } 
+                        
+                    }
+                else
+                    {   if(Input::file('imagen_perfil')=="")
+                        {
+                            return Redirect("candiperfil?result=Debe seleccionar la imagen que desea actualizar.");
+                        } 
+                    }
+        
         $file            =Input::file('imagen_perfil');
         $original        = $file->getClientOriginalName();
         $extension       = $file->getClientOriginalExtension();
@@ -728,7 +895,18 @@ class con_candidato_perfil_publico extends Controller
                     Image::make("uploads/".$filename)->resize(80, 80)->save("uploads/min/".$filename); 
                     Image::make("uploads/".$filename)->resize(200, 200)->save("uploads/md/".$filename);
                     session()->set('cand_img',$filename);
-                    return Redirect("candiperfil?result=Imagen agregada con exito.");
+
+                    if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id."?result=Imagen agregada con exito.");
+                    }
+                    else
+                    {
+                         return Redirect("candiperfil?result=Imagen agregada con exito.");
+                    }
+                    
                  }                
              }
              else
@@ -752,7 +930,17 @@ class con_candidato_perfil_publico extends Controller
                     File::delete(File::glob('uploads/md/'.$datos[0]->nombre_aleatorio.''));
                     DB::update($sql_profile);
                     session()->set('cand_img',$filename);
-                    return Redirect("candiperfil?result=Imagen actualizada con exito.");
+
+                     if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id."?result=Imagen actualizada con exito.");
+                    }
+                    else
+                    {
+                         return Redirect("candiperfil?result=Imagen actualizada con exito.");
+                    }
                  }
              }
          } catch (Exception $e) {

@@ -41,9 +41,7 @@
 						 			<span><i class="la la-sort-numeric-asc"></i><strong>20</strong><a href="noticias/categorias" title="">Puntos</a></span>
 						 			<span><i class="la la-support"></i><strong>20</strong><a href="noticias/categorias" title="">Soportes</a></span>
 						 			<span><i class="la la-user"></i><strong>58%</strong><a href="noticias/categorias" title="">Perfil completado</a></span>
-						 		</div>
-						 	 	
-						  
+						 		</div> 
 						 		<table>
 						 			<thead>
 						 				<tr>

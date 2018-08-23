@@ -4,29 +4,35 @@ $mi_tokken = csrf_token();
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include 'local/resources/views/includes/referencias_top.php';?>
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Jobbers Argentina</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="CreativeLayers">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css""> 
+
         <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
-        <link rel="stylesheet" href="local/resources/views/css/icons.css">
-        <link rel="stylesheet" href="local/resources/views/css/animate.min.css">
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
-        <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
+        <link rel="stylesheet" type="text/css" href="../../local/resources/views/css/bootstrap-grid.css" />
+        <link rel="stylesheet" href="../../local/resources/views/css/icons.css">
+        <link rel="stylesheet" href="../../local/resources/views/css/animate.min.css">
+        <link rel="stylesheet" type="text/css" href="../../local/resources/views/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../../local/resources/views/css/responsive.css" />
+        <link rel="stylesheet" type="text/css" href="../../local/resources/views/css/chosen.css" />
+        <link rel="stylesheet" type="text/css" href="../../local/resources/views/css/colors/colors.css" />
         <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         
-        <?php include('local/resources/views/includes/chat_soporte.php');?>
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
         <div class="theme-layout" id="scrollup"> 
             <!--Header responsive-->
-            <?php include 'local/resources/views/includes/header_responsive_candidatos.php';?>
-            <?php include 'local/resources/views/includes/header_candidatos.php';?>
+            <?php include('local/resources/views/includes/header_administrator.php');?>  
             <!--fin Header responsive-->
             <!--Modal imagenes-->
-            <?php include('local/resources/views/includes/modal_cand_educacion.php');?>
-            <?php include('local/resources/views/includes/modal_cand_experiencia.php');?>
+            <?php include('local/resources/views/includes/modal_cand_educacion_admin.php');?>
+            <?php include('local/resources/views/includes/modal_cand_experiencia_admin.php');?>
             <style type="text/css">
             @media (min-width: 576px) {
             .modal-dialog {
@@ -47,7 +53,7 @@ $mi_tokken = csrf_token();
                 <div class="block no-padding">
                     <div class="container">
                         <div class="row no-gape">
-                            <?php include 'local/resources/views/includes/aside_candidatos.php';?>
+                             <?php include('includes/administrator_menu_left.php');?> 
                             <div class="col-lg-9 column">
                             
                                 <div class="padding-left">
@@ -118,12 +124,14 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <div class="social-edit" style="padding: 0px;">  
-                                    <form  id="form_datos_imagen"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
+                                    <form  id="form_datos_imagen"  action="../../adminsetprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                           <input type="hidden" name="admin_control" value="1">
                                                 <span class="pf-title">Imagen</span>
                                                 <div class="pf-field">
                                                    <input name="imagen_perfil" id="imagen_perfil" type="file" placeholder="" accept="image/*">
                                                 </div> 
+
                                                 <button type="submit" onClick="">Guardar</button> 
                                     </form>
                                 </div>
@@ -133,9 +141,10 @@ $mi_tokken = csrf_token();
                                     </div> 
                                 </div>  
                                 <div class="social-edit">
-                                    <form  id="form_datos_per"  action="candidatosper" method="POST">
+                                    <form  id="form_datos_per"  action="../../admincandidatosper" method="POST">
                                      
                                         <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                        <input type="hidden" name="admin_control" value="1">
                                         <div class="row"> 
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Nombres</span>
@@ -255,8 +264,9 @@ $mi_tokken = csrf_token();
                                     </form>
                                     <div class="social-edit">
                                         <h3>Preferencias laborales</h3>
-                                        <form id="form_preferencias_lab" method="POST" action="candipreflab">
+                                        <form id="form_preferencias_lab" method="POST" action="../../admincandipreflab">
                                             <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                            <input type="hidden" name="admin_control" value="1">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <span class="pf-title">Remuneración</span>
@@ -338,9 +348,10 @@ $mi_tokken = csrf_token();
                                 ?>
                                 <div class="social-edit">
                                     <h3>Redes sociales</h3>
-                                    <form action="candiredescrear" method="post" id="form_candiredescrear">
+                                    <form action="../../admincandiredescrear" method="post" id="form_candiredescrear">
                                         <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                         <input type="hidden" name="pagina" value="perfil">
+                                        <input type="hidden" name="admin_control" value="1">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Facebook</span>
@@ -378,8 +389,9 @@ $mi_tokken = csrf_token();
                                 </div>
                                 <div class="contact-edit">
                                     <h3>Información de contacto</h3>
-                                    <form id="form_contact" action="candicontac" method="post">
+                                    <form id="form_contact" action="../../admincandicontac" method="post">
                                         <input type="hidden"  name="_token" value="<?php echo $mi_tokken;?>">
+                                        <input type="hidden" name="admin_control" value="1">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Teléfono</span>
@@ -496,7 +508,7 @@ $mi_tokken = csrf_token();
                                                     </div>
                                                     <ul class="action_job">
                                                         <li><span>Editar</span><a onClick="limpiar_mod_educ(<?php echo $key->id;?>),set_educacion(<?php echo $key->id;?>)" title=""><i class="la la-pencil"></i></a></li>
-                                                        <li><span>Eliminar</span><a href="candidelestudios/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
+                                                        <li><span>Eliminar</span><a href="../../admincandidelestudios/<?php echo $key->id;?>?admin_control=true" title=""><i class="la la-trash-o"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -517,7 +529,7 @@ $mi_tokken = csrf_token();
                                                     </div>
                                                     <ul class="action_job">
                                                         <li><span>Editar</span><a onClick="limpiar_mod_expe(<?php echo $key->id;?>),set_experiencia(<?php echo $key->id;?>)" title=""><i class="la la-pencil"></i></a></li>
-                                                        <li><span>Eliminar</span><a href="candidelexpe/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
+                                                        <li><span>Eliminar</span><a href="../../admincandidelexpe/<?php echo $key->id;?>?admin_control=true" title=""><i class="la la-trash-o"></i></a></li>
                                                     </ul>
                                                 </div>
                                                 <?php endforeach ?>
@@ -527,8 +539,9 @@ $mi_tokken = csrf_token();
                                             <!--HAbilidadez-->
                                             <div class="border-title"><h3>Habilidades</h3> </div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
-                                                <form id="form_habilidades" method="POST" action="candisethabilidad">
+                                                <form id="form_habilidades" method="POST" action="../../admincandisethabilidad">
                                                     <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                    <input type="hidden" name="admin_control" value="1">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="pf-field">
@@ -560,20 +573,12 @@ $mi_tokken = csrf_token();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button onclick="habilidades_validar()" type="button">Guardar</button>
+                                                    <button  type="submit">Guardar</button>
                                                 </form>
                                                 
                                             </div>
                                             <div class="progress-sec" style="margin-bottom: 0px;">
-                                                <!--
-                                                <div class="progress-sec with-edit">
-                                                    <span>Adobe Photoshop</span>
-                                                    <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                -->
+                                           
                                                 <div class="col-lg-12">
                                                     <div class="social-edit">
                                                         
@@ -585,8 +590,9 @@ $mi_tokken = csrf_token();
                                         <!--Idiomas-->
                                         <div class="border-title"><h3>Idiomas</h3> </div>
                                             <div class="social-edit" style="margin-bottom: 0px;">
-                                                <form id="form_idiomas" method="POST" action="candisetidioma">
+                                                <form id="form_idiomas" method="POST" action="../../admincandisetidioma">
                                                     <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
+                                                    <input type="hidden" name="admin_control" value="1">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="pf-field">
@@ -618,7 +624,7 @@ $mi_tokken = csrf_token();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button onclick="idiomas_validar()" type="button">Guardar</button>
+                                                    <button   type="submit">Guardar</button>
                                                 </form> 
                                             </div> 
                                         </div>
@@ -632,30 +638,13 @@ $mi_tokken = csrf_token();
         </section>
     </div>
     <?php include "local/resources/views/includes/general_footer.php";?>
-    <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/script.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
-    <?php include "local/resources/views/includes/referencias_down.php";?>
+    <script src="../../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
+    <script src="../../local/resources/views/js/script.js" type="text/javascript"></script> 
+    <script src="../../local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="../../local/resources/views/plugins/notify.js" type="text/javascript"></script> 
     <script type="text/javascript">
-    function set_imagen_val(id) {
-    $.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-    $.ajax({
-    url: 'candisetprofilepic',
-    type: 'post',
-    data:{id_imagen:id},
-    success: function(data) {
-    }
-    })
-    }
+    
     //Funciones
     function set_select(id,valor)
     {
@@ -755,11 +744,15 @@ $mi_tokken = csrf_token();
     {
     texto="";
     if(tipo==1){texto=$("#"+id+" option:selected").text();}
+
     if(tipo==2){texto=id;}
     agregar=' <li  class="addedTag">'+texto+'<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="cand_cargos[]" value="'+valor+'"></li>';
     $("#"+id_control).append(agregar);
     }
+
+    
     </script>
+
     <script type="text/javascript">
     <?php echo "set_select('tipo_id',".$up_t_id.");";?>
     <?php echo "set_select('sexo',".$up_sexo.");";?>
@@ -885,7 +878,7 @@ $mi_tokken = csrf_token();
             else if($("#provincia_contac").val()==""){notificacion("Debe colocar su provincia.")} 
             else if($("#localidad_contac").val()==""){notificacion("Debe colocar su localidad.")} 
             else if($("#direccion").val()==""){notificacion("Debe colocar su dirección.")}  
-            else if(!web.test($('#sitio_web').val())){notificacion("La Url del sitio web es invalido. Si no posees pagina web deja el campo en blanco.")}  
+             
             else
             {
                 $("#form_contact").submit();
@@ -930,22 +923,6 @@ $mi_tokken = csrf_token();
             {
                 $("#form_experiencia").submit();
             }
-       }
-
-       function habilidades_validar()
-       {
-        if ($('#cbn_habilidad').val() == "") {notificacion("Debe seleccionar una habilidad.")}
-        else {
-            $('#form_habilidades').submit();
-        }
-       }
-
-       function idiomas_validar()
-       {
-        if ($('#cbn_idioma').val() == "") {notificacion("Debe seleccionar un idioma.")}
-        else {
-            $('#form_idiomas').submit();
-        }
        } 
 </script>
 

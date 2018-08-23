@@ -113,6 +113,7 @@ Route::get('canditienda', function () {return view('candidato_tienda');});
 Route::get('candireferidos', 'con_candidato_referidos@index');
 Route::get('candiredes', 'con_candidato_redes@index');
 Route::post('candiredescrear', 'con_candidato_redes@crear');
+
 Route::post('candidatosper', 'con_candidato_perfil_publico@datos_personales');
 Route::post('candipreflab', 'con_candidato_perfil_publico@datos_preferencias_laborales');
 Route::post('candicontac', 'con_candidato_perfil_publico@datos_contacto');
@@ -122,6 +123,7 @@ Route::post('candisethabilidad', 'con_candidato_perfil_publico@set_habilidad');
 Route::post('candisetidioma', 'con_candidato_perfil_publico@set_idioma');
 Route::get('candidelestudios/{id}', 'con_candidato_perfil_publico@del_education');
 Route::get('candidelexpe/{id}', 'con_candidato_perfil_publico@del_expe');
+
 Route::post('agregarcv', 'con_candidato_cv@add_cv');
 Route::post('candiselectsv', 'con_candidato_cv@select_cv');
 Route::get('candidelcv/{id}', 'con_candidato_cv@del_cv');
@@ -159,6 +161,20 @@ Route::post('empresa/uploadImage', 'con_empresa@uploadImage');
 Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 });
 
+
+Route::post('admincandidatosper', 'con_candidato_perfil_publico@datos_personales');
+Route::post('admincandidatosper', 'con_candidato_perfil_publico@datos_personales');
+Route::post('admincandipreflab', 'con_candidato_perfil_publico@datos_preferencias_laborales');
+Route::post('admincandicontac', 'con_candidato_perfil_publico@datos_contacto');
+Route::post('admincandiestudios', 'con_candidato_perfil_publico@estudios');
+Route::post('admincandiexpe', 'con_candidato_perfil_publico@expe_lab');
+Route::post('admincandisethabilidad', 'con_candidato_perfil_publico@set_habilidad');
+Route::post('admincandisetidioma', 'con_candidato_perfil_publico@set_idioma');
+Route::get('admincandidelestudios/{id}', 'con_candidato_perfil_publico@del_education');
+Route::get('admincandidelexpe/{id}', 'con_candidato_perfil_publico@del_expe');
+ Route::post('adminsetprofilepic', 'con_candidato_perfil_publico@imagen_perfil');
+Route::post('admincandiredescrear', 'con_candidato_redes@crear');
+
 Route::get('administrator', 'con_administrator_login@index');
 
 Route::get('administracion/noticias', 'con_administrator_noticias@index');
@@ -192,6 +208,7 @@ Route::get('administracion/candidatos/resumen/{id}', 'con_administrator_candidat
 Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
 Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_candidatos@postulaciones')->where(['id' => '[0-9]+']);
 Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
+Route::post('administracion/candidatos/nuevo', 'con_administrator_candidatos@agregar_nuevo');
 
 #################### ADM DE EMPRESAS ################################
 

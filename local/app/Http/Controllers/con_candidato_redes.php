@@ -80,11 +80,30 @@ class con_candidato_redes extends Controller
         $this->porcentaje_carga(-2,'redes',$_POST);
         if(isset($_POST['pagina']) && $_POST['pagina']!="")
         {
-            return redirect("candiperfil");
+                 if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id."?result=Redes actualizadas con éxito.");
+                    }
+                    else
+                    {
+                          return redirect("candiperfil");
+                    }
+           
         }
         else
         {
-            return redirect("candiredes");
+            if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
+                    {
+                        $id=session()->get('cand_id');
+                        session()->forget('cand_id');
+                        return redirect("administracion/candidatos/".$id."?result=Redes actualizadas con éxito.");
+                    }
+                    else
+                    {
+                          return redirect("candiperfil");
+                    }
         }
     }
 
