@@ -207,6 +207,8 @@ Route::get('administracion/empresas/delete/{id}', 'con_administrator_empresas@de
 Route::get('administracion/empresas/plantillas', 'con_administrator_empresas@plantillas');
 Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
 Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
+Route::get('administracion/empresas/ofertas-renovar', 'con_administrator_empresas@ofertasForRenew');
+Route::get('administracion/empresas/renewOferta/{id_pub}/{id_empresa}', 'con_administrator_empresas@renewOferta')->where(['id_pub' => '[0-9]+', 'id_empresa' => '[0-9]+']);
 
 
 #########################################################################

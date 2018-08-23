@@ -244,7 +244,7 @@ class con_ofertas extends Controller
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
             WHERE t1.estatus = 1 ".$condiciones."
-            GROUP BY t1.id ORDER BY t1.id DESC LIMIT $limit,$tamPag";
+            GROUP BY t1.id ORDER BY t1.tmp DESC LIMIT $limit,$tamPag";
 
             return $peticion . " " . $consulta_general;
     }

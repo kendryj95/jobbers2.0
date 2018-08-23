@@ -314,4 +314,72 @@ class con_administrator_empresas extends Controller
         ]);
     }
 
+    public function ofertasForRenew(Request $request)
+    {
+        $condicion = '';
+
+        if (isset($request->buscador)) {
+            $condicion = " AND p.titulo LIKE '$request->buscador%' OR e.nombre LIKE '$request->buscador%'";
+        }
+
+        $ofertas = DB::select(" 
+            SELECT
+            p.id AS id_pub,
+            p.titulo,
+            e.nombre AS nombre_empresa,
+            e.id AS id_empresa,
+            IF(ep.id_plan=1,'GRATIS','PREMIUM') AS plan,
+            DATE_FORMAT(p.tmp, '%d/%m/%Y') AS creacion_oferta,
+            CONCAT(DATEDIFF(NOW(),p.tmp),' días') AS dias_antiguos
+            FROM tbl_publicacion p
+            LEFT JOIN tbl_empresa e ON p.id_empresa=e.id
+            LEFT JOIN tbl_empresas_planes ep ON e.id=ep.id_empresa
+            WHERE DATEDIFF(NOW(),p.tmp) > 10
+            $condicion
+            ORDER BY DATEDIFF(NOW(),p.tmp) DESC");
+
+        return view('administrator_empresas_ofertas_renovar', compact('ofertas'));
+    }
+
+    public function renewOferta($id_pub, $id_empresa)
+    {
+        $plan_empresa = DB::table('tbl_empresas_planes')->select('id_plan', 'tmp as fecha_plan')->where('id_empresa',$id_empresa)->first();
+
+        $fecha_venc_oferta = '';
+
+        if ($plan_empresa) {
+            if ($plan_empresa->id_plan == 1) {
+                $fecha_venc_oferta = strtotime('+15 day', strtotime(date('Y-m-d H:i:s')));
+                $fecha_venc_oferta = date('Y-m-d H:i:s', $fecha_venc_oferta);
+            } else {
+                $fecha_venc_oferta = strtotime('+35 day', strtotime($plan_empresa->fecha_plan));
+                $fecha_venc_oferta = date('Y-m-d H:i:s', $fecha_venc_oferta);
+            }
+
+            DB::beginTransaction();
+
+            try {
+                $data = [];
+                $data['estatus'] = 1;
+                $data['fecha_venc'] = $fecha_venc_oferta;
+                $data['tmp'] = date('Y-m-d H:i:s');
+
+                DB::table('tbl_publicacion')->where('id', $id_pub)->update($data);
+
+                DB::commit();
+                return redirect('administracion/empresas/ofertas-renovar?r=1');
+            } catch (Exception $e) {
+                DB::rollback();
+                return redirect('administracion/empresas/ofertas-renovar?r=2');
+            }
+        } else {
+            return redirect('administracion/empresas/ofertas-renovar');
+        }
+
+        
+
+        
+
+    }
+
 }

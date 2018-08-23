@@ -12,6 +12,9 @@
 				 						<a href="<?= url('administracion/empresas/plantillas') ?>" title=""><i class="la la-book"></i>Empresas - Plantillas ofertas</a> 
 				 					</li>
 				 					<li>
+				 						<a href="<?= url('administracion/empresas/ofertas-renovar') ?>" title="Renovar ofertas"><i class="la la-folder"></i>Empresas - Ren. ofertas...</a> 
+				 					</li>
+				 					<li>
 				 						<a href="<?= url('administracion/candidatos') ?>" title=""><i class="la la-users"></i>Candidatos</a> 
 				 					</li>
 				 					<li>
