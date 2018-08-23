@@ -177,17 +177,22 @@
 													</div><!-- Job Overview -->
 													<div class="quick-form-job">
 														<h3>¿Cómo evalúas Jobbers?</h3>
-														<form>
+														<form method="post" action="<?= url('evaluacion') ?>" id="form_evaluacion">
+															
+															<?= csrf_field() ?>
+
+															<input type="hidden" name="id_pub" value="<?= $datos[0]->id ?>">
 															<div class="pf-field" style="margin-bottom: 20px;">
-																<select data-placeholder="Allow In Search" class="chosen">
-																	<option>Excelente</option>
-																	<option>Muy bueno</option>
-																	<option>Bueno</option>
-																	<option>Debe mejorar</option>
+																<select data-placeholder="Allow In Search" class="chosen" name="evaluacion" id="evaluacion">
+																	<option value="">Selecciona evaluación</option>
+																	<option value="Excelente">Excelente</option>
+																	<option value="Muy bueno">Muy bueno</option>
+																	<option value="Bueno">Bueno</option>
+																	<option value="Debe mejorar">Debe mejorar</option>
 																</select>
 															</div>
-															<textarea placeholder="¿Qué te gustaría que mejoraramos?"></textarea>
-															<button class="submit">Enviar</button>
+															<textarea placeholder="¿Qué te gustaría que mejoraramos?" name="descripcion" id="descripcion"></textarea>
+															<button class="submit" id="submit_evaluacion">Enviar</button>
 														</form>
 													</div>
 												</div>
@@ -220,6 +225,34 @@
 					});
 
 				<?php endif; ?>
+
+				<?php if (isset($_REQUEST['r']) && $_REQUEST['r'] == 1): ?>
+
+					$.notify("Se ha enviado su evaluacion, gracias por aportar.", {
+						className:"success",
+						globalPosition: "bottom center"
+					});
+
+				<?php elseif (isset($_REQUEST['r']) && $_REQUEST['r'] == 2): ?>
+
+					$.notify("Ha ocurrido un error inesperado.", {
+						className:"error",
+						globalPosition: "bottom center"
+					});
+
+				<?php endif; ?>
+
+				$('#submit_evaluacion').on('click', function(e){
+					e.preventDefault();
+					if ($('#evaluacion').val() != "" && $('#descripcion').val() != "") {
+						$('#form_evaluacion').submit();
+					} else {
+						$.notify("Campos obligatorios vacios.", {
+							className:"error",
+							globalPosition: "bottom center"
+						});
+					}
+				});
 			</script>
 		</body>
 	</html>

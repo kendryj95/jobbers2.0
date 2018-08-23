@@ -22,8 +22,9 @@
 				<li class="inner-child">
 					<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Oferta de trabajo</a>
 					<ul>
-						<li onclick="location.href='<?= $back ?>ofertas'"><a href="<?= $back ?>ofertas" title="Ver Ofertas de Trab.">Ver ofertas</a></li>
+						<li onclick="location.href='<?= $back ?>ofertas'"><a href="<?= $back ?>ofertas" title="Ver Ofertas de Trab.">Ver mis ofertas</a></li>
 						<li onclick="location.href='<?= $back ?>new_post'"><a href="<?= $back ?>new_post" title="Nueva Oferta de Trab.">Nueva oferta</a></li>
+						<li onclick="location.href='<?= $back ?>plantillas'"><a href="<?= $back ?>plantillas" title="Nueva Oferta de Trab.">Mis plantillas</a></li>
 					</ul>
 				</li>
 				<li class="inner-child">

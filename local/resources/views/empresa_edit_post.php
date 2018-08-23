@@ -69,6 +69,25 @@
 										<form id="form_oferta">
 											<div class="row">
 												<input type="hidden" name="id_post" value="<?= $oferta[0]->id ?>">
+
+												<?php if ($plantillas): ?>
+
+													<div class="col-lg-12">
+														<span class="pf-title">Plantillas predeterminadas</span>
+														<div class="pf-field">
+															<select data-placeholder="Por favor seleccione" class="chosen" id="plantilla" onchange="getInfoPlantilla(this.value)">
+																<option value="">..........</option>
+																<?php foreach ($plantillas as $plantilla): ?>
+																
+																	<option value="<?= $plantilla->id ?>"><?= $plantilla->nombre_plantilla ?></option>
+																<?php endforeach; ?>
+																
+															</select>
+														</div>
+													</div>
+
+												<?php endif; ?>
+
 												<div class="col-lg-12">
 													<span class="pf-title">Titulo de la oferta <b>*</b></span>
 													<div class="pf-field">
@@ -413,6 +432,29 @@
 							$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
 						}
 					}
+
+					function getInfoPlantilla(id)
+					{
+						if (id != "") {
+							$.ajax({
+								url: '<?= url("administracion/empresas/plantilla_info") ?>/'+id,
+								type: 'GET',
+								dataType: 'json',
+								success: function (response) {
+									$('#titulo').val(response.plantilla.titulo_oferta);
+									tinymce.activeEditor.setContent(response.plantilla.descripcion_oferta);
+								},
+								error: function (error) {
+									console.dir(error);
+								}
+							});
+							
+						} else {
+							$('#titulo').val('<?= $oferta[0]->titulo ?>');
+							tinymce.activeEditor.setContent('<?= $oferta[0]->descripcion ?>');
+						}
+					}
+
 					function anularEvent(e)
 					{
 						e.preventDefault();

@@ -44,6 +44,7 @@ Route::post('candimensajes_soporte', 'con_soporte@mensajes_cand');
 Route::get('redes/{red}', 'con_log_social@redirectToProvider');
 Route::get('callback/{red}', 'con_log_social@callback');
 Route::post('addcallback', 'con_log_social@add_user');
+Route::post('evaluacion', 'con_candidatos@evaluacionJobbers');
 
 //********************************************************//
 //*                RUTAS PARA LOS REDACTORES             *//
@@ -159,6 +160,7 @@ Route::post('empresa/actualizar_post', 'con_empresa@updatePost');
 Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');
 Route::post('empresa/uploadImage', 'con_empresa@uploadImage');
 Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
+Route::get('empresa/plantillas', 'con_empresa@plantillas');
 });
 
 
@@ -219,6 +221,9 @@ Route::post('administracion/empresas/editstore', 'con_administrator_empresas@edi
 Route::get('administracion/empresas/suspender-habilitar/{accion}/{id}', 'con_administrator_empresas@suspender_habilitar')->where(['accion' => '[0-1]', 'id' => '[0-9]+']);
 Route::get('administracion/empresas/edit/{id}', 'con_administrator_empresas@edit')->where(['id' => '[0-9]+']);
 Route::get('administracion/empresas/delete/{id}', 'con_administrator_empresas@delete')->where(['id' => '[0-9]+']);
+Route::get('administracion/empresas/plantillas', 'con_administrator_empresas@plantillas');
+Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
+Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
 
 
 #########################################################################
