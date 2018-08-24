@@ -168,6 +168,7 @@
 														<tr>
 															<td>Candidato</td>
 															<td>Ocupación</td>
+															<td title="Salario pretendido">Salario pret</td>
 															<td>Fecha postulación</td>
 															<td>Etapa</td>
 															<td></td>
@@ -191,6 +192,9 @@
 																<div class="table-list-title">
 																	<h3><a href="https://www.google.co.ve/search?q=<?= $postulado->profesion_candidato ?>" title="" target="_blank"><?= $postulado->profesion_candidato ?></a></h3>
 																</div>
+															</td>
+															<td>
+																<span><?= $postulado->salario ?></span>
 															</td>
 															<td>
 																<span><?= $postulado->fecha_postulacion ?></span><br />

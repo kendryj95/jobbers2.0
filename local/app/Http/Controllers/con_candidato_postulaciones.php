@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use View;
+use Illuminate\Http\Request;
 
 class con_candidato_postulaciones extends Controller
 {
@@ -31,13 +32,30 @@ GROUP BY id_publicacion";
         }
     }
 
-    public function postular($id)
+    public function postular(Request $request)
     {
+
+        $this->validate($request,[
+            "salario" => "required|numeric"
+        ],
+        [
+            "salario.required" => "Debes colocar salario pretendido a la oferta.",
+            "salario.numeric" => "Salario no valido."
+        ]);
+
+        if (isset($request->actualizar_salario) && $request->actualizar_salario == 1) { // actualizar salario pretendido de su preferencia
+            DB::table('tbl_candidato_preferencias_laborales')
+            ->where('id_usuario', session()->get('cand_id'))
+            ->update(['id_remuneracion_pre' => $request->salario]);
+        }
+
+        $salario_usuario = isset($request->salario) ? $request->salario : null;
+
         $bandera = 0;
         $sql     = "
         SELECT count(*) as cantidad
         FROM tbl_postulaciones
-        WHERE id_usuario=" . session()->get("cand_id") . " AND id_publicacion=" . $id . "";
+        WHERE id_usuario=" . session()->get("cand_id") . " AND id_publicacion=" . $request->id_pub . "";
         try {
             $datos = DB::select($sql);
             if ($datos[0]->cantidad == 0) {
@@ -49,7 +67,7 @@ GROUP BY id_publicacion";
 
         if ($bandera) {
             $sql = "INSERT INTO tbl_postulaciones
-            VALUES(null," . session()->get("cand_id") . "," . $id . ",null)";
+            VALUES(null," . session()->get("cand_id") . ",$salario_usuario," . $request->id_pub . ",null)";
             try {
                 DB::insert($sql);
                 return redirect("candipostulaciones");
@@ -57,7 +75,7 @@ GROUP BY id_publicacion";
 
             }
         } else {
-            return redirect("detalleoferta/" . $id . "?info=Ya te encuentras postulado a esta oferta.");
+            return redirect("detalleoferta/" . $request->id_pub . "?info=Ya te encuentras postulado a esta oferta.");
         }
     }
 }

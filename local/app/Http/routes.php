@@ -103,7 +103,7 @@ Route::get('candiconfiguracion', 'con_candidatos_configuracion@index');
 Route::post('candisetprofilepic', 'con_candidatos_configuracion@setProfilePic');
 Route::post('candiactualizardatos', 'con_candidatos_configuracion@actualizardatos');
 Route::get('candipostulaciones', 'con_candidato_postulaciones@index');
-Route::get('candipostular/{id}', 'con_candidato_postulaciones@postular'); 
+Route::post('candipostular', 'con_candidato_postulaciones@postular'); 
 Route::get('candiperfil', 'con_candidato_perfil_publico@perfil');
 Route::get('candicv', 'con_candidato_cv@index');
 Route::get('candisoporte', 'con_soporte@candidato');

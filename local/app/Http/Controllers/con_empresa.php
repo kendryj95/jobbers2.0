@@ -383,7 +383,8 @@ class con_empresa extends Controller
     	SELECT 
 		p.id_usuario,
 		pb.id AS id_publicacion, 
-		p.tmp AS fecha_postulacion, 
+		p.tmp AS fecha_postulacion,
+        IF(p.id_salario_usuario IS NULL,'No definido',CONCAT('$',rs.salario)) AS salario,
 		pb.titulo AS titulo_oferta, 
 		CONCAT(cdp.nombres,' ',cdp.apellidos) AS nombre_candidato, 
 		TIMESTAMPDIFF(YEAR,cdp.fecha_nac,CURDATE()) AS edad_candidato,
@@ -402,6 +403,7 @@ class con_empresa extends Controller
 		FROM tbl_postulaciones p 
 		INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id 
 		LEFT JOIN tbl_candidato_datos_personales cdp ON p.id_usuario= cdp.id_usuario
+        LEFT JOIN tbl_rango_salarios rs ON p.id_salario_usuario=rs.id
 		LEFT JOIN tbl_generos g ON cdp.id_sexo=g.id
 		LEFT JOIN tbl_candidatos_educacion ce ON p.id_usuario=ce.id_usuario
 		LEFT JOIN tbl_candidato_calificaciones cc ON p.id_usuario=cc.id_usuario
@@ -516,6 +518,7 @@ class con_empresa extends Controller
         $provincia    = $_REQUEST["provincia"];
         $localidad    = $_REQUEST["localidad"];
         $salario      = $_REQUEST["salario"];
+        $salario_usuario = $_REQUEST["salario_usuario"];
         $direccion    = $_REQUEST["direccion"];
         $plan         = $_REQUEST["plan"];
         $disp         = $_REQUEST["disp"];
@@ -527,14 +530,14 @@ class con_empresa extends Controller
 
         $id_empresa = session()->get("emp_ide");
 
-        $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,id_plan_estado,confidencial) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,salario_usuario,id_plan_estado,confidencial) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $explode = explode('/', $_REQUEST['fecha_exp']);
         $fecha_venc = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
         $fecha_venc = strtotime($fecha_venc);
         $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
 
-        $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, 1, $fecha_venc, $salario, $plan, $confidencial];
+        $params = [1, $id_empresa, $titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, 1, $fecha_venc, $salario, $salario_usuario, $plan, $confidencial];
 
         DB::beginTransaction();
 
