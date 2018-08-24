@@ -35,21 +35,22 @@ GROUP BY id_publicacion";
     public function postular(Request $request)
     {
 
-        $this->validate($request,[
-            "salario" => "required|numeric"
-        ],
-        [
-            "salario.required" => "Debes colocar salario pretendido a la oferta.",
-            "salario.numeric" => "Salario no valido."
-        ]);
-
         if (isset($request->actualizar_salario) && $request->actualizar_salario == 1) { // actualizar salario pretendido de su preferencia
+
+            $this->validate($request,[
+                "salario" => "required|numeric"
+            ],
+            [
+                "salario.required" => "Debes colocar salario pretendido a la oferta.",
+                "salario.numeric" => "Salario no valido."
+            ]);
+
             DB::table('tbl_candidato_preferencias_laborales')
             ->where('id_usuario', session()->get('cand_id'))
             ->update(['id_remuneracion_pre' => $request->salario]);
         }
 
-        $salario_usuario = isset($request->salario) ? $request->salario : null;
+        $salario_usuario = isset($request->salario) ? $request->salario : 'null';
 
         $bandera = 0;
         $sql     = "

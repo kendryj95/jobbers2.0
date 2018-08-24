@@ -570,6 +570,7 @@ class con_empresa extends Controller
         $provincia    = $_REQUEST["provincia"];
         $localidad    = $_REQUEST["localidad"];
         $salario      = $_REQUEST["salario"];
+        $salario_usuario = $_REQUEST["salario_usuario"];
         $direccion    = $_REQUEST["direccion"];
         $plan         = $_REQUEST["plan"];
         $disp         = $_REQUEST["disp"];
@@ -586,9 +587,9 @@ class con_empresa extends Controller
         $fecha_venc = strtotime($fecha_venc);
         $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
 
-        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, fecha_venc=?, id_salario=?, id_plan_estado=?, confidencial=?, estatus=1 WHERE id=? AND id_empresa=?";
+        $sql = "UPDATE tbl_publicacion SET titulo=?, id_sector=?, id_area=?, id_disponibilidad=?, id_provincia=?, id_localidad=?, discapacidad=?, descripcion=?, direccion=?, video_youtube=?, fecha_venc=?, id_salario=?, salario_usuario=?, id_plan_estado=?, confidencial=?, estatus=1 WHERE id=? AND id_empresa=?";
 
-        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $fecha_venc, $salario, $plan, $confidencial, $id_post, $id_empresa];
+        $params = [$titulo, $sector, $area, $disp, $provincia, $localidad, $discapacidad, $descripcion, $direccion, $video, $fecha_venc, $salario, $salario_usuario, $plan, $confidencial, $id_post, $id_empresa];
 
         DB::beginTransaction();
 
@@ -856,10 +857,10 @@ class con_empresa extends Controller
 
                     $fecha_venc = '';
                     if (session()->get('emp_plan')[0]->id_plan == 1) {
-                        $fecha_venc = strtotime('+15 day', strtotime(date('Y-m-d')));
+                        $fecha_venc = strtotime('+15 day', strtotime(date('Y-m-d H:i:s')));
                         $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
                     } else {
-                        $fecha_venc = strtotime('+35 day', strtotime(date('Y-m-d')));
+                        $fecha_venc = strtotime('+35 day', strtotime(date('Y-m-d H:i:s')));
                         $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
                     }
     				
