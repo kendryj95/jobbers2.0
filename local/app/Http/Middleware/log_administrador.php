@@ -18,7 +18,7 @@ class log_administrador
 
          if ($request->session()->get('admin')==null)
         {
-            return redirect('administrator');            
+            return redirect('administrador');            
         } else 
          
          return $next($request); 

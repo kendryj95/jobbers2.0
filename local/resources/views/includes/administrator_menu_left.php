@@ -38,7 +38,7 @@
 				 					<li>
 				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Configuración</a> 
 				 					</li>  
-				 					<li><a href=" <?php echo $back;?>#" title=""><i class="la la-arrow-left"></i>Salir</a></li>
+				 					<li><a href="<?= url('admsalir') ?>" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 				 				</ul>
 				 			</div>
 				 		</div>

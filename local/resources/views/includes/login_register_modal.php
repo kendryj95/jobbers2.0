@@ -2,7 +2,7 @@
 	<div class="account-popup">
 		<span class="close-popup"><i class="la la-close"></i></span>
 		<h3>Jobbers Argentina</h3>
-		<form action="<?php echo $back;?>loguear" method="POST">
+		<form action="<?= url('loguear') ?>" method="POST">
 			<div class="cfield">
 				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 				<input type="text" placeholder="Correo" name="correo" />
@@ -22,9 +22,9 @@
 		<div class="extra-login">
 			<span>Entrar con</span>
 		 	<div class="login-social">
-					<a class="fb-login" href="<?php echo $back;?>redes/facebook" title=""><i class="fa fa-facebook"></i></a>
-					<a class="tw-login" href="<?php echo $back;?>redes/linkedin" title=""><i class="fa fa-linkedin"></i></a>
-					<a class="go-login" href="<?php echo $back;?>redes/google" title=""><i class="fa fa-google"></i></a>
+					<a class="fb-login" href="<?php echo url('redes/facebook') ?>" title=""><i class="fa fa-facebook"></i></a>
+					<a class="tw-login" href="<?php echo url('redes/linkedin') ?>" title=""><i class="fa fa-linkedin"></i></a>
+					<a class="go-login" href="<?php echo url('redes/google') ?>" title=""><i class="fa fa-google"></i></a>
 			</div>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 				<span onClick="set_tipo(2)">Candidato</span>
 				<span onClick="set_tipo(1)">Empresa</span>
 			</div>
-			<form action="<?php echo $back;?>register" method="POST" id="form_register">
+			<form action="<?= url('register') ?>" method="POST" id="form_register">
 				<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 				<input id="tipo" name="tipo" type="hidden" value="">
 				<div class="cfield">
@@ -65,9 +65,9 @@
 			<div class="extra-login">
 				<span>Entrar con</span>
 			<div class="login-social">
-					<a class="fb-login" href="<?php echo $back;?>redes/facebook" title=""><i class="fa fa-facebook"></i></a>
-					<a class="tw-login" href="<?php echo $back;?>redes/linkedin" title=""><i class="fa fa-linkedin"></i></a>
-					<a class="go-login" href="<?php echo $back;?>redes/google" title=""><i class="fa fa-google"></i></a>
+					<a class="fb-login" href="<?= url('redes/facebook') ?>" title=""><i class="fa fa-facebook"></i></a>
+					<a class="tw-login" href="<?= url('redes/linkedin') ?>" title=""><i class="fa fa-linkedin"></i></a>
+					<a class="go-login" href="<?= url('redes/google') ?>" title=""><i class="fa fa-google"></i></a>
 			</div>
 			</div>
 		</div>

@@ -161,72 +161,81 @@ Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 Route::get('empresa/plantillas', 'con_empresa@plantillas');
 });
 
-Route::get('administrator', 'con_administrator_login@index');
-
-Route::get('administracion/noticias', 'con_administrator_noticias@index');
-Route::get('administracion/noticias/eliminar/{id}', 'con_administrator_noticias@eliminar_noticia');
-Route::get('administracion/noticias/publicar', 'con_administrator_noticias@publicar');
-Route::get('administracion/noticias/categorias', 'con_administrator_noticias@categorias');
-Route::get('administracion/noticias/{id}', 'con_administrator_noticias@editar')->where(['id' => '[0-9]+']);;
-Route::get('administracion/noticias/bloquear/{id}', 'con_administrator_noticias@noticias_bloquear')->where(['id' => '[0-9]+']);
-Route::get('administracion/noticias/desbloquear/{id}', 'con_administrator_noticias@noticias_desbloquear')->where(['id' => '[0-9]+']);
-
-Route::get('administracion/panel', 'con_administrator_dashboard@index');
-Route::get('administracion/configuracion', 'con_administrator_configuracion@index');
-Route::get('administracion/redactores', 'con_administrator_noticias@redactores');
-Route::get('administracion/redactores/{id}', 'con_administrator_noticias@redactores_editar')->where(['id' => '[0-9]+']);
-Route::get('administracion/redactores/bloquear/{id}', 'con_administrator_noticias@redactores_bloquear')->where(['id' => '[0-9]+']);
-Route::get('administracion/redactores/desbloquear/{id}', 'con_administrator_noticias@redactores_desbloquear')->where(['id' => '[0-9]+']);
-Route::get('administracion/redactores/nuevo', 'con_administrator_noticias@redactores_nuevo');
-
-Route::get('administracion/soportistas', 'con_administrator_soportistas@soportistas');
-Route::get('administracion/soportistas/{id}', 'con_administrator_soportistas@soportistas_editar')->where(['id' => '[0-9]+']);
-Route::get('administracion/soportistas/bloquear/{id}', 'con_administrator_soportistas@soportistas_bloquear')->where(['id' => '[0-9]+']);
-Route::get('administracion/soportistas/desbloquear/{id}', 'con_administrator_soportistas@soportistas_desbloquear')->where(['id' => '[0-9]+']);
-Route::get('administracion/soportistas/nuevo', 'con_administrator_soportistas@soportistas_nuevo');
-
-Route::get('administracion/contacto', 'con_administrator_contacto@index');
-Route::get('administracion/contacto/{id}', 'con_administrator_contacto@ver')->where(['id' => '[0-9]+']);
-Route::get('administracion/candidatos', 'con_administrator_candidatos@index');
-Route::get('administracion/candidatos/nuevo', 'con_administrator_candidatos@nuevo');
-Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
-Route::get('administracion/candidatos/resumen/{id}', 'con_administrator_candidatos@resumen')->where(['id' => '[0-9]+']);
-Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
-Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_candidatos@postulaciones')->where(['id' => '[0-9]+']);
-Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
-
-#################### ADM DE EMPRESAS ################################
-
-Route::get('administracion/empresas', 'con_administrator_empresas@index');
-Route::get('administracion/empresas/create', 'con_administrator_empresas@create');
-Route::post('administracion/empresas/store', 'con_administrator_empresas@register');
-Route::post('administracion/empresas/editstore', 'con_administrator_empresas@editStore');
-Route::get('administracion/empresas/suspender-habilitar/{accion}/{id}', 'con_administrator_empresas@suspender_habilitar')->where(['accion' => '[0-1]', 'id' => '[0-9]+']);
-Route::get('administracion/empresas/edit/{id}', 'con_administrator_empresas@edit')->where(['id' => '[0-9]+']);
-Route::get('administracion/empresas/delete/{id}', 'con_administrator_empresas@delete')->where(['id' => '[0-9]+']);
-Route::get('administracion/empresas/plantillas', 'con_administrator_empresas@plantillas');
-Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
-Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
-Route::get('administracion/empresas/ofertas-renovar', 'con_administrator_empresas@ofertasForRenew');
-Route::get('administracion/empresas/renewOferta/{id_pub}/{id_empresa}', 'con_administrator_empresas@renewOferta')->where(['id_pub' => '[0-9]+', 'id_empresa' => '[0-9]+']);
-
-
-#########################################################################
-
-
-
-Route::post('administracion/buscarnoticia', 'con_administrator_noticias@index');
-Route::post('administracion/actualizarconfiguracion', 'con_administrator_configuracion@actualizar');
-Route::post('administracion/actualizarredactor', 'con_administrator_noticias@actualizar_redactores');
-Route::post('administracion/nuevoredactor', 'con_administrator_noticias@nuevo_redactor');
-Route::post('administracion/nuevosoportista', 'con_administrator_soportistas@nuevo_soportista');
-Route::post('administracion/actualizarsoportista', 'con_administrator_soportistas@actualizar_soportista');
-Route::post('administracion/actualizarnoticias', 'con_administrator_noticias@actualizar_noticia');
-Route::post('administracion/publicarnoticias', 'con_administrator_noticias@nueva_noticia');
 //********************************************************//
 //*       RUTAS PARA EL ADMINISYTRADOR DE SISTEMA        *//
 //********************************************************//
+
+Route::get('administrador', 'con_administrator_login@index');
 Route::post('admlog', 'con_administrator_login@login');
+
+Route::group(['middleware' => 'log_a'], function () {
+
+	Route::get('admsalir', 'con_administrator_login@salir');
+
+	Route::get('administracion/noticias', 'con_administrator_noticias@index');
+	Route::get('administracion/noticias/eliminar/{id}', 'con_administrator_noticias@eliminar_noticia');
+	Route::get('administracion/noticias/publicar', 'con_administrator_noticias@publicar');
+	Route::get('administracion/noticias/categorias', 'con_administrator_noticias@categorias');
+	Route::get('administracion/noticias/{id}', 'con_administrator_noticias@editar')->where(['id' => '[0-9]+']);;
+	Route::get('administracion/noticias/bloquear/{id}', 'con_administrator_noticias@noticias_bloquear')->where(['id' => '[0-9]+']);
+	Route::get('administracion/noticias/desbloquear/{id}', 'con_administrator_noticias@noticias_desbloquear')->where(['id' => '[0-9]+']);
+
+	Route::get('administracion/panel', 'con_administrator_dashboard@index');
+	Route::get('administracion/configuracion', 'con_administrator_configuracion@index');
+	Route::get('administracion/redactores', 'con_administrator_noticias@redactores');
+	Route::get('administracion/redactores/{id}', 'con_administrator_noticias@redactores_editar')->where(['id' => '[0-9]+']);
+	Route::get('administracion/redactores/bloquear/{id}', 'con_administrator_noticias@redactores_bloquear')->where(['id' => '[0-9]+']);
+	Route::get('administracion/redactores/desbloquear/{id}', 'con_administrator_noticias@redactores_desbloquear')->where(['id' => '[0-9]+']);
+	Route::get('administracion/redactores/nuevo', 'con_administrator_noticias@redactores_nuevo');
+
+	Route::get('administracion/soportistas', 'con_administrator_soportistas@soportistas');
+	Route::get('administracion/soportistas/{id}', 'con_administrator_soportistas@soportistas_editar')->where(['id' => '[0-9]+']);
+	Route::get('administracion/soportistas/bloquear/{id}', 'con_administrator_soportistas@soportistas_bloquear')->where(['id' => '[0-9]+']);
+	Route::get('administracion/soportistas/desbloquear/{id}', 'con_administrator_soportistas@soportistas_desbloquear')->where(['id' => '[0-9]+']);
+	Route::get('administracion/soportistas/nuevo', 'con_administrator_soportistas@soportistas_nuevo');
+
+	Route::get('administracion/contacto', 'con_administrator_contacto@index');
+	Route::get('administracion/contacto/{id}', 'con_administrator_contacto@ver')->where(['id' => '[0-9]+']);
+	Route::get('administracion/candidatos', 'con_administrator_candidatos@index');
+	Route::get('administracion/candidatos/nuevo', 'con_administrator_candidatos@nuevo');
+	Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
+	Route::get('administracion/candidatos/resumen/{id}', 'con_administrator_candidatos@resumen')->where(['id' => '[0-9]+']);
+	Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@editar')->where(['id' => '[0-9]+']);
+	Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_candidatos@postulaciones')->where(['id' => '[0-9]+']);
+	Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
+
+	#################### ADM DE EMPRESAS ################################
+
+	Route::get('administracion/empresas', 'con_administrator_empresas@index');
+	Route::get('administracion/empresas/create', 'con_administrator_empresas@create');
+	Route::post('administracion/empresas/store', 'con_administrator_empresas@register');
+	Route::post('administracion/empresas/editstore', 'con_administrator_empresas@editStore');
+	Route::get('administracion/empresas/suspender-habilitar/{accion}/{id}', 'con_administrator_empresas@suspender_habilitar')->where(['accion' => '[0-1]', 'id' => '[0-9]+']);
+	Route::get('administracion/empresas/edit/{id}', 'con_administrator_empresas@edit')->where(['id' => '[0-9]+']);
+	Route::get('administracion/empresas/delete/{id}', 'con_administrator_empresas@delete')->where(['id' => '[0-9]+']);
+	Route::get('administracion/empresas/plantillas', 'con_administrator_empresas@plantillas');
+	Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
+	Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
+	Route::get('administracion/empresas/ofertas-renovar', 'con_administrator_empresas@ofertasForRenew');
+	Route::get('administracion/empresas/renewOferta/{id_pub}/{id_empresa}', 'con_administrator_empresas@renewOferta')->where(['id_pub' => '[0-9]+', 'id_empresa' => '[0-9]+']);
+
+
+	#########################################################################
+
+
+
+	Route::post('administracion/buscarnoticia', 'con_administrator_noticias@index');
+	Route::post('administracion/actualizarconfiguracion', 'con_administrator_configuracion@actualizar');
+	Route::post('administracion/actualizarredactor', 'con_administrator_noticias@actualizar_redactores');
+	Route::post('administracion/nuevoredactor', 'con_administrator_noticias@nuevo_redactor');
+	Route::post('administracion/nuevosoportista', 'con_administrator_soportistas@nuevo_soportista');
+	Route::post('administracion/actualizarsoportista', 'con_administrator_soportistas@actualizar_soportista');
+	Route::post('administracion/actualizarnoticias', 'con_administrator_noticias@actualizar_noticia');
+	Route::post('administracion/publicarnoticias', 'con_administrator_noticias@nueva_noticia');
+
+});
+
+
 /*Route::get('administrator', 'con_administrator_login@index');
 Route::group(['middleware' => 'log_a'], function () {
 Route::get('admindashboard', 'con_administrator_dashboard@dashboard');
