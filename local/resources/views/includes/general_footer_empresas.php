@@ -1,5 +1,5 @@
 <footer>
-	<div class="block">
+	<div class="block" style="position: initial">
 		<div class="container">
 			<div class="row align-responsive">
 				<div class="col-lg-3 column">
