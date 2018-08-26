@@ -32,7 +32,7 @@ $mi_tokken=csrf_token();
     });
   </script>
   <style>
-    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;}
+    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;} .forsticky .post-job-btn{background-color: #fff; color: #2e3192}
   </style>
   <?php include("local/resources/views/includes/chat_soporte.php");?>
 </head>
@@ -54,7 +54,7 @@ $mi_tokken=csrf_token();
               <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Antiguedad
                 </h3>
                 <div class="type_widget" style="">
@@ -84,7 +84,7 @@ $mi_tokken=csrf_token();
                   <br>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Provincia
                 </h3>
                 <div class="type_widget" style="">
@@ -105,7 +105,7 @@ $mi_tokken=csrf_token();
                   <?php endforeach ?>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Localidad
                 </h3>
                 <div class="type_widget" style="">
@@ -126,7 +126,7 @@ $mi_tokken=csrf_token();
                   <?php endforeach ?>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Disponibilidad
                 </h3>
                 <div class="type_widget" style="">
@@ -142,7 +142,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Área
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -167,7 +167,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Sector
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -192,7 +192,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Oferta salarial
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -217,7 +217,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Experiencia
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -238,7 +238,7 @@ $mi_tokken=csrf_token();
                   </div>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Género
                 </h3>
                 <div class="specialism_widget" style="display: block;">
