@@ -13276,6 +13276,34 @@ header.style4 .account-btns>li a,
 }
 
 
+/* Detalle oferta */
+
+.postular {
+    background-color: #ffffff;
+    color: #2e3192;
+    text-decoration: none;
+    font-size: 17px;
+    float: left;
+    width: 100%;
+    font-family: Open Sans;
+    text-align: center;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    border: 2px solid #2e3192;
+    padding: 11px 0;
+    margin-top: 10px;
+}
+
+.postular:hover {
+    background: #2e3192;
+    border-color: #2e3192;
+    color: #FFF;
+}
+
+
 /* Mi maletin - Administrador */
 
 .modal_usar_como:hover {

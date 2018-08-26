@@ -162,7 +162,7 @@
 																			<?= csrf_field() ?>
 																			<input type="hidden" name="id_pub" value="<?= $datos[0]->id  ?>">
 																			<div class="emply-btns">
-																				<button type="submit" class="follows">Postularme</button>
+																				<button type="submit" class="follows postular">Postularme</button>
 																			</div>
 																		</form>
 																	<?php else: ?>
