@@ -51,7 +51,7 @@
         margin-top: 20px;
     }
     header {
-        display: none;
+        display: none !important;
     }
     .responsive-header {
         display: block;
@@ -492,6 +492,20 @@
 }
 
 @media (max-width:768px) {
+    .section-offers {
+        margin-top: 90px;
+    }
+    .job-list-modern .job-listing.wtabs {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+    .desk {
+        display: none;
+    }
+    .mobile {
+        display: block;
+        text-align: center;
+    }
     #showFilters {
         position: fixed;
         bottom: 20px;
@@ -1032,6 +1046,9 @@
 }
 
 @media (max-width:520px) {
+    .logo-recommend {
+        margin-top: 20px;
+    }
     .container-img-oferta {
         display: none;
     }
@@ -1052,11 +1069,18 @@
     .job-listing.wtabs .container-desc-curso {
         width: 100%;
     }
+    .job-list-modern .job-listing.wtabs {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
     .desk {
         display: none;
     }
     .mobile {
         display: block;
+    }
+    .mobile-inline {
+        display: inline-block;
     }
     .d-mobile {
         display: block;
@@ -1156,10 +1180,6 @@
     }
     .job-listing.wtabs {
         text-align: center;
-    }
-    .job-list-modern .job-listing.wtabs {
-        padding-right: 15px;
-        padding-left: 15px;
     }
     .job-listing.wtabs .c-logo {
         float: none;

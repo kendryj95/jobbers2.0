@@ -21,8 +21,7 @@ $mi_tokken=csrf_token();
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({
@@ -30,37 +29,58 @@ $mi_tokken=csrf_token();
       enable_page_level_ads: true
     });
   </script>
+  <style>
+    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;}
+  </style>
   <?php include("local/resources/views/includes/chat_soporte.php");?>
 </head>
 
 <body>
   <?php include('local/resources/views/includes/general_header.php');?>
   <?php include('local/resources/views/includes/general_header_responsive.php');?>
-  <section class="overlape mt-responsive">
-    <div class="block no-padding">
-      <div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_publiacaciones.jpg) repeat scroll 10% 422.28px transparent;"
-        class="parallax scrolly-invisible no-parallax">
-      </div>
-      <!-- PARALLAX BACKGROUND IMAGE -->
-      <div class="container fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="inner-header">
-              <h3 style="font-size: 36px;">Ofertas de trabajo
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
+  <section class="section-offers">
     <div class="block no-padding back-offers">
       <div class="container">
         <div class="row no-gape">
           <div class="btn-showfilter">
             <button class="btn btn-primary" id="showFilters">Mostrar filtros <i class="fa fa-filter"></i></button>
           </div>
+
+          <!-- Carousel de publicidad -->
+          <div id="carousel-example-generic" class="carousel slide col-md-12" data-ride="carousel" style="margin-top: 50px;">
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+              <div class="item active">
+                <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
+                <div class="carousel-caption">
+                  <h3>Jobbers Argentina</h3>
+                  <p>Publicidad</p>
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
+                <div class="carousel-caption">
+                  <h3>Jobbers Argentina</h3>
+                  <p>Publicidad</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+
           <aside class="col-lg-3 column border-right" id="side-offers">
             <form action="ofertas" method="POST" id="form_filter">
               <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
@@ -337,7 +357,7 @@ $mi_tokken=csrf_token();
                               <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
                               <?php endif; ?>
                               <?php if ($pub->twitter): ?>
-                              <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
+                              <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a><a href="#" class="jump mobile-inline"><br></a>
                               <?php endif; ?>
                         </p>
                         <?php endif; ?>
@@ -396,8 +416,7 @@ $mi_tokken=csrf_token();
                         <?php endif; ?>
                       </div>
                     </div>
-                    <div class="job-style-bx container-img-oferta">
-                  
+                    <div class="job-style-bx container-img-oferta desk">
                       <img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
                     </div>
                   </div></a>
@@ -460,12 +479,9 @@ $mi_tokken=csrf_token();
                         <?php endif; ?>
                       </div>
                     </div>
-                    <div class="job-style-bx container-img-oferta">
-                  
-                      <div class="desk">
-                        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-                        <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
-                      </div>
+                    <div class="job-style-bx container-img-oferta desk">
+                      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+                      <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                     </div>
                   </div></a>
                   <?php endif; ?>
@@ -563,6 +579,9 @@ $mi_tokken=csrf_token();
   </div>
   <?php include("local/resources/views/includes/login_register_modal.php");?>
   <script src="local/resources/views/js/jquery.min.js" type="text/javascript">
+  </script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
   </script>
   <script src="local/resources/views/js/modernizr.js" type="text/javascript">
   </script>

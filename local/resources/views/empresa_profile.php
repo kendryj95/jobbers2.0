@@ -9,7 +9,7 @@
 		<meta name="author" content="CreativeLayers">
 		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 		<!-- Styles -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">

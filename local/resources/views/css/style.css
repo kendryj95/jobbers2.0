@@ -2037,7 +2037,7 @@ label::after {
 }
 
 .job-listing:hover {
-    border-left-color: #8b91dd;
+    /* border-left-color: #8b91dd; */
     -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
     -ms-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
@@ -2348,6 +2348,9 @@ footer {
 .widget {
     float: left;
     width: 100%;
+    background-color: #fff;
+    border: 1px solid #cccbcb;
+    padding: 10px;
 }
 
 .about_widget {
@@ -5017,14 +5020,15 @@ footer.style3 a {
     height: 100%;
     content: "";
     z-index: -1;
-    background: rgb(139, 145, 221);
+    background-color: #dad6d6;
+    /* background: rgb(139, 145, 221);
     background: -moz-linear-gradient(45deg, rgba(139, 145, 221, 1) 0%, rgba(16, 25, 93, 1) 71%, rgba(16, 25, 93, 1) 100%);
     background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(139, 145, 221, 1)), color-stop(71%, rgba(16, 25, 93, 1)), color-stop(100%, rgba(16, 25, 93, 1)));
     background: -webkit-linear-gradient(45deg, rgba(139, 145, 221, 1) 0%, rgba(16, 25, 93, 1) 71%, rgba(16, 25, 93, 1) 100%);
     background: -o-linear-gradient(45deg, rgba(139, 145, 221, 1) 0%, rgba(16, 25, 93, 1) 71%, rgba(16, 25, 93, 1) 100%);
     background: -ms-linear-gradient(45deg, rgba(139, 145, 221, 1) 0%, rgba(16, 25, 93, 1) 71%, rgba(16, 25, 93, 1) 100%);
     background: linear-gradient(45deg, rgba(139, 145, 221, 1) 0%, rgba(16, 25, 93, 1) 71%, rgba(16, 25, 93, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#8b91dd', endColorstr='#10195d', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#8b91dd', endColorstr='#10195d', GradientType=1); */
     opacity: 0.4;
 }
 
@@ -5327,6 +5331,7 @@ aside .widget:first-child {
 }
 
 .sb-title::before {
+    display: none;
     position: absolute;
     right: 0;
     top: 11px;
@@ -5508,7 +5513,6 @@ aside .subscribe_widget form button {
 .modrn-joblist {
     float: left;
     width: 100%;
-    padding-left: 30px;
     border-bottom: 1px solid #edeff7;
 }
 
@@ -6654,7 +6658,7 @@ aside .widget.border:first-child {
 }
 
 .job-wide-devider .job-overview ul {
-    padding: 20px 0;
+    padding: 20px;
 }
 
 .job-wide-devider .job-overview>ul>li {
@@ -7202,8 +7206,10 @@ aside .widget.border:first-child {
 
 .emply-btns>a.followus {
     background-color: #ffffff;
-    border-color: #8b91dd;
-    color: #8b91dd;
+    border-color: #2e3192;
+    color: #2e3192;
+    text-decoration: none;
+    font-size: 17px;
 }
 
 .job-head-wide .share-bar a {
@@ -12035,8 +12041,8 @@ header.style5 .post-job-btn:hover {
 }
 
 .emply-btns>a:hover {
-    background: #8b91dd;
-    border-color: #8b91dd;
+    background: #2e3192;
+    border-color: #2e3192;
     color: #FFF;
 }
 
@@ -12294,8 +12300,8 @@ footer.ft .scrollup {
 }
 
 .forsticky.sticky .menu-sec {
-    margin-top: 23px;
-    margin-bottom: 17px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .forsticky.sticky .post-job-btn:hover {
@@ -13026,8 +13032,16 @@ header.style4 .account-btns>li a,
     height: auto;
 }
 
+.jump {
+    display: none;
+}
+
 
 /* Ofertas */
+
+.section-offers {
+    margin-top: 70px;
+}
 
 .back-offers {
     background-color: #eeeeee;
@@ -13138,6 +13152,12 @@ header.style4 .account-btns>li a,
     bottom: 35%;
 }
 
+.container-img-oferta-i {
+    text-align: center;
+    width: 20%;
+    bottom: 7%;
+}
+
 .job-listing.wtabs .container-desc-oferta {
     width: 80%
 }
@@ -13191,10 +13211,23 @@ header.style4 .account-btns>li a,
     border-radius: 50%;
     width: 22px;
     margin-right: 8px;
+    margin-left: 4px;
 }
 
 .container-fb>i {
     margin-left: 6px;
+}
+
+.container-ig {
+    color: #fff !important;
+    background-color: #8a3ab9;
+    border-radius: 50%;
+    width: 22px;
+    margin-right: 8px;
+}
+
+.container-ig>i {
+    margin-left: 4px;
 }
 
 .container-in {
@@ -13214,10 +13247,22 @@ header.style4 .account-btns>li a,
     background-color: #0084b4;
     border-radius: 50%;
     width: 22px;
+    margin-right: 8px;
 }
 
 .container-tw>i {
     margin-left: 3px;
+}
+
+.container-web {
+    color: #fff !important;
+    background-color: #4b4b4b;
+    border-radius: 50%;
+    width: 22px;
+}
+
+.container-web>i {
+    margin-left: 4px;
 }
 
 .exclamation-icon {
@@ -13228,6 +13273,34 @@ header.style4 .account-btns>li a,
 .back-ofertas {
     background: url('local/resources/views/images/back-ofertas.jpg');
     background-size: cover;
+}
+
+
+/* Detalle oferta */
+
+.postular {
+    background-color: #ffffff;
+    color: #2e3192;
+    text-decoration: none;
+    font-size: 17px;
+    float: left;
+    width: 100%;
+    font-family: Open Sans;
+    text-align: center;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    border: 2px solid #2e3192;
+    padding: 11px 0;
+    margin-top: 10px;
+}
+
+.postular:hover {
+    background: #2e3192;
+    border-color: #2e3192;
+    color: #FFF;
 }
 
 
