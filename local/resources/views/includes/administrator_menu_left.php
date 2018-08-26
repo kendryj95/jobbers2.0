@@ -12,6 +12,9 @@
 				 						<a href="<?= url('administracion/empresas/plantillas') ?>" title=""><i class="la la-book"></i>Empresas - Plantillas ofertas</a> 
 				 					</li>
 				 					<li>
+				 						<a href="<?= url('administracion/empresas/ofertas-renovar') ?>" title="Renovar ofertas"><i class="la la-folder"></i>Empresas - Ren. ofertas...</a> 
+				 					</li>
+				 					<li>
 				 						<a href="<?= url('administracion/candidatos') ?>" title=""><i class="la la-users"></i>Candidatos</a> 
 				 					</li>
 				 					<li>
@@ -35,7 +38,7 @@
 				 					<li>
 				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Configuración</a> 
 				 					</li>  
-				 					<li><a href=" <?php echo $back;?>#" title=""><i class="la la-arrow-left"></i>Salir</a></li>
+				 					<li><a href="<?= url('admsalir') ?>" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 				 				</ul>
 				 			</div>
 				 		</div>
