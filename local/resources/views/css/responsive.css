@@ -1046,6 +1046,9 @@
 }
 
 @media (max-width:520px) {
+    .logo-recommend {
+        margin-top: 20px;
+    }
     .container-img-oferta {
         display: none;
     }
@@ -1075,6 +1078,9 @@
     }
     .mobile {
         display: block;
+    }
+    .mobile-inline {
+        display: inline-block;
     }
     .d-mobile {
         display: block;

@@ -357,7 +357,7 @@ $mi_tokken=csrf_token();
                               <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
                               <?php endif; ?>
                               <?php if ($pub->twitter): ?>
-                              <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
+                              <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a><a href="#" class="jump mobile-inline"><br></a>
                               <?php endif; ?>
                         </p>
                         <?php endif; ?>
@@ -416,8 +416,7 @@ $mi_tokken=csrf_token();
                         <?php endif; ?>
                       </div>
                     </div>
-                    <div class="job-style-bx container-img-oferta">
-                  
+                    <div class="job-style-bx container-img-oferta desk">
                       <img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
                     </div>
                   </div></a>
@@ -480,12 +479,9 @@ $mi_tokken=csrf_token();
                         <?php endif; ?>
                       </div>
                     </div>
-                    <div class="job-style-bx container-img-oferta">
-                  
-                      <div class="desk">
-                        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-                        <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
-                      </div>
+                    <div class="job-style-bx container-img-oferta desk">
+                      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+                      <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                     </div>
                   </div></a>
                   <?php endif; ?>
