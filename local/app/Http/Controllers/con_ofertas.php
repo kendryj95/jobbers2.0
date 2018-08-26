@@ -244,7 +244,7 @@ class con_ofertas extends Controller
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
             WHERE t1.estatus = 1 ".$condiciones."
-            GROUP BY t1.id ORDER BY t1.id DESC LIMIT $limit,$tamPag";
+            GROUP BY t1.id ORDER BY t1.tmp DESC LIMIT $limit,$tamPag";
 
             return $peticion . " " . $consulta_general;
     }
@@ -271,6 +271,7 @@ class con_ofertas extends Controller
         t1.video_youtube AS video,
         t1.confidencial,
         IF(t1.id_salario <> 1, CONCAT(t10.salario,'$'), t10.salario) AS salario,
+        t1.salario_usuario,
         t9.nombre,
         t7.nombre as sector,
         t8.nombre as area,
@@ -293,7 +294,9 @@ class con_ofertas extends Controller
 
         try {
             $datos                = DB::select($sql);
+            $salarios = DB::select("SELECT id, IF(id <> 1,CONCAT('$',salario),salario) AS salario FROM tbl_rango_salarios");
             $vista->datos         = $datos;
+            $vista->salarios         = $salarios;
             $sql_cantidad_ofertas = "
                 SELECT count(*) as cantidad
                 FROM tbl_publicacion

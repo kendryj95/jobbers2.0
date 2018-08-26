@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" /> 
 		
 	</head>
-	<body style="background-image: url('local/resources/views/images/mapa.jpg');background-repeat: no-repeat;background-position: center;">
+	<body style="background-image: url('local/resources/views/images/administrador.jpg');background-repeat: no-repeat;background-position: center;background-size: cover;height: 100vh">
 		<div class="theme-layout" id="scrollup">
 			
 			<section>
@@ -30,14 +30,14 @@
 											<img src="local/resources/views/images/logo_d.png" style="width: 200px;">
 										</div>
 										<span>Administración del sistema</span>
-										<form style="padding: 10px;" action="admlog" method="post">
+										<form style="padding: 10px;" action="<?= url('admlog') ?>" method="post">
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 											<div class="cfield">
-												<input name="correo" type="text" placeholder="Correo electrónico" />
+												<input name="usuario" type="text" placeholder="Usuario" />
 												<i class="la la-user"></i>
 											</div>
 											<div class="cfield">
-												<input name="clave" type="password" placeholder="********" />
+												<input name="pass" type="password" placeholder="********" />
 												<i class="la la-key"></i>
 											</div>
 											<button type="submit">Entrar</button>
@@ -53,7 +53,24 @@
 			</div>
 			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
 			<script src="local/resources/views/js/script.js" type="text/javascript"></script> 
-			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>  
+			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
+			<script src="local/resources/views/plugins/notify.js" type="text/javascript"></script>
+			<script>
+				
+				<?php if (count($errors)>0): ?>
+
+					<?php foreach ($errors->all() as $error): ?>
+
+						$.notify("<?= $error ?>", {
+						className:"error",
+						globalPosition: "bottom right"
+						});
+
+					<?php endforeach; ?>
+
+				<?php endif; ?>
+
+			</script>  
 			 
 			
 		 

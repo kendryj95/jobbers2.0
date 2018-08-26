@@ -142,7 +142,7 @@
 														<input type="text" placeholder="Dirección de la oferta laboral" name="direccion" id="direccion" />
 													</div>
 												</div>
-												<div class="col-lg-4">
+												<div class="col-lg-3">
 													<span class="pf-title">Salario por ofrecer <b>*</b></span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el tipo de salario" class="chosen" id="salario" name="salario">
@@ -153,7 +153,17 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-4">
+												<div class="col-lg-3">
+													<span class="pf-title">Salario por usuario <b>*</b></span>
+													<div class="pf-field">
+														<select data-placeholder="Por favor selecciona el tipo de salario" class="chosen" id="salario_usuario" name="salario_usuario">
+															<option value="0">Seleccionar</option>
+															<option value="SI">SÍ</option>
+															<option value="NO">NO</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-3">
 													<span class="pf-title">Planes de estado</span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el plan del estado" class="chosen" id="plan" name="plan">
@@ -164,7 +174,7 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-lg-4">
+												<div class="col-lg-3">
 													<span class="pf-title">Disponibilidad <b>*</b></span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor la disponibilidad" class="chosen" id="disp" name="disp">
@@ -275,13 +285,14 @@
 							var provincia = $('#provincia').val();
 							var localidad = $('#localidad').val();
 							var salario = $('#salario').val();
+							var salario_usuario = $('#salario_usuario').val();
 							var plan = $('#plan').val();
 							var disp = $('#disp').val();
 							var discapacidad = $('#discapacidad').val();
 							var confidencial = $('#confidencial').val();
 							var fecha_exp = $('#fecha_exp').val();
 
-							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
+							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && salario_usuario != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
 								var datos = $('#form_oferta').serialize();
 								
 								$.ajaxSetup({

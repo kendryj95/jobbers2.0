@@ -16,28 +16,25 @@ class con_administrator_login extends Controller
 
     public function login(Request $request)
     {
-        $sql = "SELECT count(*) as cantidad,correo,id,nombre FROM tbl_administrador WHERE correo=? and clave=? AND tipo_usuario=3";
-        try {
-            $datos = DB::select($sql, [strtolower($_POST['correo']), $_POST['clave']]);
-            if ($datos[0]->cantidad) {
-                $this->limpiarVariablesSession($request);
-                $request->session()->set('admin', $datos[0]->correo);
-                $request->session()->set('adm_nombre', $datos[0]->nombre);
-                $request->session()->set('adm_id', $datos[0]->id);
-                $request->session()->set('tipo_usuario', 3);
-                return Redirect("admindashboard");
-            } else {
-                return Redirect("administrator?error=1");
-            }
-        } catch (Exception $e) {
+        
+        $log = DB::table('tbl_administrador')
+                ->where('usuario', $request->usuario)
+                ->where('clave', md5($request->pass))
+                ->first();
 
+        if ($log) {
+            $request->session()->set('admin', $log->usuario);
+            return redirect('administracion/panel');
         }
+
+        return redirect()->back()->withErrors(['Usuario o contraseña incorrectos.']);
 
     }
     public function salir(Request $request)
     {
         $request->session()->forget('admin');
-        return redirect('administrator');
+        $request->session()->flush();
+        return redirect('administrador');
     }
 
     public function limpiarVariablesSession(Request $request)

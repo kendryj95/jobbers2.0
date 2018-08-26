@@ -18,7 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		
-		<link href="../local/resources/views/plugins/btn_social/assets/css/bootstrap.css" rel="stylesheet">
+		<!-- <link href="../local/resources/views/plugins/btn_social/assets/css/bootstrap.css" rel="stylesheet"> -->
     	<link href="../local/resources/views/plugins/btn_social/assets/css/font-awesome.css" rel="stylesheet">
      
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/plugins/btn_social/bootstrap-social.css" />
@@ -155,10 +155,23 @@
 																</div>
 
 																<?php if (!$postulado): ?>
-															
-																<div class="emply-btns">
-																	<a class="followus" href="../candipostular/<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
-																</div>
+
+																	<?php if ($datos[0]->salario_usuario == 'NO'): ?>
+
+																		<form action="<?= url('candipostular') ?>" method="post">
+																			<?= csrf_field() ?>
+																			<input type="hidden" name="id_pub" value="<?= $datos[0]->id  ?>">
+																			<div class="emply-btns">
+																				<button type="submit" class="follows">Postularme</button>
+																			</div>
+																		</form>
+																	<?php else: ?>
+
+																		<div class="emply-btns">
+																			<a class="followus" href="javascript:void(0)" title="" data-toggle="modal" data-target="#modalSalario"><i class="la la-file-text"></i> Postularme</a>
+																		</div>
+
+																	<?php endif; ?>
 
 																<?php else: ?>
 
@@ -168,7 +181,7 @@
 
 
 																<?php endif; ?>
-															<?php elseif (session()->get('candidato') == null): ?>
+															<?php elseif (session()->get('candidato') == null && session()->get('empresa') == null): ?>
 																<div class="emply-btns">
 																	<a class="followus" href="<?= url('login') ?>?returnUrl=<?= url()->current() ?>&p=1&id_pub=<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
 																</div>
@@ -206,8 +219,44 @@
 				</section>
 				<?php include("local/resources/views/includes/general_footer.php");?>
 			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="modalSalario" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			  <div class="modal-dialog modal-sm" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			              <h4 class="modal-title" id="myModalLabel">Salario pretendido</h4>
+			            </div>
+			            <form action="<?= url('candipostular') ?>" method="post">
+			            	<div class="modal-body">
+			            		<input type="hidden" name="id_pub" value="<?= $datos[0]->id ?>">
+			            		<?= csrf_field() ?>
+			            	  <div class="cfield">
+			            	  	<select name="salario" id="" class="form-control">
+			            	  		<option value="">Seleccionar</option>
+			            	  		<?php foreach ($salarios as $salario): ?>
+									
+									<option value="<?= $salario->id ?>"><?= $salario->salario ?></option>
+			            	  		<?php endforeach; ?>
+			            	  	</select>
+			            	  	<i class="la la-cash"></i>
+			            	  </div>
+			            	  <div class="simple-checkbox">
+			            	    <p><input type="checkbox" name="actualizar_salario" id="actualizar_salario" value="1"><label for="actualizar_salario">Actualizar mi salario pretendido.</label></p>
+			            	  </div>
+			            	
+			            	</div>
+			            	<div class="modal-footer" style="margin-top: 20px !important">
+			            	  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			            	  <button type="submit" class="btn btn-primary" id="postular" style="margin-right: 5px !important">Postular</button>
+			            	</div>
+			            </form>
+			    </div>
+			  </div>
+			</div>
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 			<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
@@ -239,6 +288,19 @@
 						className:"error",
 						globalPosition: "bottom center"
 					});
+
+				<?php endif; ?>
+
+				<?php if (count($errors)>0): ?> // mostrar errores si existen.
+
+					<?php foreach ($errors->all() as $error): ?>
+
+						$.notify("<?= $error ?>", {
+							className:"error",
+							globalPosition: "bottom center"
+						});
+
+					<?php endforeach; ?>
 
 				<?php endif; ?>
 
