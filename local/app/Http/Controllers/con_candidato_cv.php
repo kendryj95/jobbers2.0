@@ -23,6 +23,7 @@ public function index()
 }
 public function addcv()
 {
+	$token=$this->token(15);
 	$file            =Input::file('documento');
 	if($file=="")
 	{
@@ -32,16 +33,32 @@ public function addcv()
 	{
 		$original        = $file->getClientOriginalName();
 	    $extension       = $file->getClientOriginalExtension();
-		$sql="INSERT INTO tbl_candidato_cv_fisico values(null, ".session()->get('cand_id').",0,'".$original ."','".$extension."',null)";
-		try {
-			DB::insert($sql);
-			return Redirect('candicv?result=Curriculum agregado correctamente');
-		} catch (Exception $e) {
-			
+	    $upload_success = Input::file('documento')->move("uploads/curriculums", $token.$original);
+	    if($upload_success)
+		{
+			$sql="INSERT INTO tbl_candidato_cv_fisico values(null, ".session()->get('cand_id').",0,'".$token.$original ."','".$extension."',null)";
+			try {
+				DB::insert($sql);
+				return Redirect('candicv?result=Curriculum agregado correctamente');
+			} catch (Exception $e) {
+				
+			}
 		}
+
+		
 	}
    
 }
+function descargar($archivo) {  
+    $enlace = 'uploads/curriculums/'.$archivo;
+	header ("Content-Disposition: attachment; filename=".$archivo."");
+	header ("Content-Type: application/octet-stream");
+	header ("Content-Length: ".filesize($enlace));
+	readfile($enlace); 
+} 
+function token($length) { 
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+} 
 public function del_cv($id)
 {
 	 

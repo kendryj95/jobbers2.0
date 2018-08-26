@@ -12,7 +12,7 @@ class con_candidato_perfil_publico extends Controller
     {
         $vista=View::make("candidatos_perfil_publico"); 
 
-        $sql_datos_personales="SELECT t1.*,t2.descripcion as identificacion,
+        $sql_datos_personales="SELECT t1.id_usuario,t1.*,t2.descripcion as identificacion,
         t3.descripcion as edo_civil, 
         t4.descripcion as discapacidad,
         t5.descripcion as genero,
@@ -75,7 +75,7 @@ class con_candidato_perfil_publico extends Controller
         LEFT JOIN tbl_actividades_empresa t2 ON t2.id = t1.id_actividad_empresa
         WHERE t1.id_usuario = ".$id."";
 
-        $sql_cv_descargable="SELECT * FROM tbl_candidato_cv_fisico WHERE id_usuario = ".$id." and mostrar = 1";
+        $sql_cv_descargable="SELECT count(*) as cantidad,id_usuario,alias FROM tbl_candidato_cv_fisico WHERE id_usuario = ".$id." and mostrar = 1";
 
         $sql_redes_sociales="SELECT t1.id,t1.descripcion,t2.red_social from tbl_redes_sociales t1
         LEFT JOIN tbl_redes t2 on t2.id_red_social = t1.id and t2.id_usuario=".$id."";
@@ -107,12 +107,15 @@ class con_candidato_perfil_publico extends Controller
             $vista->datos_empresas_seguidas=$datos_empresas_seguidas; 
             $vista->datos_cv_descargable=$datos_cv_descargable;
             $vista->datos_redes_sociales=$datos_redes_sociales;
+            
+            return $vista;
+            //return redirect('candidatos?result=El perfil al que intenta acceder no se encuentra disponible.');
 
-            $porcentaje_carga=DB::select($sql_porcentaje);
+           /* $porcentaje_carga=DB::select($sql_porcentaje);
             if($porcentaje_carga[0]->cantidad==0)
             {
-               return redirect('candidatos?result=El perfil al que intenta acceder no se encuentra disponible.');
-            }       
+              
+            }   */    
 
             //return $vista;
         } catch (Exception $e) {

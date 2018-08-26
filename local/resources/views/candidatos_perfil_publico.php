@@ -79,11 +79,16 @@
 										
 											<div class="col-lg-6">
 												<div class="action-inner style2">
-													<?php if($datos_cv_descargable[0]->cantidad!=0): ?>
+													<?php if($datos_cv_descargable[0]->cantidad>0): ?>
 													<div class="download-cv">
-														<a target="_blank" href="../descargar/<?php echo $datos_cv_descargable[0]->nombre_aleatorio;?>" title="">Descargar CV <i class="la la-download"></i></a>
+														<a target="_blank" href="../descargar/<?php echo $datos_cv_descargable[0]->alias;?>" title="">Descargar CV <i class="la la-download"></i></a>
 													</div>
-													<?php endif ?> 
+													<?php endif ?>
+													<?php if($datos_cv_descargable[0]->cantidad==0): ?>
+													<div class="download-cv">
+														<a target="_blank" href="../reporte/<?php echo $datos_personales[0]->id_usuario;?>" title="">Descargar CV <i class="la la-download"></i></a>
+													</div>
+													<?php endif ?>  
 													<a href="#" title=""><i class="la la-map-marker"></i><?php echo $datos_datos_contacto[0]->provincia;?> / <?php echo $datos_datos_contacto[0]->localidad;?></a>
 												</div>
 											</div>

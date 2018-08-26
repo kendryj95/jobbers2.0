@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use View;
 use DB;
+use Mail;
 class con_administrator_candidatos extends Controller
 {
     public function index()
@@ -12,28 +13,31 @@ class con_administrator_candidatos extends Controller
         $sql_candidatos=""; 
         if(isset($_GET['filtrar']) && $_GET['filtrar']!="")
         {  
-             $sql_candidatos="SELECT t1.id_estatus,concat(t2.nombres,' ',t2.apellidos) as nombre,t1.tmp,t1.id FROM tbl_usuarios t1
+             $sql_candidatos="SELECT t3.correo,t1.id_estatus,concat(t2.nombres,' ',t2.apellidos) as nombre,t1.tmp,t1.id FROM tbl_usuarios t1
             LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario =t1.id
-            WHERE tipo_usuario = 2 and (concat(t2.nombres,' ',t2.apellidos) like '%".$_GET['filtrar']."%') 
+            LEFT JOIN tbl_candidato_info_contacto t3 ON t3.id_usuario =t1.id
+            WHERE tipo_usuario = 2 and (concat(t2.nombres,' ',t2.apellidos,' ',t3.correo) like '%".$_GET['filtrar']."%') 
             LIMIT 0,100";
         }
         else
         {
-             $sql_candidatos="SELECT t1.id_estatus,concat(t2.nombres,' ',t2.apellidos) as nombre,t1.tmp,t1.id FROM tbl_usuarios t1
+             $sql_candidatos="SELECT t3.correo,t1.id_estatus,concat(t2.nombres,' ',t2.apellidos) as nombre,t1.tmp,t1.id FROM tbl_usuarios t1
             LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario =t1.id
+             LEFT JOIN tbl_candidato_info_contacto t3 ON t3.id_usuario =t1.id
             WHERE tipo_usuario = 2
             LIMIT 0,100";
-        }
-       
-
+        } 
         $sql_resumen="
-        SELECT count(*) as cantidad,id_sexo 
-        FROM tbl_candidato_datos_personales 
-        GROUP BY id_sexo 
-        ORDER BY id_sexo ASC";
+        SELECT count(t1.id) as cantidad,t2.id_sexo 
+        FROM tbl_usuarios t1
+        LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
+        WHERE t1.tipo_usuario = 2
+        GROUP BY t2.id_sexo 
+        ORDER BY t2.id_sexo ASC";
         try {
             $datos_resumen=DB::select($sql_resumen);
-            $vista->datos_resumen=$datos_resumen;
+            $vista->
+datos_resumen=$datos_resumen;
 
             $datos_candidatos=DB::select($sql_candidatos);
             $vista->datos_candidatos=$datos_candidatos;
@@ -223,9 +227,59 @@ class con_administrator_candidatos extends Controller
         return view('administrator_candidatos_nuevo');
     }
 
-     public function resumen()
+     public function resumen($id)
     {
-        return view('administrator_candidatos_resumen');
+        
+        $vista=View::make('administrator_candidatos_resumen');
+        if(isset($id) && $id !="")
+        {
+            $sql_recomendaciones="SELECT count(id) as cantidad FROM tbl_recomendaciones WHERE id_usuario=".$id."";
+            $sql_postulaciones="SELECT count(id) as cantidad FROM tbl_postulaciones WHERE id_usuario=".$id."";
+            $sql_candidato="SELECT t1.id,concat(t2.nombres,' ',t2.apellidos) as nombre,t2.tmp FROM tbl_usuarios t1
+            LEFT JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
+            WHERE t1.id=".$id."";
+            
+            $sql_datos_personales="SELECT * FROM tbl_candidato_datos_personales WHERE id_usuario=".$id."";
+            $sql_datos_educacion="SELECT * FROM tbl_candidatos_educacion WHERE id_usuario=".$id."";
+            $sql_experiencia_lab="SELECT * FROM tbl_candidato_experiencia_laboral WHERE id_usuario=".$id."";
+            $sql_contacto="SELECT * FROM tbl_candidato_info_contacto WHERE id_usuario=".$id."";
+            $sql_preferencias="SELECT * FROM tbl_candidato_preferencias_laborales WHERE id_usuario=".$id."";
+            try {
+
+                //Consultas para el % de carga
+                $datos_datos_personales=DB::select($sql_datos_personales);
+                $datos_datos_educacion=DB::select($sql_datos_educacion);
+                
+                $datos_experiencia_lab=DB::select($sql_experiencia_lab);
+                $datos_contacto=DB::select($sql_contacto);
+                $datos_preferencias=DB::select($sql_preferencias);
+
+
+                $datos_recomendaciones=DB::select($sql_recomendaciones);
+                $datos_postulaciones=DB::select($sql_postulaciones);
+                $datos_candidato=DB::select($sql_candidato);
+
+
+                $vista->datos_postulaciones=$datos_postulaciones[0]->cantidad;
+                $vista->datos_recomendaciones=$datos_recomendaciones[0]->cantidad;
+                $vista->datos_candidato=$datos_candidato;
+                $vista->datos_datos_personales=$datos_datos_personales;
+                $vista->datos_datos_educacion=$datos_datos_educacion;
+
+                $vista->datos_experiencia_lab=$datos_experiencia_lab;
+                $vista->datos_contacto=$datos_contacto;
+                $vista->datos_preferencias=$datos_preferencias;
+
+                return $vista;
+            } catch (Exception $e) {
+                
+            }
+
+        }
+        else
+        {
+
+        }
     }
 
      public function recomendaciones()
@@ -250,7 +304,7 @@ class con_administrator_candidatos extends Controller
                 $datos=DB::select($sql_datos); 
                 if($datos[0]->cantidad>0)
                 {
-                    return Redirect('administracion/candidatos/nuevo?result=Ya este correo se encuentra registrado.&correo='.$_POST['correo'].'&calve='.$_POST['clave']); 
+                    return Redirect('administracion/candidatos/nuevo?result=Ya este correo se encuentra registrado.&correo;='.$_POST['correo'].'&calve;='.$_POST['clave']); 
                 }
                 else
                 {
@@ -270,6 +324,58 @@ class con_administrator_candidatos extends Controller
         }
     }
 
+    public function eliminar_candidato()
+    {
+
+        if(isset($_GET['id']) && $_GET['id']!="")
+        {
+            $sql="SELECT count(correo) as cantidad, correo FROM tbl_usuarios WHERE id=".$_GET['id']."";
+            $datos=DB::select($sql);
+            if($datos[0]->cantidad>0)
+            {
+               $sql="
+               UPDATE tbl_usuarios 
+               SET id_estatus=0, 
+               correo = '".$datos[0]->correo."-delete' WHERE id =".$_GET['id']."";
+                try {
+                    DB::update($sql);
+                    return Redirect('administracion/candidatos?result=candidato eliminado.');
+                } catch (Exception $e) {
+                    
+                } 
+            }
+            else
+            {
+                return Redirect('administracion/candidatos?result=Usuario no registrado');
+            }      
+        }
+        else
+        {
+             return Redirect('administracion/candidatos?result=Favor seleccione un candidato para eliminar');
+        }
+        
+        
+    }
+
+    public function enviar_correo()
+    {
+         
+        $data = ['detalle' => $_POST['detalle'],];
+         $resultado=Mail::send("email.contacto", $data, function ($message) {
+                            $message->to($_POST['identificador']);
+                            $message->from("no-reply@jobbers.com");
+                            $message->subject("no-reply@jobbers.com");
+         });
+         if($resultado)
+         {
+            return Redirect('administracion/candidatos?result=Correo enviado con éxito.');
+         }
+         else
+         {
+            return Redirect('administracion/candidatos?result=El co.');
+         }
+        
+    }
     public function token($length = 10) 
     { 
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 

@@ -17,7 +17,7 @@ Route::get('detalleoferta/{id}', 'con_ofertas@detalle');
 
 Route::post('loguear', 'con_login@log');
 Route::get('socialmedia', 'con_login@log');
-
+Route::get('descargar/{id}', 'con_candidato_cv@descargar');
 Route::get('logout', 'con_login@salir');
 Route::get('login', 'con_login@logincandidato');
 Route::get('recuperarclave', 'con_login@recuperar');
@@ -40,7 +40,7 @@ Route::get('redactores',  function () {return view('noticias_login');});
 Route::get('redes_users',  function () {return view('redes_users');});  
 Route::post('logredactores', 'con_noticias_dashboard@login');
 Route::post('candimensajes_soporte', 'con_soporte@mensajes_cand');
-
+Route::get('descargar/{archivo}', 'con_candidatos_perfil_publico@descargar');
 Route::get('redes/{red}', 'con_log_social@redirectToProvider');
 Route::get('callback/{red}', 'con_log_social@callback');
 Route::post('addcallback', 'con_log_social@add_user');
@@ -98,7 +98,7 @@ Route::post('candisetfavorite', 'con_candidato_favoritos@setFavorite');
 Route::get('candimaletin', 'con_maletin@indexcandidato');
 Route::post('actarch', 'con_maletin@alias'); //Actualiza los alias
 Route::get('delarchivo/{id}', 'con_maletin@eliminar'); //Elimina los archivos
-Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos
+Route::get('descargar/{archivo}', 'con_perfil_publico@descargar'); // Descarga los archivos
 Route::get('candiconfiguracion', 'con_candidatos_configuracion@index');
 Route::post('candisetprofilepic', 'con_candidatos_configuracion@setProfilePic');
 Route::post('candiactualizardatos', 'con_candidatos_configuracion@actualizardatos');
@@ -179,6 +179,8 @@ Route::post('admincandiredescrear', 'con_candidato_redes@crear');
 
 Route::get('administrator', 'con_administrator_login@index');
 
+Route::get('administracion/candidatos/eliminar', 'con_administrator_candidatos@eliminar_candidato');
+
 Route::get('administracion/noticias', 'con_administrator_noticias@index');
 Route::get('administracion/noticias/eliminar/{id}', 'con_administrator_noticias@eliminar_noticia');
 Route::get('administracion/noticias/publicar', 'con_administrator_noticias@publicar');
@@ -211,6 +213,7 @@ Route::get('administracion/candidatos/{id}', 'con_administrator_candidatos@edita
 Route::get('administracion/candidatos/postulaciones/{id}', 'con_administrator_candidatos@postulaciones')->where(['id' => '[0-9]+']);
 Route::get('administracion/candidatos/recomendaciones/{id}', 'con_administrator_candidatos@recomendaciones')->where(['id' => '[0-9]+']);
 Route::post('administracion/candidatos/nuevo', 'con_administrator_candidatos@agregar_nuevo');
+Route::post('administracion/candidatos/enviar', 'con_administrator_candidatos@enviar_correo');
 
 #################### ADM DE EMPRESAS ################################
 
