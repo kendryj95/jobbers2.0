@@ -28,6 +28,12 @@
 					</ul>
 				</li>
 				<li class="inner-child">
+					<a href="#" title="Cursos"><i class="la la-university"></i>Cursos</a>
+					<ul>
+						<li onclick="location.href='<?= $back ?>new_curso'"><a href="<?= $back ?>new_curso" title="Nuevo curso">Nuevo curso</a></li>
+					</ul>
+				</li>
+				<li class="inner-child">
 					<a href="#" title="Planes"><i class="la la-trophy"></i>Planes</a>
 					<ul>
 						<li onclick="location.href='<?= $back ?>planes'"><a href="<?= $back ?>planes" title="Manejar Planes">Manejar planes</a></li>

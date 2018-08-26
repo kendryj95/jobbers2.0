@@ -161,6 +161,7 @@ Route::post('empresa/actualizar_profile', 'con_empresa@actualizarProfile');
 Route::post('empresa/uploadImage', 'con_empresa@uploadImage');
 Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 Route::get('empresa/plantillas', 'con_empresa@plantillas');
+Route::get('empresa/new_curso', 'con_empresa@crearCursos');
 });
 
  

@@ -946,4 +946,17 @@ class con_empresa extends Controller
 
         return view('empresa_plantillas', compact('plantillas'));
     }
+
+    public function crearCursos()
+    {
+        $areas            = DB::select("SELECT id, nombre AS area FROM tbl_areas ORDER BY nombre");
+        $provincias       = DB::select("SELECT * FROM tbl_provincias");
+
+        $params = [
+            "areas"            => $areas,
+            "provincias"       => $provincias,
+        ];
+
+        return view('empresa_new_curso', $params);
+    }
 }
