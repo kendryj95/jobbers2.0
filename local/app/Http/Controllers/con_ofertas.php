@@ -302,12 +302,7 @@ class con_ofertas extends Controller
                 FROM tbl_publicacion
                 WHERE id_empresa= " . $datos[0]->id_empresa . " and estatus = 1 GROUP by id_empresa";
 
-            /*$sql_vistas="
-            SELECT count(*) as cantidad FROM tbl_vistos WHERE id_usuario = ".$datos[0]->id_empresa." AND id_tipo_visto = 1
-            GROUP by id_usuario";
-            $vistas=DB::select($sql_vistas);
-
-            $vista->vistas=$vistas;*/
+           
 
             $postulado = false;
             if (session()->get('candidato') != null) {
@@ -325,11 +320,91 @@ class con_ofertas extends Controller
             $vista->cantidad_postulados = $cantidad_postulados[0]->count;
             $cantidad_ofertas        = DB::select($sql_cantidad_ofertas);
             $vista->cantidad_ofertas = $cantidad_ofertas;
+            $vista->nivel_user=$this->nivel_usuario();
             $vista->postulado = $postulado;
             return $vista;
         } catch (Exception $e) {
 
         }
 
+    }
+
+    public function nivel_usuario()
+    {
+         
+            if(count(session()->get('cand_id'))>0)
+            {   
+                $contador=1;
+                $id=session()->get('cand_id');
+                $sql_datos_personales="SELECT * FROM tbl_candidato_datos_personales WHERE id_usuario=".$id."";
+                $sql_datos_educacion="SELECT * FROM tbl_candidatos_educacion WHERE id_usuario=".$id."";
+                $sql_experiencia_lab="SELECT * FROM tbl_candidato_experiencia_laboral WHERE id_usuario=".$id."";
+                $sql_contacto="SELECT * FROM tbl_candidato_info_contacto WHERE id_usuario=".$id."";
+                $sql_preferencias="SELECT * FROM tbl_candidato_preferencias_laborales WHERE id_usuario=".$id."";
+               
+                $dp=DB::select($sql_datos_personales);
+                $ded=DB::select($sql_datos_educacion); 
+                $del=DB::select($sql_experiencia_lab);
+                $datos_contacto=DB::select($sql_contacto);
+                $datos_preferencias=DB::select($sql_preferencias);
+                
+                        if((isset($dp[0]->nombres) && $dp[0]->nombres!=""))
+                        { 
+                            $contador++;
+                        } 
+                        if((isset($dp[0]->apellidos) && $dp[0]->apellidos!=""))
+                        {
+                            $contador++;
+                        } 
+                        if((isset($dp[0]->n_identificacion) && $dp[0]->n_identificacion!=""))
+                        {
+                             $contador++;
+                        } 
+                        if((isset($dp[0]->id_discapacidad) && $dp[0]->id_discapacidad!=""))
+                        {
+                            $contador++;
+                        } 
+                        if((isset($dp[0]->fecha_nac) && $dp[0]->fecha_nac!=""))
+                        {
+                            $contador++;
+                        } 
+                        if((isset($dp[0]->id_sexo) && $dp[0]->id_sexo!=""))
+                        {
+                             $contador++;
+                        } 
+                        if((isset($ded[0]->id) && $ded[0]->id!=""))
+                        {
+                             $contador++;
+                        } 
+                        if((isset($del[0]->id) && $del[0]->id!=""))
+                        {
+                             $contador++;
+                        } 
+                        if((isset($datos_contacto[0]->id) && $datos_contacto[0]->id!=""))
+                        {
+                             $contador++;
+                        } 
+                        if((isset($datos_preferencias[0]->id_remuneracion_pre) && $datos_preferencias[0]->id_remuneracion_pre!=""))
+                        {
+                             $contador++;
+                        } 
+                        if((isset($datos_preferencias[0]->id) && $datos_preferencias[0]->id!=""))
+                        {
+                             $contador++;
+                        } 
+
+                        if(($contador/12)==1)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 2;
+                        }
+            }
+            else
+            {
+                return 0;
+            } 
     }
 }

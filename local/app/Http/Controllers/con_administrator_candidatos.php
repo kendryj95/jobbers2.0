@@ -247,9 +247,9 @@ datos_resumen=$datos_resumen;
             try {
 
                 //Consultas para el % de carga
+                //
                 $datos_datos_personales=DB::select($sql_datos_personales);
-                $datos_datos_educacion=DB::select($sql_datos_educacion);
-                
+                $datos_datos_educacion=DB::select($sql_datos_educacion); 
                 $datos_experiencia_lab=DB::select($sql_experiencia_lab);
                 $datos_contacto=DB::select($sql_contacto);
                 $datos_preferencias=DB::select($sql_preferencias);
