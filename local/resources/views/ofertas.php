@@ -15,13 +15,15 @@ $mi_tokken=csrf_token();
   <meta name="csrf-token" content="<?php echo $mi_tokken;?>">
   <!-- Styles -->
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="local/resources/views/css/icons.css">
   <link rel="stylesheet" href="local/resources/views/css/animate.min.css">
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({
@@ -30,7 +32,7 @@ $mi_tokken=csrf_token();
     });
   </script>
   <style>
-    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;}
+    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;} .forsticky .post-job-btn{background-color: #fff; color: #2e3192}
   </style>
   <?php include("local/resources/views/includes/chat_soporte.php");?>
 </head>
@@ -46,47 +48,13 @@ $mi_tokken=csrf_token();
             <button class="btn btn-primary" id="showFilters">Mostrar filtros <i class="fa fa-filter"></i></button>
           </div>
 
-          <!-- Carousel de publicidad -->
-          <div id="carousel-example-generic" class="carousel slide col-md-12" data-ride="carousel" style="margin-top: 50px;">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-
-              <div class="item active">
-                <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
-                <div class="carousel-caption">
-                  <h3>Jobbers Argentina</h3>
-                  <p>Publicidad</p>
-                </div>
-              </div>
-
-              <div class="item">
-                <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
-                <div class="carousel-caption">
-                  <h3>Jobbers Argentina</h3>
-                  <p>Publicidad</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-
 
           <aside class="col-lg-3 column border-right" id="side-offers">
             <form action="ofertas" method="POST" id="form_filter">
               <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Antiguedad
                 </h3>
                 <div class="type_widget" style="">
@@ -116,7 +84,7 @@ $mi_tokken=csrf_token();
                   <br>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Provincia
                 </h3>
                 <div class="type_widget" style="">
@@ -137,7 +105,7 @@ $mi_tokken=csrf_token();
                   <?php endforeach ?>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Localidad
                 </h3>
                 <div class="type_widget" style="">
@@ -158,7 +126,7 @@ $mi_tokken=csrf_token();
                   <?php endforeach ?>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title open">Disponibilidad
                 </h3>
                 <div class="type_widget" style="">
@@ -174,7 +142,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Área
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -199,7 +167,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Sector
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -224,7 +192,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Oferta salarial
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -249,7 +217,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Experiencia
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -270,7 +238,7 @@ $mi_tokken=csrf_token();
                   </div>
                 </div>
               </div>
-              <div class="widget">
+              <div class="widget filter-offer">
                 <h3 class="sb-title active">Género
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -291,6 +259,39 @@ $mi_tokken=csrf_token();
             </form>
           </aside>
           <div class="col-lg-9 column" id="offers">
+          <!-- Carousel de publicidad -->
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 50px;">
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+
+                <div class="item active">
+                  <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
+                  <div class="carousel-caption">
+                    <h3>Jobbers Argentina</h3>
+                    <p>Publicidad</p>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
+                  <div class="carousel-caption">
+                    <h3>Jobbers Argentina</h3>
+                    <p>Publicidad</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
             <div class="modrn-joblist">
 
               <!-- Tags Bar -->

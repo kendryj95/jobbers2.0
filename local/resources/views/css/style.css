@@ -2348,8 +2348,6 @@ footer {
 .widget {
     float: left;
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #cccbcb;
     padding: 10px;
 }
 
@@ -13039,6 +13037,11 @@ header.style4 .account-btns>li a,
 
 /* Ofertas */
 
+.carousel-caption h3,
+.carousel-caption p {
+    margin-bottom: 0px;
+}
+
 .section-offers {
     margin-top: 70px;
 }
@@ -13273,6 +13276,11 @@ header.style4 .account-btns>li a,
 .back-ofertas {
     background: url('local/resources/views/images/back-ofertas.jpg');
     background-size: cover;
+}
+
+.filter-offer {
+    background-color: #fff;
+    border: 1px solid #cccbcb;
 }
 
 
