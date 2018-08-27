@@ -50,7 +50,7 @@
 								<div class="padding-left">
 									<div class="manage-jobs-sec addscroll">
 										<h3>Nueva plantilla de oferta</h3>
-										<div style="float:left; width: 100%;">
+										<div class="profile-form-edit">
 											<form id="form_datos_emp" action="<?= url('administracion/empresas/plantillas') ?>" method="post">
 												<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 												<div class="row">

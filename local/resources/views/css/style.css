@@ -537,7 +537,9 @@ button {
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
-    background: black;
+    background: #2e3192;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: 0;
     letter-spacing: 1px;
 }
@@ -7621,7 +7623,11 @@ aside .widget.border:first-child {
     padding-left: 30px;
 }
 
-.social-edit>form button {
+
+/* TODO: Prueba */
+
+
+/* .social-edit>form button {
     float: right;
     margin-bottom: 20px;
     background: #ffffff;
@@ -7636,7 +7642,7 @@ aside .widget.border:first-child {
     -o-border-radius: 8px;
     border-radius: 8px;
     margin-top: 10px;
-}
+} */
 
 .pf-field>i {
     position: absolute;
