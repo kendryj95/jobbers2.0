@@ -29,57 +29,15 @@
 					 		<div class="manage-jobs-sec">
 					 			<h3>Panel</h3>
 					 			<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Empresas</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong>Cantidatos</span>
-						 			<span><i class="la la-users"></i><strong>18</strong>Noticias</span> 
+						 			<span><i class="la la-industry"></i><strong><?= $datos_usuario[0]->cantidad;?></strong>Empresas</span>
+						 			<span><i class="la la-users"></i><strong><?= $datos_usuario[1]->cantidad;?></strong>Candidatos</span>
+						 			<span><i class="la la-newspaper-o"></i><strong><?= $datos_noticias[0]->cantidad;?></strong>Noticias</span> 
 						 		</div>
 						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Ofertas</span>
-						 			<span><i class="la la-file-text"></i><strong>20</strong>Postulados</span>
-						 			<span><i class="la la-users"></i><strong>18</strong>Soporte</span> 
-						 		</div>
-
-						 		<div class="extra-job-info">
-						 			<span><i class="la la-clock-o"></i><strong>9</strong>Recomendaciones</span> 
-						 		</div>
-						 		<table>
-						 			<thead>
-						 				<tr>
-						 					<td>Title</td>
-						 					<td>Applications</td>
-						 					<td>Created & Expired</td>
-						 					<td>Status</td>
-						 					<td>Action</td>
-						 				</tr>
-						 			</thead>
-						 			<tbody> 
-						 				<tr>
-						 					<td>
-						 						<div class="table-list-title">
-						 							<h3><a href="#" title="">Web Designer / Developer</a></h3>
-						 							<span><i class="la la-map-marker"></i>Sacramento, California</span>
-						 						</div>
-						 					</td>
-						 					<td>
-						 						<span class="applied-field">3+ Applied</span>
-						 					</td>
-						 					<td>
-						 						<span>October 27, 2017</span><br />
-						 						<span>April 25, 2011</span>
-						 					</td>
-						 					<td>
-						 						<span class="status active">Active</span>
-						 					</td>
-						 					<td>
-						 						<ul class="action_job">
-						 							<li><span>View Job</span><a href="#" title=""><i class="la la-eye"></i></a></li>
-						 							<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-						 							<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a></li>
-						 						</ul>
-						 					</td>
-						 				</tr> 
-						 			</tbody>
-						 		</table>
+						 			<span><i class="la la-stethoscope"></i><strong><?= $datos_publicaciones[0]->cantidad;?></strong>Ofertas</span>
+						 			<span><i class="la la-hand-pointer-o"></i><strong><?= $datos_postulaciones[0]->cantidad;?></strong>Postulados</span>
+						 			 <span><i class="la la-comments"></i><strong><?= $datos_recomendaciones[0]->cantidad;?></strong>Recomendaciones</span>
+						 		</div> 
 					 		</div>
 					 	</div>
 					</div>

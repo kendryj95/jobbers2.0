@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="CreativeLayers"> 
-	<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/bootstrap-grid.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../../local/resources/views/css/icons.css">
 	<link rel="stylesheet" href="../../../local/resources/views/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/style.css" />
@@ -16,6 +16,31 @@
 	
 </head>
 <body  style="background-image: url('https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg');"> 
+
+	<div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-md">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Enviar correo</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row" style="padding: 15px;">
+                                     <form action="../../candidatos/enviar" method="post">
+                                        <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+                                        <input type="hidden" name="identificador" id="identificador" value=""> 
+                                        <span style="font-weight: 600;">Detalle</span>
+                                         <textarea name="detalle" style="resize: none;" placeholder="Mensaje..." class="form-control"></textarea>
+                                         <button type="submit">Enviar</button>
+                                    </form>
+                                </div>
+                             </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 	<!--Header responsive-->
 	<div class="theme-layout" id="scrollup">
 			<?php $atras=2;?>
@@ -62,10 +87,10 @@
 						 					</td>  
 						 					<td>
 						 						<ul class="action_job">
-                                                                    <li><span>Ver</span><a href="#" title=""><i class="la la-eye"></i></a></li>
+                                                                    <li><span>Ver</span><a target="_blank" href="../../../candidato/<?= $datos_candidato[0]->id;?>" title=""><i class="la la-eye"></i></a></li>
                                                                     <li><span>Editar</span><a href="../../candidatos/<?= $datos_candidato[0]->id;?>" title=""><i class="la la-pencil"></i></a></li>
                                                                     <li><span>Descargar CV</span><a target="_blank" href="../../../reporte/<?= $datos_candidato[0]->id;?>" title=""><i class="la la-download"></i></a></li> 
-                                                                    <li><span>Enviar correo</span><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                                                    <li><span>Enviar correo</span><a onClick="enviar_correo('<?php echo $datos_user[0]->correo;?>')" href="#" title=""><i class="la la-envelope"></i></a></li>
                                                                     <li><span>Eliminar</span><a href="../../candidatos/eliminar?id=<?= $datos_candidato[0]->id;?>" title=""><i class="la la-trash-o"></i></a></li>
                                                                 </ul>
 						 					</td>
@@ -178,7 +203,15 @@
 <script src="../../../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
 <script src="../../../local/resources/views/js/script.js" type="text/javascript"></script> 
 <script src="../../../local/resources/views/js/slick.min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
 <?php echo '<script>$("#id_porcentaje").html("'.(100-round((($contador/$cantidad)*100))).'%")</script> ';?>
- 
+ <script>
+        function enviar_correo(correo)
+        {
+           $("#identificador").val(correo);
+           $("#myModal").modal('show');  
+        } 
+    </script>
 </body>
 </html>

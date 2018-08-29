@@ -31,11 +31,22 @@
 											<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
 										</div>
 										<span>Solo un paso más</span>
+										<?php
+										$parametros="";
+										if(isset($_GET['red']) && $_GET['red']=='linkedin')
+										{
+											$parametros=$_GET['pic'].'&v='.$_GET['v'].'&t='.$_GET['t'];
+										}
+										else
+										{
+											$parametros=$_GET['pic'];
+										}
+										?>
 										<form style="padding: 10px;" action="addcallback" method="post">
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 											<input name="email" type="hidden" value="<?php echo $_GET['user'];?>" id="my_token">
 											<input name="name" type="hidden" value="<?php echo $_GET['name'];?>" id="my_token">
-<input name="pic" type="hidden" value="<?php echo $_GET['pic'].'&v='.$_GET['v'].'&t='.$_GET['t'];?>" id="pic">
+											<input name="pic" type="hidden" value="<?php echo $parametros?>" id="pic">
 
 											<input name="red" type="hidden" value="<?php echo $_GET['red'];?>" id="red">
 
