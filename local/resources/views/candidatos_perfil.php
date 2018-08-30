@@ -117,14 +117,22 @@ $mi_tokken = csrf_token();
                                 $up_longitud_contac=$infocontacto[0]->logitud;
                                 }
                                 ?>
-                                <div class="social-edit" style="padding: 0px;">  
+                                <div class="social-edit" style="padding: 0px;">
+                                 
+                                 <div style="text-align: center; padding-top: 20px; ">
+                                    <?php if (session()->get('cand_img') !=""): ?>
+                                        <img src="<?php echo "uploads/min/".session()->get('cand_img');?>" style="border-radius: 50%;width: 100px;height: 100px;">
+                                         <?php else: ?>
+                                        <img src="local/resources/views/images/avatar.jpg" style="border-radius: 50%;width: 100px;height: 100px;"> 
+                                        <?php endif ?> 
+                                  </div> 
                                     <form  id="form_datos_imagen"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
-                                                <span class="pf-title">Imagen</span>
+                                                <span class="pf-title">Mi foto</span>
                                                 <div class="pf-field">
                                                    <input name="imagen_perfil" id="imagen_perfil" type="file" placeholder="" accept="image/*">
                                                 </div> 
-                                                <button type="submit" onClick="">Guardar</button> 
+                                                <button style="display: none;" id="btn-guardar-imagen" type="submit" onClick="">Guardar</button> 
                                     </form>
                                 </div>
                                     <div class="padding-left" style="padding-top: 0px;">
@@ -967,6 +975,17 @@ $mi_tokken = csrf_token();
          
     }
         
+</script>
+
+<script>
+    $("#imagen_perfil").on('change', function() {
+    if ($('#imagen_perfil').val()) { 
+        ///$("#Ingresar").prop("disabled", false);
+        $("#btn-guardar-imagen").click();
+        //alert($('#imagen_perfil').val());
+        }
+    });
+
 </script>
   <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
 

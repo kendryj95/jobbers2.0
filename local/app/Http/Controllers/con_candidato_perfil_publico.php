@@ -848,6 +848,7 @@ class con_candidato_perfil_publico extends Controller
        public function imagen_perfil()
        {
 
+             
                 if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
                     {
                        

@@ -77,7 +77,8 @@ $mi_tokken=csrf_token();
                         <div class="row no-gape">
                             <?php include('local/resources/views/includes/aside_candidatos.php');?>
                             <div class="col-lg-9 column">
-                                <div class="padding-left">
+                                <!--
+                                    <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
                                         <h3>Mi Foto</h3>
                                     </div>
@@ -94,6 +95,7 @@ $mi_tokken=csrf_token();
                                     <br>
                                     <a class="status" href="candimaletin" style="margin-top: 20px; font-size: 14px;text-decoration: none;">Subir imagen</a>
                                 </div>
+                                -->
                                 <div class="padding-left" style="margin-top: -70px;">
                                     
                                     <div class="manage-jobs-sec addscroll" style="margin-top: 50px;">
