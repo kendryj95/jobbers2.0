@@ -61,26 +61,22 @@ $mi_tokken=csrf_token();
                   <p class="flchek">
                     <input type="radio" onclick="filter()" name="antiguedad" id="ant_1" value="1">
                     <label id="label_ant_1" for="ant_1">Todo
-                    </label> (
-                    <?= $antiguedad[0]->cantidad_todo ?>)</p>
+                    </label> (<?= $antiguedad[0]->cantidad_todo ?>)</p>
                   <br>
                   <p class="flchek">
                     <input type="radio" onclick="filter()" name="antiguedad" id="ant_2" value="2">
                     <label id="label_ant_2" for="ant_2">Hoy
-                    </label> (
-                    <?= $antiguedad[0]->cantidad_hoy ?>)</p>
+                    </label> (<?= $antiguedad[0]->cantidad_hoy ?>)</p>
                   <br>
                   <p class="flchek">
                     <input type="radio" onclick="filter()" name="antiguedad" id="ant_3" value="3">
                     <label id="label_ant_3" for="ant_3">Última semana
-                    </label> (
-                    <?= $antiguedad[0]->cantidad_last_week ?>)</p>
+                    </label> (<?= $antiguedad[0]->cantidad_last_week ?>)</p>
                   <br>
                   <p class="flchek">
                     <input type="radio" onclick="filter()" name="antiguedad" id="ant_4" value="4">
                     <label id="label_ant_4" for="ant_4">Últimos 30 días
-                    </label> (
-                    <?= $antiguedad[0]->cantidad_last_thirty_days ?>)</p>
+                    </label> (<?= $antiguedad[0]->cantidad_last_thirty_days ?>)</p>
                   <br>
                 </div>
               </div>
@@ -95,8 +91,7 @@ $mi_tokken=csrf_token();
                     <input type="checkbox" onclick="filter()" name="provincias[]" id="prov_<?= $key->id_provincia ?>" value="<?= $key->id_provincia ?>">
                     <label id="label_prov_<?= $key->id_provincia ?>" for="prov_<?= $key->id_provincia ?>">
                       <?= $key->provincia ?>
-                    </label> (
-                    <?= $key->cantidad ?>)
+                    </label> (<?= $key->cantidad ?>)
                   </p>
                   <?php  
                       if ($contador>10){break;}
@@ -116,8 +111,7 @@ $mi_tokken=csrf_token();
                     <input type="checkbox" onclick="filter()" name="localidades[]" id="loc_<?= $key->id_localidad ?>" value="<?= $key->id_localidad ?>">
                     <label id="label_loc_<?= $key->id_localidad ?>" for="loc_<?= $key->id_localidad ?>">
                       <?= $key->localidad ?>
-                    </label> (
-                    <?= $key->cantidad ?>)
+                    </label> (<?= $key->cantidad ?>)
                   </p>
                   <?php  
                       if ($contador>10){break;}
@@ -135,8 +129,7 @@ $mi_tokken=csrf_token();
                     <input type="checkbox" onclick="filter()" name="disponibilidades[]" id="disp_<?= $key->id_disponibilidad ?>" value="<?= $key->id_disponibilidad ?>">
                     <label id="label_disp_<?= $key->id_disponibilidad ?>" for="disp_<?= $key->id_disponibilidad ?>">
                       <?= $key->nombre ?>
-                    </label> (
-                    <?= $key->cantidad ?>)
+                    </label> (<?= $key->cantidad ?>)
                   </p>
                   <?php endforeach ?>
                 </div>
@@ -151,12 +144,11 @@ $mi_tokken=csrf_token();
                         $contador=0;
                         foreach($area as $key):
                       ?>
-                    <p class="flchek">
+                    <p class="flchek" style="overflow-wrap: break-word">
                       <input type="checkbox" onclick="filter()" name="areas[]" id="area_<?= $key->id_area ?>" value="<?= $key->id_area ?>">
                       <label id="label_area_<?= $key->id_area ?>" for="area_<?= $key->id_area ?>">
-                        <?= $key->nombre ?>
-                      </label> (
-                      <?= $key->cantidad ?>)
+                        <?= $key->nombre ?> (<?= $key->cantidad ?>)
+                      </label>
                     </p>
                     <?php  
                         if($contador>10){break;}
@@ -179,9 +171,8 @@ $mi_tokken=csrf_token();
                     <p class="flchek">
                       <input type="checkbox" onclick="filter()" name="sectores[]" id="sect_<?= $key->id_sector ?>" value="<?= $key->id_sector ?>">
                       <label id="label_sect_<?= $key->id_sector ?>" for="sect_<?= $key->id_sector ?>">
-                        <?= $key->nombre ?>
-                      </label> (
-                      <?= $key->cantidad ?>)
+                        <?= $key->nombre ?> (<?= $key->cantidad ?>)
+                      </label> 
                     </p>
                     <?php  
                         if($contador>10){break;}
@@ -205,8 +196,7 @@ $mi_tokken=csrf_token();
                         <input type="checkbox" onclick="filter()" name="salarios[]" id="sal_<?= $key->id_salario ?>" value="<?= $key->id_salario ?>">
                         <label id="label_sal_<?= $key->id_salario ?>" for="sal_<?= $key->id_salario ?>">
                           <?= $key->salario ?>
-                        </label> (
-                        <?= $key->cantidad ?>)
+                        </label> (<?= $key->cantidad ?>)
                       </p>
                       <?php
                         if($contador>10){break;}
@@ -231,8 +221,7 @@ $mi_tokken=csrf_token();
                       <input type="checkbox" onclick="filter()" name="experiencias[]" id="exp_<?= $key->id_experiencia ?>" value="<?= $key->id_experiencia ?>">
                       <label id="label_exp_<?= $key->id_experiencia ?>" for="exp_<?= $key->id_experiencia ?>">
                         <?= $datos ?>
-                      </label> (
-                      <?= $key->cantidad ?>)
+                      </label> (<?= $key->cantidad ?>)
                     </p>
                     <?php endforeach ?>
                   </div>
@@ -249,8 +238,7 @@ $mi_tokken=csrf_token();
                       <input type="checkbox" onclick="filter()" name="generos[]" id="gen_<?= $key->id_genero ?>" value="<?= $key->id_genero ?>">
                       <label id="label_gen_<?= $key->id_genero ?>" for="gen_<?= $key->id_genero ?>">
                         <?= $key->descripcion ?>
-                      </label> (
-                      <?= $key->cantidad ?>)
+                      </label> (<?= $key->cantidad ?>)
                     </p>
                     <?php endforeach ?>
                   </div>
@@ -260,13 +248,13 @@ $mi_tokken=csrf_token();
           </aside>
           <div class="col-lg-9 column" id="offers">
           <!-- Carousel de publicidad -->
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 50px;">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
               <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
+              <div class="carousel-inner carousel-height" role="listbox">
 
                 <div class="item active">
-                  <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
+                  <img src="https://via.placeholder.com/900x350" alt="..." class="carousel-height" style="width: 100%;">
                   <div class="carousel-caption">
                     <h3>Jobbers Argentina</h3>
                     <p>Publicidad</p>
@@ -274,7 +262,7 @@ $mi_tokken=csrf_token();
                 </div>
 
                 <div class="item">
-                  <img src="https://via.placeholder.com/800x400" alt="..." class="img-responsive" style="width: 100%">
+                  <img src="https://via.placeholder.com/900x350" alt="..." class="carousel-height" style="width: 100%;">
                   <div class="carousel-caption">
                     <h3>Jobbers Argentina</h3>
                     <p>Publicidad</p>

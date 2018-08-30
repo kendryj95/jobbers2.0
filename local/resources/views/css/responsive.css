@@ -492,6 +492,9 @@
 }
 
 @media (max-width:768px) {
+    .carousel {
+        margin-top: 20px;
+    }
     .section-offers {
         margin-top: 90px;
     }
@@ -530,7 +533,7 @@
     }
     #offers .filterbar,
     #offers .tags-bar {
-        margin-top: 0px;
+        margin-top: 20px;
     }
     .post-metas>li,
     .post-metas>li a,
@@ -1046,6 +1049,21 @@
 }
 
 @media (max-width:520px) {
+    .carousel {
+        margin-top: 20px;
+    }
+    .carousel-height {
+        height: 170px;
+    }
+    .carousel-inner>.item>img {
+        height: 170px;
+    }
+    .carousel-caption h3 {
+        font-size: 18px;
+    }
+    .carousel-caption p {
+        font-size: 14px;
+    }
     .logo-recommend {
         margin-top: 20px;
     }
