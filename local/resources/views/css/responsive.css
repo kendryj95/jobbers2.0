@@ -162,6 +162,9 @@
 }
 
 @media (max-width:1024px) {
+    #carousel-news {
+        margin-top: 53px;
+    }
     .my-panel {
         font-size: 18px;
     }
@@ -1059,6 +1062,9 @@
 }
 
 @media (max-width:520px) {
+    #carousel-news {
+        margin-top: 10px;
+    }
     .carousel {
         margin-top: 20px;
     }

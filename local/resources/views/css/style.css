@@ -486,11 +486,6 @@ i {
     font-style: italic
 }
 
-{
-    /*! float:left; */
-    /*! height:auto */
-}
-
 :-webkit-input-placeholder {
     opacity: 1
 }
@@ -10607,8 +10602,7 @@ input[type="file"] {}
 
 .blogpost.style2 {
     display: table;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #e8ecec;
+    padding: 25px;
 }
 
 .blogpost.style2 .blog-posthumb {
@@ -13362,6 +13356,20 @@ header.style4 .account-btns>li a,
     background: #2e3192;
     border-color: #2e3192;
     color: #FFF;
+}
+
+
+/* News */
+
+#carousel-news {
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.arrow-right-news {
+    color: #2e3192;
+    font-weight: bolder;
+    font-size: 12px !important;
 }
 
 

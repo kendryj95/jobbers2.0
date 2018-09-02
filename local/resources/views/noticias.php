@@ -9,6 +9,7 @@
 		<meta name="author" content="CreativeLayers">
 		<!-- Styles -->
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 		<link rel="stylesheet" href="local/resources/views/css/icons.css"> 
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" /> 
@@ -18,29 +19,48 @@
 	<body>
 		<?php include('local/resources/views/includes/general_header.php');?>
 		<?php include('local/resources/views/includes/general_header_responsive.php');?>
-		<section class="overlape mt-responsive">
-			<div class="block no-padding d-none">
-				<div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_noticias.jpg) repeat scroll 50% -6vh transparent;" class="parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
-				<div class="container fluid">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="inner-header img-header-news">
-								<h3></h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section>
-			<div class="block">
+
+		<section class="section-offers">
+			<div class="block back-offers">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-9 col-md-9 column">
+							<div id="carousel-news" class="carousel slide" data-ride="carousel">
+
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner carousel-height" role="listbox">
+
+									<div class="item active">
+										<img src="https://via.placeholder.com/900x350" alt="..." class="carousel-height" style="width: 100%;">
+										<div class="carousel-caption">
+											<h3>Jobbers Argentina</h3>
+											<p>Publicidad</p>
+										</div>
+									</div>
+
+									<div class="item">
+										<img src="https://via.placeholder.com/900x350" alt="..." class="carousel-height" style="width: 100%;">
+										<div class="carousel-caption">
+											<h3>Jobbers Argentina</h3>
+											<p>Publicidad</p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Controls -->
+								<a class="left carousel-control" href="#carousel-news" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-news" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
 							<div class="bloglist-sec">
 								<?php foreach ($datos as $key): ?>
 								
-								<div class="col-sm-12 blogpost style2">
+								<div class="col-sm-12 blogpost style2 filter-offer">
 										
 									<div class="blog-posthumb"> <a href="noticias/<?php echo $key->id;?>" title="">
 
@@ -128,7 +148,7 @@
 								<aside class="col-lg-3 col-md-3 column">
 									<div class="widget">
 										
-										<div class="widget">
+										<div class="widget filter-offer">
 											<h3>Categorías</h3>
 											<div class="sidebar-links">
 												<?php foreach ($datos_categorias as $key): ?>
@@ -136,11 +156,11 @@
 														<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 														<input type="hidden" name="categoria" value="<?php echo $key->id;?>">
 													</form>
-													<a onClick="$('#form_id_<?php echo $key->id;?>').submit()" href="#" title=""><i class="la la-angle-right"></i><?php echo $key->descripcion;?> (<?= $key->cantidad ?>)</a> 
+													<a onClick="$('#form_id_<?php echo $key->id;?>').submit()" href="#" title=""><i class="la la-angle-right arrow-right-news"></i><?php echo $key->descripcion;?> (<?= $key->cantidad ?>)</a> 
 												<?php endforeach ?> 
 											</div>
 										</div>
-										<div class="widget">
+										<div class="widget filter-offer">
 											<h3>Últimas noticias</h3>
 											<div class="post_widget">
 												<?php
@@ -170,6 +190,9 @@
 			</div>
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>   
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/script.js" type="text/javascript"></script>   
 		</body>
 	</html>
