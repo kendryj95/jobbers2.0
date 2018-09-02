@@ -332,7 +332,7 @@ class con_ofertas extends Controller
     public function nivel_usuario()
     {
          
-            if(count(session()->get('cand_id'))>0)
+            if(session()->get('candidato') != null)
             {   
                 $contador=1;
                 $id=session()->get('cand_id');

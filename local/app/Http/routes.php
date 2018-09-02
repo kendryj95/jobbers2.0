@@ -148,6 +148,8 @@ Route::get('empresa/registro', 'con_empresa@registroView');
 Route::post('empresa/exists', 'con_empresa@existEmpresa'); // Verifica si existe la empresa o no.
 Route::post('empresa/registro_success', 'con_empresa@registro'); // Verifica si existe la empresa o no.
 Route::get('empresa/detalle', 'con_empresa@detail');
+Route::get('detalle_curso/{id}', 'con_empresa@detalle_curso');
+
 Route::group(['middleware' => 'log_e'], function () {
 Route::get('empresa/perfil', 'con_empresa@profile');
 Route::get('empresa/new_post', 'con_empresa@newPost');
@@ -162,6 +164,10 @@ Route::post('empresa/uploadImage', 'con_empresa@uploadImage');
 Route::get('empresa/post/{accion}/{id_post}', 'con_empresa@accionPost');
 Route::get('empresa/plantillas', 'con_empresa@plantillas');
 Route::get('empresa/new_curso', 'con_empresa@crearCursos');
+Route::post('empresa/storeCurso', 'con_empresa@storeCurso')->name('test');
+Route::get('empresa/cursos', 'con_empresa@cursos');
+Route::get('empresa/cursos/edit/{id}', 'con_empresa@editCurso');
+Route::post('empresa/editCurso', 'con_empresa@editStoreCurso');
 });
 
  

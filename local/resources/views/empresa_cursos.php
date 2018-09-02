@@ -48,56 +48,59 @@
 							<div class="col-lg-12 col-xl-9 column">
 								<div class="padding-left">
 									<div class="manage-jobs-sec empresa-offers-resp">
-										<h3>Listado de ofertas de trabajo</h3>
+										<h3>Listado de mis cursos</h3>
 										<div class="extra-job-info">
-											<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
-											<span><i class="la la-file-text"></i><strong><?= $total_postulados ?></strong> Postulados en total</span>
+											<span><i class="la la-clock-o"></i><strong><?= $total_cursos ?></strong> Cursos publicados</span>
+											<!-- <span><i class="la la-file-text"></i><strong></strong> Postulados en total</span> -->
+											<span><i class="la la-file-text"></i><strong>0</strong> Interesados en total</span>
 											<span><i class="la la-users"></i><strong><?= $total_jobbers ?></strong> Jobbers Activos</span>
 										</div>
 										<table>
 											<thead>
 												<tr>
 													<td>Titulo</td>
-													<td>Postulados</td>
+													<td>Precio</td>
+													<td>Interesados</td>
 													<td>Creado y vencido</td>
 													<td>Status</td>
 													<td>Acciones</td>
 												</tr>
 											</thead>
 											<tbody>
-												<?php foreach ($ofertas as $oferta): ?>
-													<?php $titulo = strlen($oferta->titulo) > 39 ? substr($oferta->titulo, 0, 39) . "..." : $oferta->titulo ?>
+												<?php foreach ($cursos as $curso): ?>
+													<?php $titulo = strlen($curso->titulo) > 39 ? substr($curso->titulo, 0, 39) . "..." : $curso->titulo ?>
 												<tr>
 													<td>
 														<div class="table-list-title">
-															<h3><a href="../detalleoferta/<?= $oferta->id ?>" title="<?= $oferta->titulo ?>"><?= $titulo ?></a></h3>
-															<span><i class="la la-map-marker"></i><?= $oferta->ubicacion ?></span>
+															<h3><a href="#" title="<?= $curso->titulo ?>"><?= $titulo ?></a></h3>
+															<?php if ($curso->id_mc == 1): ?>
+																<span><i class="la la-desktop"></i> Online </span>&nbsp;&nbsp;<span style="margin-left: 5px"><i class="la la-clock-o"></i> <?= $curso->duracion ?></span>
+															<?php else: ?>
+															<span><i class="la la-map-marker"></i><?= $curso->ubicacion ?></span>&nbsp;&nbsp;<span style="margin-left: 5px"><i class="la la-clock-o"></i> <?= $curso->duracion ?></span>
+															<?php endif; ?>
 														</div>
 													</td>
 													<td>
-														<?php if ($oferta->postulados != 0): ?>
-														<a href="candidatos-postulados/<?= $oferta->id ?>"><span class="applied-field"><?= $oferta->postulados ?> Postulado(s)</span></a>
-														<?php else: ?>
-														<a href="#"><span class="applied-field">0 Postulado(s)</span></a>
-														<?php endif ?>
+														<span><?= $curso->precio ?></span>
 													</td>
 													<td>
-														<span><?= $oferta->fcrea_fvenc ?></span>
+														<?php //if ($curso->postulados != 0): ?>
+														<!-- <a href="#"><span class="applied-field"> Postulado(s)</span></a> -->
+														<?php //else: ?>
+														<a href="#"><span class="applied-field">0 Interesado(s)</span></a>
+														<?php //endif ?>
 													</td>
 													<td>
-														<span class="status <?= $oferta->id_estatus == 1 ? 'active' : '' ?>"><?= $oferta->estatus ?></span>
+														<span><?= $curso->fcrea_fvenc ?></span>
+													</td>
+													<td>
+														<span class="status <?= $curso->id_estatus == 1 ? 'active' : '' ?>"><?= $curso->estatus ?></span>
 													</td>
 													<td>
 														<ul class="action_job">
-															<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>" title=""><i class="la la-eye"></i></a></li>
-															<li><span>Editar</span><a href="edit_post/<?= $oferta->id ?>" title=""><i class="la la-pencil"></i></a></li>
-															<?php $pausar_continuar = $oferta->estatus == 'Activo' ? '<span>Pausar</span><a href="post/1/'.$oferta->id.'" title=""><i class="la la-pause"></i></a>' : '<span>Habilitar</span><a href="post/2/'.$oferta->id.'" title=""><i class="la la-play"></i></a>' ?>
-															<?php if ($oferta->dias_venc < 0): ?>
-															<li><?= $pausar_continuar ?></li>
-															<?php else: ?>
-															<li><span>Renovar</span><a href="post/4/<?= $oferta->id ?>" title=""><i class="la la-refresh"></i></a></li>
-															<?php endif ?>
-															<li><span>Eliminar</span><a href="post/3/<?= $oferta->id ?>" title=""><i class="la la-trash-o"></i></a></li>
+															<li><span>Ver curso</span><a href="<?= url('detalle_curso', $curso->id) ?>" title=""><i class="la la-eye"></i></a></li>
+															<li><span>Editar</span><a href="<?= url('empresa/cursos/edit', $curso->id) ?>" title=""><i class="la la-pencil"></i></a></li>
+															<li><span>Eliminar</span><a href="post/3/<?= $curso->id ?>" title=""><i class="la la-trash-o"></i></a></li>
 														</ul>
 													</td>
 												</tr>
@@ -130,48 +133,18 @@
 					$(document).ready(function() {
 
 
-						<?php if (isset($_REQUEST['response'])): ?>
-							<?php if ($_REQUEST['response'] == 1): ?>
-								$.notify("Se ha cambiado el estatus de la oferta satisfactoriamente.", {
-									className:"success",
-									globalPosition: "bottom center"
-								});
-							<?php elseif ($_REQUEST['response'] == 2): ?>
-								$.notify("Ha ocurrido un error al intentar cambiar el estatus de la oferta.", {
-									className:"error",
-									globalPosition: "bottom center"
-								});
-							<?php elseif (session('alert')): ?>
+						<?php if (session('alert')): ?>
 								$.notify("<?= session('alert') ?>", {
 									className:"success",
 									globalPosition: "bottom center"
 								});
-							<?php elseif (session('alert-error')): ?>
-								$.notify("<?= session('alert-error') ?>", {
-									className:"error",
-									globalPosition: "bottom center"
-								});
-							<?php elseif ($_REQUEST['response'] == 5): ?>
-								$.notify("Se ha renovado la oferta satisfactoriamente.", {
-									className:"success",
-									globalPosition: "bottom center"
-								});
-							<?php else: ?>
-								$.notify("Ha ocurrido un error al intentar renovar la oferta.", {
-									className:"error",
-									globalPosition: "bottom center"
-								});
-							<?php endif; ?>
-						<?php endif; ?>
-
-						$('#post').on('click', function(){
-							$.notify("Oferta publicada satisfactoriamente.", {
-								className:"success",
+						<?php elseif (session('alert-error')): ?>
+							$.notify("<?= session('alert-error') ?>", {
+								className:"error",
 								globalPosition: "bottom center"
 							});
-							$('#step1').removeClass('active');
-							$('#step2').addClass('active');
-						});
+
+						<?php endif; ?>
 					});
 				</script>
 			</body>

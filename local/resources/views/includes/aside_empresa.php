@@ -15,34 +15,35 @@
 				<li class="inner-child">
 					<a href="#" title="Mi empresa"><i class="la la-file-text"></i>Mi empresa</a>
 					<ul>
-						<li onclick="location.href='<?= $back ?>detalle?e=<?= session()->get("emp_ide") ?>'"><a href="<?= $back ?>detalle?e=<?= session()->get("emp_ide") ?>" title="Mi Perfil">Mi perfil</a></li>
-						<li onclick="location.href='<?= $back ?>perfil?e=<?= session()->get("emp_ide") ?>'"><a href="<?= $back ?>perfil?e=<?= session()->get("emp_ide") ?>" title="Editar Perfil">Editar perfil</a></li>
+						<li onclick="location.href='<?= url('empresa/detalle') ?>?e=<?= session()->get("emp_ide") ?>'"><a href="<?= url('empresa/detalle') ?>?e=<?= session()->get("emp_ide") ?>" title="Mi Perfil">Mi perfil</a></li>
+						<li onclick="location.href='<?= url('empresa/perfil') ?>?e=<?= session()->get("emp_ide") ?>'"><a href="<?= url('empresa/perfil') ?>?e=<?= session()->get("emp_ide") ?>" title="Editar Perfil">Editar perfil</a></li>
 					</ul>
 				</li>
 				<li class="inner-child">
 					<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Oferta de trabajo</a>
 					<ul>
-						<li onclick="location.href='<?= $back ?>ofertas'"><a href="<?= $back ?>ofertas" title="Ver Ofertas de Trab.">Ver mis ofertas</a></li>
-						<li onclick="location.href='<?= $back ?>new_post'"><a href="<?= $back ?>new_post" title="Nueva Oferta de Trab.">Nueva oferta</a></li>
-						<li onclick="location.href='<?= $back ?>plantillas'"><a href="<?= $back ?>plantillas" title="Nueva Oferta de Trab.">Mis plantillas</a></li>
+						<li onclick="location.href='<?= url('empresa/ofertas') ?>'"><a href="<?= url('empresa/ofertas') ?>" title="Ver Ofertas de Trab.">Ver mis ofertas</a></li>
+						<li onclick="location.href='<?= url('empresa/new_post') ?>'"><a href="<?= url('empresa/new_post') ?>" title="Nueva Oferta de Trab.">Nueva oferta</a></li>
+						<li onclick="location.href='<?= url('empresa/plantillas') ?>'"><a href="<?= url('empresa/plantillas') ?>" title="Nueva Oferta de Trab.">Mis plantillas</a></li>
 					</ul>
 				</li>
 				<li class="inner-child">
 					<a href="#" title="Cursos"><i class="la la-university"></i>Cursos</a>
 					<ul>
-						<li onclick="location.href='<?= $back ?>new_curso'"><a href="<?= $back ?>new_curso" title="Nuevo curso">Nuevo curso</a></li>
+						<li onclick="location.href='<?= url('empresa/cursos') ?>'"><a href="<?= url('empresa/cursos') ?>" title="Mis cursos">Mis cursos</a></li>
+						<li onclick="location.href='<?= url('empresa/new_curso') ?>'"><a href="<?= url('empresa/new_curso') ?>" title="Nuevo curso">Nuevo curso</a></li>
 					</ul>
 				</li>
 				<li class="inner-child">
 					<a href="#" title="Planes"><i class="la la-trophy"></i>Planes</a>
 					<ul>
-						<li onclick="location.href='<?= $back ?>planes'"><a href="<?= $back ?>planes" title="Manejar Planes">Manejar planes</a></li>
+						<li onclick="location.href='<?= url('empresa/planes') ?>'"><a href="<?= url('empresa/planes') ?>" title="Manejar Planes">Manejar planes</a></li>
 					</ul>
 				</li>
 				<li >
-					<a href="<?= $back ?>../candidatos" title=""><i class="la la-users"></i>Candidatos</a>
+					<a href="<?= url('candidatos') ?>" title=""><i class="la la-users"></i>Candidatos</a>
 				</li>
-				<li onclick="location.href='<?= $back ?>../logout'"><a href="<?= $back ?>../logout" title=""><i class="la la-unlink"></i>Salir</a></li>
+				<li onclick="location.href='<?= url('logout') ?>'"><a href="<?= url('logout') ?>" title=""><i class="la la-unlink"></i>Salir</a></li>
 				<!-- <li class="inner-child">
 						<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>
 						<ul>

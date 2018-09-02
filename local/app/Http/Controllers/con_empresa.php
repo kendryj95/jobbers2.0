@@ -842,10 +842,10 @@ class con_empresa extends Controller
                     DB::delete("DELETE FROM tbl_publicacion WHERE id=?", [$id_post]);
                     DB::commit();
 
-                    return redirect("empresa/ofertas?response=3");
+                    return redirect()->back()->with('alert', 'Se ha eliminado la publicación satisfactoriamente.');
                 } catch (Exception $e) {
                     DB::rollback();
-                    return redirect("empresa/ofertas?response=4");
+                    return redirect()->back()->with('alert-error', 'Ha ocurrido un error al intentar eliminar la publicación.');
                 }
 
                 break;
@@ -958,5 +958,367 @@ class con_empresa extends Controller
         ];
 
         return view('empresa_new_curso', $params);
+    }
+
+    public function storeCurso(Request $request)
+    {
+        $this->validate($request,[
+            "titulo" => "required",
+            "descripcion" => "required",
+            "modalidad" => "required",
+            "duracion" => "required",
+            "area" => "required",
+            "sector" => "required",
+            "precio" => "required",
+            "fecha_exp" => "required",
+        ],
+        [
+            "titulo.required" => "Titulo es un campo obligatorio.",
+            "descripcion.required" => "Descripción es un campo obligatorio.",
+            "modalidad.required" => "Modalidad es un campo obligatorio.",
+            "duracion.required" => "Duración es un campo obligatorio.",
+            "area.required" => "Area es un campo obligatorio.",
+            "sector.required" => "Sector es un campo obligatorio.",
+            "precio.required" => "Precio es un campo obligatorio.",
+            "fecha_exp.required" => "Fecha de expiración es un campo obligatorio.",
+        ]);
+
+        if ($request->modalidad == 2) {
+            if ($request->provincia == "" || $request->localidad == "") {
+                return redirect()->back()->withErrors(['Has dejado campos obligatorios vacíos.']);
+            }
+        }
+
+        DB::beginTransaction();
+
+        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $request->descripcion);
+        $explode = explode('/', $request->fecha_exp);
+        $fecha_venc = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
+        $fecha_venc = strtotime($fecha_venc);
+        $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
+
+        try {
+            $data = [];
+            $data['id_empresa'] = session()->get('emp_ide');
+            $data['titulo'] = $request->titulo;
+            $data['id_sector'] = $request->sector;
+            $data['id_area'] = $request->area;
+            if ($request->modalidad == 2) {
+                $data['id_provincia'] = $request->provincia;
+                $data['id_localidad'] = $request->localidad;
+            }
+            $data['descripcion'] = $descripcion;
+            $data['estatus'] = 0;
+            $data['fecha_venc'] = $fecha_venc;
+            $data['id_modalidad_publicacion'] = 2;
+
+            DB::table('tbl_publicacion')->insert($data);
+            $id_publicacion = DB::getPdo()->lastInsertId();
+
+            $data = [];
+            $data['id_publicacion'] = $id_publicacion;
+            $data['id_modalidad_curso'] = $request->modalidad;
+            $data['duracion'] = $request->duracion;
+            $data['id_modalidad_duracion'] = $request->modalidad_duracion;
+            $data['precio'] = $request->precio;
+
+            DB::table('tbl_cursos')->insert($data);
+
+            DB::commit();
+
+            return redirect('empresa/cursos?r=1');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Vuelva a intentarlo por favor.']);
+        }
+    }
+
+    public function cursos()
+    {
+        $sql1          = DB::select("SELECT COUNT(*) AS total_cursos FROM tbl_publicacion WHERE id_empresa=? AND id_modalidad_publicacion=2", [session()->get("emp_ide")]);
+        $total_cursos = $sql1[0]->total_cursos;
+        // $sql2 = DB::select("SELECT COUNT(*) AS total_postulados FROM tbl_postulaciones p INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id WHERE pb.id_empresa=?", [session()->get("emp_ide")]);
+        // $total_postulados = $sql2[0]->total_postulados;
+
+        $total_jobbers = DB::select("SELECT COUNT(*) AS count FROM tbl_usuarios WHERE tipo_usuario=2");
+
+        $cursos = DB::select("
+                SELECT 
+                r.*
+                FROM
+                (
+                  SELECT
+                  pub.id,
+                  pub.titulo,
+                  CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
+                  CONCAT(DATE_FORMAT(pub.tmp,'%d/%m/%Y'),',<br>',DATE_FORMAT(pub.fecha_venc,'%d/%m/%Y')) AS fcrea_fvenc,
+                  IF(pub.estatus=1,'Aprobado','Pendiente') AS estatus,
+                  #(SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
+                  #(SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion,
+                  pub.fecha_venc,
+                  pub.estatus AS id_estatus,
+                  mc.id AS id_mc,
+                  md.id AS id_md,
+                  mc.modalidad AS modalidad_curso,
+                  CONCAT(c.duracion,' ',md.modalidad) AS duracion,
+                  CONCAT('$',c.precio) AS precio
+                  FROM
+                  tbl_publicacion pub
+                  LEFT JOIN tbl_cursos c ON pub.id=c.id_publicacion
+                  LEFT JOIN tbl_modalidades_curso mc ON c.id_modalidad_curso=mc.id
+                  LEFT JOIN tbl_modalidades_duracion md ON c.id_modalidad_duracion=md.id
+                  LEFT JOIN tbl_provincias prov ON pub.id_provincia=prov.id
+                  LEFT JOIN tbl_localidades l ON pub.id_localidad=l.id
+                  WHERE pub.id_empresa=? AND pub.id_modalidad_publicacion=2
+                ) r", [session()->get("emp_ide")]);
+
+        $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=?", [session()->get("emp_ide")]);
+
+        if ($cursos) {
+            foreach ($cursos as $curso) {
+                switch ($plan[0]->id_plan) {
+                    case 1:
+                        $timestamp_final = strtotime($curso->fecha_venc);
+
+                        $timestamp_today = strtotime(date('Y-m-d'));
+
+                        if ($timestamp_today >= $timestamp_final) { // ¿Caducó?
+                            if ($curso->id_estatus == 1) { // Si la publicacion caducó pero sigue estando activa, desactivarla.
+                                DB::update("UPDATE tbl_publicacion SET estatus=0 WHERE id=?",[$curso->id]);
+                            }
+                        } 
+                        break;
+                    
+                    case 2:
+                        $timestamp_final = strtotime($curso->fecha_venc);
+
+                        $timestamp_today = strtotime(date('Y-m-d'));
+
+                        if ($timestamp_today >= $timestamp_final) { // ¿Caducó?
+                            if ($curso->id_estatus == 1) { // Si la publicacion caducó pero sigue estando activa, desactivarla.
+                                DB::update("UPDATE tbl_publicacion SET estatus=0 WHERE id=?",[$curso->id]);
+                            }
+                        }
+                        break;
+                }
+            }
+
+            $cursos = DB::select("
+                SELECT 
+                r.*
+                FROM
+                (
+                  SELECT
+                  pub.id,
+                  pub.titulo,
+                  CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
+                  CONCAT(DATE_FORMAT(pub.tmp,'%d/%m/%Y'),',<br>',DATE_FORMAT(pub.fecha_venc,'%d/%m/%Y')) AS fcrea_fvenc,
+                  IF(pub.estatus=1,'Aprobado','Pendiente') AS estatus,
+                  #(SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
+                  #(SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion,
+                  pub.fecha_venc,
+                  pub.estatus AS id_estatus,
+                  mc.id AS id_mc,
+                  md.id AS id_md,
+                  mc.modalidad AS modalidad_curso,
+                  CONCAT(c.duracion,' ',md.modalidad) AS duracion,
+                  CONCAT('$',c.precio) AS precio,
+                  DATEDIFF(NOW(), pub.fecha_venc) AS dias_venc
+                  FROM
+                  tbl_publicacion pub
+                  LEFT JOIN tbl_cursos c ON pub.id=c.id_publicacion
+                  LEFT JOIN tbl_modalidades_curso mc ON c.id_modalidad_curso=mc.id
+                  LEFT JOIN tbl_modalidades_duracion md ON c.id_modalidad_duracion=md.id
+                  LEFT JOIN tbl_provincias prov ON pub.id_provincia=prov.id
+                  LEFT JOIN tbl_localidades l ON pub.id_localidad=l.id
+                  WHERE pub.id_empresa=? AND pub.id_modalidad_publicacion=2
+                ) r", [session()->get("emp_ide")]);
+        }
+
+        $params = [
+            "total_cursos" => $total_cursos,
+            "cursos"       => array_reverse($cursos),
+            // "total_postulados" => $total_postulados,
+            "total_jobbers" => $total_jobbers[0]->count
+        ];
+        return view('empresa_cursos', $params);
+    }
+
+    public function editCurso($id)
+    {
+        $curso = DB::table('tbl_publicacion AS p')
+                    ->select(
+                        'p.id AS id_publicacion',
+                        'titulo',
+                        'descripcion',
+                        'id_modalidad_curso',
+                        'duracion',
+                        'id_modalidad_duracion',
+                        'id_area',
+                        'id_sector',
+                        'precio',
+                        'fecha_venc',
+                        'id_provincia',
+                        'id_localidad'
+                    )
+                    ->leftjoin('tbl_cursos AS c', 'p.id', '=', 'c.id_publicacion')
+                    ->where('id_empresa', session()->get('emp_ide'))
+                    ->where('id_modalidad_publicacion', 2)
+                    ->where('p.id',$id)
+                    ->first();
+
+        if (!$curso) {
+            return redirect()->back();
+        }
+
+        $areas = DB::table('tbl_areas')->get();
+
+        $sectores = DB::table('tbl_areas_sectores')
+                    ->select('id','nombre')
+                    ->where('id_area',$curso->id_area)
+                    ->get();
+
+        $provincias = DB::table('tbl_provincias')->get();
+
+
+        $localidades = [];
+
+        if ($curso->id_provincia != null) {
+            $localidades = DB::table('tbl_localidades')
+                            ->select('id','localidad')
+                            ->where('id_provincia',$curso->id_provincia)
+                            ->get();
+        }
+
+        return view('empresa_edit_curso', compact('curso', 'areas', 'sectores', 'provincias', 'localidades'));
+    }
+
+    public function editStoreCurso(Request $request)
+    {
+        $this->validate($request,[
+            "titulo" => "required",
+            "descripcion" => "required",
+            "modalidad" => "required",
+            "duracion" => "required",
+            "area" => "required",
+            "sector" => "required",
+            "precio" => "required",
+            "fecha_exp" => "required",
+        ],
+        [
+            "titulo.required" => "Titulo es un campo obligatorio.",
+            "descripcion.required" => "Descripción es un campo obligatorio.",
+            "modalidad.required" => "Modalidad es un campo obligatorio.",
+            "duracion.required" => "Duración es un campo obligatorio.",
+            "area.required" => "Area es un campo obligatorio.",
+            "sector.required" => "Sector es un campo obligatorio.",
+            "precio.required" => "Precio es un campo obligatorio.",
+            "fecha_exp.required" => "Fecha de expiración es un campo obligatorio.",
+        ]);
+
+        if ($request->modalidad == 2) {
+            if ($request->provincia == "" || $request->localidad == "") {
+                return redirect()->back()->withErrors(['Has dejado campos obligatorios vacíos.']);
+            }
+        }
+
+        DB::beginTransaction();
+
+        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $request->descripcion);
+        $explode = explode('/', $request->fecha_exp);
+        $fecha_venc = $explode[2] . '-' . $explode[1] . '-' . $explode[0];
+        $fecha_venc = strtotime($fecha_venc);
+        $fecha_venc = date('Y-m-d H:i:s', $fecha_venc);
+
+        try {
+            $data = [];
+            $data['titulo'] = $request->titulo;
+            $data['id_sector'] = $request->sector;
+            $data['id_area'] = $request->area;
+            if ($request->modalidad == 2) {
+                $data['id_provincia'] = $request->provincia;
+                $data['id_localidad'] = $request->localidad;
+            }
+            $data['descripcion'] = $descripcion;
+            $data['fecha_venc'] = $fecha_venc;
+
+            DB::table('tbl_publicacion')->where('id', $request->id_publicacion)->update($data);
+
+            $data = [];
+            $data['id_modalidad_curso'] = $request->modalidad;
+            $data['duracion'] = $request->duracion;
+            $data['id_modalidad_duracion'] = $request->modalidad_duracion;
+            $data['precio'] = $request->precio;
+
+            DB::table('tbl_cursos')->where('id_publicacion', $request->id_publicacion)->update($data);
+
+            DB::commit();
+
+            return redirect('empresa/cursos?r=2');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Vuelva a intentarlo por favor.']);
+        }
+    }
+
+    public function detalle_curso($id)
+    {
+        DB::update("UPDATE tbl_publicacion SET vistos=(vistos + 1) WHERE id=?",[$id]);
+
+        $vista = View::make('detalle_curso');
+        $sql   = "
+        SELECT t2.id as id_empresa, 
+        t1.tmp,
+        t1.id, 
+        t1.titulo,
+        t1.vistos,
+        t1.descripcion,
+        t1.fecha_venc,
+        t1.direccion,
+        t1.estatus,
+        t1.confidencial,
+        t9.nombre,
+        t7.nombre as sector,
+        t8.nombre as area,
+        t2.nombre as empresa,
+        IF(t6.nombre_aleatorio is null,
+        'empresa.jpg',
+        t6.nombre_aleatorio) as imagen,
+        CONCAT(t11.duracion,' ',t13.modalidad) AS duracion,
+        t11.precio,
+        t12.modalidad AS modalidad_curso,
+        concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
+        LEFT JOIN tbl_cursos t11 ON t1.id=t11.id_publicacion
+        LEFT JOIN tbl_modalidades_curso t12 ON t11.id_modalidad_curso=t12.id
+        LEFT JOIN tbl_modalidades_duracion t13 ON t11.id_modalidad_duracion=t13.id
+        LEFT JOIN tbl_empresa t2 ON t2.id = t1.id_empresa
+        LEFT JOIN tbl_provincias t3 ON t3.id = t2.provincia
+        LEFT JOIN tbl_localidades t4 ON t4.id = t2.localidad
+        LEFT JOIN tbl_usuarios_foto_perfil t5 ON t5.id_usuario = t2.id_usuario
+        LEFT JOIN tbl_archivos t6 ON t6.id = t5.id_foto
+        LEFT JOIN tbl_areas_sectores t7 ON t7.id = t1.id_sector
+        LEFT JOIN tbl_areas t8 ON t8.id = t1.id_area
+        LEFT JOIN tbl_disponibilidad t9 ON t9.id = t1.id_disponibilidad
+        LEFT JOIN tbl_rango_salarios t10 ON t1.id_salario=t10.id
+        WHERE t1.id = " . $id . " /*AND t1.estatus = 1 */AND t1.id_modalidad_publicacion=2";
+
+        try {
+            $datos                = DB::select($sql);
+            $vista->datos         = $datos;
+            $sql_cantidad_cursos = "
+                SELECT count(*) as cantidad
+                FROM tbl_publicacion
+                WHERE id_empresa= " . $datos[0]->id_empresa . " and estatus = 1 AND id_modalidad_publicacion=2 GROUP by id_empresa";
+
+            // $cantidad_postulados = DB::select("SELECT COUNT(*) AS count FROM tbl_postulaciones WHERE id_publicacion=?", [$id]);
+            // $vista->cantidad_postulados = $cantidad_postulados[0]->count;
+            $cantidad_cursos        = DB::select($sql_cantidad_cursos);
+            $vista->cantidad_cursos = $cantidad_cursos;
+            // $vista->nivel_user=$this->nivel_usuario();
+            // $vista->postulado = $postulado;
+            return $vista;
+        } catch (Exception $e) {
+
+        }
     }
 }

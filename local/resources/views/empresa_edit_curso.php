@@ -9,15 +9,15 @@
 		<meta name="author" content="CreativeLayers">
 		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 		<!-- Styles -->
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
-		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
-		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/responsive.css" />
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
+		<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/bootstrap-grid.css" />
+		<link rel="stylesheet" href="../../../local/resources/views/css/icons.css">
+		<link rel="stylesheet" href="../../../local/resources/views/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/chosen.css" />
+		<link rel="stylesheet" type="text/css" href="../../../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-		<link  href="../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.css" rel="stylesheet">
+		<link  href="../../../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.css" rel="stylesheet">
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
 	<body>
@@ -28,7 +28,7 @@
 			<?php include "includes/header_empresa.php" ?>
 			<section class="overlape">
 				<div class="block no-padding">
-					<div data-velocity="-.1" style="background: url(../local/resources/views/images/empresa_gral.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+					<div data-velocity="-.1" style="background: url(<?= asset('local/resources/views/images/empresa_gral.jpg') ?>) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">
@@ -49,23 +49,25 @@
 							<div class="col-lg-9 column">
 								<div class="padding-left">
 									<div class="profile-title">
-										<h3>Publicar curso</h3>
+										<h3>Editar curso</h3>
 									</div>
 									<div class="profile-form-edit" style="margin-bottom: 20px">
-										<form id="form_cursos" action="<?= url('empresa/storeCurso') ?>" method="post">
+										<form id="form_cursos" action="<?= url('empresa/editCurso') ?>" method="post">
 											<?= csrf_field() ?>
+											<input type="hidden" name="id_publicacion" value="<?= $curso->id_publicacion ?>">
+
 											<div class="row">
 
 												<div class="col-lg-12">
 													<span class="pf-title">Titulo del curso <b>*</b></span>
 													<div class="pf-field">
-														<input type="text" placeholder="Titulo" name="titulo" id="titulo" />
+														<input type="text" placeholder="Titulo" name="titulo" id="titulo" value="<?= $curso->titulo ?>" />
 													</div>
 												</div>
 												<div class="col-lg-12">
 													<span class="pf-title">Descripción del curso <b>*</b></span>
 													<div class="pf-field">
-														<textarea placeholder="Descripcion de la oferta" name="descripcion" id="descripcion"></textarea>
+														<textarea placeholder="Descripcion de la oferta" name="descripcion" id="descripcion" value="" ></textarea>
 													</div>
 												</div>
 												
@@ -74,25 +76,25 @@
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el área" class="chosen" id="modalidad" name="modalidad">
 															<option value="">Seleccionar</option>
-															<option value="1">Online</option>
-															<option value="2">Presencial</option>
+															<option value="1" <?= $curso->id_modalidad_curso == 1 ? 'selected' : '' ?>>Online</option>
+															<option value="2" <?= $curso->id_modalidad_curso == 2 ? 'selected' : '' ?>>Presencial</option>
 														</select>
 													</div>
 												</div>
 												<div class="col-lg-3">
 													<span class="pf-title">Duración <b>*</b></span>
 													<div class="pf-field">
-														<input type="number" id="duracion" name="duracion" placeholder="" min="1">
+														<input type="number" id="duracion" name="duracion" placeholder="" min="1" value="<?= $curso->duracion ?>" >
 													</div>
 												</div>
 												<div class="col-lg-3">
 													<span class="pf-title">&nbsp;</span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el área" class="chosen" id="modalidad_duracion" name="modalidad_duracion" onchange="">
-															<option value="1">Horas</option>
-															<option value="2">Días</option>
-															<option value="3">Meses</option>
-															<option value="4">Semestres</option>
+															<option value="1" <?= $curso->id_modalidad_duracion == 1 ? 'selected' : '' ?>>Horas</option>
+															<option value="2" <?= $curso->id_modalidad_duracion == 2 ? 'selected' : '' ?>>Días</option>
+															<option value="3" <?= $curso->id_modalidad_duracion == 3 ? 'selected' : '' ?>>Meses</option>
+															<option value="4" <?= $curso->id_modalidad_duracion == 4 ? 'selected' : '' ?>>Semestres</option>
 														</select>
 													</div>
 												</div>
@@ -103,7 +105,8 @@
 														<select data-placeholder="Por favor selecciona el área" class="chosen" id="area" name="area" onchange="getSector(this.value)">
 															<option value="0">Seleccionar</option>
 															<?php foreach ($areas as $area): ?>
-															<option value="<?= $area->id ?>"><?= $area->area ?></option>
+															<?php $selected = $area->id == $curso->id_area ? 'selected' : '' ?>
+															<option value="<?= $area->id ?>" <?= $selected ?>><?= $area->nombre ?></option>
 															<?php endforeach ?>
 														</select>
 													</div>
@@ -113,6 +116,10 @@
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el sector" class="chosen" id="sector" name="sector">
 															<option>Seleccionar</option>
+															<?php foreach ($sectores as $sector): ?>
+																<?php $selected = $sector->id == $curso->id_sector ? 'selected' : '' ?>
+																<option value="<?= $sector->id ?>" <?= $selected ?>><?= $sector->nombre ?></option>
+															<?php endforeach; ?>
 														</select>
 													</div>
 												</div>
@@ -120,13 +127,14 @@
 												<div class="col-lg-6">
 													<span class="pf-title">Precio del curso <b>*</b></span>
 													<div class="pf-field">
-														<input type="number" placeholder="Precio" name="precio" id="precio" min="0" />
+														<input type="number" placeholder="Precio" name="precio" id="precio" min="0" value="<?= $curso->precio ?>" />
 													</div>
 												</div>
 												<div class="col-lg-6">
 													<span class="pf-title">Fecha de expiracion de la oferta <b>*</b></span>
 													<div class="pf-field">
-														<input type="text" onkeypress="anularEvent(event)" placeholder="Fecha de expiracion" name="fecha_exp" id="fecha_exp" />
+														<?php $fecha_exp = date('d/m/Y', strtotime($curso->fecha_venc)) ?>
+														<input type="text" onkeypress="anularEvent(event)" placeholder="Fecha de expiracion" name="fecha_exp" id="fecha_exp" value="<?= $fecha_exp ?>" />
 													</div>
 												</div>
 
@@ -137,7 +145,8 @@
 														<select data-placeholder="Por favor selecciona la provincia" class="chosen" id="provincia" onchange="getLocalidad(this.value)" name="provincia">
 															<option value="">Seleccionar</option>
 															<?php foreach ($provincias as $prov): ?>
-															<option value="<?= $prov->id ?>"><?= $prov->provincia ?></option>
+																<?php $selected = $prov->id == $curso->id_provincia ? 'selected' : '' ?>
+															<option value="<?= $prov->id ?>" <?= $selected ?>><?= $prov->provincia ?></option>
 															<?php endforeach ?>
 															
 														</select>
@@ -148,12 +157,16 @@
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona la localidad" class="chosen" id="localidad" name="localidad">
 															<option>Seleccionar</option>
+															<?php foreach ($localidades as $loc): ?>
+																<?php $selected = $loc->id == $curso->id_localidad ? 'selected' : '' ?>
+															<option value="<?= $loc->id ?>" <?= $selected ?>><?= $loc->localidad ?></option>
+															<?php endforeach ?>
 														</select>
 													</div>
 												</div>
 												
 												<div class="col-lg-12">
-													<button type="button" id="send">Publicar</button>
+													<button type="button" id="send">Actualizar</button>
 												</div>
 												
 											</div>
@@ -169,28 +182,45 @@
 			<?php include("includes/general_footer_empresas.php") ?>
 		</div>
 		
-				<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/slick.min.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/parallax.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-				<script src="../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/modernizr.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/script.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/wow.min.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/slick.min.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/parallax.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
 				<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
-				<script src="../local/resources/views/js/maps2.js" type="text/javascript"></script>
-				<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
-				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/tinymce.min.js"></script>
-				<script type="text/javascript" src="../local/resources/views/plugins/tinymce/skins/custom/jquery.tinymce.min.js"></script>
-				<script src="../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.js"></script>	
-				<script src="../local/resources/views/plugins/datepicker_beta/dist/datepicker.es-ES.js"></script>	
+				<script src="../../../local/resources/views/js/maps2.js" type="text/javascript"></script>
+				<script src="../../../local/resources/views/plugins/notify.js" type="text/javascript"></script>
+				<script type="text/javascript" src="../../../local/resources/views/plugins/tinymce/tinymce.min.js"></script>
+				<script type="text/javascript" src="../../../local/resources/views/plugins/tinymce/skins/custom/jquery.tinymce.min.js"></script>
+				<script src="../../../local/resources/views/plugins/datepicker_beta/dist/datepicker.min.js"></script>	
+				<script src="../../../local/resources/views/plugins/datepicker_beta/dist/datepicker.es-ES.js"></script>	
 				<script>
 					var calendario = new Date();
 					var dia = calendario.getDate()+1,
 						mes = calendario.getMonth() + 1,
 						anio = calendario.getFullYear();
 
+					<?php if (isset($curso)): ?>
+						/*console.log(tinymce)
+						$('#descripcion').html('asndkansdkaskd')
+						tinymce.get('descripcion').setContent("asdbiuasndk");*/
+						$( window ).load(function(){         
+						  tinymce.activeEditor.setContent('<?= $curso->descripcion ?>');
+						});
+
+					<?php endif; ?>
+
+
 					$(document).ready(function() {
+
+						<?php if ($curso->id_modalidad_curso == 2): ?>
+
+							$('.ubicacion').show();
+
+						<?php endif; ?>
 
 						<?php if (count($errors)>0): ?>
 
@@ -207,7 +237,7 @@
 
 						<?php if (isset($_REQUEST['r']) && $_REQUEST['r'] == 1): ?>
 
-							$.notify("Se ha creado el curso satisfactoriamente.", {
+							$.notify("Se ha editado el curso satisfactoriamente.", {
 								className:"success",
 								globalPosition: "bottom center"
 							});
@@ -253,7 +283,7 @@
 					function getSector(id_area){
 						if (id_area != 0) {
 							$.ajax({
-								url: '<?= url("sectores")?>/'+id_area,
+								url: '<?= url("sectores") ?>/'+id_area,
 								type: 'GET',
 								dataType: 'json',
 								beforeSend: function(){
