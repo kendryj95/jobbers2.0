@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
-	<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-position: center;">
+	<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-size: cover; height: 100vh">
 		<div class="theme-layout" id="scrollup">
 			
 			<section>

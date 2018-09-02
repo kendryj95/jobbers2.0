@@ -72,7 +72,7 @@
 														</div>
 													</div>
 													<div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
-														<button type="submit"><i class="la la-search"></i></button>
+														<button type="submit" style="margin-top: 2px;"><i class="la la-search"></i></button>
 													</div>
 												</div>
 											</form>
