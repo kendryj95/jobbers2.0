@@ -244,12 +244,13 @@ datos_resumen=$datos_resumen;
             $sql_experiencia_lab="SELECT * FROM tbl_candidato_experiencia_laboral WHERE id_usuario=".$id."";
             $sql_contacto="SELECT * FROM tbl_candidato_info_contacto WHERE id_usuario=".$id."";
             $sql_preferencias="SELECT * FROM tbl_candidato_preferencias_laborales WHERE id_usuario=".$id."";
+            $sql_user="SELECT correo FROM tbl_usuarios WHERE id=".$id."";
             try {
 
                 //Consultas para el % de carga
+                //
                 $datos_datos_personales=DB::select($sql_datos_personales);
-                $datos_datos_educacion=DB::select($sql_datos_educacion);
-                
+                $datos_datos_educacion=DB::select($sql_datos_educacion); 
                 $datos_experiencia_lab=DB::select($sql_experiencia_lab);
                 $datos_contacto=DB::select($sql_contacto);
                 $datos_preferencias=DB::select($sql_preferencias);
@@ -258,7 +259,7 @@ datos_resumen=$datos_resumen;
                 $datos_recomendaciones=DB::select($sql_recomendaciones);
                 $datos_postulaciones=DB::select($sql_postulaciones);
                 $datos_candidato=DB::select($sql_candidato);
-
+                $datos_user=DB::select($sql_user);
 
                 $vista->datos_postulaciones=$datos_postulaciones[0]->cantidad;
                 $vista->datos_recomendaciones=$datos_recomendaciones[0]->cantidad;
@@ -269,7 +270,7 @@ datos_resumen=$datos_resumen;
                 $vista->datos_experiencia_lab=$datos_experiencia_lab;
                 $vista->datos_contacto=$datos_contacto;
                 $vista->datos_preferencias=$datos_preferencias;
-
+                $vista->datos_user=$datos_user;
                 return $vista;
             } catch (Exception $e) {
                 

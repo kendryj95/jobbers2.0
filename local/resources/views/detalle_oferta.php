@@ -148,12 +148,17 @@
 																<a href="#" title="" class="share-fb"><i class="fa fa-facebook" style="position: initial; font-size: initial; color: inherit;"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter" style="position: initial; font-size: initial; color: inherit;"></i></a>
 															</div>
 														</li>
+
+																 
+																 
 															<?php if(session()->get('tipo_usuario')==2): ?>
 
 																<div class="emply-btns">
 																	<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
 																</div>
-
+															<?php if ($nivel_user==1): ?>
+																
+															
 																<?php if (!$postulado): ?>
 
 																	<?php if ($datos[0]->salario_usuario == 'NO'): ?>
@@ -186,6 +191,10 @@
 																	<a class="followus" href="<?= url('login') ?>?returnUrl=<?= url()->current() ?>&p=1&id_pub=<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
 																</div>
 															<?php endif; ?>
+															<?php endif ?>
+															<?php if ($nivel_user==2): ?>
+																<p style="text-align: center;font-size: 12px;color: #ff0010;">*Complete sus datos para poder postularse.</p>
+															<?php endif ?>
 													</ul>
 													</div><!-- Job Overview -->
 													<div class="quick-form-job">
