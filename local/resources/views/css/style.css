@@ -994,8 +994,10 @@ label::after {
 .menu-sec {
     float: left;
     width: 100%;
-    margin: 30px 0;
+    background-color: #2e3192;
+    /* margin: 30px 0; */
     margin-bottom: 0;
+    font-family: 'Quicksand', serif;
 }
 
 .logo {
@@ -1033,11 +1035,13 @@ label::after {
 }
 
 .account-btns {
+    background-color: #ffb203;
+    border-radius: 10px;
+    padding: 0px 8px;
     float: right;
     margin: 0;
     margin-left: 20px;
-    margin-top: 5px;
-    padding: 8px 0;
+    margin-top: 12px;
 }
 
 .account-btns>li {
@@ -1069,7 +1073,7 @@ label::after {
 
 .menu-sec nav {
     float: right;
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .menu-sec nav>ul {
@@ -1085,11 +1089,11 @@ label::after {
 
 .menu-sec nav>ul>li>a {
     float: left;
-    font-family: Open Sans;
+    /* font-family: Open Sans; */
     font-size: 15px;
     color: #ffffff;
     position: relative;
-    padding: 14px 20px;
+    padding: 14px 0px;
 }
 
 .menu-sec nav>ul>li.menu-item-has-children>a::before {
@@ -12576,7 +12580,7 @@ footer.ft .scrollup {
     float: left;
     width: 100%;
     position: relative;
-    background: #0b1b46;
+    background: #2e3192;
     padding: 0 25px;
     z-index: 99;
     display: none;
@@ -12680,7 +12684,7 @@ footer.ft .scrollup {
     position: absolute;
     left: 0;
     top: 100%;
-    background: #0b1b46;
+    background: #2e3192;
     padding: 0 30px;
     overflow-y: scroll;
     height: 410px;
@@ -12747,8 +12751,8 @@ footer.ft .scrollup {
     width: 100%;
     font-family: Open Sans;
     font-size: 22px;
-    color: #96a0bd;
-    padding-right: 30px;
+    color: #fff;
+    /* padding-right: 30px; */
     position: relative;
 }
 
@@ -13041,7 +13045,34 @@ header.style4 .account-btns>li a,
 }
 
 
+/* Navbar */
+
+.li-nav {
+    padding: 2px 5px;
+    margin-right: 10px;
+}
+
+.a-nav {
+    padding: 0px 10px;
+    border-right: 1px solid #fff;
+}
+
+.my-panel {
+    background-color: #ffb203;
+    padding: 4px 6px;
+    float: left;
+    margin-top: 9px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+
 /* Ofertas */
+
+.sticky-custom {
+    position: fixed;
+    top: 0;
+}
 
 .carousel {
     margin-top: 67px;
@@ -13065,7 +13096,7 @@ header.style4 .account-btns>li a,
 }
 
 .section-offers {
-    margin-top: 70px;
+    margin-top: 40px;
 }
 
 .back-offers {

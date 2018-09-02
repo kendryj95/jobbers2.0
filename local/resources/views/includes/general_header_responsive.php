@@ -24,7 +24,7 @@ $back2="../";
 
 <div class="responsive-header">
 	<div class="responsive-menubar">
-		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="<?= url('inicio') ?>" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>
+		<div class="res-logo" style="background-color: #fff; border-radius: 10px;padding-left: 25px;padding-right: 25px;"><a href="<?= url('inicio') ?>" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>
 		<div class="menu-resaction">
 			<div class="res-openmenu">
 				<img src="<?= $dir ?>/local/resources/views/images/icon.png" alt="" /> Menú
@@ -35,12 +35,12 @@ $back2="../";
 		</div>
 	</div>
 	<div class="responsive-opensec">
-		<div class="btn-extars">
+		<div class="btn-extars text-center">
 			<?php if (session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1): ?>
 				<?php if (session()->get('tipo_usuario')==2): ?>
-					<a href="<?= $back ?>candidashboard" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
+					<a href="<?= $back ?>candidashboard" title="" class="my-panel" style="float: initial">Mi panel</a>
 				<?php elseif (session()->get('tipo_usuario')==1): ?>
-					<a href="<?= $back ?>empresa/ofertas" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
+					<a href="<?= $back ?>empresa/ofertas" title="" class="my-panel" style="float: initial">Mi panel</a>
 				<?php endif; ?>
 			<?php else: ?>
 				<ul class="account-btns">
