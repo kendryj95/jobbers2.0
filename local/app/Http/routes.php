@@ -168,6 +168,7 @@ Route::post('empresa/storeCurso', 'con_empresa@storeCurso')->name('test');
 Route::get('empresa/cursos', 'con_empresa@cursos');
 Route::get('empresa/cursos/edit/{id}', 'con_empresa@editCurso');
 Route::post('empresa/editCurso', 'con_empresa@editStoreCurso');
+Route::post('empresa/request_info_curso', 'con_empresa@request_info_curso');
 });
 
  
@@ -259,6 +260,8 @@ Route::post('administracion/candidatos/enviar', 'con_administrator_candidatos@en
 	Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
 	Route::get('administracion/empresas/ofertas-renovar', 'con_administrator_empresas@ofertasForRenew');
 	Route::get('administracion/empresas/renewOferta/{id_pub}/{id_empresa}', 'con_administrator_empresas@renewOferta')->where(['id_pub' => '[0-9]+', 'id_empresa' => '[0-9]+']);
+	Route::get('administracion/empresas/cursos-aprobar', 'con_administrator_empresas@cursosForApprove');
+	Route::get('administracion/empresas/aprobarCurso/{id}', 'con_administrator_empresas@approveCurso');
 
 
 	#########################################################################

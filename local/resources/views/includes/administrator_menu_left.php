@@ -14,6 +14,9 @@
 				 					<li>
 				 						<a href="<?= url('administracion/empresas/ofertas-renovar') ?>" title="Renovar ofertas"><i class="la la-folder"></i>Empresas - Ren. ofertas...</a> 
 				 					</li>
+									 <li>
+				 						<a href="<?= url('administracion/empresas/cursos-aprobar') ?>" title="Aprobar cursos"><i class="la la-university"></i>Empresa - Cursos </a> 
+				 					</li>
 				 					<li>
 				 						<a href="<?= url('administracion/candidatos') ?>" title=""><i class="la la-users"></i>Candidatos</a> 
 				 					</li>

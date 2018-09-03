@@ -58,7 +58,7 @@
 							<div class="job-single-sec style3">
 								<div class="job-head-wide">
 									<div class="row">
-										<div class="col-lg-10">
+										<div class="col-lg-8">
 											<div class="job-single-head3 emplye">
 												<?php  
 													$imagen = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
@@ -80,6 +80,12 @@
 													</ul>
 												</div>
 												</div><!-- Job Head -->
+											</div>
+											<div class="col-lg-4">
+												<div class="text-center">
+													<h3 style="color:#2E3192;margin-bottom: 5px"><?= $datos[0]->precio ?></h3>
+													<button class="button" style="margin: 0 auto; float:none !important" id="info">Solicitar información</button>
+												</div>
 											</div>
 											 
 										</div>
@@ -122,13 +128,13 @@
 													<div class="quick-form-job">
 														<h3>¿Quieres más información?</h3>
 														<span class="text-muted" style="font-size: 14px">Rellena el formulario para que el centro contacte contigo</span>
-														<form method="post" action="" id="form_evaluacion" style="margin-top: 10px">
+														<form method="post" action="<?= url('empresa/request_info_curso') ?>" id="form_solicitud" style="margin-top: 10px">
 															
 															<?= csrf_field() ?>
 
 															<input type="hidden" name="id_pub" value="<?= $datos[0]->id ?>">
 															<div class="pf-field" style="margin-bottom: 20px;">
-																<input type="text" name="nombres" placeholder="Nombres">
+																<input type="text" name="nombres" id="nombres" placeholder="Nombres">
 															</div>
 
 															<div class="pf-field" style="margin-bottom: 20px;">
@@ -136,7 +142,7 @@
 															</div>
 
 															<div class="pf-field" style="margin-bottom: 20px;">
-																<input type="text" name="email" placeholder="Email">
+																<input type="text" name="correo" placeholder="Email">
 															</div>
 
 															<div class="pf-field" style="margin-bottom: 20px;">
@@ -144,7 +150,11 @@
 															</div>
 
 															<div class="pf-field" style="margin-bottom: 20px;">
-																<select data-placeholder="Selecciona provincia" class="chosen" name="provincia" id="provincia">
+																<select data-placeholder="Selecciona provincia" class="chosen" name="provincia" id="provincia" onchange="getLocalidad(this.value)">
+																	<option value="">Selecciona provincia</option>
+																	<?php foreach ($provincias as $provincia): ?>
+																		<option value="<?= $provincia->id ?>"><?= $provincia->provincia ?></option>
+																	<?php endforeach; ?>
 																</select>
 															</div>
 
@@ -152,7 +162,7 @@
 																<select data-placeholder="Selecciona localidad" class="chosen" name="localidad" id="localidad">
 																</select>
 															</div>
-															<button class="submit" id="submit_evaluacion">Solicitar información</button>
+															<button class="submit" id="submit_solicitud">Solicitar información</button>
 														</form>
 													</div>
 												</div>
@@ -212,15 +222,8 @@
 
 				<?php if (isset($_REQUEST['r']) && $_REQUEST['r'] == 1): ?>
 
-					$.notify("Se ha enviado su evaluacion, gracias por aportar.", {
+					$.notify("Se ha enviado su solicitud, la empresa se contactará con ud.", {
 						className:"success",
-						globalPosition: "bottom center"
-					});
-
-				<?php elseif (isset($_REQUEST['r']) && $_REQUEST['r'] == 2): ?>
-
-					$.notify("Ha ocurrido un error inesperado.", {
-						className:"error",
 						globalPosition: "bottom center"
 					});
 
@@ -239,17 +242,51 @@
 
 				<?php endif; ?>
 
-				$('#submit_evaluacion').on('click', function(e){
-					e.preventDefault();
-					if ($('#evaluacion').val() != "" && $('#descripcion').val() != "") {
-						$('#form_evaluacion').submit();
-					} else {
-						$.notify("Campos obligatorios vacios.", {
-							className:"error",
-							globalPosition: "bottom center"
-						});
-					}
+				$('#info').on('click', function(){
+					$('#nombres').focus();
 				});
+
+				$('#submit_solicitud').on('click', function(e){
+					// e.preventDefault();
+					$(this).prop('disabled', true);
+					$('#form_solicitud').submit();
+				});
+
+				function getLocalidad(id_provincia){
+					if (id_provincia != 0) {
+						$.ajax({
+							url: '<?= url("localidades") ?>/'+id_provincia,
+							type: 'GET',
+							dataType: 'json',
+							beforeSend: function(){
+								$('#localidad').html('<option value="">Cargando...</option>').prop('disabled', true).trigger('chosen:updated');
+							},
+							success: function(response){
+								if (response.status == 1) {
+									let html = '<option value="">Selecciona localidad</option>';
+									response.localidades.forEach(function(localidad){
+										html += '<option value="'+localidad.id+'">'+localidad.localidad+'</option>';
+									});
+									$('#localidad').html(html).trigger('chosen:updated');
+								} else {
+									$.notify("Error al cargar las localidades", {
+										className:"error",
+										globalPosition: "bottom center"
+									});
+								}
+							},
+							error: function(){
+								alert("Lo sentimos, ha ocurrido un error inesperado. Por favor recargue la pagina");
+								$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
+							},
+							complete: function(){
+								$('#localidad').prop('disabled', false).trigger('chosen:updated');
+							}
+						});
+					} else {
+						$('#localidad').html('<option value="0">Seleccionar</option>').trigger('chosen:updated');
+					}
+				}
 			</script>
 		</body>
 	</html>

@@ -382,4 +382,60 @@ class con_administrator_empresas extends Controller
 
     }
 
+    public function cursosForApprove()
+    {
+        $cursos = DB::select("
+                SELECT 
+                r.*
+                FROM
+                (
+                  SELECT
+                  pub.id,
+                  pub.titulo,
+                  CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
+                  CONCAT(DATE_FORMAT(pub.tmp,'%d/%m/%Y'),',<br>',DATE_FORMAT(pub.fecha_venc,'%d/%m/%Y')) AS fcrea_fvenc,
+                  IF(pub.estatus=1,'Aprobado','Pendiente') AS estatus,
+                  #(SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
+                  #(SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion,
+                  pub.fecha_venc,
+                  pub.estatus AS id_estatus,
+                  mc.id AS id_mc,
+                  md.id AS id_md,
+                  mc.modalidad AS modalidad_curso,
+                  CONCAT(c.duracion,' ',md.modalidad) AS duracion,
+                  CONCAT('$',c.precio) AS precio,
+                  DATEDIFF(NOW(), pub.fecha_venc) AS dias_venc,
+                  e.nombre AS nombre_empresa,
+                  e.id AS id_empresa
+                  FROM
+                  tbl_publicacion pub
+                  LEFT JOIN tbl_cursos c ON pub.id=c.id_publicacion
+                  LEFT JOIN tbl_empresa e ON pub.id_empresa=e.id
+                  LEFT JOIN tbl_modalidades_curso mc ON c.id_modalidad_curso=mc.id
+                  LEFT JOIN tbl_modalidades_duracion md ON c.id_modalidad_duracion=md.id
+                  LEFT JOIN tbl_provincias prov ON pub.id_provincia=prov.id
+                  LEFT JOIN tbl_localidades l ON pub.id_localidad=l.id
+                  WHERE pub.estatus=0 AND pub.id_modalidad_publicacion=2
+                ) r");
+
+        // dd($cursos);
+
+        return view('administrator_empresa_cursos', compact('cursos'));
+    }
+
+    public function approveCurso($id_pub)
+    {
+        DB::beginTransaction();
+        
+        try {
+            DB::table('tbl_publicacion')->where('id',$id_pub)->update(['estatus' => 1]);
+            DB::commit();
+            return redirect('administracion/empresas/cursos-aprobar?r=1');
+            
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Vuelva a intentarlo por favor']);
+        }
+    }
+
 }

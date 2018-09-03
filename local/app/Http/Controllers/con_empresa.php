@@ -1061,7 +1061,7 @@ class con_empresa extends Controller
                   md.id AS id_md,
                   mc.modalidad AS modalidad_curso,
                   CONCAT(c.duracion,' ',md.modalidad) AS duracion,
-                  CONCAT('$',c.precio) AS precio
+                  CONCAT('$',c.precio) AS precio_curso
                   FROM
                   tbl_publicacion pub
                   LEFT JOIN tbl_cursos c ON pub.id=c.id_publicacion
@@ -1285,7 +1285,7 @@ class con_empresa extends Controller
         'empresa.jpg',
         t6.nombre_aleatorio) as imagen,
         CONCAT(t11.duracion,' ',t13.modalidad) AS duracion,
-        t11.precio,
+        CONCAT('$',FORMAT(t11.precio,2)) AS precio,
         t12.modalidad AS modalidad_curso,
         concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
         LEFT JOIN tbl_cursos t11 ON t1.id=t11.id_publicacion
@@ -1305,6 +1305,7 @@ class con_empresa extends Controller
         try {
             $datos                = DB::select($sql);
             $vista->datos         = $datos;
+            $vista->provincias    = DB::table('tbl_provincias')->get();
             $sql_cantidad_cursos = "
                 SELECT count(*) as cantidad
                 FROM tbl_publicacion
@@ -1319,6 +1320,50 @@ class con_empresa extends Controller
             return $vista;
         } catch (Exception $e) {
 
+        }
+    }
+
+    public function request_info_curso(Request $request)
+    {
+        $this->validate($request,[
+            "nombres" => "required|alpha",
+            "apellidos" => "required|alpha",
+            "correo" => "required|email|unique:tbl_solicitudes_informacion_cursos",
+            "celular" => "required",
+            "provincia" => "required",
+            "localidad" => "required",
+        ],
+        [
+           "nombres.required" => "El nombre es un campo obligatorio.",
+           "nombres.alpha" => "El nombre no es valido.", 
+           "apellidos.required" => "El apellido es un campo obligatorio.",
+           "apellidos.alpha" => "El apellido no es valido.",
+           "correo.required" => "El correo es un campo obligatorio.",
+           "correo.email" => "El correo no es valido.",
+           "correo.unique" => "Ya existe una solicitud con ese email.",
+           "celular.required" => "El celular es un campo obligatorio.",
+           "provincia.required" => "La provincia es un campo obligatorio.",
+           "localidad.required" => "La localidad es un campo obligatorio.",
+        ]);
+
+        DB::beginTransaction();
+        
+        try {
+            $data = [];
+            $data['id_publicacion'] = $request->id_pub;
+            $data['nombres'] = $request->nombres;
+            $data['apellidos'] = $request->apellidos;
+            $data['correo'] = $request->correo;
+            $data['telefono'] = $request->celular;
+            $data['id_provincia'] = $request->provincia;
+            $data['id_localidad'] = $request->localidad;
+
+            DB::table('tbl_solicitudes_informacion_cursos')->insert($data);
+            DB::commit();
+            return redirect('detalle_curso/'.$request->id_pub.'?r=1');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['Ha ocurrido un error inesperado. Por favor vuelva a intentarlo']);
         }
     }
 }
