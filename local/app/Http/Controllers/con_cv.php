@@ -10,7 +10,7 @@ class con_cv extends Controller
     public function index($id)
     { 
     	$sql_datos_personales="
-    	SELECT 
+    	SELECT count(t1.id) as cantidad,
     	count(t1.id) as cantidad, 
     	t1.correo,
     	t2.nombres,
@@ -23,28 +23,28 @@ class con_cv extends Controller
 		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id 
 		WHERE t1.id =".$id."";
 
-		$sql_inf_general="SELECT t1.telefono,t1.direccion,t2.descripcion,t3.provincia,t4.localidad,t2.nacionalidad FROM `tbl_candidato_info_contacto` t1
+		$sql_inf_general="SELECT count(t1.id) as cantidad,t1.telefono,t1.direccion,t2.descripcion,t3.provincia,t4.localidad,t2.nacionalidad FROM `tbl_candidato_info_contacto` t1
 			INNER JOIN tbl_paises t2 ON t2.id = t1.id_pais
 			INNER JOIN tbl_provincias t3 ON t3.id = t1.id_provincia
 			INNER JOIN tbl_localidades t4 ON t4.id = t1.id_localidad
 			WHERE t1.id_usuario =".$id."";
 		
-		$sql_experiencia_lab="SELECT t2.nombre_empresa,t2.cargo,t2.descripcion,t3.nombre as  act_empresa,t2.desde,t2.hasta from  tbl_usuarios t1
+		$sql_experiencia_lab="SELECT count(t1.id) as cantidad,t2.nombre_empresa,t2.cargo,t2.descripcion,t3.nombre as  act_empresa,t2.desde,t2.hasta from  tbl_usuarios t1
 			LEFT JOIN tbl_candidato_experiencia_laboral t2 ON t2.id_usuario = t1.id
 			LEFT JOIN tbl_actividades_empresa t3 ON t3.id = t2.id_actividad_empresa
 			WHERE t1.id =".$id."";
 
-			$sql_idioma="SELECT t3.descripcion from tbl_usuarios t1
+			$sql_idioma="SELECT count(t1.id) as cantidad,t3.descripcion from tbl_usuarios t1
 			LEFT JOIN tbl_candidato_idioma t2 ON t2.id_usuario=t1.id
 			LEFT JOIN tbl_idiomas t3 ON t3.id = t2.id_idioma 
 			WHERE t1.id =".$id."";
-			$sql_estudios="SELECT t5.descripcion as nivel_estudio,t3.descripcion,t2.nombre_institucion,t4.descripcion as area_estudio,concat(t2.desde,' - ',t2.hasta) as fecha,t2.titulo from tbl_usuarios t1
+			$sql_estudios="SELECT count(t1.id) as cantidad,t5.descripcion as nivel_estudio,t3.descripcion,t2.nombre_institucion,t4.descripcion as area_estudio,concat(t2.desde,' - ',t2.hasta) as fecha,t2.titulo from tbl_usuarios t1
 				LEFT JOIN tbl_candidatos_educacion t2 ON t2.id_usuario=t1.id
 				LEFT JOIN tbl_paises t3 ON t3.id = t2.id_pais
 				LEFT JOIN tbl_area_estudios t4 ON t4.id = t2.id_area_estudio
 				LEFT JOIN tbl_nivel_estudio t5 ON t5.id = t2.id_nivel_estudio
 			WHERE t1.id =".$id."";
-		$sql_info_extra="SELECT  t2.salario,t3.sobre_mi,t4.nombre  FROM `tbl_candidato_preferencias_laborales` t1
+		$sql_info_extra="SELECT count(t1.id) as cantidad, t2.salario,t3.sobre_mi,t4.nombre  FROM `tbl_candidato_preferencias_laborales` t1
 		LEFT JOIN tbl_rango_salarios t2 ON t2.id = t1.id_remuneracion_pre
 		LEFT JOIN tbl_disponibilidad t4 ON t4.id = t1.id_jornada
 		LEFT JOIN tbl_candidato_datos_personales  t3 ON t3.id_usuario = t1.id_usuario 
@@ -132,5 +132,17 @@ class con_cv extends Controller
 		 {
 		 	return "";
 		 }
+	}
+
+	public function vr($campo)
+	{
+		if(!empty($campo))
+		{
+			return "Sin información";
+		}
+		else
+		{
+			return $campo;
+		}
 	}
 } 
