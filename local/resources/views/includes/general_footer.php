@@ -35,7 +35,7 @@
 									<div class="col-lg-12 mt-col-footer">
 										<a href="<?= Request::root();?>/inicio" title="">Inicio</a>
 										<a href="<?= Request::root();?>/ofertas" title="">Ofertas de trabajo </a>
-										<a href="<?= Request::root();?>/" title="">Candidatos</a>
+										<!--<a href="<?= Request::root();?>/" title="">Candidatos</a>-->
 										<a href="<?= Request::root();?>/empresas" title="">Empresas</a>
 									</div>
 								</div>
