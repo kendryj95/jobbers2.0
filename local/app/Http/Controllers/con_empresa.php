@@ -952,6 +952,11 @@ class con_empresa extends Controller
 
     public function crearCursos()
     {
+
+        if (session()->get('emp_plan')[0]->id_plan == 1) {
+            return redirect()->back();
+        }
+        
         $areas            = DB::select("SELECT id, nombre AS area FROM tbl_areas ORDER BY nombre");
         $provincias       = DB::select("SELECT * FROM tbl_provincias");
 
@@ -1038,6 +1043,11 @@ class con_empresa extends Controller
 
     public function cursos()
     {
+
+        if (session()->get('emp_plan')[0]->id_plan == 1) {
+            return redirect()->back();
+        }
+
         $sql1          = DB::select("SELECT COUNT(*) AS total_cursos FROM tbl_publicacion WHERE id_empresa=? AND id_modalidad_publicacion=2", [session()->get("emp_ide")]);
         $total_cursos = $sql1[0]->total_cursos;
         // $sql2 = DB::select("SELECT COUNT(*) AS total_postulados FROM tbl_postulaciones p INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id WHERE pb.id_empresa=?", [session()->get("emp_ide")]);
@@ -1080,17 +1090,6 @@ class con_empresa extends Controller
         if ($cursos) {
             foreach ($cursos as $curso) {
                 switch ($plan[0]->id_plan) {
-                    case 1:
-                        $timestamp_final = strtotime($curso->fecha_venc);
-
-                        $timestamp_today = strtotime(date('Y-m-d'));
-
-                        if ($timestamp_today >= $timestamp_final) { // ¿Caducó?
-                            if ($curso->id_estatus == 1) { // Si la publicacion caducó pero sigue estando activa, desactivarla.
-                                DB::update("UPDATE tbl_publicacion SET estatus=0 WHERE id=?",[$curso->id]);
-                            }
-                        } 
-                        break;
                     
                     case 2:
                         $timestamp_final = strtotime($curso->fecha_venc);
