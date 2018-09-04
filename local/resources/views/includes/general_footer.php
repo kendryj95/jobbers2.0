@@ -18,11 +18,11 @@
 							<div class="link_widgets">
 								<div class="row">
 									<div class="col-lg-12 mt-col-footer">
-										<a href="<?php echo $back;?>terminos" title="">Políticas de Jobbers</a>
-										<!-- <a href="<?php echo $back;?>fag" title="">Preguntas frecuentes</a> -->
-										<a href="<?php echo $back;?>noticias" title="">Noticias</a>
-										<a href="<?php echo $back;?>contacto" title="">Contáctanos</a>
-										<a href="<?php echo $back;?>nosotros" title="">¿Qué es Jobbers?</a>
+										<a href="<?= Request::root();?>/terminos" title="">Políticas de Jobbers</a>
+										<!-- <a href="<?= Request::root();?>/fag" title="">Preguntas frecuentes</a> -->
+										<a href="<?= Request::root();?>/noticias" title="">Noticias</a>
+										<a href="<?= Request::root();?>/contacto" title="">Contáctanos</a>
+										<a href="<?= Request::root();?>/nosotros" title="">¿Qué es Jobbers?</a>
 									</div>
 								</div>
 							</div>
@@ -33,10 +33,10 @@
 							<div class="link_widgets">
 								<div class="row">
 									<div class="col-lg-12 mt-col-footer">
-										<a href="<?php echo $back;?>inicio" title="">Inicio</a>
-										<a href="<?php echo $back;?>ofertas" title="">Ofertas de trabajo </a>
-										<a href="<?php echo $back;?>" title="">Candidatos</a>
-										<a href="<?php echo $back;?>empresas" title="">Empresas</a>
+										<a href="<?= Request::root();?>/inicio" title="">Inicio</a>
+										<a href="<?= Request::root();?>/ofertas" title="">Ofertas de trabajo </a>
+										<a href="<?= Request::root();?>/" title="">Candidatos</a>
+										<a href="<?= Request::root();?>/empresas" title="">Empresas</a>
 									</div>
 								</div>
 							</div>

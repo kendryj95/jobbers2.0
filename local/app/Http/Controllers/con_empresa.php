@@ -80,11 +80,13 @@ class con_empresa extends Controller
 
 
         $peticion = "
-        SELECT 
+        SELECT
+        e.telefono,e.facebook,e.linkedin,e.twitter,e.instagram,e.web,e.direccion, 
         e.id AS id_empresa, 
         e.nombre AS nombre_empresa, 
+        e.responsable AS responsable, 
         e.descripcion, 
-        CONCAT(l.localidad,', ',p.provincia) AS direccion, 
+        CONCAT(p.provincia,' / ',l.localidad) AS provincia_2, 
         l.localidad, 
         p.provincia, 
         a.nombre_aleatorio AS imagen, 
@@ -98,7 +100,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
         LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
         $condiciones GROUP BY e.id";
-
+        //return  ($peticion . " " . $consulta_gral);
         $empresas = DB::select($peticion . " " . $consulta_gral);
         $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id 
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
@@ -136,7 +138,7 @@ class con_empresa extends Controller
         $sectores = DB::select($sql_sectores);
         $provincias = DB::select($sql_provincias);
         $localidades = DB::select($sql_localidades);
-
+        $cantidades=DB::select('SELECT id_empresa,count(*) as cantidad FROM tbl_publicacion GROUP BY id_empresa');
         $params = [
             "empresas" => $empresas,
             "totalEmpresas" => $totalEmpresas[0]->count,
@@ -145,7 +147,8 @@ class con_empresa extends Controller
             "localidades" => $localidades,
             "variables" => $_POST,
             "paginas" => $paginas,
-            "paginaAct" => $paginaAct
+            "paginaAct" => $paginaAct,
+            "cantidades" => $cantidades
         ];
         return view('empresas_ver', $params);
     }
