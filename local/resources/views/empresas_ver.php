@@ -25,7 +25,7 @@
         enable_page_level_ads: true
       });
     </script>
-    <?php include("local/resources/views/includes/chat_soporte.php");?> 
+    <?php //include("local/resources/views/includes/chat_soporte.php");?> 
   </head>
   <body>
    <?php include('local/resources/views/includes/general_header.php');?>
@@ -115,36 +115,94 @@
                   <h5><?php echo $totalEmpresas;?> Empresas</h5>
                 </div>
               </div>
+            <?php 
+            function cantidad($valor,$arreglo)
+            {
+              foreach ($arreglo as $key) {
+                if($key->id_empresa==$valor){return $key->cantidad;exit();}
+              }
+              return 0;
+            } 
+            ?>
+              <?php foreach ($empresas as $empresa): ?> 
+                <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
               <div class="job-listings-sec">
                 <div class="job-listing wtabs">
 										<div class="mobile">
-											<img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
-											<p class="nombre-img">Coca Cola</p>
-										</div>
+											<img src="<?= $imagen;?>" class="img-fluid img-oferta" alt="">
+											<p class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
+										</div> 
 										<div class="job-title-sec container-desc-oferta">
-											<h5 class="title-recom">Titulo de la Empresa <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
-											<p class="time-pub"><i class="fa fa-calendar"></i> Publicada Hoy a las 10:58 Am - Termina: 08/12/2018</p>
-											<p class="desc-oferta">Mauris pulvinar efficitur quam nec consequat. Vestibulum eu luctus eros. Praesent non erat ullamcorper, ultrices tellus sed, egestas massa. Nunc mollis ipsum non nunc aliquet blandit. Praesent ullamcorper, libero id maximus mollis, leo neque hendrerit ligula, a egestas augue ipsum at lectus. Donec a ligula porta, vulputate mauris quis, sodales elit. </p>
-											<br>
-											<div class="job-lctn">
-												Cocacola&nbsp;
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												&nbsp;
-												<i class="fa fa-eye"></i>11&nbsp;
-												<i class="fa fa-heart red"></i>3&nbsp;
-												<i class="fa fa-clock-o mr-0"></i>
-												<span class="disponibilidad">FullTime</span>&nbsp;
-												<i class="fa fa-wheelchair blue"></i>
+											<h5 onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo ucfirst(strtolower($empresa->nombre_empresa));?><a href="#"><span style="float: right; color: #000;border-radius: 5px; font-size: 15px; font-weight: 600;padding: 4px;background-color: #ffff00;"><i><?= $empresa->sector ?></i><!--<sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i>--></span></a></h5>
+
+											<p class="desc-oferta"><?= $empresa->descripcion;?></p>
+											<br> 
+                      <div class="row">
+                          <div class="col-sm-3" style="text-align: center;">
+                             <img src="local/resources/views/images/calendar.png">
+                          </div>
+                          <div class="col-sm-3" style="text-align: center;">
+                             <img src="local/resources/views/images/firefighter.png">
+                          </div>
+                          <div class="col-sm-3" style="text-align: center;">
+                             <img src="local/resources/views/images/creative-team.png">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-3" style="text-align: center;">
+                             <span class="disponibilidad" style="background-color: #2e3192;">2 meses</span><br> 
+                             <div style="background-color: #fff;font-size: 10px;color: #595959;">(Antiguedad)</div> 
+                          </div>
+                           <div  class="col-sm-3" style="text-align: center;">
+                             <span onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="disponibilidad" style="background-color: #2e3192;"><?php echo cantidad($empresa->id_empresa,$cantidades);?> Ofertas</span>
+                              <div onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" style="background-color: #fff;font-size: 10px;color: #595959;">(Nº ofertas)</div> 
+                          </div>
+                          <div class="col-sm-3" style="text-align: center;">
+                             <span class="disponibilidad"><?= $empresa->responsable?></span>
+                              <div style="background-color: #fff;font-size: 10px;color: #595959;">(Reclutador/a)</div> 
+                          </div>
+                      </div>
+                        
+											<div class="job-lctn"> 
+												<div style="max-width: 450px;line-height: 15px;padding: 2px;background-color: #f2f2f2;margin-top: 5px;float: left; border-radius: 5px;">
+                          <i><span style="font-size: 12px;">
+                            <?php if ($empresa->nombre_empresa!=""): ?>
+                              <?php $empresa->nombre_empresa=$empresa->nombre_empresa.', ';?>
+                            <?php endif ?> 
+                            <?php if ($empresa->telefono!=""): ?>
+                              <?php $empresa->telefono=$empresa->telefono.', ';?>
+                            <?php endif ?>
+
+                            <?php if ($empresa->provincia_2!=""): ?>
+                              <?php $empresa->provincia_2=$empresa->provincia_2.', ';?>
+                            <?php endif ?>
+
+                            <?php if ($empresa->direccion!=""): ?>
+                              <?php $empresa->direccion=$empresa->direccion.'.';?>
+                            <?php endif ?>
+
+                            *<?php echo ucfirst(strtolower($empresa->nombre_empresa));?>  
+                            <?php echo ucfirst(strtolower($empresa->telefono));?> Argentina 
+                            <?php echo ucfirst(strtolower($empresa->provincia_2));;?> 
+                            <?php echo ucfirst(strtolower($empresa->direccion));?></span></i>
+                        </div>
 												<div class="desk" style="float: right">
-													<a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
-													<a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-													<a href="#"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
-													<a href="#"><span class="container-ig"><i class="fa fa-instagram mr-0"></i></span></a>
-													<a href="#"><span class="container-web"><i class="fa fa-globe mr-0"></i></span></a>
+                          <?php if ($empresa->facebook!=""): ?>
+                            <a target="_blank" href="<?=$empresa->facebook;?>"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
+                          <?php endif ?>
+
+                           <?php if ($empresa->twitter!=""): ?>
+                            <a target="_blank" href="<?=$empresa->twitter;?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+                          <?php endif ?>
+
+                           <?php if ($empresa->instagram!=""): ?>
+                            <a target="_blank" href="<?=$empresa->instagram;?>"><span class="container-ig"><i class="fa fa-instagram mr-0"></i></span></a>
+                          <?php endif ?>
+
+                           <?php if ($empresa->web!=""): ?>
+                            <a target="_blank" href="<?=$empresa->web;?>"><span class="container-web"><i class="fa fa-globe mr-0"></i></span></a>
+                          <?php endif ?> 
+												 
 												</div>
 												<p class="container-media mobile" style="margin-bottom: 0;">
 													<a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="margin-left: 4px; vertical-align: text-top"></i></span></a>
@@ -156,30 +214,13 @@
 											</div>
 										</div>
 										<div class="job-style-bx container-img-oferta-i desk">
-											<img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
-											<p class="nombre-img">Coca Cola</p>
+											<img onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" style="border:2px dashed #ff7900; width: 100px;height: 100px;border-radius: 50%;" src="<?= $imagen;?>" alt="">
+											<p style="color: #4c4c4c;" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="nombre-img"><?php $r= explode(" ", ucfirst(strtolower($empresa->nombre_empresa))); echo $r[0];?></p>
 										</div>
 									</div>
               </div>
-              <div class="emply-list-sec">
-                <?php foreach ($empresas as $empresa): ?>
-                  <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
-                <div class="emply-list">
-                    <div class="emply-list-thumb">
-                      <a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><img src="<?= $imagen ?>" alt="logo de la empresa"></a>
-                    </div>
-                    <div class="emply-list-info">
-                      <!-- <div class="emply-pstn">4 Open Position</div> -->
-                      <h3><a href="empresa/detalle?e=<?= $empresa->id_empresa ?>" title=""><?= $empresa->nombre_empresa ?></a></h3>
-                      <span><i class="fa fa-cubes"></i> <?= $empresa->sector ?></span>
-                      <?php if ($empresa->direccion != ""): ?>
-                      <h6><i class="la la-map-marker"></i> <?= $empresa->direccion ?></h6>
-                      <?php endif ?>
-                      <?php $description = strlen($empresa->descripcion) > 180 ? substr($empresa->descripcion, 0, 180) . '...' : $empresa->descripcion ?>
-                      <p><?= $description ?></p>
-                    </div>
-                </div><!-- Employe List -->
-                <?php endforeach; ?>
+              <?php endforeach; ?>
+              <div class="emply-list-sec"> 
                               <?php if ($paginas > 0): ?>
                                 <div class="pagination">
                                   <ul>
@@ -264,10 +305,7 @@
                   <script src="local/resources/views/js/parallax.js" type="text/javascript">
                   </script>
                   <script src="local/resources/views/js/select-chosen.js" type="text/javascript">
-                  </script>
-                  <script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
-                  </script>
-
+                  </script> 
                   <script>
                     var clicks = 1;
                     $('#showFilters').click(function(e) {

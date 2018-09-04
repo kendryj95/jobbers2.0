@@ -42,7 +42,8 @@
 													</div>
 												</div>
 												
-												<div class="col-lg-4 col-md-4 col-sm-12">
+												<!--
+													<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="candicv" title="">
 															<i class="la la-file-text "></i>
@@ -51,30 +52,29 @@
 														</a>
 													</div>
 												</div>
+												-->
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="candiperfil" title="">
-															<i class="la la-file"></i>
+															<i class="la la-file-text"></i>
 															<span>Mi información</span>
 															<p>Ver Perfil</p>
 														</a>
 													</div>
 												</div> 
-											</div>
-										</div>
-										<div class="cat-sec">
-											<div class="row no-gape">
-												
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category follow-companies-popup">
 														<a href="candiempseg" title="">
-															<i class="la la-user"></i>
+															<i class="la la-industry"></i>
 															<span>Empresa Seguidas</span>
 															<p><?= $empresas_seguidas ?> Empresas</p>
 														</a>
 													</div>
 												</div>
-												
+											</div>
+										</div>
+										<div class="cat-sec">
+											<div class="row no-gape"> 
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="canditienda" title="">

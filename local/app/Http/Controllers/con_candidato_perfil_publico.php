@@ -31,12 +31,12 @@ class con_candidato_perfil_publico extends Controller
         LEFT JOIN tbl_archivos t4 ON t4.id = t3.id_foto
         WHERE t1.id_usuario = ".$id."";
 
-        $sql_preferencias_laborales="SELECT t1.*,t2.salario,t3.nombre FROM `tbl_candidato_preferencias_laborales` t1
+        $sql_preferencias_laborales="SELECT count(t1.id) as cantidad, t1.*,t2.salario,t3.nombre FROM `tbl_candidato_preferencias_laborales` t1
         LEFT JOIN tbl_rango_salarios t2 ON t2.id = t1.id_remuneracion_pre
         LEFT JOIN tbl_disponibilidad t3 ON t3.id = t1.id_jornada
         WHERE t1.id_usuario = ".$id."";
 
-        $sql_datos_contacto ="SELECT t2.descripcion as pais,
+        $sql_datos_contacto ="SELECT count(t1.id) as cantidad, t2.descripcion as pais,
         t1.*,
         t3.provincia,
         t4.localidad
@@ -183,6 +183,7 @@ class con_candidato_perfil_publico extends Controller
          $vista->idiomas_listado = $idiomas_listado; 
         $vista->idiomas = $idiomas; 
         $bandera_datos_contacto=0;
+        $cv_fisico=DB::select("SELECT *,count(id) as cantidad FROM tbl_candidato_cv_fisico WHERE id_usuario=".session()->get('cand_id')."");
         $sql_contactos="
         SELECT *, count(*) as cantidad FROM tbl_candidato_info_contacto WHERE id_usuario=".session()->get('cand_id')."";
         try {
@@ -287,6 +288,7 @@ class con_candidato_perfil_publico extends Controller
             $vista->cargos_lista= $cargos_lista;
             $vista->nivel_estudio= $nivel_estudio;  
             $vista->area_estudio= $area_estudios;
+            $vista->cv_fisico=$cv_fisico;
             return $vista;
         } catch (Exception $e) {
 
@@ -362,7 +364,7 @@ class con_candidato_perfil_publico extends Controller
                 '".$_POST['datos_per_cuil']."',
                 null 
                 )"; 
-                    return "Entro";
+                    
                     DB::insert($sql);
                     $this->porcentaje_carga(-1,"datos_personales",$_POST);
 
@@ -848,6 +850,7 @@ class con_candidato_perfil_publico extends Controller
        public function imagen_perfil()
        {
 
+             
                 if(isset($_POST['admin_control']) && $_POST['admin_control']!="")
                     {
                        

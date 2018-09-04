@@ -27,7 +27,7 @@ public function addcv()
 	$file            =Input::file('documento');
 	if($file=="")
 	{
-	return Redirect('candicv?result=Debe seleccionar un documento.');	
+	return Redirect('candiperfil?result=Debe seleccionar un documento.');	
 	}
 	else
 	{
@@ -36,10 +36,10 @@ public function addcv()
 	    $upload_success = Input::file('documento')->move("uploads/curriculums", $token.$original);
 	    if($upload_success)
 		{
-			$sql="INSERT INTO tbl_candidato_cv_fisico values(null, ".session()->get('cand_id').",0,'".$token.$original ."','".$extension."',null)";
+			$sql="INSERT INTO tbl_candidato_cv_fisico values(null, ".session()->get('cand_id').",1,'".$token.$original ."','".$extension."',null)";
 			try {
 				DB::insert($sql);
-				return Redirect('candicv?result=Curriculum agregado correctamente');
+				return Redirect('candiperfil?result=Curriculum agregado correctamente');
 			} catch (Exception $e) {
 				
 			}
@@ -65,7 +65,7 @@ public function del_cv($id)
 	$sql="DELETE FROM tbl_candidato_cv_fisico WHERE id=".$id." AND id_usuario=".session()->get('cand_id').""; 
 	try {
 		DB::delete($sql);   
-		return Redirect('candicv?result=Curriculum eliminado con exito.');
+		return Redirect('candiperfil?result=Curriculum eliminado con exito.');
 	} catch (Exception $e) {
 		
 	}
@@ -82,7 +82,7 @@ public function select_cv()
 	try {
 		DB::update($sql); 
 		DB::update($sql_update); 
-		return Redirect('candicv?result=Curriculum seleccionado con exito.');
+		return Redirect('candiperfil?result=Curriculum seleccionado con exito.');
 	} catch (Exception $e) {
 		
 	}
@@ -95,7 +95,7 @@ public function seleccionar_cv_jobbers()
 	$sql="UPDATE tbl_candidato_cv_fisico SET mostrar=0 WHERE id_usuario =".session()->get('cand_id').""; 
 	try {
 		DB::update($sql);  
-		return Redirect('candicv?result=Curriculum seleccionado con exito.');
+		return Redirect('candiperfil?result=Curriculum seleccionado con exito.');
 	} catch (Exception $e) {
 		
 	} 

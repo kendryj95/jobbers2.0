@@ -19,9 +19,9 @@
 				<li >
 					<a href="candiperfil" title=""><i class="la la-user"></i>Mi información</a>
 				</li>
-				<li >
+				<!--<li >
 					<a href="candicv" title=""><i class="la la-file-text"></i>Adjuntar curriculum</a>
-				</li>
+				</li>-->
 				<li >
 					<a href="candiempseg" title=""><i class="la la-industry"></i>Empresas seguidas</a>
 				</li>

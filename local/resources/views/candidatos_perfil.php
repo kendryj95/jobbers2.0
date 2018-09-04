@@ -15,8 +15,7 @@ $mi_tokken = csrf_token();
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
         <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <?php include('local/resources/views/includes/chat_soporte.php');?>
+         
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
         <div class="theme-layout" id="scrollup"> 
@@ -43,8 +42,8 @@ $mi_tokken = csrf_token();
             }
             </style>
             <!-- Modal --> 
-            <section>
-                <div class="block no-padding mt-75">
+            <section> 
+                <div class="block no-padding mt-75"> 
                     <div class="container">
                         <div class="row no-gape">
                             <?php include 'local/resources/views/includes/aside_candidatos.php';?>
@@ -117,14 +116,22 @@ $mi_tokken = csrf_token();
                                 $up_longitud_contac=$infocontacto[0]->logitud;
                                 }
                                 ?>
-                                <div class="social-edit" style="padding: 0px;">  
+                                <div class="social-edit" style="padding: 0px;">
+                                 
+                                 <div style="text-align: center; padding-top: 20px; ">
+                                    <?php if (session()->get('cand_img') !=""): ?>
+                                        <img src="<?php echo "uploads/min/".session()->get('cand_img');?>" style="border-radius: 50%;width: 100px;height: 100px;">
+                                         <?php else: ?>
+                                        <img src="local/resources/views/images/avatar.jpg" style="border-radius: 50%;width: 100px;height: 100px;"> 
+                                        <?php endif ?> 
+                                  </div> 
                                     <form  id="form_datos_imagen"  action="setprofilepic" method="POST" style="margin: 0px;"enctype="multipart/form-data">
                                            <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
-                                                <span class="pf-title">Imagen</span>
+                                                <span class="pf-title">Mi foto</span>
                                                 <div class="pf-field">
                                                    <input name="imagen_perfil" id="imagen_perfil" type="file" placeholder="" accept="image/*">
                                                 </div> 
-                                                <button type="submit" onClick="">Guardar</button> 
+                                                <button style="display: none;" id="btn-guardar-imagen" type="submit" onClick="">Guardar</button> 
                                     </form>
                                 </div>
                                     <div class="padding-left" style="padding-top: 0px;">
@@ -140,13 +147,13 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Nombres</span>
                                                 <div class="pf-field">
-                                                    <input id="datos_per_nombres" value="<?php echo $up_nombres;?>" name="nombres" type="text" placeholder="Victor" />
+                                                    <input id="datos_per_nombres" value="<?php echo $up_nombres;?>" name="nombres" type="text" placeholder="Nombres" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Apellidos</span>
                                                 <div class="pf-field">
-                                                    <input id="datos_per_apellidos" value="<?php echo $up_apellidos;?>" name="apellidos" type="text" placeholder="Fernández" />
+                                                    <input id="datos_per_apellidos" value="<?php echo $up_apellidos;?>" name="apellidos" type="text" placeholder="Apellidos" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -163,7 +170,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Nº de identificación</span>
                                                 <div class="pf-field">
-                                                    <input id="datos_per_n_identificacion" value="<?php echo $up_id;?>" name="id" type="text" placeholder="" />
+                                                    <input id="datos_per_n_identificacion" value="<?php echo $up_id;?>" name="id" type="text" placeholder="123654789" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -470,7 +477,7 @@ $mi_tokken = csrf_token();
                                 </div>
                                 
                                 
-                                <div class="padding-left" style="margin-bottom: 100px;margin-top: -50px;">
+                                <div class="padding-left" style="margin-top: -50px;">
                                     <div class="manage-jobs-sec">
                                         <div class="border-title"><h3>Educación</h3>
                                             <a href="#" title="" data-toggle="modal" data-target="#modal_educ_cand" onClick="limpiar_mod_educ()">
@@ -622,6 +629,43 @@ $mi_tokken = csrf_token();
                                                 </form> 
                                             </div> 
                                         </div>
+
+                                        <?php if ($cv_fisico[0]->cantidad>0): ?>
+                                             <div class="border-title"><h3>CV adjunto</h3> </div>
+                                             <div class="manage-jobs-sec addscroll">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <td style="width: 60%;">Documento</td>
+                                                            <td style="width: 10%;">Formato</td> 
+                                                            <td style="width: 10%;">Eliminar</td>
+                                                        </tr>
+                                                    </thead> 
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>Curriculum</td>
+                                                        <td><?= $cv_fisico[0]->extension;?></td>
+                                                        <td><a href="candidelcv/<?= $cv_fisico[0]->id;?>"><li class="fa fa-trash"></li></a></td>
+                                                    </tr>                             
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="border-title"><h3>Adjuntar CV</h3> 
+                                            </div>
+                                            <div class="social-edit" style="margin-right: 30px; margin-left: 30px;font-weight: 600;font-size: 12px;padding-bottom: 5px;color: #008204;">
+                                                <i>*Si adjunta un CV éste será el CV que podrán ver las empresas, de lo contrario se mostrara el <a target="_blank" href='reporte/<?= session()->get('cand_id');?>' style="color: #008adb;text-decoration: underline;">CV de Jobbers</a></i>
+                                            </div>
+                                            <div class="social-edit" style="padding: 0px;">  
+                                                <form  id="form_datos_per"  action="addcv" method="POST" style="margin: 0px;"enctype="multipart/form-data">
+                                                       <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>"> 
+                                                            <div class="pf-field">
+                                                               <input name="documento" id="documento" type="file" placeholder="" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                                            </div> 
+                                                            <button type="submit" onClick="">Guardar</button> 
+                                                </form> 
+                                            </div>
+                                        <?php endif ?> 
                                     </div> 
                                 </div>
                             </div>
@@ -632,14 +676,9 @@ $mi_tokken = csrf_token();
         </section>
     </div>
     <?php include "local/resources/views/includes/general_footer.php";?>
-    <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/script.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-    <script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
+    <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
+    <script src="local/resources/views/js/script.js" type="text/javascript"></script> 
+    <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
     <?php include "local/resources/views/includes/referencias_down.php";?>
     <script type="text/javascript">
     function set_imagen_val(id) {
@@ -967,6 +1006,17 @@ $mi_tokken = csrf_token();
          
     }
         
+</script>
+
+<script>
+    $("#imagen_perfil").on('change', function() {
+    if ($('#imagen_perfil').val()) { 
+        ///$("#Ingresar").prop("disabled", false);
+        $("#btn-guardar-imagen").click();
+        //alert($('#imagen_perfil').val());
+        }
+    });
+
 </script>
   <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
 

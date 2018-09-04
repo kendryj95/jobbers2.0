@@ -38,6 +38,7 @@ class con_candidatos_configuracion extends Controller
 
     public function setProfilePic(Request $request)
     {
+        
         $sql       = "SELECT count(*) as cantidad FROM tbl_usuarios_foto_perfil WHERE id_usuario = " . session()->get("cand_id") . "";
         $sql_agregar = "INSERT INTO tbl_usuarios_foto_perfil
         VALUES(null," . session()->get("cand_id") . "," . $_POST['id_imagen'] . ",null)";
