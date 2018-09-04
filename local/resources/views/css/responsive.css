@@ -145,7 +145,7 @@
 
 @media (min-width: 1200px) {
     .btn-extars {
-        margin-top: 10px;
+        margin-top: 8px;
     }
     .slideHome {
         height: 700px;
@@ -162,6 +162,27 @@
 }
 
 @media (max-width:1024px) {
+    /* Helper */
+    .mt-75 {
+        margin-top: 75px;
+    }
+    /* End Helper */
+    .theme-layout {
+        padding-top: 0px;
+    }
+    #carousel-news {
+        margin-top: 53px;
+    }
+    .my-panel {
+        font-size: 18px;
+    }
+    .desk-1024 {
+        display: none;
+    }
+    .mobile-1024 {
+        display: block;
+        text-align: center;
+    }
     .manage-jobs-sec>table {
         width: 100%;
     }
@@ -1049,6 +1070,9 @@
 }
 
 @media (max-width:520px) {
+    #carousel-news {
+        margin-top: 10px;
+    }
     .carousel {
         margin-top: 20px;
     }

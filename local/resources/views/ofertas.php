@@ -31,9 +31,6 @@ $mi_tokken=csrf_token();
       enable_page_level_ads: true
     });
   </script>
-  <style>
-    .menu-sec{background-color:#2e3192;padding: 10px 0;margin:0;} .forsticky.sticky .menu-sec{background-color: transparent;} .forsticky .post-job-btn{background-color: #fff; color: #2e3192}
-  </style>
   <?php include("local/resources/views/includes/chat_soporte.php");?>
 </head>
 

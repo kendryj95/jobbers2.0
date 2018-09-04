@@ -11,7 +11,7 @@ $back="../";
 <header class="stick-top forsticky">
 	<div class="menu-sec">
 		<div class="container">
-			<div class="logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;">
+			<div class="logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;">
 			<a href="<?= $back ?>../inicio" title=""><img style="width: 120px;" class="hidesticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /><img style="width: 120px;" class="showsticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /></a>
 			</div><!-- Logo -->
 			<div class="btns-profiles-sec">
@@ -30,9 +30,9 @@ $back="../";
 			<nav style="margin-top: 4px;">
 				<ul>
 					<li class="">
-						<a href="<?= $back ?>../inicio" title="">Inicio</a>
+						<a href="<?= $back ?>../inicio" title="">Inicio &nbsp;&nbsp;&nbsp;|</a>
 						<?php $nombre_plan = session()->get("emp_plan")[0]->nombre ?>
-						<a href="planes" title="">Plan: <?= strtoupper($nombre_plan); ?></a>
+						<a href="planes" title="">&nbsp;&nbsp;&nbsp;Plan: <?= strtoupper($nombre_plan); ?></a>
 					</li>
 					
 			</nav><!-- Menus -->

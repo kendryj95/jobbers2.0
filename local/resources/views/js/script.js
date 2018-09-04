@@ -33,9 +33,9 @@ $(document).on('ready', function() {
     $(window).on('scroll', function() {
         var scroll = $(window).scrollTop();
         if (scroll >= 50) {
-            $(".forsticky").addClass("sticky");
+            $(".forsticky").addClass("sticky-custom");
         } else {
-            $(".forsticky").removeClass("sticky");
+            $(".forsticky").removeClass("sticky-custom");
             $(".forsticky").addClass("");
         }
     });
