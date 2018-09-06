@@ -201,6 +201,8 @@ Route::get('administracion/noticias/desbloquear/{id}', 'con_administrator_notici
 
 Route::get('administrador', 'con_administrator_login@index');
 Route::post('admlog', 'con_administrator_login@login');
+Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
+Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
  
 
 Route::group(['middleware' => 'log_a'], function () {
@@ -256,8 +258,6 @@ Route::post('administracion/candidatos/enviar', 'con_administrator_candidatos@en
 	Route::get('administracion/empresas/edit/{id}', 'con_administrator_empresas@edit')->where(['id' => '[0-9]+']);
 	Route::get('administracion/empresas/delete/{id}', 'con_administrator_empresas@delete')->where(['id' => '[0-9]+']);
 	Route::get('administracion/empresas/plantillas', 'con_administrator_empresas@plantillas');
-	Route::post('administracion/empresas/plantillas', 'con_administrator_empresas@plantillaStore');
-	Route::get('administracion/empresas/plantilla_info/{id}', 'con_administrator_empresas@getInfoPlantilla');
 	Route::get('administracion/empresas/ofertas-renovar', 'con_administrator_empresas@ofertasForRenew');
 	Route::get('administracion/empresas/renewOferta/{id_pub}/{id_empresa}', 'con_administrator_empresas@renewOferta')->where(['id_pub' => '[0-9]+', 'id_empresa' => '[0-9]+']);
 	Route::get('administracion/empresas/cursos-aprobar', 'con_administrator_empresas@cursosForApprove');

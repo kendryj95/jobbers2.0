@@ -61,7 +61,7 @@
 															<span class="pf-title">Plantillas predeterminadas</span>
 															<div class="pf-field">
 																<select data-placeholder="Por favor seleccione" class="chosen" id="plantilla" onchange="getInfoPlantilla(this.value)">
-																	<option value="">..........</option>
+																	<option value="">Nueva plantilla</option>
 																	<?php foreach ($plantillas as $plantilla): ?>
 																	
 																		<option value="<?= $plantilla->id ?>"><?= $plantilla->nombre_plantilla ?></option>
@@ -83,7 +83,6 @@
 														<span class="pf-title">Titulo de la plantilla (*)</span>
 														<div class="pf-field">
 															<input type="text" placeholder="Ejm: Plantilla de Director de Ventas" name="nombre_plantilla" id="nombre_plantilla" value="" />
-															<i class="fa fa-at"></i>
 														</div>
 													</div>
 
@@ -91,7 +90,7 @@
 														<span class="pf-title">Titulo de la oferta (*)</span>
 														<div class="pf-field">
 															<input type="text" placeholder="Titulo" name="titulo" id="titulo" value="" />
-															<i class="fa fa-at"></i>
+															<i class="">0</i>
 														</div>
 													</div>
 													

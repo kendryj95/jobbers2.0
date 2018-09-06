@@ -42,9 +42,6 @@
 						<li onclick="location.href='<?= url('empresa/planes') ?>'"><a href="<?= url('empresa/planes') ?>" title="Manejar Planes">Manejar planes</a></li>
 					</ul>
 				</li>
-				<li >
-					<a href="<?= url('candidatos') ?>" title=""><i class="la la-users"></i>Candidatos</a>
-				</li>
 				<li onclick="location.href='<?= url('logout') ?>'"><a href="<?= url('logout') ?>" title=""><i class="la la-unlink"></i>Salir</a></li>
 				<!-- <li class="inner-child">
 						<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>

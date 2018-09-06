@@ -72,7 +72,7 @@
 														<span class="pf-title">Plantillas predeterminadas</span>
 														<div class="pf-field">
 															<select data-placeholder="Por favor seleccione" class="chosen" id="plantilla" onchange="getInfoPlantilla(this.value)">
-																<option value="">..........</option>
+																<option value="">Publicar sin plantillas</option>
 																<?php foreach ($plantillas as $plantilla): ?>
 																
 																	<option value="<?= $plantilla->id ?>"><?= $plantilla->nombre_plantilla ?></option>
@@ -87,7 +87,8 @@
 												<div class="col-lg-12">
 													<span class="pf-title">Titulo de la oferta <b>*</b></span>
 													<div class="pf-field">
-														<input type="text" placeholder="Titulo" name="titulo" id="titulo" />
+														<input type="text" placeholder="Titulo" name="titulo" id="titulo" autocomplete="no" onkeyup="contador(this.value)" />
+														<i id="contador">50</i>
 													</div>
 												</div>
 												<div class="col-lg-12">
@@ -154,7 +155,7 @@
 													</div>
 												</div>
 												<div class="col-lg-3">
-													<span class="pf-title">Salario por usuario <b>*</b></span>
+													<span class="pf-title">Solicitar salario pretendido <b>*</b></span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el tipo de salario" class="chosen" id="salario_usuario" name="salario_usuario">
 															<option value="0">Seleccionar</option>
@@ -293,51 +294,60 @@
 							var fecha_exp = $('#fecha_exp').val();
 
 							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && salario_usuario != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
-								var datos = $('#form_oferta').serialize();
-								
-								$.ajaxSetup({
-									headers: {
-									'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-									}
-								});
-								$.ajax({
-									url: 'registrar_post',
-									type: 'POST',
-									dataType: 'json',
-									data: datos+'&description='+descripcion,
-									beforeSend: function(){
-										$(this).text("Publicando...").prop("disabled", true);
-									},
-									success: function(response){
-										if (response.status == 1) {
-											$.notify("Oferta publicada satisfactoriamente.", {
-												className:"success",
-												globalPosition: "bottom center"
-											});
-											$('#step1').removeClass('active');
-											$('#step2').addClass('active');
-											$('#form_oferta')[0].reset();
-											setTimeout(function(){
-												window.location.assign("ofertas")
-											}, 3000);
-										} else {
-											$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
-												className:"error",
-												globalPosition: "bottom center"
-											});
+
+								if (titulo.length > 0 && titulo.length <= 50){
+									var datos = $('#form_oferta').serialize();
+									
+									$.ajaxSetup({
+										headers: {
+										'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 										}
-										
-									},
-									error: function(error){
-										$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
-												className:"error",
-												globalPosition: "bottom center"
-										});
-									},
-									complete: function(){
-										$(this).text("Publicar").prop("disabled", false);
-									}
-								});
+									});
+									$.ajax({
+										url: 'registrar_post',
+										type: 'POST',
+										dataType: 'json',
+										data: datos+'&description='+descripcion,
+										beforeSend: function(){
+											$(this).text("Publicando...").prop("disabled", true);
+										},
+										success: function(response){
+											if (response.status == 1) {
+												$.notify("Oferta publicada satisfactoriamente.", {
+													className:"success",
+													globalPosition: "bottom center"
+												});
+												$('#step1').removeClass('active');
+												$('#step2').addClass('active');
+												$('#form_oferta')[0].reset();
+												setTimeout(function(){
+													window.location.assign("ofertas")
+												}, 3000);
+											} else {
+												$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
+													className:"error",
+													globalPosition: "bottom center"
+												});
+											}
+											
+										},
+										error: function(error){
+											$.notify("Lo sentimos, ha ocurrido un error inesperado. Por favor recarge la pagina nuevamente.", {
+													className:"error",
+													globalPosition: "bottom center"
+											});
+										},
+										complete: function(){
+											$(this).text("Publicar").prop("disabled", false);
+										}
+									});
+								} else {
+									$.notify("El titulo debe contener 50 caracteres max.", {
+										className:"error",
+										globalPosition: "bottom center"
+									});
+								}
+								
 							} else {
 								$.notify("Debes completar todos los campos obligatorios.", {
 									className:"error",
@@ -435,6 +445,17 @@
 						} else {
 							$('#titulo').val('');
 							tinymce.activeEditor.setContent('');
+						}
+					}
+
+					function contador(value)
+					{
+						let tam = 50 - value.length;
+
+						if (tam > 0) {
+							$('#contador').text(tam).css('color', '#AEB2E7');;
+						} else {
+							$('#contador').text(tam).css('color', 'red');
 						}
 					}
 

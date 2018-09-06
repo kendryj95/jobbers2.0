@@ -56,7 +56,7 @@
 											<div class="upload-info">
 												<a href="javascript:void(0)" title="" data-toggle="modal" data-target="#upload_pic">Subir</a>
 												<a href="javascript:void(0)" title="" data-toggle="modal" data-target="#usage_pic" id="change_pic">Cambiar Foto</a>
-												<span>Max file size is 1MB, Minimum dimension: 270x210 And Suitable files are .jpg & .png</span>
+												<!-- <span>Max file size is 1MB, Minimum dimension: 270x210 And Suitable files are .jpg & .png</span> -->
 											</div>
 										</div>
 									</div>

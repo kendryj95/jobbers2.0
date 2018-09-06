@@ -20,28 +20,23 @@ $back="../";
 					 		
 					 </nav>
 					 
-					 <?php if(session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1)
-					 {
-					 	if(session()->get('tipo_usuario')==2)
-					 	{
-					 		echo'<a href="<?= Request::root();?>/candidashboard" title="" class="my-panel">Mi panel</a>';
-					 	}
-					 	if(session()->get('tipo_usuario')==1)
-					 	{
-					 		echo'<a href="<?= Request::root();?>/empresa/ofertas" title="" class="post-job-btn ">Mi panel</a>';
-					 	}
+					 <?php if(session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1): ?>
+					 	<?php if(session()->get('tipo_usuario')==2): ?>
 					 	
-					 }
-					 else
-					 {
-					 	echo'
+					 		<a href="<?= url('candidashboard') ?>" title="" class="my-panel">Mi panel</a>
+					 	<?php elseif (session()->get('tipo_usuario')==1): ?>
+					 	
+					 		<a href="<?= url('empresa/ofertas') ?>" title="" class="my-panel">Mi panel</a>
+					 	<?php endif; ?>
+					 	
+					<?php else: ?>
 					 	<ul class="account-btns">
 					 		
 					 		<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i>Ingresar</a></li>
 					 	</ul>
-					 	</div>';
-					 }
-					 ?>
+					 	
+					 <?php endif; ?>
+					 	</div>
 					</div>
 				</div>
 			</header>

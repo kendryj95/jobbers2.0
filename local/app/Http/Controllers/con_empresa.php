@@ -935,6 +935,8 @@ class con_empresa extends Controller
 
                 DB::update("UPDATE tbl_usuarios_foto_perfil SET id_foto=? WHERE id_usuario=?", [$id_foto ,session()->get('emp_id')]);
 
+                $request->session()->set('emp_imagen', $filename);
+
                 return Response::json('success', 200);
             } catch (Exception $e) {
             }
