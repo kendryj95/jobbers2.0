@@ -20,10 +20,9 @@ $back="../";
 				<ul>
 					<li><a href="<?= $back ?>detalle?e=<?= session()->get("emp_ide") ?>" title=""><i class="la la-user"></i> Mi perfil</a></li>
 					<li><a href="<?= $back ?>perfil?e=<?= session()->get("emp_ide") ?>" title=""><i class="la la-file-text"></i> Editar perfil</a></li>
-					<li><a href="<?= $back ?>ofertas" title=""><i class="la la-folder"></i> Ver ofertas</a></li>
+					<li><a href="<?= $back ?>ofertas" title=""><i class="la la-folder"></i> Mis ofertas</a></li>
 					<li><a href="<?= $back ?>new_post" title=""><i class="la la-plus"></i> Nueva oferta</a></li>
 					<li><a href="<?= $back ?>planes" title=""><i class="la la-trophy"></i> Manejar planes</a></li>
-					<li><a href="<?= $back ?>../candidatos" title=""><i class="la la-users"></i> Candidatos</a></li>
 					<li><a href="<?= $back ?>../logout" title=""><i class="la la-sign-out"></i> Salir</a></li>
 				</ul>
 			</div>

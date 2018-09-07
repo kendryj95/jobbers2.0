@@ -2800,6 +2800,7 @@ var Dropzone = function (_Emitter) {
         file.status = Dropzone.SUCCESS;
         this.emit("success", file, responseText, e);
         this.emit("complete", file);
+        window.location.reload();
       }
       if (this.options.uploadMultiple) {
         this.emit("successmultiple", files, responseText, e);
