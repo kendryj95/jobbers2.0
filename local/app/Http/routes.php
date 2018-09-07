@@ -92,6 +92,7 @@ Route::get('salirsoportista', 'con_soportista@salir');
 //********************************************************//
 Route::group(['middleware' => 'log_c'], function () {
 Route::get('candidashboard', 'con_candidato_dashboard@dashboard');
+Route::post('localidades', 'con_candidato_perfil_publico@localidades');
 Route::get('candifavoritos', 'con_candidato_favoritos@index');
 Route::get('candifaveliminar/{id}', 'con_candidato_favoritos@eliminar');
 Route::post('candisetfavorite', 'con_candidato_favoritos@setFavorite');

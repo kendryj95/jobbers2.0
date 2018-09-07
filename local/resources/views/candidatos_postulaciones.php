@@ -33,7 +33,7 @@
 										<table>
 											<thead>
 												<tr>
-													<td>Publicación</td>
+													<td style="max-width: 300px;">Publicación</td>
 													<td>Empresa</td>
 													<td>Postulados</td>
 													<td>Ver</td>
@@ -42,19 +42,19 @@
 											<tbody>
 												<?php foreach ($datos as $key) {
 													echo'<tr>
-														<td>
+														<td style="max-width: 250px;">
 																<div class="table-list-title">
 																		<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3>
-																		<span>'.substr($key->descripcion, 0,20).'...</span><br>
+																		<span  style="line-height:15px;">'.strip_tags(substr($key->descripcion, 0,200)).'...</span><br>
 																		<span><i class="la la-map-marker status"></i>'.$key->dir.'</span>
 																</div>
 														</td>
 														
-														<td>
+														<td style="text-align:center;">
 																<span class="applied-field">'.$key->nombre.'</span>
 														</td>
-														<td>
-																<span id="postu_'.$key->id.'" class="status active">5</span>
+														<td style="text-align:center;">
+																<span style="text-align:center;" id="postu_'.$key->id.'" class="status active">5</span>
 														</td>
 														<td>
 																<ul class="action_job">

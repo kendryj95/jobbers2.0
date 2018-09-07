@@ -8,6 +8,13 @@ use File;
 use Image;
 class con_candidato_perfil_publico extends Controller
 {
+
+    public function localidades()
+    {
+        $sql="SELECT * FROM tbl_localidades WHERE id_provincia =".$_POST['id']."";
+        $datos=DB::select($sql);
+        echo json_encode($datos);
+    }
     public function perfilPublico($id)
     {
         $vista=View::make("candidatos_perfil_publico"); 

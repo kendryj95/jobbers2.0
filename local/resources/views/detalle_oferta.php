@@ -31,11 +31,36 @@
 		  });
 		</script>
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
+		<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
+		<div class="modal fade" id="myModal" role="dialog">
+		   <div class="modal-dialog modal-md">
+		      <div class="modal-content">
+		         <div class="modal-header" style="padding: 0px; padding-left: 15px;"> 
+		            <h5 class="modal-title">Importante</h5>
+		         </div>
+		         <div class="modal-body">
+		           <div class="row">
+		           	 <div class="col-sm-12" style="text-align: center;">
+		            	<img style="width: 100px;height:100px;" src="https://image.flaticon.com/icons/png/512/189/189664.png"/>
+		            </div>
+		           </div>
+		           <div class="row">
+		           	 <div class="col-sm-12" style="text-align: center;">
+		            	<h4>Debes completar tu información para tener mayor oportunidad de ser seleccionado.</h4>
+		            	<a href="../candiperfil" style="font-weight: 600;color: #ffb203;">Completar mi información</a>
+		            </div>
+		           </div>
+		         </div> 
+		      </div>
+		   </div>
+		</div>
 	  <?php $atras=1;?>
+	  <div>
 	  <?php include('local/resources/views/includes/general_header.php');?>
-      <?php include('local/resources/views/includes/general_header_responsive.php');?>
+      <?php include('local/resources/views/includes/general_header_responsive.php');?></div>
 		<section class="overlape">
 			<div class="block no-padding">
 				<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_detalle_oferta.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
@@ -156,7 +181,8 @@
 																<div class="emply-btns">
 																	<a class="followus" href="#" title=""><i class="la la-paper-plane"></i> Seguir</a>
 																</div>
-															<?php if ($nivel_user==1): ?>
+															
+															 
 																
 															
 																<?php if (!$postulado): ?>
@@ -177,23 +203,20 @@
 																		</div>
 
 																	<?php endif; ?>
-
 																<?php else: ?>
 
 																	<div class="emply-btns">
 																		<a class="followus" href="javascript:void(0)" title="" style="background-color: #33cc00; border-color:#33cc00; color: #fff"><i class="la la-check"></i> POSTULADO</a>
 																	</div>
-
-
 																<?php endif; ?>
 															<?php elseif (session()->get('candidato') == null && session()->get('empresa') == null): ?>
 																<div class="emply-btns">
 																	<a class="followus" href="<?= url('login') ?>?returnUrl=<?= url()->current() ?>&p=1&id_pub=<?= $datos[0]->id ?>" title=""><i class="la la-file-text"></i> Postularme</a>
-																</div>
-															<?php endif; ?>
+																</div> 
 															<?php endif ?>
-															<?php if ($nivel_user==2): ?>
-																<p style="text-align: center;font-size: 12px;color: #ff0010;">*Complete sus datos para poder postularse.</p>
+
+															<?php if ($nivel_user==2): ?> 
+																 <script>$("#myModal").modal('show');</script>
 															<?php endif ?>
 													</ul>
 													</div><!-- Job Overview -->
@@ -264,8 +287,8 @@
 			  </div>
 			</div>
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
-			<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+			
+			
 			<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
@@ -326,4 +349,5 @@
 				});
 			</script>
 		</body>
+		 
 	</html>

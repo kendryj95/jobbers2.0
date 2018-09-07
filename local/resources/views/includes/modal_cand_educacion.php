@@ -60,7 +60,7 @@
               </div> 
                 
               <div class="col-lg-6" style="margin-top: -15px;">
-                <span class="pf-title">Título a obtener</span>
+                <span class="pf-title">Título</span>
                 <div class="pf-field">
                    <input id="titulo_obtener" type="text" name="titulo_obtener">
                 </div>

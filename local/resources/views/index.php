@@ -304,7 +304,7 @@
 										<h3>Con Jobbers llegas a cientos de empresas</h3>
 										<span>Publica tu CV en Jobbers y encuentra el empleo que necesitas.</span>
 										<?php $url_cv = session()->get('candidato')==null ? "login" : "candicv" ?>
-										<a href="<?= $url_cv ?>" title="Adjuntar CV">Cargar mi CV</a>
+										<a href="<?=Request::root();?>/candiperfil" title="Adjuntar CV">Cargar mi CV</a>
 									</div>
 								</div>
 							</div>

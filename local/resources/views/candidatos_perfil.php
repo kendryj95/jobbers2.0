@@ -6,6 +6,7 @@ $mi_tokken = csrf_token();
     <head>
         <?php include 'local/resources/views/includes/referencias_top.php';?>
         <!-- Styles -->
+        <meta name="csrf-token" content="<?= csrf_token();?>">
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
         <link rel="stylesheet" href="local/resources/views/css/icons.css">
         <link rel="stylesheet" href="local/resources/views/css/animate.min.css">
@@ -116,6 +117,7 @@ $mi_tokken = csrf_token();
                                 $up_longitud_contac=$infocontacto[0]->logitud;
                                 }
                                 ?>
+                                <input type="hidden" id="id_par_localidad" value="<?= $up_localidad_contac;?>">
                                 <div class="social-edit" style="padding: 0px;">
                                  
                                  <div style="text-align: center; padding-top: 20px; ">
@@ -427,7 +429,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Provincia</span>
                                                 <div class="pf-field">
-                                                    <select id="provincia_contac" name="provincia" data-placeholder="Please Select Specialism" class="chosen">
+                                                    <select onChange="select_provincia(this.value)" id="provincia_contac" name="provincia" data-placeholder="Please Select Specialism" class="chosen">
                                                         <option value="">Seleccionar</option>
                                                         <?php
                                                         foreach ($provincias as $key) {
@@ -442,11 +444,7 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <select id="localidad_contac" name="localidad" data-placeholder="Please Select Specialism" class="chosen">
                                                         <option value="">Seleccionar</option>
-                                                        <?php
-                                                        foreach ($localidades as $key) {
-                                                        echo '<option value="'.$key->id.'">'.$key->localidad.'</option>';
-                                                        }
-                                                        ?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -810,7 +808,7 @@ $mi_tokken = csrf_token();
     <?php echo "set_valor('jorna',".$up_jornada.");";?>
     <?php echo "set_select('pais_contac',".$up_pais_contac.");";?>
     <?php echo "set_select('provincia_contac',".$up_provincia_contac.");";?>
-    <?php echo "set_select('localidad_contac',".$up_localidad_contac.");";?>
+
     //Listado datos cargos
     </script>
     <?php
@@ -923,8 +921,7 @@ $mi_tokken = csrf_token();
             else if($("#pais_contac").val()==""){notificacion("Debe colocar su país.")}
             else if($("#provincia_contac").val()==""){notificacion("Debe colocar su provincia.")} 
             else if($("#localidad_contac").val()==""){notificacion("Debe colocar su localidad.")} 
-            else if($("#direccion").val()==""){notificacion("Debe colocar su dirección.")}  
-            else if(!web.test($('#sitio_web').val())){notificacion("La Url del sitio web es invalido. Si no posees pagina web deja el campo en blanco.")}  
+            else if($("#direccion").val()==""){notificacion("Debe colocar su dirección.")}   
             else
             {
                 $("#form_contact").submit();
@@ -1017,12 +1014,57 @@ $mi_tokken = csrf_token();
         }
     });
 
-</script>
-  <?php if (isset($_GET['result']) && $_GET['result']!=""): ?>
-
-        <script>notificacion("<?php echo $_GET['result'];?>");</script>      
-    <?php endif ?>
-
-
+    function select_provincia(parametro)
+    {
+        
+        if(parametro=="")
+        {
+            $("#localidad_contac").html(""); 
+            return 0;
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+       $.ajax({
+                method: "POST",
+                url: "localidades",
+                dataType: 'json',
+                data:{id:parametro}
+            }).done(function(data) { 
+               $("#localidad_contac").html(""); 
+               $("#localidad_contac").append('<option value="">Seleccionar</option>');
+               $.each(data, function(i, obj) { 
+                if($('#id_par_localidad').val()==obj.id)
+                {
+                    $('#localidad_contac').append($('<option>',
+                     {
+                        value: obj.id,
+                        text : obj.localidad,
+                        selected:par,
+                    }));
+                }
+                else
+                {
+                    $('#localidad_contac').append($('<option>',
+                     {
+                        value: obj.id,
+                        text : obj.localidad, 
+                    }));
+                }
+                
+                $("#localidad_contac").trigger('chosen:updated'); 
+                });
+            }).fail(function(xhr, status, error) {
+                notificar('error', xhr.responseText);
+            })
+    }
+    select_provincia($("#provincia_contac").val());
+    </script>
+      <?php if (isset($_GET['result']) && $_GET['result']!=""): ?> 
+            <script>notificacion("<?php echo $_GET['result'];?>");</script>      
+        <?php endif ?> 
+  
 </body>
 </html>

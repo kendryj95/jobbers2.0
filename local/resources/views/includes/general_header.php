@@ -24,11 +24,11 @@ $back="../";
 					 {
 					 	if(session()->get('tipo_usuario')==2)
 					 	{
-					 		echo'<a href="<?= Request::root();?>/candidashboard" title="" class="my-panel">Mi panel</a>';
+					 		echo'<a href="'.Request::root().'/candidashboard" title="" class="my-panel">Mi panel</a>';
 					 	}
 					 	if(session()->get('tipo_usuario')==1)
 					 	{
-					 		echo'<a href="<?= Request::root();?>/empresa/ofertas" title="" class="post-job-btn ">Mi panel</a>';
+					 		echo'<a href="'.Request::root().'/empresa/ofertas" title="" class="post-job-btn ">Mi panel</a>';
 					 	}
 					 	
 					 }
