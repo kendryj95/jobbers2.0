@@ -167,7 +167,7 @@ class con_login extends Controller
 
         if ($bandera) {
             $sql = "INSERT INTO tbl_postulaciones
-            VALUES(null," . $id . "," . $id_pub . ",null)";
+            VALUES(null,$id,null,$id_pub,null)";
             try {
                 DB::insert($sql);
                 return true;
