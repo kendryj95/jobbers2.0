@@ -168,7 +168,7 @@
 													<span class="pf-title">Planes de estado</span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el plan del estado" class="chosen" id="plan" name="plan">
-															<option value="0">Seleccionar</option>
+															<option value="0">Sin plan de estado</option>
 															<?php foreach ($planes as $plan): ?>
 															<option value="<?= $plan->id ?>"><?= $plan->plan ?></option>
 															<?php endforeach ?>
@@ -187,7 +187,7 @@
 													</div>
 												</div>
 												<div class="col-lg-4">
-													<span class="pf-title">Candidatos con discapacidad <b>*</b></span>
+													<span class="pf-title">Oferta apta discapacidad <b>*</b></span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor seleccione" class="chosen" id="discapacidad" name="discapacidad">
 															<option value="">Seleccionar</option>

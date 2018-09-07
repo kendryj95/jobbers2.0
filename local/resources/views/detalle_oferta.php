@@ -166,7 +166,6 @@
 														<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
 														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->direccion;?></span></li>
 														<li><i class="la la-money"></i><h3>Salario</h3><span><?php echo $datos[0]->salario;?></span></li>
-														<li><i class="la la-medkit "></i><h3>Discapacitados</h3><span><?php echo $datos[0]->discapacidad;?></span></li>
 														<li><i class="la la-bullhorn "></i>
 															<h3>Redes Sociales</h3>
 															<div class="share-bar">
