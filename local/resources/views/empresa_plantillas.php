@@ -101,7 +101,7 @@
 														</div>
 													</div>
 													<div class="col-lg-12">
-														<button type="submit" id="datos_empresa">Enviar</button>
+														<button type="submit" id="datos_empresa">Guardar</button>
 													</div>
 												</div>
 											</form>

@@ -74,9 +74,8 @@
 													<span><i class="la la-desktop d-none"></i><?php echo $datos[0]->modalidad_curso;?></span> <span style="margin-left: 10px"><i class="la la-clock-o d-none"></i><?php echo $datos[0]->duracion;?></span>
 													<?php endif; ?>
 													<ul class="tags-jobs">
-														<li><i class="la la-file-text d-none"></i> Postulados: 0</li>
 														<li><i class="la la-calendar-o d-none"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
-														<li><i class="la la-eye d-none"></i> Vistas: 0</li>
+														<li><i class="la la-eye d-none"></i> Vistas: <?php echo $datos[0]->vistos;?></li>
 													</ul>
 												</div>
 												</div><!-- Job Head -->

@@ -1326,8 +1326,7 @@ function correr_bar(porcentaje_new)
       <?php endif ?> 
        <?php if (session()->get('cand_img')!=""):?> 
         <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>        
-       <?php endif ?> 
-    <?= 'porcentaje de carga: '. $porcentaje_de_carga_bar;?>
+       <?php endif ?>  
     <?php echo'<script>correr_bar('.(($porcentaje_de_carga_bar*100)/26).')</script>';?>
   
 </body>

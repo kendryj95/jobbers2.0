@@ -349,14 +349,15 @@ class con_empresa extends Controller
                   (SELECT COUNT(*) FROM tbl_postulaciones WHERE id_publicacion=pub.id) AS postulados,
                   (SELECT MAX(tmp) FROM tbl_postulaciones) AS ultima_fecha_postulacion,
                   pub.estatus AS id_estatus,
-                  DATEDIFF(NOW(), pub.fecha_venc) AS dias_venc
+                  DATEDIFF(NOW(), pub.fecha_venc) AS dias_venc,
+                  pub.tmp AS creacion
                   FROM
                   tbl_publicacion pub
                   INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
                   INNER JOIN tbl_localidades l ON pub.id_localidad=l.id
                   WHERE pub.id_empresa=?
                 ) r
-                ORDER BY postulados, ultima_fecha_postulacion DESC", [session()->get("emp_ide")]);
+                ORDER BY creacion", [session()->get("emp_ide")]);
         }
 
         $params = [
@@ -523,7 +524,7 @@ class con_empresa extends Controller
         $salario      = $_REQUEST["salario"];
         $salario_usuario = $_REQUEST["salario_usuario"];
         $direccion    = $_REQUEST["direccion"];
-        $plan         = $_REQUEST["plan"];
+        $plan         = $_REQUEST["plan"] != 0 ? $_REQUEST["plan"] : null;
         $disp         = $_REQUEST["disp"];
         $discapacidad = $_REQUEST["discapacidad"];
         $confidencial = $_REQUEST["confidencial"];
@@ -575,7 +576,7 @@ class con_empresa extends Controller
         $salario      = $_REQUEST["salario"];
         $salario_usuario = $_REQUEST["salario_usuario"];
         $direccion    = $_REQUEST["direccion"];
-        $plan         = $_REQUEST["plan"];
+        $plan         = $_REQUEST["plan"] != 0 ? $_REQUEST["plan"] : null;
         $disp         = $_REQUEST["disp"];
         $discapacidad = $_REQUEST["discapacidad"];
         $confidencial = $_REQUEST["confidencial"];
@@ -780,17 +781,18 @@ class con_empresa extends Controller
 
             $datos_emp = DB::select($sql, [$id_empresa]);
 
-            $ofertas = DB::select("SELECT
-              pub.id,
-              pub.titulo,
-              CONCAT(prov.provincia,', ',l.localidad) AS ubicacion,
-              pub.tmp AS fecha_creacion,
-              (SELECT nombre FROM tbl_disponibilidad WHERE id=pub.id_disponibilidad) AS disponibilidad
-              FROM
-              tbl_publicacion pub
-              INNER JOIN tbl_provincias prov ON pub.id_provincia=prov.id
-              INNER JOIN tbl_localidades l ON pub.id_localidad=l.id
-              WHERE pub.id_empresa=?", [$id_empresa]);
+            $ofertas = DB::select("SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t1.id_modalidad_publicacion AS modalidad, t2.nombre_aleatorio as imagen,t3.nombre, t3.web, t3.facebook, t3.twitter, t3.instagram, t3.linkedin, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,DATE_FORMAT(t1.fecha_venc, '%d/%m/%Y') AS fecha_venc,t1.vistos,IF(DATE_FORMAT(t1.tmp, '%Y-%m-%d')=CURDATE(),'Hoy',DATE_FORMAT(t1.tmp, '%d/%m')) AS fecha_pub, DATE_FORMAT(t1.tmp, '%h:%i %p') AS hora_pub,t9.id_plan
+              FROM tbl_publicacion t1
+            LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
+            LEFT JOIN tbl_usuarios_foto_perfil t10 ON t3.id_usuario = t10.id_usuario
+            LEFT JOIN tbl_archivos t2 ON t10.id_foto = t2.id
+            LEFT JOIN tbl_empresas_planes t9 ON t1.id_empresa = t9.id_empresa
+            LEFT JOIN tbl_areas_sectores t4 ON t1.id_sector = t4.id
+            LEFT JOIN tbl_areas t5 ON t1.id_area = t5.id
+            LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
+            LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
+            LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
+              WHERE t1.id_empresa=?", [$id_empresa]);
 
             $params = [
                 "empresa" => $datos_emp,

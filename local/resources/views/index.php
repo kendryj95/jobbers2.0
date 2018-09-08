@@ -136,153 +136,185 @@
 								</div>
 								<div class="job-listings-sec">
 
-									<!-- Oferta recomendada -->
-									<div class="job-listing wtabs borde-recomend" style="background: url(local/resources/views/images/back-ofertas.jpg); background-size: cover">
-										<div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
-										<div class="job-title-sec container-desc-oferta">
-											<div class="row">
-												<div class="col-6">
-													<h5 class="title-recom">Coca Cola</h5>
-													<p class="time-pub" style="margin-left: 20px;">Publicaciones: 485</p>
-													<p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
-													Redes: 
-														<a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="padding:6px; margin-left: 0px;"></i></span></a>
-														<a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
-														<a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a><a href="#" class="jump mobile-inline"><br></a>
-														<a href="#"><span class="container-ig" style="float: inherit"><i class="fa fa-instagram mr-0" style="padding:3px; margin-left: 1px;"></i></span></a>
-														<a href="#"><span class="container-web" style="float: inherit"><i class="fa fa-globe mr-0" style="padding:3px; margin-left: 0px;"></i></span></a>
-													</p>
-												</div>
-												<div class="col-6">
-													<img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid logo-recommend" width="80" alt="">
-												</div>
-											</div>
-											<h5 class="title-recom">Titulo de la oferta de trabajo <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
-											<p class="time-pub"><i class="fa fa-calendar"></i> Publicada Hoy a las 10:58 Am - Termina: 08/12/2018</p>
-											<p class="desc-oferta">Mauris pulvinar efficitur quam nec consequat. Vestibulum eu luctus eros. Praesent non erat ullamcorper, ultrices tellus sed, egestas massa. Nunc mollis ipsum non nunc aliquet blandit. Praesent ullamcorper, libero id maximus mollis, leo neque hendrerit ligula, a egestas augue ipsum at lectus. Donec a ligula porta, vulputate mauris quis, sodales elit. </p>
-											<br>
-											<div class="job-lctn">
-												Cocacola&nbsp;
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												&nbsp;
-												<i class="fa fa-eye"></i>11&nbsp;
-												<i class="fa fa-heart red"></i>3&nbsp;
-												<i class="fa fa-clock-o mr-0"></i>
-												<span class="disponibilidad">FullTime</span>&nbsp;
-												<i class="fa fa-wheelchair blue"></i>
-												<div class="desk" style="float: right">
-													<a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
-													<a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-													<a href="#"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
-													<a href="#"><span class="container-ig"><i class="fa fa-instagram mr-0"></i></span></a>
-													<a href="#"><span class="container-web"><i class="fa fa-globe mr-0"></i></span></a>
-												</div>
-												<p class="container-media mobile" style="margin-bottom: 0;">
-													<a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="margin-left: 4px; vertical-align: text-top"></i></span></a>
-													<a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
-													<a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-													<a href="#"><span class="container-ig" style="float: inherit"><i class="fa fa-instagram mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-													<a href="#"><span class="container-web" style="float: inherit"><i class="fa fa-globe mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-												</p>
-											</div>
-										</div>
-										<div class="job-style-bx container-img-oferta desk">
-											<img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
-										</div>
-									</div>
+									<?php foreach ($ultimas_publicaciones as $pub): ?>
 
+									  <?php if ($pub->id_plan == 2): ?>
+
+									        <?php if ($pub->modalidad == 1): ?>
+
+									            <!-- Oferta recomendada -->
+									            <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs borde-recomend" style="background: url(local/resources/views/images/back-ofertas.jpg); background-size: cover">
+									              <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
+									                <div class="job-title-sec container-desc-oferta">
+									                <div class="row">
+									                  <div class="col-6">
+									                    <h5 class="title-recom"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></h5>
+									                    <p class="time-pub" style="margin-left: 20px;">Publicaciones: <?= $pub->q_ofertas ?></p>
+									                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
+									                    <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
+									                      Redes:
+									                          <?php if ($pub->facebook): ?> 
+									                          <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="padding:6px; margin-left: 0px;"></i></span></a>
+									                          <?php endif; ?>
+									                          <?php if ($pub->linkedin): ?>
+									                          <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
+									                          <?php endif; ?>
+									                          <?php if ($pub->twitter): ?>
+									                          <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a><a href="#" class="jump mobile-inline"><br></a>
+									                          <?php endif; ?>
+									                    </p>
+									                    <?php endif; ?>
+									                  </div>
+									                  <div class="col-6">
+									                    <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
+									                  </div>
+									                </div>
+									              
+									                <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
+									                  <p class="time-pub"><i class="fa fa-calendar"></i> Publicada <?= $pub->fecha_pub ?> a las <?= $pub->hora_pub ?> - Termina: <?= $pub->fecha_venc ?></p>
+									                  <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
+									                  <br>
+									                  <div class="job-lctn">
+									                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
+									                    <i class="fa fa-star gold"></i>
+									                    <i class="fa fa-star gold"></i>
+									                    <i class="fa fa-star gold"></i>
+									                    <i class="fa fa-star gold"></i>
+									                    <i class="fa fa-star gold"></i>
+									                    &nbsp;
+									                    <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
+									                    <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
+									                    <i class="fa fa-clock-o mr-0"></i>
+									                    <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
+									                    <?php if ($pub->discapacidad == 'SI'): ?>
+									                    <i class="fa fa-wheelchair blue"></i>
+									                    <?php endif; ?>
+									              
+									                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
+									                    <div class="desk" style="float: right">
+									                      <?php if ($pub->facebook): ?> 
+									                      <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
+									                      <?php endif; ?>
+									                      <?php if ($pub->linkedin): ?>
+									                      <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
+									                      <?php endif; ?>
+									                      <?php if ($pub->twitter): ?>
+									                      <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+									                      <?php endif; ?>
+									                    </div>
+									                    <?php endif; ?>
+
+									                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
+									                    <p class="container-media mobile" style="margin-bottom: 0;">
+									                      <?php if ($pub->facebook): ?> 
+									                      <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
+									                      <?php endif; ?>
+									                      <?php if ($pub->linkedin): ?>
+									                      <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
+									                      <?php endif; ?>
+									                      <?php if ($pub->twitter): ?>
+									                      <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+									                      <?php endif; ?>
+									                    </p>
+									                    <?php endif; ?>
+									                  </div>
+									                </div>
+									                <div class="job-style-bx container-img-oferta desk">
+									                  <img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
+									                </div>
+									              </div></a>
+									        <?php else: ?>
+
+									          <!-- CURSO GRATIS -->
+									          <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
+									          <div class="job-listing wtabs borde-urgente">
+									          <div class="urgente"><span>Cursos</span></div>
+									            <div class="job-title-sec container-desc-curso" ;>
+									              <h3>
+									                <a href="<?= url('detalle_curso', $pub->id) ?>" title="">
+									                  <div style="font-size:22px; color: #494949" id="descripcion_'.$key->id.'"><?= $pub->titulo ?> <span class="link-urgente"><?= $pub->nombre ?></span></div>
+									                </a>
+									              </h3>
+									              <p><span style="color: #555555; line-height: 18px; color: #494949">
+									                <?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?>
+									                </span></p>
+									              <br>
+									            </div>
+									          </div>
+									          <a href=""></a>
+
+
+
+									        <?php endif; ?>
+
+									  <?php else: ?>
 
 									<!-- Oferta normal -->
-									<div class="job-listing wtabs">
-										<div class="mobile">
-											<img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
-											<p class="nombre-img">Coca Cola</p>
-										</div>
-										<div class="job-title-sec container-desc-oferta">
-											<h5 class="title-recom">Titulo de la oferta de trabajo <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
-											<p class="time-pub"><i class="fa fa-calendar"></i> Publicada Hoy a las 10:58 Am - Termina: 08/12/2018</p>
-											<p class="desc-oferta">Mauris pulvinar efficitur quam nec consequat. Vestibulum eu luctus eros. Praesent non erat ullamcorper, ultrices tellus sed, egestas massa. Nunc mollis ipsum non nunc aliquet blandit. Praesent ullamcorper, libero id maximus mollis, leo neque hendrerit ligula, a egestas augue ipsum at lectus. Donec a ligula porta, vulputate mauris quis, sodales elit. </p>
-											<br>
-											<div class="job-lctn">
-												Cocacola&nbsp;
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												<i class="fa fa-star gold"></i>
-												&nbsp;
-												<i class="fa fa-eye"></i>11&nbsp;
-												<i class="fa fa-heart red"></i>3&nbsp;
-												<i class="fa fa-clock-o mr-0"></i>
-												<span class="disponibilidad">FullTime</span>&nbsp;
-												<i class="fa fa-wheelchair blue"></i>
-												<div class="desk" style="float: right">
-													<a href="#"><span class="container-fb"><i class="fa fa-facebook mr-0"></i></span></a>
-													<a href="#"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-													<a href="#"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
-													<a href="#"><span class="container-ig"><i class="fa fa-instagram mr-0"></i></span></a>
-													<a href="#"><span class="container-web"><i class="fa fa-globe mr-0"></i></span></a>
-												</div>
-												<p class="container-media mobile" style="margin-bottom: 0;">
-													<a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="margin-left: 4px; vertical-align: text-top"></i></span></a>
-													<a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
-													<a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-													<a href="#"><span class="container-ig" style="float: inherit"><i class="fa fa-instagram mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-													<a href="#"><span class="container-web" style="float: inherit"><i class="fa fa-globe mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-												</p>
-											</div>
-										</div>
-										<div class="job-style-bx container-img-oferta-i desk">
-											<img src="http://urbancomunicacion.com/wp-content/uploads/2017/08/Historia-del-logotipo-de-Coca-Cola-Urban-comunicacion.png" class="img-fluid img-oferta" alt="">
-											<p class="nombre-img">Coca Cola</p>
-										</div>
-									</div>
+									<a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
+									  <div class="mobile">
+									        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+									        <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+									      </div>
+									    <div class="job-title-sec container-desc-oferta">
+									    <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
+									      <p class="time-pub"><i class="fa fa-calendar"></i> Publicada <?= $pub->fecha_pub ?> a las <?= $pub->hora_pub ?> - Termina: <?= $pub->fecha_venc ?></p>
+									      <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
+									      <br>
+									      <div class="job-lctn">
+									        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
+									        <i class="fa fa-star gold"></i>
+									        <i class="fa fa-star gold"></i>
+									        <i class="fa fa-star gold"></i>
+									        <i class="fa fa-star gold"></i>
+									        <i class="fa fa-star gold"></i>
+									        &nbsp;
+									        <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
+									        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
+									        <i class="fa fa-clock-o mr-0"></i>
+									        <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
+									        <?php if ($pub->discapacidad == 'SI'): ?>
+									        <i class="fa fa-wheelchair blue"></i>
+									        <?php endif; ?>
+									  
+									        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
+									        <div class="desk" style="float: right">
+									          <?php if ($pub->facebook): ?> 
+									          <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
+									          <?php endif; ?>
+									          <?php if ($pub->linkedin): ?>
+									          <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
+									          <?php endif; ?>
+									          <?php if ($pub->twitter): ?>
+									          <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
+									          <?php endif; ?>
+									        </div>
+									        <?php endif; ?>
+									        
+									        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
+									        <p class="container-media mobile" style="margin-bottom: 0;">
+									          <?php if ($pub->facebook): ?> 
+									          <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
+									          <?php endif; ?>
+									          <?php if ($pub->linkedin): ?>
+									          <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
+									          <?php endif; ?>
+									          <?php if ($pub->twitter): ?>
+									          <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
+									          <?php endif; ?>
+									        </p>
+									        <?php endif; ?>
+									      </div>
+									    </div>
+									    <div class="job-style-bx container-img-oferta desk">
+									      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+									      <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+									    </div>
+									  </div></a>
+									  <?php endif; ?>
 
-									<!-- Curso gratis -->
-									<div class="job-listing wtabs borde-urgente">
-										<div class="urgente"><span>Curso gratis</span></div>
-										<div class="job-title-sec container-desc-curso" ;>
-											<h3>
-											<a href="detalleoferta/'.$key->id.'" title="">
-												<div style="font-size:22px; color: #494949" id="descripcion_'.$key->id.'">Curso de programador PHP  <span class="link-urgente">https://google.co.ve/search</span></div>
-											</a>
-											</h3>
-											<p href="#"><span style="color: #555555; line-height: 18px; color: #494949">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum tincidunt velit at molestie. Donec mattis orci non risus auctor blandit.
-											</span></p>
-											<br>
-										</div>
-									</div>
+									<?php endforeach; ?>
 
-
-								<?php foreach ($ultimas_publicaciones as $key ) {
-										$imagen="";
-										
-										if($key->nombre_aleatorio!="")
-										{
-											$imagen='<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" style="width:98px;" /> </div>';
-										}
-										else{
-											$imagen='<div class="c-logo"> <img src="uploads/'.$key->nombre_aleatorio.'" alt="" /> </div>';
-										}
-
-										echo
-										'
-										<div class="job-listing">
-										<div class="job-title-sec">
-										'.$imagen.'
-										<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3>
-										<a href="empresa/detalle?e='.$key->id_empresa.'" target="_blank"><span>'.$key->empresa.'</span></a>
-										</div>
-										<span class="job-lctn"><i class="la la-map-marker"></i>'.$key->direccion.'</span>
-										<span class="job-is ft">'.$key->nombre.'</span>
-										</div>
-										
-										';
-									}?>
+								
 								</div>
 								<div class="col-lg-12">
 									<div class="browse-all-cat">

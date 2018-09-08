@@ -37,12 +37,22 @@
 					</ul>
 					</li>
 					<li class="inner-child">
-						<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Ofertas de Trabajo</a>
+						<a href="#" title="Ofertas de Trabajo"><i class="la la-briefcase"></i>Oferta de trabajo</a>
 						<ul>
-							<li onclick="location.href='ofertas'"><a href="ofertas" title="Ver Ofertas de Trab.">Ver Ofertas de Trab.</a></li>
-							<li onclick="location.href='new_post'"><a href="new_post" title="Nueva Oferta de Trab.">Nueva Oferta de Trab.</a></li>
+							<li onclick="location.href='<?= url('empresa/ofertas') ?>'"><a href="<?= url('empresa/ofertas') ?>" title="Ver Ofertas de Trab.">Ver mis ofertas</a></li>
+							<li onclick="location.href='<?= url('empresa/new_post') ?>'"><a href="<?= url('empresa/new_post') ?>" title="Nueva Oferta de Trab.">Nueva oferta</a></li>
+							<li onclick="location.href='<?= url('empresa/plantillas') ?>'"><a href="<?= url('empresa/plantillas') ?>" title="Nueva Oferta de Trab.">Mis plantillas</a></li>
 						</ul>
 					</li>
+					<?php if (session()->get('emp_plan')[0]->id_plan == 2): ?>
+					<li class="inner-child">
+						<a href="#" title="Cursos"><i class="la la-university"></i>Cursos</a>
+						<ul>
+							<li onclick="location.href='<?= url('empresa/cursos') ?>'"><a href="<?= url('empresa/cursos') ?>" title="Mis cursos">Mis cursos</a></li>
+							<li onclick="location.href='<?= url('empresa/new_curso') ?>'"><a href="<?= url('empresa/new_curso') ?>" title="Nuevo curso">Nuevo curso</a></li>
+						</ul>
+					</li>
+					<?php endif; ?>
 					<li class="inner-child">
 						<a href="#" title="Planes"><i class="la la-trophy"></i>Planes</a>
 						<ul>
