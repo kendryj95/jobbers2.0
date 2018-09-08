@@ -17,6 +17,7 @@ class con_candidato_perfil_publico extends Controller
     }
     public function perfilPublico($id)
     {
+
         $vista=View::make("candidatos_perfil_publico"); 
 
         $sql_datos_personales="SELECT t1.id_usuario,t1.*,t2.descripcion as identificacion,
@@ -133,6 +134,7 @@ class con_candidato_perfil_publico extends Controller
 
     public function perfil()
     {
+
         $vista = View::make("candidatos_perfil");
         $sql        = "SELECT correo FROM tbl_usuarios WHERE id = ".session()->get('cand_id')."";
         $sql_imagen = "SELECT * FROM tbl_archivos WHERE id_usuario = " . session()->get("cand_id") . ""; 
@@ -193,20 +195,23 @@ class con_candidato_perfil_publico extends Controller
         $cv_fisico=DB::select("SELECT *,count(id) as cantidad FROM tbl_candidato_cv_fisico WHERE id_usuario=".session()->get('cand_id')."");
         $sql_contactos="
         SELECT *, count(*) as cantidad FROM tbl_candidato_info_contacto WHERE id_usuario=".session()->get('cand_id')."";
+
         try {
-            $datos=DB::select($sql_contactos);
+            $datos=DB::select($sql_contactos); 
             if($datos[0]->cantidad!=0)
-            {
-                
+            { 
                 $bandera_datos_contacto=1;
                 $vista->bandera_datos_contacto=$bandera_datos_contacto;
-                $vista->infocontacto=$datos;
+                $vista->infocontacto=$datos; 
             }
             else
             {
-
-                $bandera_datos_contacto=0;
-                $vista->bandera_datos_contacto=  $bandera_datos_contacto;
+               
+                DB::insert('INSERT INTO tbl_candidato_info_contacto (id_usuario,correo) VALUES ('.session()->get("cand_id").',"'.session()->get("candidato").'")');
+                $datos=DB::select($sql_contactos);
+                $bandera_datos_contacto=1;
+                $vista->bandera_datos_contacto=$bandera_datos_contacto;
+                $vista->infocontacto=$datos; 
             }
         } catch (Exception $e) {
             

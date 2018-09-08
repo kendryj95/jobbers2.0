@@ -16,7 +16,9 @@ $mi_tokken = csrf_token();
         <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
         <meta name="csrf-token" content="<?php echo $mi_tokken; ?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-         
+         <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+         <link href="https://www.jqueryscript.net/demo/jQuery-Progress-Bar-Plugin-LineProgressbar/dist/jquery.lineProgressbar.css" rel="stylesheet" type="text/css">
+        
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
         <div class="theme-layout" id="scrollup"> 
@@ -52,11 +54,11 @@ $mi_tokken = csrf_token();
                             
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
-                                         <h3>Perfil</h3>
-                                    </div> 
-                                </div>   
+                                         <h3>Perfil</h3> 
+                                    </div>  
+                                </div> 
                                 <?php
-                                
+                              
                                 //Datos personales
                                 $up_nombres="";
                                 $up_apellidos="";
@@ -118,10 +120,20 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <input type="hidden" id="id_par_localidad" value="<?= $up_localidad_contac;?>">
-                                <div class="social-edit" style="padding: 0px;">
-                                 
+                                <div class="social-edit" style="padding: 0px;"> 
+                                <div style="padding-left: 30px;">
+                                    <style type="text/css" media="screen">
+                                        .progressbar
+                                        {
+                                            height:20px;
+                                        }
+                                    </style>
+                                        <div id="jq"></div> 
+                                        <input type="hidden" name="" value="0" id="procentaje-barra">
+                                       
+                                    </div> 
                                  <div style="text-align: center; padding-top: 20px; ">
-                                    <?php if (session()->get('cand_img') !=""): ?>
+                                    <?php if (session()->get('cand_img') !=""): ?> 
                                         <img src="<?php echo "uploads/min/".session()->get('cand_img');?>" style="border-radius: 50%;width: 100px;height: 100px;">
                                          <?php else: ?>
                                         <img src="local/resources/views/images/avatar.jpg" style="border-radius: 50%;width: 100px;height: 100px;"> 
@@ -135,13 +147,25 @@ $mi_tokken = csrf_token();
                                                 </div> 
                                                 <button style="display: none;" id="btn-guardar-imagen" type="submit" onClick="">Guardar</button> 
                                     </form>
+                                
+                                    <?php if (session()->get('cand_img')==""):  
+                                    ?> 
+                                     <div class="social-edit" style="padding: 0px;margin-top: 20px;">
+                                                        <div class="col-sm-12" style="padding: 0px;padding-left: 30px;">  
+                                                            <div class="alert alert-danger"> 
+                                                              <strong style="font-weight: 600">*Importante!</strong><br>
+                                                               <div style="font-size: 13px;">  
+                                                                     <span>- Debe cargar una foto de perfil</span><br> 
+                                                            </div> 
+                                                    </div>   
+                                    <?php endif ?> 
                                 </div>
                                     <div class="padding-left" style="padding-top: 0px;">
                                     <div class="manage-jobs-sec addscroll">
                                          <h3>Datos personales</h3>
                                     </div> 
                                 </div>  
-                                <div class="social-edit">
+                                <div class="social-edit"> 
                                     <form  id="form_datos_per"  action="candidatosper" method="POST">
                                      
                                         <input type="hidden" name="_token" value="<?php echo $mi_tokken;?>">
@@ -255,11 +279,86 @@ $mi_tokken = csrf_token();
                                             </div>
                                             
                                            
+                                      <div class="col-sm-12"> 
+                                        <?php if ($up_nombres=="" || $up_apellidos=="" || $up_edo_civil=="" || $up_discapacidad=="" || $up_sexo=="" ||  $up_hijos=="" ||  $up_nacionalidad=="" || $up_t_id=="" ||  $up_id=="" ||  $up_fecha=="" ||  $up_desc=="" || $up_cuil==""): ?> 
+                                        <div class="alert alert-danger">
+    
+                                          <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
+                                           <div style="font-size: 13px;"> 
+                                            <?php if ($up_nombres==""): ?>
+                                                 <span>- Nombres</span><br>
+                                            <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?> 
+                                             <?php if ($up_apellidos==""): ?>
+                                                 <span>- Apellidos</span><br>
+                                             <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+                                             <?php if ($up_edo_civil==""): ?>
+                                                 <span>- Estado civil</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+                                             <?php if ($up_discapacidad==""): ?>
+                                                 <span>- Discapacidad</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+                                             <?php if ($up_sexo==""): ?>
+                                                 <span>- sexo</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+
+                                              <?php if ($up_hijos==""): ?>
+                                                 <span>- Hijos</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+
+                                              <?php if ($up_nacionalidad==""): ?>
+                                                 <span>- Nacionalidad</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+                                              <?php if ($up_t_id==""): ?>
+                                                 <span>- Tipo identificación</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+                                              <?php if ($up_id==""): ?>
+                                                 <span>- Identificación</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+
+
+                                               <?php if ($up_fecha==""): ?>
+                                                 <span>- Fecha de nacimiento</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+
+                                               <?php if ($up_desc==""): ?>
+                                                 <span>- Descripción</span><br>
+                                                  <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?>
+                                            <?php if ($up_cuil==""): ?>
+                                                <span>- Cuil</span><br>
+                                                 <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                            <?php endif ?> 
+
+                                           </div>
+                                           <?php else: ?>
+                                            <?php $porcentaje_de_carga_bar=12;?>
+                                        </div> <?php endif ?>
 
                                         </div>
                                          <div class="col-lg-12">
-                                                <button type="button" onClick="datos_per_validar()">Guardar</button>
-
+                                                <button type="button" onClick="datos_per_validar()">Guardar</button> 
                                             </div>
                                     </form>
                                     <div class="social-edit">
@@ -294,7 +393,7 @@ $mi_tokken = csrf_token();
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <span class="pf-title">Cargos pretendidos</span>
+                                                    <span class="pf-title">Cargos pretendidos<span style="color: #fc0000;font-size: 12px;padding-left: 5px;">(Puede seleccionar varios)</span></span> 
                                                     <div class="pf-field">
                                                         <select id="cbn_cargos" onChange="set_cargo(this.value,this.id,'categorias_cargos',1)" name="cargos" data-placeholder="Allow In Search" class="chosen">
                                                             <option value="">Seleccionar</option>
@@ -324,9 +423,34 @@ $mi_tokken = csrf_token();
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        
+                                                        </div> 
                                                     </div>
+                                                   <div class="social-edit" style="padding: 0px;">
+                                                        <div class="col-sm-12" style="padding: 0px;"> <?php if ($up_remuneracion=="" || $up_jornada=="" || count($cargos_lista)==0): ?> 
+                                                            <div class="alert alert-danger"> 
+                                                              <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
+                                                               <div style="font-size: 13px;"> 
+                                                                <?php if ($up_remuneracion==""): ?>
+                                                                     <span>- Remuneración</span><br>
+                                                                <?php else: ?> 
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                                <?php endif ?>  
+                                                                <?php if ($up_jornada==""): ?>
+                                                                     <span>- Jornada</span><br>
+                                                                <?php else: ?>  
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>  
+                                                                <?php endif ?>
+                                                                <?php if (count($cargos_lista)==0): ?>
+                                                                     <span>- Cargos pretendidos</span><br>
+                                                                <?php else: ?> 
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                                <?php endif ?> 
+                                                               </div>
+                                                               <?php else: ?>
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+3;?>
+                                                            </div> <?php endif ?> 
+                                                    </div>
+                                                  
                                                     <button type="button" onClick="preferencias_lab_validar()">Guardar</button>
                                                 </div>
                                             </div>
@@ -408,6 +532,7 @@ $mi_tokken = csrf_token();
                                                     <input id="sitio_web" value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
                                                 </div>
                                             </div>
+                                               
                                             <div class="row" style="background-color: #f3f3f3;border:1px solid #2e3192;padding: 15px;">
                                                 <div class="col-lg-12 text-center" style="font-weight: 600;">
                                                       Dirección de domicilio  
@@ -467,6 +592,53 @@ $mi_tokken = csrf_token();
                                                     <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="hidden" placeholder="21.1589654" />
                                                 </div>
                                             </div>
+                                            <div class="social-edit" style="padding: 0px;margin-top: 20px;">
+
+                                         
+                                                        <div class="col-sm-12" style="padding: 0px;"> <?php if ($up_telefono_contac=="" || $up_correo_contac==""  ||  $up_pais_contac==""  ||  $up_provincia_contac==""  ||  $up_localidad_contac==""  ||  $up_direccion_contac==""): ?> 
+                                                    <div class="alert alert-danger"> 
+                                                      <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
+                                                       <div style="font-size: 13px;"> 
+                                                        <?php if ($up_telefono_contac==""): ?>
+                                                             <span>- Teléfono</span><br>
+                                                        <?php else: ?>
+                                                             <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?> 
+                                                        <?php if ($up_correo_contac==""): ?>
+                                                             <span>- Correo</span><br>
+                                                        <?php else: ?> 
+                                                              <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?> 
+
+                                                         <?php if ($up_pais_contac==""): ?>
+                                                             <span>- País</span><br>
+                                                        <?php else: ?> 
+                                                              <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?> 
+
+                                                         <?php if ($up_provincia_contac==""): ?>
+                                                             <span>- Pronvincia</span><br>
+                                                        <?php else: ?> 
+                                                              <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?> 
+
+                                                         <?php if ($up_localidad_contac==""): ?>
+                                                             <span>- Localidad</span><br>
+                                                        <?php else: ?> 
+                                                              <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?>
+
+                                                        <?php if ($up_direccion_contac==""): ?>
+                                                             <span>- Dirección</span><br>
+                                                        <?php else: ?> 
+                                                              <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?> 
+
+                                                       </div>
+                                                       <?php else: ?>
+                                                        <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+6;?>
+                                                    </div> <?php endif ?> 
+                                                    </div>
                                             <div class="col-lg-12">
                                                 <button type="button" onClick="contac_validar()">Guardar</button>
                                             </div>
@@ -504,8 +676,26 @@ $mi_tokken = csrf_token();
                                                         <li><span>Eliminar</span><a href="candidelestudios/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
                                                     </ul>
                                                 </div>
+</div>
                                             </div>
+                                            
                                             <?php endforeach ?>
+                                             <div class="social-edit" style="padding: 0px;margin-top: 20px;"> 
+                                                        <div class="col-sm-12" style="padding: 0px; padding-left: 30px;"> <?php if (count($educacion)==0): ?> 
+                                                    <div class="alert alert-danger"> 
+                                                      <strong style="font-weight: 600">*Complete la siguiente información</strong><br>
+                                                       <div style="font-size: 13px;"> 
+                                                        <?php if (count($educacion)==0): ?>
+                                                             <span>- Debe agregar sus estudios</span><br>
+                                                        <?php else: ?>
+                                                             <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?>   
+                                                       </div>
+                                                       <?php else: ?>
+                                                        <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                                    </div> <?php endif ?> 
+                                                 </div>
+                                            </div>
                                             <div class="border-title"><h3>Experiencia laboral</h3><a href="#" title=""  data-toggle="modal" data-target="#modal_educ_expe"><i class="la la-plus"></i> Agregar experiencia</a></div>
                                             <div class="edu-history-sec">
                                                 <?php foreach ($experiencias as $key): 
@@ -526,7 +716,22 @@ $mi_tokken = csrf_token();
                                                     </ul>
                                                 </div>
                                                 <?php endforeach ?>
-                                                
+                                                <div class="social-edit" style="padding: 0px;margin-top: 20px;"> 
+                                                        <div class="col-sm-12" style="padding: 0px;"> <?php if (count($experiencias)==0): ?> 
+                                                    <div class="alert alert-danger"> 
+                                                      <strong style="font-weight: 600">*Complete la siguiente información</strong><br>
+                                                       <div style="font-size: 13px;"> 
+                                                        <?php if (count($experiencias)==0): ?>
+                                                             <span>- Debe agregar sus experiencias laborales</span><br>
+                                                        <?php else: ?>
+                                                             <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                        <?php endif ?>   
+                                                       </div>
+                                                       <?php else: ?>
+                                                        <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                                    </div> <?php endif ?> 
+                                                 </div>
+                                             
                                             </div>
                                             
                                             <!--HAbilidadez-->
@@ -564,7 +769,21 @@ $mi_tokken = csrf_token();
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="social-edit" style="padding: 0px;">
+                                                        <div class="col-sm-12" style="padding: 0px;"> <?php if (count($habilidades_listado)==0): ?> 
+                                                            <div class="alert alert-danger"> 
+                                                              <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
+                                                               <div style="font-size: 13px;">  
+                                                                <?php if (count($habilidades_listado)==0): ?>
+                                                                     <span>- Debe agreagar sus habilidades</span><br>
+                                                                <?php else: ?> 
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                                <?php endif ?> 
+                                                               </div>
+                                                               <?php else: ?>
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                                            </div> <?php endif ?> 
+                                                    </div> 
                                                     <button onclick="habilidades_validar()" type="button">Guardar</button>
                                                 </form>
                                                 
@@ -623,6 +842,21 @@ $mi_tokken = csrf_token();
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="social-edit" style="padding: 0px;">
+                                                        <div class="col-sm-12" style="padding: 0px;"> <?php if (count($idiomas_listado)==0): ?> 
+                                                            <div class="alert alert-danger"> 
+                                                              <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
+                                                               <div style="font-size: 13px;">  
+                                                                <?php if (count($idiomas_listado)==0): ?>
+                                                                     <span>- Debe agreagar sus idiomas</span><br>
+                                                                <?php else: ?> 
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
+                                                                <?php endif ?> 
+                                                               </div>
+                                                               <?php else: ?>
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
+                                                            </div> <?php endif ?> 
+                                                   
                                                     <button onclick="idiomas_validar()" type="button">Guardar</button>
                                                 </form> 
                                             </div> 
@@ -663,7 +897,7 @@ $mi_tokken = csrf_token();
                                                             <button type="submit" onClick="">Guardar</button> 
                                                 </form> 
                                             </div>
-                                        <?php endif ?> 
+                                        <?php endif ?>  
                                     </div> 
                                 </div>
                             </div>
@@ -674,9 +908,13 @@ $mi_tokken = csrf_token();
         </section>
     </div>
     <?php include "local/resources/views/includes/general_footer.php";?>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.1.0.slim.min.js" type="text/javascript"></script>
+    <script src="https://www.jqueryscript.net/demo/Responsive-Animated-Progress-Bar-With-jQuery-CSS3-Barfiller-js/js/jquery.barfiller.js" type="text/javascript"></script>
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
     <script src="local/resources/views/js/script.js" type="text/javascript"></script> 
     <script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script> 
+     <script type="text/javascript" src="https://www.jqueryscript.net/demo/jQuery-Progress-Bar-Plugin-LineProgressbar/dist/jquery.lineProgressbar.js"></script>
     <?php include "local/resources/views/includes/referencias_down.php";?>
     <script type="text/javascript">
     function set_imagen_val(id) {
@@ -1059,12 +1297,38 @@ $mi_tokken = csrf_token();
             }).fail(function(xhr, status, error) {
                 notificar('error', xhr.responseText);
             })
+
+    $(document).ready(function(){ 
+        $('#bar1').barfiller();   
+    });
     }
+
     select_provincia($("#provincia_contac").val());
     </script>
+    <script>
+function set_progress_bar()
+{
+    suma=$("#procentaje-barra").val();
+    porcentaje_new=(parseInt(suma)+4.167); 
+    $("#procentaje-barra").val(porcentaje_new);
+} 
+function correr_bar(porcentaje_new)
+{  
+    $('#jq').LineProgressbar({
+    percentage:porcentaje_new,
+    radius: '3px',
+    height: '20px',
+    }); 
+} 
+</script> 
       <?php if (isset($_GET['result']) && $_GET['result']!=""): ?> 
             <script>notificacion("<?php echo $_GET['result'];?>");</script>      
-        <?php endif ?> 
+      <?php endif ?> 
+       <?php if (session()->get('cand_img')!=""):?> 
+        <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>        
+       <?php endif ?> 
+    <?= 'porcentaje de carga: '. $porcentaje_de_carga_bar;?>
+    <?php echo'<script>correr_bar('.(($porcentaje_de_carga_bar*100)/26).')</script>';?>
   
 </body>
 </html>
