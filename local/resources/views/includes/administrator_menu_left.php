@@ -36,7 +36,7 @@
 				 						<a href="<?= url('administracion/soportistas') ?>" title=""><i class="la la-user"></i>Soportistas</a> 
 				 					</li>
 				 					<li>
-				 						<a href="<?= url('administracion/redactores') ?>" title=""><i class="la la-user"></i>Retactores</a> 
+				 						<a href="<?= url('administracion/redactores') ?>" title=""><i class="la la-user"></i>Redactores</a> 
 				 					</li>  
 				 					<li>
 				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Configuración</a> 

@@ -17,8 +17,9 @@ $mi_tokken = csrf_token();
             <!--Header responsive-->
             <?php $atars=2;?>
             <?php include('local/resources/views/includes/header_administrator.php');?>  
+            <?php include('local/resources/views/includes/header_responsive_admin.php');?>  
             <section>
-                <div class="block no-padding">
+                <div class="block no-padding mt-75">
                     <div class="container">
                         <div class="row no-gape">
                             <?php include('includes/administrator_menu_left.php');?> 

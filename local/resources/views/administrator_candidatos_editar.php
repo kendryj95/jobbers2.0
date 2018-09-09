@@ -11,7 +11,7 @@ $mi_tokken = csrf_token();
         <meta name="keywords" content="">
         <meta name="author" content="CreativeLayers">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css""> 
+        <?php include('local/resources/views/includes/referencias_top.php');?> 
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="../../local/resources/views/css/bootstrap-grid.css" />
@@ -29,6 +29,7 @@ $mi_tokken = csrf_token();
         <div class="theme-layout" id="scrollup"> 
             <!--Header responsive-->
             <?php include('local/resources/views/includes/header_administrator.php');?>  
+            <?php include('local/resources/views/includes/header_responsive_admin.php');?>  
             <!--fin Header responsive-->
             <!--Modal imagenes-->
             <?php include('local/resources/views/includes/modal_cand_educacion_admin.php');?>
@@ -50,7 +51,7 @@ $mi_tokken = csrf_token();
             </style>
             <!-- Modal --> 
             <section>
-                <div class="block no-padding">
+                <div class="block no-padding mt-75">
                     <div class="container">
                         <div class="row no-gape">
                              <?php include('includes/administrator_menu_left.php');?> 

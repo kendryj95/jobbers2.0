@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="CreativeLayers"> 
+	<?php include('local/resources/views/includes/referencias_top.php');?>
 	<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/bootstrap-grid.css" />
 	<link rel="stylesheet" href="../../local/resources/views/css/icons.css">
 	<link rel="stylesheet" href="../../local/resources/views/css/animate.min.css">
@@ -21,10 +22,11 @@
 	<div class="theme-layout" id="scrollup">
 		
 			<?php include('local/resources/views/includes/header_administrator.php');?> 
+			<?php include('local/resources/views/includes/header_responsive_admin.php');?> 
  <section>
 
 
-		<div class="block no-padding">
+		<div class="block no-padding mt-75">
 			<div class="container">
 				 <div class="row no-gape">
 				 	<?php include('includes/administrator_menu_left.php');?> 

@@ -10,10 +10,42 @@ $back="../administrator_candidatos_ver.php";
 	<div class="responsive-menubar">
 		<div class="res-logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;"><a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>		<div class="menu-resaction">
 			<div class="res-openmenu">
-				<img src="../local/resources/views/images/icon.png" alt="" /> Menú
+			<!-- TODO: REVISAR UNA MEJOR MANERA DE HACER ESTO SI LA HAY.
+						VALIDAR QUE EDIT LUEGO DEL SLASH LLEVA UN ID  -->
+				<?php $url = basename($_SERVER["REQUEST_URI"]); 
+				if($url == 'plantillas' || 
+				$url == 'ofertas-renovar' || 
+				$url == 'cursos-aprobar' ||
+				$url == 'nuevo' ||
+				$url == 'create' ||
+				$url == 'edit/' ||
+				$url == 'publicar' ||
+				$url == 'categorias' ||
+				is_numeric($url)): ?>
+					<img src="../../local/resources/views/images/icon.png" alt="" /> Menú
+				<?php else: ?>
+					<img src="../local/resources/views/images/icon.png" alt="" /> Menú
+				<?php endif;?>
+
 			</div>
 			<div class="res-closemenu">
-				<img src="../local/resources/views/images/icon2.png" alt="" /> Cerrar
+			<!-- TODO: REVISAR UNA MEJOR MANERA DE HACER ESTO SI LA HAY.
+						VALIDAR QUE EDIT LUEGO DEL SLASH LLEVA UN ID  -->
+				<?php $url = "".basename($_SERVER["REQUEST_URI"]); 
+				if($url == 'plantillas' || 
+				$url == 'ofertas-renovar' || 
+				$url == 'cursos-aprobar' ||
+				$url == 'nuevo' ||
+				$url == 'create' ||
+				$url == 'edit/' ||
+				$url == 'publicar' ||
+				$url == 'categorias' ||
+				is_numeric($url)): ?>
+					<img src="../../local/resources/views/images/icon2.png" alt="" /> Cerrar
+				<?php else: ?>
+					<img src="../local/resources/views/images/icon2.png" alt="" /> Cerrar
+				<?php endif;?>
+
 			</div>
 		</div>
 	</div>
@@ -66,7 +98,7 @@ $back="../administrator_candidatos_ver.php";
 				 						<a href="<?= url('administracion/soportistas') ?>" title=""><i class="la la-user"></i>Soportistas</a> 
 				 					</li>
 				 					<li>
-				 						<a href="<?= url('administracion/redactores') ?>" title=""><i class="la la-user"></i>Retactores</a> 
+				 						<a href="<?= url('administracion/redactores') ?>" title=""><i class="la la-user"></i>Redactores</a> 
 				 					</li>  
 				 					<li>
 				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Configuración</a> 
