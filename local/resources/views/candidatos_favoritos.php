@@ -22,7 +22,7 @@
 			<!--fin Header responsive-->
 			
 			<section >
-				<div class="block no-padding">
+				<div class="block no-padding mt-75">
 					<div class="container">
 						<div class="row no-gape">
 							<?php include('local/resources/views/includes/aside_candidatos.php');?>

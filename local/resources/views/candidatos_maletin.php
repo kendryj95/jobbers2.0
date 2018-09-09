@@ -29,7 +29,7 @@ $mi_tokken=csrf_token();
       <!--fin Header responsive-->
       
       <section>
-        <div class="block no-padding">
+        <div class="block no-padding mt-75">
           <div class="container">
             <div class="row no-gape">
               <?php include("includes/aside_candidatos.php");?>
