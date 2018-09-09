@@ -5,19 +5,14 @@
       $back="../";  
       } 
 
-      ?>
-<style>
-  .menu-sec nav>ul>li>a,
-  .account-btns>li a{
-    color: #232323;
-  }
-</style>
+			?>
+<style>.menu-sec nav>ul>li>a {padding: 9px 0px;}</style>
 <header class="stick-top forsticky">
   <div class="menu-sec">
     <div class="container">
-      <div class="logo">
-        <a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
-        </div><!-- Logo -->
+		<div class="logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;">
+				<a href="<?= url('inicio') ?>" title=""><img style="width: 120px;" class="hidesticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /><img style="width: 120px;" class="showsticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /></a>
+				</div><!-- Logo -->
         <div class="btn-extars">
 					<!-- Btn Extras -->
 					 <nav style="float: left">

@@ -4,7 +4,6 @@ if(isset($atras) && $atras==1)
 {
 $back="../";	
 } 
-
 ?>
 <header class="stick-top forsticky">
 	<div class="menu-sec">

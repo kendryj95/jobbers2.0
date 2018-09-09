@@ -220,6 +220,9 @@ input[type="submit"],
 input[type="button"] {
     cursor: pointer;
 }
+a{
+    text-decoration: none !important;
+}
 
 .btn-block {
     width: 100%;
@@ -12243,7 +12246,9 @@ header.style5 .post-job-btn:hover {
     visibility: visible;
 }
 
+/* BOTON OCULTO DE SCROLL */
 .bottom-line .scrollup {
+    display: none;
     position: fixed;
     z-index: 999;
     right: 70px;
