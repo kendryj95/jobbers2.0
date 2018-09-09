@@ -10,9 +10,9 @@
  <header class="stick-top">
     <div class="menu-sec">
         <div class="container">
-            <div class="logo">
-                <a href="<?= url('inicio') ?>" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 120px;"></a>
-            </div>
+            <div class="logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;">
+			    <a href="<?= url('inicio') ?>" title=""><img style="width: 120px;" class="hidesticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /><img style="width: 120px;" class="showsticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /></a>
+			</div>
             <!-- Logo -->
             <div class="my-profiles-sec">
                 <span>Bivenvenido, Daniel Maidana</span>
@@ -21,10 +21,9 @@
         </div>
     </div>
 </header>
-<section class="overlape mt-responsive" style="padding: 0px;">
+<!-- <section class="overlape mt-responsive" style="padding: 0px;">
     <div class="block no-padding">
         <div data-velocity="-.1" style="background: url(local/resources/views/images/fondo_candidato_dash.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
         <div class="container fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -35,4 +34,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->

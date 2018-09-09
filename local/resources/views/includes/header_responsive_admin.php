@@ -1,8 +1,38 @@
-<aside class="col-lg-3 column border-right d-none d-lg-block">
-				 		<div class="widget">
-				 			<div class="tree_widget-sec">
-				 				<ul>
-				 					<li>
+<?php 
+$back="";
+if(isset($atras) && $atras==1)
+{
+$back="../administrator_candidatos_ver.php";	
+}  
+?>
+
+<div class="responsive-header">
+	<div class="responsive-menubar">
+		<div class="res-logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;"><a href="inicio" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>		<div class="menu-resaction">
+			<div class="res-openmenu">
+				<img src="../local/resources/views/images/icon.png" alt="" /> Menú
+			</div>
+			<div class="res-closemenu">
+				<img src="../local/resources/views/images/icon2.png" alt="" /> Cerrar
+			</div>
+		</div>
+	</div>
+	<div class="responsive-opensec">
+		<!-- <div class="btn-extars">
+			<?php if (session()->get('tipo_usuario')==2 || session()->get('tipo_usuario')== 1): ?>
+				<?php if (session()->get('tipo_usuario')==2): ?>
+					<a href="<?= $back ?>candidashboard" title="" class="my-panel">Mi panel</a>
+				<?php elseif (session()->get('tipo_usuario')==1): ?>
+					<a href="#" title="" class="my-panel">Mi panel</a>
+				<?php endif; ?>
+			<?php endif; ?>
+			 </div> -->
+			
+			<div class="responsivemenu res-menu-cand" style="margin-top: 10px;">
+				<div class="widget">
+					<div class="tree_widget-sec">
+						<ul>
+                        <li>
 				 						<a href="<?= url('administracion/panel') ?>" title=""><i class="la la-dashboard"></i>Inicio</a> 
 				 					</li>
 				 					<li>
@@ -42,7 +72,9 @@
 				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Configuración</a> 
 				 					</li>  
 				 					<li><a href="<?= url('admsalir') ?>" title=""><i class="la la-arrow-left"></i>Salir</a></li>
-				 				</ul>
-				 			</div>
-				 		</div>
-				 	</aside>
+						</ul>
+					</div>
+				</div> 	
+			</div>
+		</div>
+	</div>
