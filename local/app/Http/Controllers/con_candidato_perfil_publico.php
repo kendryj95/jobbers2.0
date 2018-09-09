@@ -755,7 +755,8 @@ class con_candidato_perfil_publico extends Controller
             nombre_empresa='".$_POST['empresa']."',
             cargo='".$_POST['cargo']."',
             id_actividad_empresa=".$_POST['sector'].",
-            descripcion='".$_POST['descripcion']."', 
+            descripcion='".$_POST['descripcion']."',
+            tipo_de_puesto='".$_POST['tipo_de_puesto']."',
             desde='".$_POST['desde']."',
             hasta='".$_POST['hasta']."'
             WHERE id=".$_POST['identificador']." AND id_usuario=".session()->get('cand_id')."
@@ -783,6 +784,7 @@ class con_candidato_perfil_publico extends Controller
                '".$_POST['hasta']."',
                ".$_POST['sector'].",
                '".$_POST['descripcion']."', 
+                '".$_POST['tipo_de_puesto']."', 
                null 
                )";
 
