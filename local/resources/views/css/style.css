@@ -2348,7 +2348,7 @@ label::after {
 footer {
     float: left;
     width: 100%;
-    background: #24324a;
+    background: #2e3192;
 }
 
 .widget {
@@ -2572,7 +2572,7 @@ footer {
     float: left;
     width: 100%;
     text-align: center;
-    background: #1d293e;
+    background: #141877;
     padding: 24px 0;
 }
 
@@ -5685,6 +5685,7 @@ aside .subscribe_widget form button {
     -webkit-user-select: none;
     user-select: none;
 }
+
 
 .simple-checkbox.scrollbar {
     height: 232px;

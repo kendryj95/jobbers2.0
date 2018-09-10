@@ -9,15 +9,15 @@
     <meta name="keywords" content="">
     <meta name="author" content="CreativeLayers">
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="local/resources/views/css/bootstrap-grid.css" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="local/resources/views/css/icons.css">
     <link rel="stylesheet" href="local/resources/views/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/style.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
     <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -113,12 +113,12 @@
 											<img src="<?= $imagen;?>" class="img-fluid img-oferta" alt="">
 											<p class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
 										</div> 
-										<div class="job-title-sec container-desc-oferta">
+										<div class="job-title-sec container-desc-oferta" style="display: grid">
 											<h5 onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo ucfirst(strtolower($empresa->nombre_empresa));?><a href="#"><span style="float: right; color: #000;border-radius: 5px; font-size: 15px; font-weight: 600;padding: 4px;background-color: #ffff00;"><i><?= $empresa->sector ?></i><!--<sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i>--></span></a></h5>
 
 											<p class="desc-oferta"><?= $empresa->descripcion;?></p>
 											<br> 
-                      <div class="row">
+                      <!-- <div class="row">
                           <div class="col-sm-3" style="text-align: center;">
                              <img src="local/resources/views/images/calendar.png">
                           </div>
@@ -128,20 +128,25 @@
                           <div class="col-sm-3" style="text-align: center;">
                              <img src="local/resources/views/images/creative-team.png">
                           </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-sm-3" style="text-align: center;">
-                             <span class="disponibilidad" style="background-color: #2e3192;">2 meses</span><br> 
-                             <div style="background-color: #fff;font-size: 10px;color: #595959;">(Antiguedad)</div> 
-                          </div>
-                           <div  class="col-sm-3" style="text-align: center;">
-                             <span onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="disponibilidad" style="background-color: #2e3192;"><?php echo cantidad($empresa->id_empresa,$cantidades);?> Ofertas</span>
-                              <div onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" style="background-color: #fff;font-size: 10px;color: #595959;">(Nº ofertas)</div> 
-                          </div>
-                          <div class="col-sm-3" style="text-align: center;">
-                             <span class="disponibilidad"><?= $empresa->responsable?></span>
-                              <div style="background-color: #fff;font-size: 10px;color: #595959;">(Reclutador/a)</div> 
-                          </div>
+                      </div> -->
+                      <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3 mx-auto" style="text-align: center;">
+                              <img src="local/resources/views/images/calendar.png"><br>
+                               <span class="disponibilidad" style="background-color: #2e3192;">2 meses</span><br>
+                               <div style="background-color: #fff;font-size: 10px;color: #595959;">(Antiguedad)</div> 
+                            </div>
+                             <div  class="col-sm-3 mx-auto" style="text-align: center;">
+                             <img src="local/resources/views/images/firefighter.png"><br>
+                               <span onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="disponibilidad" style="background-color: #2e3192;"><?php echo cantidad($empresa->id_empresa,$cantidades);?> Ofertas</span><br>
+                                <div onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" style="background-color: #fff;font-size: 10px;color: #595959;">(Nº ofertas)</div> 
+                            </div>
+                            <div class="col-sm-3 mx-auto" style="text-align: center;">
+                            <img src="local/resources/views/images/creative-team.png"><br>
+                               <span class="disponibilidad"><?= $empresa->responsable?></span><br>
+                                <div style="background-color: #fff;font-size: 10px;color: #595959;">(Reclutador/a)</div> 
+                            </div>
+                        </div>
                       </div>
                         
 											<div class="job-lctn"> 
