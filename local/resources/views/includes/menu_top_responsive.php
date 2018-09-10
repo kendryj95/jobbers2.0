@@ -5,15 +5,12 @@ if(isset($atras) && $atras==1)
 $back="../administrator_candidatos_ver.php";	
 } 
 ?>
-<style>
-	.responsive-opensec .btn-extars .account-btns li>a{
-		color: #96a0bd;
-	}
-</style>
-<div class="theme-layout" id="scrollup">
+<!-- <div class="theme-layout" id="scrollup"> -->
 	<div class="responsive-header">
 		<div class="responsive-menubar">
-		<div class="res-logo" style="background-color: rgba(255,255,255,0.5);padding-left: 25px;padding-right: 25px;"><a href="index.html" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" alt="Logo Jobbers" /></a></div>
+		<div class="logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;">
+				<a href="<?= url('inicio') ?>" title=""><img style="width: 120px;" class="hidesticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /><img style="width: 120px;" class="showsticky" src="https://www.jobbersargentina.net/img/logo_d.png" alt="" /></a>
+				</div>
 			<div class="menu-resaction">
 				<div class="res-openmenu">
 					<img src="local/resources/views/images/icon.png" alt="" /> Menú
@@ -32,9 +29,9 @@ $back="../administrator_candidatos_ver.php";
 						<a href="empresa/ofertas" title="" class="post-job-btn"><i class="la la-plus"></i>Mi panel</a>
 					<?php endif; ?>
 				<?php else: ?>
-					<ul class="account-btns">
+					<ul class="account-btns pull-left">
 						<li class="signup-popup"><a title=""><i class="la la-key"></i> Registrar</a></li>
-						<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Entrar</a></li>
+						<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Ingresar</a></li>
 					</ul>
 				<?php endif; ?>
 				</div><!--Btn Extras -->

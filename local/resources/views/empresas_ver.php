@@ -30,37 +30,18 @@
   <body>
    <?php include('local/resources/views/includes/general_header.php');?>
    <?php include('local/resources/views/includes/general_header_responsive.php');?>
-    <section class="overlape mt-responsive">
-      <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url(local/resources/views/images/empresas_header.jpg) repeat scroll 10% 422.28px transparent;" class="parallax scrolly-invisible no-parallax">
-        </div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="inner-header">
-                <h3 style="font-size: 36px;">Las mejores empresas
-                </h3>
-                <h3 style="font-size: 22px;margin-top: -40px;">Y las mejores ofertas
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <section>
-      <div class="block no-padding back-offers">
+      <div class="block no-padding mt-50 back-offers">
         <div class="container">
           <div class="row no-gape">
           <div class="btn-showfilter">
             <button class="btn btn-primary" id="showFilters">Mostrar filtros <i class="fa fa-filter"></i></button>
           </div>
-            <aside class="col-lg-3 column border-right" id="side-offers" style="padding-left: 0px; border-color: transparent">
+            <aside class="col-lg-3 column border-right d-none d-lg-block" id="side-offers" style="padding-left: 0px; border-color: transparent">
               
               <form action="empresas" method="POST" id="form_filter">
                 <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
-                <div class="widget filter-offer">
+                <div class="widget filter-offer" style="margin-top: 0px;">
                   <h3 class="sb-title open">Cargo</h3>
                   <div class="search_widget_job">
                     <div class="field_w_search">
