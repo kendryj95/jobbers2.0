@@ -56,18 +56,18 @@
 												<div class="col-lg-4 col-md-4 col-sm-12">
 													<div class="p-category">
 														<a href="candiperfil" title="">
-															<i class="la la-file-text"></i>
+															<i class="la la-user"></i>
 															<span>Mi información</span>
 															<p>Ver Perfil</p>
 														</a>
 													</div>
 												</div> 
 												<div class="col-lg-4 col-md-4 col-sm-12">
-													<div class="p-category follow-companies-popup">
-														<a href="candiempseg" title="">
-															<i class="la la-industry"></i>
-															<span>Empresa Seguidas</span>
-															<p><?= $empresas_seguidas ?> Empresas</p>
+													<div class="p-category">
+														<a href="candiperfil#cvjobbers" title="">
+															<i class="la la-file-text"></i>
+															<span>Mi CV Jobbers</span>
+															<p>&nbsp;</p>
 														</a>
 													</div>
 												</div>
@@ -90,6 +90,15 @@
 															<i class="la la-check"></i>
 															<span>Recomendaciones</span>
 															<p><?= $recomendaciones ?> Recomendaciones</p>
+														</a>
+													</div>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="p-category follow-companies-popup">
+														<a href="candiempseg" title="">
+															<i class="la la-industry"></i>
+															<span>Empresa Seguidas</span>
+															<p><?= $empresas_seguidas ?> Empresas</p>
 														</a>
 													</div>
 												</div>

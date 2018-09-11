@@ -471,7 +471,7 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <div class="social-edit">
-                                    <h3>Redes sociales</h3>
+                                    <h3>Redes sociales <span style="font-size: 11px;color: #ff0000;">(* Campos no obligatorios)</h3></span></h3>
                                     <form action="candiredescrear" method="post" id="form_candiredescrear">
                                         <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                         <input type="hidden" name="pagina" value="perfil">
@@ -865,8 +865,14 @@ $mi_tokken = csrf_token();
                                             </div> 
                                         </div>
 
+                                       <div style="text-align: center;"> 
+                                            <a target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
+                                                 <img id="cvjobbers" src="<?= 'local/resources/views/images/sin_usar.jpg'?>">
+                                            </a>
+                                       </div>
+                                     
                                         <?php if ($cv_fisico[0]->cantidad>0): ?>
-                                             <div class="border-title"><h3>CV adjunto</h3> </div>
+                                             <div class="border-title"><h3>CV adjunto  <span style="font-size: 11px;color: #ff0000;">(* Debe eliminar el CV adjunto para que la empresa pueda ver su CV de Jobbers)</h3></span></div>
                                              <div class="manage-jobs-sec addscroll">
                                                 <table>
                                                     <thead>
@@ -886,7 +892,7 @@ $mi_tokken = csrf_token();
                                                 </table>
                                             </div>
                                         <?php else: ?>
-                                            <div class="border-title"><h3>Adjuntar CV</h3> 
+                                            <div  class="border-title"><h3>Adjuntar CV</h3> 
                                             </div>
                                             <div class="social-edit" style="margin-right: 30px; margin-left: 30px;font-weight: 600;font-size: 12px;padding-bottom: 5px;color: #008204;">
                                                 <i>*Si adjunta un CV éste será el CV que podrán ver las empresas, de lo contrario se mostrara el <a target="_blank" href='reporte/<?= session()->get('cand_id');?>' style="color: #008adb;text-decoration: underline;">CV de Jobbers</a></i>
