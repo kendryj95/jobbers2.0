@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use DB;
 use View;
 
@@ -249,8 +250,14 @@ class con_ofertas extends Controller
             return $peticion . " " . $consulta_general;
     }
 
-    public function detalle($id)
+    public function detalle($id, Request $request)
     {
+
+        $estatus = " AND t1.estatus = 1";
+
+        if (isset($request->ref) && $request->ref == '_panelEmpresa') {
+            $estatus = "";
+        }
 
         DB::update("UPDATE tbl_publicacion SET vistos=(vistos + 1) WHERE id=?",[$id]);
 
@@ -282,15 +289,15 @@ class con_ofertas extends Controller
 
             concat(t3.provincia,' / ',t4.localidad) as dir_empresa FROM tbl_publicacion t1
             LEFT JOIN tbl_empresa t2 ON t2.id = t1.id_empresa
-            LEFT JOIN tbl_provincias t3 ON t3.id = t2.provincia
-            LEFT JOIN tbl_localidades t4 ON t4.id = t2.localidad
+            LEFT JOIN tbl_provincias t3 ON t3.id = t1.id_provincia
+            LEFT JOIN tbl_localidades t4 ON t4.id = t1.id_localidad
             LEFT JOIN tbl_usuarios_foto_perfil t5 ON t5.id_usuario = t2.id_usuario
             LEFT JOIN tbl_archivos t6 ON t6.id = t5.id_foto
             LEFT JOIN tbl_areas_sectores t7 ON t7.id = t1.id_sector
             LEFT JOIN tbl_areas t8 ON t8.id = t1.id_area
             LEFT JOIN tbl_disponibilidad t9 ON t9.id = t1.id_disponibilidad
             LEFT JOIN tbl_rango_salarios t10 ON t1.id_salario=t10.id
-            WHERE t1.id = " . $id . " AND t1.estatus = 1";
+            WHERE t1.id = " . $id . " $estatus";
 
         try {
             $datos                = DB::select($sql);

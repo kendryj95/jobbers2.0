@@ -50,7 +50,7 @@
 		           <div class="row">
 		           	 <div class="col-sm-12" style="text-align: center;">
 		            	<h4>Debes completar tu información para tener mayor oportunidad de ser seleccionado.</h4>
-		            	<a href="../candiperfil" style="font-weight: 600;color: #ffb203;">Completar mi información</a>
+		            	<a href="<?= url('candiperfil') ?>" style="font-weight: 600;color: #ffb203;">Completar mi información</a>
 		            </div>
 		           </div>
 		         </div> 
@@ -67,8 +67,11 @@
 				<div class="container fluid">
 					<div class="row">
 						<div class="col-lg-12">
+							<?php  
+								$empresa = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? '<a href="../empresa/detalle?e='.$datos[0]->id_empresa.'">'.$datos[0]->empresa.'</a>' : '<a href="javascript:void(0)">Confidencial</a>';
+							?>
 							<div class="inner-header">
-								<h3><?php echo $datos[0]->titulo;?></h3>
+								<h3><?php echo $empresa ?></h3>
 							</div>
 						</div>
 					</div>
@@ -84,18 +87,22 @@
 								<div class="job-head-wide">
 									<div class="row">
 										<div class="col-lg-10">
+											<button type="button" onclick="history.back()" style="float: left; margin-top: 0;"><i class="la la-arrow-left"></i> Volver</button>
 											<div class="job-single-head3 emplye">
 												<?php  
 													$imagen = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
-													$empresa = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? '<a href="../empresa/detalle?e='.$datos[0]->id_empresa.'">'.$datos[0]->empresa.'</a>' : '<a href="javascript:void(0)">Confidencial</a>';
+													
 												?>
+
+
 												<div class="job-thumb"> <img src="<?= $imagen ?>" alt="Logo de empresa"></div>
 												<div class="job-single-info3">
 
-													<h3><?= $empresa ?></h3>
+													<h3><?= $datos[0]->titulo; ?></h3>
 													<span><i class="la la-map-marker d-none"></i><?php echo $datos[0]->dir_empresa;?></span>
 													<ul class="tags-jobs">
-														<li><i class="la la-file-text d-none"></i> Postulados <?= $cantidad_postulados ?></li>
+														<li><i class="la la-money d-none"></i> Salario: <?= $datos[0]->salario ?></li>
+														<li><i class="la la-file-text d-none"></i> Postulados: <?= $cantidad_postulados ?></li>
 														<li><i class="la la-calendar-o d-none"></i> Publicado: <?php echo $datos[0]->tmp;?></li>
 														<li><i class="la la-eye d-none"></i> Vistas <?php echo $datos[0]->vistos;?></li>
 													</ul>
@@ -164,8 +171,6 @@
 													<h3>Información de empresa</h3>
 													<ul>
 														<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
-														<li><i class="la la-map"></i><h3>Dirección</h3><span><?php echo $datos[0]->direccion;?></span></li>
-														<li><i class="la la-money"></i><h3>Salario</h3><span><?php echo $datos[0]->salario;?></span></li> 
 														<?php if ($datos[0]->discapacidad=="SI"): ?>
 													     <li style="padding-top: 12px;"><i class="la la-medkit "></i><h3>Se admiten discapacitados</h3> </li>
 														<?php endif ?> 

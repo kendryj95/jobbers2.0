@@ -110,16 +110,17 @@ class con_postulados extends Controller
     	}
 
     	if ($criterio != "") {
-    		$criterio_id_publicacion = " AND p.id_publicacion=?";
+    		$criterio_id_publicacion = " AND p.id_publicacion=:id_pub";
     	} else {
-    		$criterio_id_publicacion = " WHERE p.id_publicacion=?";
+    		$criterio_id_publicacion = " WHERE p.id_publicacion=:id_pub";
     	}
 
     	$sql = "
     	SELECT 
 		p.id_usuario,
 		pb.id AS id_publicacion, 
-		p.tmp AS fecha_postulacion, 
+		p.tmp AS fecha_postulacion,
+        IF(p.id_salario_usuario IS NULL,'No definido',CONCAT('$',rs.salario)) AS salario, 
 		pb.titulo AS titulo_oferta, 
 		CONCAT(cdp.nombres,' ',cdp.apellidos) AS nombre_candidato, 
 		TIMESTAMPDIFF(YEAR,cdp.fecha_nac,CURDATE()) AS edad_candidato,
@@ -138,6 +139,7 @@ class con_postulados extends Controller
 		FROM tbl_postulaciones p 
 		INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id 
 		LEFT JOIN tbl_candidato_datos_personales cdp ON p.id_usuario= cdp.id_usuario
+        LEFT JOIN tbl_rango_salarios rs ON p.id_salario_usuario=rs.id
 		LEFT JOIN tbl_generos g ON cdp.id_sexo=g.id
 		LEFT JOIN tbl_candidatos_educacion ce ON p.id_usuario=ce.id_usuario
 		LEFT JOIN tbl_candidato_preferencias_laborales cpl ON p.id_usuario=cpl.id_usuario
@@ -147,14 +149,14 @@ class con_postulados extends Controller
 		LEFT JOIN tbl_candidato_experiencia_laboral cel ON p.id_usuario
 		LEFT JOIN tbl_actividades_empresa acte ON cel.id_actividad_empresa=acte.id
 		LEFT JOIN tbl_candidato_calificaciones cc ON p.id_usuario=cc.id_usuario
-		LEFT JOIN tbl_candidato_marcadores cm ON p.id_usuario=cm.id_usuario
+		LEFT JOIN (SELECT id_usuario, id_marcador FROM tbl_candidato_marcadores WHERE id_publicacion=:id_pub) cm ON p.id_usuario=cm.id_usuario
 		LEFT JOIN tbl_marcadores m ON cm.id_marcador=m.id
 		$criterio
 		$criterio_id_publicacion
 		GROUP BY p.id_usuario
 		ORDER BY fecha_postulacion DESC";
 
-		$postulados = DB::select($sql, [$data["id_publicacion"]]);
+		$postulados = DB::select($sql, ["id_pub" => $data["id_publicacion"]]);
 
     	echo json_encode([
     		"postulados" => $postulados
