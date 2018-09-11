@@ -32,8 +32,8 @@
 		<div class="theme-layout" id="scrollup">
 			
 			<!-- Modal -->
-			<?php include('local/resources/views/includes/general_header_responsive.php');?>
-			<?php include('local/resources/views/includes/general_header.php');?>
+			<?php include('local/resources/views/includes/menu_top_responsive.php');?>
+			<?php include('local/resources/views/includes/menu_top.php');?>
 			
 			<section class="mt-responsive">
 				
@@ -124,7 +124,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="block">
+				<div class="block" id="scroll-here">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">

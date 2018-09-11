@@ -278,8 +278,9 @@ $mi_tokken = csrf_token();
                                                 </div>
                                             </div>
                                             
-                                           
+                                      <?php $porcentaje_de_carga_bar=0;?>  
                                       <div class="col-sm-12"> 
+                                      
                                         <?php if ($up_nombres=="" || $up_apellidos=="" || $up_edo_civil=="" || $up_discapacidad=="" || $up_sexo=="" ||  $up_hijos=="" ||  $up_nacionalidad=="" || $up_t_id=="" ||  $up_id=="" ||  $up_fecha=="" ||  $up_desc=="" || $up_cuil==""): ?> 
                                         <div class="alert alert-danger">
     
@@ -1047,6 +1048,7 @@ $mi_tokken = csrf_token();
     <?php echo "set_select('pais_contac',".$up_pais_contac.");";?>
     <?php echo "set_select('provincia_contac',".$up_provincia_contac.");";?>
 
+
     //Listado datos cargos
     </script>
     <?php
@@ -1274,6 +1276,7 @@ $mi_tokken = csrf_token();
                $("#localidad_contac").html(""); 
                $("#localidad_contac").append('<option value="">Seleccionar</option>');
                $.each(data, function(i, obj) { 
+                par='true';
                 if($('#id_par_localidad').val()==obj.id)
                 {
                     $('#localidad_contac').append($('<option>',
@@ -1306,12 +1309,7 @@ $mi_tokken = csrf_token();
     select_provincia($("#provincia_contac").val());
     </script>
     <script>
-function set_progress_bar()
-{
-    suma=$("#procentaje-barra").val();
-    porcentaje_new=(parseInt(suma)+4.167); 
-    $("#procentaje-barra").val(porcentaje_new);
-} 
+ 
 function correr_bar(porcentaje_new)
 {  
     $('#jq').LineProgressbar({
