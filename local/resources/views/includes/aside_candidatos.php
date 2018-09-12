@@ -19,6 +19,9 @@
 				<li >
 					<a href="candiperfil" title=""><i class="la la-user"></i>Mi información</a>
 				</li>
+				<li >
+					<a href="<?php echo Request::root().'/candiperfil#cvjobbers';?>" title=""><i class="la la-file-text"></i>Mi CV Jobbers</a>
+				</li>
 				<!--<li >
 					<a href="candicv" title=""><i class="la la-file-text"></i>Adjuntar curriculum</a>
 				</li>-->

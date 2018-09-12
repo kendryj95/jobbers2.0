@@ -471,7 +471,7 @@ $mi_tokken = csrf_token();
                                 }
                                 ?>
                                 <div class="social-edit">
-                                    <h3>Redes sociales</h3>
+                                    <h3>Redes sociales <span style="font-size: 11px;color: #ff0000;">(* Campos no obligatorios)</h3></span></h3>
                                     <form action="candiredescrear" method="post" id="form_candiredescrear">
                                         <input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
                                         <input type="hidden" name="pagina" value="perfil">
@@ -708,7 +708,9 @@ $mi_tokken = csrf_token();
                                                     <div class="edu-hisinfo">
                                                         <h3 id="e_empresa_<?php echo $key->id;?>"><?php echo $key->nombre_empresa;?></h3> <span><?php echo $key->sector;?></span></h3>
                                                         <i id="e_periodo_<?php echo $key->id;?>"><?php echo $key->desde;?> - <?php echo $key->hasta;?></i>
+                                                        <i id="e_tipo_puesto_<?php echo $key->id;?>"><?php echo $key->tipo_de_puesto;?></i>
                                                         <i id="e_cargo_<?php echo $key->id;?>"><?php echo $key->cargo;?></i>
+
                                                         <p id="e_descripcion_<?php echo $key->id;?>"><?php echo $key->descripcion;?></p>
                                                     </div>
                                                     <ul class="action_job">
@@ -863,8 +865,14 @@ $mi_tokken = csrf_token();
                                             </div> 
                                         </div>
 
+                                       <div style="text-align: center;"> 
+                                            <a target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
+                                                 <img id="cvjobbers" src="<?= 'local/resources/views/images/sin_usar.jpg'?>">
+                                            </a>
+                                       </div>
+                                     
                                         <?php if ($cv_fisico[0]->cantidad>0): ?>
-                                             <div class="border-title"><h3>CV adjunto</h3> </div>
+                                             <div class="border-title"><h3>CV adjunto  <span style="font-size: 11px;color: #ff0000;">(* Debe eliminar el CV adjunto para que la empresa pueda ver su CV de Jobbers)</h3></span></div>
                                              <div class="manage-jobs-sec addscroll">
                                                 <table>
                                                     <thead>
@@ -884,7 +892,7 @@ $mi_tokken = csrf_token();
                                                 </table>
                                             </div>
                                         <?php else: ?>
-                                            <div class="border-title"><h3>Adjuntar CV</h3> 
+                                            <div  class="border-title"><h3>Adjuntar CV</h3> 
                                             </div>
                                             <div class="social-edit" style="margin-right: 30px; margin-left: 30px;font-weight: 600;font-size: 12px;padding-bottom: 5px;color: #008204;">
                                                 <i>*Si adjunta un CV éste será el CV que podrán ver las empresas, de lo contrario se mostrara el <a target="_blank" href='reporte/<?= session()->get('cand_id');?>' style="color: #008adb;text-decoration: underline;">CV de Jobbers</a></i>
@@ -993,6 +1001,7 @@ $mi_tokken = csrf_token();
     $("#expe_hasta").val("");
     $("#expe_empresa").val("");
     $("#expe_cargo").val("");
+    $("#tip_de_puesto").val("");
     $("#expe_descripcion").val("");
     $("#expe_sector").trigger('chosen:updated');
     $("#expe_desde").trigger('chosen:updated');
@@ -1020,9 +1029,11 @@ $mi_tokken = csrf_token();
     $("#expe_sector").val($("#e_sector_"+id).val());
     $("#expe_empresa").val($("#e_empresa_"+id).html());
     $("#expe_cargo").val($("#e_cargo_"+id).html());
+    $("#tip_de_puesto").val($("#e_tipo_puesto_"+id).html());
     $("#expe_descripcion").val($("#e_descripcion_"+id).html());
     $("#expe_sector").trigger('chosen:updated');
     $("#expe_desde").trigger('chosen:updated');
+    $("#tip_de_puesto").trigger('chosen:updated');
     $("#modal_educ_expe").modal("show");
     }
     
@@ -1187,6 +1198,7 @@ $mi_tokken = csrf_token();
             else if($("#expe_desde").val()==""){notificacion("Debe colocar la fecha de inicio.")}  
             else if($("#expe_empresa").val()==""){notificacion("Debe colocar el nombre de la empresa.")} 
             else if($("#expe_cargo").val()==""){notificacion("Debe colocar el cargo que ocupó.")}
+             else if($("#tip_de_puesto").val()==""){notificacion("Debe colocar el tipo de puesto que ocupó.")}   
             else if(!($("#trabajando_act").is(':checked')))
             {  
                            

@@ -45,10 +45,22 @@
                          </label> 
                   </div>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-3">
                 <span class="pf-title">Empresa</span>
                 <div class="pf-field">
                    <input name="empresa" id="expe_empresa" type="text" name="">
+                </div>
+              </div>
+               <div class="col-lg-3">
+                <span class="pf-title">Tipo de puesto</span>
+                <div class="pf-field">
+                  <select id="tip_de_puesto"  name="tipo_de_puesto" data-placeholder="Sector" class="chosen">
+                    <option value="">Seleccionar</option>
+                    <option value="Director">Director</option> 
+                    <option value="Gerente">Gerente</option>
+                    <option value="Ejecutivo">Ejecutivo</option>
+                    <option value="Obrero">Obrero</option>
+                  </select>
                 </div>
               </div>
               <div class="col-lg-6">
