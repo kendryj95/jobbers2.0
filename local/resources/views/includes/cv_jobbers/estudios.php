@@ -5,14 +5,15 @@ Fpdf::SetTextColor(0,0,0);  // Establece el color del texto (en este caso es bla
 Fpdf::SetFillColor(232, 232, 232);
 Fpdf::Cell(190,5,''.utf8_decode("ESTUDIOS REALIZADOS").'',0,1,'C','true');
 
-
- if(count($datos_estudios)>0)
+$bandera=0;
+ if($datos_estudios[0]->cantidad>0)
  {
 	$total=count($datos_estudios);
 	for ($i=0; $i < $total ; $i++)
 	{
 	Fpdf::SetFont('Arial','B',10);
 	Fpdf::SetTextColor(46, 49, 146);
+	
 	Fpdf::Cell(190,5,''.utf8_decode("".$datos_estudios[$i]->nombre_institucion."").'',0,1,'0');
 	Fpdf::SetFont('Arial','',9);
 	Fpdf::SetTextColor(0,0,0);
@@ -54,5 +55,5 @@ Fpdf::Cell(190,5,''.utf8_decode("ESTUDIOS REALIZADOS").'',0,1,'C','true');
 	if($parametro==1){return "En curso";}
 	if($parametro==2){return "Graduado";}
 	if($parametro==3){return "Abandonado";}
-}
+} 
 ?>

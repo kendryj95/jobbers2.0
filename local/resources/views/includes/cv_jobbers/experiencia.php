@@ -4,7 +4,7 @@ Fpdf::SetFont('Arial','',10);
 Fpdf::SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco) 
 Fpdf::SetFillColor(232, 232, 232);  
 Fpdf::Cell(190,5,''.utf8_decode("EXPERIENCIA LABORAL").'',0,1,'C','true');
-if(count($datos_experiencia_lab) > 0)
+if($datos_experiencia_lab[0]->cantidad > 0)
 { 	$total=count($datos_experiencia_lab);
 	for ($i=0; $i < $total ; $i++) 
 	{ 
@@ -15,16 +15,40 @@ if(count($datos_experiencia_lab) > 0)
 	Fpdf::SetTextColor(0,0,0);
 	$textotrabajar=""; 
 
-
+	//($datos_experiencia_lab[$i]->act_empresa
 	if($datos_experiencia_lab[$i]->hasta=="")
 	{
 		$datos_experiencia_lab[$i]->hasta="Actualidad";
 	}
-	Fpdf::Cell(190,5,''.utf8_decode(
-		"Cargo: ".utf8_decode($datos_experiencia_lab[$i]->cargo).
-		" - Act. Empresa: ".utf8_decode($datos_experiencia_lab[$i]->act_empresa).
+	$experienia_general=
+		"Tipo de puesto: ".$datos_experiencia_lab[$i]->tipo_de_puesto.
+		" Cargo: ".$datos_experiencia_lab[$i]->cargo.
+		" - Act. Empresa: ".$datos_experiencia_lab[$i]->act_empresa.
 		" - Periodo: ".$datos_experiencia_lab[$i]->desde.
-		" a ".$datos_experiencia_lab[$i]->hasta." ".$this->calcular_antiguedad($datos_experiencia_lab[$i]->desde,$datos_experiencia_lab[$i]->hasta)."" ).'',0,1,'0'); 
+		" a ".$datos_experiencia_lab[$i]->hasta." ".$this->calcular_antiguedad($datos_experiencia_lab[$i]->desde,$datos_experiencia_lab[$i]->hasta)."";
+	if(strlen($experienia_general)>120)
+	{
+		$texto="";
+		$ban_ex=0;
+		foreach (explode(' ', $experienia_general ) as $key) { 
+			if($ban_ex==0){$texto = $texto.$key;$ban_ex++;}else{$texto = $texto." ".$key;}
+			if(strlen($texto)>=120)
+			{
+				Fpdf::Cell(190,5,''.utf8_decode($texto).'',0,1,'0');
+				$texto=""; 
+			}
+		}
+		if(strlen($texto)>0)
+		{
+			Fpdf::Cell(190,5,''.utf8_decode($texto).'',0,1,'0');
+			$texto="";
+		}
+	}
+	else
+	{
+		Fpdf::Cell(190,5,''.utf8_decode($texto).'',0,1,'0');
+	}
+	
 	 
 
  

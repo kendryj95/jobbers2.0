@@ -274,7 +274,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-12">
                                                 <span class="pf-title">¿Cómo te describes?</span>
                                                 <div class="pf-field">
-                                                    <textarea id="datos_per_descripcion" name="sobremi"><?php echo trim($up_desc);?></textarea>
+                                                    <textarea maxlength="150" id="datos_per_descripcion" name="sobremi"><?php echo trim($up_desc);?></textarea>
                                                 </div>
                                             </div>
                                             
@@ -773,7 +773,7 @@ $mi_tokken = csrf_token();
                                                             </div>
                                                         </div>
                                                         <div class="social-edit" style="padding: 0px;">
-                                                        <div class="col-sm-12" style="padding: 0px;"> <?php if (count($habilidades_listado)==0): ?> 
+                                                        <div class="col-sm-12" > <?php if (count($habilidades_listado)==0): ?> 
                                                             <div class="alert alert-danger"> 
                                                               <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
                                                                <div style="font-size: 13px;">  
@@ -787,27 +787,24 @@ $mi_tokken = csrf_token();
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
                                                             </div> <?php endif ?> 
                                                     </div> 
-                                                    <button onclick="habilidades_validar()" type="button">Guardar</button>
+                                                    <div class="social-edit" style="padding-top: 0px;padding-bottom: 0px;padding-right: 40px;">
+                                                       <button onclick="habilidades_validar()" type="button">Guardar</button> 
+                                                    </div>
+                                                    
                                                 </form>
                                                 
                                             </div>
-                                            <div class="progress-sec" style="margin-bottom: 0px;">
-                                                <!--
-                                                <div class="progress-sec with-edit">
-                                                    <span>Adobe Photoshop</span>
-                                                    <div class="progressbar"> <div class="progress" style="width: 80%;"><span>80%</span></div> </div>
-                                                    <ul class="action_job">
-                                                        <li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                -->
+                                            <div class="progress-sec" style="margin-bottom: 0px;"> 
                                                 <div class="col-lg-12">
                                                     <div class="social-edit">
                                                         
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </div></div> </div>
+                                                <?php if (count($habilidades_listado)==0): ?>
+                                                     </div>
+                                                <?php endif ?>
+                                           
+                                             
 
                                         <!--Idiomas-->
                                         <div class="border-title"><h3>Idiomas</h3> </div>
@@ -864,8 +861,10 @@ $mi_tokken = csrf_token();
                                                 </form> 
                                             </div> 
                                         </div>
-
-                                       <div style="text-align: center;"> 
+                                         <?php if (count($idiomas_listado)==0): ?>
+                                                     </div>
+                                                <?php endif ?>
+                                       <div  class="social-edit"  style="text-align: center;"> 
                                             <a target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
                                                  <img id="cvjobbers" src="<?= 'local/resources/views/images/sin_usar.jpg'?>">
                                             </a>
@@ -1221,19 +1220,13 @@ $mi_tokken = csrf_token();
        }
 
        function habilidades_validar()
-       {
-        if ($('#cbn_habilidad').val() == "") {notificacion("Debe seleccionar una habilidad.")}
-        else {
-            $('#form_habilidades').submit();
-        }
+       { 
+            $('#form_habilidades').submit(); 
        }
 
        function idiomas_validar()
-       {
-        if ($('#cbn_idioma').val() == "") {notificacion("Debe seleccionar un idioma.")}
-        else {
-            $('#form_idiomas').submit();
-        }
+       { 
+            $('#form_idiomas').submit(); 
        } 
 </script>
 
@@ -1242,8 +1235,7 @@ $mi_tokken = csrf_token();
     function set_trab_act()
     {
         if($("#trabajando_act").is(':checked'))
-        {
-            
+        { 
             $("#expe_hasta").show();
         }
         else

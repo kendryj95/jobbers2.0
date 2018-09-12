@@ -5,22 +5,27 @@ use App\Http\Requests;
 use Fpdf;
 use DB;
 use DateTime;
+header("Content-Type: text/html; charset=iso-8859-1 ");
 class con_cv extends Controller
 {
     public function index($id)
     { 
     	$sql_datos_personales="
-    	SELECT count(t1.id) as cantidad,
+    	SELECT count(t1.id) as cantidad,t2.cuil,
     	count(t1.id) as cantidad, 
     	t1.correo,
     	t2.nombres,
     	t2.apellidos,
     	t2.n_identificacion,
+    	IF(t2.hijos = 0,'Sin hijos',t2.hijos) as hijos,
+    	t5.descripcion as  edo_civil,
     	t2.fecha_nac,
-    	t3.id_foto 
+    	t3.id_foto, IF(t2.id_sexo = 1,'Masculino','Femenino') as sexo,IF(t2.id_discapacidad = 1,'Masculino','Femenino') as sexo,t4.descripcion as 	discapacidad
     	FROM tbl_usuarios t1 
 		INNER JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
 		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id 
+        LEFT JOIN tbl_discapacidad t4 ON t4.id = t2.id_discapacidad  
+         LEFT JOIN tbl_estados_civiles t5 ON t5.id = t2.id_edo_civil 
 		WHERE t1.id =".$id."";
 
 		$sql_inf_general="SELECT count(t1.id) as cantidad,t1.telefono,t1.direccion,t2.descripcion,t3.provincia,t4.localidad,t2.nacionalidad FROM `tbl_candidato_info_contacto` t1
@@ -29,16 +34,25 @@ class con_cv extends Controller
 			INNER JOIN tbl_localidades t4 ON t4.id = t1.id_localidad
 			WHERE t1.id_usuario =".$id."";
 		
-		$sql_experiencia_lab="SELECT count(t1.id) as cantidad,t2.nombre_empresa,t2.cargo,t2.descripcion,t3.nombre as  act_empresa,t2.desde,t2.hasta from  tbl_usuarios t1
+		$sql_experiencia_lab="SELECT count(t2.id) as cantidad,t2.tipo_de_puesto,t2.nombre_empresa,t2.cargo,t2.descripcion,t3.nombre as  act_empresa,t2.desde,t2.hasta from  tbl_usuarios t1
 			LEFT JOIN tbl_candidato_experiencia_laboral t2 ON t2.id_usuario = t1.id
 			LEFT JOIN tbl_actividades_empresa t3 ON t3.id = t2.id_actividad_empresa
 			WHERE t1.id =".$id."";
 
-			$sql_idioma="SELECT count(t1.id) as cantidad,t3.descripcion from tbl_usuarios t1
+			$sql_idioma="SELECT count(t2.id) as cantidad, t3.descripcion from tbl_usuarios t1
 			LEFT JOIN tbl_candidato_idioma t2 ON t2.id_usuario=t1.id
-			LEFT JOIN tbl_idiomas t3 ON t3.id = t2.id_idioma 
-			WHERE t1.id =".$id."";
-			$sql_estudios="SELECT count(t1.id) as cantidad,t5.descripcion as nivel_estudio,t3.descripcion,t2.nombre_institucion,t4.descripcion as area_estudio,concat(t2.desde,' - ',t2.hasta) as fecha,t2.titulo from tbl_usuarios t1
+			LEFT JOIN tbl_idiomas t3 ON t3.id = t2.id_idioma  
+			WHERE t1.id =".$id."
+			GROUP BY t2.id
+			";
+        	$sql_habilidads="SELECT count(t2.id) as cantidad, t3.descripcion from tbl_usuarios t1
+			LEFT JOIN tbl_candidato_habilidades t2 ON t2.id_usuario=t1.id
+			LEFT JOIN tbl_habilidades t3 ON t3.id = t2.id_habilidad 
+			WHERE t1.id =".$id."
+        	 GROUP BY t2.id
+			";
+			
+			$sql_estudios="SELECT count(t2.id) as cantidad,t5.descripcion as nivel_estudio,t3.descripcion,t2.nombre_institucion,t4.descripcion as area_estudio,t2.desde as fecha,t2.titulo from tbl_usuarios t1
 				LEFT JOIN tbl_candidatos_educacion t2 ON t2.id_usuario=t1.id
 				LEFT JOIN tbl_paises t3 ON t3.id = t2.id_pais
 				LEFT JOIN tbl_area_estudios t4 ON t4.id = t2.id_area_estudio
@@ -57,7 +71,7 @@ class con_cv extends Controller
     		$datos_idioma=DB::select($sql_idioma);
     		$datos_estudios=DB::select($sql_estudios);
     		$datos_info_extra=DB::select($sql_info_extra);
-
+			$datos_habilidades=DB::select($sql_habilidads);
     		if($datos_personales[0]->cantidad!=0)
     		{
     			Fpdf::AddPage();
