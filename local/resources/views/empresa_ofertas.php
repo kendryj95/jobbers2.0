@@ -8,8 +8,9 @@
 		<meta name="keywords" content="">
 		<meta name="author" content="CreativeLayers">
 		<!-- Styles -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+		
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
@@ -89,7 +90,7 @@
 													</td>
 													<td>
 														<ul class="action_job">
-															<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>" title=""><i class="la la-eye"></i></a></li>
+															<li><span>Ver Oferta</span><a href="../detalleoferta/<?= $oferta->id ?>?ref=_panelEmpresa" title=""><i class="la la-eye"></i></a></li>
 															<li><span>Editar</span><a href="edit_post/<?= $oferta->id ?>" title=""><i class="la la-pencil"></i></a></li>
 															<?php $pausar_continuar = $oferta->estatus == 'Activo' ? '<span>Pausar</span><a href="post/1/'.$oferta->id.'" title=""><i class="la la-pause"></i></a>' : '<span>Habilitar</span><a href="post/2/'.$oferta->id.'" title=""><i class="la la-play"></i></a>' ?>
 															<?php if ($oferta->dias_venc < 0): ?>
@@ -116,6 +117,7 @@
 		</div>
 		
 				<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 				<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 				<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
 				<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>

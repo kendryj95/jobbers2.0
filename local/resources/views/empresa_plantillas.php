@@ -51,7 +51,7 @@
 									<div class="manage-jobs-sec addscroll">
 										<h3>Nueva plantilla de oferta</h3>
 										<div class="profile-form-edit">
-											<form id="form_datos_emp" action="<?= url('administracion/empresas/plantillas') ?>" method="post">
+											<form id="form_plantilla" action="<?= url('administracion/empresas/plantillas') ?>" method="post">
 												<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
 												<div class="row">
 
@@ -89,8 +89,8 @@
 													<div class="col-lg-6">
 														<span class="pf-title">Titulo de la oferta (*)</span>
 														<div class="pf-field">
-															<input type="text" placeholder="Titulo" name="titulo" id="titulo" value="" />
-															<i class="">0</i>
+															<input type="text" placeholder="Titulo" name="titulo" id="titulo" value="" onkeyup="contador(this.value)" />
+															<i id="contador">50</i>
 														</div>
 													</div>
 													
@@ -101,7 +101,7 @@
 														</div>
 													</div>
 													<div class="col-lg-12">
-														<button type="submit" id="datos_empresa">Guardar</button>
+														<button type="button" id="submiter">Guardar</button>
 													</div>
 												</div>
 											</form>
@@ -145,7 +145,29 @@
 							toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
 							language: 'es'
 						});
+
+						$('#submiter').on('click', function(){
+							if ($('#titulo').val().length > 0 && $('#titulo').val().length <= 50) {
+								$('#form_plantilla').submit();
+							} else {
+								$.notify("El titulo de la oferta solo puede contener 50 caracteres max.", {
+									className:"error",
+									globalPosition: "bottom center"
+								});
+							}
+						});
 					});
+
+					function contador(value)
+					{
+						let tam = 50 - value.length;
+
+						if (tam > 0) {
+							$('#contador').text(tam).css('color', '#AEB2E7');;
+						} else {
+							$('#contador').text(tam).css('color', 'red');
+						}
+					}
 
 					function getInfoPlantilla(id)
 					{

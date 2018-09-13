@@ -35,6 +35,8 @@
 						<li onclick="location.href='<?= url('empresa/new_curso') ?>'"><a href="<?= url('empresa/new_curso') ?>" title="Nuevo curso">Nuevo curso</a></li>
 					</ul>
 				</li>
+				<?php else: ?>
+				<li><a href="javascript:void(0)" data-toggle="modal" data-target="#modalUpdatePlan" class="updatePlan" title="Cursos"><i class="la la-university"></i>Cursos</a></li>
 				<?php endif; ?>
 				<li class="inner-child">
 					<a href="#" title="Planes"><i class="la la-trophy"></i>Planes</a>
@@ -43,48 +45,30 @@
 					</ul>
 				</li>
 				<li onclick="location.href='<?= url('logout') ?>'"><a href="<?= url('logout') ?>" title=""><i class="la la-unlink"></i>Salir</a></li>
-				<!-- <li class="inner-child">
-						<a href="#" title=""><i class="la la-paper-plane"></i>Resumes</a>
-						<ul>
-								<li><a href="#" title="">My Profile</a></li>
-								<li><a href="#" title="">Social Network</a></li>
-								<li><a href="#" title="">Contact Information</a></li>
-						</ul>
-				</li>
-				<li class="inner-child">
-						<a href="#" title=""><i class="la la-user"></i>Packages</a>
-						<ul>
-								<li><a href="#" title="">My Profile</a></li>
-								<li><a href="#" title="">Social Network</a></li>
-								<li><a href="#" title="">Contact Information</a></li>
-						</ul>
-				</li>
-				<li class="inner-child">
-						<a href="#" title=""><i class="la la-file-text"></i>Post a New Job</a>
-						<ul>
-								<li><a href="#" title="">My Profile</a></li>
-								<li><a href="#" title="">Social Network</a></li>
-								<li><a href="#" title="">Contact Information</a></li>
-						</ul>
-				</li>
-				<li class="inner-child">
-						<a href="#" title=""><i class="la la-flash"></i>Job Alerts</a>
-						<ul>
-								<li><a href="#" title="">My Profile</a></li>
-								<li><a href="#" title="">Social Network</a></li>
-								<li><a href="#" title="">Contact Information</a></li>
-						</ul>
-				</li>
-				<li class="inner-child">
-						<a href="#" title=""><i class="la la-lock"></i>Change Password</a>
-						<ul>
-								<li><a href="#" title="">My Profile</a></li>
-								<li><a href="#" title="">Social Network</a></li>
-								<li><a href="#" title="">Contact Information</a></li>
-						</ul>
-				</li>
-				<li><a href="#" title=""><i class="la la-unlink"></i>Logout</a></li> -->
 			</ul>
 		</div>
 	</div>
 </aside>
+
+<div class="modal fade" id="modalUpdatePlan" role="dialog">
+   <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="modal-header" style="padding: 0px; padding-left: 15px;"> 
+            <h5 class="modal-title">Actualiza tu plan a PREMIUM</h5>
+         </div>
+         <div class="modal-body">
+           <div class="row">
+           	 <div class="col-sm-12" style="text-align: center;">
+            	<img style="width: 100px;height:100px;" src="<?= asset('local/resources/views/images/premium.png') ?>"/>
+            </div>
+           </div>
+           <div class="row">
+           	 <div class="col-sm-12" style="text-align: center;">
+            	<h4>Disfruta de todos los beneficios de estar en la pantalla principal con todas las opciones.</h4>
+            	<a href="<?= url('empresa/planes') ?>" style="font-weight: 600;color: #ffb203;">Actualizar plan</a>
+            </div>
+           </div>
+         </div> 
+      </div>
+   </div>
+</div>

@@ -411,9 +411,9 @@ class con_empresa extends Controller
 		LEFT JOIN tbl_generos g ON cdp.id_sexo=g.id
 		LEFT JOIN tbl_candidatos_educacion ce ON p.id_usuario=ce.id_usuario
 		LEFT JOIN tbl_candidato_calificaciones cc ON p.id_usuario=cc.id_usuario
-		LEFT JOIN tbl_candidato_marcadores cm ON p.id_usuario=cm.id_usuario
+		LEFT JOIN (SELECT id_usuario, id_marcador FROM tbl_candidato_marcadores WHERE id_publicacion=:id_pub) cm ON p.id_usuario=cm.id_usuario
 		LEFT JOIN tbl_marcadores m ON cm.id_marcador=m.id
-		WHERE p.id_publicacion=?
+		WHERE p.id_publicacion=:id_pub
         GROUP BY p.id_usuario
 		ORDER BY fecha_postulacion DESC";
 
@@ -423,7 +423,7 @@ class con_empresa extends Controller
 		$filtro_idioma = DB::select("SELECT * FROM tbl_idiomas");
 		$filtro_area_estudios = DB::select("SELECT * FROM tbl_area_estudios ORDER BY descripcion");
 
-    	$oferta_postulado = DB::select($sql, [$id_publicacion]);
+    	$oferta_postulado = DB::select($sql, ["id_pub" => $id_publicacion]);
 
     	if ($oferta_postulado) {
     		$params = [
