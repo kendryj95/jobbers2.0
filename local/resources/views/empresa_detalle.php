@@ -135,7 +135,7 @@ function formatDate($dateMayor, $dateMenor){
 															        <?php if ($pub->modalidad == 1): ?>
 
 															            <!-- Oferta recomendada -->
-															            <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs borde-recomend" style="background: url(local/resources/views/images/back-ofertas.jpg); background-size: cover">
+															            <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs borde-recomend" style="background: url(<?= asset('local/resources/views/images/back-ofertas.jpg') ?>); background-size: cover">
 															              <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
 															                <div class="job-title-sec container-desc-oferta">
 															                <div class="row">
@@ -212,7 +212,7 @@ function formatDate($dateMayor, $dateMenor){
 															                  </div>
 															                </div>
 															                <div class="job-style-bx container-img-oferta desk">
-															                  <img src="local/resources/views/images/award.png" class="img-fluid img-oferta" alt="">
+															                  <img src="<?= asset('local/resources/views/images/award.png') ?>" class="img-fluid img-oferta" alt="">
 															                </div>
 															              </div></a>
 															        <?php else: ?>
