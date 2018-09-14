@@ -30,7 +30,8 @@ $back="../";
 					 	<?php endif; ?>
 					 	
 					<?php else: ?>
-					 	<ul class="account-btns"> 
+					 	<ul class="account-btns">
+					 		<li class="signup-popup"><a title=""><i class="la la-key"></i>Registrar</a></li> 
 					 		<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i>Ingresar</a></li>
 					 	</ul>
 					 	

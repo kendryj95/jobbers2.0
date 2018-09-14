@@ -19,7 +19,7 @@
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
 	<body>
-		<?php include("local/resources/views/includes/menu_top_responsive.php")?>
+		<?php include("local/resources/views/includes/general_header_responsive.php")?>
 		<?php include("local/resources/views/includes/header_con_imagen.php");?>
 		<section class="overlape">
 			<div class="block no-padding">

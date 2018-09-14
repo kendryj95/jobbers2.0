@@ -50,7 +50,7 @@
 	</div>
 </aside>
 
-<div class="modal fade" id="modalUpdatePlan" role="dialog">
+<div class="modal fade" id="modalUpdatePlan" tabindex="-1" role="dialog">
    <div class="modal-dialog modal-md">
       <div class="modal-content">
          <div class="modal-header" style="padding: 0px; padding-left: 15px;"> 

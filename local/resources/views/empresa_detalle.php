@@ -86,11 +86,12 @@ function formatDate($dateMayor, $dateMenor){
 													<div class="job-thumb"> <img src="<?= $imagen_perfil ?>" alt="Imagen de la empresa" width="120" height="120" /></div>
 													<div class="job-single-info3">
 														<h3><?= $empresa[0]->nombre_empresa ?></h3>
+														<?php if ($empresa[0]->provincia_localidad): ?>
 														<span><i class="la la-map-marker"></i><?= $empresa[0]->provincia_localidad ?></span>
+														<?php endif; ?>
 														<ul class="tags-jobs">
-															<li><i class="la la-file-text"></i> Candidatos 0</li>
+															<li><i class="la la-file-text"></i> Candidatos: <?= $empresa[0]->candidatos ?></li>
 															<li><i class="la la-calendar-o"></i> Ultima Oferta: <?= $empresa[0]->last_date_oferta ?></li>
-															<li><i class="la la-eye"></i> Visitas 0</li>
 														</ul>
 													</div>
 													</div><!-- Job Head -->
@@ -353,6 +354,7 @@ function formatDate($dateMayor, $dateMenor){
 						</div>
 					</section>
 					<?php include("includes/general_footer_empresas.php") ?>
+					<?php include("local/resources/views/includes/login_register_modal.php");?>
 					</div>
 					
 							<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>

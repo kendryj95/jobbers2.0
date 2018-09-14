@@ -32,8 +32,8 @@
 		<div class="theme-layout" id="scrollup">
 			
 			<!-- Modal -->
-			<?php include('local/resources/views/includes/menu_top_responsive.php');?>
-			<?php include('local/resources/views/includes/menu_top.php');?>
+			<?php include('local/resources/views/includes/general_header_responsive.php');?>
+			<?php include('local/resources/views/includes/general_header.php');?>
 			
 			<section class="mt-responsive">
 				

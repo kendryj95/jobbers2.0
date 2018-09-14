@@ -117,7 +117,7 @@
 		</div>
 		
 				<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 				<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 				<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
 				<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>

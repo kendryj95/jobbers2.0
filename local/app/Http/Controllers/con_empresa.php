@@ -770,7 +770,8 @@ class con_empresa extends Controller
         CONCAT(p.provincia, ', ', l.localidad) AS provincia_localidad,
         (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=e.id) AS total_ofertas,
         (SELECT MAX(tmp) FROM tbl_publicacion WHERE id_empresa=e.id) AS last_date_oferta,
-        ae.nombre AS actividad_empresa
+        ae.nombre AS actividad_empresa,
+        (SELECT COUNT(*) FROM tbl_postulaciones p INNER JOIN tbl_publicacion pub ON pub.id=p.id_publicacion WHERE pub.id_empresa=e.id) AS candidatos
         FROM tbl_empresa e
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON e.id_usuario = t1.id_usuario
         LEFT JOIN tbl_archivos a ON t1.id_foto=a.id
