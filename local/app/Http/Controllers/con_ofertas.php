@@ -134,6 +134,8 @@ class con_ofertas extends Controller
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
             WHERE t1.estatus = 1 ".$condiciones."
             GROUP BY t1.id";
+
+        // return $consulta_general;
         
         $sql_ofertas=$peticion." ".$consulta_general;
 
@@ -143,26 +145,26 @@ class con_ofertas extends Controller
 
         $sql_antiguedad = "SELECT
                             (
-                            SELECT COUNT(id) FROM tbl_publicacion
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1
                             ) AS cantidad_todo,
                             (
-                            SELECT COUNT(id) FROM tbl_publicacion WHERE tmp=CURDATE()
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1 AND tmp=CURDATE()
                             ) AS cantidad_hoy,
                             (
-                            SELECT COUNT(id) FROM tbl_publicacion WHERE tmp BETWEEN (CURDATE()-7) AND CURDATE()
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1 AND tmp BETWEEN (CURDATE()-7) AND CURDATE()
                             ) AS cantidad_last_week,
                             (
-                            SELECT COUNT(id) FROM tbl_publicacion WHERE tmp BETWEEN (CURDATE()-30) AND CURDATE()
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1 AND tmp BETWEEN (CURDATE()-30) AND CURDATE()
                             ) AS cantidad_last_thirty_days";
 
-        $sql_disponibilidad = "SELECT d.nombre, p.id_disponibilidad, COUNT(p.id_disponibilidad) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_disponibilidad d ON p.id_disponibilidad=d.id WHERE p.id_disponibilidad IN (SELECT t1.id_disponibilidad $consulta_general) GROUP BY p.id_disponibilidad";
-        $sql_sector         = "SELECT a_sec.nombre, p.id_sector, COUNT(p.id_sector) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_areas_sectores a_sec ON p.id_sector=a_sec.id WHERE p.id_sector IN (SELECT t1.id_sector $consulta_general) GROUP BY p.id_sector";
-        $sql_area           = "SELECT a.nombre, p.id_area, COUNT(p.id_area) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_areas a ON p.id_area=a.id WHERE p.id_area IN (SELECT t1.id_area $consulta_general) GROUP BY p.id_area";
-        $sql_salario        = "SELECT s.salario, p.id_salario, COUNT(p.id_salario) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_rango_salarios s ON p.id_salario=s.id WHERE p.id_salario IN (SELECT t1.id_salario $consulta_general) GROUP BY p.id_salario";
-        $sql_genero         = "SELECT g.descripcion, p.id_genero, COUNT(p.id_genero) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_generos g ON p.id_genero=g.id WHERE p.id_genero IN (SELECT t1.id_genero $consulta_general) GROUP BY p.id_genero";
-        $sql_provincias     = "SELECT pv.provincia, p.id_provincia, COUNT(p.id_provincia) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_provincias pv ON p.id_provincia=pv.id WHERE p.id_provincia IN (SELECT t1.id_provincia $consulta_general) GROUP BY p.id_provincia";
-        $sql_localidades    = "SELECT l.localidad, p.id_localidad, COUNT(p.id_localidad) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_localidades l ON p.id_localidad=l.id WHERE p.id_localidad IN (SELECT t1.id_localidad $consulta_general) GROUP BY p.id_localidad";
-        $sql_experiencia    = "SELECT e.descripcion, p.id_experiencia, COUNT(p.id_experiencia) AS cantidad FROM tbl_publicacion p LEFT JOIN tbl_experiencia e ON p.id_experiencia=e.id WHERE p.id_experiencia IN (SELECT t1.id_experiencia $consulta_general) GROUP BY p.id_experiencia";
+        $sql_disponibilidad = "SELECT d.nombre, t1.id_disponibilidad, COUNT(t1.id_disponibilidad) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_disponibilidad d ON t1.id_disponibilidad=d.id WHERE t1.estatus=1 $condiciones AND t1.id_disponibilidad IN (SELECT t1.id_disponibilidad $consulta_general) GROUP BY t1.id_disponibilidad";
+        $sql_sector         = "SELECT a_sec.nombre, t1.id_sector, COUNT(t1.id_sector) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_areas_sectores a_sec ON t1.id_sector=a_sec.id WHERE t1.estatus=1 $condiciones AND t1.id_sector IN (SELECT t1.id_sector $consulta_general) GROUP BY t1.id_sector";
+        $sql_area           = "SELECT a.nombre, t1.id_area, COUNT(t1.id_area) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_areas a ON t1.id_area=a.id WHERE t1.estatus=1 $condiciones AND t1.id_area IN (SELECT t1.id_area $consulta_general) GROUP BY t1.id_area";
+        $sql_salario        = "SELECT s.salario, t1.id_salario, COUNT(t1.id_salario) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_rango_salarios s ON t1.id_salario=s.id WHERE t1.estatus=1 $condiciones AND t1.id_salario IN (SELECT t1.id_salario $consulta_general) GROUP BY t1.id_salario";
+        $sql_genero         = "SELECT g.descripcion, t1.id_genero, COUNT(t1.id_genero) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_generos g ON t1.id_genero=g.id WHERE t1.estatus=1 $condiciones AND t1.id_genero IN (SELECT t1.id_genero $consulta_general) GROUP BY t1.id_genero";
+        $sql_provincias     = "SELECT pv.provincia, t1.id_provincia, COUNT(t1.id_provincia) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_provincias pv ON t1.id_provincia=pv.id WHERE t1.estatus=1 $condiciones AND t1.id_provincia IN (SELECT t1.id_provincia $consulta_general) GROUP BY t1.id_provincia";
+        $sql_localidades    = "SELECT l.localidad, t1.id_localidad, COUNT(t1.id_localidad) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_localidades l ON t1.id_localidad=l.id WHERE t1.estatus=1 $condiciones AND t1.id_localidad IN (SELECT t1.id_localidad $consulta_general) GROUP BY t1.id_localidad";
+        $sql_experiencia    = "SELECT e.descripcion, t1.id_experiencia, COUNT(t1.id_experiencia) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_experiencia e ON t1.id_experiencia=e.id WHERE t1.estatus=1 $condiciones AND t1.id_experiencia IN (SELECT t1.id_experiencia $consulta_general) GROUP BY t1.id_experiencia";
         $condicion=0;
         if(session()->get("cand_id")!=null && session()->get("cand_id")=='')
         {
@@ -185,7 +187,7 @@ class con_ofertas extends Controller
             $favoritos      = DB::select($sql_favoritos);
 
             $publicaciones = DB::select($sql_ofertas);
-            $totalPublicaciones = DB::select("SELECT COUNT(*) AS count FROM tbl_publicacion WHERE estatus=1");
+            $totalPublicaciones = count($publicaciones);
 
             ####### PAGINACIÓN ########
 
@@ -223,7 +225,7 @@ class con_ofertas extends Controller
             $vista->variables  = $_POST;
             $vista->paginas  = $paginas;
             $vista->paginaAct  = $paginaAct;
-            $vista->totalPublicaciones  = $totalPublicaciones[0]->count;
+            $vista->totalPublicaciones  = $totalPublicaciones;
             return $vista;
         } catch (Exception $e) {
 
