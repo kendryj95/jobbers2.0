@@ -45,8 +45,63 @@ function formatDate($dateMayor, $dateMenor){
 		  });
 		</script>
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
+
+		<style type="text/css" media="screen">
+
+			@media (min-width: 576px) { ... }
+			#contenedor_header
+				 {
+				 		margin-top: -100px;
+				 }
+ 
+			@media (min-width: 768px) { ... }
+ 			#contenedor_header
+				 {
+				 	margin-top: -100px;
+				 }
+			@media (min-width: 992px) { 
+				#contenedor_header
+				 {
+				 	margin-top: -320px;
+				 }
+			}
+
+			blockquote {
+			    background: #ffb203;
+			    color: #fff;
+			    border-radius: 20px;
+			    border-bottom: 2px solid #e59f00; 
+			    /* Color de fondo */
+			    padding: 10px;
+			}
+			blockquote:before {
+			    content: "\201C";
+			    /* inicio comilla */
+			    font-family: Georgia;
+			    font-size: 40px;
+			    /* tamaño */
+			    font-weight: bold;
+			    line-height: 0px;
+			    color: #ffffff;
+			    /* Color  */
+			    vertical-align: middle;
+			}
+			blockquote:after {
+			    /* final */
+			    content: "\201D";
+			    font-family: Georgia;
+			    font-size: 40px;
+			    /* tamaño */
+			    font-weight: bold;
+			    line-height: 0px;
+			    color: #ffffff;
+			    /* Color  */
+			    vertical-align: middle;
+			    padding-top: 10px;
+			}
+		</style>
 </head>
-	<body>
+	<body style="background-color: #eeeeee;">
 		<div class="theme-layout" id="scrollup">
 			<?php
 			if (session()->get("empresa") == null) {
@@ -58,14 +113,14 @@ function formatDate($dateMayor, $dateMenor){
 				include("includes/header_empresa.php");
 			}
 			?>
-			<section class="overlape">
-				<div class="block no-padding">
+			<section class="overlape" id="contenedor_header" >
+				<div class="block no-padding" >
 					<div data-velocity="-.1" style="background: url(../local/resources/views/images/detalle.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="inner-header">
-									<h3><?= $empresa[0]->nombre_empresa ?></h3>
+								 
 								</div>
 							</div>
 						</div>
@@ -76,13 +131,13 @@ function formatDate($dateMayor, $dateMenor){
 				<div class="block">
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-12 column">
+							<div class="col-lg-12 column" >
 								<div class="job-single-sec style3">
 									<div class="job-head-wide">
 										<div class="row">
-											<div class="col-lg-10">
-												<div class="job-single-head3 emplye">
-													<?php $imagen_perfil = $empresa[0]->imagen == null || $empresa[0]->imagen == '' ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$empresa[0]->imagen) ?>
+											<div class="col-lg-12">
+												<div class="job-single-head3 emplye" style="background-color: #fff;padding-top: 15px;padding-left: 15px;border: 1px solid #c6c6c6;">
+													<?php $imagen_perfil = $empresa[0]->imagen == null || $empresa[0]->imagen == '' ? asset('../local/resources/views/images/company-avatar.png') : asset('uploads/'.$empresa[0]->imagen) ?>
 													<div class="job-thumb"> <img src="<?= $imagen_perfil ?>" alt="Imagen de la empresa" width="120" height="120" /></div>
 													<div class="job-single-info3">
 														<h3><?= $empresa[0]->nombre_empresa ?></h3>
@@ -96,32 +151,16 @@ function formatDate($dateMayor, $dateMenor){
 													</div>
 													</div><!-- Job Head -->
 												</div>
-												<!-- <div class="col-lg-2">
-													<div class="share-bar">
-														<?php if ($empresa[0]->facebook != "" || $empresa[0]->facebook != null): ?>
-														<a href="<?= $empresa[0]->facebook ?>" title="" class="share-fb"><i class="fa fa-facebook"></i></a>
-														<?php endif ?>
-														<?php if ($empresa[0]->instagram != "" || $empresa[0]->instagram != null): ?>
-														<a href="<?= $empresa[0]->instagram ?>" title="" class="share-ig"><i class="fa fa-instagram"></i></a>
-														<?php endif ?>
-														<?php if ($empresa[0]->twitter != "" || $empresa[0]->twitter != null): ?>
-														<a href="<?= $empresa[0]->twitter ?>" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
-														<?php endif ?>
-														<?php if ($empresa[0]->linkedin != "" || $empresa[0]->linkedin != null): ?>
-														<a href="<?= $empresa[0]->linkedin ?>" title="" class="share-lkd"><i class="fa fa-linkedin"></i></a>
-														<?php endif ?>
-														<?php if ($empresa[0]->web != "" || $empresa[0]->web != null): ?>
-														<a href="<?= $empresa[0]->web ?>" title="" class="share-web"><i class="la la-globe"></i></a>
-														<?php endif ?>
-													</div>
-												</div> -->
+												 
 											</div>
 										</div>
 										<div class="job-wide-devider">
 											<div class="row">
-												<div class="col-lg-8 column">
-													<div class="job-details">
-														<p><?= $empresa[0]->descripcion ?></p>
+												<div class="col-lg-9 column">
+													<div class="job-details" style="padding-top: 30px;">
+														<?php if ($empresa[0]->descripcion!=""): ?>
+															<blockquote><span style="padding-left: 10px;padding-right: 10px;s"><?php echo $empresa[0]->descripcion?></span> </blockquote>  
+														<?php endif ?> 
 													</div>
 													<?php if (count($ofertas) > 0): ?>
 													<div class="recent-jobs">
@@ -140,9 +179,7 @@ function formatDate($dateMayor, $dateMenor){
 															              <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
 															                <div class="job-title-sec container-desc-oferta">
 															                <div class="row">
-															                  <div class="col-6">
-															                    <h5 class="title-recom"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></h5>
-															                    <p class="time-pub" style="margin-left: 20px;">Publicaciones: <?= $pub->q_ofertas ?></p>
+															                  <div class="col-6"> 
 															                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
 															                    <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
 															                      Redes:
@@ -159,7 +196,7 @@ function formatDate($dateMayor, $dateMenor){
 															                    <?php endif; ?>
 															                  </div>
 															                  <div class="col-6">
-															                    <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
+															                    <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('../local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('../local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
 															                  </div>
 															                </div>
 															              
@@ -168,13 +205,7 @@ function formatDate($dateMayor, $dateMenor){
 															                  <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
 															                  <br>
 															                  <div class="job-lctn">
-															                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
-															                    <i class="fa fa-star gold"></i>
-															                    <i class="fa fa-star gold"></i>
-															                    <i class="fa fa-star gold"></i>
-															                    <i class="fa fa-star gold"></i>
-															                    <i class="fa fa-star gold"></i>
-															                    &nbsp;
+															                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?> 
 															                    <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
 															                    <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
 															                    <i class="fa fa-clock-o mr-0"></i>
@@ -213,7 +244,7 @@ function formatDate($dateMayor, $dateMenor){
 															                  </div>
 															                </div>
 															                <div class="job-style-bx container-img-oferta desk">
-															                  <img src="<?= asset('local/resources/views/images/award.png') ?>" class="img-fluid img-oferta" alt="">
+															                  <img src="<?= asset('local/resources/views/images/award.png') ?>" class="img-fluid img-oferta" alt="">e
 															                </div>
 															              </div></a>
 															        <?php else: ?>
@@ -246,7 +277,7 @@ function formatDate($dateMayor, $dateMenor){
 															<a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
 															  <div class="mobile">
 															        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-															        <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+															        <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
 															      </div>
 															    <div class="job-title-sec container-desc-oferta">
 															    <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
@@ -254,13 +285,7 @@ function formatDate($dateMayor, $dateMenor){
 															      <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
 															      <br>
 															      <div class="job-lctn">
-															        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
-															        <i class="fa fa-star gold"></i>
-															        <i class="fa fa-star gold"></i>
-															        <i class="fa fa-star gold"></i>
-															        <i class="fa fa-star gold"></i>
-															        <i class="fa fa-star gold"></i>
-															        &nbsp;
+															        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?> 
 															        <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
 															        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
 															        <i class="fa fa-clock-o mr-0"></i>
@@ -300,7 +325,7 @@ function formatDate($dateMayor, $dateMenor){
 															    </div>
 															    <div class="job-style-bx container-img-oferta desk">
 															      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-															      <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+															      <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
 															    </div>
 															  </div></a>
 															  <?php endif; ?>
@@ -315,11 +340,10 @@ function formatDate($dateMayor, $dateMenor){
 													</div>
 													<?php endif ?>
 												</div>
-												<div class="col-lg-4 column">
-													<div class="job-overview">
-														<h3>Información de la empresa</h3>
-														<ul>
-															<li><i class="la la-eye"></i><h3>Visitas </h3><span>0</span></li>
+												<div class="col-lg-3 column">
+													<div class="job-overview" style="border: 0px;background-color: #fff;border:1px solid #c6c6c6;padding: 0px;"> 
+														<ul style="border:0px;">
+														 
 															<li><i class="la la-file-text"></i><h3>Ofertas Publicadas</h3><span><?= $empresa[0]->total_ofertas ?></span></li>
 															<li><i class="la la-bars"></i><h3>Actividad/Industria</h3><span><?= $empresa[0]->actividad_empresa ?></span></li>
 															<li><i class="la la-bullhorn"></i>
@@ -357,16 +381,8 @@ function formatDate($dateMayor, $dateMenor){
 					<?php include("local/resources/views/includes/login_register_modal.php");?>
 					</div>
 					
-							<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/slick.min.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/parallax.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-							<script src="../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
-							<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
-							<script src="../local/resources/views/js/maps2.js" type="text/javascript"></script>
+							<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
+							<script src="../local/resources/views/js/script.js" type="text/javascript"></script> 
 							<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
 						</body>
 					</html>

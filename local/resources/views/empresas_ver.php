@@ -85,14 +85,13 @@
             </aside>
             <div class="col-lg-9 column">
               <div class="modrn-joblist">
-                <div class="tags-bar" id="filtros">
-                  
+                <div class="tags-bar" id="filtros"> 
                   <div class="action-tags">
                     <a title="" onclick="limpiar()"><i class="la la-trash-o"></i> Quitar filtros</a>
                   </div>
                 </div>
                 <!-- Tags Bar -->
-                <div class="filterbar">
+                <div class="filterbar" style="margin: 0px;">
                   <h5><?php echo $totalEmpresas;?> Empresas</h5>
                 </div>
               </div>
@@ -107,28 +106,17 @@
             ?>
               <?php foreach ($empresas as $empresa): ?> 
                 <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
-              <div class="job-listings-sec">
+              <div class="job-listings-sec" style="margin-top: 0px;">
                 <div class="job-listing wtabs">
 										<div class="mobile">
 											<img src="<?= $imagen;?>" class="img-fluid img-oferta" alt="">
 											<p class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
 										</div> 
 										<div class="job-title-sec container-desc-oferta" style="display: grid">
-											<h5 onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo ucfirst(strtolower($empresa->nombre_empresa));?><a href="#"><span style="float: right; color: #000;border-radius: 5px; font-size: 15px; font-weight: 600;padding: 4px;background-color: #ffff00;"><i><?= $empresa->sector ?></i><!--<sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i>--></span></a></h5>
+											<h5 onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo $empresa->nombre_empresa ?><a href="#"></a></h5>
 
 											<p class="desc-oferta"><?= $empresa->descripcion;?></p>
-											<br> 
-                      <!-- <div class="row">
-                          <div class="col-sm-3" style="text-align: center;">
-                             <img src="local/resources/views/images/calendar.png">
-                          </div>
-                          <div class="col-sm-3" style="text-align: center;">
-                             <img src="local/resources/views/images/firefighter.png">
-                          </div>
-                          <div class="col-sm-3" style="text-align: center;">
-                             <img src="local/resources/views/images/creative-team.png">
-                          </div>
-                      </div> -->
+											<br>  
                       <div class="container">
                         <div class="row">
                             <div class="col-sm-3 mx-auto" style="text-align: center;">
@@ -141,10 +129,10 @@
                                <span onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="disponibilidad" style="background-color: #2e3192;"><?php echo cantidad($empresa->id_empresa,$cantidades);?> Ofertas</span><br>
                                 <div onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" style="background-color: #fff;font-size: 10px;color: #595959;">(Nº ofertas)</div> 
                             </div>
-                            <div class="col-sm-3 mx-auto" style="text-align: center;">
+                            <div class="col-sm-3 mx-auto" style="text-align: center;padding: 0px;">
                             <img src="local/resources/views/images/creative-team.png"><br>
-                               <span class="disponibilidad"><?= $empresa->responsable?></span><br>
-                                <div style="background-color: #fff;font-size: 10px;color: #595959;">(Reclutador/a)</div> 
+                               <div style="margin: 0 auto;"><?= $empresa->sector?></div>
+                                <div style="background-color: #fff;font-size: 10px;color: #595959;">Sector</div> 
                             </div>
                         </div>
                       </div>
@@ -167,10 +155,10 @@
                               <?php $empresa->direccion=$empresa->direccion.'.';?>
                             <?php endif ?>
 
-                            *<?php echo ucfirst(strtolower($empresa->nombre_empresa));?>  
-                            <?php echo ucfirst(strtolower($empresa->telefono));?> Argentina 
-                            <?php echo ucfirst(strtolower($empresa->provincia_2));;?> 
-                            <?php echo ucfirst(strtolower($empresa->direccion));?></span></i>
+                            *<?php echo $empresa->nombre_empresa?>  
+                            <?php echo $empresa->telefono;?> Argentina 
+                            <?php echo $empresa->provincia_2;;?> 
+                            <?php echo $empresa->direccion;?></span></i>
                         </div>
 												<div class="desk" style="float: right">
                           <?php if ($empresa->facebook!=""): ?>
@@ -201,7 +189,7 @@
 										</div>
 										<div class="job-style-bx container-img-oferta-i desk">
 											<img onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" style="border:2px dashed #ff7900; width: 100px;height: 100px;border-radius: 50%;" src="<?= $imagen;?>" alt="">
-											<p style="color: #4c4c4c;" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="nombre-img"><?php $r= explode(" ", ucfirst(strtolower($empresa->nombre_empresa))); echo $r[0];?></p>
+											<p style="color: #4c4c4c;" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="nombre-img"><?php $r= explode(" ", $empresa->nombre_empresa); echo $r[0];?></p>
 										</div>
 									</div>
               </div>
@@ -221,12 +209,7 @@
                                         $previous = 1;
                                       }
                                     ?>
-                                    <li class="prev"><a href="empresas?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Atrás</a></li>
-                                    <!-- <li><a href="">1</a></li>
-                                    <li class="active"><a href="">2</a></li>
-                                    <li><a href="">3</a></li>
-                                    <li><span class="delimeter">...</span></li>
-                                    <li><a href="">14</a></li> -->
+                                    <li class="prev"><a href="empresas?pag=<?= $previous ?>"><i class="la la-long-arrow-left"></i> Atrás</a></li> 
                                     <?php if ($paginas >= 1 && $paginas <= 5): ?>
                                       <?php for ($i=0;$i<$paginas;$i++): ?>
                                         <?php $active = isset($_GET['pag']) ? ($i+1) == $_GET['pag'] ? 'active' : "" : ($i+1) == 1 ? 'active' : "" ?>

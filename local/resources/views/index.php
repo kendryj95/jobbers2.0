@@ -148,7 +148,7 @@
 									                <div class="job-title-sec container-desc-oferta">
 									                <div class="row">
 									                  <div class="col-6">
-									                    <h5 class="title-recom"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></h5>
+									                    <h5 class="title-recom"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></h5>
 									                    <p class="time-pub" style="margin-left: 20px;">Publicaciones: <?= $pub->q_ofertas ?></p>
 									                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
 									                    <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
@@ -175,7 +175,7 @@
 									                  <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
 									                  <br>
 									                  <div class="job-lctn">
-									                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
+									                    <?php= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
 									                    <i class="fa fa-star gold"></i>
 									                    <i class="fa fa-star gold"></i>
 									                    <i class="fa fa-star gold"></i>
@@ -253,7 +253,7 @@
 									<a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
 									  <div class="mobile">
 									        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-									        <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+									        <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
 									      </div>
 									    <div class="job-title-sec container-desc-oferta">
 									    <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
@@ -261,13 +261,7 @@
 									      <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
 									      <br>
 									      <div class="job-lctn">
-									        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
-									        <i class="fa fa-star gold"></i>
-									        <i class="fa fa-star gold"></i>
-									        <i class="fa fa-star gold"></i>
-									        <i class="fa fa-star gold"></i>
-									        <i class="fa fa-star gold"></i>
-									        &nbsp;
+									        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?> 
 									        <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
 									        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
 									        <i class="fa fa-clock-o mr-0"></i>
@@ -307,7 +301,7 @@
 									    </div>
 									    <div class="job-style-bx container-img-oferta desk">
 									      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-									      <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+									      <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
 									    </div>
 									  </div></a>
 									  <?php endif; ?>
