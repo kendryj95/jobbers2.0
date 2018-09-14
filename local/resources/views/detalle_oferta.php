@@ -33,8 +33,29 @@
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
 		<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+		<style type="text/css" media="screen">
+
+			@media (min-width: 576px) { ... }
+			#contenedor_header
+				 {
+				 	margin-top: 0px;
+				 }
+ 
+			@media (min-width: 768px) { ... }
+ 			#contenedor_header
+				 {
+				 	margin-top: -0px;
+				 }
+			@media (min-width: 992px) { 
+				#contenedor_header
+				 {
+				 	margin-top: -150px;
+				 }
+			}
+		</style>
 	</head>
-	<body>
+	<body style="background-color: #eeeeee;">
 		<div class="modal fade" id="myModal" role="dialog">
 		   <div class="modal-dialog modal-md">
 		      <div class="modal-content">
@@ -61,24 +82,9 @@
 	  <div>
 	  <?php include('local/resources/views/includes/general_header.php');?>
       <?php include('local/resources/views/includes/general_header_responsive.php');?></div>
-		<section class="overlape">
-			<div class="block no-padding">
-				<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_detalle_oferta.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
-				<div class="container fluid">
-					<div class="row">
-						<div class="col-lg-12">
-							<?php  
-								$empresa = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? '<a href="../empresa/detalle?e='.$datos[0]->id_empresa.'">'.$datos[0]->empresa.'</a>' : '<a href="javascript:void(0)">Confidencial</a>';
-							?>
-							<div class="inner-header">
-								<h3><?php echo $empresa ?></h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section>
+		
+
+		<section style="margin-top: 30px;">
 			<div class="block">
 				<div class="container">
 					<div class="row">
@@ -86,15 +92,13 @@
 							<div class="job-single-sec style3">
 								<div class="job-head-wide">
 									<div class="row">
-										<div class="col-lg-10">
-											<button type="button" onclick="history.back()" style="float: left; margin-top: 0;"><i class="la la-arrow-left"></i> Volver</button>
+										<div class="col-lg-12" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3">
+											<!--<button type="button" onclick="history.back()" style="float: left; margin-top: 0;"><i class="la la-arrow-left"></i> Volver</button>-->
 											<div class="job-single-head3 emplye">
 												<?php  
 													$imagen = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
 													
-												?>
-
-
+												?> 
 												<div class="job-thumb"> <img src="<?= $imagen ?>" alt="Logo de empresa"></div>
 												<div class="job-single-info3">
 
@@ -114,7 +118,7 @@
 									</div>
 									<div class="job-wide-devider">
 										<div class="row">
-											<div class="col-lg-8 column">
+											<div class="col-lg-8 column" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3;margin-top: 30px;">
 												<div class="job-details">
 													<h3><?php echo $datos[0]->titulo;?></h3>
 
@@ -166,13 +170,17 @@
 													</div>
 												</div> 
 											</div>
-											<div class="col-lg-4 column">
-												<div class="job-overview">
-													<h3>Información de empresa</h3>
-													<ul>
+											<div class="col-lg-4 column" >
+												
+										 
+												<div class="job-overview" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3"> 
+													<div style="text-align: center;">
+															<h3 style="margin:0px;padding: 0px;font-weight: 600;margin: 0 auto;font-size: 17px;">Información de la empresa</h3>
+													</div>
+													<ul style="border: 0px;">
 														<li><i class="la la-file-text"></i><h3>Ofertas</h3><span><?php echo $cantidad_ofertas[0]->cantidad;?></span></li>
 														<?php if ($datos[0]->discapacidad=="SI"): ?>
-													     <li style="padding-top: 12px;"><i class="la la-medkit "></i><h3>Se admiten discapacitados</h3> </li>
+													     <li style="padding-top: 12px;margin-top: -4px;"><i class="la la-medkit "></i><h3>Se admiten discapacitados</h3> </li>
 														<?php endif ?> 
 														<li><i class="la la-bullhorn "></i>
 															<h3>Redes Sociales</h3>
@@ -227,9 +235,9 @@
 															<?php endif ?>
 													</ul>
 													</div><!-- Job Overview -->
-													<div class="quick-form-job">
-														<h3>¿Cómo evalúas Jobbers?</h3>
-														<form method="post" action="<?= url('evaluacion') ?>" id="form_evaluacion">
+													<div class="quick-form-job" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3;text-align: center;">
+														<h3 style="margin:0px;padding: 0px;font-weight: 600;">¿Cómo evalúas Jobbers?</h3>
+														<form style="border: 0px;" method="post" action="<?= url('evaluacion') ?>" id="form_evaluacion">
 															
 															<?= csrf_field() ?>
 

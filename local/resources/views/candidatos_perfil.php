@@ -185,7 +185,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Identificación</span>
                                                 <div class="pf-field">
-                                                    <select id="tipo_id" name="t_id" name="sexo" data-placeholder="Allow In Search" class="chosen">
+                                                    <select id="tipo_id" name="t_id"   data-placeholder="Allow In Search" class="chosen">
                                                         <option value="">Seleccionar</option>
                                                         <?php foreach ($identificacion as $key ) {
                                                         echo'<option id="tipo_id_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
@@ -202,7 +202,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Estado civil</span>
                                                 <div class="pf-field">
-                                                    <select id="edo_civil" name="edo_civil" name="sexo" data-placeholder="Estado civil" class="chosen">
+                                                    <select id="edo_civil" name="edo_civil"   data-placeholder="Estado civil" class="chosen">
                                                         <option value="4">Seleccionar</option>
                                                         <?php foreach ($edo as $key) {
                                                         echo '<option id="edo_civil_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
@@ -1094,11 +1094,14 @@ $mi_tokken = csrf_token();
         else if($("#discapacidad").val()==""){notificacion("Debe colocar si tiene alguna discapacidad.")}
         else if($("#sexo").val()==""){notificacion("Debe colocar su sexo.")}
         else if($("#datos_per_fecha_nac").val()==""){notificacion("Debe colocar su fecha de nacimiento.")} 
-        else if($("#nacionalidad").val()==""){notificacion("Debe colocar su nacionalidad.")} 
+        else if($("#nacionalidad").val()==""){notificacion("Debe colocar su nacionalidad.")}
+        else if($("#datos_per_cuil").val()==""){notificacion("Debe colocar su nacionalidad.")}
+        else if($("#datos_per_cuil").val().length < 8){notificacion("Coloque un cuil válido");}
         else if($("#hijos").val()==""){notificacion("Debe colocar si tiene hijos.")} 
         else if($("#datos_per_descripcion").val()==""){notificacion("Debe colocar tu descripción")} 
         else
         {
+
             $("#form_datos_per").submit();
         }
    }

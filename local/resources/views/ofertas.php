@@ -358,17 +358,19 @@ $mi_tokken=csrf_token();
                                 </div>
                               
                                 <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
-                                  <p class="time-pub"><i class="fa fa-calendar"></i> Publicada <?= $pub->fecha_pub ?> a las <?= $pub->hora_pub ?> - Termina: <?= $pub->fecha_venc ?></p>
+                                  <p class="time-pub"><i class="fa fa-calendar" ></i> Publicada <?= $pub->fecha_pub ?> a las <?= $pub->hora_pub ?> - Termina: <?= $pub->fecha_venc ?></p>
                                   <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
                                   <br>
                                   <div class="job-lctn">
-                                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
-                                    <i class="fa fa-star gold"></i>
-                                    <i class="fa fa-star gold"></i>
-                                    <i class="fa fa-star gold"></i>
-                                    <i class="fa fa-star gold"></i>
-                                    <i class="fa fa-star gold"></i>
+                                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>
+                                    <!--
                                     &nbsp;
+                                    <i class="fa fa-star gold"></i>
+                                    <i class="fa fa-star gold"></i>
+                                    <i class="fa fa-star gold"></i>
+                                    <i class="fa fa-star gold"></i>
+                                    <i class="fa fa-star gold"></i>
+                                    &nbsp;-->
                                     <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
                                     <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
                                     <i class="fa fa-clock-o mr-0"></i>
@@ -440,7 +442,7 @@ $mi_tokken=csrf_token();
                 <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
                   <div class="mobile">
                         <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-                        <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+                        <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                       </div>
                     <div class="job-title-sec container-desc-oferta">
                     <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
@@ -448,15 +450,17 @@ $mi_tokken=csrf_token();
                       <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
                       <br>
                       <div class="job-lctn">
-                        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
+                        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>
+
+                      <!--   &nbsp;
                         <i class="fa fa-star gold"></i>
                         <i class="fa fa-star gold"></i>
                         <i class="fa fa-star gold"></i>
                         <i class="fa fa-star gold"></i>
                         <i class="fa fa-star gold"></i>
-                        &nbsp;
-                        <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
-                        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
+                        &nbsp;--->
+
+                        <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp; 
                         <i class="fa fa-clock-o mr-0"></i>
                         <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
                         <?php if ($pub->discapacidad == 'SI'): ?>
@@ -494,7 +498,7 @@ $mi_tokken=csrf_token();
                     </div>
                     <div class="job-style-bx container-img-oferta desk">
                       <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-                      <p class="nombre-img"><?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
+                      <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                     </div>
                   </div></a>
                   <?php endif; ?>

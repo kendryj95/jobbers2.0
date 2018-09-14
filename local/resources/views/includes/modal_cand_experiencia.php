@@ -59,7 +59,7 @@
                     <option value="Director">Director</option> 
                     <option value="Gerente">Gerente</option>
                     <option value="Ejecutivo">Ejecutivo</option>
-                    <option value="Obrero">Obrero</option>
+                    <option value="Empleado">Empleado</option>
                   </select>
                 </div>
               </div>

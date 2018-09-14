@@ -1,7 +1,7 @@
 <footer>
 	<div class="block">
 		<div class="container">
-			<div class="row align-responsive">
+			<div class="row align-responsive" >
 				<div class="col-lg-3 column">
 					<div class="widget">
 						<div class="about_widget">
@@ -17,7 +17,7 @@
 						<div class="widget">
 							<div class="link_widgets">
 								<div class="row">
-									<div class="col-lg-12 mt-col-footer">
+									<div class="col-lg-12 mt-col-footer"  style="color: #fff;">
 										<a href="<?= Request::root();?>/terminos" title="">Políticas de Jobbers</a>
 										<!-- <a href="<?= Request::root();?>/fag" title="">Preguntas frecuentes</a> -->
 										<a href="<?= Request::root();?>/noticias" title="">Noticias</a>
@@ -32,7 +32,7 @@
 						<div class="widget">
 							<div class="link_widgets">
 								<div class="row">
-									<div class="col-lg-12 mt-col-footer">
+									<div class="col-lg-12 mt-col-footer"  style="color: #fff;">
 										<a href="<?= Request::root();?>/inicio" title="">Inicio</a>
 										<a href="<?= Request::root();?>/ofertas" title="">Ofertas de trabajo </a>
 										<!--<a href="<?= Request::root();?>/" title="">Candidatos</a>-->

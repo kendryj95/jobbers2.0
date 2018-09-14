@@ -24,7 +24,8 @@ class con_candidato_perfil_publico extends Controller
         t3.descripcion as edo_civil, 
         t4.descripcion as discapacidad,
         t5.descripcion as genero,
-        t6.nacionalidad as nacionalidad
+        t6.nacionalidad as nacionalidad,
+        t1.fecha_nac
         FROM `tbl_candidato_datos_personales` t1
         LEFT JOIN tbl_tipo_indentificacion t2 ON t2.id = t1.id_tipo_identificacion 
         LEFT JOIN tbl_estados_civiles t3 On t3.id = t1.id_edo_civil
