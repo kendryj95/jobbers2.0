@@ -441,7 +441,13 @@ $mi_tokken=csrf_token();
                 <!-- Oferta normal -->
                 <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
                   <div class="mobile">
-                        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+                      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+                      <!-- <img src="local/resources/views/images/ppp-aprendiz.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/banner_pippng.png" alt="" class="img-fluid img-oferta"> -->
+                      <img src="local/resources/views/images/Logo-PILApng.png" alt="" class="img-fluid img-oferta">
+                      <!-- <img src="local/resources/views/images/jovenes.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/xmi.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/ppp.png" alt="" class="img-fluid img-oferta"> -->
                         <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                       </div>
                     <div class="job-title-sec container-desc-oferta">
@@ -498,6 +504,12 @@ $mi_tokken=csrf_token();
                     </div>
                     <div class="job-style-bx container-img-oferta desk">
                       <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+                      <!-- <img src="local/resources/views/images/ppp-aprendiz.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/banner_pippng.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/Logo-PILApng.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/jovenes.png" alt="" class="img-fluid img-oferta"> -->
+                      <!-- <img src="local/resources/views/images/xmi.png" alt="" class="img-fluid img-oferta"> -->
+                      <img src="local/resources/views/images/ppp.png" alt="" class="img-fluid img-oferta">
                       <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                     </div>
                   </div></a>
