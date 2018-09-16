@@ -164,6 +164,7 @@
 						</div>
 					</div>
 				</div>
+				<?php include("includes/modal_update_plan.php") ?>
 			</section>
 			<br>
 			<?php include("includes/general_footer_empresas.php") ?>

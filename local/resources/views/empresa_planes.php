@@ -10,6 +10,7 @@
 		<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 		<!-- Styles -->
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
 		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
@@ -167,12 +168,14 @@
 									</div>
 								</div>
 							</div>
+							<?php include("includes/modal_update_plan.php") ?>
 						</section>
 						<br>
 						<?php include("includes/general_footer_empresas.php") ?>
 					</div>
 					
 							<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script>
+							<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 							<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 							<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
 							<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>
