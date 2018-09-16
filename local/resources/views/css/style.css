@@ -1948,8 +1948,8 @@ footer {
     width: 100%;
     float: left;
     font-family: Open Sans;
-    font-size: 13px;
-    color: #8a99b3;
+    font-size: 14px;
+    color: #fff;
     line-height: 30px;
 }
 .social {
@@ -1961,7 +1961,7 @@ footer {
     float: left;
     margin-right: 14px;
     font-size: 20px;
-    color: #8a99b3;
+    color: #fff;
 }
 .social i {
     font-size: 16px;
@@ -1975,8 +1975,8 @@ footer {
     width: 100%;
     position: relative;
     font-family: Open Sans;
-    font-size: 13px;
-    color: #8a99b3;
+    font-size: 14px;
+    color: #fff;
     margin-bottom: 12px;
     padding-left: 24px;
 }
@@ -11423,6 +11423,19 @@ header, .res-openmenu, .res-closemenu, .responsivemenu>ul>li.menu-item-has-child
     font-weight: 200;
     display: block;
     margin-top: 1.4rem;
+}
+/* Empresas */
+
+.text-info-empresa{
+    /* max-width: 450px; */
+    display: block;
+    text-align: center;
+    line-height: 15px;
+    padding: 2px;
+    background-color: #f2f2f2;
+    margin-top: 5px;
+    /* float: left;  */
+    border-radius: 5px;
 }
 /* Footer */
 

@@ -512,6 +512,12 @@
     }
 }
 
+@media (min-width: 768px){
+    .text-info-empresa{
+        float: left;
+    }
+}
+
 @media (max-width:768px) {
     .carousel {
         margin-top: 20px;
