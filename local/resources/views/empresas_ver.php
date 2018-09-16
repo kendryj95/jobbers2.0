@@ -138,7 +138,7 @@
                       </div>
                         
 											<div class="job-lctn"> 
-												<div style="max-width: 450px;line-height: 15px;padding: 2px;background-color: #f2f2f2;margin-top: 5px;float: left; border-radius: 5px;">
+												<div class="text-info-empresa">
                           <i><span style="font-size: 12px;">
                             <?php if ($empresa->nombre_empresa!=""): ?>
                               <?php $empresa->nombre_empresa=$empresa->nombre_empresa.', ';?>

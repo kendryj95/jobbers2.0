@@ -10,6 +10,14 @@
 							</div>
 							<span>Córdoba, Argentina.</span>
 							<span>administracion@jobbersargentina.net</span> 
+							<div class="social">
+								<a href="https://www.facebook.com/jobbersarg/" title=""><i class="fa fa-facebook"></i></a>
+								<a href="https://www.instagram.com/jobbersargentina/" title=""><i class="fa fa-instagram"></i></a>
+								<!-- <a href="#" title=""><i class="fa fa-twitter"></i></a>
+								<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+								<a href="#" title=""><i class="fa fa-pinterest"></i></a>
+								<a href="#" title=""><i class="fa fa-behance"></i></a> -->
+							</div>
 							</div><!-- About Widget -->
 						</div>
 					</div>
