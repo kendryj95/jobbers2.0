@@ -110,10 +110,10 @@
                 <div class="job-listing wtabs">
 										<div class="mobile">
 											<img src="<?= $imagen;?>" class="img-fluid img-oferta" alt="">
-											<p class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
+											<p style="cursor: pointer;"> class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
 										</div> 
 										<div class="job-title-sec container-desc-oferta" style="display: grid">
-											<h5 onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo $empresa->nombre_empresa ?><a href="#"></a></h5>
+											<h5 style="cursor: pointer;" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo $empresa->nombre_empresa ?><a href="#"></a></h5>
 
 											<p class="desc-oferta"><?= $empresa->descripcion;?></p>
 											<br>  
@@ -132,7 +132,7 @@
                             <div class="col-sm-3 mx-auto" style="text-align: center;padding: 0px;">
                             <img src="local/resources/views/images/creative-team.png"><br>
                                <div style="margin: 0 auto;"><?= $empresa->sector?></div>
-                                <div style="background-color: #fff;font-size: 10px;color: #595959;">Sector</div> 
+                                <div style="background-color: #fff;font-size: 10px;color: #595959;">Actividad empresa</div> 
                             </div>
                         </div>
                       </div>
@@ -155,10 +155,8 @@
                               <?php $empresa->direccion=$empresa->direccion.'.';?>
                             <?php endif ?>
 
-                            *<?php echo $empresa->nombre_empresa?>  
-                            <?php echo $empresa->telefono;?> Argentina 
-                            <?php echo $empresa->provincia_2;;?> 
-                            <?php echo $empresa->direccion;?></span></i>
+                             Argentina 
+                            <?php echo $empresa->provincia_2;?>  </span></i>
                         </div>
 												<div class="desk" style="float: right">
                           <?php if ($empresa->facebook!=""): ?>

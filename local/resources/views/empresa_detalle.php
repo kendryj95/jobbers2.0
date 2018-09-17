@@ -175,7 +175,7 @@ function formatDate($dateMayor, $dateMenor){
 															        <?php if ($pub->modalidad == 1): ?>
 
 															            <!-- Oferta recomendada -->
-															            <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs borde-recomend" style="background: url(<?= asset('local/resources/views/images/back-ofertas.jpg') ?>); background-size: cover">
+															            <a href="../detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs borde-recomend" style="background: url(<?= asset('local/resources/views/images/back-ofertas.jpg') ?>); background-size: cover">
 															              <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
 															                <div class="job-title-sec container-desc-oferta">
 															                <div class="row">
@@ -274,7 +274,7 @@ function formatDate($dateMayor, $dateMenor){
 															  <?php else: ?>
 
 															<!-- Oferta normal -->
-															<a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
+															<a href="../detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
 															  <div class="mobile">
 															        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
 															        <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
