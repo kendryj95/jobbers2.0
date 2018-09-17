@@ -68,7 +68,8 @@
 											<?php endif ?>
 											<p class="remember-label">
 											</p>
-											<a href="recuperarclave" title="">Olvidé mi clave</a>
+											<a href="recuperarclave" title="">Olvidé mi clave</a>&nbsp;&nbsp;
+											<a href="javascript:void(0)" class="signup-popup" title="" style="margin-right: 5px">Registrarme</a>
 											<button type="submit">Entrar</button>
 										</form>
 									</div>
@@ -80,6 +81,7 @@
 				</section>
 				<?php include('local/resources/views/includes/footer_single.php');?>
 			</div>
+			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/script.js" type="text/javascript"></script>
@@ -100,12 +102,12 @@
 						$btn.removeClass('la-eye')
 							.addClass('la-eye-slash')
 							.attr('title', 'Mostrar');
-						$('input[name="pass"]').attr('type', 'text');
+						$('input[name="clave"], input[name="pass"]').attr('type', 'text');
 					} else {
 						$btn.removeClass('la-eye-slash')
 							.addClass('la-eye')
 							.attr('title', 'Ocultar');
-						$('input[name="pass"]').attr('type', 'password');
+						$('input[name="clave"], input[name="pass"]').attr('type', 'password');
 					}
 				}
 			</script>
