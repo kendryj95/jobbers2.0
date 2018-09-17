@@ -21,6 +21,23 @@ $mi_tokken = csrf_token();
         
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
+        <!-- Trigger the modal with a button -->
+   <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                              <div class="modal-dialog"> 
+                                <!-- Modal content-->
+                                <div class="modal-content"> 
+                                  <div class="modal-body" style="text-align: center;">
+                                    <p style="font-size: 18px;font-weight: 600;">Hola Jobber!</p>
+                                     <p style="font-size: 14px;margin-top: -35px;">Esperamos que el nuevo Jobbers te guste tanto como a nosotros.</p>
+                                    <img style="height: 100px;width: auto;" src="https://corevalue.net/wp-content/uploads/2015/11/CoreValue_data-validation.png">
+                                   
+                                    <p style="font-size: 14px;">En esta ocación necesitamos de tu ayuda, para que tengamos un sistema limpio y tengas mayor posibilidades de ser seleccionado por una de las empresas que forman parte de Jobebrs necesitamos que <strong>valides tu información</strong> y la <strong>corrijas</strong> en caso de haber algun error producto de la migración.</p>
+                                    <p style="font-size: 14px;">Para mayor ayuda en el <a style="color: #4286f4;text-decoration: underline;" href="candidahboard"><strong>Inicio de tu panel</strong></a> tienes un chat de soporte siempre disponible para ayudarte.</p>
+                                  </div> 
+                                </div> 
+                              </div>
+                            </div>
         <div class="theme-layout" id="scrollup"> 
             <!--Header responsive-->
             <?php include 'local/resources/views/includes/header_responsive_candidatos.php';?>
@@ -28,30 +45,16 @@ $mi_tokken = csrf_token();
             <!--fin Header responsive-->
             <!--Modal imagenes-->
             <?php include('local/resources/views/includes/modal_cand_educacion.php');?>
-            <?php include('local/resources/views/includes/modal_cand_experiencia.php');?>
-            <style type="text/css">
-            @media (min-width: 576px) {
-            .modal-dialog {
-            max-width: none;
-            }
-            }
-            .modal-dialog {
-            width: 99%;
-            margin-right: 0px;
-            height: 95%;
-            }
-            .modal-content {
-            height: 95%;
-            }
-            </style>
-            <!-- Modal --> 
+            <?php include('local/resources/views/includes/modal_cand_experiencia.php');?> 
             <section> 
                 <div class="block no-padding mt-75"> 
                     <div class="container">
                         <div class="row no-gape">
                             <?php include 'local/resources/views/includes/aside_candidatos.php';?>
                             <div class="col-lg-9 column">
-                            
+                           
+
+                         
                                 <div class="padding-left">
                                     <div class="manage-jobs-sec addscroll">
                                          <h3>Perfil</h3> 
@@ -1249,7 +1252,7 @@ $mi_tokken = csrf_token();
         }
          
     }
-        
+$("#myModal").modal('show');  
 </script>
 
 <script>

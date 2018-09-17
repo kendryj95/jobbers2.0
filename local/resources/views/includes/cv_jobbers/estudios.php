@@ -14,7 +14,7 @@ $bandera=0;
 	Fpdf::SetFont('Arial','B',10);
 	Fpdf::SetTextColor(46, 49, 146);
 	
-	Fpdf::Cell(190,5,''.utf8_decode("".$datos_estudios[$i]->nombre_institucion."").'',0,1,'0');
+	Fpdf::Cell(190,5,''.quitar_caracter(utf8_decode("".$datos_estudios[$i]->nombre_institucion."")).'',0,1,'0');
 	Fpdf::SetFont('Arial','',9);
 	Fpdf::SetTextColor(0,0,0);
 

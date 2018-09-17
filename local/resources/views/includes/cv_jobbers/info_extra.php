@@ -6,20 +6,19 @@ Fpdf::SetFillColor(232, 232, 232);
 Fpdf::Cell(190,5,''.utf8_decode("INFORMACIÓN ADICIONAL").'',0,1,'C','true');
 if(count($datos_info_extra)>0)
 {
+$linea=$linea+86;
+Fpdf::SetFont('Arial','B',10); 
+Fpdf::SetTextColor(46, 49, 146);
+Fpdf::Cell(190,6,''.utf8_decode('Salario: '.$datos_info_extra[0]->salario).'',0,1,'0'); 
+Fpdf::SetFont('Arial','',9); 
+Fpdf::SetTextColor(0, 0, 0);  
+ 
 
 Fpdf::SetFont('Arial','B',10); 
 Fpdf::SetTextColor(46, 49, 146);
-Fpdf::Cell(190,6,''.utf8_decode('Salario: ').'',0,1,'0'); 
+Fpdf::Cell(190,6,''.utf8_decode('Disponibilidad: '.$datos_info_extra[0]->nombre).'',0,1,'0'); 
 Fpdf::SetFont('Arial','',9); 
 Fpdf::SetTextColor(0, 0, 0);  
-Fpdf::Text(25,56+86+$linea,$datos_info_extra[0]->salario); 
-
-Fpdf::SetFont('Arial','B',10); 
-Fpdf::SetTextColor(46, 49, 146);
-Fpdf::Cell(190,6,''.utf8_decode('Disponibilidad: ').'',0,1,'0'); 
-Fpdf::SetFont('Arial','',9); 
-Fpdf::SetTextColor(0, 0, 0);  
-Fpdf::Text(38,56+92+$linea,$datos_info_extra[0]->nombre); 
 
 Fpdf::SetFont('Arial','B',10); 
 Fpdf::SetTextColor(46, 49, 146);

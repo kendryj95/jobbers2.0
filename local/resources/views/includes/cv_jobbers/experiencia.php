@@ -8,9 +8,11 @@ if($datos_experiencia_lab[0]->cantidad > 0)
 { 	$total=count($datos_experiencia_lab);
 	for ($i=0; $i < $total ; $i++) 
 	{ 
+
+	$this->validar(); 
 	Fpdf::SetFont('Arial','B',10); 
 	Fpdf::SetTextColor(46, 49, 146);
-	Fpdf::Cell(190,5,utf8_decode($datos_experiencia_lab[$i]->nombre_empresa),0,1,'0');
+	Fpdf::Cell(190,5,quitar_caracter(utf8_decode($datos_experiencia_lab[$i]->nombre_empresa)),0,1,'0');
 	Fpdf::SetFont('Arial','',9); 
 	Fpdf::SetTextColor(0,0,0);
 	$textotrabajar=""; 
@@ -38,6 +40,7 @@ if($datos_experiencia_lab[0]->cantidad > 0)
 				$texto=""; 
 			}
 		}
+
 		if(strlen($texto)>0)
 		{
 			Fpdf::Cell(190,5,''.utf8_decode($texto).'',0,1,'0');
@@ -46,7 +49,8 @@ if($datos_experiencia_lab[0]->cantidad > 0)
 	}
 	else
 	{
-		Fpdf::Cell(190,5,''.utf8_decode($texto).'',0,1,'0');
+		Fpdf::Cell(190,5,''.utf8_decode($experienia_general).'',0,1,'0');
+		 
 	}
 	
 	 
@@ -105,5 +109,10 @@ else
 	Fpdf::Cell(190,5,''.utf8_decode("Sin experiencia pero con ganas de aprender mucho.").'',0,1,'0'); 
 }
  
+ function quitar_caracter($var)
+ {
+ 	$datos=str_replace('?','', $var);
+ 	return $datos;
+ }
 
 ?>

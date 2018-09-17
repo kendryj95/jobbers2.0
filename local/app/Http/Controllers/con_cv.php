@@ -37,7 +37,9 @@ class con_cv extends Controller
 		$sql_experiencia_lab="SELECT count(t2.id) as cantidad,t2.tipo_de_puesto,t2.nombre_empresa,t2.cargo,t2.descripcion,t3.nombre as  act_empresa,t2.desde,t2.hasta from  tbl_usuarios t1
 			LEFT JOIN tbl_candidato_experiencia_laboral t2 ON t2.id_usuario = t1.id
 			LEFT JOIN tbl_actividades_empresa t3 ON t3.id = t2.id_actividad_empresa
-			WHERE t1.id =".$id."";
+			WHERE t1.id =".$id."
+			GROUP by t2.id
+			 ";
 
 			$sql_idioma="SELECT count(t2.id) as cantidad, t3.descripcion from tbl_usuarios t1
 			LEFT JOIN tbl_candidato_idioma t2 ON t2.id_usuario=t1.id
@@ -57,7 +59,9 @@ class con_cv extends Controller
 				LEFT JOIN tbl_paises t3 ON t3.id = t2.id_pais
 				LEFT JOIN tbl_area_estudios t4 ON t4.id = t2.id_area_estudio
 				LEFT JOIN tbl_nivel_estudio t5 ON t5.id = t2.id_nivel_estudio
-			WHERE t1.id =".$id."";
+			WHERE t1.id =".$id."
+			group by t2.id
+			 ";
 		$sql_info_extra="SELECT count(t1.id) as cantidad, t2.salario,t3.sobre_mi,t4.nombre  FROM `tbl_candidato_preferencias_laborales` t1
 		LEFT JOIN tbl_rango_salarios t2 ON t2.id = t1.id_remuneracion_pre
 		LEFT JOIN tbl_disponibilidad t4 ON t4.id = t1.id_jornada
@@ -88,7 +92,8 @@ class con_cv extends Controller
 				include('local/resources/views/includes/cv_jobbers/estudios.php');
 				$this->validar();  
 				include('local/resources/views/includes/cv_jobbers/otros_conocimientos.php');
-				$this->validar();  
+				$this->validar();
+				$linea=0;  
 				include('local/resources/views/includes/cv_jobbers/info_extra.php');
 				$this->validar();
 				Fpdf::Output('file.pdf','I',true);		
