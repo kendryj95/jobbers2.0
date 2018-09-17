@@ -793,8 +793,7 @@ class con_empresa extends Controller
             LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
-              WHERE t1.id_empresa=?", [$id_empresa]);
-
+              WHERE t1.id_empresa=? AND t1.estatus=1", [$id_empresa] ); 
             $params = [
                 "empresa" => $datos_emp,
                 "ofertas" => $ofertas,
