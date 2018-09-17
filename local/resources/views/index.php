@@ -175,7 +175,7 @@
 									                  <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
 									                  <br>
 									                  <div class="job-lctn">
-									                    <?php= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?>&nbsp;
+									                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial'?>&nbsp;
 									                    <i class="fa fa-star gold"></i>
 									                    <i class="fa fa-star gold"></i>
 									                    <i class="fa fa-star gold"></i>

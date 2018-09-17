@@ -49,15 +49,15 @@
 									<div class="col-lg-12">
 										<h3>Nuestra empresa</h3>
 									</div>
-									<div class="col-lg-7" style="text-align: justify;">
+									<div class="col-lg-12" style="text-align: justify;">
 										<p>
 											<strong>Somos Jobbers!</strong>
 										Brindamos herramientas, ante las problemáticas sociales y culturales, para dar solución a los desencuentros entre postulantes y empresas, reduciendo tiempos y costos de empleabilidad.</p>
 										<p><strong>¿Quiénes Somos?</strong>
 										Somos un equipo de profesionales con vocación de trabajo hacia la comunidad. Nos enfocamos en brindar herramientas digitales para dar soluciones concretas e inteligentes.</p>
-										<p><strong>¿Quiénes Somos?</strong>
+										<p>
 										Nuestra misión es lograr que personas y empresas tengan a su alcance la mejor forma de encontrarse. Trabajamos a través del campo virtual y personal para mejorar los procedimientos, tiempos y calidad en los reclutamientos, tanto en los ofrecimientos como en la demanda de trabajo.</p>
-										<p><strong>¿Quiénes Somos?</strong>
+										<p>
 										Mediante nuestras propias investigaciones, con aliados en reclutamiento y desarrollo en todo el mundo, buscamos ser la red de empleo y educación laboral con impacto social más grande de Argentina.</p>
 										<p>Los valores del equipo Jobbers:</p>
 										
@@ -69,9 +69,7 @@
 										<p style="margin-top: -20px;">- Respeto mutuo</p>
 										
 									</div>
-									<div class="col-lg-5">
-										<img src="local/resources/views/images/daniel.png" class="img-fluid" style="border-radius: 15px;" alt="">
-									</div>
+									 
 								</div>
 							</div>
 						</div>

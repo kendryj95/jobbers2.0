@@ -98,7 +98,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
         LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
-        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
+        LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id
         $condiciones GROUP BY e.id";
         //return  ($peticion . " " . $consulta_gral);
         $empresas = DB::select($peticion . " " . $consulta_gral);
@@ -163,7 +163,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
         LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
-        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
+        LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id
         $condiciones GROUP BY e.id LIMIT $limit, $tamPag";
 
         return $consulta_gral;
@@ -793,8 +793,7 @@ class con_empresa extends Controller
             LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
-              WHERE t1.id_empresa=?", [$id_empresa]);
-
+              WHERE t1.id_empresa=? AND t1.estatus=1", [$id_empresa] ); 
             $params = [
                 "empresa" => $datos_emp,
                 "ofertas" => $ofertas,
