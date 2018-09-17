@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="modal_educ_expe" tabindex="-1" role="dialog" aria-labelledby="modal_educ_expeLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="width: 70%;height: 95%;margin: 0 auto;margin-top: 5%;">
+  <div class="modal-dialog modal-lg" role="document" style="width: 70%;height: 95%;margin: 0 auto;margin-top: 5%;">
     <div class="modal-content" style="height: 80%;">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_educ_expeLabel">Experiencia laboral</h5>

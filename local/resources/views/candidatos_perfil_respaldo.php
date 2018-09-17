@@ -359,7 +359,7 @@ $mi_tokken = csrf_token();
                                             <?php $porcentaje_de_carga_bar=12;?>
                                     
                                    
-                                    <?php endif?>
+                                    <?php endif ?>
                                     </div></div> 
                                      </div>
                                          <div class="col-lg-12">
@@ -428,14 +428,15 @@ $mi_tokken = csrf_token();
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                        </div>
-
-                                                         <?php  if ($up_remuneracion=="" || $up_jornada=="" || count($cargos_lista)==0): ?> 
+                                                        </div> 
+                                                    </div>
+                                                   
+                                                            <?php if ($up_remuneracion=="" || $up_jornada=="" || count($cargos_lista)==0): ?> 
                                                                  <div class="social-edit" style="padding: 0px;">
                                                               <div class="col-sm-12" style="padding: 0px;">   
                                                             <div class="alert alert-danger"> 
                                                               <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
-                                                              
+                                                               <div style="font-size: 13px;"> 
                                                                 <?php if ($up_remuneracion==""): ?>
                                                                      <span>- Remuneración</span><br>
                                                                 <?php else: ?> 
@@ -452,16 +453,17 @@ $mi_tokken = csrf_token();
                                                                 <?php else: ?> 
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
                                                                 <?php endif ?> 
-                                                                   </div> 
-                                                                 </div>
-                                                                </div>
+                                                               </div>
                                                                <?php else: ?>
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+3;?>
-                                                            
+                                                             </div> 
+                                                             </div>
+                                                </div>
                                                         <?php endif ?> 
-                                                         
-                                                    </div> 
-                                                    <button type="button" onClick="preferencias_lab_validar()">Guardar</button> 
+                                                    
+                                                  
+                                                    <button type="button" onClick="preferencias_lab_validar()">Guardar</button>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -518,7 +520,7 @@ $mi_tokken = csrf_token();
                                         </div>
                                     </form>
                                 </div>
-                                <div class="social-edit">
+                                <div class="contact-edit">
                                     <h3>Información de contacto</h3>
                                     <form id="form_contact" action="candicontac" method="post">
                                         <input type="hidden"  name="_token" value="<?php echo $mi_tokken;?>">
@@ -602,12 +604,10 @@ $mi_tokken = csrf_token();
                                                 <div class="pf-field">
                                                     <input  id="longitud" value="<?php echo $up_longitud_contac;?>" name="longitud" type="hidden" placeholder="21.1589654" />
                                                 </div>
-                                            </div> 
-                                            </div>
-                                           
-                                             <?php if ($up_telefono_contac=="" || $up_correo_contac=="" || $up_pais_contac=="" || $up_provincia_contac=="" || $up_localidad_contac=="" || $up_direccion_contac=="" ): ?>
+                                            </div> </div>
+                                            <?php if ($up_telefono_contac=="" || $up_correo_contac=="" || $up_pais_contac=="" || $up_provincia_contac=="" || $up_localidad_contac=="" || $up_direccion_contac=="" ): ?>
 
-                                                <div class="social-edit" style="padding: 0px;margin-top: 20px;margin-bottom: 30px;">
+                                                <div class="social-edit" style="padding: 0px;margin-top: 20px;">
 
 
                                                     <div class="col-sm-12" style="padding: 0px;">
@@ -615,7 +615,7 @@ $mi_tokken = csrf_token();
                                                         <div class="alert alert-danger">
                                                             <strong style="font-weight: 600">*Complete los siguientes campos</strong>
                                                             <br>
-                                                          
+                                                            <div style="font-size: 13px;">
                                                                 <?php if ($up_telefono_contac=="" ): ?>
                                                                 <span>- Teléfono</span>
                                                                 <br>
@@ -655,20 +655,23 @@ $mi_tokken = csrf_token();
                                                                 <br>
                                                                 <?php else: ?>
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
-                                                                <?php endif ?> 
+                                                                <?php endif ?>
 
+
+                                                                <?php else: ?>
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+6;?>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                <?php else: ?>
-                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+6;?>
-                                             <?php endif ?>
-                                             
-                                            <div class="col-lg-12" style="padding: 0px;padding-top: 20px;">
+
+                                                <?php endif ?>
+
+                                            <div class="col-lg-12">
                                                 <button type="button" onClick="contac_validar()">Guardar</button>
                                             </div>
                                         </div> 
-
                                     </form>
                                 </div>
                                 
@@ -676,33 +679,33 @@ $mi_tokken = csrf_token();
                                 <div class="padding-left" style="margin-top: -50px;">
                                     <div class="manage-jobs-sec">
                                         <div class="border-title"><h3>Educación</h3>
-                                                <a href="#" title="" data-toggle="modal" data-target="#modal_educ_cand" onClick="limpiar_mod_educ()">
-                                                <i class="la la-plus"></i> Agregar estudios</a></div>
-                                                <?php foreach ($educacion as $key): ?>
-                                                <input type="hidden" id="estudios" value="<?php echo $key->id_area_estudio;?>" />
-                                                <input type="hidden" id="nivel_es" value="<?php echo $key->id_nivel_estudio;?>" />
-                                                <input type="hidden" id="pais" value="<?php echo $key->id_pais;?>" />
-                                                <input type="hidden" id="titulo_" value="<?php echo $key->titulo;?>" />
+                                            <a href="#" title="" data-toggle="modal" data-target="#modal_educ_cand" onClick="limpiar_mod_educ()">
+                                            <i class="la la-plus"></i> Agregar estudios</a></div>
+                                            <?php foreach ($educacion as $key): ?>
+                                            <input type="hidden" id="estudios" value="<?php echo $key->id_area_estudio;?>" />
+                                            <input type="hidden" id="nivel_es" value="<?php echo $key->id_nivel_estudio;?>" />
+                                            <input type="hidden" id="pais" value="<?php echo $key->id_pais;?>" />
+                                            <input type="hidden" id="titulo_" value="<?php echo $key->titulo;?>" />
                                             
-                                                <div class="edu-history-sec">
-                                                    <div class="edu-history">
-                                                        <i class="la la-graduation-cap"></i>
-                                                        <div class="edu-hisinfo">
-                                                            <h3 id="universidad_<?php echo $key->id;?>"><?php echo $key->nombre_institucion;?></h3>
-                                                            <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?></i>
-                                                            <span><?php echo $key->titulo;?>
-                                                                <i><?php echo $key->descripcion;?></i>
-                                                                <i><?php echo $key->nivel;?></i>
-                                                                <i><?php echo $key->estudios;?></i>
-                                                            </span>
-                                                            <p></p>
-                                                        </div>
-                                                        <ul class="action_job">
-                                                            <li><span>Editar</span><a onClick="limpiar_mod_educ(<?php echo $key->id;?>),set_educacion(<?php echo $key->id;?>)" title=""><i class="la la-pencil"></i></a></li>
-                                                            <li><span>Eliminar</span><a href="candidelestudios/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
-                                                        </ul>
-                                                  
+                                            <div class="edu-history-sec">
+                                                <div class="edu-history">
+                                                    <i class="la la-graduation-cap"></i>
+                                                    <div class="edu-hisinfo">
+                                                        <h3 id="universidad_<?php echo $key->id;?>"><?php echo $key->nombre_institucion;?></h3>
+                                                        <i id="periodo_<?php echo $key->id;?>"><?php echo $key->desde;?></i>
+                                                        <span><?php echo $key->titulo;?>
+                                                            <i><?php echo $key->descripcion;?></i>
+                                                            <i><?php echo $key->nivel;?></i>
+                                                            <i><?php echo $key->estudios;?></i>
+                                                        </span>
+                                                        <p></p>
+                                                    </div>
+                                                    <ul class="action_job">
+                                                        <li><span>Editar</span><a onClick="limpiar_mod_educ(<?php echo $key->id;?>),set_educacion(<?php echo $key->id;?>)" title=""><i class="la la-pencil"></i></a></li>
+                                                        <li><span>Eliminar</span><a href="candidelestudios/<?php echo $key->id;?>" title=""><i class="la la-trash-o"></i></a></li>
+                                                    </ul>
                                                 </div>
+</div>
                                             </div>
                                             
                                             <?php endforeach ?>
@@ -803,18 +806,18 @@ $mi_tokken = csrf_token();
                                                         <div class="col-sm-12" > 
                                                             <div class="alert alert-danger"> 
                                                               <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
-                                                                
+                                                               <div style="font-size: 13px;">  
                                                                 <?php if (count($habilidades_listado)==0): ?>
                                                                      <span>- Debe agreagar sus habilidades</span><br>
                                                                 <?php else: ?> 
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
                                                                 <?php endif ?> 
                                                                </div>
-                                                             
-                                                    </div> 
                                                                <?php else: ?>
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
-                                                            
+                                                            </div>
+                                                             
+                                                    </div> 
                                      </div><?php endif ?> 
                                                     <div class="social-edit" style="padding-top: 0px;padding-bottom: 0px;padding-right: 40px;">
                                                        <button onclick="habilidades_validar()" type="button">Guardar</button> 
@@ -875,17 +878,17 @@ $mi_tokken = csrf_token();
                                                         <div class="col-sm-12" style="padding: 0px;"> <?php if (count($idiomas_listado)==0): ?> 
                                                             <div class="alert alert-danger"> 
                                                               <strong style="font-weight: 600">*Complete los siguientes campos</strong><br>
-                                                              
+                                                               <div style="font-size: 13px;">  
                                                                 <?php if (count($idiomas_listado)==0): ?>
                                                                      <span>- Debe agreagar sus idiomas</span><br>
                                                                 <?php else: ?> 
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
                                                                 <?php endif ?> 
-                                                                </div></div> 
+                                                               </div>
                                                                <?php else: ?>
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
                                                              <?php endif ?> 
-                                                  
+                                                   </div></div> 
                                   
                                                     <button onclick="idiomas_validar()" type="button">Guardar</button>
                                                 </form> 
@@ -1279,7 +1282,7 @@ $mi_tokken = csrf_token();
         }
          
     }
-//$("#myModal").modal('show');  
+$("#myModal").modal('show');  
 </script>
 
 <script>
@@ -1342,6 +1345,7 @@ $mi_tokken = csrf_token();
         $('#bar1').barfiller();   
     });
     }
+
     select_provincia($("#provincia_contac").val());
     </script>
     <script>

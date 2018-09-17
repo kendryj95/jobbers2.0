@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="modal_educ_cand" tabindex="-1" role="dialog" aria-labelledby="modal_educ_candLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="width: 70%;height: 95%;margin: 0 auto;margin-top: 5%;">
+  <div class="modal-dialog modal-lg" role="document" style="width: 70%;height: 95%;margin: 0 auto;margin-top: 5%;">
     <div class="modal-content" style="height: 80%;">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_educ_candLabel">Educación</h5>
@@ -42,7 +42,7 @@
               </div> 
 
               <div class="col-lg-6">
-                <span class="pf-title">Universidad</span>
+                <span class="pf-title">Nombre institución</span>
                 <div class="pf-field">
                    <input name="universidad" id="universidad" type="text" name="">
                 </div>
