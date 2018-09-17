@@ -354,7 +354,14 @@ $mi_tokken=csrf_token();
                                   </div>
                                   <div class="col-6">
                                     <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
+                                    <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+                                    
                                   </div>
+                                  <?php if ($pub->plan_estado): ?>
+                                  <!-- <div class="col-12">
+                                    <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+                                  </div> -->
+                                  <?php endif; ?>
                                 </div>
                               
                                 <h5 class="title-recom"><?= $pub->titulo ?> <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a></h5>
@@ -442,12 +449,9 @@ $mi_tokken=csrf_token();
                 <a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
                   <div class="mobile">
                       <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-                      <!-- <img src="local/resources/views/images/ppp-aprendiz.png" alt="" class="img-fluid img-oferta"> -->
-                      <!-- <img src="local/resources/views/images/banner_pippng.png" alt="" class="img-fluid img-oferta"> -->
-                      <img src="local/resources/views/images/Logo-PILApng.png" alt="" class="img-fluid img-oferta">
-                      <!-- <img src="local/resources/views/images/jovenes.png" alt="" class="img-fluid img-oferta"> -->
-                      <!-- <img src="local/resources/views/images/xmi.png" alt="" class="img-fluid img-oferta"> -->
-                      <!-- <img src="local/resources/views/images/ppp.png" alt="" class="img-fluid img-oferta"> -->
+                      <?php if ($pub->plan_estado): ?>
+                      <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+                      <?php endif; ?>
                         <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                       </div>
                     <div class="job-title-sec container-desc-oferta">
@@ -509,7 +513,9 @@ $mi_tokken=csrf_token();
                       <!-- <img src="local/resources/views/images/Logo-PILApng.png" alt="" class="img-fluid img-oferta"> -->
                       <!-- <img src="local/resources/views/images/jovenes.png" alt="" class="img-fluid img-oferta"> -->
                       <!-- <img src="local/resources/views/images/xmi.png" alt="" class="img-fluid img-oferta"> -->
-                      <img src="local/resources/views/images/ppp.png" alt="" class="img-fluid img-oferta">
+                      <?php if ($pub->plan_estado): ?>
+                      <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+                      <?php endif; ?>
                       <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
                     </div>
                   </div></a>
