@@ -33,10 +33,11 @@ public function addcv()
 	{
 		$original        = $file->getClientOriginalName();
 	    $extension       = $file->getClientOriginalExtension();
-	    $upload_success = Input::file('documento')->move("uploads/curriculums", $token.$original);
+	    $nombre_archivo_final=$token.'.'.$extension;
+	    $upload_success = Input::file('documento')->move("uploads/curriculums", $nombre_archivo_final);
 	    if($upload_success)
 		{
-			$sql="INSERT INTO tbl_candidato_cv_fisico values(null, ".session()->get('cand_id').",1,'".$token.$original ."','".$extension."',null)";
+			$sql="INSERT INTO tbl_candidato_cv_fisico values(null, ".session()->get('cand_id').",1,'".$nombre_archivo_final."','".$extension."',null)";
 			try {
 				DB::insert($sql);
 				return Redirect('candiperfil?result=Curriculum agregado correctamente');
@@ -56,8 +57,10 @@ function descargar($archivo) {
 	header ("Content-Length: ".filesize($enlace));
 	readfile($enlace); 
 } 
-function token($length) { 
-    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+function token() { 
+	$rand_part = str_shuffle("abcdefghijklmnopqrstuvwxyz0123456789".uniqid());
+	return $rand_part;
+    //return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
 } 
 public function del_cv($id)
 {

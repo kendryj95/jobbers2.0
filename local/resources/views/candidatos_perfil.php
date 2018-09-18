@@ -538,7 +538,7 @@ $mi_tokken = csrf_token();
                                             <div class="col-lg-4">
                                                 <span class="pf-title">Sitio Web</span>
                                                 <div class="pf-field">
-                                                    <input id="sitio_web" value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbers.com" />
+                                                    <input id="sitio_web" value="<?php echo $up_sitio_contac;?>" name="web" type="text" placeholder="www.jobbersargentina.net" />
                                                 </div>
                                             </div>
                                                

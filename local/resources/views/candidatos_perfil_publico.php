@@ -103,7 +103,7 @@
 			<!--fin Header responsive-->
 			<section id="contenedor_header" class="overlape" >
 				<div class="block no-padding">
-					<div data-velocity="-.1" style="background: url(http://acadoceo.com/wp-content/uploads/2016/04/blurry-691240_1280-1200x520.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
+					<div data-velocity="-.1" style="background: url(https://i.ytimg.com/vi/QqeqOyYsIeE/maxresdefault.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">
@@ -146,12 +146,12 @@
 												<div class="action-inner style2">
 													<?php if($datos_cv_descargable[0]->cantidad>0): ?>
 													<div class="download-cv">
-														<a target="_blank" href="../descargar/<?php echo $datos_cv_descargable[0]->alias;?>" title="">Descargar CV <i class="la la-download"></i></a>
+														<a id="btn-descargar-cv" target="_blank" href="../descargar/<?php echo $datos_cv_descargable[0]->alias;?>" title="">Descargar CV <i class="la la-download"></i></a>
 													</div>
 													<?php endif ?>
 													<?php if($datos_cv_descargable[0]->cantidad==0): ?>
 													<div class="download-cv">
-														<a target="_blank" href="../reporte/<?php echo $datos_personales[0]->id_usuario;?>" title="">Descargar CV <i class="la la-download"></i></a>
+														<a id="btn-descargar-cv" target="_blank" href="../reporte/<?php echo $datos_personales[0]->id_usuario;?>" title="">Descargar CV <i class="la la-download"></i></a>
 													</div>
 													<?php endif ?>  
 													<a href="#" title=""><i class="la la-map-marker"></i><?php echo $datos_datos_contacto[0]->provincia;?> / <?php echo $datos_datos_contacto[0]->localidad;?></a>
@@ -284,7 +284,7 @@
 														<img style="border-radius: 50%;width: 75px;height: 75px;margin-left: -10px;" src="../uploads/<?php echo $imagen;?>" alt="">
 														<br>
 														<span style="background-color:#a9a9a9;color:#fff;border-radius: 10px;padding-left: 10px;padding-right: 10px;text-align: "> 
-															Victor Fernández
+															<?php echo $datos_personales[0]->nombres ." ".$datos_personales[0]->apellidos;?>
 														</span>
 														<div style="background-color: #ebeef2;border:1px solid #bcc7d5;border-radius: 10px;margin-top: 10px;min-height: 300px;margin-top: 10px;text-align: center;">
 																<span style="font-weight: 700;font-size: 13px;">Vista rápida</span>
@@ -393,7 +393,7 @@
 																		<?php echo $datos_datos_contacto[0]->provincia;?> / <?php echo $datos_datos_contacto[0]->localidad;?>
 																	</span> 
 																</div>
-																<button type="button" class="form-control" href="#" style="background-color:#ffb203;color:#fff;padding: 5px;margin-top: 10px;margin-bottom: 10px;border-radius: 5px;width: 100%;">Descargar CV</button>
+																<button onClick="descargar_cv()" type="button" class="form-control" href="#" style="background-color:#ffb203;color:#fff;padding: 5px;margin-top: 10px;margin-bottom: 10px;border-radius: 5px;width: 100%;">Descargar CV</button>
 
 															</div>
  															 <div style="text-align: justify;">
@@ -423,6 +423,10 @@
 						$( document ).ready(function() {
 						
 						});
+					function descargar_cv()
+					{ 
+						window.location = $('#btn-descargar-cv').attr('href');
+					}
 					</script>
 					<?php function fecha($fecha)
 					{
