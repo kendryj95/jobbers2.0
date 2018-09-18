@@ -9,25 +9,50 @@ if($datos_experiencia_lab[0]->cantidad > 0)
 	for ($i=0; $i < $total ; $i++) 
 	{ 
 
-	$this->validar(); 
-	Fpdf::SetFont('Arial','B',10); 
-	Fpdf::SetTextColor(46, 49, 146);
-	Fpdf::Cell(190,5,quitar_caracter(utf8_decode($datos_experiencia_lab[$i]->nombre_empresa)),0,1,'0');
-	Fpdf::SetFont('Arial','',9); 
-	Fpdf::SetTextColor(0,0,0);
-	$textotrabajar=""; 
+		$this->validar(); 
+		Fpdf::SetFont('Arial','B',10); 
+		Fpdf::SetTextColor(46, 49, 146);
+		Fpdf::Cell(190,5,quitar_caracter(utf8_decode($datos_experiencia_lab[$i]->nombre_empresa)),0,1,'0');
+		Fpdf::SetFont('Arial','',9); 
+		Fpdf::SetTextColor(0,0,0);
+		$textotrabajar=""; 
 
-	//($datos_experiencia_lab[$i]->act_empresa
-	if($datos_experiencia_lab[$i]->hasta=="")
-	{
-		$datos_experiencia_lab[$i]->hasta="Actualidad";
+		//($datos_experiencia_lab[$i]->act_empresa
+		if($datos_experiencia_lab[$i]->hasta=="")
+		{
+			$datos_experiencia_lab[$i]->hasta="Actualidad";
+		}
+			$expe_desde_fecha=explode('-', $datos_experiencia_lab[$i]->desde);
+			
+			$expe_hasta_fecha="";
+			if($datos_experiencia_lab[$i]->hasta=="Actualidad")
+			{
+				$expe_hasta_fecha="Trabajando actualmente";
+			}
+			else
+			{
+				$temp_expe=explode('-',$datos_experiencia_lab[$i]->hasta);
+				$expe_hasta_fecha=$temp_expe[1].'-'.$temp_expe[0];
+			}
+
+			
+			
+			$expe_periodo=$expe_desde_fecha[1].'-'.$expe_desde_fecha[0]." a ".$expe_hasta_fecha." ".$this->calcular_antiguedad($datos_experiencia_lab[$i]->desde,$datos_experiencia_lab[$i]->hasta);
+
+			
+			Fpdf::SetFillColor(255, 255, 255); 
+			Fpdf::Cell(85,4,''.utf8_decode("Tipo de puesto: ".$datos_experiencia_lab[$i]->tipo_de_puesto).'',0,1,'L','true');
+			Fpdf::Cell(85,4,''.utf8_decode("Cargo: ".$datos_experiencia_lab[$i]->cargo).'',0,1,'L','true');
+			Fpdf::Cell(85,4,''.utf8_decode("Act. Empresa: ".$datos_experiencia_lab[$i]->act_empresa).'',0,1,'L','true');
+			Fpdf::Cell(85,4,''.utf8_decode("Periodo: ".$expe_periodo).'',0,1,'L','true');
 	}
-	$experienia_general=
+
+	/*$experienia_general=
 		"Tipo de puesto: ".$datos_experiencia_lab[$i]->tipo_de_puesto.
 		" Cargo: ".$datos_experiencia_lab[$i]->cargo.
 		" - Act. Empresa: ".$datos_experiencia_lab[$i]->act_empresa.
-		" - Periodo: ".$datos_experiencia_lab[$i]->desde.
-		" a ".$datos_experiencia_lab[$i]->hasta." ".$this->calcular_antiguedad($datos_experiencia_lab[$i]->desde,$datos_experiencia_lab[$i]->hasta)."";
+		" - Periodo: ".$expe_desde_fecha[1].'-'.$expe_desde_fecha[0].
+		" a ".$expe_hasta_fecha[1].'-'.$expe_hasta_fecha[0]." ".$this->calcular_antiguedad($datos_experiencia_lab[$i]->desde,$datos_experiencia_lab[$i]->hasta)."";
 	if(strlen($experienia_general)>120)
 	{
 		$texto="";
@@ -103,7 +128,8 @@ if($datos_experiencia_lab[0]->cantidad > 0)
 			} 
 		}
 
-	} 
+	} */
+}
 else
 {
 	Fpdf::Cell(190,5,''.utf8_decode("Sin experiencia pero con ganas de aprender mucho.").'',0,1,'0'); 

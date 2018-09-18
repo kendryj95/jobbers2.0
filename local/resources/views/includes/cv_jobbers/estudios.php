@@ -19,7 +19,7 @@ $bandera=0;
 	Fpdf::SetTextColor(0,0,0);
 
 	$datos_experiencia="";
-	$cadena="País: ".$datos_estudios[$i]->descripcion.". Área: ".$datos_estudios[$i]->area_estudio.". Título: ".$datos_estudios[$i]->titulo.". Periodo: (".$datos_estudios[$i]->fecha.")";
+	$cadena="País: ".$datos_estudios[$i]->descripcion.". Área: ".$datos_estudios[$i]->area_estudio.". Título: ".$datos_estudios[$i]->titulo.". Estado: (".$datos_estudios[$i]->fecha.")";
 	$cadena_experiencia=explode(" ", $cadena);
 
 	foreach ($cadena_experiencia as $key )

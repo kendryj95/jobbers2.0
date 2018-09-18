@@ -807,15 +807,15 @@ $mi_tokken = csrf_token();
                                                                 <?php if (count($habilidades_listado)==0): ?>
                                                                      <span>- Debe agreagar sus habilidades</span><br>
                                                                 <?php else: ?> 
-                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?> 
-                                                                <?php endif ?> 
-                                                               </div>
+                                                                <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>  
+                                                                <?php endif ?>
+                                                                </div> 
+                                                                </div> 
                                                              
-                                                    </div> 
                                                                <?php else: ?>
                                                                 <?php $porcentaje_de_carga_bar=$porcentaje_de_carga_bar+1;?>
                                                             
-                                     </div><?php endif ?> 
+                                                            <?php endif ?> 
                                                     <div class="social-edit" style="padding-top: 0px;padding-bottom: 0px;padding-right: 40px;">
                                                        <button onclick="habilidades_validar()" type="button">Guardar</button> 
                                                     </div>
@@ -832,8 +832,6 @@ $mi_tokken = csrf_token();
                                                 <?php if (count($habilidades_listado)==0): ?>
                                                      </div>
                                                 <?php endif ?>
-                                           
-                                             
 
                                         <!--Idiomas-->
                                         <div class="border-title"><h3>Idiomas</h3> </div>

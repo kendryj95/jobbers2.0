@@ -9,7 +9,7 @@ if(count($datos_info_extra)>0)
 $linea=$linea+86;
 Fpdf::SetFont('Arial','B',10); 
 Fpdf::SetTextColor(46, 49, 146);
-Fpdf::Cell(190,6,''.utf8_decode('Salario: '.$datos_info_extra[0]->salario).'',0,1,'0'); 
+Fpdf::Cell(190,6,''.utf8_decode('Remuneración pretendida: '.$datos_info_extra[0]->salario).'',0,1,'0'); 
 Fpdf::SetFont('Arial','',9); 
 Fpdf::SetTextColor(0, 0, 0);  
  
@@ -22,7 +22,7 @@ Fpdf::SetTextColor(0, 0, 0);
 
 Fpdf::SetFont('Arial','B',10); 
 Fpdf::SetTextColor(46, 49, 146);
-Fpdf::Cell(190,5,''.utf8_decode('Sobre mi').'',0,1,'0');
+Fpdf::Cell(190,5,''.utf8_decode('Sobre mí: ').'',0,1,'0');
 Fpdf::SetFont('Arial','',9); 
 Fpdf::SetTextColor(0,0,0);
 

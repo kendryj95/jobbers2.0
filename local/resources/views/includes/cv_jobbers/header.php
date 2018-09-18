@@ -10,7 +10,7 @@ nombres." ".$datos_personales[0]->apellidos)),0,1,'C','true');
 		Fpdf::SetFont('Arial','',8); 
 		Fpdf::SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco) 
 		Fpdf::SetFillColor(255, 255, 255); 
-		Fpdf::Cell(190,5,utf8_decode($datos_personales[0]->correo),0,1,'C','true'); 
+		Fpdf::Cell(190,5,utf8_decode($datos_personales[0]->correo ." - Teléfono: ".$datos_personales[0]->telefono),0,1,'C','true'); 
 
 		if($datos_personales[0]->id_foto=="")
 		{

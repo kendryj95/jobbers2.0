@@ -15,6 +15,7 @@ class con_cv extends Controller
     	count(t1.id) as cantidad, 
     	t1.correo,
     	t2.nombres,
+        t6.telefono,
     	t2.apellidos,
     	t2.n_identificacion,
     	IF(t2.hijos = 0,'Sin hijos',t2.hijos) as hijos,
@@ -23,9 +24,10 @@ class con_cv extends Controller
     	t3.id_foto, IF(t2.id_sexo = 1,'Masculino','Femenino') as sexo,IF(t2.id_discapacidad = 1,'Masculino','Femenino') as sexo,t4.descripcion as 	discapacidad
     	FROM tbl_usuarios t1 
 		INNER JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
-		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id 
+		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id
+        LEFT JOIN tbl_candidato_info_contacto t6 ON t6.id_usuario = t1.id
         LEFT JOIN tbl_discapacidad t4 ON t4.id = t2.id_discapacidad  
-         LEFT JOIN tbl_estados_civiles t5 ON t5.id = t2.id_edo_civil 
+        LEFT JOIN tbl_estados_civiles t5 ON t5.id = t2.id_edo_civil
 		WHERE t1.id =".$id."";
 
 		$sql_inf_general="SELECT count(t1.id) as cantidad,t1.telefono,t1.direccion,t2.descripcion,t3.provincia,t4.localidad,t2.nacionalidad FROM `tbl_candidato_info_contacto` t1
