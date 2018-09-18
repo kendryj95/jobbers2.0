@@ -346,6 +346,7 @@ function formatDate($dateMayor, $dateMenor){
 														 
 															<li><i class="la la-file-text"></i><h3>Ofertas Publicadas</h3><span><?= $empresa[0]->total_ofertas ?></span></li>
 															<li><i class="la la-bars"></i><h3>Actividad/Industria</h3><span><?= $empresa[0]->actividad_empresa ?></span></li>
+																<?php if (($empresa[0]->facebook != "" || $empresa[0]->facebook != null) || ($empresa[0]->instagram != "" || $empresa[0]->instagram != null) || ($empresa[0]->twitter != "" || $empresa[0]->twitter != null) || ($empresa[0]->linkedin != "" || $empresa[0]->linkedin != null) || ($empresa[0]->web != "" || $empresa[0]->web != null)): ?>
 															<li><i class="la la-bullhorn"></i>
 																<h3>Redes Sociales</h3>
 																<div class="share-bar">
@@ -366,6 +367,7 @@ function formatDate($dateMayor, $dateMenor){
 																	<?php endif ?>
 																</div>
 															</li>
+																<?php endif ?>
 														</ul>
 														</div><!-- Job Overview -->
 													</div>

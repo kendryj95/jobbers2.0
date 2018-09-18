@@ -182,12 +182,28 @@
 														<?php if ($datos[0]->discapacidad=="SI"): ?>
 													     <li style="padding-top: 12px;margin-top: -4px;"><i class="la la-medkit "></i><h3>Se admiten discapacitados</h3> </li>
 														<?php endif ?> 
+															<?php if (($datos[0]->facebook != "" || $datos[0]->facebook != null) || ($datos[0]->instagram != "" || $datos[0]->instagram != null) || ($datos[0]->twitter != "" || $datos[0]->twitter != null) || ($datos[0]->linkedin != "" || $datos[0]->linkedin != null) || ($datos[0]->web != "" || $datos[0]->web != null)): ?>
 														<li><i class="la la-bullhorn "></i>
 															<h3>Redes Sociales</h3>
 															<div class="share-bar">
-																<a href="#" title="" class="share-fb"><i class="fa fa-facebook" style="position: initial; font-size: initial; color: inherit;"></i></a><a href="#" title="" class="share-twitter"><i class="fa fa-twitter" style="position: initial; font-size: initial; color: inherit;"></i></a>
+																<?php if ($datos[0]->facebook != "" || $datos[0]->facebook != null): ?>
+																<a href="<?= $datos[0]->facebook ?>" title="" class="share-fb"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-facebook"></i></a>
+																<?php endif ?>
+																<?php if ($datos[0]->instagram != "" || $datos[0]->instagram != null): ?>
+																<a href="<?= $datos[0]->instagram ?>" title="" class="share-ig"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-instagram"></i></a>
+																<?php endif ?>
+																<?php if ($datos[0]->twitter != "" || $datos[0]->twitter != null): ?>
+																<a href="<?= $datos[0]->twitter ?>" title="" class="share-twitter"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-twitter"></i></a>
+																<?php endif ?>
+																<?php if ($datos[0]->linkedin != "" || $datos[0]->linkedin != null): ?>
+																<a href="<?= $datos[0]->linkedin ?>" title="" class="share-lkd"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-linkedin"></i></a>
+																<?php endif ?>
+																<?php if ($datos[0]->web != "" || $datos[0]->web != null): ?>
+																<a href="<?= $datos[0]->web ?>" title="" class="share-web"><i style="position: initial; font-size: initial; color:inherit;" class="la la-globe"></i></a>
+																<?php endif ?>
 															</div>
 														</li>
+															<?php endif ?>
 
 																 
 																 

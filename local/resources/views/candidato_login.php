@@ -69,8 +69,9 @@
 											<p class="remember-label">
 											</p>
 											<a href="recuperarclave" title="">Olvidé mi clave</a>&nbsp;&nbsp;
-											<a href="javascript:void(0)" class="signup-popup" title="" style="margin-right: 5px">Registrarme</a>
+											
 											<button type="submit">Entrar</button>
+											<a href="javascript:void(0)" class="signup-popup" title="">Registrarme</a>
 										</form>
 									</div>
 									</div><!-- LOGIN POPUP -->
