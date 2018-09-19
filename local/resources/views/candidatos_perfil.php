@@ -32,8 +32,10 @@ $mi_tokken = csrf_token();
                                      <p style="font-size: 14px;margin-top: -35px;">Esperamos que el nuevo Jobbers te guste tanto como a nosotros.</p>
                                     <img style="height: 100px;width: auto;" src="https://corevalue.net/wp-content/uploads/2015/11/CoreValue_data-validation.png">
                                    
-                                    <p style="font-size: 14px;">En esta ocación necesitamos de tu ayuda, para que tengamos un sistema limpio y tengas mayor posibilidades de ser seleccionado por una de las empresas que forman parte de Jobebrs necesitamos que <strong>valides tu información</strong> y la <strong>corrijas</strong> en caso de haber algun error producto de la migración.</p>
-                                    <p style="font-size: 14px;">Para mayor ayuda en el <a style="color: #4286f4;text-decoration: underline;" href="candidahboard"><strong>Inicio de tu panel</strong></a> tienes un chat de soporte siempre disponible para ayudarte.</p>
+                                    <p style="font-size: 14px;"><strong>Logramos Innovar! </strong>Tenemos un sistema más <strong>potente,</strong> así puedes tener más posibilidades de ser seleccionado por empresas que forman parte de nuestro portal.
+                                    <br> 
+                                    <strong>Necesitamos que validez tu información</strong></p>
+                                    <p style="font-size: 14px;">Para mayor ayuda en el <a style="color: #4286f4;text-decoration: underline;" href="candidashboard"><strong>Inicio de tu panel</strong></a> tienes un chat de soporte siempre disponible para ayudarte.</p>
                                   </div> 
                                 </div> 
                               </div>
@@ -1277,7 +1279,7 @@ $mi_tokken = csrf_token();
         }
          
     }
-//$("#myModal").modal('show');  
+$("#myModal").modal('show');  
 </script>
 
 <script>
