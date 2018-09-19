@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="../../local/resources/views/css/colors/colors.css" />
+		<link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
 	</head>
@@ -65,7 +66,7 @@
 										<div class="widget">
 											<h3 class="sb-title open">Experiencia Laboral</h3>
 											<div class="specialism_widget">
-												<div class="simple-checkbox scrollbar">
+												<div class="simple-checkbox" data-simplebar style="overflow-y: auto; height: 300px;">
 													<p><input class="exp" type="radio" name="exp_lab" id="exp_lab_0" value="0" checked="checked"><label for="exp_lab_0">Sin Seleccionar</label></p>
 													<?php foreach ($filtro_experiencia_laboral as $value): ?>
 													<p><input class="exp" type="radio" name="exp_lab" id="exp_lab_<?= $value->id ?>" value="<?= $value->id ?>"><label for="exp_lab_<?= $value->id ?>"><?= $value->nombre ?></label></p>
@@ -99,7 +100,7 @@
 										<div class="widget">
 											<h3 class="sb-title closed">Areas de estudio</h3>
 											<div class="specialism_widget">
-												<div class="simple-checkbox">
+												<div class="simple-checkbox" data-simplebar style="overflow-y: auto; height: 300px;">
 													<p><input class="area" type="radio" name="area" id="area_0" value="0" checked="checked"><label for="area_0">Sin Definir</label></p>
 													<?php foreach ($filtro_area_estudios as $value): ?>
 													<p><input class="area" type="radio" name="area" id="area_<?= $value->id ?>" value="<?= $value->id ?>"><label for="area_<?= $value->id ?>"><?= $value->descripcion ?></label></p>
@@ -110,7 +111,7 @@
 										<div class="widget">
 											<h3 class="sb-title closed">Provincia</h3>
 											<div class="specialism_widget">
-												<div class="simple-checkbox">
+												<div class="simple-checkbox" data-simplebar style="overflow-y: auto; height: 300px;">
 													<p><input class="provincia" type="radio" name="prov" id="prov_0" value="0" checked="checked"><label for="prov_0">Sin Definir</label></p>
 													<?php foreach ($filtro_provincia as $value): ?>
 													<p><input class="provincia" type="radio" name="prov" id="prov_<?= $value->id ?>" value="<?= $value->id ?>"><label for="prov_<?= $value->id ?>"><?= $value->provincia ?></label></p>
@@ -277,8 +278,8 @@
 						<script src="../../local/resources/views/js/slick.min.js" type="text/javascript"></script>
 						<script src="../../local/resources/views/js/parallax.js" type="text/javascript"></script>
 						<script src="../../local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-						<script src="../../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
-						<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
+						<!-- <script src="../../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script> -->
+						<script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>						<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
 						<script src="../../local/resources/views/js/maps2.js" type="text/javascript"></script>
 						<script src="../../local/resources/views/plugins/notify.js" type="text/javascript"></script>
 						<script>
