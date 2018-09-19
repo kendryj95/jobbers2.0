@@ -146,7 +146,7 @@ class con_postulados extends Controller
 		LEFT JOIN tbl_area_estudios ae ON ce.id_area_estudio=ae.id
 		LEFT JOIN tbl_candidato_info_contacto cic ON p.id_usuario=cic.id_usuario
 		LEFT JOIN tbl_candidato_idioma ci ON p.id_usuario=ci.id_usuario
-		LEFT JOIN tbl_candidato_experiencia_laboral cel ON p.id_usuario
+		LEFT JOIN tbl_candidato_experiencia_laboral cel ON p.id_usuario=cel.id_usuario
 		LEFT JOIN tbl_actividades_empresa acte ON cel.id_actividad_empresa=acte.id
 		LEFT JOIN tbl_candidato_calificaciones cc ON p.id_usuario=cc.id_usuario
 		LEFT JOIN (SELECT id_usuario, id_marcador FROM tbl_candidato_marcadores WHERE id_publicacion=:id_pub) cm ON p.id_usuario=cm.id_usuario
