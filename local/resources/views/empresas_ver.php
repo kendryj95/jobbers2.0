@@ -110,7 +110,7 @@
                 <div class="job-listing wtabs">
 										<div class="mobile">
 											<img src="<?= $imagen;?>" class="img-fluid img-oferta" alt="">
-											<p style="cursor: pointer;"> class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
+											<p style="cursor: pointer;" class="nombre-img" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'"><?= $empresa->nombre_empresa ?></p>
 										</div> 
 										<div class="job-title-sec container-desc-oferta" style="display: grid">
 											<h5 style="cursor: pointer;" onclick="location.href='empresa/detalle?e=<?= $empresa->id_empresa?>;'" class="title-recom"><?php echo $empresa->nombre_empresa ?><a href="#"></a></h5>
@@ -174,15 +174,15 @@
                            <?php if ($empresa->web!=""): ?>
                             <a target="_blank" href="<?=$empresa->web;?>"><span class="container-web"><i class="fa fa-globe mr-0"></i></span></a>
                           <?php endif ?> 
-												 
 												</div>
-												<p class="container-media mobile" style="margin-bottom: 0;">
+                        <!-- NOTE COMENTADO POR PEDIDO DE DANIEL -->
+												<!-- <p class="container-media mobile" style="margin-bottom: 0;">
 													<a href="#"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="margin-left: 4px; vertical-align: text-top"></i></span></a>
 													<a href="#"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
 													<a href="#"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
 													<a href="#"><span class="container-ig" style="float: inherit"><i class="fa fa-instagram mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
 													<a href="#"><span class="container-web" style="float: inherit"><i class="fa fa-globe mr-0" style="padding:3px; margin-left: 0px; vertical-align: super; font-size: 14px;"></i></span></a>
-												</p>
+												</p> -->
 											</div>
 										</div>
 										<div class="job-style-bx container-img-oferta-i desk">
