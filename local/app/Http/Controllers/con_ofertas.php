@@ -322,7 +322,7 @@ class con_ofertas extends Controller
             $vista->salarios         = $salarios;
             $sql_cantidad_ofertas = "
                 SELECT count(*) as cantidad
-                FROM tbl_publicacion
+                FROM tbl_publicacion t1
                 WHERE id_empresa= " . $datos[0]->id_empresa . " ".$estatus." GROUP by id_empresa";
 
            
@@ -337,7 +337,7 @@ class con_ofertas extends Controller
 
             $sql_cantidad_ofertas = "
                 SELECT count(*) as cantidad
-                FROM tbl_publicacion
+                FROM tbl_publicacion t1
                 WHERE id_empresa= " . $datos[0]->id_empresa . " ".$estatus." GROUP by id_empresa";
             $cantidad_postulados = DB::select("SELECT COUNT(*) AS count FROM tbl_postulaciones WHERE id_publicacion=?", [$id]);
             $vista->cantidad_postulados = $cantidad_postulados[0]->count;
