@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 		<?php include('local/resources/views/includes/chat_soporte.php');?>
+		<?php include('local/resources/views/includes/google_analitycs.php');?>
 	</head>
 	<body>
 		<?php include("local/resources/views/includes/general_header_responsive.php")?>

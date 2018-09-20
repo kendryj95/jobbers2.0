@@ -9,6 +9,7 @@ $mi_tokken = csrf_token();
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<?php include('local/resources/views/includes/google_analitycs.php');?>
 <?php include('local/resources/views/includes/chat_soporte.php');?>
 <style class="cp-pen-styles">body {
  
@@ -666,20 +667,7 @@ $mi_tokken = csrf_token();
 #frame .content .message-input .wrap button:focus {
   outline: none;
 }
-</style></head><body>
-<!-- 
-
-A concept for a chat interface. 
-
-Try writing a new message! :)
-
-
-Follow me here:
-Twitter: https://twitter.com/thatguyemil
-Codepen: https://codepen.io/emilcarlsson/
-Website: http://emilcarlsson.se/
-
--->
+</style></head><body> 
 
 <div id="frame">
     <div id="sidepanel">

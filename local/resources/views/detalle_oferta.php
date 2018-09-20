@@ -54,6 +54,7 @@
 				 }
 			}
 		</style>
+		<?php include('local/resources/views/includes/google_analitycs.php');?>
 	</head>
 	<body style="background-color: #eeeeee;">
 		<div class="modal fade" id="myModal" role="dialog">

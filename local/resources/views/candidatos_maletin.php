@@ -20,6 +20,7 @@ $mi_tokken=csrf_token();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <?php include('local/resources/views/includes/chat_soporte.php');?>
+    <?php include('local/resources/views/includes/google_analitycs.php');?>
   </head>
   <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
     <div class="theme-layout" id="scrollup">

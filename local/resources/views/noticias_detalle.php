@@ -17,6 +17,7 @@
     	<link href="../local/resources/views/plugins/btn_social/assets/css/font-awesome.css" rel="stylesheet">
     	 <?php include("local/resources/views/includes/chat_soporte.php");?>
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/plugins/btn_social/bootstrap-social.css" />
+		<?php include('local/resources/views/includes/google_analitycs.php');?>
 	</head>
 	<body>
 		<?php $atras=1;?>

@@ -14,6 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
+		<?php include('local/resources/views/includes/google_analitycs.php');?>	
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
 		<?php include("local/resources/views/includes/chat_soporte.php");?>
 	</head>

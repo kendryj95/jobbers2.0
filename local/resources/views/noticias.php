@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" /> 
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" /> 
 		<?php include("local/resources/views/includes/chat_soporte.php");?>
+		<?php include('local/resources/views/includes/google_analitycs.php');?>
 	</head>
 	<body>
 		<?php include('local/resources/views/includes/general_header.php');?>

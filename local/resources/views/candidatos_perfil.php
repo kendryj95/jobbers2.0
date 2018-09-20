@@ -18,7 +18,7 @@ $mi_tokken = csrf_token();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
          <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
          <link href="https://www.jqueryscript.net/demo/jQuery-Progress-Bar-Plugin-LineProgressbar/dist/jquery.lineProgressbar.css" rel="stylesheet" type="text/css">
-        
+        <?php include('local/resources/views/includes/google_analitycs.php');?>
     </head>
     <body style="background: url(https://cdn5.f-cdn.com/contestentries/1108779/15284413/5994ef1193f43_thumb900.jpg)">
         <!-- Trigger the modal with a button -->
@@ -36,6 +36,8 @@ $mi_tokken = csrf_token();
                                     <br> 
                                     <strong>Necesitamos que validez tu información</strong></p>
                                     <p style="font-size: 14px;">Para mayor ayuda en el <a style="color: #4286f4;text-decoration: underline;" href="candidashboard"><strong>Inicio de tu panel</strong></a> tienes un chat de soporte siempre disponible para ayudarte.</p>
+
+                                    <button style="margin-top: -30px;background-color: #00a518;color: #fff;" type="button" class="btn tbn-primary form-control" onClick="ocultar()">Ocultar</button>
                                   </div> 
                                 </div> 
                               </div>
@@ -1279,7 +1281,12 @@ $mi_tokken = csrf_token();
         }
          
     }
-$("#myModal").modal('show');  
+//$("#myModal").modal('show'); 
+
+ function ocultar()
+{
+    $("#myModal").modal('hide');  
+}
 </script>
 
 <script>

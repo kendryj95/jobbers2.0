@@ -100,6 +100,7 @@ function formatDate($dateMayor, $dateMenor){
 			    padding-top: 10px;
 			}
 		</style>
+		<?php include('local/resources/views/includes/google_analitycs.php');?>
 </head>
 	<body style="background-color: #eeeeee;">
 		<div class="theme-layout" id="scrollup">

@@ -23,7 +23,7 @@ $mi_tokken=csrf_token();
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-  
+  <?php include('local/resources/views/includes/google_analitycs.php');?>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({
@@ -259,7 +259,7 @@ $mi_tokken=csrf_token();
           </aside>
           <div class="col-lg-9 column" id="offers">
           <!-- Carousel de publicidad -->
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="display: none;">
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner carousel-height" role="listbox">

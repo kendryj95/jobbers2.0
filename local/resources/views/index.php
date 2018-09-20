@@ -25,6 +25,7 @@
 				display: inline-block;
 			}
 		</style>
+		<?php include('local/resources/views/includes/google_analitycs.php');?>
 		<?php include("local/resources/views/includes/chat_soporte.php");?>
 	</head>
 	<body>

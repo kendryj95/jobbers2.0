@@ -9,8 +9,9 @@ $mi_tokken = csrf_token();
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 <link rel="stylesheet" type="text/css" href="../local/resources/views/css/soporte.css" />
-</head><body>
- 
+<?php include('local/resources/views/includes/google_analitycs.php');?>s
+</head>
+<body> 
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">

@@ -61,6 +61,7 @@
       });
     </script>
     <?php include('local/resources/views/includes/chat_soporte.php');?>
+    <?php include('local/resources/views/includes/google_analitycs.php');?>
   </head>
   <body>
     <?php include('local/resources/views/includes/general_header.php');?>
