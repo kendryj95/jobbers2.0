@@ -32,7 +32,7 @@ class con_ofertas extends Controller
             if ($_POST["antiguedad"] != 1) {
                 
                 $values = [
-                    " AND t1.tmp=CURDATE()", // Hoy
+                    " AND DATE_FORMAT(t1.tmp,'%Y-%m-%d')=CURDATE()", // Hoy
                     " AND t1.tmp BETWEEN (CURDATE()-7) AND CURDATE()", // Ultima Semana
                     " AND t1.tmp BETWEEN (CURDATE()-30) AND CURDATE()" // Ultimos 30 días
                 ];
@@ -150,7 +150,7 @@ class con_ofertas extends Controller
                             SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1
                             ) AS cantidad_todo,
                             (
-                            SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1 AND tmp=CURDATE()
+                            SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1 AND DATE_FORMAT(tmp,'%Y-%m-%d')=CURDATE()
                             ) AS cantidad_hoy,
                             (
                             SELECT COUNT(id) FROM tbl_publicacion WHERE estatus=1 AND tmp BETWEEN (CURDATE()-7) AND CURDATE()
