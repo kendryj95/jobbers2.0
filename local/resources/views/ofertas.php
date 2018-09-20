@@ -100,21 +100,43 @@ $mi_tokken=csrf_token();
               <div class="widget filter-offer">
                 <h3 class="sb-title open">Localidad
                 </h3>
-                <div class="type_widget" style="">
-
+                <div class="type_widget" style="height: 300px;overflow-y: scroll;">
+                  <?php function buscar_localidad($parametro,$bandera,$arreglo)
+                  {
+                      if($bandera==1)
+                      {
+                         foreach ($arreglo as $key) {
+                          if($parametro==$key->localidad){return true;die();}
+                        }
+                      }
+                      return false; 
+                  }?>
+                  
                   <?php $contador=0 ?>
-                  <?php foreach ($localidad as $key): ?>
-                  <p class="flchek">
-                    <input type="checkbox" onclick="filter()" name="localidades[]" id="loc_<?= $key->id_localidad ?>" value="<?= $key->id_localidad ?>">
-                    <label id="label_loc_<?= $key->id_localidad ?>" for="loc_<?= $key->id_localidad ?>">
-                      <?= $key->localidad ?>
-                    </label> (<?= $key->cantidad ?>)
-                  </p>
-                  <?php  
-                      if ($contador>10){break;}
-                      $contador++;
-                    ?>
-                  <?php endforeach ?>
+                    <?php foreach ($localidad as $key): ?> 
+                      <?php if (buscar_localidad($key->localidad,1,$total_provincias)==true): ?>
+                            <p class="flchek">
+                              <input type="checkbox" onclick="filter()" name="localidades[]" id="loc_<?= $key->id_localidad ?>" value="<?= $key->id_localidad ?>">
+                              <label id="label_loc_<?= $key->id_localidad ?>" for="loc_<?= $key->id_localidad ?>">
+                                  <?=$key->localidad ?>
+                              </label> (
+                              <?=$key->cantidad ?>)
+                          </p>
+                        <?php endif ?> 
+                    <?php endforeach ?>
+                   
+
+                   <?php foreach ($localidad as $key): ?> 
+                      <?php if (buscar_localidad($key->localidad,1,$total_provincias)==false): ?>
+                            <p class="flchek">
+                              <input type="checkbox" onclick="filter()" name="localidades[]" id="loc_<?= $key->id_localidad ?>" value="<?= $key->id_localidad ?>">
+                              <label id="label_loc_<?= $key->id_localidad ?>" for="loc_<?= $key->id_localidad ?>">
+                                  <?=$key->localidad ?>
+                              </label> (
+                              <?=$key->cantidad ?>)
+                          </p>
+                        <?php endif ?> 
+                    <?php endforeach ?>
                 </div>
               </div>
               <div class="widget filter-offer">
@@ -180,7 +202,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget filter-offer">
+              <div class="widget filter-offer" style="display: none">
                 <h3 class="sb-title active">Oferta salarial
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -204,7 +226,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget filter-offer">
+              <div class="widget filter-offer" style="display: none">
                 <h3 class="sb-title active">Experiencia
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -224,7 +246,7 @@ $mi_tokken=csrf_token();
                   </div>
                 </div>
               </div>
-              <div class="widget filter-offer">
+              <div class="widget filter-offer" style="display: none">
                 <h3 class="sb-title active">Género
                 </h3>
                 <div class="specialism_widget" style="display: block;">

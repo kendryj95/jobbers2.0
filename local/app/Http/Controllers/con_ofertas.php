@@ -10,6 +10,7 @@ class con_ofertas extends Controller
 {
     public function index()
     {
+         $provincias_cordoba=DB::select("SELECT * FROM tbl_localidades where id_provincia = 7;");
         $vista = View::make("ofertas");
 
         $condiciones = "";
@@ -164,7 +165,7 @@ class con_ofertas extends Controller
         $sql_salario        = "SELECT s.salario, t1.id_salario, COUNT(t1.id_salario) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_rango_salarios s ON t1.id_salario=s.id WHERE t1.estatus=1 $condiciones AND t1.id_salario IN (SELECT t1.id_salario $consulta_general) GROUP BY t1.id_salario";
         $sql_genero         = "SELECT g.descripcion, t1.id_genero, COUNT(t1.id_genero) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_generos g ON t1.id_genero=g.id WHERE t1.estatus=1 $condiciones AND t1.id_genero IN (SELECT t1.id_genero $consulta_general) GROUP BY t1.id_genero";
         $sql_provincias     = "SELECT pv.provincia, t1.id_provincia, COUNT(t1.id_provincia) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_provincias pv ON t1.id_provincia=pv.id WHERE t1.estatus=1 $condiciones AND t1.id_provincia IN (SELECT t1.id_provincia $consulta_general) GROUP BY t1.id_provincia";
-        $sql_localidades    = "SELECT l.localidad, t1.id_localidad, COUNT(t1.id_localidad) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_localidades l ON t1.id_localidad=l.id WHERE t1.estatus=1 $condiciones AND t1.id_localidad IN (SELECT t1.id_localidad $consulta_general) GROUP BY t1.id_localidad";
+        $sql_localidades    = "SELECT l.localidad, t1.id_localidad, COUNT(t1.id_localidad) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_localidades l ON t1.id_localidad=l.id WHERE t1.estatus=1 $condiciones AND t1.id_localidad IN (SELECT t1.id_localidad $consulta_general) GROUP BY t1.id_localidad ORDER BY COUNT(t1.id_localidad) desc";
         $sql_experiencia    = "SELECT e.descripcion, t1.id_experiencia, COUNT(t1.id_experiencia) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_experiencia e ON t1.id_experiencia=e.id WHERE t1.estatus=1 $condiciones AND t1.id_experiencia IN (SELECT t1.id_experiencia $consulta_general) GROUP BY t1.id_experiencia";
         $condicion=0;
         if(session()->get("cand_id")!=null && session()->get("cand_id")=='')
@@ -227,6 +228,7 @@ class con_ofertas extends Controller
             $vista->paginas  = $paginas;
             $vista->paginaAct  = $paginaAct;
             $vista->totalPublicaciones  = $totalPublicaciones;
+            $vista->total_provincias = $provincias_cordoba;
             return $vista;
         } catch (Exception $e) {
 
@@ -257,6 +259,10 @@ class con_ofertas extends Controller
 
     public function detalle($id, Request $request)
     {
+
+       
+
+
 
         $estatus = " AND t1.estatus = 1";
 
@@ -317,7 +323,7 @@ class con_ofertas extends Controller
             $sql_cantidad_ofertas = "
                 SELECT count(*) as cantidad
                 FROM tbl_publicacion
-                WHERE id_empresa= " . $datos[0]->id_empresa . " and estatus = 1 GROUP by id_empresa";
+                WHERE id_empresa= " . $datos[0]->id_empresa . " ".$estatus." GROUP by id_empresa";
 
            
 
@@ -332,13 +338,14 @@ class con_ofertas extends Controller
             $sql_cantidad_ofertas = "
                 SELECT count(*) as cantidad
                 FROM tbl_publicacion
-                WHERE id_empresa= " . $datos[0]->id_empresa . " and estatus = 1 GROUP by id_empresa";
+                WHERE id_empresa= " . $datos[0]->id_empresa . " ".$estatus." GROUP by id_empresa";
             $cantidad_postulados = DB::select("SELECT COUNT(*) AS count FROM tbl_postulaciones WHERE id_publicacion=?", [$id]);
             $vista->cantidad_postulados = $cantidad_postulados[0]->count;
             $cantidad_ofertas        = DB::select($sql_cantidad_ofertas);
             $vista->cantidad_ofertas = $cantidad_ofertas;
             $vista->nivel_user=$this->nivel_usuario();
             $vista->postulado = $postulado;
+            
             return $vista;
         } catch (Exception $e) {
 

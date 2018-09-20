@@ -49,7 +49,7 @@
 							<div class="col-lg-12 col-xl-9 column">
 								<div class="padding-left">
 									<div class="manage-jobs-sec empresa-offers-resp">
-										<h3>Listado de ofertas de trabajo</h3>
+										<h3>Listado de ofertas de trabajo</h3> 
 										<div class="extra-job-info">
 											<span><i class="la la-clock-o"></i><strong><?= $total_ofertas ?></strong> Ofertas publicadas</span>
 											<span><i class="la la-file-text"></i><strong><?= $total_postulados ?></strong> Postulados en total</span>
@@ -61,7 +61,7 @@
 													<td>Titulo</td>
 													<td>Postulados</td>
 													<td>Creado y vencido</td>
-													<td>Status</td>
+													<td>Estatus</td>
 													<td>Acciones</td>
 												</tr>
 											</thead>
