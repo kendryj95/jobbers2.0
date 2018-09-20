@@ -97,10 +97,10 @@ $mi_tokken=csrf_token();
                   <?php endforeach ?>
                 </div>
               </div>
-              <div class="widget filter-offer">
+              <div class="widget filter-offer" style="height: 300px;overflow-y: scroll;">
                 <h3 class="sb-title open">Localidad
                 </h3>
-                <div class="type_widget" style="height: 300px;overflow-y: scroll;">
+                <div class="type_widget" 
                   <?php function buscar_localidad($parametro,$bandera,$arreglo)
                   {
                       if($bandera==1)
@@ -154,7 +154,7 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
 
-              <div class="widget filter-offer">
+              <div class="widget filter-offer" style="height: 300px;overflow-y: scroll;">
                 <h3 class="sb-title active">Área
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -168,17 +168,13 @@ $mi_tokken=csrf_token();
                       <label id="label_area_<?= $key->id_area ?>" for="area_<?= $key->id_area ?>">
                         <?= $key->nombre ?> (<?= $key->cantidad ?>)
                       </label>
-                    </p>
-                    <?php  
-                        if($contador>10){break;}
-                        $contador++;
-                        endforeach; 
-                      ?>
+                    </p> 
+                     <?php endforeach ?>
                   </div>
                 </div>
               </div>
 
-              <div class="widget filter-offer">
+              <div class="widget filter-offer" style="height: 300px;overflow-y: scroll;">
                 <h3 class="sb-title active">Sector
                 </h3>
                 <div class="specialism_widget" style="display: block;">
@@ -192,12 +188,8 @@ $mi_tokken=csrf_token();
                       <label id="label_sect_<?= $key->id_sector ?>" for="sect_<?= $key->id_sector ?>">
                         <?= $key->nombre ?> (<?= $key->cantidad ?>)
                       </label> 
-                    </p>
-                    <?php  
-                        if($contador>10){break;}
-                        $contador++;
-                        endforeach;
-                      ?>
+                    </p> 
+                      <?php endforeach ?>
                   </div>
                 </div>
               </div>
