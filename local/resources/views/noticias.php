@@ -25,8 +25,8 @@
 			<div class="block back-offers">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-9 col-md-9 column">
-							<div id="carousel-news" class="carousel slide" data-ride="carousel">
+						<div class="col-lg-9 col-md-9 column" style="padding-top: 10px;">
+							<div id="carousel-news" class="carousel slide" data-ride="carousel" style="display: none;">
 
 								<!-- Wrapper for slides -->
 								<div class="carousel-inner carousel-height" role="listbox">
