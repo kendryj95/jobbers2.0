@@ -14,14 +14,15 @@ class con_cv extends Controller
     	SELECT count(t1.id) as cantidad,t2.cuil,
     	count(t1.id) as cantidad, 
     	t1.correo,
+        t2.id_sexo,
     	t2.nombres,
         t6.telefono,
     	t2.apellidos,
-    	t2.n_identificacion,
+    	t2.n_identificacion, 
     	IF(t2.hijos = 0,'Sin hijos',t2.hijos) as hijos,
     	t5.descripcion as  edo_civil,
     	t2.fecha_nac,
-    	t3.id_foto, IF(t2.id_sexo = 1,'Masculino','Femenino') as sexo,IF(t2.id_discapacidad = 1,'Masculino','Femenino') as sexo,t4.descripcion as 	discapacidad
+    	t3.id_foto, IF(t2.id_sexo = 1,'Masculino','Femenino') as sexo,t4.descripcion as 	discapacidad
     	FROM tbl_usuarios t1 
 		INNER JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id
 		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id
@@ -56,10 +57,10 @@ class con_cv extends Controller
         	 GROUP BY t2.id
 			";
 			
-			$sql_estudios="SELECT count(t2.id) as cantidad,t5.descripcion as nivel_estudio,t3.descripcion,t2.nombre_institucion,t4.descripcion as area_estudio,t2.desde as fecha,t2.titulo from tbl_usuarios t1
+			$sql_estudios="SELECT count(t2.id) as cantidad,t5.descripcion as nivel_estudio,t3.descripcion,t2.nombre_institucion,t4.nombre as area_estudio,t2.desde as fecha,t2.titulo from tbl_usuarios t1
 				LEFT JOIN tbl_candidatos_educacion t2 ON t2.id_usuario=t1.id
 				LEFT JOIN tbl_paises t3 ON t3.id = t2.id_pais
-				LEFT JOIN tbl_area_estudios t4 ON t4.id = t2.id_area_estudio
+				LEFT JOIN tbl_areas_estudio t4 ON t4.id = t2.id_area_estudio
 				LEFT JOIN tbl_nivel_estudio t5 ON t5.id = t2.id_nivel_estudio
 			WHERE t1.id =".$id."
 			group by t2.id

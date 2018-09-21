@@ -715,16 +715,16 @@ class con_candidato_perfil_publico extends Controller
         $sql="SELECT count(*) as cantidad FROM tbl_candidatos_educacion WHERE id_usuario=".session()->get('cand_id')."";
         $datos=DB::select($sql);
 
-        $sql_educacion="SELECT  educacion FROM tbl_candidato_porcentaje_carga WHERE id_usuario=".session()->get('cand_id')."";
+        $sql_educacion="SELECT count(id) as cantidad, educacion FROM tbl_candidato_porcentaje_carga WHERE id_usuario=".session()->get('cand_id')." GROUP by id";
         $datos_educacion=DB::select($sql_educacion);
 
 
         $sql="DELETE FROM  tbl_candidatos_educacion
         WHERE id=".$id." and id_usuario=".session()->get('cand_id')."";
-
+       
         try {
             DB::delete($sql);
-            $this->porcentaje_carga($datos_educacion[0]->educacion-1,'educacion',$_POST);
+            $this->porcentaje_carga($datos_educacion[0]->cantidad-1,'educacion',$_POST);
             if(isset($_GET['admin_control']) && $_GET['admin_control']!="")
                     {
                         $id=session()->get('cand_id');
