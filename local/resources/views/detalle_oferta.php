@@ -100,7 +100,7 @@
 													$imagen = $datos[0]->confidencial == 'NO' || $datos[0]->confidencial == null ? "../uploads/min/".$datos[0]->imagen : "../uploads/min/empresa.jpg";
 													
 												?> 
-												<div class="job-thumb"> <img src="<?= $imagen ?>" alt="Logo de empresa"></div>
+												<div class="job-thumb"> <img style="width: 150px;height: 150px;" src="<?= $imagen ?>" alt="Logo de empresa"></div>
 												<div class="job-single-info3">
 
 													<h3><?= $datos[0]->titulo; ?></h3>

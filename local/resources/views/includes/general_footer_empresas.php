@@ -9,9 +9,9 @@
 								<a href="#" title=""><img src="https://www.jobbersargentina.net/img/logo_d.png" width="150" alt="" style="background-color: rgba(255,255,255);padding-left: 25px;padding-right: 25px; border-radius: 4px;" /></a>
 							</div>
 							<span>Cordoba, Argentina.</span>
-							<span>administracion@jobbersargentina.net</span>
+							<span>jobbersargentina@gmail.com</span>
 							<div class="social">
-								<a href="https://www.facebook.com/jobbersarg/" title=""><i class="fa fa-facebook"></i></a>
+								<a href="https://www.facebook.com/jobbersargentina/" title=""><i class="fa fa-facebook"></i></a>
 								<a href="https://www.instagram.com/jobbersargentina/" title=""><i class="fa fa-instagram"></i></a>
 								<!-- <a href="#" title=""><i class="fa fa-twitter"></i></a>
 								<a href="#" title=""><i class="fa fa-linkedin"></i></a>
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<div class="bottom-line">
-			<span>© 2016 <span style="color: #fff;">jobbersargentina</span> todos los derechos resevados.</span>
+			<span>© 2018 <span style="color: #fff;">jobbersargentina</span> todos los derechos resevados.</span>
 			<a href="#scrollup" class="scrollup" title=""><i class="la la-arrow-up"></i></a>
 		</div>
 	</footer>
