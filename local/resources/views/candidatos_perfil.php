@@ -896,9 +896,10 @@ $mi_tokken = csrf_token();
                                          <?php if (count($idiomas_listado)==0): ?>
                                                      </div>
                                                 <?php endif ?>
-                                       <div  class="social-edit"  style="text-align: center;"> 
-                                            <a target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
-                                                 <img id="cvjobbers" src="<?= 'local/resources/views/images/sin_usar.jpg'?>">
+                                       <div  class="social-edit"  style="text-align: center;padding-left: 30px;"> 
+                                        <img src="local/resources/views/images/curriculum.png" alt="">
+                                            <a style="color: #fff;font-weight: 600" class="btn btn-success form-control" target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
+                                            Ver mi cv Jobbers 
                                             </a>
                                        </div>
                                      
