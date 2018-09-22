@@ -83,19 +83,32 @@
                   </div>
                 </div>
               </form>
+              <div class="modrn-joblist" style="padding-top: 20px;padding-bottom: 0px;margin-bottom: -10px;"> 
+                 <div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
+                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                  <!-- prueba 3 -->
+                  <ins class="adsbygoogle"
+                  style="display:block"
+                  data-ad-client="ca-pub-1968505410020323"
+                  data-ad-slot="2357238982"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"></ins>
+                  <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </div>
+              </div>
             </aside>
             <div class="col-lg-9 column">
-              <div class="modrn-joblist">
+
+              
+
                 <div class="tags-bar" id="filtros"> 
                   <div class="action-tags">
                     <a title="" onclick="limpiar()"><i class="la la-trash-o"></i> Quitar filtros</a>
                   </div>
                 </div>
-                <!-- Tags Bar -->
-                <div class="filterbar" style="margin: 0px;">
-                  <h5><?php echo $totalEmpresas;?> Empresas</h5>
-                </div>
-              </div>
+               
             <?php 
             function cantidad($valor,$arreglo)
             {
@@ -105,6 +118,22 @@
               return 0;
             } 
             ?>
+            <div class="modrn-joblist" style="padding-top: 20px;padding-bottom: 0px;margin-bottom: -10px;">
+               <h5 style="font-weight: 700;"><?php echo $totalEmpresas;?> Empresas</h5>
+                 <div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
+                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                  <!-- prueba 3 -->
+                  <ins class="adsbygoogle"
+                  style="display:block"
+                  data-ad-client="ca-pub-1968505410020323"
+                  data-ad-slot="2357238982"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"></ins>
+                  <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </div>
+              </div>
               <?php foreach ($empresas as $empresa): ?> 
                 <?php $imagen = $empresa->imagen == null ? 'uploads/0.jpg' : 'uploads/'.$empresa->imagen ?>
               <div class="job-listings-sec" style="margin-top: 0px;">
