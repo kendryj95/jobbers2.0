@@ -23,20 +23,17 @@ $mi_tokken=csrf_token();
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
   <link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-  <?php include('local/resources/views/includes/google_analitycs.php');?>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-1968505410020323",
-      enable_page_level_ads: true
-    });
-  </script>
-  <?php include("local/resources/views/includes/chat_soporte.php");?>
-</head>
 
+  <?php include('local/resources/views/includes/google_analitycs.php');?> 
+  <?php include("local/resources/views/includes/chat_soporte.php");?> 
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+     
+</head> 
 <body>
+
   <?php include('local/resources/views/includes/general_header.php');?>
   <?php include('local/resources/views/includes/general_header_responsive.php');?>
+
   <section class="section-offers">
     <div class="block no-padding back-offers">
       <div class="container">
@@ -256,8 +253,18 @@ $mi_tokken=csrf_token();
                 </div>
               </div>
             </form>
+
+            <!-- prueba 2 -->
+            <ins class="adsbygoogle"
+            style="display:inline-block;width:160px;height:600px"
+            data-ad-client="ca-pub-1968505410020323"
+            data-ad-slot="2074167956"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
           </aside>
-          <div class="col-lg-9 column" id="offers">
+          <div class="col-lg-9 column" id="offers"> 
+             
           <!-- Carousel de publicidad -->
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="display: none;">
 
@@ -291,26 +298,13 @@ $mi_tokken=csrf_token();
                 <span class="sr-only">Next</span>
               </a>
             </div>
+
+
             <div class="modrn-joblist">
 
               <!-- Tags Bar -->
               <div class="filterbar">
-                <!-- <div class="sortby-sec">
-                    <span>Filtrar
-                    </span>
-                    <select data-placeholder="Most Recent" class="chosen" style="display: none;">
-                      <option>Sin filtro
-                      </option>
-                      <option>Recientes
-                      </option>
-                      <option>Populares
-                      </option>
-                      <option>Mis Favoritas
-                      </option>
-                    </select>
-                    
-                  </div> -->
-
+             
                 <div class="tags-bar" id="filtros">
 
                   <div class="action-tags">
@@ -331,12 +325,25 @@ $mi_tokken=csrf_token();
                 $bandera_favorito=1;
               }
               ?>
+
+             
             <div class="job-list-modern">
               <div class="job-listings-sec">
+                <div class="col-xs-12" style="padding-bottom: 20px;text-align: center;padding-top: 0px;">
+                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                  <!-- prueba 3 -->
+                  <ins class="adsbygoogle"
+                  style="display:block"
+                  data-ad-client="ca-pub-1968505410020323"
+                  data-ad-slot="2357238982"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"></ins>
+                  <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </div>
                 <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
-
-                
-
+ 
                 <?php foreach ($publicaciones as $pub): ?>
 
                   <?php if ($pub->id_plan == 2): ?>
