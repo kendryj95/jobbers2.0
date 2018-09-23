@@ -188,7 +188,7 @@
 													<span class="pf-title">Planes de estado</span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el plan del estado" class="chosen" id="plan" name="plan">
-															<option value="0">Sin plan de estado</option>
+															<option value="">Sin plan de estado</option>
 															<?php foreach ($planes as $plan): ?>
 																<?php $selected = $plan->id == $oferta[0]->id_plan_estado ? 'selected' : '' ?>
 															<option value="<?= $plan->id ?>" <?= $selected ?>><?= $plan->plan ?></option>
