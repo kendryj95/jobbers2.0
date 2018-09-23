@@ -271,14 +271,19 @@ $mi_tokken=csrf_token();
               </div>
             </form>
 
-            <!-- prueba 2 -->
-            <ins class="adsbygoogle"
-            style="display:inline-block;width:160px;height:600px"
-            data-ad-client="ca-pub-1968505410020323"
-            data-ad-slot="2074167956"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+         <div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- prueba 3 -->
+                                        <ins class="adsbygoogle"
+                                        style="display:block"
+                                        data-ad-client="ca-pub-1968505410020323"
+                                        data-ad-slot="2357238982"
+                                        data-ad-format="auto"
+                                        data-full-width-responsive="true"></ins>
+                                        <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+         </div> 
           </aside>
           <div class="col-lg-9 column" id="offers"> 
              

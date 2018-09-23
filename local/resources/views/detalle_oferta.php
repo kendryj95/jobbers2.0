@@ -119,7 +119,7 @@
 									</div>
 									<div class="job-wide-devider">
 										<div class="row">
-											<div class="col-lg-8 column" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3;margin-top: 20px;"> 
+											<div class="col-lg-8 column" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3;margin-top: 30px;"> 
 
 													<div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
 										                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -186,22 +186,8 @@
 													</div>
 												</div> 
 											</div>
-											<div class="col-lg-4 column" >
-												
-										 		
-											  <div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
-											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-											                  <!-- prueba 3 -->
-											                  <ins class="adsbygoogle"
-											                  style="display:block"
-											                  data-ad-client="ca-pub-1968505410020323"
-											                  data-ad-slot="2357238982"
-											                  data-ad-format="auto"
-											                  data-full-width-responsive="true"></ins>
-											                  <script>
-											                  (adsbygoogle = window.adsbygoogle || []).push({});
-											                  </script>
-											                </div> 
+											<div class="col-lg-4 column" > 
+											  
 												<div class="job-overview" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3"> 
 													<div style="text-align: center;">
 															<h3 style="margin:0px;padding: 0px;font-weight: 600;margin: 0 auto;font-size: 17px;">Información de la empresa</h3>
@@ -280,6 +266,19 @@
 															<?php endif ?>
 													</ul>
 													</div><!-- Job Overview -->
+													<div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+											                </div> 
 													<div class="quick-form-job" style="background-color: #fff;padding-top: 30px;border: 1px solid #d3d3d3;text-align: center;"> 
 														<h3 style="margin:0px;padding: 0px;font-weight: 600;">¿Cómo evalúas Jobbers?</h3>
 														<form style="border: 0px;" method="post" action="<?= url('evaluacion') ?>" id="form_evaluacion">
