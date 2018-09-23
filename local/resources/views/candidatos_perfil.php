@@ -897,9 +897,9 @@ $mi_tokken = csrf_token();
                                                      </div>
                                                 <?php endif ?>
                                        <div  class="social-edit"  style="text-align: center;padding-left: 30px;"> 
-                                        <img src="local/resources/views/images/curriculum.png" alt="">
-                                            <a style="color: #fff;font-weight: 600" class="btn btn-success form-control" target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
-                                            Ver mi cv Jobbers 
+                                        <img src="local/resources/views/images/curriculum.png" alt=""><br><br>
+                                            <a style="background-color: #e27900;color: #fff;padding-left:5px; padding-right: 5px;margin-top: 10px;border-radius: 5px;"  target="_blank" href="<?php echo Request::root().'/reporte/'.session()->get('cand_id');?>">
+                                                Descargar cv Jobbers 
                                             </a>
                                        </div>
                                      
