@@ -72,7 +72,7 @@
 												<tr>
 													<td>
 														<div class="table-list-title">
-															<h3><a href="../detalleoferta/<?= $oferta->id ?>" title="<?= $oferta->titulo ?>"><?= $titulo ?></a></h3>
+															<h3><a href="../detalleoferta/<?= $oferta->id ?>?ref=_panelEmpresa" title="<?= $oferta->titulo ?>"><?= $titulo ?></a></h3>
 															<span><i class="la la-map-marker"></i><?= $oferta->ubicacion ?></span>
 														</div>
 													</td>
