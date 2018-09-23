@@ -27,13 +27,7 @@
 		</style>
 		<?php include('local/resources/views/includes/google_analitycs.php');?>
 		<?php include("local/resources/views/includes/chat_soporte.php");?>
-		 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-1968505410020323",
-            enable_page_level_ads: true
-            });
-            </script>
+		 
 	</head>
 	<body>
 		
@@ -142,6 +136,19 @@
 									<h2>Últimas ofertas</h2>
 									<span>Las mejores empresas buscan los mejores talentos.</span>
 								</div>
+								<div class="col-xs-12" style="text-align: center;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+										 </div> 
 								<div class="job-listings-sec">
 
 									<?php foreach ($ultimas_publicaciones as $pub): ?>
@@ -318,6 +325,19 @@
 
 								
 								</div>
+								<div class="col-xs-12" style="text-align: center;margin-top: 15px;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+										 </div>
 								<div class="col-lg-12">
 									<div class="browse-all-cat">
 										<a href="ofertas" title="">Ver ofertas</a>
