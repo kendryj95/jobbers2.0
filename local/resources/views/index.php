@@ -176,6 +176,11 @@
 									                  <div class="col-6">
 									                    <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
 									                  </div>
+									                  <?php if ($pub->plan_estado): ?>
+									                  <!-- <div class="col-12">
+									                    <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+									                  </div> -->
+									                  <?php endif; ?>
 									                </div>
 									              
 									                <h5 class="title-recom"><?= $pub->titulo ?> <!-- <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a> --></h5>
@@ -261,6 +266,9 @@
 									<a href="detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
 									  <div class="mobile">
 									        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+									        <?php if ($pub->plan_estado): ?>
+									        <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+									        <?php endif; ?>
 									        <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
 									      </div>
 									    <div class="job-title-sec container-desc-oferta">
@@ -309,6 +317,9 @@
 									    </div>
 									    <div class="job-style-bx container-img-oferta desk">
 									      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
+									      <?php if ($pub->plan_estado): ?>
+									      <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
+									      <?php endif; ?>
 									      <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
 									    </div>
 									  </div></a>

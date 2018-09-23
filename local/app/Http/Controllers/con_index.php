@@ -16,7 +16,7 @@ class con_index extends Controller
     public function index()
     {
         $vista               = View::make("index");
-        $sql_ultimas_ofertas = "SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t1.id_modalidad_publicacion AS modalidad, t2.nombre_aleatorio as imagen,t3.nombre, t3.web, t3.facebook, t3.twitter, t3.instagram, t3.linkedin, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,DATE_FORMAT(t1.fecha_venc, '%d/%m/%Y') AS fecha_venc,t1.vistos,IF(DATE_FORMAT(t1.tmp, '%Y-%m-%d')=CURDATE(),'Hoy',DATE_FORMAT(t1.tmp, '%d/%m')) AS fecha_pub, DATE_FORMAT(t1.tmp, '%h:%i %p') AS hora_pub,t9.id_plan FROM tbl_publicacion t1
+        $sql_ultimas_ofertas = "SELECT t1.direccion, t1.id, t1.id_empresa, t1.confidencial, t1.id_modalidad_publicacion AS modalidad, t2.nombre_aleatorio as imagen,t3.nombre, t3.web, t3.facebook, t3.twitter, t3.instagram, t3.linkedin, (SELECT COUNT(*) FROM tbl_publicacion WHERE id_empresa=t1.id_empresa) AS q_ofertas,t4.nombre as sectores,t1.titulo,t5.nombre as areas,t6.nombre as disponibilidad,t7.provincia,t8.localidad,t1.discapacidad,t1.descripcion,t1.estatus,DATE_FORMAT(t1.fecha_venc, '%d/%m/%Y') AS fecha_venc,t1.vistos,IF(DATE_FORMAT(t1.tmp, '%Y-%m-%d')=CURDATE(),'Hoy',DATE_FORMAT(t1.tmp, '%d/%m')) AS fecha_pub, DATE_FORMAT(t1.tmp, '%h:%i %p') AS hora_pub,t9.id_plan, REPLACE(LCASE(t11.plan),' ','-') AS plan_estado FROM tbl_publicacion t1
             LEFT JOIN tbl_empresa t3 ON t1.id_empresa = t3.id
             LEFT JOIN tbl_usuarios_foto_perfil t10 ON t3.id_usuario = t10.id_usuario
             LEFT JOIN tbl_archivos t2 ON t10.id_foto = t2.id
@@ -26,6 +26,7 @@ class con_index extends Controller
             LEFT JOIN tbl_disponibilidad t6 ON t1.id_disponibilidad = t6.id
             LEFT JOIN tbl_provincias t7 ON t1.id_provincia = t7.id
             LEFT JOIN tbl_localidades t8 ON t1.id_localidad = t8.id
+            LEFT JOIN tbl_planes_estado t11 ON t1.id_plan_estado=t11.id
             WHERE t1.estatus = 1 
             GROUP BY t1.id ORDER BY t1.tmp DESC LIMIT 0,5";
         $sql_logos_empresas = "SELECT t1.id,t2.nombre_aleatorio FROM tbl_empresa t1

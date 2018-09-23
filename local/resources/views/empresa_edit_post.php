@@ -185,7 +185,7 @@
 													</div>
 												</div>
 												<div class="col-lg-3">
-													<span class="pf-title">Planes de estado <b>*</b></span>
+													<span class="pf-title">Planes de estado</span>
 													<div class="pf-field">
 														<select data-placeholder="Por favor selecciona el plan del estado" class="chosen" id="plan" name="plan">
 															<option value="0">Sin plan de estado</option>
@@ -321,7 +321,7 @@
 
 							var $btn = $(this);
 
-							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && salario_usuario != 0 && plan != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
+							if (titulo != "" && descripcion != "" && area != 0 && sector != 0 && provincia != 0 && localidad != 0 && salario != 0 && salario_usuario != 0 && disp != 0 && discapacidad != "" && confidencial != "" && fecha_exp != "") {
 
 								if (titulo.length > 0 && titulo.length <= 50) {
 									var datos = $('#form_oferta').serialize();
