@@ -129,11 +129,11 @@ class con_empresa extends Controller
 
         ####################
 
-        $sql_provincias = "SELECT p.provincia, e.provincia AS id_provincia, COUNT(e.provincia) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id WHERE p.id IN (SELECT e.provincia $consulta_gral) GROUP BY id_provincia";
+        $sql_provincias = "SELECT p.provincia, e.provincia AS id_provincia, COUNT(e.provincia) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id WHERE p.id IN (SELECT e.provincia $consulta_gral $condiciones) GROUP BY id_provincia";
 
-        $sql_sectores = "SELECT asec.nombre AS sector, e.sector AS id_sector, COUNT(e.sector) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id WHERE asec.id IN (SELECT e.sector $consulta_gral) GROUP BY id_sector";
+        $sql_sectores = "SELECT asec.nombre AS sector, e.sector AS id_sector, COUNT(e.sector) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id WHERE asec.id IN (SELECT e.sector $consulta_gral $condiciones) GROUP BY id_sector";
 
-        $sql_localidades = "SELECT l.localidad, e.localidad AS id_localidad, COUNT(e.localidad) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_localidades l ON e.localidad=l.id WHERE l.id IN (SELECT e.localidad $consulta_gral) GROUP BY id_localidad";
+        $sql_localidades = "SELECT l.localidad, e.localidad AS id_localidad, COUNT(e.localidad) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_localidades l ON e.localidad=l.id WHERE l.id IN (SELECT e.localidad $consulta_gral $condiciones) GROUP BY id_localidad";
 
         $sectores = DB::select($sql_sectores);
         $provincias = DB::select($sql_provincias);
