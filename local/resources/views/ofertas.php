@@ -428,20 +428,6 @@ $mi_tokken=csrf_token();
                                     <?php if ($pub->discapacidad == 'SI'): ?>
                                     <i class="fa fa-wheelchair blue"></i>
                                     <?php endif; ?>
-                              
-                                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
-                                    <div class="desk" style="float: right">
-                                      <?php if ($pub->facebook): ?> 
-                                      <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
-                                      <?php endif; ?>
-                                      <?php if ($pub->linkedin): ?>
-                                      <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-                                      <?php endif; ?>
-                                      <?php if ($pub->twitter): ?>
-                                      <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
-                                      <?php endif; ?>
-                                    </div>
-                                    <?php endif; ?>
 
                                     <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
                                     <p class="container-media mobile" style="margin-bottom: 0;">
