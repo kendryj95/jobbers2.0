@@ -139,6 +139,23 @@ $mi_tokken=csrf_token();
                     <?php endforeach ?>
                 </div>
               </div>
+              <?php if ($planes_estado): ?>
+              <div class="widget filter-offer" style="height: 300px;overflow-y: scroll;">
+                <h3 class="sb-title open">Planes de Estado
+                </h3>
+                <div class="type_widget">
+                  <?php foreach ($planes_estado as $plan): ?>
+                      <p class="flchek">
+                        <input type="checkbox" onclick="filter()" name="planes_estado[]" id="plan_<?= $plan->id_plan_estado ?>" value="<?= $plan->id_plan_estado ?>">
+                        <label id="label_plan_<?= $plan->id_plan_estado ?>" for="plan_<?= $plan->id_plan_estado ?>">
+                            <?=$plan->plan ?>
+                        </label> (
+                        <?=$plan->cantidad ?>)
+                    </p>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+              <?php endif; ?>
               <div class="widget filter-offer">
                 <h3 class="sb-title open">Disponibilidad
                 </h3>
@@ -744,6 +761,13 @@ echo'$("#fav_'.$key->id_referencia.'").addClass("active");';
     <?php foreach ($variables['disponibilidades'] as $key): ?>
     filtros_set_var($("#label_disp_<?= $key ?>").text());
     set_check("disp_<?= $key ?>");
+    <?php endforeach ?>
+    <?php endif ?>
+
+    <?php if (isset($variables['planes_estado']) && count($variables['planes_estado'])>0): ?>
+    <?php foreach ($variables['planes_estado'] as $key): ?>
+    filtros_set_var($("#label_plan_<?= $key ?>").text());
+    set_check("plan_<?= $key ?>");
     <?php endforeach ?>
     <?php endif ?>
 
