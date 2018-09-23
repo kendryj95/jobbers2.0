@@ -62,7 +62,8 @@ class con_noticias extends Controller
     	$vista=View::make("noticias_detalle"); 
     	$sql="SELECT *,count(id) as cantidad FROM tbl_noticias WHERE id =".$id." AND estado='1';";
     	$sql_datos="SELECT * FROM tbl_noticias WHERE estado = '1' LIMIT 0,5";
-    	$sql_categorias="SELECT * FROM tbl_categorias_noticias";
+     
+        $sql_categorias="SELECT cn.id, cn.descripcion, COUNT(n.id_categoria) AS cantidad FROM tbl_categorias_noticias cn LEFT JOIN tbl_noticias n ON cn.id=n.id_categoria WHERE cn.id IN (SELECT n.id_categoria FROM tbl_noticias n WHERE estado='1')GROUP BY cn.id ORDER BY cantidad DESC";
     	try {
     		$datos=DB::select($sql);
     		$datos_limitadas=DB::select($sql_datos);
