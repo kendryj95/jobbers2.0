@@ -23,8 +23,13 @@ $back="../";
 					<li><a href="<?= $back ?>ofertas" title=""><i class="la la-folder"></i> Mis ofertas</a></li>
 					<li><a href="<?= $back ?>new_post" title=""><i class="la la-plus"></i> Nueva oferta</a></li>
 					<li><a href="<?= url('empresa/plantillas') ?>" title=""><i class="la la-book"></i> Mis plantillas</a></li>
+					<?php if (session()->get('emp_plan')[0]->id_plan == 2): ?>
 					<li><a href="<?= url('empresa/cursos') ?>" title=""><i class="la la-university"></i> Mis cursos</a></li>
 					<li><a href="<?= url('empresa/new_curso') ?>" title=""><i class="la la-plus"></i> Nuevo curso</a></li>
+					<?php else: ?>
+						<li><a href="javascript:void(0)" onclick="$('#modalUpdatePlan').modal('show')" data-toggle="modal" data-target="#modalUpdatePlan" title=""><i class="la la-university"></i> Mis cursos</a></li>
+					<li><a href="javascript:void(0)" onclick="$('#modalUpdatePlan').modal('show')" data-toggle="modal" data-target="#modalUpdatePlan" title=""><i class="la la-plus"></i> Nuevo curso</a></li>
+					<?php endif; ?>
 					<li><a href="<?= $back ?>planes" title=""><i class="la la-trophy"></i> Manejar planes</a></li>
 					<li><a href="<?= $back ?>../logout" title=""><i class="la la-sign-out"></i> Salir</a></li>
 				</ul>
