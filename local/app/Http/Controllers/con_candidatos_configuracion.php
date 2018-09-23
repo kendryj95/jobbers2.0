@@ -67,21 +67,18 @@ class con_candidatos_configuracion extends Controller
     public function actualizardatos()
     {
         if (isset($_POST['correo']) && isset($_POST['clave']) && $_POST['correo'] != "" && $_POST['clave'] != "") {
-            $sql = "SELECT count(*) as cantidad FROM tbl_usuarios WHERE correo='" . $_POST['correo'] . "'";
+            $sql = "SELECT count(correo) as cantidad,correo FROM tbl_usuarios WHERE correo='" . $_POST['correo'] . "'";
             try {
                 $datos = DB::select($sql);
                 if ($datos[0]->cantidad) {
-                    return Redirect("candiconfiguracion?info=Este correo ya se encuentra en uso.");
-                } else {
-
-                    $sql = "UPDATE tbl_usuarios SET correo='" . $_POST['correo'] . "',clave='" . md5($_POST['clave']) . "' WHERE id=" . session()->get("cand_id") . "";
+                     $sql = "UPDATE tbl_usuarios SET clave='" . md5($_POST['clave']) . "' WHERE id=" . session()->get("cand_id")."";
                     try {
                         DB::update($sql);
-                        return Redirect("candiconfiguracion");
+                        return Redirect("candiconfiguracion?result=Clave cambiada con exito.");
                     } catch (Exception $e) {
 
                     }
-                }
+                }  
             } catch (Exception $e) {
 
             }

@@ -77,26 +77,8 @@ $mi_tokken=csrf_token();
                     <div class="container">
                         <div class="row no-gape">
                             <?php include('local/resources/views/includes/aside_candidatos.php');?>
-                            <div class="col-lg-9 column">
-                                <!--
-                                    <div class="padding-left">
-                                    <div class="manage-jobs-sec addscroll">
-                                        <h3>Mi Foto</h3>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <?php
-                                        $imagen="seleccionar.jpg";
-                                        if($con_imagen==1)
-                                        {
-                                            $imagen=$pic[0]->nombre_aleatorio;
-                                        }
-                                    ?>
-                                    <span class="round"><a href="#" data-toggle="modal" data-target="#modal_imagenes"><img id="imagen_de_perfil" class="img-circle" src="uploads/<?php echo $imagen;?>" style="border-radius: 50%;margin-top: 30px;height: 140px; width: 140px;"></a></span>
-                                    <br>
-                                    <a class="status" href="candimaletin" style="margin-top: 20px; font-size: 14px;text-decoration: none;">Subir imagen</a>
-                                </div>
-                                -->
+                            <div class="col-lg-9 column" style="padding-top: 20px;">
+                              
                                 <div class="padding-left" style="margin-top: -70px;">
                                     
                                     <div class="manage-jobs-sec addscroll" style="margin-top: 50px;">
@@ -110,7 +92,7 @@ $mi_tokken=csrf_token();
                                             <div class="col-lg-6">
                                                 <span class="pf-title">Correo</span>
                                                 <div class="pf-field">
-                                                    <input value="<?php echo $datos[0]->correo;?>" name="correo" id="correo" type="text" placeholder="Correo electrónico">
+                                                    <input readonly="true" value="<?php echo $datos[0]->correo;?>" name="correo" id="correo" type="text" placeholder="Correo electrónico">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">

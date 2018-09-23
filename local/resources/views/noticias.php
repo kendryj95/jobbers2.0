@@ -26,6 +26,15 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-9 col-md-9 column" style="padding-top: 10px;">
+							  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				                <!-- prueba 1 -->
+				                <ins class="adsbygoogle"
+				                style="display:inline-block;width:728px;height:90px"
+				                data-ad-client="ca-pub-1968505410020323"
+				                data-ad-slot="5100211570"></ins>
+				                <script>
+				                (adsbygoogle = window.adsbygoogle || []).push({});
+				                </script>
 							<div id="carousel-news" class="carousel slide" data-ride="carousel" style="display: none;">
 
 								<!-- Wrapper for slides -->

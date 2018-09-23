@@ -23,33 +23,34 @@
 		<?php $atras=1;?>
 		<?php include('local/resources/views/includes/general_header.php');?>
 		<?php include('local/resources/views/includes/general_header_responsive.php');?>
-		<!-- <section class="overlape mt-responsive">
-			<div class="block no-padding d-none">
-			<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_noticias.jpg) repeat scroll 50% -6vh transparent;" class="parallax scrolly-invisible"></div>
-				<div class="container fluid">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="inner-header img-header-news">
-								<h3></h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section> -->
+		 
 		
 		<div class="block back-offers" style="padding-bottom: 0px; margin-top: 60px;">
 			<div class="container">
 				<section>
 					
-						<div class="col-lg-9 column" style="background-color: #fff; padding: 30px; margin-bottom: 60px;">
-							<div class="blog-single">
+						<div class="col-lg-9 column" style="background-color: #fff; margin-bottom: 60px;margin-top: 10px;padding-top: 15px;">
+							<div class="blog-single" >
 								<div class="bs-thumb"> 
 									<?php if ($datos[0]->foto!=""): ?>
 										<img style="max-width: 834px;border:1px dashed #e0e0e0;" src="../imagenes_noticias/<?php echo $datos[0]->foto;?>" alt="">
 									<?php endif ?>  
 								</div>
 								<ul class="post-metas"> <li><a href="#" title=""><i class="la la-calendar-o"></i><?php echo $datos[0]->tmp;?></a></li></ul>
+								<div class="col-xs-12">
+									<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+									<!-- prueba 3 -->
+									<ins class="adsbygoogle"
+									style="display:block"
+									data-ad-client="ca-pub-1968505410020323"
+									data-ad-slot="2357238982"
+									data-ad-format="auto"
+									data-full-width-responsive="true"></ins>
+									<script>
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									</script>
+								</div>
+								
 								<h2><?php echo $datos[0]->titulo;?></h2>
 								 <?php echo $datos[0]->descripcion?>
 								 
