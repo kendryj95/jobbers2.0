@@ -170,6 +170,12 @@ class con_empresa extends Controller
         return $consulta_gral;
     }
 
+    private function limpiarCaracteresEspeciales($string){
+     $string = htmlentities($string);
+     $string = preg_replace('/\&(.)[^;]*;/', '\\1', $string);
+     return $string;
+    }
+
     public function index()
     {
         return view('administrator_empresas_ver');
@@ -531,8 +537,6 @@ class con_empresa extends Controller
         $confidencial = $_REQUEST["confidencial"];
         $video        = $_REQUEST["video"];
 
-        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $descripcion);
-
         $id_empresa = session()->get("emp_ide");
 
         $sql    = "INSERT INTO tbl_publicacion(id_imagen,id_empresa,titulo,id_sector,id_area,id_disponibilidad,id_provincia,id_localidad,discapacidad,descripcion,direccion,video_youtube,estatus,fecha_venc,id_salario,salario_usuario,id_plan_estado,confidencial) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -583,7 +587,6 @@ class con_empresa extends Controller
         $confidencial = $_REQUEST["confidencial"];
         $video        = $_REQUEST["video"];
 
-        $descripcion = preg_replace("/[\r\n|\n|\r]+/", " ", $descripcion);
 
         $id_empresa = session()->get("emp_ide");
 

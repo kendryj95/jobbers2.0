@@ -283,7 +283,9 @@
 
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
-							var descripcion = tinyMCE.get('descripcion').getContent();
+							var descripcion = tinymce.get('descripcion').getContent();
+								descripcion = descripcion.replace(/[\r\n|\n|\r]+/g, " ");
+								descripcion = descripcion.replace(/\&+/g, "%26");
 							var area = $('#area').val();
 							var sector = $('#sector').val();
 							var provincia = $('#provincia').val();

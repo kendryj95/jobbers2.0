@@ -280,7 +280,7 @@
 					var dia = calendario.getDate()+1,
 						mes = calendario.getMonth() + 1,
 						anio = calendario.getFullYear();
-					var desc = '<?= $description ?>';
+					var desc = `<?= $description ?>`;
 
 					$(document).ready(function() {
 
@@ -307,6 +307,8 @@
 						$('#post').on('click', function(){
 							var titulo = $('#titulo').val();
 							var descripcion = tinymce.get('descripcion').getContent();
+								descripcion = descripcion.replace(/[\r\n|\n|\r]+/g, " ");
+								descripcion = descripcion.replace(/\&+/g, "%26");
 							var area = $('#area').val();
 							var sector = $('#sector').val();
 							var provincia = $('#provincia').val();
@@ -335,7 +337,7 @@
 										url: '../actualizar_post',
 										type: 'POST',
 										dataType: 'json',
-										data: datos+'&description='+descripcion,
+										data: datos+`&description=${descripcion}`,
 										beforeSend: function(){
 											$btn.text("Actualizando...").prop("disabled", true);
 										},
