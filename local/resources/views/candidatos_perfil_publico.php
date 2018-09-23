@@ -17,14 +17,8 @@
 		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-		<script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-		<script>
-		  (adsbygoogle = window.adsbygoogle || []).push({
-		    google_ad_client: "ca-pub-1968505410020323",
-		    enable_page_level_ads: true
-		  });
-		</script>
+		 
+ 
 		<?php include('local/resources/views/includes/google_analitycs.php');?>
 		<?php // include('local/resources/views/includes/chat_soporte.php');?>
 		<style type="text/css" media="screen">
@@ -199,10 +193,24 @@
 													</ul>
 													</div>
 								</div>
+							
 								<div class="cand-details-sec">
 									<div class="row no-gape">
 										<div class="col-lg-9 column" style="background-color: #fff;padding: 25px;border:1px solid #cdd4de;">
 											<div class="cand-details">
+													<div class="col-xs-12" style="text-align: center;padding-top: 0px;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+											                </div> 
 												<!-- Job Overview -->
 													<h2>Acerca de <?php echo $datos_personales[0]->nombres;?></h2>
 													<blockquote><span style="padding-left: 10px;padding-right: 10px;s"><?php echo $datos_personales[0]->sobre_mi;?></span> </blockquote> 
@@ -404,6 +412,20 @@
  															 			
  															 		 
  															 </div>
+
+											                 <div class="col-xs-12" style="margin-top: 20px;text-align: center;padding-top: 0px;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+											                </div> 
 														</div>
 													</div> 
 												</div>
