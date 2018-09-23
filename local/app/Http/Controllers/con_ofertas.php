@@ -51,6 +51,16 @@ class con_ofertas extends Controller
             $condiciones .= " AND t1.id_provincia IN (".implode(",", $temp).")";
         }
 
+        if(isset($_POST['planes_estado']) && count($_POST['planes_estado']))
+        {
+            $temp= []; 
+            foreach ($_POST['planes_estado'] as $key) {
+                $temp[] = $key;
+            }
+
+            $condiciones .= " AND t1.id_plan_estado IN (".implode(",", $temp).")";
+        }
+
         if(isset($_POST['localidades']) && count($_POST['localidades']))
         {
             $temp= []; 
@@ -167,6 +177,9 @@ class con_ofertas extends Controller
         $sql_provincias     = "SELECT pv.provincia, t1.id_provincia, COUNT(t1.id_provincia) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_provincias pv ON t1.id_provincia=pv.id WHERE t1.estatus=1 $condiciones AND t1.id_provincia IN (SELECT t1.id_provincia $consulta_general) GROUP BY t1.id_provincia";
         $sql_localidades    = "SELECT l.localidad, t1.id_localidad, COUNT(t1.id_localidad) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_localidades l ON t1.id_localidad=l.id WHERE t1.estatus=1 $condiciones AND t1.id_localidad IN (SELECT t1.id_localidad $consulta_general) GROUP BY t1.id_localidad ORDER BY COUNT(t1.id_localidad) desc;";
         $sql_experiencia    = "SELECT e.descripcion, t1.id_experiencia, COUNT(t1.id_experiencia) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_experiencia e ON t1.id_experiencia=e.id WHERE t1.estatus=1 $condiciones AND t1.id_experiencia IN (SELECT t1.id_experiencia $consulta_general) GROUP BY t1.id_experiencia";
+
+        $sql_planes_estado    = "SELECT pe.plan, t1.id_plan_estado, COUNT(t1.id_plan_estado) AS cantidad FROM tbl_publicacion t1 LEFT JOIN tbl_planes_estado pe ON t1.id_plan_estado=pe.id WHERE t1.estatus=1 $condiciones AND t1.id_plan_estado IN (SELECT t1.id_plan_estado $consulta_general) GROUP BY t1.id_plan_estado";
+
         $condicion=0;
         if(session()->get("cand_id")!=null && session()->get("cand_id")=='')
         {
@@ -186,6 +199,7 @@ class con_ofertas extends Controller
             $provincia      = DB::select($sql_provincias);
             $localidad      = DB::select($sql_localidades);
             $experiencia    = DB::select($sql_experiencia);
+            $planes_estado  = DB::select($sql_planes_estado);
             $favoritos      = DB::select($sql_favoritos);
 
             $publicaciones = DB::select($sql_ofertas);
@@ -223,6 +237,7 @@ class con_ofertas extends Controller
             $vista->genero         = $genero;
             $vista->provincia      = $provincia;
             $vista->localidad      = $localidad;
+            $vista->planes_estado  = $planes_estado;
             $vista->publicaciones  = $publicaciones;
             $vista->variables  = $_POST;
             $vista->paginas  = $paginas;
