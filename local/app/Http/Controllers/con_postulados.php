@@ -135,7 +135,7 @@ class con_postulados extends Controller
 		WHEN 5 THEN '★★★★★'
 		END
 		) AS calificacion,
-		m.nombre AS marcador
+		IF(m.nombre IS NULL, 'Normal', m.nombre) AS marcador
 		FROM tbl_postulaciones p 
 		INNER JOIN tbl_publicacion pb ON p.id_publicacion=pb.id 
 		LEFT JOIN tbl_candidato_datos_personales cdp ON p.id_usuario= cdp.id_usuario
