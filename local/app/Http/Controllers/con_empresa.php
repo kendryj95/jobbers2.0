@@ -98,10 +98,11 @@ class con_empresa extends Controller
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
         LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
-        LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id
+        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
         $condiciones GROUP BY e.id";
         //return  ($peticion . " " . $consulta_gral);
         $empresas = DB::select($peticion . " " . $consulta_gral);
+        
         $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id 
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
@@ -163,7 +164,7 @@ class con_empresa extends Controller
         LEFT JOIN tbl_localidades l ON e.localidad=l.id
         LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
         LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
-        LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id
+        LEFT JOIN tbl_areas_sectores asec ON e.sector=asec.id
         $condiciones GROUP BY e.id LIMIT $limit, $tamPag";
 
         return $consulta_gral;

@@ -27,14 +27,19 @@
 					<div class="row">
 						<div class="col-lg-9 col-md-9 column" style="padding-top: 10px;">
 							  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				                <!-- prueba 1 -->
-				                <ins class="adsbygoogle"
-				                style="display:inline-block;width:728px;height:90px"
-				                data-ad-client="ca-pub-1968505410020323"
-				                data-ad-slot="5100211570"></ins>
-				                <script>
-				                (adsbygoogle = window.adsbygoogle || []).push({});
-				                </script>
+				              <div class="col-xs-12" style="text-align: center;padding-top: 0px;margin-bottom: 30px;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+											                </div> 
 							<div id="carousel-news" class="carousel slide" data-ride="carousel" style="display: none;">
 
 								<!-- Wrapper for slides -->
@@ -90,7 +95,19 @@
 									</div>
 									<?php endforeach ?>
 									<!-- Blog Post -->
-									
+									<div class="col-xs-12" style="text-align: center;margin-top: 30px;">
+											                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+											                  <!-- prueba 3 -->
+											                  <ins class="adsbygoogle"
+											                  style="display:block"
+											                  data-ad-client="ca-pub-1968505410020323"
+											                  data-ad-slot="2357238982"
+											                  data-ad-format="auto"
+											                  data-full-width-responsive="true"></ins>
+											                  <script>
+											                  (adsbygoogle = window.adsbygoogle || []).push({});
+											                  </script>
+										 </div> 
 									<?php if ($paginas > 0): ?>
 									    <div class="pagination">
 									      <ul>
@@ -189,7 +206,9 @@
 												</div> 
 												<?php endforeach ?> 
 											</div>
+
 										</div> 
+											
 									</aside>
 								</div>
 							</div>
