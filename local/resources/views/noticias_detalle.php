@@ -78,43 +78,44 @@
 														</div>
 														</div>
 						</div>
-						<aside class="col-lg-3 column">
-										<div class="widget">
-											
-											<div class="widget filter-offer">
-												<h3>Categorias</h3>
-												<div class="sidebar-links">
-													<?php foreach ($datos_categorias as $key): ?>
-														<form id="form_id_<?php echo $key->id;?>" action="../noticias" method="POST">
-															<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
-															<input type="hidden" name="categoria" value="<?php echo $key->id;?>">
-														</form>
-														<a onClick="$('#form_id_<?php echo $key->id;?>').submit()" href="#" title=""><i class="la la-angle-right arrow-right-news"></i><?php echo $key->descripcion;?></a> 
-													<?php endforeach ?> 
-												</div>
+						<aside class="col-lg-3 col-md-3 column">
+									<div class="widget">
+										
+										<div class="widget filter-offer">
+											<h3>Categorías</h3>
+											<div class="sidebar-links">
+												<?php foreach ($datos_categorias as $key): ?>
+													<form id="form_id_<?php echo $key->id;?>" action="../noticias" method="POST">
+														<input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+														<input type="hidden" name="categoria" value="<?php echo $key->id;?>">
+													</form>
+													<a onClick="$('#form_id_<?php echo $key->id;?>').submit()" href="#" title=""><i class="la la-angle-right arrow-right-news"></i><?php echo $key->descripcion;?> (<?= $key->cantidad ?>)</a> 
+												<?php endforeach ?> 
 											</div>
-											<div class="widget filter-offer">
-												<h3>Últimas noticias</h3>
-												<div class="post_widget">
-													<?php
-													$contador=0;
-													 foreach ($datos_limitadas as $key): 
-													 	$contador++;
-													 	?>
-													 	<?php if ($contador<=5): ?>
-														<div class="mini-blog">
-														<span><a href="../noticias/<?php echo $key->id;?>" title=""><img  style="width: 54px;height:44px;" src="../imagenes_noticias/<?php echo $key->foto;?>" alt="" /></a></span>
-														<div class="mb-info">
-															<h3><a href="../noticias/<?php echo $key->id;?>" title=""><?php echo $key->titulo;?></a></h3>
-															<span><?php echo $key->tmp;?></span>
-														</div>
-													 	<?php endif ?> 
-													</div> 
-													<?php endforeach ?>
-													
-												</div>
-											</div> 
-										</aside>
+										</div>
+										<div class="widget filter-offer">
+											<h3>Últimas noticias</h3>
+											<div class="post_widget">
+												<?php
+												$contador=0;
+												 foreach ($datos_limitadas as $key): 
+												 	$contador++;
+												 	?>
+												 	<?php if ($contador<=5): ?>
+													<div class="mini-blog">
+													<span><a href="../noticias/<?php echo $key->id;?>" title=""><img  style="width: 54px;height:44px;" src="../imagenes_noticias/<?php echo $key->foto;?>" alt="" /></a></span>
+													<div class="mb-info">
+														<h3><a href="../noticias/<?php echo $key->id;?>" title=""><?php echo $key->titulo;?></a></h3>
+														<span><?php echo $key->tmp;?></span>
+													</div>
+												 	<?php endif ?> 
+												</div> 
+												<?php endforeach ?> 
+											</div>
+
+										</div> 
+											
+									</aside>
 					
 				</section>
 			</div>
@@ -123,6 +124,6 @@
 		<?php include("local/resources/views/includes/login_register_modal.php");?>
 		<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
 		<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
-		 <script src="../local/resources/views/plugins/btn_social/assets/js/docs.js"> 
+		 <script src="../local/resources/views/plugins/btn_social/assets/js/docs.js"> </script>
 	</body>
 </html>
