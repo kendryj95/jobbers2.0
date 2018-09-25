@@ -172,8 +172,11 @@ Route::post('empresa/editCurso', 'con_empresa@editStoreCurso');
 Route::post('empresa/request_info_curso', 'con_empresa@request_info_curso');
 });
 
- 
-
+//********************************************************//
+//*                RUTAS NUEVAS EMPRESAS                 *//
+//********************************************************//
+Route::get('empresas/prueba', function () {return view('empresas.index');});
+//********************************************************//
 Route::post('admincandidatosper', 'con_candidato_perfil_publico@datos_personales');
 Route::post('admincandidatosper', 'con_candidato_perfil_publico@datos_personales');
 Route::post('admincandipreflab', 'con_candidato_perfil_publico@datos_preferencias_laborales');
@@ -279,36 +282,4 @@ Route::post('administracion/candidatos/enviar', 'con_administrator_candidatos@en
 	Route::post('administracion/publicarnoticias', 'con_administrator_noticias@nueva_noticia');
 
 });
-
-
-/*Route::get('administrator', 'con_administrator_login@index');
-Route::group(['middleware' => 'log_a'], function () {
-Route::get('admindashboard', 'con_administrator_dashboard@dashboard');
-Route::get('adminfavoritos', 'con_administrator_favoritos@index');
-Route::get('adminkardex', 'con_administrator_kardex@index');
-Route::get('adminempresas', 'con_administrator_empresas@index');
-Route::get('adminempresanueva', 'con_administrator_empresas@create');
-Route::post('adminempresaagregar', 'con_administrator_empresas@register');
-Route::get('adminmalerinver', 'con_maletin@index');
-//Route::post('subir', 'con_maletin@post_upload');
-Route::get('adminofertas', 'con_administrator_ofertas@index');
-Route::get('admincandidatos', 'con_administrator_candidatos@index');
-Route::get('adminnoticias', 'con_administrator_noticias@index');
-Route::get('adminpagos', 'con_pagos@index');
-// Preguntas prefrecuentes
-Route::get('adminfag', 'con_administrator_faq@index');
-Route::post('adminfaqcrear', 'con_administrator_faq@crear');
-Route::get('eliminarpre/{id}', 'con_administrator_faq@eliminar');
-Route::post('actpregunta', 'con_administrator_faq@update');
-Route::get('configuracion', 'con_administrator_configuracion@index');
-Route::post('adminconfigcrear', 'con_administrator_configuracion@actualizar');
-//Publiacaciones
-Route::get('publiacionesver', 'con_publiaciones@index');
-Route::get('publiacionescrear', 'con_publiaciones@create');
-/*Route::post('listar_arch', 'con_maletin@listar_arch');
-Route::post('actarch', 'con_maletin@alias');//Actualiza los alias
-Route::get('delarchivo/{id}', 'con_maletin@eliminar'); //Elimina los archivos
-Route::get('descargar/{archivo}', 'con_maletin@descargar'); // Descarga los archivos
-Route::get('admsalir', 'con_administrator_login@salir');
-});
-*/
+ 

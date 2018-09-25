@@ -6,6 +6,9 @@
 				 						<a href="<?= url('administracion/panel') ?>" title=""><i class="la la-dashboard"></i>Inicio</a> 
 				 					</li>
 				 					<li>
+				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Cambio de claves</a> 
+				 					</li> 
+				 					<li>
 				 						<a href="<?= url('administracion/empresas') ?>" title=""><i class="la la-industry"></i>Empresas</a> 
 				 					</li>
 				 					<li>
@@ -38,9 +41,7 @@
 				 					<li>
 				 						<a href="<?= url('administracion/redactores') ?>" title=""><i class="la la-user"></i>Redactores</a> 
 				 					</li>  
-				 					<li>
-				 						<a href="<?= url('administracion/configuracion') ?>" title=""><i class="la la-gear"></i>Configuración</a> 
-				 					</li>  
+				 					 
 				 					<li><a href="<?= url('admsalir') ?>" title=""><i class="la la-arrow-left"></i>Salir</a></li>
 				 				</ul>
 				 			</div>

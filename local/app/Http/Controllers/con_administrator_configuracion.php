@@ -10,12 +10,13 @@ class con_administrator_configuracion extends Controller
 {
     public function index()
     {
-    	$vista=View::make("administrator_configuracion");
+    	$vista=View::make("administrator_cambio_clave");
+         return $vista;
     	$sql="SELECT * FROM tbl_administrador";
         try {
           $datos=DB::select($sql);
           $vista->datos=$datos;
-          return $vista;
+         
         } catch (Exception $e) {
         	
         }
@@ -24,12 +25,24 @@ class con_administrator_configuracion extends Controller
 
      public function actualizar()
     {
-        $sql="UPDATE tbl_administrador SET correo='".$_POST['correo']."', clave='".$_POST['clave']."'";
+        $sql="UPDATE tbl_usuarios SET clave='".md5($_POST['clave'])."' WHERE correo='".$_POST['correo']."'";
         try {
-        	DB::update($sql);
-        	return Redirect("administracion/configuracion?result=Datos actualizados con éxito.");
-        } catch (Exception $e) {
+            if($_POST['correo']=="")
+            {
+                return Redirect("administracion/configuracion?result=Debe colocar el correo.");
+            }
+            else if($_POST['clave']=="")
+            {
+                return Redirect("administracion/configuracion?result=Debe colocar el la clave");
+            }
+            else
+            {
+                DB::update($sql);
+                return Redirect("administracion/configuracion?result=Datos actualizados con éxito.");
+            } 
         	
+        } catch (Exception $e) {
+        	return Redirect("administracion/configuracion?result=Ocurrió un error al actualizar los datos");
         }
         
     } 
