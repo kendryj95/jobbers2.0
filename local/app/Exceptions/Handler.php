@@ -32,9 +32,11 @@ class Handler extends ExceptionHandler
      * @return void
      */
     public function report(Exception $e)
-    {
+    { 
         parent::report($e);
     }
+
+
 
     /**
      * Render an exception into an HTTP response.
@@ -51,6 +53,12 @@ class Handler extends ExceptionHandler
             // Catch it here and do what you want. For example...
             return redirect()->back()->withInput()->with('error', 'Intentelo de nuevo');
         }
+       
+        if ($e instanceof QueryException) {
+        return "Entro";
+        //return response()->view('my.error.view', [], 500);
+        }
+
          // return response()->view('errors.error', [], 500);
         return parent::render($request, $e);
     }

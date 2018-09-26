@@ -47,6 +47,19 @@ Route::post('addcallback', 'con_log_social@add_user');
 Route::post('evaluacion', 'con_candidatos@evaluacionJobbers');
 
 //********************************************************//
+//*                RUTAS NUEVAS EMPRESAS                 *//
+//********************************************************//
+Route::get('empresas/panel', function () {return view('empresas.index');});
+Route::get('empresas/entrar', function () {return view('empresas.login');});
+Route::get('empresas/registro', 'con_company@index_register');
+Route::get('empresas/recuperacion', function () {return view('empresas.recuperacion');});
+
+Route::post('empresas/registrar', 'con_company@registrar');
+Route::post('empresas/localidades', 'con_company@get_localidades');
+
+//********************************************************//
+
+//********************************************************//
 //*                RUTAS PARA LOS REDACTORES             *//
 //********************************************************//
 
@@ -172,11 +185,7 @@ Route::post('empresa/editCurso', 'con_empresa@editStoreCurso');
 Route::post('empresa/request_info_curso', 'con_empresa@request_info_curso');
 });
 
-//********************************************************//
-//*                RUTAS NUEVAS EMPRESAS                 *//
-//********************************************************//
-Route::get('empresas/prueba', function () {return view('empresas.index');});
-//********************************************************//
+
 Route::post('admincandidatosper', 'con_candidato_perfil_publico@datos_personales');
 Route::post('admincandidatosper', 'con_candidato_perfil_publico@datos_personales');
 Route::post('admincandipreflab', 'con_candidato_perfil_publico@datos_preferencias_laborales');
