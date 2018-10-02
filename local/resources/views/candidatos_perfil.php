@@ -210,7 +210,7 @@ $mi_tokken = csrf_token();
                                                 <span class="pf-title">Estado civil</span>
                                                 <div class="pf-field">
                                                     <select id="edo_civil" name="edo_civil"   data-placeholder="Estado civil" class="chosen">
-                                                        <option value="4">Seleccionar</option>
+                                                        <option value="10">Seleccionar</option>
                                                         <?php foreach ($edo as $key) {
                                                         echo '<option id="edo_civil_'.$key->id.'" value="'.$key->id.'">'.$key->descripcion.'</option>';
                                                         }?>
@@ -1123,7 +1123,7 @@ $mi_tokken = csrf_token();
         else if($("#datos_per_apellidos").val()==""){notificacion("Debe colocar su apellido.")}
         else if($("#tipo_id").val()==""){notificacion("Debe colocar su tipo de identifiación.")}
         else if($("#datos_per_n_identificacion").val()==""){notificacion("Debe colocar su número de identificación.")}
-        else if($("#edo_civil").val()=="4"){notificacion("Debe colocar su estado civil.")}
+        else if($("#edo_civil").val()=="10"){notificacion("Debe colocar su estado civil.")}
         else if($("#discapacidad").val()==""){notificacion("Debe colocar si tiene alguna discapacidad.")}
         else if($("#sexo").val()==""){notificacion("Debe colocar su sexo.")}
         else if($("#datos_per_fecha_nac").val()==""){notificacion("Debe colocar su fecha de nacimiento.")} 

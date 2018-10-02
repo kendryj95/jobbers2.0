@@ -36,154 +36,168 @@
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-xs-12 mb-1">
                     <h2 class="content-header-title">
-                        Basic Forms
+                        Bienvenido
                     </h2>
                 </div>
-                <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-                    <div class="breadcrumb-wrapper col-xs-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="index.html">
-                                    Home
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="#">
-                                    Form Layouts
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                <a href="#">
-                                    Basic Forms
-                                </a>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+                 
             </div>
             <div class="content-body">
                 <!-- Basic form layout section start -->
-                <section id="basic-form-layouts">
-                    <div class="row match-height">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form">
-                                        Project Info
-                                    </h4>
-                                    <a class="heading-elements-toggle">
-                                        <i class="icon-ellipsis font-medium-3">
-                                        </i>
-                                    </a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li>
-                                                <a data-action="collapse">
-                                                    <i class="icon-minus4">
-                                                    </i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a data-action="reload">
-                                                    <i class="icon-reload">
-                                                    </i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a data-action="expand">
-                                                    <i class="icon-expand2">
-                                                    </i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a data-action="close">
-                                                    <i class="icon-cross2">
-                                                    </i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body collapse in">
-                                    <div class="card-block">
-                                        <div class="card-text">
-                                            <p>
-                                                This is the most basic and default form having form sections. To add form section use
-                                                <code>
-                                                    .form-section
-                                                </code>
-                                                class with any heading tags. This form has the buttons on the bottom left corner which is the default position.
-                                            </p>
+                <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-sm-8">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                       
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item next left">
+                                <img src="<?= $ruta;?>app-assets/images/carousel/home.png" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="<?= $ruta;?>app-assets/images/carousel/promo_jobbers.png" alt="Second slide">
+                            </div>
+                            <div class="carousel-item active left">
+                                <img src="<?= $ruta;?>app-assets/images/carousel/anuncio.png" alt="Third slide">
+                            </div>
+                        </div> 
+                    </div>
+                        </div>
+                        <div class="col-sm-4">
+                             <div class="col-xl-12 col-lg-12 col-xs-12">
+                                    <div class="card" style="margin-bottom: 6px;">
+                                        <div class="card-body">
+                                            <div class="card-block"  >
+                                                <div class="media" >
+                                                    <div class="media-left media-middle">
+                                                        <i class="icon-profile pink font-large-2 float-xs-left"></i>
+                                                    </div>
+                                                    <div class="media-body text-xs-right">
+                                                        <h3 class="pink">278</h3>
+                                                        <span>Ofertas Jobbers</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <form class="form">
-                                            <div class="form-body">
-                                                <h4 class="form-section">
-                                                    <i class="icon-head">
-                                                    </i>
-                                                    Personal Info
-                                                </h4>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">
-                                                                First Name
-                                                            </label>
-                                                            <input class="form-control" id="projectinput1" name="fname" placeholder="First Name" type="text">
-                                                            </input>
-                                                        </div>
+                                    </div>
+                             </div>
+
+                              <div class="col-xl-12 col-lg-12 col-xs-12">
+                                    <div class="card" style="margin-bottom: 6px;">
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div class="media">
+                                                    <div class="media-left media-middle">
+                                                        <i class="icon-users teal font-large-2 float-xs-left"></i>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput2">
-                                                                Last Name
-                                                            </label>
-                                                            <input class="form-control" id="projectinput2" name="lname" placeholder="Last Name" type="text">
-                                                            </input>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput3">
-                                                                E-mail
-                                                            </label>
-                                                            <input class="form-control" id="projectinput3" name="email" placeholder="E-mail" type="text">
-                                                            </input>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput4">
-                                                                Contact Number
-                                                            </label>
-                                                            <input class="form-control" id="projectinput4" name="phone" placeholder="Phone" type="text">
-                                                            </input>
-                                                        </div>
+                                                    <div class="media-body text-xs-right">
+                                                        <h3 class="teal">278</h3>
+                                                        <span>Candidatos Jobbers</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-actions">
-                                                <button class="btn btn-warning mr-1" type="button">
-                                                    <i class="icon-cross2">
-                                                    </i>
-                                                    Cancel
-                                                </button>
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="icon-check2">
-                                                    </i>
-                                                    Save
-                                                </button>
+                                        </div>
+                                    </div>
+                             </div>
+
+                              <div class="col-xl-12 col-lg-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div class="media">
+                                                    <div class="media-left media-middle">
+                                                        <i class="icon-industry deep-orange font-large-2 float-xs-left"></i>
+                                                    </div>
+                                                    <div class="media-body text-xs-right">
+                                                        <h3 class="deep-orange">278</h3>
+                                                        <span>Empresas Jobbers</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                    </div>
+                             </div>
+                        </div>
+                </div>
+                    <div class="alert alert-info alert-dismissible fade in mb-2" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <strong>Hola Jobbers!</strong> Esperamos que te guste tu nuevo panel. Recuerda completar la información de tu empresa para poder ofrecerte un mejor servicio. <br> <a href="perfil" class="alert-link">Ver mi informacion</a>.
+                                </div>
+            
+                 <div class="row">
+                     <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <i class="icon-profile pink font-large-2 float-xs-left"></i>
+                                        </div>
+                                        <div class="media-body text-xs-right">
+                                            <h3 class="pink">278</h3>
+                                            <span>Ofertas</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!-- // Basic form layout section end -->
-            </div>
+                     </div>
+
+                     <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <i class="icon-users teal font-large-2 float-xs-left"></i>
+                                        </div>
+                                        <div class="media-body text-xs-right">
+                                            <h3 class="teal">278</h3>
+                                            <span>Postulados</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+
+                     <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <i class="icon-copy cyan font-large-2 float-xs-left"></i>
+                                        </div>
+                                        <div class="media-body text-xs-right">
+                                            <h3 class="cyan">278</h3>
+                                            <span>Plantillas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+
+                     <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <i style="color: #ffbf00;" class="icon-star-full font-large-2 float-xs-left"></i>
+                                        </div>
+                                        <div class="media-body text-xs-right">
+                                            <h3>Gold</h3>
+                                            <span>Plan actual</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+ 
+                 </div>
+            </div> 
         </div>
     </div>
    <?php include('includes/footer.php')?>
