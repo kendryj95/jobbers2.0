@@ -2,25 +2,7 @@
 <?php $ruta='../local/resources/views/empresas/';?>
 <html class="loading" data-textdirection="ltr" lang="es">
     <head>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-        <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
-        <meta content="Jobbres Argentina" name="author"/>
-        <title>
-            Jobbers Argentina
-        </title>
-        <meta content="yes" name="apple-mobile-web-app-capable"/>
-        <meta content="yes" name="apple-touch-fullscreen"/>
-        <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
-        <link href="<?= $ruta;?>app-assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/fonts/icomoon.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/fonts/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/vendors/css/extensions/pace.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/bootstrap-extended.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/app.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/core/menu/menu-types/vertical-menu.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/core/menu/menu-types/vertical-overlay-menu.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>assets/css/style.css" rel="stylesheet" type="text/css"/>
+      <?php include('includes/referencias-top.php');?>
     </head>
     <body class="vertical-layout vertical-menu 1-column blank-page blank-page" data-col="1-column" data-menu="vertical-menu" data-open="click">
         <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -48,7 +30,7 @@
                                     <div class="card-block">
                                         <form action="index.html" class="form-horizontal form-simple" novalidate="">
                                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                                <input class="form-control form-control-lg input-lg" id="user-name" placeholder="Correo" required="" type="text">
+                                                <input class="form-control form-control-lg input-lg" id="correo" placeholder="Correo" required="" type="text">
                                                     <div class="form-control-position">
                                                         <i class="icon-email">
                                                         </i>
@@ -56,14 +38,14 @@
                                                 </input>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input class="form-control form-control-lg input-lg" id="user-password" placeholder="Clave" required="" type="password">
+                                                <input class="form-control form-control-lg input-lg" id="clave" placeholder="Clave" required="" type="password">
                                                     <div class="form-control-position">
                                                         <i class="icon-key3">
                                                         </i>
                                                     </div>
                                                 </input>
                                             </fieldset>
-                                            <button class="btn btn-primary btn-lg btn-block" type="submit">
+                                            <button onClick="login()" class="btn btn-primary btn-lg btn-block" type="button">
                                                 Ingresar
                                             </button>
                                         </form>
@@ -89,9 +71,7 @@
                     </section>
                 </div>
             </div>
-        </div>
-        <!-- ////////////////////////////////////////////////////////////////////////////-->
-        <!-- BEGIN VENDOR JS-->
+        </div> 
         <script src="<?= $ruta;?>app-assets/js/core/libraries/jquery.min.js" type="text/javascript">
         </script>
         <script src="<?= $ruta;?>app-assets/vendors/js/ui/tether.min.js" type="text/javascript">
@@ -109,17 +89,50 @@
         <script src="<?= $ruta;?>app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript">
         </script>
         <script src="<?= $ruta;?>app-assets/vendors/js/extensions/pace.min.js" type="text/javascript">
-        </script>
-        <!-- BEGIN VENDOR JS-->
-        <!-- BEGIN PAGE VENDOR JS-->
-        <!-- END PAGE VENDOR JS-->
-        <!-- BEGIN ROBUST JS-->
+        </script> 
         <script src="<?= $ruta;?>app-assets/js/core/app-menu.js" type="text/javascript">
         </script>
         <script src="<?= $ruta;?>app-assets/js/core/app.js" type="text/javascript">
+        </script> 
+        <script src="<?= $ruta;?>assets/js/notify.min.js" type="text/javascript"></script>
+        <?php include('local/resources/views/empresas/require/js.php');?>
+        <script>
+            function login() {
+        
+            if(!validar_r("correo")){} 
+            else if(!validar_correo("correo")){}
+            else if(!validar_clave("clave")){}
+            else if(!validar_r("clave")){}    
+            else
+            {
+                datos={ 
+                correo:$('#correo').val(),
+                clave:$('#clave').val(),  
+                    }
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: 'login',
+                            type: 'POST',
+                            data:datos,  
+                            success: function(response) {
+                                if(response=='1')
+                                {
+                                     location.href = 'panel';
+                                }else
+                                {
+                                     $.notify("Cuenta no registrada.","info");                                   
+                                }                               
+                            },
+                            error: function(error) {
+                                $.notify("Ocurrió un error al procesar la solicitud.");
+                            }
+                        }); 
+                  } 
+            }
         </script>
-        <!-- END ROBUST JS-->
-        <!-- BEGIN PAGE LEVEL JS-->
-        <!-- END PAGE LEVEL JS-->
     </body>
 </html>

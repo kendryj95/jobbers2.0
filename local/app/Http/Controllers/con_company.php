@@ -23,6 +23,7 @@ class con_company extends Controller
 		
 
 	}
+
     public function registrar()
     { 	
     	date_default_timezone_set('America/Argentina/Cordoba');
@@ -67,12 +68,7 @@ class con_company extends Controller
     		 abort(500); 
     	} 
     }
-
-    public function login()
-    {
-    	$sql="SELECT * FROM tbl_company WHERE ";
-    }
-
+ 
     public function get_provincias()
     {
     	
@@ -112,38 +108,5 @@ class con_company extends Controller
     			dd("Ha ocurrido un error al procesar la solicitud. Ya fue reportado al equipo de soporte"); 
     		} 
     	}
-    }
-
-    public function auditar($funcion,$codigo,$empresa)
-    {
-    	$sql="INSERT INTO tbl_aud_company (empresa,codigo,funcion) VALUES
-    	(
-    		'".$empresa."',
-    		'".$codigo."',
-    		'".$funcion."'
-    	)"; 
-    	DB::insert($sql);
-    }
-
-    function injection($valor)
-	{
-		$valor = str_ireplace("SELECT","",$valor);
-		$valor = str_ireplace("COPY","",$valor);
-		$valor = str_ireplace("DELETE","",$valor);
-		$valor = str_ireplace("DROP","",$valor);
-		$valor = str_ireplace("DUMP","",$valor);
-		$valor = str_ireplace(" OR ","",$valor);
-		$valor = str_ireplace("%","",$valor);
-		$valor = str_ireplace("LIKE","",$valor);
-		$valor = str_ireplace("--","",$valor);
-		$valor = str_ireplace("^","",$valor);
-		$valor = str_ireplace("[","",$valor);
-		$valor = str_ireplace("]","",$valor); 
-		$valor = str_ireplace("!","",$valor);
-		$valor = str_ireplace("¡","",$valor);
-		$valor = str_ireplace("?","",$valor);
-		$valor = str_ireplace("=","",$valor);
-		$valor = str_ireplace("&","",$valor);
-		return $valor;
-	}
+    } 
 }

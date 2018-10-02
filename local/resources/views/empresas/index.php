@@ -186,38 +186,5 @@
             </div>
         </div>
     </div>
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-    <footer class="footer footer-static footer-light navbar-border text-center">
-        <p class="clearfix text-muted text-sm-center mb-0 px-2">
-            <span class="float-md-left d-xs-block d-md-inline-block">
-                Copyright  © 2016
-                <a class="text-bold-800 grey darken-2" href="https://pixinvent.com" target="_blank">
-                    Jobbers Argentina
-                </a>
-                , Todos los derechos reservados
-            </span>
-        </p>
-    </footer>
-    <script src="<?= $ruta;?>app-assets/js/core/libraries/jquery.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/ui/tether.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/ui/unison.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/vendors/js/extensions/pace.min.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/js/core/app-menu.js" type="text/javascript">
-    </script>
-    <script src="<?= $ruta;?>app-assets/js/core/app.js" type="text/javascript">
-    </script>
+   <?php include('includes/footer.php')?>
 </body>

@@ -49,14 +49,39 @@ Route::post('evaluacion', 'con_candidatos@evaluacionJobbers');
 //********************************************************//
 //*                RUTAS NUEVAS EMPRESAS                 *//
 //********************************************************//
-Route::get('empresas/panel', function () {return view('empresas.index');});
 Route::get('empresas/entrar', function () {return view('empresas.login');});
 Route::get('empresas/registro', 'con_company@index_register');
 Route::get('empresas/recuperacion', function () {return view('empresas.recuperacion');});
-
+Route::get('empresas/salir', 'con_company_login@logout');
 Route::post('empresas/registrar', 'con_company@registrar');
 Route::post('empresas/localidades', 'con_company@get_localidades');
+Route::post('empresas/login', 'con_company_login@login');
 
+Route::group(['middleware' => 'log_company'], function () {
+//Inicio	
+Route::get('empresas/panel', function () {return view('empresas.index');}); 
+
+//Mi perfil
+Route::get('empresas/perfil', 'con_company_profile@index');
+Route::post('empresas/infogeneral', 'con_company_profile@info_general');
+Route::post('empresas/infocontacto', 'con_company_profile@info_contacto');
+Route::post('empresas/inforedes', 'con_company_profile@info_redes'); 
+Route::post('empresas/infoyoutube', 'con_company_profile@info_youtube');
+Route::post('empresas/infoimagen', 'con_company_profile@info_imagen');
+
+//Configuracion
+ Route::get('empresas/configuracion', 'con_company_configuracion@index');
+ Route::post('empresas/cambioclave', 'con_company_configuracion@cambio_clave');
+ //Ofertas
+ Route::get('empresas/ofertas', 'con_company_ofertas@index');
+ Route::post('empresas/publicar', 'con_company_ofertas@publicar');
+ Route::post('empresas/ofertas', 'con_company_ofertas@get_ofertas');
+ Route::post('empresas/updatestatus', 'con_company_ofertas@update_estatus');
+ Route::post('empresas/eliminar', 'con_company_ofertas@eliminar');
+ Route::post('empresas/oferta', 'con_company_ofertas@get_oferta');
+ //Planes
+ Route::get('empresas/planes', 'con_company_planes@index');
+});
 //********************************************************//
 
 //********************************************************//

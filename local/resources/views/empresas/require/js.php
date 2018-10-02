@@ -34,6 +34,45 @@
 		 else {return true};
 	} 
 
+	 function set_select(par,valor)
+     {
+     	  $("#"+par).val(valor);
+     }
+
+     $("#provincia" ).change(function() {
+             set_localidad();
+     });
+
+     function set_localidad()
+     {
+     	 if($("#provincia").val()=="")
+               {
+                    $("#localidad").html('');
+                    $("#localidad").append('<option value="">Localidad</option>');return 0;
+               }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: 'localidades',
+                    type: 'POST',
+                    data: {provincia:$("#provincia").val()},
+                    dataType: 'json',
+                    success: function(response) {
+                    $("#localidad").html('');
+                    $("#localidad").append('<option value="">Localidad</option>');
+                    var JSONArray = jQuery.parseJSON(JSON.stringify(response));
+                     jQuery.each(JSONArray, function(index, dato) {
+                        $("#localidad").append('<option value="'+dato.localidad+'">'+dato.localidad+'</option>');
+                    });
+                    },
+                    error: function(error) {
+                        $.notify("Ocurrió un error al procesar la solicitud.");
+                    }
+                });
+     } 
 	
 </script>
 

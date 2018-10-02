@@ -7,7 +7,7 @@
             <i class="icon-ellipsis icon-ellipsis" data-original-title="Support" data-placement="right" data-toggle="tooltip">
             </i>
             <li class="active">
-                <a href="form-layout-basic.html">
+                <a href="<?php echo Request::root();?>/empresas/panel">
                     <i class="icon-home3">
                     </i>
                     <span class="menu-title" data-i18n="nav.form_layouts.form_layout_basic">
@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="form-layout-basic.html">
+                <a href="<?php echo Request::root();?>/empresas/perfil">
                     <i class="icon-user">
                     </i>
                     <span class="menu-title" data-i18n="nav.form_layouts.form_layout_basic">
@@ -24,29 +24,18 @@
                     </span>
                 </a>
             </li>
-            <li class=" nav-item">
-                <a href="index.html">
+             <li>
+                <a href="<?php echo Request::root();?>/empresas/ofertas">
                     <i class="icon-profile">
                     </i>
-                    <span class="menu-sell" data-i18n="nav.dash.main">
+                    <span class="menu-title" data-i18n="nav.form_layouts.form_layout_basic">
                         Ofertas
                     </span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" data-i18n="nav.dash.main" href="index.html">
-                            Mis ofertas
-                        </a>
-                    </li>
-                    <li>
-                        <a class="menu-item" data-i18n="nav.dash.main" href="dashboard-2.html">
-                            Nueva Oferta
-                        </a>
-                    </li>
-                </ul>
             </li>
+           
             <li>
-                <a href="form-layout-basic.html">
+                <a href="<?php echo Request::root();?>/empresas/planes">
                     <i class="icon-star-full">
                     </i>
                     <span class="menu-title" data-i18n="nav.form_layouts.form_layout_basic">
@@ -55,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="form-layout-basic.html">
+                <a href="<?php echo Request::root();?>/empresas/configuracion">
                     <i class="icon-cog">
                     </i>
                     <span class="menu-title" data-i18n="nav.form_layouts.form_layout_basic">
@@ -64,7 +53,7 @@
                 </a>
             </li>
             <li>
-                <a href="form-layout-basic.html">
+                <a href="<?php echo Request::root()?>/empresas/salir">
                     <i class="icon-log-out">
                     </i>
                     <span class="menu-title" data-i18n="nav.form_layouts.form_layout_basic">
