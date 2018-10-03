@@ -14,8 +14,9 @@ class con_company_login extends Controller
     			$sql="SELECT *,count(id) as cantidad  FROM tbl_company 
 	    		WHERE correo='".$this->injection($_POST['correo'])."' 
 	    		AND clave ='".md5($this->injection($_POST['clave']))."'";
-	    		$datos=DB::select($sql);
-	    		if($datos[0]->cantidad==1)
+	    		 $datos=DB::select($sql);
+                
+                if($datos[0]->cantidad==1)
 	    		{
 	    			$request->session()->set('company_id',$datos[0]->id);
 	    			$request->session()->set('company_img',$datos[0]->img_profile);
@@ -24,7 +25,7 @@ class con_company_login extends Controller
 
 	    			echo "1";
 	    		}
-	    		else{echo "0";}
+	    		else{echo "0";} 
     		}catch (\Illuminate\Database\QueryException $ex) {     			 
     			$this->auditar('login',str_replace("'", "",$ex->getMessage()),''); 
     			abort(500);

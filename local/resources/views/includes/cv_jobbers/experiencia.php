@@ -45,6 +45,34 @@ if($datos_experiencia_lab[0]->cantidad > 0)
 			Fpdf::Cell(85,4,''.utf8_decode("Cargo: ".$datos_experiencia_lab[$i]->cargo).'',0,1,'L','true');
 			Fpdf::Cell(85,4,''.utf8_decode("Act. Empresa: ".$datos_experiencia_lab[$i]->act_empresa).'',0,1,'L','true');
 			Fpdf::Cell(85,4,''.utf8_decode("Periodo: ".$expe_periodo).'',0,1,'L','true');
+			$descripcion_tareas = explode(" ", $datos_experiencia_lab[$i]->descripcion);
+			$nuevo_texto_desc="";
+			$bandera_desc_tarea=0;
+			foreach ($descripcion_tareas as $key) {
+				$nuevo_texto_desc=$nuevo_texto_desc.' '.$key;
+				if(strlen($nuevo_texto_desc)>100)
+				{	if($bandera_desc_tarea==0)
+					{
+						Fpdf::Cell(85,4,''.utf8_decode("Descripcion de tareas: ".$nuevo_texto_desc).'',0,1,'L','true');
+						$bandera_desc_tarea++;
+						$nuevo_texto_desc="";
+					}
+					else
+					{
+						Fpdf::Cell(85,4,''.utf8_decode("".$nuevo_texto_desc).'',0,1,'L','true');
+						$nuevo_texto_desc="";
+					} 
+				}
+		   } 
+		   if($bandera_desc_tarea==0)
+		   {
+		   	Fpdf::Cell(85,4,''.utf8_decode("Descripcion de tareas: ".$nuevo_texto_desc).'',0,1,'L','true'); 
+		   }
+		   else
+		   {
+		   	Fpdf::Cell(85,4,''.utf8_decode("".$nuevo_texto_desc).'',0,1,'L','true'); 
+		   }
+		   
 	}
 
 	/*$experienia_general=

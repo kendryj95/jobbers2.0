@@ -42,6 +42,7 @@ class con_cv extends Controller
 			LEFT JOIN tbl_actividades_empresa t3 ON t3.id = t2.id_actividad_empresa
 			WHERE t1.id =".$id."
 			GROUP by t2.id
+			ORDER BY t2.desde DESC
 			 ";
 
 			$sql_idioma="SELECT count(t2.id) as cantidad, t3.descripcion from tbl_usuarios t1
