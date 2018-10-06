@@ -97,7 +97,7 @@
 			<!--fin Header responsive-->
 			<section id="contenedor_header" class="overlape" >
 				<div class="block no-padding">
-					<div data-velocity="-.1" style="background: url(https://i.ytimg.com/vi/QqeqOyYsIeE/maxresdefault.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
+					<div data-velocity="-.1" style="background: url(../local/resources/views/images/fondo_perfil_candidatos.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax" style="padding: 0px;height: 100px;"></div><!-- PARALLAX BACKGROUND IMAGE -->
 					<div class="container fluid">
 						<div class="row">
 							<div class="col-lg-12">

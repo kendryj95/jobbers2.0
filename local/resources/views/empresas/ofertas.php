@@ -36,6 +36,47 @@ function select_options($habilidades_json){
             {
                 background-color: #fff;
             }
+             .listado-postulados
+            {
+               border-right: 1px solid #ddd;
+               border-bottom: 1px solid #ddd;
+               padding: 4px;
+            }
+             .listado-postulados span
+            {
+               padding-left: 10px;
+            }
+            .listado-postulados:hover
+            {
+                background-color: #e9ebee;
+                cursor: pointer; 
+            }
+            #informacion_general ul li{margin-bottom:-8px;}
+            {
+
+            }
+
+            html,body{
+                overflow-x: hidden;  
+                height:100%; 
+                width:101%; 
+                margin: 0px; 
+                padding: 0px; 
+            }
+
+            ::-webkit-scrollbar {
+                width: 3px;
+                height: 30px; 
+            }
+            ::-webkit-scrollbar-button {
+                background: #ccc
+            }
+            ::-webkit-scrollbar-track-piece {
+                background: #ededed
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #bababa
+            }​
        </style>
       <link href="<?= $ruta?>plugins/tag/tokenize2.css" rel="stylesheet" /> 
     </head>
@@ -48,7 +89,7 @@ function select_options($habilidades_json){
     </div>
     <!-- / main menu-->
     <div class="app-content content container-fluid">
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="margin-right: 20px;">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-xs-12 mb-1">
                     <h2 class="content-header-title">
@@ -76,6 +117,178 @@ function select_options($habilidades_json){
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">
                     <div class="row match-height"> 
+                         <div class="col-md-12">
+                               <div class="card card-fullscreen">
+                                  <div class="card-header">
+                                     <h4 class="card-title" id="basic-layout-form">  <i class="icon-profile">
+                                        </i>Postulados
+                                     </h4>
+                                     <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                     <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                           <li><a data-action="expand" id="expand"><i class="icon-expand2"></i></a></li>
+                                           <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                                        </ul>
+                                     </div>
+                                  </div>
+                                  <div class="card-body collapse in">
+                                     <div class="card-block sp"  style="padding-top: 0px;">
+                                        <form class="form" id="form-imagen" enctype="multipart/form-data" method="POST">
+                                           <div class="form-body">
+                                              <div class="row">
+                                                 <div class="col-md-12" >
+                                                    <div class="card-body">
+                                                       <div class="col-sm-3 sp" style="" >
+                                                          <ul id="candidatos_list" style="list-style: none;margin: 0px;padding: 0px;height: 500px;overflow-x:hidden;">
+                                                             <li class="listado-postulados">
+                                                                <input class="form-control" placeholder="Buscar..." type="text" name="">
+                                                             </li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
+                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor ultimo</span></li>
+                                                          </ul>
+                                                       </div>
+                                                       <div id="cv_list" class="col-sm-9 sp" style="background-image: url(<?= $ruta;?>app-assets/images/logo/bg-3.png);overflow-x: hidden;padding-bottom: 50px;">
+                                                          <div class="col-sm-12 sp" style="text-align: center;padding: 15px;overflow-wrap: break-word">
+                                                             <img style="width: 100px;height: 100px;" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png">
+                                                             <br><br>
+                                                             <span style="margin-top: 10px;color: #fff;background-color: #306bff;border-radius: 5px;padding-right: 5px;padding-left: 5px;">Victor Fernández</span>
+                                                             <br>
+                                                             <p style="padding: 10px;background-color: #fff;border:1px solid #e4e4e4;  border-radius: 10px;margin-top: 10px;">Soy una persona dinámicay pro activa con muchas ganas de salir adelante. Soy perfeccionista soy de los que cree firmemente que porque hacer las cosas bien cuando se pueden hacer excelentes.</p>
+                                                             <div class="col-sm-12" style="text-align: center;">
+                                                                <h5 style="">Marcadores</h5>
+                                                                <button class="btn btn-sm btn-warning">Marcador 1</button>
+                                                                <button class="btn btn-sm btn-warning">Marcador 2</button>
+                                                                <button class="btn btn-sm btn-warning">Marcador 3</button>
+                                                                <button class="btn btn-sm btn-danger">Descartar</button>
+                                                             </div>
+                                                          </div>
+                                                          <div class="col-sm-12" id="informacion_general">
+                                                             <h5>Información General</h5>
+                                                             <div class="col-sm-12 sp" style="background-color: #fff; border:1px solid #e4e4e4;  border-radius: 10px;">
+                                                                <div class="col-sm-6 sp">
+                                                                   <ul style="list-style: none;padding-left: 10px;">
+                                                                      <li><strong>Nombre:</strong> Victor Fernández</li>
+                                                                      <li><strong>Correo:</strong> victor.fernandez.18@hotmail.com</li>
+                                                                      <li><strong>Teléfono:</strong> 04161611131</li>
+                                                                      <li><strong>DNI:</strong> 22058481</li>
+                                                                      <li><strong>Cuil:</strong> </li>
+                                                                      <li><strong>Nacionalidad:</strong> Venezolana</li>
+                                                                      <li><strong>Direccion:</strong> San Fco</li>
+                                                                      <li>&nbsp;</li>
+                                                                   </ul>
+                                                                </div>
+                                                                <div class="col-sm-6 sp">
+                                                                   <ul style="list-style: none;padding-left: 10px;">
+                                                                      <li><strong>Fecha de nacimiento:</strong> 20-07-1993</li>
+                                                                      <li><strong>Edad:</strong> 25 Anos</li>
+                                                                      <li><strong>Sexo: </strong> Masculino</li>
+                                                                      <li><strong>Discapacidad:</strong> No</li>
+                                                                      <li><strong>Estado civil:</strong> Soltero</li>
+                                                                      <li><strong>Hijos:</strong> 5</li>
+                                                                      <li>&nbsp;</li>
+                                                                   </ul>
+                                                                </div>
+                                                             </div>
+                                                          </div>
+                                                          <div class="col-sm-12" style="margin-top: 20px;">
+                                                             <h5>Experiencia Laboral</h5>
+                                                             <div class="col-sm-12 sp" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;">
+                                                                <div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;">
+                                                                    <img style="height: 80px;" src="<?=$ruta?>app-assets/images/icons/postulados/experiencia.png" alt="">
+                                                                </div>
+                                                                <div class="col-sm-10" style="padding-top: 10px;">
+                                                                   <h4>Cocacola
+                                                                      <span style="float: right;font-weight: 500;font-size: 14px;padding-top: 5px;">Área: Informática</span>
+                                                                   </h4>
+                                                                   <h5><span class="tag tag-info">3 meses</span> 11-07-2017  a  12-05-2018 </h5>
+                                                                   <p>"Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la"</p>
+                                                                </div>
+                                                             </div>
+                                                          </div> 
+                                                          <div class="col-sm-12" style="margin-top: 20px;">
+                                                             <h5>Educación</h5>
+                                                             <div class="col-sm-12 sp" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;">
+                                                                <div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;">
+                                                                    <img style="height: 80px;" src="<?=$ruta?>app-assets/images/icons/postulados/graduation.png" alt="">
+                                                                </div>
+                                                                <div class="col-sm-10" style="padding-top: 10px;">
+                                                                   <h4>UNEFA
+                                                                      <span style="float: right;font-weight: 500;font-size: 14px;padding-top: 5px;">Área: Informática</span>
+                                                                   </h4>
+                                                                   <h5><span class="tag tag-info">Pregrado</span> Graduado </h5>
+                                                                   <p>"Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la"</p>
+                                                                </div>
+                                                             </div>
+                                                          </div> 
+
+
+                                                          <div class="col-sm-12" style="margin-top: 20px;">
+                                                             <h5>Preferencias laborales</h5>
+                                                             <div class="col-sm-12 sp" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;">
+                                                                <div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;padding-bottom: 15px;">
+                                                                    <img style="height: 80px;" src="<?=$ruta?>app-assets/images/icons/postulados/questions.png" alt="">
+                                                                </div>
+                                                                <div class="col-sm-3" style="padding-top: 15px; text-align: center;">
+                                                                   <h5>Salario Pretendido: <br><span class="tag tag-info" style="margin-top: 5px;">15.000 Arg</span></h5>
+                                                               </div>
+                                                               <div class="col-sm-3" style="padding-top: 15px; text-align: center;">
+                                                                   <h5>Tipo de Jornada: <br><span class="tag tag-info" style="margin-top: 5px;">Full time</span> </h5>
+                                                                </div>
+                                                                <div class="col-sm-3" style="padding-top: 15px; text-align: center;">
+                                                                   <h5>Cargos pretendidos: <br><span class="tag tag-info" style="margin-top: 5px;margin-left: 5px;">Ingeniero</span></h5> 
+                                                                </div>
+                                                             </div>
+                                                          </div> 
+
+                                                          <div class="col-sm-12" style="margin-top: 20px;">
+                                                             <h5>Habilidades</h5>
+                                                             <div class="col-sm-12 sp" style="background-color: #fff;">
+                                                                 <span class="tag tag-warning" style="margin-top: 5px;">PHP</span>
+                                                                 <span class="tag tag-warning" style="margin-top: 5px;">MySQL</span>
+                                                              </div>
+                                                          </div> 
+
+                                                           <div class="col-sm-12" style="margin-top: 20px;">
+                                                             <h5>Idiomas</h5>
+                                                             <div class="col-sm-12 sp" style="background-color: #fff;">
+                                                                 <span class="tag tag-warning" style="margin-top: 5px;">Alemán</span>
+                                                                 <span class="tag tag-warning" style="margin-top: 5px;">Ruso</span>
+                                                                 <span class="tag tag-warning" style="margin-top: 5px;">Mandarín</span>
+                                                              </div>
+                                                          </div> 
+
+
+                                                       </div>
+                                                    </div>
+                                                 </div>
+                                              </div>
+                                           </div>
+                                        </form>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div> 
                        <div class="col-md-12">
                             <div class="card"> 
                                 <div class="card-body collapse in">
@@ -83,8 +296,7 @@ function select_options($habilidades_json){
                                         <form class="form" id="form-imagen" enctype="multipart/form-data" method="POST">
                                             <div class="form-body">
                                                 <h4 class="form-section">
-                                                    <i class="icon-profile">
-                                                    </i>
+                                                  
                                                     Mis ofertas
                                                     <span id="total" style="float: right;">0</span>
                                                 </h4>
@@ -367,6 +579,9 @@ function select_options($habilidades_json){
                  tokensMaxItems: 5
           }); 
            texto_ejemplo();
+           altura =($(window).height()-55)+'px';
+           $("#candidatos_list").css({'height':altura}); 
+           $("#cv_list").css({'height':altura}); 
         });
 
         //Funciones auxiliares
