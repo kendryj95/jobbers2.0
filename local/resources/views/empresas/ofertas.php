@@ -88,6 +88,19 @@ function select_options($habilidades_json){
         <?php include('includes/aside.php')?>
     </div>
     <!-- / main menu-->
+
+    <div id="modal_loader" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" > 
+          <div class="modal-content" > 
+            <div class="modal-body" style="text-align: center;">
+               <img src="<?=$ruta?>app-assets/images/icons/load.gif">
+               <h3>Por favor espere...</h3>
+            </div> 
+          </div> 
+        </div>
+      </div>
+
+
     <div class="app-content content container-fluid">
         <div class="content-wrapper" style="margin-right: 20px;">
             <div class="content-header row">
@@ -118,63 +131,62 @@ function select_options($habilidades_json){
                 <section id="basic-form-layouts">
                     <div class="row match-height"> 
                          <div class="col-md-12">
-                               <div class="card card-fullscreen">
+                               <div class="card">
                                   <div class="card-header">
                                      <h4 class="card-title" id="basic-layout-form">  <i class="icon-profile">
                                         </i>Postulados
+
                                      </h4>
                                      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                                      <div class="heading-elements">
                                         <ul class="list-inline mb-0">
                                            <li><a data-action="expand" id="expand"><i class="icon-expand2"></i></a></li>
-                                           <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                                           <li><a id="btn-postulados" data-action="collapse"><i class="icon-minus4"></i></a></li>
                                         </ul>
                                      </div>
                                   </div>
-                                  <div class="card-body collapse in">
+                                  <div class="card-body collapse" id="contenedor_postulados">
                                      <div class="card-block sp"  style="padding-top: 0px;">
                                         <form class="form" id="form-imagen" enctype="multipart/form-data" method="POST">
                                            <div class="form-body">
                                               <div class="row">
-                                                 <div class="col-md-12" >
+                                                 <div class="col-md-12">
                                                     <div class="card-body">
                                                        <div class="col-sm-3 sp" style="" >
+                                                        <div class="row">
+                                                          <div class="col-sm-12">
+                                                          <ul class="nav navbar-nav" style="text-align: right;">
+                                                           <li class=""><a style="" href="#" data-toggle="dropdown" class="nav-link dropdown-user-link" aria-expanded="true"></i><img src="<?= $ruta?>app-assets/images/icons/sort.png" alt=""></a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                              <a href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 1</a>
+                                                              <a href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 2</a>
+                                                              <a href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 3</a>
+                                                              <div class="dropdown-divider"></div>
+                                                              <a href="#" class="dropdown-item"><i class="icon-file-text"></i> No leidos</a>
+                                                            </div>
+                                                          </li>
+                                                         </ul>
+                                                        </div>
+                                                          <div class="col-sm-12">
+                                                          <select style="margin-bottom: 15px;" onChange="get_postulados(this.value)" id="select_ofertas" class="form-control"> 
+                                                          </select>
+                                                        </div>
+                                                        
+                                                        </div> 
                                                           <ul id="candidatos_list" style="list-style: none;margin: 0px;padding: 0px;height: 500px;overflow-x:hidden;">
-                                                             <li class="listado-postulados">
-                                                                <input class="form-control" placeholder="Buscar..." type="text" name="">
-                                                             </li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor Fernández</span></li>
-                                                             <li class="listado-postulados"><img style="width: 35px;height: 35px" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt=""/><span>Victor ultimo</span></li>
+                                                             
                                                           </ul>
                                                        </div>
-                                                       <div id="cv_list" class="col-sm-9 sp" style="background-image: url(<?= $ruta;?>app-assets/images/logo/bg-3.png);overflow-x: hidden;padding-bottom: 50px;">
+                                                       <div id="cv_list_home" class="col-sm-9 sp" style="background-image: url(<?= $ruta;?>app-assets/images/logo/bg-3.png);overflow-x: hidden;padding-bottom: 50px;padding-top: 100px;text-align: center;">
+                                                        <img src="<?= $ruta;?>app-assets/images/logo/postulados.png" alt="">
+                                                       </div>
+                                                       <div id="cv_list" class="col-sm-9 sp" style="background-image: url(<?= $ruta;?>app-assets/images/logo/bg-3.png);overflow-x: hidden;padding-bottom: 50px;display: none;">
                                                           <div class="col-sm-12 sp" style="text-align: center;padding: 15px;overflow-wrap: break-word">
-                                                             <img style="width: 100px;height: 100px;" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png">
+                                                             <img class="info-cv-imagen" style="width: 100px;height: 100px;border-radius: 50%;" src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png">
                                                              <br><br>
-                                                             <span style="margin-top: 10px;color: #fff;background-color: #306bff;border-radius: 5px;padding-right: 5px;padding-left: 5px;">Victor Fernández</span>
+                                                             <span class="info-cv info-cv-nombre" style="margin-top: 10px;color: #fff;background-color: #306bff;border-radius: 5px;padding-right: 5px;padding-left: 5px;">Victor Fernández</span>
                                                              <br>
-                                                             <p style="padding: 10px;background-color: #fff;border:1px solid #e4e4e4;  border-radius: 10px;margin-top: 10px;">Soy una persona dinámicay pro activa con muchas ganas de salir adelante. Soy perfeccionista soy de los que cree firmemente que porque hacer las cosas bien cuando se pueden hacer excelentes.</p>
+                                                             <p class="info-cv info-cv-sobre-mi" style="padding: 10px;background-color: #fff;border:1px solid #e4e4e4;  border-radius: 10px;margin-top: 10px;">Soy una persona dinámicay pro activa con muchas ganas de salir adelante. Soy perfeccionista soy de los que cree firmemente que porque hacer las cosas bien cuando se pueden hacer excelentes.</p>
                                                              <div class="col-sm-12" style="text-align: center;">
                                                                 <h5 style="">Marcadores</h5>
                                                                 <button class="btn btn-sm btn-warning">Marcador 1</button>
@@ -188,24 +200,24 @@ function select_options($habilidades_json){
                                                              <div class="col-sm-12 sp" style="background-color: #fff; border:1px solid #e4e4e4;  border-radius: 10px;">
                                                                 <div class="col-sm-6 sp">
                                                                    <ul style="list-style: none;padding-left: 10px;">
-                                                                      <li><strong>Nombre:</strong> Victor Fernández</li>
-                                                                      <li><strong>Correo:</strong> victor.fernandez.18@hotmail.com</li>
-                                                                      <li><strong>Teléfono:</strong> 04161611131</li>
-                                                                      <li><strong>DNI:</strong> 22058481</li>
-                                                                      <li><strong>Cuil:</strong> </li>
-                                                                      <li><strong>Nacionalidad:</strong> Venezolana</li>
-                                                                      <li><strong>Direccion:</strong> San Fco</li>
+                                                                      <li><strong>Nombre:</strong> <span class="info-cv info-cv-nombre"></span></li>
+                                                                      <li><strong>Correo:</strong> <span class="info-cv info-cv-correo"></span></li>
+                                                                      <li><strong>Teléfono:</strong> <span class="info-cv info-cv-telefono"></span></li>
+                                                                      <li><strong>DNI:</strong> <span class="info-cv info-cv-dni"></span></li>
+                                                                      <li><strong>Cuil:</strong> <span class="info-cv info-cv-cuil"></span></li>
+                                                                      <li><strong>Nacionalidad:</strong> <span class="info-cv info-cv-nacionalidad"></span></li>
+                                                                      <li><strong>Direccion:</strong><span class="info-cv info-cv-direccion"></span></li>
                                                                       <li>&nbsp;</li>
                                                                    </ul>
                                                                 </div>
                                                                 <div class="col-sm-6 sp">
                                                                    <ul style="list-style: none;padding-left: 10px;">
-                                                                      <li><strong>Fecha de nacimiento:</strong> 20-07-1993</li>
-                                                                      <li><strong>Edad:</strong> 25 Anos</li>
-                                                                      <li><strong>Sexo: </strong> Masculino</li>
-                                                                      <li><strong>Discapacidad:</strong> No</li>
-                                                                      <li><strong>Estado civil:</strong> Soltero</li>
-                                                                      <li><strong>Hijos:</strong> 5</li>
+                                                                      <li><strong>Fecha de nacimiento:</strong><span class="info-cv info-cv-fecha-nacimiento"></span></li>
+                                                                      <li><strong>Edad:</strong><span class="info-cv info-cv-edad"></span></li>
+                                                                      <li><strong>Sexo: </strong> <span class="info-cv info-cv-sexo"></span></li>
+                                                                      <li><strong>Discapacidad:</strong> <span class="info-cv info-cv-discapacidad"></span></li>
+                                                                      <li><strong>Estado civil:</strong> <span class="info-cv info-cv-edo-civil"></span></li>
+                                                                      <li><strong>Hijos:</strong> <span class="info-cv info-cv-hijos"></span></li>
                                                                       <li>&nbsp;</li>
                                                                    </ul>
                                                                 </div>
@@ -213,32 +225,13 @@ function select_options($habilidades_json){
                                                           </div>
                                                           <div class="col-sm-12" style="margin-top: 20px;">
                                                              <h5>Experiencia Laboral</h5>
-                                                             <div class="col-sm-12 sp" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;">
-                                                                <div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;">
-                                                                    <img style="height: 80px;" src="<?=$ruta?>app-assets/images/icons/postulados/experiencia.png" alt="">
-                                                                </div>
-                                                                <div class="col-sm-10" style="padding-top: 10px;">
-                                                                   <h4>Cocacola
-                                                                      <span style="float: right;font-weight: 500;font-size: 14px;padding-top: 5px;">Área: Informática</span>
-                                                                   </h4>
-                                                                   <h5><span class="tag tag-info">3 meses</span> 11-07-2017  a  12-05-2018 </h5>
-                                                                   <p>"Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la"</p>
-                                                                </div>
+                                                             <div class="col-sm-12 sp info-cv info-cv-experiencia" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;">
+                                                                
                                                              </div>
                                                           </div> 
                                                           <div class="col-sm-12" style="margin-top: 20px;">
                                                              <h5>Educación</h5>
-                                                             <div class="col-sm-12 sp" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;">
-                                                                <div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;">
-                                                                    <img style="height: 80px;" src="<?=$ruta?>app-assets/images/icons/postulados/graduation.png" alt="">
-                                                                </div>
-                                                                <div class="col-sm-10" style="padding-top: 10px;">
-                                                                   <h4>UNEFA
-                                                                      <span style="float: right;font-weight: 500;font-size: 14px;padding-top: 5px;">Área: Informática</span>
-                                                                   </h4>
-                                                                   <h5><span class="tag tag-info">Pregrado</span> Graduado </h5>
-                                                                   <p>"Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la Lorem Pixel es un servicio de generación automática de imágenes gratuito y muy fácil de utilizar. Solo tenemos que apuntar la URL de la"</p>
-                                                                </div>
+                                                             <div class="col-sm-12 sp info-cv info-cv-educacion" style="background-color: #ebeef2;border: 1px solid #c7d1de; border-radius: 10px;"> 
                                                              </div>
                                                           </div> 
 
@@ -249,32 +242,37 @@ function select_options($habilidades_json){
                                                                 <div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;padding-bottom: 15px;">
                                                                     <img style="height: 80px;" src="<?=$ruta?>app-assets/images/icons/postulados/questions.png" alt="">
                                                                 </div>
+
                                                                 <div class="col-sm-3" style="padding-top: 15px; text-align: center;">
-                                                                   <h5>Salario Pretendido: <br><span class="tag tag-info" style="margin-top: 5px;">15.000 Arg</span></h5>
+                                                                   <h5>Salario Pretendido: 
+                                                                    <span class="info-cv info-cv-salario"></span>
+
+                                                                    <span class="tag tag-info" style="margin-top: 5px;"></span></h5>
                                                                </div>
                                                                <div class="col-sm-3" style="padding-top: 15px; text-align: center;">
-                                                                   <h5>Tipo de Jornada: <br><span class="tag tag-info" style="margin-top: 5px;">Full time</span> </h5>
+                                                                   <h5>Tipo de Jornada: <br>
+                                                                    <span class="info-cv info-cv-jornada"></span>
+                                                                   </h5>
                                                                 </div>
                                                                 <div class="col-sm-3" style="padding-top: 15px; text-align: center;">
-                                                                   <h5>Cargos pretendidos: <br><span class="tag tag-info" style="margin-top: 5px;margin-left: 5px;">Ingeniero</span></h5> 
+                                                                   <h5>Cargos pretendidos: <br>
+                                                                    <span class="info-cv info-cv-cargos"></span>
+                                                                    </h5> 
                                                                 </div>
                                                              </div>
                                                           </div> 
 
                                                           <div class="col-sm-12" style="margin-top: 20px;">
                                                              <h5>Habilidades</h5>
-                                                             <div class="col-sm-12 sp" style="background-color: #fff;">
-                                                                 <span class="tag tag-warning" style="margin-top: 5px;">PHP</span>
-                                                                 <span class="tag tag-warning" style="margin-top: 5px;">MySQL</span>
+                                                             <div   class="col-sm-12 sp info-cv info-cv-habilidades" style="background-color: #fff;">
+                                                                  
                                                               </div>
                                                           </div> 
 
                                                            <div class="col-sm-12" style="margin-top: 20px;">
                                                              <h5>Idiomas</h5>
-                                                             <div class="col-sm-12 sp" style="background-color: #fff;">
-                                                                 <span class="tag tag-warning" style="margin-top: 5px;">Alemán</span>
-                                                                 <span class="tag tag-warning" style="margin-top: 5px;">Ruso</span>
-                                                                 <span class="tag tag-warning" style="margin-top: 5px;">Mandarín</span>
+                                                             <div class="col-sm-12 sp info-cv info-cv-idiomas" style="background-color: #fff;">
+                                                                 
                                                               </div>
                                                           </div> 
 
@@ -433,6 +431,7 @@ function select_options($habilidades_json){
                                                             <label>Nivel de estudio</label>
                                                             <select id="nivel_estudio" class="form-control">
                                                                 <option value="">Seleccionar</option>
+                                                                <option value="Cualquiera">Cualquiera</option>
                                                                 <?php foreach ($nivel_estudio as $key): ?>
                                                                     <option value="<?= $key->descripcion?>"><?= $key->descripcion?></option>
                                                                 <?php endforeach ?>
@@ -450,6 +449,7 @@ function select_options($habilidades_json){
                                                             <label>Plan estado</label>
                                                             <select id="plan_estado"  class="form-control">
                                                                    <option value="">Seleccionar</option>
+                                                                   <option value="No aplica">No aplica</option>
                                                                 <?php foreach ($plan_estado as $key): ?>
                                                                     <option value="<?= $key->plan?>"><?= $key->plan?></option>
                                                                 <?php endforeach ?>
@@ -484,6 +484,7 @@ function select_options($habilidades_json){
                                                             <label>Turno</label>
                                                             <select id="turno"  class="form-control">
                                                                   <option value="">Seleccionar</option>
+                                                                  <option value="Sin Defini">Sin Definir</option>
                                                                 <?php foreach ($turnos as $key): ?>
                                                                     <option value="<?= $key->turno?>"><?= $key->turno?></option>
                                                                 <?php endforeach ?>
@@ -495,6 +496,7 @@ function select_options($habilidades_json){
                                                             <label>Genero</label>
                                                             <select id="genero"  class="form-control">
                                                                    <option value="">Seleccionar</option>
+                                                                   <option value="Cualquiera">Cualquiera</option>
                                                                 <?php foreach ($genero as $key): ?>
                                                                     <option value="<?= $key->descripcion?>"><?= $key->descripcion?></option>
                                                                 <?php endforeach ?>
@@ -506,6 +508,7 @@ function select_options($habilidades_json){
                                                             <label>Edad</label>
                                                             <select  id="edad" class="form-control">
                                                                 <option value="">Seleccionar</option>
+                                                                <option value="Cualquiera">Cualquiera</option>
                                                                 <option value="15 - 25">15 - 25</option>
                                                                 <option value="25 - 35">25 - 35</option>
                                                                 <option value="35 - 45">35 - 45</option>
@@ -565,7 +568,11 @@ function select_options($habilidades_json){
       <script type="text/javascript" src="<?= $ruta?>plugins/summernote-master/dist/summernote-lite.js"></script> 
       <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
       <script type="text/javascript">
-        $(document).ready(function() {
+      
+
+        $(document).ready(function() { 
+          
+
           $('.summernote').summernote({
             height: 300,
             tabsize: 2, 
@@ -579,11 +586,17 @@ function select_options($habilidades_json){
                  tokensMaxItems: 5
           }); 
            texto_ejemplo();
-           altura =($(window).height()-55)+'px';
-           $("#candidatos_list").css({'height':altura}); 
-           $("#cv_list").css({'height':altura}); 
+           altura =($(window).height()-150)+'px';
+           altura_home =($(window).height()-55)+'px';  
+           $("#candidatos_list").css({'height':altura});  
+           $("#cv_list_home").css({'height':altura_home});
+           $("#cv_list").css({'height':altura_home});
         });
 
+        function loading()
+        {
+          $("#modal_loader").modal("show");
+        }
         //Funciones auxiliares
         function texto_ejemplo()
         {
@@ -607,15 +620,23 @@ function select_options($habilidades_json){
             $('#btn_nueva').hide();
             limpiar_todo();
         }
-        function editar()
+        function editar(publicacion)
         {
             $('#titulo_oferta').text('Estas editando...');
             $('#tipo_oferta').html('2');
+            $('#publicacion').html(publicacion);
             $('#titulo_boton').text('Listo');
             $('#btn_nueva').show();
         }
+
+         function upper(string)
+         {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
          function oferta(publicacion) {
-            editar();
+            editar(publicacion);
+            loading();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -629,6 +650,8 @@ function select_options($habilidades_json){
                     id: publicacion
                 },
                 success: function(response, localidades) {
+                  $('.tokenize-sample-demo1').trigger('tokenize:clear'); 
+                  $('.tokenize-sample-demo2').trigger('tokenize:clear'); 
                     var JSONArray = jQuery.parseJSON(JSON.stringify(response.valores));
                     var JSONArray_dos = jQuery.parseJSON(JSON.stringify(response.localidades));
                     jQuery.each(JSONArray, function(index, dato) {
@@ -656,19 +679,22 @@ function select_options($habilidades_json){
                         $('#genero').val(dato.genero);
                         $('#direccion').val(dato.direccion);
                         $('#edad').val(dato.edad); 
-                        cadena = dato.habilidades;
-                        valores=cadena.split(",")
+                        if( dato.habilidades!=""){
+                        cadena = dato.habilidades;  
+                        $('.tokenize-sample-demo1').trigger('tokenize:clear');  
+                        valores=cadena.split(",");
                         $.each(valores, function( index, value ) {
-                        $('.tokenize-sample-demo1').trigger('tokenize:tokens:add', [value, $('#tokenize option[value=' + value + ']').html()]);
-                               
+                        $('.tokenize-sample-demo1').trigger('tokenize:tokens:add', [value, $('#tokenize option[value=' + value + ']').html()]);  
                         }); 
+                        }
+                        if(dato.idiomas!=""){
                         cadena_dos = dato.idiomas;
-                        valores_dos=cadena_dos.split(",")
+                        valores_dos=cadena_dos.split(",");
                         $.each(valores_dos, function( index, valur ) {
-                        $('.tokenize-sample-demo2').trigger('tokenize:tokens:add', [valur, $('#tokenize option[value=' + valur + ']').html()]);
-                               
+                        $('.tokenize-sample-demo2').trigger('tokenize:tokens:add', [valur, $('#tokenize option[value=' + valur + ']').html()]);   
                         }); 
-                        $("#publicacion").text(dato.id); 
+                        }
+                        $("#publicacion").html(dato.id); 
                     });
                 },
                 error: function(error) {
@@ -676,7 +702,130 @@ function select_options($habilidades_json){
                 }
             });
         }
+
+        //Obtener los postulados
+        function get_postulados(identificador) {
+          loading();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: 'postulados',
+                type: 'POST',
+                data:{publicacion:identificador}, 
+                dataType:'json',
+                success: function(response) {
+                   $("#candidatos_list").html("");
+                   
+                  var JSONArray = jQuery.parseJSON(JSON.stringify(response));
+                  var candidato=""; 
+                  jQuery.each(JSONArray, function(index, dato) { 
+                      candidato=candidato+'<li onClick="get_cv('+dato.id+','+dato.id_oferta+')" class="listado-postulados"><img style="width: 35px;height: 35px;border-radius:50%;" src="../uploads/min/'+dato.archivo+'" alt=""/><span>'+dato.nombre+'</span></li>';
+                      
+                   });
+                  $("#candidatos_list").append(candidato);
+                  $("#contenedor_postulados").removeClass(' in');
+                  $("#contenedor_postulados").addClass(' in');
+                },
+                error: function(error) {
+                    $.notify("Ocurrió un error al procesar la solicitud.");
+                }
+            });
+        }
+
+        //Obtener CV 
+        function get_cv(identificador,publicacion) {
+            loading();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: 'cv',
+                type: 'POST',
+                data:{candidato:identificador,oferta:publicacion}, 
+                dataType:'json',
+                success: function(response) {  
+                  $(".info-cv").html(""); 
+                  $(".info-cv-imagen").attr('src','https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png');
+                    var JSONArray = jQuery.parseJSON(JSON.stringify(response)); 
+                    jQuery.each(JSONArray.general, function(index, dato) { 
+                        $(".info-cv-nombre").html(dato.nombres);
+                        $(".info-cv-correo").html(dato.correo);
+                        $(".info-cv-telefono").html(dato.telefono);
+                        $(".info-cv-edad").html(dato.edad+' Años');
+                        $(".info-cv-sexo").html(dato.sexo);
+                        $(".info-cv-dni").html(dato.n_identificacion);
+                        $(".info-cv-cuil").html(dato.cuil);
+                        $(".info-cv-nacionalidad").html(dato.nacionalidad);
+                        $(".info-cv-discapacidad").html(dato.discapacidad);
+                        $(".info-cv-edo-civil").html(dato.edo_civil);
+                        $(".info-cv-hijos").html(dato.hijos);
+                        $(".info-cv-direccion").html(dato.pais+' '+dato.provincia+' '+dato.localidad+' '+dato.direccion); 
+                        $(".info-cv-fecha-nacimiento").html(dato.fecha_nac);
+                        $(".info-cv-sobre-mi").html(dato.sobre_mi);
+                        $(".info-cv-imagen").attr('src','../uploads/min/'+dato.img);
+                      
+                   });
+
+                    jQuery.each(JSONArray.habilidades, function(index, dato) {
+                      $('.info-cv-habilidades').append('<span class="tag tag-warning" style="margin-top: 5px;margin-left:5px;">'+dato.habilidad+'</span>');
+                   });
+
+                    jQuery.each(JSONArray.idiomas, function(index, dato) {
+                      $('.info-cv-idiomas').append('<span class="tag tag-warning" style="margin-top: 5px;margin-left:5px;">'+dato.idioma+'</span>');
+                     });
+
+
+                     var imagen_experiencia='<div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;"> <img style="height: 80px;" src="../local/resources/views/empresas/app-assets/images/icons/postulados/experiencia.png" alt=""> </div>';
+                     bandera_magen_experiencia=0;
+                    
+                     jQuery.each(JSONArray.experiencia, function(index, dato) {
+                      var hasta_experiencia='';
+                      var desde_experiencia='';
+                      var meses_experiencia=''; 
+                      if(dato.antiguedad!=null )
+                      {
+                        meses_experiencia='<span class="tag tag-info">'+dato.antiguedad+' Meses</span>';
+                      } 
+                      if(dato.hasta!=''){hasta_experiencia=' - '+dato.hasta;}
+                      if(dato.desde!=''){desde_experiencia=dato.desde;}
+                      $('.info-cv-experiencia').append(imagen_experiencia+'<div class="col-sm-10" style="padding-top: 10px;"> <h5>'+dato.nombre_empresa+' <span style="float: right;font-weight: 500;font-size: 14px;padding-top: 5px;">Área: '+dato.actividad_empresa+'</span> </h5> <h5>'+meses_experiencia+' '+desde_experiencia+' '+hasta_experiencia+' </h5> <p>'+upper(dato.descripcion)+'</p></div>');
+                        if(bandera_magen_experiencia==0){bandera_magen_experiencia=1;
+                        imagen_experiencia='<div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;"></div>';}
+                    });
+                     
+                     var imagen='<div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;"> <img style="height: 80px;" src="../local/resources/views/empresas/app-assets/images/icons/postulados/graduation.png" alt=""> </div>';
+                     bandera_magen=0;
+                     jQuery.each(JSONArray.educacion, function(index, dato) { 
+                      $('.info-cv-educacion').append(imagen+'<div class="col-sm-10" style="padding-top: 10px;"> <h5>'+dato.institucion+' <span style="float: right;font-weight: 500;font-size: 14px;padding-top: 5px;">Área: '+dato.area_estudio+'</span> </h5> <h5><span class="tag tag-info">'+dato.nivel+'</span> '+dato.edo_estudio+' </h5> <p>Título: '+dato.titulo+'</p></div>');
+                        if(bandera_magen==0){bandera_magen=1;
+                        imagen='<div class="col-sm-2 sp" style="text-align: center;padding-top: 15px;"></div>';}
+                   });
+
+                       jQuery.each(JSONArray.preferencias, function(index, dato) { 
+                       $('.info-cv-salario').append('<span class="tag tag-info" style="margin-top: 5px;">'+dato.salario+'</span>');
+                       $('.info-cv-jornada').append('<span class="tag tag-info" style="margin-top: 5px;">'+dato.jornada+'</span>');
+                   });
+
+                         jQuery.each(JSONArray.cargos, function(index, dato) {  
+                  $('.info-cv-cargos').append('<span class="tag tag-info" style="margin-top: 5px;margin-left: 5px;">'+dato.cargo+'</span>');
+                   });
+
+                   $("#cv_list_home").hide();
+                   $("#cv_list").show(); 
+                },
+                error: function(error) {
+                    $.notify("Ocurrió un error al procesar la solicitud.");
+                }
+            });
+        }        
+        //Listar las ofertas
         function listar() {
+          loading();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -689,21 +838,35 @@ function select_options($habilidades_json){
                 success: function(response) {
                     var contenido='';
                      $("#total").text('0');
-                     $("#tabla-resumen").html(''); 
+                     $("#tabla-resumen").html('');
+                     $("#select_ofertas").html('');
+                     $("#select_ofertas").append('<option value="">Seleccionar oferta</option>'); 
                     var JSONArray = jQuery.parseJSON(JSON.stringify(response));
                     var contador=0;
                     var activa='<span>Activa</span>';
                     var pausada='<span class="tag tag-success" style="background-color:#00b1ff;">Pausada</span>';
-                    var boton=""; 
+                    var boton="";
+                    var alias="Ésta publicación no posee alias"; 
                      jQuery.each(JSONArray, function(index, dato) { 
                         contador++;
+                        if(dato.alias!="")
+                        {
+                          alias= dato.alias;
+                        }
+                        else
+                        {
+                          alias="Ésta publicación no posee alias"; 
+                        }
                         if(dato.estatus==1)
                         {
                             estatus=activa;
                             boton='<a title="Pausar" onclick="status('+dato.id+',0)" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/pausar.png" alt=""></a>';
                         }else{estatus=pausada;
                             boton='<a title="Reanudar" onclick="status('+dato.id+',1)" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/reanudar.png" alt=""></a>';}
-                        contenido=contenido+'<tr class="sp"> <td class="text-truncate sp" style="padding:2px;"><a href="#" style="color:#282828;">'+dato.alias+'</a></td><td class="text-truncate sp" style="padding:2px;">222</td><td class="valign-middle" style="padding:2px;"> 14 </td><td class="text-truncate sp" style="padding:2px;">'+estatus+'</td><td class="text-truncate sp" style="padding:2px;"> <a title="Ver" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/ver.png" alt="">'+boton+' <span onclick="oferta('+dato.id+')" title="Editar" style="margin-left: 5px;" ><img style="height: 20px;cursor:pointer;" src="<?=$ruta?>/app-assets/images/icons/ofertas/editar.png" alt=""></span> <a onclick="eliminar('+dato.id+')" title="Eliminar" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/eliminar.png" alt=""></a> </td></tr>';
+                        
+                         $("#select_ofertas").append('<option value="'+dato.id+'">'+alias+'</option>');
+
+                        contenido=contenido+'<tr class="sp"> <td class="text-truncate sp" style="padding:2px;"><a href="#" style="color:#282828;">'+alias+'</a></td><td class="text-truncate sp" style="padding:2px;"><span onclick="get_postulados('+dato.id+')" style="cursor:pointer;">'+dato.cantidad+'</span> </td><td class="valign-middle" style="padding:2px;"> '+dato.vistas+' </td><td class="text-truncate sp" style="padding:2px;">'+estatus+'</td><td class="text-truncate sp" style="padding:2px;"> <a title="Ver" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/ver.png" alt="">'+boton+' <span onclick="oferta('+dato.id+')" title="Editar" style="margin-left: 5px;" ><img style="height: 20px;cursor:pointer;" src="<?=$ruta?>/app-assets/images/icons/ofertas/editar.png" alt=""></span> <a onclick="eliminar('+dato.id+')" title="Eliminar" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/eliminar.png" alt=""></a> </td></tr>';
                     });
                      $("#total").text(contador);
                      $("#tabla-resumen").append(contenido);
@@ -714,7 +877,8 @@ function select_options($habilidades_json){
             });
         }
         function eliminar(publicacion)
-        { 
+        {   
+          loading();
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -734,7 +898,8 @@ function select_options($habilidades_json){
             });
         }
         function status(publicacion,valor)
-        { 
+        {   
+          loading();
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -781,7 +946,8 @@ function select_options($habilidades_json){
             else if(!validar_r('edad')){}
            else if(!validar_r('habilidades')){}
            else if(!validar_r('idiomas')){} 
-           else{            
+           else{    
+                loading();        
                 datos={ 
                 alias:$('#alias').val(),
                 titulo:$('#titulo').val(),
@@ -836,7 +1002,9 @@ function select_options($habilidades_json){
                         }); 
                 }
             } 
-           
+      $( document ).ajaxComplete(function() {
+            $("#modal_loader").modal("hide");
+      });
    </script>
   <style type="text/css">
        .note-view,.note-insert,.note-table,.note-color,.note-fontname,.note-style,.note-fontsize,.note-para > .note-btn-group

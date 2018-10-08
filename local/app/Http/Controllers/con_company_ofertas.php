@@ -14,7 +14,7 @@ class con_company_ofertas extends Controller
     	$vista=View::make("empresas.ofertas");
     	$sql_provincias="SELECT * FROM tbl_provincias";
     	$sql_disponibilidad="SELECT * FROM tbl_disponibilidad";
-    	$sql_area="SELECT * FROM tbl_areas";
+    	$sql_area="SELECT * FROM tbl_areas_sectores";
     	$sql_nivel_estudio="SELECT * FROM tbl_nivel_estudio";
     	$sql_idiomas="SELECT * FROM tbl_idiomas ORDER BY descripcion ASC";
     	$sql_habilidades="SELECT * FROM tbl_habilidades ORDER BY descripcion ASC";
@@ -37,7 +37,13 @@ class con_company_ofertas extends Controller
 
     public function get_ofertas()
     {
-    	$sql="SELECT * FROM tbl_company_ofertas WHERE id_empresa = ".session()->get('company_id')."";
+    	$sql="
+        SELECT t1.*,COUNT(t2.id) as cantidad FROM tbl_company_ofertas t1
+        LEFT JOIN tbl_company_postulados t2 ON t2.id_oferta  = t1.id       
+        WHERE  t1.id_empresa= ".session()->get('company_id')."
+        GROUP BY t2.id_oferta
+        ORDER BY COUNT(t2.id) DESC
+        ";
     	try {
     		$datos=DB::select($sql); 
     		echo json_encode($datos);
@@ -206,6 +212,7 @@ class con_company_ofertas extends Controller
 	    	 	else
 	    	 	{
 	    	 		 $sql="UPDATE tbl_company_ofertas SET ".$campos_editar." WHERE id_empresa =".session()->get('company_id')." AND id =".$_POST['publicacion']."";
+                    
 	    	 		 DB::update($sql);
     	 			   $sql="UPDATE tbl_company_ofertas SET descripcion = '".$_POST['descripcion']."' WHERE id_empresa =".session()->get('company_id')." AND id =".$_POST['publicacion']."";
     	 			   DB::update($sql);

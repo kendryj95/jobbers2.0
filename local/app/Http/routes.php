@@ -81,6 +81,10 @@ Route::post('empresas/infoimagen', 'con_company_profile@info_imagen');
  Route::post('empresas/oferta', 'con_company_ofertas@get_oferta');
  //Planes
  Route::get('empresas/planes', 'con_company_planes@index');
+
+ //Postulados
+ Route::post('empresas/postulados', 'con_company_postulados@get_postulados');
+ Route::post('empresas/cv', 'con_company_postulados@get_cv');
 });
 //********************************************************//
 
