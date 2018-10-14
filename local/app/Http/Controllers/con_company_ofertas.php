@@ -20,8 +20,11 @@ class con_company_ofertas extends Controller
     	$sql_habilidades="SELECT * FROM tbl_habilidades ORDER BY descripcion ASC";
     	$sql_plan_estado="SELECT * FROM tbl_planes_estado";
     	$sql_genero="SELECT * FROM tbl_generos";
-    	$sql_turno="SELECT * FROM tbl_turnos"; 
-    	$vista->provincias=DB::select($sql_provincias);
+    	$sql_turno="SELECT * FROM tbl_turnos";
+        $sql_salarios="SELECT * FROM tbl_rango_salarios";
+    	
+        $vista->salarios=DB::select($sql_salarios);
+        $vista->provincias=DB::select($sql_provincias);
     	$vista->disponibilidad=DB::select($sql_disponibilidad);
     	$vista->area=DB::select($sql_area);
     	$vista->nivel_estudio=DB::select($sql_nivel_estudio);
@@ -123,6 +126,8 @@ class con_company_ofertas extends Controller
  	     }
     	 $campos_editar='    	 
     	 alias ="'.$_POST['alias'].'",
+         experiencia ="'.$_POST['experiencia'].'",
+         salario ="'.$_POST['salarios'].'",
     	 titulo ="'.$_POST['titulo'].'",
     	
     	 pais ="'.$_POST['pais'].'",
@@ -143,6 +148,8 @@ class con_company_ofertas extends Controller
     	 idiomas ="'.$this->arreglos($_POST['idiomas']).'"';
     	 $campos='
     	 (
+          experiencia,
+         salario,
     	 id_empresa,
     	 alias,
     	 titulo,
@@ -174,6 +181,8 @@ class con_company_ofertas extends Controller
     	  $valores="
     	 (
     	 ".session()->get('company_id').",
+          '".$_POST['experiencia']."',
+         '".$_POST['salarios']."',
     	 '".$_POST['alias']."',
     	 '".$_POST['titulo']."',
     	 '".$_POST['descripcion']."',

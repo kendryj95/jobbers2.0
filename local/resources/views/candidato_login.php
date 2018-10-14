@@ -15,11 +15,16 @@
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/responsive.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="local/resources/views/css/colors/colors.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/local/resources/views/css/font-awesome.min.css" />
-		<?php include('local/resources/views/includes/chat_soporte.php');?>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
 		<?php include('local/resources/views/includes/google_analitycs.php');?> 
+		<style type="text/css">
+			body,html
+			{
+				overflow: hidden;
+			}
+		</style>
 	</head>
-	<body style="background-image: url('local/resources/views/images/administrator_fondo_login.jpg');background-repeat: no-repeat;background-position: center; background-size: cover;">
+	<body style="background-image: url('https://www.papa-mike.com/v6/wp-content/uploads/2014/05/LOGIN-BACKGROUND-1.jpg');background-repeat: no-repeat;background-position: center; background-size: cover;">
 		<div class="theme-layout" id="scrollup">
 			
 			<section>
@@ -28,23 +33,21 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="account-popup-area signin-popup-box static" style="padding: 5px;">
-									<div class="account-popup">
+									<div class="account-popup" style="border: 1px solid #ddd;">
 										<div class="text-center">
-											<img src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;">
+											<img onclick="location.href='ofertasvictor'" src="https://www.jobbersargentina.net/img/logo_d.png" style="width: 200px;cursor: pointer;">
 										</div>
 
-										<div class="extra-login" style="margin-bottom: 10px">
+										<div class="extra-login" style="margin-top: 0px;">
 											<span>Entrar con</span>
 										 	<div class="login-social">
 													<a class="fb-login" href="<?= url('redes/facebook') ?>" title=""><i class="fa fa-facebook"></i></a>
 													<a class="tw-login" href="<?= url('redes/linkedin') ?>" title=""><i class="fa fa-linkedin"></i></a>
 													<a class="go-login" href="<?= url('redes/google') ?>" title=""><i class="fa fa-google"></i></a>
 											</div>
-										</div>
-
-										<span>Bienvenido a Jobbers</span>
-											
-										<form style="padding: 10px;" action="loguear" method="post">
+										</div> 
+										<span>Bienvenido a Jobbers</span> 
+										<form style="padding: 10px;padding-top: 0px;margin-top: 0px;" action="loguear" method="post">
 											<input name="_token" type="hidden" value="<?php echo csrf_token();?>" id="my_token">
 											<?php if ((isset($_REQUEST['returnUrl']) && $_REQUEST['returnUrl'] != "") && (isset($_REQUEST['p']) && $_REQUEST['p'] == 1) && (isset($_REQUEST['id_pub']) && $_REQUEST['id_pub'] != "")): ?>
 											<input type="hidden" name="return_url" value="<?= $_REQUEST['returnUrl'] ?>">
@@ -53,7 +56,7 @@
 											<?php endif; ?>
 											<div class="cfield">
 												<input name="correo" type="text" placeholder="Correo electrónico" />
-												<i class="la la-user"></i>
+												<i class="la la-at"></i>
 											</div>
 											<div class="cfield">
 												<input name="pass" type="password" placeholder="********" />
@@ -68,31 +71,26 @@
 											<?php endif ?>
 											<p class="remember-label">
 											</p>
-											<a href="recuperarclave" title="">Olvidé mi clave</a>&nbsp;&nbsp;
-											
-											<button type="submit">Entrar</button>
-											<a href="javascript:void(0)" class="signup-popup" title="">Registrarme</a>
+											<a style="float: left;" title="">Registrarme</a>
+											<a style="float: right;" href="recuperarclave" title="">Olvidé mi clave</a>&nbsp;&nbsp; 
+											<button type="submit">Entrar</button> 
+											<div>
+												<span style="font-size: 13px;">© Jobbers Argentina 2018, Todos los derechos reservados</span>
+											</div>
 										</form>
+
 									</div>
 									</div><!-- LOGIN POPUP -->
 								</div>
 							</div>
 						</div>
 					</div>
-				</section>
-				<?php include('local/resources/views/includes/footer_single.php');?>
+				</section> 
 			</div>
 			<?php include("local/resources/views/includes/login_register_modal.php");?>
 			<script src="local/resources/views/js/jquery.min.js" type="text/javascript"></script>
 			<script src="local/resources/views/js/modernizr.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/script.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/wow.min.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/slick.min.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/parallax.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
-			<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
-			<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
-			<script src="local/resources/views/js/maps2.js" type="text/javascript"></script>
+			<script src="local/resources/views/js/script.js" type="text/javascript"></script>  
 			<link rel="stylesheet" type="text/css" href="local/resources/views/plugins/notify.js" />
 			<script>
 				function show_hide(btn)
@@ -111,8 +109,7 @@
 						$('input[name="clave"], input[name="pass"]').attr('type', 'password');
 					}
 				}
-			</script>
-			
+			</script> 
 			<!--Validaciones-->
 			<?php
 			if(isset($_GET['error']))

@@ -11,15 +11,18 @@ Route::post('noticias',  'con_noticias@index');
 Route::get('noticias/{id}', 'con_noticias@noticia');
 Route::get('terminos', function () {return view('terminos');});
 Route::get('fag', 'con_administrator_faq@detalle_preguntas'); 
-Route::get('ofertas', 'con_ofertas@index');
+//Route::get('ofertas', 'con_ofertas@index');
 Route::post('ofertas', 'con_ofertas@index');
-Route::get('detalleoferta/{id}', 'con_ofertas@detalle');
+//Route::get('detalleoferta/{id}', 'con_ofertas@detalle');
+Route::get('ofertas', 'con_ofertasv2@index');
+Route::get('detalleoferta/{id}', 'con_ofertasv2@detalle_oferta');
 
 Route::post('loguear', 'con_login@log');
 Route::get('socialmedia', 'con_login@log');
 Route::get('descargar/{id}', 'con_candidato_cv@descargar');
 Route::get('logout', 'con_login@salir');
 Route::get('login', 'con_login@logincandidato');
+Route::get('registrar', function () {return view('candidato_register');});
 Route::get('recuperarclave', 'con_login@recuperar');
 Route::post('recuperarclave', 'con_login@enviar');
 Route::get('localidades/{id_provincia}', 'con_gral@getLocalidades');
@@ -56,10 +59,12 @@ Route::get('empresas/salir', 'con_company_login@logout');
 Route::post('empresas/registrar', 'con_company@registrar');
 Route::post('empresas/localidades', 'con_company@get_localidades');
 Route::post('empresas/login', 'con_company_login@login');
+ 
+
 
 Route::group(['middleware' => 'log_company'], function () {
-//Inicio	
-Route::get('empresas/panel', function () {return view('empresas.index');}); 
+//Inicio
+Route::get('empresas/panel', 'con_company_home@index');	 
 
 //Mi perfil
 Route::get('empresas/perfil', 'con_company_profile@index');
@@ -85,6 +90,7 @@ Route::post('empresas/infoimagen', 'con_company_profile@info_imagen');
  //Postulados
  Route::post('empresas/postulados', 'con_company_postulados@get_postulados');
  Route::post('empresas/cv', 'con_company_postulados@get_cv');
+  Route::post('empresas/marcador', 'con_company_postulados@marcador');
 });
 //********************************************************//
 

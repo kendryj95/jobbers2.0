@@ -10,9 +10,7 @@ use View;
 class con_login extends Controller
 {
     public function log(Request $request)
-    {
-
-        // dd($request->all());
+    { 
         if(isset($_GET['token']) && isset($_GET['user']) && isset($_GET['secure']) && $_GET['token']!="" && $_GET['user']!="" && $_GET['secure']!="")
         {
             $sql="
@@ -276,17 +274,15 @@ class con_login extends Controller
     {
         $correo = trim(strtolower($_POST['correo']));
         
-        $sql = "INSERT INTO tbl_usuarios(correo,usuario,clave,tipo_usuario,token,id_estatus,token_referido)VALUES(?,'',?,?,?,1,'')";
-
-        $existEmail = DB::select("SELECT id FROM tbl_usuarios WHERE correo=?", [$correo]);
-
+        $sql = "INSERT INTO tbl_usuarios(correo,usuario,clave,tipo_usuario,token,id_estatus,token_referido)VALUES(?,'',?,?,?,1,'')"; 
+        $existEmail = DB::select("SELECT id FROM tbl_usuarios WHERE correo=?", [$correo]); 
         $prefijo = "";
         $sufijo = "";
         $ruta = "";
 
         if (!$existEmail) {
             try {
-                DB::insert($sql, [$correo, md5($_POST['clave']), $_POST['tipo'], $this->aleatorio(45)]);
+                DB::insert($sql, [$correo, md5($_POST['pass']), '2', $this->aleatorio(45)]);
                 $id_usuario = DB::getPdo()->lastInsertId();
 
                 $sql = "
@@ -294,74 +290,9 @@ class con_login extends Controller
                         LEFT JOIN tbl_usuarios_foto_perfil t2 ON t1.id = t2.id_usuario
                         LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto WHERE t1.correo=? AND t1.clave=?";
 
-                $datos = DB::select($sql, [$correo, md5($_POST['clave'])]);
+                $datos = DB::select($sql, [$correo, md5($_POST['pass'])]);
 
-                if ($_POST['tipo'] == 1) {
-                    
-                    $sql1 = "INSERT INTO tbl_empresa(id_usuario,nombre,responsable,razon_social,cuit,telefono,id_imagen) VALUES(?,'','','','','',0)";
-                    DB::insert($sql1, [$id_usuario]);
-                    $id_empresa = DB::getPdo()->lastInsertId();
-
-                    $sql2 = "INSERT INTO tbl_empresas_planes(id_empresa,id_plan) VALUES (?,1)";
-                    DB::insert($sql2, [$id_empresa]);
-
-                    $prefijo = "empresa";
-                    $sufijo  = "emp_";
-                    $ruta    = "empresa/ofertas"; //Ruta del panel de arministracion de empresas
-
-                    $sql="
-                    SELECT t1.id as id_empresa,
-                    t1.nombre as nombre_empresa,
-                    t3.nombre_aleatorio as imagen,
-                    t4.id_plan 
-                    FROM tbl_empresa t1
-                    LEFT JOIN tbl_usuarios_foto_perfil t2 ON t2.id_usuario = t1.id_usuario
-                    LEFT JOIN tbl_archivos t3 ON t3.id = t2.id_foto
-                    LEFT JOIN tbl_empresas_planes t4 ON t4.id_empresa = t1.id_usuario
-                    WHERE t1.id_usuario=?
-                    GROUP BY t1.id_usuario";
-
-                    $datos_emp = DB::select($sql, [$datos[0]->id]);
-
-                    if ($datos_emp) {
-                        /** VARIABLES DE SESSION ESPECIFICAS PARA EMPRESA **/
-
-                        $request->session()->set($prefijo, $datos[0]->correo);
-                        $request->session()->set($sufijo . 'ide', $datos_emp[0]->id_empresa);
-                        $request->session()->set($sufijo . 'imagen', $datos_emp[0]->imagen);
-                        $request->session()->set($sufijo . 'nombre_empresa', $datos_emp[0]->nombre_empresa);
-
-                        $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=?", [$datos_emp[0]->id_empresa]);
-
-                        if ($plan) {
-                            switch ($plan[0]->id_plan) {
-                                case 2:
-                                    $timestamp_today = strtotime(date("Y-m-d H:i:s"));
-                                    $timestamp_vencimiento = strtotime("+35 day", strtotime($plan[0]->tmp));
-
-                                    if ($timestamp_today >= $timestamp_vencimiento) {
-                                        $db->query("UPDATE tbl_empresas_planes SET id_plan=1, tmp=".date("Y-m-d H:i:s")." WHERE id_empresa=".$datos_emp[0]->id_empresa);
-                                        $plan = DB::select("SELECT tbl_empresas_planes.*, tbl_planes.descripcion AS nombre FROM tbl_empresas_planes INNER JOIN tbl_planes ON tbl_planes.id=tbl_empresas_planes.id_plan WHERE tbl_empresas_planes.id_empresa=".$datos_emp[0]->id_empresa);
-                                        $request->session()->set($sufijo . 'plan', $plan);
-                                    } else {
-                                        $request->session()->set($sufijo . 'plan', $plan);
-                                    }
-                                    break;
-                                
-                                default:
-
-                                    $request->session()->set($sufijo . 'plan', $plan);
-
-                                    break;
-                            }
-                        } else {
-                            return Redirect("login?error=Ha ocurrido un error inesperado, intentelo de nuevo por favor (plan)");
-                        }
-
-                    } else {
-                        return Redirect("login?error=Ha ocurrido un error inesperado, intentelo de nuevo por favor (empresa)");
-                    }
-                } else if ($datos[0]->tipo_usuario == 2) {
+                if ($datos[0]->tipo_usuario == 2) {
                     $prefijo = "candidato";
                     $sufijo  = "cand_";
                     $ruta    = "candidashboard";
@@ -377,7 +308,8 @@ class con_login extends Controller
             } catch (Exception $e) {
 
             }
-        } else {
+        } 
+        else {
             return Redirect("login?error=El correo que ud ha introducido está en uso");
         }
     }

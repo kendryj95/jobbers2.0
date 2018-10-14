@@ -2,28 +2,10 @@
 <?php $ruta='../local/resources/views/empresas/';?>
 <html class="loading" data-textdirection="ltr" lang="es">
     <head>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-        <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
-        <meta content="Jobbres Argentina" name="author"/>
-        <title>
-            Jobbers Argentina
-        </title>
-        <meta content="yes" name="apple-mobile-web-app-capable"/>
-        <meta content="yes" name="apple-touch-fullscreen"/>
-        <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
-        <link href="<?= $ruta;?>app-assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/fonts/icomoon.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/fonts/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/vendors/css/extensions/pace.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/bootstrap-extended.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/app.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/core/menu/menu-types/vertical-menu.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>app-assets/css/core/menu/menu-types/vertical-overlay-menu.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= $ruta;?>assets/css/style.css" rel="stylesheet" type="text/css"/>
+       <?php include('includes/referencias-top.php');?>
         <meta name="csrf-token" content="<?php echo csrf_token(); ?>">
     </head>
-    <body class="vertical-layout vertical-menu 1-column blank-page blank-page" data-col="1-column" data-menu="vertical-menu" data-open="click">
+    <body class="vertical-layout vertical-menu 1-column blank-page blank-page" data-col="1-column" data-menu="vertical-menu" data-open="click" style="background-image: url(../local/resources/views/images/log_empresa.jpg);background-position: center; background-size: cover;">
         <!-- ////////////////////////////////////////////////////////////////////////////-->
         <div class="app-content content container-fluid">
             <div class="content-wrapper">
@@ -35,7 +17,7 @@
                             <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
                                 <div class="card-header no-border">
                                     <div class="card-title text-xs-center">
-                                        <img alt="branding logo" src="<?= $ruta;?>app-assets/images/logo/jobbers_logo.png" style="height: 75px;">
+                                        <img onclick="location.href='../ofertas'" alt="branding logo" src="<?= $ruta;?>app-assets/images/logo/jobbers_logo.png" style="height: 75px;cursor: pointer;">
                                         </img>
                                     </div>
                                 </div>
@@ -154,7 +136,7 @@
         <script src="<?= $ruta;?>app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript">
         </script>
         <script src="<?= $ruta;?>app-assets/vendors/js/extensions/pace.min.js" type="text/javascript">
-        </script> ts/js/core/app-menu.js" type="text/javascript">
+        </script>  
         </script>
         <script src="<?= $ruta;?>app-assets/js/core/app.js" type="text/javascript">
         </script> 

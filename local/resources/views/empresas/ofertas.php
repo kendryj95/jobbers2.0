@@ -3,7 +3,7 @@ function select_options($habilidades_json){
     $selected = array();
     $output = '';
     foreach(json_decode($habilidades_json) as $item){
-        $output.= '<option value="' . $item->descripcion . '"' . (in_array($item->descripcion, $selected) ? ' selected' : '') . '>' . $item->text . '</option>';
+        $output.= '<option value="' . str_replace(' ', '_', $item->descripcion) . '"' . (in_array($item->descripcion, $selected) ? ' selected' : '') . '>' . $item->descripcion . '</option>';
     }
     return $output;
 }
@@ -55,6 +55,9 @@ function select_options($habilidades_json){
             {
 
             }
+            .marcador-1{border-left: 3px solid #00864b;background-color: #f4faff;cursor: pointer;}
+            .marcador-2{border-left: 3px solid #e9c500;background-color: #f4faff;cursor: pointer;}
+            .marcador-3{border-left: 3px solid #004e8c;background-color: #f4faff;cursor: pointer;}
 
             html,body{
                 overflow-x: hidden;  
@@ -157,12 +160,8 @@ function select_options($habilidades_json){
                                                           <div class="col-sm-12">
                                                           <ul class="nav navbar-nav" style="text-align: right;">
                                                            <li class=""><a style="" href="#" data-toggle="dropdown" class="nav-link dropdown-user-link" aria-expanded="true"></i><img src="<?= $ruta?>app-assets/images/icons/sort.png" alt=""></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                              <a href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 1</a>
-                                                              <a href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 2</a>
-                                                              <a href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 3</a>
-                                                              <div class="dropdown-divider"></div>
-                                                              <a href="#" class="dropdown-item"><i class="icon-file-text"></i> No leidos</a>
+                                                            <div class="dropdown-menu dropdown-menu-right" id="ordenador">
+                                                             
                                                             </div>
                                                           </li>
                                                          </ul>
@@ -187,12 +186,9 @@ function select_options($habilidades_json){
                                                              <span class="info-cv info-cv-nombre" style="margin-top: 10px;color: #fff;background-color: #306bff;border-radius: 5px;padding-right: 5px;padding-left: 5px;">Victor Fernández</span>
                                                              <br>
                                                              <p class="info-cv info-cv-sobre-mi" style="padding: 10px;background-color: #fff;border:1px solid #e4e4e4;  border-radius: 10px;margin-top: 10px;">Soy una persona dinámicay pro activa con muchas ganas de salir adelante. Soy perfeccionista soy de los que cree firmemente que porque hacer las cosas bien cuando se pueden hacer excelentes.</p>
-                                                             <div class="col-sm-12" style="text-align: center;">
+                                                             <div id="contenedor_marcadores" class="col-sm-12" style="text-align: center;">
                                                                 <h5 style="">Marcadores</h5>
-                                                                <button class="btn btn-sm btn-warning">Marcador 1</button>
-                                                                <button class="btn btn-sm btn-warning">Marcador 2</button>
-                                                                <button class="btn btn-sm btn-warning">Marcador 3</button>
-                                                                <button class="btn btn-sm btn-danger">Descartar</button>
+                                                               
                                                              </div>
                                                           </div>
                                                           <div class="col-sm-12" id="informacion_general">
@@ -518,6 +514,29 @@ function select_options($habilidades_json){
                                                     </div>   
                                                 </div>  
                                                 <div class="row">
+                                                  <div class="col-md-2">    
+                                                        <div class="form-group">
+                                                            <label>Experiencia</label>
+                                                            <select id="experiencia"  class="form-control">
+                                                                <option value="">Seleccionar</option>
+                                                                <option value="SI">SI</option>
+                                                                <option value="NO">NO</option>
+                                                            </select>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-3">    
+                                                        <div class="form-group">
+                                                            <label>Salario</label>
+                                                            <select id="salarios" class="form-control">
+                                                                <option value="">Seleccionar</option>
+                                                                <?php foreach ($salarios as $key): ?>
+                                                                  <option value="<?= $key->salario?>"><?= $key->salario?></option>
+                                                                <?php endforeach ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                                <div class="row">
                                                      <div class="col-md-6">
                                                          <div class="form-group">
                                                          <label>Habilidades</label>
@@ -679,19 +698,25 @@ function select_options($habilidades_json){
                         $('#genero').val(dato.genero);
                         $('#direccion').val(dato.direccion);
                         $('#edad').val(dato.edad); 
+                        $('#experiencia').val(dato.experiencia); 
+                        $('#salarios').val(dato.salario); 
                         if( dato.habilidades!=""){
                         cadena = dato.habilidades;  
                         $('.tokenize-sample-demo1').trigger('tokenize:clear');  
                         valores=cadena.split(",");
                         $.each(valores, function( index, value ) {
-                        $('.tokenize-sample-demo1').trigger('tokenize:tokens:add', [value, $('#tokenize option[value=' + value + ']').html()]);  
+                          var str =value;
+                          var res = str.replace("_", " ");  
+                          $('.tokenize-sample-demo1').trigger('tokenize:tokens:add', [value,res]);  
                         }); 
                         }
                         if(dato.idiomas!=""){
                         cadena_dos = dato.idiomas;
                         valores_dos=cadena_dos.split(",");
                         $.each(valores_dos, function( index, valur ) {
-                        $('.tokenize-sample-demo2').trigger('tokenize:tokens:add', [valur, $('#tokenize option[value=' + valur + ']').html()]);   
+                          var str =valur;
+                          var res = str.replace("_", " ");  
+                          $('.tokenize-sample-demo2').trigger('tokenize:tokens:add', [valur,res]);   
                         }); 
                         }
                         $("#publicacion").html(dato.id); 
@@ -704,7 +729,7 @@ function select_options($habilidades_json){
         }
 
         //Obtener los postulados
-        function get_postulados(identificador) {
+        function get_postulados(identificador,ordenar = null) {
           loading();
             $.ajaxSetup({
                 headers: {
@@ -714,15 +739,37 @@ function select_options($habilidades_json){
             $.ajax({
                 url: 'postulados',
                 type: 'POST',
-                data:{publicacion:identificador}, 
+                data:{publicacion:identificador,orden:ordenar}, 
                 dataType:'json',
                 success: function(response) {
+                  
                    $("#candidatos_list").html("");
                    
                   var JSONArray = jQuery.parseJSON(JSON.stringify(response));
+                   var ordenador =' <a onClick="get_postulados('+JSONArray[0].id_oferta+',1)" href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 1</a> <a  onClick="get_postulados('+JSONArray[0].id_oferta+',2)"  href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 2</a> <a  onClick="get_postulados('+JSONArray[0].id_oferta+',3)"  href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 3</a> <div class="dropdown-divider"></div><a  onClick="get_postulados('+JSONArray[0].id_oferta+',0)" href="#" class="dropdown-item"><i class="icon-eye"></i> No leidos</a><a  onClick="get_postulados('+JSONArray[0].id_oferta+',null)" href="#" class="dropdown-item"><i class="icon-file-text"></i> Ver todo</a>';
+                   $("#ordenador").html(ordenador);
                   var candidato=""; 
-                  jQuery.each(JSONArray, function(index, dato) { 
-                      candidato=candidato+'<li onClick="get_cv('+dato.id+','+dato.id_oferta+')" class="listado-postulados"><img style="width: 35px;height: 35px;border-radius:50%;" src="../uploads/min/'+dato.archivo+'" alt=""/><span>'+dato.nombre+'</span></li>';
+                  jQuery.each(JSONArray, function(index, dato) {
+                      var visto="";
+                      var marcador = "";
+                       if(dato.marcador==1)
+                        {
+                          marcador='marcador-1';
+                        }
+                        else if(dato.marcador==2)
+                        {
+                           marcador='marcador-2';
+                        } 
+                        else if(dato.marcador==3)
+                          {
+                           marcador='marcador-3';
+                        } 
+                      if(dato.visto==1)
+                      {
+                        visto = '<img style="height:16px;margin-left:5px;" src="../local/resources/views/empresas/app-assets/images/icons/postulados/visto.png" alt="" title="Visto">';
+                      } 
+
+                      candidato=candidato+'<li  id="candidato_menu_list_'+dato.id+'" onClick="get_cv('+dato.id+','+dato.id_oferta+')" class="listado-postulados '+marcador+'"><img style="width: 35px;height: 35px;border-radius:50%;" src="../uploads/min/'+dato.archivo+'" alt=""/><span>'+dato.nombre+'</span><span id="visto_'+dato.id+'"></span> '+visto+'</li>';
                       
                    });
                   $("#candidatos_list").append(candidato);
@@ -735,9 +782,50 @@ function select_options($habilidades_json){
             });
         }
 
+        //Marcador
+           function marcador(identificador,publicacion,marcar) {
+            loading(); 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: 'marcador',
+                type: 'POST',
+                data:{candidato:identificador,oferta:publicacion,marcador:marcar}, 
+                dataType:'json',
+                success: function(response) {
+                   var JSONArray = jQuery.parseJSON(JSON.stringify(response)); 
+                  $("#candidato_menu_list_"+JSONArray[0].candidato).removeClass('marcador-1');
+                  $("#candidato_menu_list_"+JSONArray[0].candidato).removeClass('marcador-2');
+                  $("#candidato_menu_list_"+JSONArray[0].candidato).removeClass('marcador-3');
+                  if(JSONArray[0].marcador==1)
+                  {
+                    $("#candidato_menu_list_"+JSONArray[0].candidato).addClass('marcador-1');
+                  }
+                  else if(JSONArray[0].marcador==2)
+                  {
+                    $("#candidato_menu_list_"+JSONArray[0].candidato).addClass('marcador-2');
+                  } 
+                  else if(JSONArray[0].marcador==3)
+                    {
+                    $("#candidato_menu_list_"+JSONArray[0].candidato).addClass('marcador-3');
+                  } 
+                  if(JSONArray[0].marcador==0)
+                  {
+                    $("#candidato_menu_list_"+JSONArray[0].candidato).remove();
+                  }
+                },
+                error: function(error) {
+                    $.notify("Ocurrió un error al procesar la solicitud.");
+                }
+            });
+        }  
         //Obtener CV 
         function get_cv(identificador,publicacion) {
             loading();
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -748,10 +836,24 @@ function select_options($habilidades_json){
                 type: 'POST',
                 data:{candidato:identificador,oferta:publicacion}, 
                 dataType:'json',
-                success: function(response) {  
-                  $(".info-cv").html(""); 
+                success: function(response) {
+                 
+
+
+                  $(".info-cv").html("");
+                  $("#contenedor_marcadores").html(); 
                   $(".info-cv-imagen").attr('src','https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png');
                     var JSONArray = jQuery.parseJSON(JSON.stringify(response)); 
+                    if(JSONArray.visto==0)
+                    {
+                       visto = '<img style="height:16px;margin-left:5px;" src="../local/resources/views/empresas/app-assets/images/icons/postulados/visto.png" alt="" title="Visto">';
+                      $("#visto_"+JSONArray.usuario).append(visto);
+                    }
+
+                    var botones = '<button style="background-color:#00864b;border:0px;" type="button" onClick="marcador('+JSONArray.usuario+','+JSONArray.oferta+',1)" class="btn btn-sm btn-warning">Marcador 1</button> <button style="background-color:#e9c500;border:0px;" type="button" onClick="marcador('+JSONArray.usuario+','+JSONArray.oferta+',2)" class="btn btn-sm btn-warning">Marcador 2</button> <button  style="background-color:#004e8c;border:0px;" type="button" onClick="marcador('+JSONArray.usuario+','+JSONArray.oferta+',3)" class="btn btn-sm btn-warning">Marcador 3</button> <button type="button" onClick="marcador('+JSONArray.usuario+','+JSONArray.oferta+',0)" class="btn btn-sm btn-danger">Descartar</button>';
+
+                    $("#contenedor_marcadores").html(botones);
+
                     jQuery.each(JSONArray.general, function(index, dato) { 
                         $(".info-cv-nombre").html(dato.nombres);
                         $(".info-cv-correo").html(dato.correo);
@@ -768,7 +870,7 @@ function select_options($habilidades_json){
                         $(".info-cv-fecha-nacimiento").html(dato.fecha_nac);
                         $(".info-cv-sobre-mi").html(dato.sobre_mi);
                         $(".info-cv-imagen").attr('src','../uploads/min/'+dato.img);
-                      
+                        
                    });
 
                     jQuery.each(JSONArray.habilidades, function(index, dato) {
@@ -825,7 +927,7 @@ function select_options($habilidades_json){
         }        
         //Listar las ofertas
         function listar() {
-          loading();
+          
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -870,6 +972,7 @@ function select_options($habilidades_json){
                     });
                      $("#total").text(contador);
                      $("#tabla-resumen").append(contenido);
+                      loading();
                 },
                 error: function(error) {
                     $.notify("Ocurrió un error al procesar la solicitud.");
@@ -878,7 +981,7 @@ function select_options($habilidades_json){
         }
         function eliminar(publicacion)
         {   
-          loading();
+          
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -899,7 +1002,7 @@ function select_options($habilidades_json){
         }
         function status(publicacion,valor)
         {   
-          loading();
+          
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -912,6 +1015,7 @@ function select_options($habilidades_json){
                 success: function(response) {
                 $.notify(response,"success");
                 listar();
+
                 },
                 error: function(error) {
                     $.notify("Ocurrió un error al procesar la solicitud.");
@@ -944,10 +1048,12 @@ function select_options($habilidades_json){
            else if(!validar_r('turno')){}
            else if(!validar_r('genero')){}
             else if(!validar_r('edad')){}
+               else if(!validar_r('experiencia')){}
+            else if(!validar_r('salarios')){} 
            else if(!validar_r('habilidades')){}
            else if(!validar_r('idiomas')){} 
            else{    
-                loading();        
+                     
                 datos={ 
                 alias:$('#alias').val(),
                 titulo:$('#titulo').val(),
@@ -966,6 +1072,8 @@ function select_options($habilidades_json){
                 turno:$('#turno').val(),
                 genero:$('#genero').val(),
                 edad:$('#edad').val(),
+                salarios:$('#salarios').val(),
+                experiencia:$('#experiencia').val(),
                 habilidades:$('#habilidades').val(),
                 idiomas:$('#idiomas').val(),
                 tipo_oferta:$('#tipo_oferta').val(),

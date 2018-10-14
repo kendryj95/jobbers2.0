@@ -45,9 +45,7 @@
 													echo'<tr>
 														<td style="max-width: 250px;">
 																<div class="table-list-title">
-																		<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3>
-																		<span  style="line-height:15px;">'.strip_tags(substr($key->descripcion, 0,200)).'...</span><br>
-																		<span><i class="la la-map-marker status"></i>'.$key->dir.'</span>
+																		<h3><a href="detalleoferta/'.$key->id.'" title="">'.$key->titulo.'</a></h3> 
 																</div>
 														</td>
 														
@@ -55,7 +53,7 @@
 																<span class="applied-field">'.$key->nombre.'</span>
 														</td>
 														<td style="text-align:center;">
-																<span style="text-align:center;" id="postu_'.$key->id.'" class="status active">5</span>
+																<span style="text-align:center;" id="postu_'.$key->id.'" class="status active">'.$key->cantidad.'</span>
 														</td>
 														<td>
 																<ul class="action_job">
@@ -194,19 +192,6 @@
 												<script src="local/resources/views/js/select-chosen.js" type="text/javascript"></script>
 												<script src="local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript"></script>
 												<script src="local/resources/views/js/circle-progress.min.js" type="text/javascript"></script>
-												<script type="text/javascript">
-													$( document ).ready(function() {
-													
-													});
-												<?php foreach ($postulados as $key): ?>
-												<?php
-												if($key!==null)
-												{
-												echo'$("#postu_'.$key->id_publicacion.'").html("'.$key->postulador.'");';
-												}
-												?>
-												<?php endforeach ?>
-												</script>
-												
+												 
 											</body>
 										</html>

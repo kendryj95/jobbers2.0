@@ -5,7 +5,7 @@ if(isset($atras) && $atras==1)
 $back="../";	
 } 
 ?>
-<header class="stick-top forsticky">
+<header class="stick-top" style="position: fixed;">
 	<div class="menu-sec">
 		<div class="container">
 			<div class="logo" style="background-color: #fff;padding-left: 25px;padding-right: 25px; border-radius: 10px;">
@@ -31,10 +31,9 @@ $back="../";
 					 	
 					<?php else: ?>
 					 	<ul class="account-btns">
-					 		<li class="signup-popup"><a title=""><i class="la la-key"></i>Registrar</a></li> 
-					 		<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i>Ingresar</a></li>
-					 	</ul>
-					 	
+					 		<li onclick="location.href='<?php echo Request::root()?>/registrar'"><a title=""><i class="la la-key"></i>Registrar</a></li> 
+					 		<li onclick="location.href='<?php echo Request::root()?>/login'"><a title="#"><i class="la la-external-link-square"></i>Ingresar</a></li>
+					 	</ul> 
 					 <?php endif; ?>
 					 	</div>
 					</div>

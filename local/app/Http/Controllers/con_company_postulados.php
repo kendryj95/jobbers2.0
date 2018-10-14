@@ -11,14 +11,44 @@ class con_company_postulados extends Controller
 {
     public function get_postulados()
     {
-    	$sql="SELECT t1.id_usuario as id,t1.id_oferta, t2.nombres as nombre,t4.archivo,t1.marcador FROM tbl_company_postulados t1
+
+    	$filtro="";
+    	if($_POST['orden']!=null)
+    	{	$o =$_POST['orden'];
+    		if($o==1)
+    		{
+    			$filtro=' AND marcador = 1 ';
+    		}
+    		else if($o==2){$filtro=' AND t1.marcador = 2 ';}
+    		else if($o==3){$filtro=' AND t1.marcador = 3 ';}
+    		else if($o==0){$filtro=' AND t1.visto = 0 ';}
+    	}
+    	else
+    	{
+    		$filtro =" AND  t1.marcador ='' OR t1.marcador > 0"; 
+    	}
+    	$sql="SELECT t1.visto, t1.id_usuario as id,t1.id_oferta, t2.nombres as nombre,t4.archivo,t1.marcador FROM tbl_company_postulados t1
 		INNER JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id_usuario
 		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id_usuario
 		INNER JOIN tbl_archivos t4 ON t4.id = t3.id_foto 
-		WHERE t1.id_oferta =".$_POST['publicacion']."
+		WHERE t1.id_oferta =".$_POST['publicacion']." ".$filtro."   
 		GROUP BY t1.id_usuario
 		"; 
 		$datos=DB::select($sql);
+		 
+		echo json_encode($datos);
+    }
+
+    public function marcador()
+    {
+    	$sql="UPDATE tbl_company_postulados SET marcador =".$_POST['marcador']."
+    	WHERE id_oferta =".$_POST['oferta']." AND id_usuario =".$_POST['candidato']."";
+
+    	$sql_marcador = "SELECT id_usuario as candidato, marcador FROM tbl_company_postulados 
+    	WHERE id_usuario =".$_POST['candidato']." AND id_oferta =".$_POST['oferta']."";
+
+		DB::update($sql);
+		$datos=DB::select($sql_marcador); 
 		echo json_encode($datos);
     }
 
@@ -97,7 +127,8 @@ class con_company_postulados extends Controller
 		LEFT JOIN tbl_cargos t2 ON t2.id = id_cargo
 		WHERE id_usuario = ".$_POST['candidato']."
 		";
-
+		$sql_visto="SELECT id_oferta as oferta, visto,id_usuario as usuario FROM tbl_company_postulados WHERE id_oferta = ".$_POST['oferta']." AND id_usuario =".$_POST['candidato']."";
+		$visto = DB::select($sql_visto);
 		$info_general=DB::select($sql_info_general);
 		$idiomas=DB::select($sql_idiomas);
 		$habilidades=DB::select($sql_habilidades);
@@ -113,7 +144,17 @@ class con_company_postulados extends Controller
 			'experiencia' => $experiencia,
 			'preferencias' => $preferencias,
 			'cargos' => $cargos, 
+			'visto' => $visto[0]->visto, 
+			'usuario' => $visto[0]->usuario, 
+			'oferta' => $visto[0]->oferta, 
 			); 
+
+		DB::update('
+			UPDATE tbl_company_postulados 
+			SET visto = 1 
+			WHERE id_usuario = '.$_POST["candidato"].' 
+			AND id_oferta ='.$_POST['oferta'].'');
+		
 		echo json_encode($obj);
     }
 }

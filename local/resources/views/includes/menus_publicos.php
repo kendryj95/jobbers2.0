@@ -15,7 +15,10 @@
 	 
 	<?php endif ?>
 	<li class="">
-		<a href="<?= url('noticias') ?>" title="">&nbsp;&nbsp;&nbsp;Noticias</a>
+		<a  href="<?= url('noticias') ?>" title="">&nbsp;&nbsp;&nbsp;Noticias&nbsp;&nbsp;&nbsp;|</a>
+	</li>
+	<li class="">
+		<a style="color:#fff;font-weight: 600;" href="<?= Request::root()?>/empresas/entrar" title="">&nbsp;&nbsp;&nbsp;Soy empresa</a>
 	</li>
 </ul>
 <ul class="mobile-1024 mobile">

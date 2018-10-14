@@ -4,7 +4,7 @@
     <head>
       <?php include('includes/referencias-top.php');?>
     </head>
-    <body class="vertical-layout vertical-menu 1-column blank-page blank-page" data-col="1-column" data-menu="vertical-menu" data-open="click">
+    <body class="vertical-layout vertical-menu 1-column blank-page blank-page" data-col="1-column" data-menu="vertical-menu" data-open="click" style="background-image: url(../local/resources/views/images/log_empresa.jpg);background-position: center; background-size: cover;">
         <!-- ////////////////////////////////////////////////////////////////////////////-->
         <div class="app-content content container-fluid">
             <div class="content-wrapper">
@@ -12,17 +12,17 @@
                 </div>
                 <div class="content-body">
                     <section class="flexbox-container">
-                        <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-2 p-0">
-                            <div class="card border-grey border-lighten-3 m-0">
-                                <div class="card-header no-border">
+                        <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-2 p-0" >
+                            <div class="card border-grey border-lighten-3 m-0" style="border-radius: 8px;">
+                                <div class="card-header no-border" style="border-radius: 8px;">
                                     <div class="card-title text-xs-center">
                                         <div class="p-1">
-                                            <img alt="branding logo" src="<?= $ruta;?>app-assets/images/logo/jobbers_logo.png" style="height: 75px;"/>
+                                            <img  onclick="location.href='../ofertas'" alt="branding logo" src="<?= $ruta;?>app-assets/images/logo/jobbers_logo.png" style="height: 75px;cursor: pointer;"/>
                                         </div>
                                     </div>
                                     <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2">
                                         <span>
-                                            Bienvenido
+                                            Bienvenido a Jobbers
                                         </span>
                                     </h6>
                                 </div>
@@ -37,7 +37,7 @@
                                                     </div>
                                                 </input>
                                             </fieldset>
-                                            <fieldset class="form-group position-relative has-icon-left">
+                                            <fieldset class="form-group position-relative has-icon-left" style="padding-top: 15px;">
                                                 <input class="form-control form-control-lg input-lg" id="clave" placeholder="Clave" required="" type="password">
                                                     <div class="form-control-position">
                                                         <i class="icon-key3">

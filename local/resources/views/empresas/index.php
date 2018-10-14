@@ -70,7 +70,7 @@
                                                         <i class="icon-profile pink font-large-2 float-xs-left"></i>
                                                     </div>
                                                     <div class="media-body text-xs-right">
-                                                        <h3 class="pink">278</h3>
+                                                        <h3 class="pink"><?= $oferta_total[0]->cantidad;?></h3>
                                                         <span>Ofertas Jobbers</span>
                                                     </div>
                                                 </div>
@@ -88,7 +88,7 @@
                                                         <i class="icon-users teal font-large-2 float-xs-left"></i>
                                                     </div>
                                                     <div class="media-body text-xs-right">
-                                                        <h3 class="teal">278</h3>
+                                                        <h3 class="teal"><?= $candidato_total[0]->cantidad;?></h3>
                                                         <span>Candidatos Jobbers</span>
                                                     </div>
                                                 </div>
@@ -106,7 +106,7 @@
                                                         <i class="icon-industry deep-orange font-large-2 float-xs-left"></i>
                                                     </div>
                                                     <div class="media-body text-xs-right">
-                                                        <h3 class="deep-orange">278</h3>
+                                                        <h3 class="deep-orange"><?= $empresas[0]->cantidad?></h3>
                                                         <span>Empresas Jobbers</span>
                                                     </div>
                                                 </div>
@@ -133,8 +133,8 @@
                                             <i class="icon-profile pink font-large-2 float-xs-left"></i>
                                         </div>
                                         <div class="media-body text-xs-right">
-                                            <h3 class="pink">278</h3>
-                                            <span>Ofertas</span>
+                                            <h3 class="pink"><?= $ofertas_empresa[0]->cantidad?></h3>
+                                            <span>Mis Ofertas</span>
                                         </div>
                                     </div>
                                 </div>
@@ -151,8 +151,8 @@
                                             <i class="icon-users teal font-large-2 float-xs-left"></i>
                                         </div>
                                         <div class="media-body text-xs-right">
-                                            <h3 class="teal">278</h3>
-                                            <span>Postulados</span>
+                                            <h3 class="teal"><?= $postulados_empresa[0]->cantidad?></h3>
+                                            <span>Mis Postulados</span>
                                         </div>
                                     </div>
                                 </div>
@@ -169,8 +169,8 @@
                                             <i class="icon-copy cyan font-large-2 float-xs-left"></i>
                                         </div>
                                         <div class="media-body text-xs-right">
-                                            <h3 class="cyan">278</h3>
-                                            <span>Plantillas</span>
+                                            <h3 class="cyan">0</h3>
+                                            <span>Mis Plantillas</span>
                                         </div>
                                     </div>
                                 </div>
