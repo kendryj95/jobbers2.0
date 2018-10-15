@@ -53,7 +53,7 @@ $mi_tokken=csrf_token();
     <?php include('local/resources/views/includes/general_header.php');?>
     <?php include('local/resources/views/includes/general_header_responsive.php');?>
 
-    <?php
+            <?php
                     function generar($objeto,$buscar)
                     {
                         $temp= array();

@@ -17,141 +17,44 @@ class con_empresa extends Controller
     }
 
     public function ver()
-    {
-
-        $condiciones = "";
-
-        if(isset($_POST['cargo']) && $_POST['cargo'] != "")
+    { 
+        $filtros="";  
+        if(isset($_GET['provincia']))
         {
-            
-            $condiciones .= " WHERE e.nombre LIKE '%$_POST[cargo]%'";
+            $filtros =$filtros. " AND t1.provincia ='".$_GET['provincia']."'";
         }
-
-        if(isset($_POST['sectores']) && count($_POST['sectores']))
+        if(isset($_GET['localidad']))
         {
-            $temp= []; 
-            foreach ($_POST['sectores'] as $key) {
-                $temp[] = $key;
-            }
-
-            if ($condiciones != "") {
-                $condiciones .= " AND e.sector IN (".implode(",", $temp).")";
-            } else {
-
-                $condiciones .= " WHERE e.sector IN (".implode(",", $temp).")";
-            }
-
+            $filtros =$filtros. " AND t1.localidad ='".$_GET['localidad']."'";
         }
-
-        if(isset($_POST['provincias']) && count($_POST['provincias']))
-        {
-            $temp= []; 
-            foreach ($_POST['provincias'] as $key) {
-                $temp[] = $key;
-            }
-
-            if ($condiciones != "") {
-                $condiciones .= " AND e.provincia IN (".implode(",", $temp).")";
-            } else {
-                $condiciones .= " WHERE e.provincia IN (".implode(",", $temp).")";
-            }
-        }
-
-        if(isset($_POST['localidades']) && count($_POST['localidades']))
-        {
-            $temp= []; 
-            foreach ($_POST['localidades'] as $key) {
-                $temp[] = $key;
-            }
-
-            if ($condiciones != "") {
-                $condiciones .= " AND e.localidad IN (".implode(",", $temp).")";
-            } else {
-                $condiciones .= " WHERE e.localidad IN (".implode(",", $temp).")";
-            }
-        }
-
-        /*if ($condiciones != "") {
-            $condiciones .= " AND e.nombre <> '' AND a.nombre_aleatorio IS NOT NULL";
-        } else {
-            $condiciones .= " WHERE e.nombre <> '' AND a.nombre_aleatorio IS NOT NULL";
-        }*/
-
-
-
-        $peticion = "
-        SELECT
-        e.telefono,e.facebook,e.linkedin,e.twitter,e.instagram,e.web,e.direccion, 
-        e.id AS id_empresa, 
-        e.nombre AS nombre_empresa, 
-        e.responsable AS responsable, 
-        e.descripcion, 
-        CONCAT(p.provincia,' / ',l.localidad) AS provincia_2, 
-        l.localidad, 
-        p.provincia, 
-        a.nombre_aleatorio AS imagen, 
-        asec.nombre AS sector";
-
-        $consulta_gral = "
-        FROM tbl_empresa e 
-        LEFT JOIN tbl_provincias p ON e.provincia=p.id 
-        LEFT JOIN tbl_localidades l ON e.localidad=l.id
-        LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
-        LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
-        LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id
-        $condiciones GROUP BY e.id";
-         
-        $empresas = DB::select($peticion . " " . $consulta_gral);
         
-        $totalEmpresas = DB::select("SELECT COUNT(*) AS count FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id 
-        LEFT JOIN tbl_localidades l ON e.localidad=l.id
-        LEFT JOIN tbl_usuarios_foto_perfil t1 ON t1.id_usuario = e.id_usuario
-        LEFT JOIN tbl_archivos a ON t1.id_foto = a.id  
-        LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id $condiciones");
-
-        /**
-        * PAGINACIÓN
-        */
-
-        $tamPag = 20;
-        $numReg = count($empresas);
-        $paginas = ceil($numReg/$tamPag);
-        $limit = "";
-        $paginaAct = "";
-        if (!isset($_GET['pag'])) {
-            $paginaAct = 1;
-            $limit = 0;
-        } else {
-            $paginaAct = $_GET['pag'];
-            $limit = ($paginaAct-1) * $tamPag;
+        if(isset($_GET['categoria']))
+        {
+           $filtros =$filtros. " AND t1.actividad_empresa ='".$_GET['categoria']."'";
+        }
+         if(isset($_GET['tamano']))
+        {
+           $filtros =$filtros. " AND t1.tamano_empresa ='".$_GET['tamano']."'";
+        }
+         
+        if(isset($_GET['buscar']))
+        {
+            $filtros =$filtros. " AND  (t1.descripcion LIKE '%".$_GET['buscar']."%' OR  t1.nombre LIKE '%".$_GET['buscar']."%')";
         }
 
-        $empresas = DB::select($peticion . " " . $this->consultaGral($condiciones, $limit, $tamPag));
+        $vista = View::make('empresas_ver');
+        $sql="
+         SELECT  t1.*,count(id_empresa) as cantidad FROM tbl_company t1 
+         LEFT JOIN tbl_company_ofertas t2 ON t2.id_empresa =t1.id
+         WHERE t1.estatus =1 ".$filtros."
+         GROUP BY t1.id
+         ORDER BY t1.nombre ASC
+         ";
+         //return $sql;
+        $datos=DB::select($sql);
+        $vista->datos= $datos;
 
-        ####################
-
-        $sql_provincias = "SELECT p.provincia, e.provincia AS id_provincia, COUNT(e.provincia) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_provincias p ON e.provincia=p.id WHERE p.id IN (SELECT e.provincia  $consulta_gral ". str_replace("WHERE", "AND", $condiciones) . ") GROUP BY id_provincia";
-
-        $sql_sectores = "SELECT asec.nombre AS sector, e.sector AS id_sector, COUNT(e.sector) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_actividades_empresa asec ON e.sector=asec.id WHERE asec.id IN (SELECT e.sector $consulta_gral ". str_replace("WHERE", "AND", $condiciones) . ") GROUP BY id_sector";
-
-        $sql_localidades = "SELECT l.localidad, e.localidad AS id_localidad, COUNT(e.localidad) AS cantidad FROM tbl_empresa e LEFT JOIN tbl_localidades l ON e.localidad=l.id WHERE l.id IN (SELECT e.localidad $consulta_gral ". str_replace("WHERE", "AND", $condiciones) . ") GROUP BY id_localidad";
-
-        $sectores = DB::select($sql_sectores);
-        $provincias = DB::select($sql_provincias);
-        $localidades = DB::select($sql_localidades);
-        $cantidades=DB::select('SELECT id_empresa,count(*) as cantidad FROM tbl_publicacion GROUP BY id_empresa');
-        $params = [
-            "empresas" => $empresas,
-            "totalEmpresas" => $totalEmpresas[0]->count,
-            "provincias" => $provincias,
-            "sectores" => $sectores,
-            "localidades" => $localidades,
-            "variables" => $_POST,
-            "paginas" => $paginas,
-            "paginaAct" => $paginaAct,
-            "cantidades" => $cantidades
-        ];
-        return view('empresas_ver', $params);
+        return $vista;
     }
 
 
