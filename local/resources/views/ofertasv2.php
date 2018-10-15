@@ -501,8 +501,7 @@ $mi_tokken=csrf_token();
             </div>
         </div>
     </section>
-    <?php // include("local/resources/views/includes/general_footer.php");?>
-    <?php // include("local/resources/views/includes/login_register_modal.php");?>
+     <?php include('local/resources/views/includes/general_footer.php');?>
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript">
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">

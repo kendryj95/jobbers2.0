@@ -272,11 +272,11 @@ $mi_tokken=csrf_token();
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 "style="padding-left: 0px;padding-right: 0px;">
                               <div class="emply-list box contendor_empresa" style="padding-right: 5px;padding-left: 5px;">
                                 <div class="emply-list-thumb">
-                                  <a href="empresa/detalle?e=<?= $key->id;?>" title=""><img style="width: 80px;height: 80px;" src="uploads/min/<?= $key->img_profile;?>" alt=""></a>
+                                  <a href="empresa/detalle/<?= $key->id;?>" title=""><img style="width: 80px;height: 80px;" src="uploads/min/<?= $key->img_profile;?>" alt=""></a>
                                 </div>
                                 <div class="emply-list-info">
                                   <div class="emply-pstn"><?= $key->cantidad;?> Ofertas</div>
-                                  <h3><a href="empresa/detalle?e=<?= $key->id;?>" title=""><?= validar($key->nombre);?></a></h3>
+                                  <h3><a href="empresa/detalle/<?= $key->id;?>" title=""><?= validar($key->nombre);?></a></h3>
                                   <span><?= validar($key->actividad_empresa);?></span>
                                   <h6><i class="la la-map-marker"></i> <?= validar($key->provincia.' - '.$key->localidad);?></h6>
                                 </div>
@@ -316,8 +316,7 @@ $mi_tokken=csrf_token();
             </div>
         </div>
     </section>
-    <?php // include("local/resources/views/includes/general_footer.php");?>
-    <?php // include("local/resources/views/includes/login_register_modal.php");?>
+     <?php include('local/resources/views/includes/general_footer.php');?>
     <script src="local/resources/views/js/jquery.min.js" type="text/javascript">
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">

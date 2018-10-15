@@ -1,402 +1,300 @@
-<?php
-function formatDate($dateMayor, $dateMenor){
-	$menor = new DateTime($dateMenor);
-	$mayor = new DateTime(date($dateMayor));
-	$intervalo = $mayor->diff($menor);
-	if ($intervalo->format("%m") != 0) {
-		$m = $intervalo->format("%m") == 1 ? "mes" : "meses";
-		return $intervalo->format("Hace %m $m");
-	} elseif ($intervalo->format("%a") != 0){
-		$d = $intervalo->format("%a") == 1 ? "día" : "días";
-		return $intervalo->format("Hace %a $d");
-	} elseif ($intervalo->format("%h") != 0){
-		$h = $intervalo->format("%h") == 1 ? "hora" : "horas";
-		return $intervalo->format("Hace %h $h");
-	} elseif ($intervalo->format("%i") != 0){
-		return $intervalo->format("Hace %i min");
-	} else {
-		return $intervalo->format("Hace %s seg");
-	}
-	}
-?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Jobbers Argentina - Empresa</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="CreativeLayers">
-		<!-- Styles -->
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/bootstrap-grid.css" />
-		<link rel="stylesheet" href="../local/resources/views/css/icons.css">
-		<link rel="stylesheet" href="../local/resources/views/css/animate.min.css">
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/responsive.css" />
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/chosen.css" />
-		<link rel="stylesheet" type="text/css" href="../local/resources/views/css/colors/colors.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" /> 
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<script>
-		  (adsbygoogle = window.adsbygoogle || []).push({
-		    google_ad_client: "ca-pub-1968505410020323",
-		    enable_page_level_ads: true
-		  });
-		</script>
-		<?php include('local/resources/views/includes/chat_soporte.php');?>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+        <title>
+            Jobbers Argentina
+        </title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="" name="keywords"/>
+        <meta content="CreativeLayers" name="author"/>
+        <!-- Styles -->
+        <link href="../../local/resources/views/css/bootstrap-grid.css" rel="stylesheet" type="text/css"/>
+        <link href="../../local/resources/views/css/icons.css" rel="stylesheet"/>
+        <link href="../../local/resources/views/css/animate.min.css" rel="stylesheet"/>
+        <link href="../../local/resources/views/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../../local/resources/views/css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="../../local/resources/views/css/chosen.css" rel="stylesheet" type="text/css"/>
+        <link href="../../local/resources/views/css/colors/colors.css" rel="stylesheet" type="text/css"/>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <meta name="csrf-token" content="<?php echo csrf_token(); ?>">
+        <style type="text/css">
+            .job-details ul > li 
+         	{
+         		margin-bottom: 0px;
+         		font-weight: 700;
+         	}
+         	.job-details ul > li >span
+         	{
+         		 
+         		font-weight: 400;
+         	}
+         	.degradado
+         	{
+         		background: rgba(255,255,255,1);
+				background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+				background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+				background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+				background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+				background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+				background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+         	}
+         	.tag
+         	{
+         		background-color: #ffb203;
+         		color: #fff;
+         		border-radius: 3px;
+         		 
+         		padding-right: 4px;
+         		padding-left: 4px;
+         		margin-left: 5px;
+         	}
+            .postulado
+            {
+                background-color: #ffb203;
+            }
+        </style>
+    </head>
+</html>
+<body>
+    <?php include('local/resources/views/includes/general_header.php');?>
+    <?php include('local/resources/views/includes/general_header_responsive.php');?>
 
-		<style type="text/css" media="screen">
-
-			@media (min-width: 576px) { ... }
-			#contenedor_header
-				 {
-				 		margin-top: -100px;
-				 }
- 
-			@media (min-width: 768px) { ... }
- 			#contenedor_header
-				 {
-				 	margin-top: -100px;
-				 }
-			@media (min-width: 992px) { 
-				#contenedor_header
-				 {
-				 	margin-top: -320px;
-				 }
-			}
-
-			blockquote {
-			    background: #ffb203;
-			    color: #fff;
-			    border-radius: 20px;
-			    border-bottom: 2px solid #e59f00; 
-			    /* Color de fondo */
-			    padding: 10px;
-			}
-			blockquote:before {
-			    content: "\201C";
-			    /* inicio comilla */
-			    font-family: Georgia;
-			    font-size: 40px;
-			    /* tamaño */
-			    font-weight: bold;
-			    line-height: 0px;
-			    color: #ffffff;
-			    /* Color  */
-			    vertical-align: middle;
-			}
-			blockquote:after {
-			    /* final */
-			    content: "\201D";
-			    font-family: Georgia;
-			    font-size: 40px;
-			    /* tamaño */
-			    font-weight: bold;
-			    line-height: 0px;
-			    color: #ffffff;
-			    /* Color  */
-			    vertical-align: middle;
-			    padding-top: 10px;
-			}
-		</style>
-		<?php include('local/resources/views/includes/google_analitycs.php');?>
-</head>
-	<body style="background-color: #eeeeee;">
-		<div class="theme-layout" id="scrollup">
-			<?php
-			if (session()->get("empresa") == null) {
-				
-				include("includes/general_header_responsive.php");
-				include("includes/general_header.php");
-			} else {
-				include("includes/header_responsive_empresa.php");
-				include("includes/header_empresa.php");
-			}
-			?>
-			<section class="overlape" id="contenedor_header" >
-				<div class="block no-padding" >
-					<div data-velocity="-.1" style="background: url(../local/resources/views/images/detalle.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
-					<div class="container fluid">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="inner-header">
-								 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section>
-				<div class="block">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12 column" >
-								<div class="job-single-sec style3">
-									<div class="job-head-wide">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="job-single-head3 emplye" style="background-color: #fff;padding-top: 15px;padding-left: 15px;border: 1px solid #c6c6c6;">
-													<?php $imagen_perfil = $empresa[0]->imagen == null || $empresa[0]->imagen == '' ? asset('../local/resources/views/images/company-avatar.png') : asset('uploads/'.$empresa[0]->imagen) ?>
-													<div class="job-thumb"> <img src="<?= $imagen_perfil ?>" alt="Imagen de la empresa" width="120" height="120" /></div>
-													<div class="job-single-info3">
-														<h3><?= $empresa[0]->nombre_empresa ?></h3>
-														<?php if ($empresa[0]->provincia_localidad): ?>
-														<span><i class="la la-map-marker"></i><?= $empresa[0]->provincia_localidad ?></span>
-														<?php endif; ?>
-														<ul class="tags-jobs">
-															<li><i class="la la-file-text"></i> Candidatos: <?= $empresa[0]->candidatos ?></li>
-															<li><i class="la la-calendar-o"></i> Ultima Oferta: <?= $empresa[0]->last_date_oferta ?></li>
-														</ul>
-													</div>
-													</div><!-- Job Head -->
-												</div>
-												 
-											</div>
-										</div>
-										<div class="job-wide-devider">
-											<div class="row">
-												<div class="col-lg-9 column">
-													<div class="job-details" style="padding-top: 30px;">
-														<?php if ($empresa[0]->descripcion!=""): ?>
-															<blockquote><span style="padding-left: 10px;padding-right: 10px;s"><?php echo $empresa[0]->descripcion?></span> </blockquote>  
-														<?php endif ?> 
-													</div>
-													<?php if (count($ofertas) > 0): ?>
-													<div class="recent-jobs">
-														<h3>Ofertas de la Empresa</h3>
-														<div class="job-list-modern">
-															
-															<div class="job-listings-sec no-border">
-															<?php foreach ($ofertas as $pub): ?>
-
-															  <?php if ($pub->id_plan == 2): ?>
-
-															        <?php if ($pub->modalidad == 1): ?>
-
-															            <!-- Oferta recomendada -->
-															            <a href="../detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs borde-recomend" style="background: url(<?= asset('local/resources/views/images/back-ofertas.jpg') ?>); background-size: cover">
-															              <div class="recomend"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> Oferta destacada</span></div>
-															                <div class="job-title-sec container-desc-oferta">
-															                <div class="row">
-															                  <div class="col-6"> 
-															                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
-															                    <p class="time-pub" style="margin-left: 20px; margin-bottom: 20px">
-															                      Redes:
-															                          <?php if ($pub->facebook): ?> 
-															                          <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="padding:6px; margin-left: 0px;"></i></span></a>
-															                          <?php endif; ?>
-															                          <?php if ($pub->linkedin): ?>
-															                          <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px;"></i></span></a>
-															                          <?php endif; ?>
-															                          <?php if ($pub->twitter): ?>
-															                          <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px;"></i></span></a><a href="#" class="jump mobile-inline"><br></a>
-															                          <?php endif; ?>
-															                    </p>
-															                    <?php endif; ?>
-															                  </div>
-															                  <div class="col-6">
-															                    <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('../local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('../local/resources/views/images/company-avatar.png') ?>" class="img-fluid" width="80" alt="">
-															                  </div>
-															                  <?php if ($pub->plan_estado): ?>
-															                  <!-- <div class="col-12">
-															                    <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
-															                  </div> -->
-															                  <?php endif; ?>
-															                </div>
-															              
-															                <h5 class="title-recom"><?= $pub->titulo ?> <!-- <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a> --></h5>
-															                  <p class="time-pub"><i class="fa fa-calendar"></i> Publicada <?= $pub->fecha_pub ?> a las <?= $pub->hora_pub ?> - Termina: <?= $pub->fecha_venc ?></p>
-															                  <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
-															                  <br>
-															                  <div class="job-lctn">
-															                    <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?> 
-															                    <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
-															                    <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
-															                    <i class="fa fa-clock-o mr-0"></i>
-															                    <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
-															                    <?php if ($pub->discapacidad == 'SI'): ?>
-															                    <i class="fa fa-wheelchair blue"></i>
-															                    <?php endif; ?>
-															              
-															                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
-															                    <div class="desk" style="float: right">
-															                      <?php if ($pub->facebook): ?> 
-															                      <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
-															                      <?php endif; ?>
-															                      <?php if ($pub->linkedin): ?>
-															                      <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-															                      <?php endif; ?>
-															                      <?php if ($pub->twitter): ?>
-															                      <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
-															                      <?php endif; ?>
-															                    </div>
-															                    <?php endif; ?>
-
-															                    <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
-															                    <p class="container-media mobile" style="margin-bottom: 0;">
-															                      <?php if ($pub->facebook): ?> 
-															                      <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
-															                      <?php endif; ?>
-															                      <?php if ($pub->linkedin): ?>
-															                      <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
-															                      <?php endif; ?>
-															                      <?php if ($pub->twitter): ?>
-															                      <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
-															                      <?php endif; ?>
-															                    </p>
-															                    <?php endif; ?>
-															                  </div>
-															                </div>
-															                <div class="job-style-bx container-img-oferta desk">
-															                  <img src="<?= asset('local/resources/views/images/award.png') ?>" class="img-fluid img-oferta" alt="">
-															                </div>
-															              </div></a>
-															        <?php else: ?>
-
-															          <!-- CURSO GRATIS -->
-															          <span id="url_'.$key->id.'" style="display:none;">detalleoferta/'.$key->id.'</span>
-															          <div class="job-listing wtabs borde-urgente">
-															          <div class="urgente"><span>Cursos</span></div>
-															            <div class="job-title-sec container-desc-curso" ;>
-															              <h3>
-															                <a href="<?= url('detalle_curso', $pub->id) ?>" title="">
-															                  <div style="font-size:22px; color: #494949" id="descripcion_'.$key->id.'"><?= $pub->titulo ?> <span class="link-urgente"><?= $pub->nombre ?></span></div>
-															                </a>
-															              </h3>
-															              <p><span style="color: #555555; line-height: 18px; color: #494949">
-															                <?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?>
-															                </span></p>
-															              <br>
-															            </div>
-															          </div>
-															          <a href=""></a>
+<div class="theme-layout" id="scrollup">
+    <section style="background-color: #eeeeee;margin-top: -25px;">
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 column" style="background-color: #fff;padding-top: 15px;border: 1px solid #ddd;">
+                        <div class="job-single-sec">
+                            <div class="job-single-head degradado" style="border: 1px dashed #b2b2b2;padding: 4px;">
+                                <div class="job-thumb">
+                                	<?php if ($datos[0]->img_profile!=""): ?>
+                                		<img style="height: 101px;width: 107px;" alt="" src="../../uploads/min/<?= $datos[0]->img_profile?>"/>
+                                		<?php else: ?>
+                                	 <img alt="" src="http://placehold.it/107x101"/>
+                                	<?php endif ?>
+                                    
+                                </div>
+                                <div class="job-head-info">
+                                    <h4 style="margin-top: 6px;font-size: 28px;">
+                                        <?= ucfirst(mb_strtolower($datos[0]->nombre));?>
+                                    </h4>  
+                                </div> 
+                            </div>
+                            <div class="job-overview divide"> 
+                                    <ul>
+                                        <li><i class="la la-industry"></i><h3>Sector </h3><span><?= $datos[0]->actividad_empresa?></span></li>
+                                        <li><i class="la la-file-text"></i><h3>Oferta</h3><span><?=(count($ofertas));?></span></li>
+                                        <li><i class="la la-map"></i><h3>Dirección</h3><span><?= $datos[0]->direccion?></span></li>
+                                    </ul>
+                                    <ul>
+                                        <li><i class="la la-bars"></i><h3>Tipo</h3><span><?= $datos[0]->tipo_empresa?></span></li> 
+                                        <li><i class="la la-users"></i><h3>Tamaño</h3><span><?= $datos[0]->tamano_empresa?></span></li>
+                                    </ul> 
+                                </div>
+                            <!-- Job Head -->
+                            <div class="job-details" style="text-align: justify;"> 
+                                 <div>
+                                 	<p style="font-weight: 600;"></p>
+                                 </div>
+                                 <?php if ($datos[0]->descripcion!=""): ?>
+                                   <h3>
+                                    Descripción
+                                </h3>
+                                 <div>
+                                     <p><?= $datos[0]->descripcion;?></p>
+                                 </div>
+                                 <?php endif ?> 
+                            </div>
+                            <?php if ($datos[0]->facebook!="" || $datos[0]->linkedin!="" || $datos[0]->twitter!=""): ?>
+                                <div class="share-bar">
+                                        <span>
+                                            Redes
+                                        </span>
+                                        <?php if ($datos[0]->facebook!=""): ?>
+                                            <a class="share-fb" href="<?= $datos[0]->facebook?>" title=""  target="_blank">
+                                            <i class="fa fa-facebook">
+                                            </i>
+                                        </a>
+                                        <?php endif ?>
+                                        <?php if ($datos[0]->linkedin!=""): ?>
+                                        <a class="share-linkedin" href="$datos[0]->linkedin?>" title=""  target="_blank">
+                                            <i class="fa fa-linkedin">
+                                            </i>
+                                        </a>
+                                          <?php endif ?>
+                                        <?php if ($datos[0]->twitter!=""): ?>
+                                        <a class="share-twitter" href="$datos[0]->twitter" title="" target="_blank">
+                                            <i class="fa fa-twitter">
+                                            </i>
+                                        </a>
+                                          <?php endif ?>
+                                    </div>
+                            <?php endif ?>
+                            
+                              <div class="recent-jobs">
+                                <h3>
+                                    Ofertas de <?= ucfirst(mb_strtolower($datos[0]->nombre));?>
+                                </h3>
+                                <div class="job-list-modern">
+                                    <div class="job-listings-sec no-border" > 
+                                        
+                                            
+                                                <?php if (count($ofertas)>0): ?> 
+                                                <?php foreach ($ofertas as $key): ?>
+                                                    <div class="job-listing wtabs" style="padding-top: 5px;padding-bottom: 5px;">
+                                                <div class="job-title-sec"> 
+                                                    <?php if ($datos[0]->img_profile!=""): ?>
+                                                    <div class="c-logo">
+                                                        <a href="../../detalleoferta/<?=$key->id;?>" title=""><img style="width: 100px;height: 100px;margin-right: 15px;" alt="" src="../../uploads/min/<?= $datos[0]->img_profile;?>"/></a>
+                                                    </div>
+                                                    <?php else: ?>
+                                                    <div class="c-logo">
+                                                        <a href="../../detalleoferta/<?=$key->id;?>" title=""><img style="margin-right: 15px;" alt="" src="http://placehold.it/98x51"/> </a>
+                                                    </div>  
+                                                    <?php endif ?> 
+                                                    <h3>
+                                                        <a href="../../detalleoferta/<?=$key->id;?>" title="">
+                                                          <?= ucfirst(mb_strtolower($key->titulo))?>
+                                                        </a>
+                                                    </h3>
+                                                    <span>
+                                                      <?= ucfirst(mb_strtolower($key->sector))?>
+                                                    </span><br>
+                                                    <span>
+                                                       <?= ucfirst(mb_strtolower($key->provincia.' '.$key->localidad))?>
+                                                    </span>
+                                                </div>
+                                                <div class="job-style-bx">
+                                                    <span class="job-is ft">
+                                                      <?= $key->disponibilidad?>
+                                                    </span> 
+                                                    <i>
+                                                     <?php if ($key->dias==0): ?>
+                                                        Hoy
+                                                    <?php endif ?>
+                                                    <?php if($key->dias==1): ?>
+                                                        Ayer
+                                                    <?php endif ?>
+                                                   <?php if($key->dias>1): ?>
+                                                        Publicado el día <?= fecha($key->fecha_creacion);?>
+                                                    <?php endif ?>
+                                                    </i>
+                                                </div>
+                                                  </div>
+                                                 <?php endforeach ?>
+                                              <?php endif ?>
+                                      
+                                        
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-lg-4 column" style="background-image: url('../../local/resources/views/empresas/app-assets/images/logo/bg-1.png')"> 
+                        
+                        <div class="reviews-sec" id="reviews" style="background-color: #fff;padding-top: 25px;border: 1px solid #ddd;margin-bottom: 25px;">
+                            <h5 style="text-align: center;">Empresas relacionadas</h5>
+                            <?php 
+                            $contador=1;
+                            foreach ($new as $key): ?>
+                                <?php if ($key->img_profile !="" && $contador<6): ?>
+                                     <div class="col-lg-6">
+                                        <div class="reviews style2" style="padding-left: 10px;padding-right: 10px;">
+                                            <img style="width: 250px;height: 250px; border-radius: 1%;" src="../../uploads/min/<?= $key->img_profile;?>" alt="" />
+                                            <h3 style="font-weight: 600;color: #000aff;margin-bottom: 0px;"><?=$key->nombre?><span><?=$key->actividad_empresa?></span>
+                                                
+                                            </h3>  
+                                        </div><!-- Reviews -->
+                                    </div> 
+                                <?php 
+                                $contador++;
+                                endif ?>
+                            <?php endforeach ?> 
+                        </div> 
 
 
+                         <div style="background-color: #fff;text-align: center">
+                                <div id="fb-root" style="text-align: center;margin: 0 auto;"></div>
+                                    <script>(function(d, s, id) {
+                                      var js, fjs = d.getElementsByTagName(s)[0];
+                                      if (d.getElementById(id)) return;
+                                      js = d.createElement(s); js.id = id;
+                                      js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.1&appId=1480600512039518&autoLogAppEvents=1';
+                                      fjs.parentNode.insertBefore(js, fjs);
+                                    }(document, 'script', 'facebook-jssdk'));</script>
 
-															        <?php endif; ?>
+                                    <div class="fb-page" data-href="https://www.facebook.com/jobbersargentina" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/jobbersargentina" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/jobbersargentina">Jobbers</a></blockquote></div>
+                                
+                                    </div>
+                            </div>
 
-															  <?php else: ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+ <?php include('local/resources/views/includes/general_footer.php');?>
+<script src="../../local/resources/views/js/jquery.min.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/modernizr.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/script.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/wow.min.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/slick.min.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/parallax.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/select-chosen.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/js/jquery.scrollbar.min.js" type="text/javascript">
+</script>
+<script src="../../local/resources/views/empresas/assets/js/notify.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+      function aplicar(publicacion)
+        {    
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                url: '../../candipostular',
+                type: 'POST',
+                dataType:'json',
+                data: {id:publicacion},
+                success: function(response) { 
+                if(response=="session")
+                {
+                    $.notify("Debe iniciar sessión","info");
+                }
+                else if(response=='1')
+                {
+                    $(".btn-postular").addClass(' postulado');
+                    $(".btn-postular").html('<i class="la la-check"></i> Postulado');
+                     
+                }               
+                },
+                error: function(error) {
+                    $.notify("Ocurrió un error al procesar la solicitud.");
+                }
+            });
+        }
 
-															<!-- Oferta normal -->
-															<a href="../detalleoferta/<?= $pub->id ?>"><div class="job-listing wtabs">
-															  <div class="mobile">
-															        <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-															        <?php if ($pub->plan_estado): ?>
-															        <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
-															        <?php endif; ?>
-															        <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
-															      </div>
-															    <div class="job-title-sec container-desc-oferta">
-															    <h5 class="title-recom"><?= $pub->titulo ?> <!-- <a href="#"><span style="float: right; color: #bbbbbb; font-size: 15px; font-weight: 400;"><sup>Denunciar</sup> <i class="fa fa-exclamation-circle exclamation-icon"></i></span></a> --></h5>
-															      <p class="time-pub"><i class="fa fa-calendar"></i> Publicada <?= $pub->fecha_pub ?> a las <?= $pub->hora_pub ?> - Termina: <?= $pub->fecha_venc ?></p>
-															      <p class="desc-oferta"><?= strlen($pub->descripcion) > 350 ? substr(strip_tags($pub->descripcion), 0, 350) . "..." : strip_tags($pub->descripcion) ?> </p>
-															      <br>
-															      <div class="job-lctn">
-															        <?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?> 
-															        <i class="fa fa-eye"></i><?= $pub->vistos ?>&nbsp;
-															        <!-- <i class="fa fa-heart red"></i>3&nbsp; -->
-															        <i class="fa fa-clock-o mr-0"></i>
-															        <span class="disponibilidad"><?= $pub->disponibilidad ?></span>&nbsp;
-															        <?php if ($pub->discapacidad == 'SI'): ?>
-															        <i class="fa fa-wheelchair blue"></i>
-															        <?php endif; ?>
-															  
-															        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
-															        <div class="desk" style="float: right">
-															          <?php if ($pub->facebook): ?> 
-															          <a href="<?= $pub->facebook ?>"><span class="container-fb"><i class="fa fa-facebook"></i></span></a>
-															          <?php endif; ?>
-															          <?php if ($pub->linkedin): ?>
-															          <a href="<?= $pub->linkedin ?>"><span class="container-in"><i class="fa fa-linkedin mr-0"></i></span></a>
-															          <?php endif; ?>
-															          <?php if ($pub->twitter): ?>
-															          <a href="<?= $pub->twitter ?>"><span class="container-tw"><i class="fa fa-twitter mr-0"></i></span></a>
-															          <?php endif; ?>
-															        </div>
-															        <?php endif; ?>
-															        
-															        <?php if ($pub->facebook || $pub->linkedin || $pub->twitter): ?>
-															        <p class="container-media mobile" style="margin-bottom: 0;">
-															          <?php if ($pub->facebook): ?> 
-															          <a href="<?= $pub->facebook ?>"><span class="container-fb" style="float: inherit"><i class="fa fa-facebook" style="vertical-align: text-top"></i></span></a>
-															          <?php endif; ?>
-															          <?php if ($pub->linkedin): ?>
-															          <a href="<?= $pub->linkedin ?>"><span class="container-in" style="float: inherit"><i class="fa fa-linkedin mr-0" style="padding:4px; margin-left: 0px; font-size: 13px; vertical-align: super;"></i></span></a>
-															          <?php endif; ?>
-															          <?php if ($pub->twitter): ?>
-															          <a href="<?= $pub->twitter ?>"><span class="container-tw" style="float: inherit"><i class="fa fa-twitter mr-0" style="padding:3px; margin-left: 0px; vertical-align: text-bottom;"></i></span></a>
-															          <?php endif; ?>
-															        </p>
-															        <?php endif; ?>
-															      </div>
-															    </div>
-															    <div class="job-style-bx container-img-oferta desk">
-															      <img src="<?= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->imagen == null ? asset('local/resources/views/images/company-avatar.png') : asset('uploads/'.$pub->imagen) : asset('local/resources/views/images/company-avatar.png') ?>" class="img-fluid img-oferta" alt="">
-															      <?php if ($pub->plan_estado): ?>
-															      <img src="<?= asset('local/resources/views/images/programas') ?>/<?= $pub->plan_estado ?>.png" alt="" class="img-fluid img-oferta">
-															      <?php endif; ?>
-															      <p class="nombre-img"><?php //= $pub->confidencial == 'NO' || $pub->confidencial == null ? $pub->nombre : 'Confidencial' ?></p>
-															    </div>
-															  </div></a>
-															  <?php endif; ?>
-
-															<?php endforeach; ?>
-
-
-																
-															</div>
-															
-														</div>
-													</div>
-													<?php endif ?>
-												</div>
-												<div class="col-lg-3 column">
-													<div class="job-overview" style="border: 0px;background-color: #fff;border:1px solid #c6c6c6;padding: 0px;"> 
-														<ul style="border:0px;">
-														 
-															<li><i class="la la-file-text"></i><h3>Ofertas Publicadas</h3><span><?= $empresa[0]->total_ofertas ?></span></li>
-															<li><i class="la la-bars"></i><h3>Actividad/Industria</h3><span><?= $empresa[0]->actividad_empresa ?></span></li>
-																<?php if (($empresa[0]->facebook != "" || $empresa[0]->facebook != null) || ($empresa[0]->instagram != "" || $empresa[0]->instagram != null) || ($empresa[0]->twitter != "" || $empresa[0]->twitter != null) || ($empresa[0]->linkedin != "" || $empresa[0]->linkedin != null) || ($empresa[0]->web != "" || $empresa[0]->web != null)): ?>
-															<li><i class="la la-bullhorn"></i>
-																<h3>Redes Sociales</h3>
-																<div class="share-bar">
-																	<?php if ($empresa[0]->facebook != "" || $empresa[0]->facebook != null): ?>
-																	<a href="<?= $empresa[0]->facebook ?>" title="" class="share-fb"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-facebook"></i></a>
-																	<?php endif ?>
-																	<?php if ($empresa[0]->instagram != "" || $empresa[0]->instagram != null): ?>
-																	<a href="<?= $empresa[0]->instagram ?>" title="" class="share-ig"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-instagram"></i></a>
-																	<?php endif ?>
-																	<?php if ($empresa[0]->twitter != "" || $empresa[0]->twitter != null): ?>
-																	<a href="<?= $empresa[0]->twitter ?>" title="" class="share-twitter"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-twitter"></i></a>
-																	<?php endif ?>
-																	<?php if ($empresa[0]->linkedin != "" || $empresa[0]->linkedin != null): ?>
-																	<a href="<?= $empresa[0]->linkedin ?>" title="" class="share-lkd"><i style="position: initial; font-size: initial; color:inherit;" class="fa fa-linkedin"></i></a>
-																	<?php endif ?>
-																	<?php if ($empresa[0]->web != "" || $empresa[0]->web != null): ?>
-																	<a href="<?= $empresa[0]->web ?>" title="" class="share-web"><i style="position: initial; font-size: initial; color:inherit;" class="la la-globe"></i></a>
-																	<?php endif ?>
-																</div>
-															</li>
-																<?php endif ?>
-														</ul>
-														</div><!-- Job Overview -->
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<?php include("includes/general_footer_empresas.php") ?>
-					<?php include("local/resources/views/includes/login_register_modal.php");?>
-					</div>
-					
-							<script src="../local/resources/views/js/jquery.min.js" type="text/javascript"></script> 
-							<script src="../local/resources/views/js/script.js" type="text/javascript"></script> 
-							<script src="../local/resources/views/plugins/notify.js" type="text/javascript"></script>
-						</body>
-					</html>
+        function postulado(){$.notify("Ya se encuentra postulado","info");}
+        function session(){$.notify("Debe iniciar sesión","info");}
+</script>
+<?php
+	function fecha($fecha)
+	{
+		$old = explode('-',$fecha);
+		return $old[2]."-".$old[1]."-".$old[0];
+	}
+?>
+</body>

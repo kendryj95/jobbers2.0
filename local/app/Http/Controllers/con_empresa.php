@@ -16,48 +16,7 @@ class con_empresa extends Controller
         return view('empresa_login');
     }
 
-    public function ver()
-    { 
-        $filtros="";  
-        if(isset($_GET['provincia']))
-        {
-            $filtros =$filtros. " AND t1.provincia ='".$_GET['provincia']."'";
-        }
-        if(isset($_GET['localidad']))
-        {
-            $filtros =$filtros. " AND t1.localidad ='".$_GET['localidad']."'";
-        }
-        
-        if(isset($_GET['categoria']))
-        {
-           $filtros =$filtros. " AND t1.actividad_empresa ='".$_GET['categoria']."'";
-        }
-         if(isset($_GET['tamano']))
-        {
-           $filtros =$filtros. " AND t1.tamano_empresa ='".$_GET['tamano']."'";
-        }
-         
-        if(isset($_GET['buscar']))
-        {
-            $filtros =$filtros. " AND  (t1.descripcion LIKE '%".$_GET['buscar']."%' OR  t1.nombre LIKE '%".$_GET['buscar']."%')";
-        }
-
-        $vista = View::make('empresas_ver');
-        $sql="
-         SELECT  t1.*,count(id_empresa) as cantidad FROM tbl_company t1 
-         LEFT JOIN tbl_company_ofertas t2 ON t2.id_empresa =t1.id
-         WHERE t1.estatus =1 ".$filtros."
-         GROUP BY t1.id
-         ORDER BY t1.nombre ASC
-         ";
-         //return $sql;
-        $datos=DB::select($sql);
-        $vista->datos= $datos;
-
-        return $vista;
-    }
-
-
+     
     private function consultaGral($condiciones, $limit, $tamPag)
     {
         

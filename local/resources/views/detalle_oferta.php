@@ -345,9 +345,7 @@
 			    </div>
 			  </div>
 			</div>
-			<?php include("local/resources/views/includes/login_register_modal.php");?>
-			
-			
+			   
 			<script src="../local/resources/views/js/modernizr.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/script.js" type="text/javascript"></script>
 			<script src="../local/resources/views/js/wow.min.js" type="text/javascript"></script>

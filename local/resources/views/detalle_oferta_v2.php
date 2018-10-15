@@ -318,8 +318,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 column" style="padding-top: 25px;background-image: url('../local/resources/views/empresas/app-assets/images/logo/bg-1.png')">
-
+                    <div class="col-lg-4 column" style="padding-top: 25px;background-image: url('../local/resources/views/empresas/app-assets/images/logo/bg-1.png')"> 
                         <?php 
 
                         if(session()->get('cand_id')!=""): ?> 
@@ -377,12 +376,28 @@
                                 </div>
                                 <?php endif ?>
                             </div>
+
+                            <div style="background-color: #fff;text-align: center;">
+                                <div id="fb-root" style="text-align: center;margin: 0 auto;"></div>
+                                    <script>(function(d, s, id) {
+                                      var js, fjs = d.getElementsByTagName(s)[0];
+                                      if (d.getElementById(id)) return;
+                                      js = d.createElement(s); js.id = id;
+                                      js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.1&appId=1480600512039518&autoLogAppEvents=1';
+                                      fjs.parentNode.insertBefore(js, fjs);
+                                    }(document, 'script', 'facebook-jssdk'));</script>
+
+                                    <div class="fb-page" data-href="https://www.facebook.com/jobbersargentina" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/jobbersargentina" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/jobbersargentina">Jobbers</a></blockquote></div>
+                                
+                                    </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
+<?php include('local/resources/views/includes/general_footer.php');?>
 <script src="../local/resources/views/js/jquery.min.js" type="text/javascript">
 </script>
 <script src="../local/resources/views/js/modernizr.js" type="text/javascript">

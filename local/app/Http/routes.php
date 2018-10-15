@@ -190,13 +190,13 @@ Route::get('cvjobbers', 'con_candidato_cv@seleccionar_cv_jobbers');
 //********************************************************//
 //*                RUTAS PARA LAS EMPRESAS               *//
 //********************************************************//
-Route::get('empresas', 'con_empresa@ver');
+Route::get('empresas', 'con_company@ver');
 
 Route::get('empresa', 'con_empresa@login');
 Route::get('empresa/registro', 'con_empresa@registroView');
 Route::post('empresa/exists', 'con_empresa@existEmpresa'); // Verifica si existe la empresa o no.
 Route::post('empresa/registro_success', 'con_empresa@registro'); // Verifica si existe la empresa o no.
-Route::get('empresa/detalle', 'con_empresa@detail');
+Route::get('empresa/detalle/{id}', 'con_company@detalle');
 Route::get('detalle_curso/{id}', 'con_empresa@detalle_curso');
 
 Route::group(['middleware' => 'log_e'], function () {
