@@ -204,8 +204,8 @@
                                 <?php if ($key->img_profile !="" && $contador<6): ?>
                                      <div class="col-lg-6">
                                         <div class="reviews style2" style="padding-left: 10px;padding-right: 10px;">
-                                            <img style="width: 250px;height: 250px; border-radius: 1%;" src="../../uploads/min/<?= $key->img_profile;?>" alt="" />
-                                            <h3 style="font-weight: 600;color: #000aff;margin-bottom: 0px;"><?=$key->nombre?><span><?=$key->actividad_empresa?></span>
+                                            <a href="<?= $key->id;?>"><img  style="width: 250px;height: 250px; border-radius: 1%;" src="../../uploads/min/<?= $key->img_profile;?>" alt="" />
+                                            <h3 style="font-weight: 600;color: #000aff;margin-bottom: 0px;"><?=$key->nombre?><span><?=$key->actividad_empresa?></span></a>
                                                 
                                             </h3>  
                                         </div><!-- Reviews -->

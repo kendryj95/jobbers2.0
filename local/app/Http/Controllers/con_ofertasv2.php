@@ -96,12 +96,12 @@ class con_ofertasv2 extends Controller
     	concat(t2.pais,' - ',t2.provincia,' - ',t2.localidad) as emp_direccion,
     	count(t1.id) as ofertas 
     	FROM  tbl_company_ofertas t1 
-		INNER JOIN tbl_company t2 ON t2.id = t1.id_empresa
+		LEFT JOIN tbl_company t2 ON t2.id = t1.id_empresa
 		WHERE t1.id=".$id."
 		GROUP BY t1.id_empresa
 		";
 
-		 
+       
 		$sql_ofertas_recientes="
     	SELECT
     	DATEDIFF(CURDATE(),t1.fecha_creacion) as dias,  
@@ -112,7 +112,7 @@ class con_ofertasv2 extends Controller
     	t2.nombre as nombre_empresa,
     	concat(t2.pais,' - ',t2.provincia,' - ',t2.localidad) as emp_direccion 
     	FROM  tbl_company_ofertas t1 
-		INNER JOIN tbl_company t2 ON t2.id = t1.id_empresa 
+		LEFT JOIN tbl_company t2 ON t2.id = t1.id_empresa 
 	    ORDER BY t1.id DESC 
 	    LIMIT 0,5
 		";
@@ -122,6 +122,7 @@ class con_ofertasv2 extends Controller
 		$sql_ofertas="
 		SELECT * FROM tbl_company_ofertas 
 		WHERE id_empresa =".$datos[0]->id_empresa." AND id != ".$id."";
+         
 		 
 		$habilidades="";
 		if($datos[0]->habilidades!="")
@@ -141,7 +142,7 @@ class con_ofertasv2 extends Controller
     	t2.nombre as nombre_empresa,
     	concat(t2.pais," - ",t2.provincia," - ",t2.localidad) as emp_direccion
 		FROM tbl_company_ofertas t1
-		INNER JOIN tbl_company t2 ON t2.id = t1.id_empresa
+		LEFT JOIN tbl_company t2 ON t2.id = t1.id_empresa
 		WHERE t1.sector ="'.$datos[0]->sector.'" '.$habilidades.' AND t1.id != '.$datos[0]->id.'
 		GROUP BY t1.id
 		ORDER BY t1.fecha_creacion
@@ -155,8 +156,9 @@ class con_ofertasv2 extends Controller
     	$sql_postulado="
     	SELECT count(*) as cantidad 
     	FROM tbl_company_postulados 
-    	WHERE id_oferta =".$datos[0]->id." 
+    	WHERE id_oferta =".$id." 
     	AND id_usuario=".$candidato."";
+
     	$sql_up_vista="
     	UPDATE tbl_company_ofertas 
     	SET vistas = ".($datos[0]->vistas + 1)."
@@ -164,6 +166,7 @@ class con_ofertasv2 extends Controller
     	DB::update($sql_up_vista);
     	$vista->datos=$datos;
     	$vista->postulado=DB::select($sql_postulado);
+        
     	$vista->ofertas=DB::select($sql_ofertas);
     	$vista->ofertas_recientes=DB::select($sql_ofertas_recientes); 
     	$vista->ofertas_similares=DB::select($sql_ofertas_similares);

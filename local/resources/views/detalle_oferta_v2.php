@@ -105,14 +105,14 @@
                             </div>
                             <!-- Job Head -->
                             <div class="job-details" style="text-align: justify;">
-                            	 <h3>
-                                    Título
+                            	 <h3 style="font-size: 24px;">
+                                    <?php echo ucfirst(mb_strtolower($datos[0]->titulo));?>
                                 </h3>
                                  <div>
-                                 	<p style="font-weight: 600;"><?php echo ucfirst(mb_strtolower($datos[0]->titulo));?></p>
+                                 	 
                                  </div>
                                 <h3>
-                                    Descripción
+                                    Descripción del trabajo
                                 </h3>
                                  <div>
                                  	<?= $datos[0]->descripcion;?>
@@ -224,15 +224,17 @@
                                             <div class="job-title-sec">
                                                 <?php if ($key->img_profile!=""): ?>
                                                 <div class="c-logo">
-                                                    <img style="width: 100px;height: 100px;margin-right: 15px;" alt="" src="../uploads/min/<?= $key->img_profile;?>"/>
+                                                    <a href="<?= $key->id?>">
+                                                    <img style="width: 100px;height: 100px;margin-right: 15px;" alt="" src="../uploads/min/<?= $key->img_profile;?>"/></a>
                                                 </div>
                                                 <?php else: ?>
                                                 <div class="c-logo">
-                                                    <img style="margin-right: 15px;" alt="" src="http://placehold.it/98x51"/>
+                                                    <a href="<?= $key->id?>">
+                                                    <img style="margin-right: 15px;" alt="" src="http://placehold.it/98x51"/></a>
                                                 </div>  
                                                 <?php endif ?> 
                                                 <h3>
-                                                    <a href="#" title="">
+                                                    <a href="<?= $key->id?>" title="">
                                                        <?= ucfirst(mb_strtolower($key->titulo));?>
                                                     </a>
                                                 </h3>
@@ -276,15 +278,17 @@
                                             <div class="job-title-sec">
                                             	<?php if ($key->img_profile!=""): ?>
                                             	<div class="c-logo">
-                                                    <img style="width: 100px;height: 100px;margin-right: 15px;" alt="" src="../uploads/min/<?= $key->img_profile;?>"/>
+                                                    <a href="<?= $key->id?>">
+                                                    <img style="width: 100px;height: 100px;margin-right: 15px;" alt="" src="../uploads/min/<?= $key->img_profile;?>"/></a>
                                                 </div>
                                             	<?php else: ?>
                                             	<div class="c-logo">
-                                                    <img style="margin-right: 15px;" alt="" src="http://placehold.it/98x51"/>
+                                                      <a href="<?= $key->id?>">
+                                                    <img style="margin-right: 15px;" alt="" src="http://placehold.it/98x51"/></a>
                                                 </div>	
                                             	<?php endif ?> 
                                                 <h3>
-                                                    <a href="#" title="">
+                                                    <a href="<?= $key->id?>" title="">
                                                        <?= ucfirst(mb_strtolower($key->titulo));?>
                                                     </a>
                                                 </h3>
@@ -322,7 +326,7 @@
                         <?php 
 
                         if(session()->get('cand_id')!=""): ?> 
-                                <?php if ($postulado[0]->cantidad==1): ?>
+                                <?php if ($postulado[0]->cantidad>0): ?>
                                       <button onclick="postulado()" class="postulado btn-postular btn-postulado" class="btn btn-danger form-control" style="width: 100%;height:50px;">
                                         <i class="la la-check"></i>
                                         Postulado
@@ -432,7 +436,7 @@
                 if(response=="session")
                 {
                     $.notify("Debe iniciar sessión","info");
-                }
+                } 
                 else if(response=='1')
                 {
                     $(".btn-postular").addClass(' postulado');

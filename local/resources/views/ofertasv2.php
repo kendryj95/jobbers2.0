@@ -227,8 +227,7 @@ $mi_tokken=csrf_token();
                                     <br> 
                                   <?php endforeach ?> 
                                 </div>
-                            </div>
-
+                            </div> 
                             <div class="widget filter-offer "   ">
                                 <h3 class="sb-title open">
                                     Genero
@@ -242,7 +241,11 @@ $mi_tokken=csrf_token();
                                     <p class="flchek">
                                         <input  <?= $tilde?> onclick="document.getElementById('form_filter').submit();" id="genero_<?= $key;?>" name="genero" type="radio" value="<?= $key?>">
                                             <label for="genero_<?= $key;?>" id="label_genero_<?= $key;?>">
-                                                <?= $key?>
+                                                 <?php if ($key=='Cualquiera'): ?>
+                                                  Ambos 
+                                                 <?php else: ?>
+                                                  <?= $key?>
+                                                 <?php endif ?> 
                                             </label>
                                             (<?= $value?>)
                                         </input>
@@ -289,7 +292,11 @@ $mi_tokken=csrf_token();
                                     <p class="flchek">
                                         <input <?= $tilde?> onclick="document.getElementById('form_filter').submit();" id="nivel_estudio_<?= $key;?>" name="nivel_estudio" type="radio" value="<?= $key?>">
                                             <label for="nivel_estudio_<?= $key;?>" id="label_nivel_estudio_<?= $key;?>">
-                                                <?= $key?>
+                                                <?php if ($key=='Cualquiera'): ?>
+                                                  Sin Definir 
+                                                 <?php else: ?>
+                                                  <?= $key?>
+                                                 <?php endif ?>  
                                             </label>
                                             (<?= $value?>)
                                         </input>
