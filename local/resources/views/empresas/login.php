@@ -37,7 +37,7 @@
                                                     </div>
                                                 </input>
                                             </fieldset>
-                                            <fieldset class="form-group position-relative has-icon-left" style="padding-top: 15px;">
+                                            <fieldset class="form-group position-relative has-icon-left" style="margin-top: 15px;">
                                                 <input class="form-control form-control-lg input-lg" id="clave" placeholder="Clave" required="" type="password">
                                                     <div class="form-control-position">
                                                         <i class="icon-key3">

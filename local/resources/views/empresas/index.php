@@ -22,6 +22,16 @@
         <link href="<?= $ruta;?>app-assets/css/core/menu/menu-types/vertical-menu.css" rel="stylesheet" type="text/css"/>
         <link href="<?= $ruta;?>app-assets/css/core/menu/menu-types/vertical-overlay-menu.css" rel="stylesheet" type="text/css"/>
         <link href="<?= $ruta;?>assets/css/style.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css" media="screen">
+            .alert-info-2
+            {
+                background-color: #ff9600;
+            }
+            html,body
+            {
+                overflow-x: hidden;
+            }
+        </style>
     </head>
 </html>
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-col="2-columns" data-menu="vertical-menu" data-open="click">
@@ -35,12 +45,29 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-xs-12 mb-1">
-                    <h2 class="content-header-title">
+                    <h2 class="content-header-title" style="margin-bottom: 0px;padding-bottom: 0px;">
                         Bienvenido
                     </h2>
                 </div>
                  
             </div>
+            <?php
+            function sugerido($recomendados)
+            {
+                $cantidad=count($recomendados);
+                if($cantidad>0)
+                {
+                    return $recomendados[rand(0,$cantidad-1)];
+                }
+            }
+            $recomendados= sugerido($recomendados);
+     
+            ?>
+            <p style="font-weight: 600">Candidato sugerido</p>
+             <div  class="alert alert-info-2 alert-dismissible fade in mb-2" role="alert" style="padding: 5px;"> 
+                                    <img style="border-radius: 50%;height: 50px;width: 50px;border:2px solid #fff;>" src="../uploads/min/<?= $recomendados->nombre_aleatorio;?>">
+                                    <strong><span style="color: #fff"><?= $recomendados->nombre;?></span></strong> <a target="_blank" style="float: right;text-decoration: underline;margin-top:12px;" href="../reporte/<?= $recomendados->id;?>" class="alert-link">Dercargar CV</a>.
+                   </div>
             <div class="content-body">
                 <!-- Basic form layout section start -->
                 <div class="row" style="margin-bottom: 20px;">
@@ -60,7 +87,8 @@
                         </div> 
                     </div>
                         </div>
-                        <div class="col-sm-4">
+                       <div class="row">
+                            <div class="col-sm-4">
                              <div class="col-xl-12 col-lg-12 col-xs-12">
                                     <div class="card" style="margin-bottom: 6px;">
                                         <div class="card-body">
@@ -115,14 +143,17 @@
                                     </div>
                              </div>
                         </div>
-                </div>
+                       </div>
+                    </div>
+                
                     <div class="alert alert-info alert-dismissible fade in mb-2" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                     <strong>Hola Jobbers!</strong> Esperamos que te guste tu nuevo panel. Recuerda completar la información de tu empresa para poder ofrecerte un mejor servicio. <br> <a href="perfil" class="alert-link">Ver mi informacion</a>.
-                                </div>
-            
+                   </div>
+              
+             
                  <div class="row">
                      <div class="col-xl-3 col-lg-6 col-xs-12">
                         <div class="card">

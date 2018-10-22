@@ -12,6 +12,9 @@ class con_company_postulados extends Controller
     public function get_postulados()
     {
 
+    	$edad=$_POST['edad'];
+    	$genero=$_POST['genero'];
+    	$experiencia=$_POST['experiencia'];
     	$filtro="";
     	if($_POST['orden']!=null)
     	{	$o =$_POST['orden'];
@@ -25,18 +28,44 @@ class con_company_postulados extends Controller
     	}
     	else
     	{
-    		$filtro =" AND  t1.marcador ='' OR t1.marcador > 0"; 
+    		//$filtro =" AND  t1.marcador ='' OR t1.marcador > 0"; 
     	}
-    	$sql="SELECT t1.visto, t1.id_usuario as id,t1.id_oferta, t2.nombres as nombre,t4.archivo,t1.marcador FROM tbl_company_postulados t1
+
+    	if($edad!="")
+    	{
+    		$text='TIMESTAMPDIFF(YEAR,t2.fecha_nac,CURDATE())';
+    		if($edad=="1520"){$filtro =  $filtro ." AND ".$text." >= 15 AND  ".$text."  <= 20 ";}
+    		else if($edad=="2125"){$filtro =  $filtro ." AND  ".$text."  >= 21 AND  ".$text."  <= 25 ";}
+    		else if($edad=="2635"){$filtro =  $filtro ." AND  ".$text."  >= 26 AND  ".$text."  <= 35 ";}
+    		else if($edad=="3645"){$filtro =  $filtro ." AND  ".$text."  >= 36 AND  ".$text."  <= 45 ";}
+    		else if($edad=="45"){$filtro =  $filtro ." AND  ".$text."  > 45 ";} 
+    	}
+    	if($experiencia!="")
+    	{
+    		if($experiencia=="si")
+    		{
+    			{$filtro =  $filtro ." AND t5.experiencia > 0 ";} 
+    		}
+    		else if($experiencia=="no"){$filtro =  $filtro ." AND t5.experiencia is null ";} 
+    	}
+    	if($genero!="")
+    	{
+    		 $filtro =  $filtro ." AND t2.id_sexo = ".$genero.""; 
+    	}
+
+    	$sql=" SELECT t5.experiencia, t1.visto, t1.id_usuario as id,t1.id_oferta, t2.nombres as nombre,t4.archivo,t1.marcador,TIMESTAMPDIFF(YEAR,t2.fecha_nac,CURDATE()) AS edad,t2.id_sexo FROM tbl_company_postulados t1
 		INNER JOIN tbl_candidato_datos_personales t2 ON t2.id_usuario = t1.id_usuario
 		LEFT JOIN tbl_usuarios_foto_perfil t3 ON t3.id_usuario = t1.id_usuario
-		INNER JOIN tbl_archivos t4 ON t4.id = t3.id_foto 
+		INNER JOIN tbl_archivos t4 ON t4.id = t3.id_foto
+        LEFT JOIN (SELECT id_usuario, count(id) as experiencia FROM tbl_candidato_experiencia_laboral GROUP by id_usuario) t5 ON t5.id_usuario = t1.id_usuario 
 		WHERE t1.id_oferta =".$_POST['publicacion']." ".$filtro."   
 		GROUP BY t1.id_usuario
+		
 		"; 
-		$datos=DB::select($sql);
 		 
-		echo json_encode($datos);
+		 $datos=DB::select($sql);
+		 
+		 echo json_encode($datos);
     }
 
     public function marcador()
@@ -55,7 +84,7 @@ class con_company_postulados extends Controller
     public function get_cv()
     {
     	$sql_info_general="
-    	SELECT t1.correo,
+    	SELECT t1.correo,t1.id AS id_usuario,
 		concat(t2.nombres,' ',t2.apellidos) as nombres,
 		TIMESTAMPDIFF(YEAR,t2.fecha_nac,CURDATE()) AS edad,
 		t2.fecha_nac,

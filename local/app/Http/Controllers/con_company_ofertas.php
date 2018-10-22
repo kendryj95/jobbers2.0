@@ -22,7 +22,9 @@ class con_company_ofertas extends Controller
     	$sql_genero="SELECT * FROM tbl_generos";
     	$sql_turno="SELECT * FROM tbl_turnos";
         $sql_salarios="SELECT * FROM tbl_rango_salarios";
-    	
+    	$sql_plantillas ="SELECT * FROM tbl_company_ofertas WHERE plantilla ='SI' AND  id_empresa=".session()->get('company_id')."";
+
+        $vista->plantillas=DB::select($sql_plantillas);
         $vista->salarios=DB::select($sql_salarios);
         $vista->provincias=DB::select($sql_provincias);
     	$vista->disponibilidad=DB::select($sql_disponibilidad);
@@ -40,16 +42,19 @@ class con_company_ofertas extends Controller
 
     public function get_ofertas()
     {
+        $sql_plantillas ="SELECT * FROM tbl_company_ofertas WHERE plantilla ='SI' AND  id_empresa=".session()->get('company_id')."";
+        $plantillas=DB::select($sql_plantillas);
     	$sql="
         SELECT t1.*,COUNT(t2.id) as cantidad FROM tbl_company_ofertas t1
         LEFT JOIN tbl_company_postulados t2 ON t2.id_oferta  = t1.id       
-        WHERE  t1.id_empresa= ".session()->get('company_id')."
-        GROUP BY t2.id_oferta
+        WHERE  t1.id_empresa= ".session()->get('company_id')." AND t1.plantilla !='SI'
+        GROUP BY t1.id
         ORDER BY COUNT(t2.id) DESC
         ";
     	try {
     		$datos=DB::select($sql); 
-    		echo json_encode($datos);
+            $obj = (object) array('ofertas' => $datos,'plantillas' => $plantillas);
+    		echo json_encode($obj);
     	} catch (\Illuminate\Database\QueryException $ex) {
     		 $this->auditar('con_company_ofertas - get_ofertas',str_replace("'", "",$ex->getMessage()),'');
     		 abort(500); 
@@ -59,7 +64,8 @@ class con_company_ofertas extends Controller
     public function get_oferta()
     {
     	if($_POST['id']!=""){
-    	$sql="SELECT * FROM tbl_company_ofertas WHERE id_empresa = ".session()->get('company_id')." AND id =".$_POST['id']."";
+    	$sql="SELECT * FROM tbl_company_ofertas WHERE id_empresa = ".session()->get('company_id')." AND id =".$_POST['id']."
+        ";
 
     	try {
     		$datos=DB::select($sql);
@@ -124,6 +130,15 @@ class con_company_ofertas extends Controller
  	     {
  	     	$_POST['idiomas']=array('0'=>'Español'); 
  	     }
+
+         $plantilla="NO";
+         $plantilla_titulo="";
+         if($_POST["theme"]=="1")
+         {
+            $plantilla="SI";
+            $_POST['tipo_oferta']='1';
+         }
+        
     	 $campos_editar='    	 
     	 alias ="'.$_POST['alias'].'",
          experiencia ="'.$_POST['experiencia'].'",
@@ -144,11 +159,11 @@ class con_company_ofertas extends Controller
     	 turno ="'.$_POST['turno'].'",
     	 genero ="'.$_POST['genero'].'",
     	 edad ="'.$_POST['edad'].'",
-    	 habilidades ="'.$this->arreglos($_POST['habilidades']).'",
+    	 habilidades ="'.$this->arreglos($_POST['habilidades']).'", 
     	 idiomas ="'.$this->arreglos($_POST['idiomas']).'"';
     	 $campos='
-    	 (
-          experiencia,
+    	 ( 
+         experiencia,
          salario,
     	 id_empresa,
     	 alias,
@@ -174,15 +189,15 @@ class con_company_ofertas extends Controller
     	 destacar,
     	 plantilla,
     	 plantilla_titulo,
-    	 plantilla_descripcion,
-    	 fecha_creacion  
+    	 plantilla_descripcion, 
+    	 fecha_creacion
     	 )';
 
     	  $valores="
-    	 (
-    	 ".session()->get('company_id').",
+    	 ( 
           '".$_POST['experiencia']."',
          '".$_POST['salarios']."',
+          ".session()->get('company_id').",
     	 '".$_POST['alias']."',
     	 '".$_POST['titulo']."',
     	 '".$_POST['descripcion']."',
@@ -204,8 +219,8 @@ class con_company_ofertas extends Controller
     	 '".$this->arreglos($_POST['idiomas'])."',
     	 1,
     	 0,
-    	 'NO',
-    	 '',
+    	 '".$plantilla."',
+    	 '".$_POST['theme_title']."',
     	 '',
     	 '".Date('Y-m-d')."' 
     	 )";
@@ -215,8 +230,16 @@ class con_company_ofertas extends Controller
 	    	 	if($_POST['tipo_oferta']=='1')
 	    	 	{
 	    	 		 $sql="INSERT INTO tbl_company_ofertas ".$campos." VALUES ".$valores."";
-	    	 		 DB::insert($sql);
-    	 			 echo 'Oferta publicada con éxito.'; 
+	    	 		 
+                     DB::insert($sql);
+                     if($plantilla=="SI")
+                     {
+                         echo 'Plantilla guardada con éxito.'; 
+                     }else
+                     {
+                         echo 'Oferta publicada con éxito.'; 
+                     }
+    	 			
 	    	 	}
 	    	 	else
 	    	 	{

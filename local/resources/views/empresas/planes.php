@@ -90,13 +90,12 @@
                                                                  <li>Tiempo ilimitado</li>
                                                                  <li>Ver todos los postulados</li>
                                                                  <li class="rayar">Publicidad</li>
-                                                                 <li>Recomendación Jobbers</li>
-                                                                 <li>Evaluación de candidatos por Jobbers</li>
+                                                                 <li>Recomendación Jobbers</li> 
                                                                  <li>Listado de candidatos con filtros <span class="tag tag-warning">Proximamente</span></li>
                                                                  <li>Acceso a CV descargable de los candidatos</li>
                                                                  <li>Marcador de cantidatos: <span style="font-size: 11px;"><strong>(Visto, Finalista, Contactado, Entrevistado, Descartado, Contratado)</strong></span></li>
                                                                  <li>Video de YouTube</li>
-                                                                 <li>Plantillas de publicacións</li>
+                                                                 <li>Plantillas de publicación</li>
                                                                  <li>Editar Ofertas</li> 
                                                              </ul>
                                                          </div>
@@ -130,7 +129,7 @@
                                                                  <li>Acceso a CV descargable de los candidatos</li>
                                                                  <li>Marcador de cantidatos: <span style="font-size: 11px;"><strong>(Visto, Finalista, Contactado, Entrevistado, Descartado, Contratado)</strong></span></li>
                                                                  <li>Video de YouTube</li>
-                                                                 <li  class="rayar">Plantillas de publicacións</li>
+                                                                 <li  class="rayar">Plantillas de publicación</li>
                                                                  <li class="rayar">Editar Ofertas</li> 
                                                              </ul>
                                                          </div>

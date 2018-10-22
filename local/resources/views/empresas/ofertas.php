@@ -91,6 +91,31 @@ function select_options($habilidades_json){
         <?php include('includes/aside.php')?>
     </div>
     <!-- / main menu-->
+    <!-- Modal -->
+        <div id="modal_plantilla" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nueva plantilla</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="row">
+                   <div class="col-sm-12">
+                     <label for="">Nombre</label>
+                     <input id="nombre_plantilla" type="text" class="form-control" name="">
+                   </div>
+                 </div>
+              </div>
+              <div class="modal-footer">
+                <button onclick="publicar(1)" type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
     <div id="modal_loader" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" > 
@@ -101,8 +126,53 @@ function select_options($habilidades_json){
             </div> 
           </div> 
         </div>
-      </div>
+      </div> 
+          <!-- Modal -->
+          <div id="modal_filtros" class="modal fade" role="dialog">
+            <div class="modal-dialog"> 
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Filtros</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                      <div class="col-sm-4">
+                      <label for="" style="font-weight: 600;">Edad</label> 
+                      <select id="filtro_edad" class="form-control">
+                        <option value="">Edad</option> 
+                         <option value="1520">15 - 20</option> 
+                         <option value="2125">21 - 25</option> 
+                         <option value="2635">26 - 35</option> 
+                         <option value="3645">36 - 45</option> 
+                         <option value="45">Mayor de 45</option> 
+                      </select>
+                  </div>
+                   <div class="col-sm-4">
+                     <label for="" style="font-weight: 600;">Género</label>
+                     <select id="filtro_genero" class="form-control">
+                        <option value="">Género</option>
+                         <option value="1">Masculino</option> 
+                        <option value="2">Femenino</option>
+                      </select>
+                  </div>
+                   <div class="col-sm-4">
+                     <label for="" style="font-weight: 600;">Experiencia laboral</label>
+                     <select id="filtro_experiencia" class="form-control">
+                        <option value="">Experiencia</option> 
+                        <option value="si">Si</option> 
+                         <option value="no">No</option> 
+                      </select>
+                  </div>
+                  </div>
+                </div>
+                <div class="modal-footer" id="btn_filtros">
+                  
+                </div>
+              </div>
 
+            </div>
+          </div>
 
     <div class="app-content content container-fluid">
         <div class="content-wrapper" style="margin-right: 20px;">
@@ -159,10 +229,12 @@ function select_options($habilidades_json){
                                                         <div class="row">
                                                           <div class="col-sm-12">
                                                           <ul class="nav navbar-nav" style="text-align: right;">
-                                                           <li class=""><a style="" href="#" data-toggle="dropdown" class="nav-link dropdown-user-link" aria-expanded="true"></i><img src="<?= $ruta?>app-assets/images/icons/sort.png" alt=""></a>
+                                                           <li style="float: right;" class=""><a style="" href="#" data-toggle="dropdown" class="nav-link dropdown-user-link" aria-expanded="true"><img src="<?= $ruta?>app-assets/images/icons/sort.png" alt=""></a>
                                                             <div class="dropdown-menu dropdown-menu-right" id="ordenador">
                                                              
                                                             </div>
+                                                          </li>
+                                                           <li class="" style="float: right;margin-right: 15px;padding-top: 6px;"><a style="" href="#" data-toggle="modal" data-target="#modal_filtros"><img style="height: 22px;" src="<?= $ruta?>app-assets/images/icons/funnel.png" alt=""></a> 
                                                           </li>
                                                          </ul>
                                                         </div>
@@ -185,9 +257,13 @@ function select_options($habilidades_json){
                                                              <br><br>
                                                              <span class="info-cv info-cv-nombre" style="margin-top: 10px;color: #fff;background-color: #306bff;border-radius: 5px;padding-right: 5px;padding-left: 5px;">Victor Fernández</span>
                                                              <br>
-                                                             <p class="info-cv info-cv-sobre-mi" style="padding: 10px;background-color: #fff;border:1px solid #e4e4e4;  border-radius: 10px;margin-top: 10px;">Soy una persona dinámicay pro activa con muchas ganas de salir adelante. Soy perfeccionista soy de los que cree firmemente que porque hacer las cosas bien cuando se pueden hacer excelentes.</p>
+                                                            
+                                                             <p class="info-cv info-cv-sobre-mi" style="padding: 10px;background-color: #fff;border:1px solid #e4e4e4;  border-radius: 10px;margin-top: 10px;">Soy una persona dinámica y pro activa con muchas ganas de salir adelante. Soy perfeccionista soy de los que cree firmemente que porque hacer las cosas bien cuando se pueden hacer excelentes.</p>
                                                              <div id="contenedor_marcadores" class="col-sm-12" style="text-align: center;">
                                                                 <h5 style="">Marcadores</h5>
+                                                               
+                                                             </div>
+                                                              <div class="info-cv reporte-cv" style="padding-top: 45px;">
                                                                
                                                              </div>
                                                           </div>
@@ -339,8 +415,9 @@ function select_options($habilidades_json){
                                                     <div class="col-md-4" > 
                                                         <div class="form-group">
                                                             <label>Alias</label>
-                                                            <textarea id="tipo_oferta" name="" style="height: 35px;resize: none;overflow-y: hidden;display: none;" class="form-control">1</textarea>
+                                                            <textarea id="tipo_oferta" name="" style="height: 35px;resize: none;overflow-y: hidden;display: none;" class="form-control"></textarea>
                                                             <textarea id="publicacion" name="" style="height: 35px;resize: none;overflow-y: hidden;display: none;" class="form-control">0</textarea>
+                                                            <textarea id="plantilla" name="" style="height: 35px;resize: none;overflow-y: hidden;display: none;" class="form-control">0</textarea>
                                                        
                                                             <textarea id="alias" placeholder="Ejemplo: Secretaria para Daniel" name="" style="height: 35px;resize: none;overflow-y: hidden;" class="form-control"></textarea>
                                                         </div>
@@ -349,6 +426,13 @@ function select_options($habilidades_json){
                                                         <div class="form-group">
                                                             <label>Título</label>
                                                             <textarea id="titulo"  placeholder="Ejemplo: Se solicita secretaria" name="" style="height: 35px;resize: none;overflow-y: hidden;" class="form-control"></textarea>
+                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-4" > 
+                                                        <div class="form-group">
+                                                            <label>Mis plantillas</label>
+                                                            <select id="cbn_plantilla" onchange="oferta(this.value,1)" class="form-control"> 
+                                                            </select>
                                                          </div>
                                                     </div>
                                                         </div> 
@@ -427,7 +511,7 @@ function select_options($habilidades_json){
                                                             <label>Nivel de estudio</label>
                                                             <select id="nivel_estudio" class="form-control">
                                                                 <option value="">Seleccionar</option>
-                                                                <option value="Cualquiera">Cualquiera</option>
+                                                                <option value="Cualquiera">Sin Definir</option>
                                                                 <?php foreach ($nivel_estudio as $key): ?>
                                                                     <option value="<?= $key->descripcion?>"><?= $key->descripcion?></option>
                                                                 <?php endforeach ?>
@@ -492,7 +576,7 @@ function select_options($habilidades_json){
                                                             <label>Genero</label>
                                                             <select id="genero"  class="form-control">
                                                                    <option value="">Seleccionar</option>
-                                                                   <option value="Cualquiera">Cualquiera</option>
+                                                                   <option value="Cualquiera">Ambos</option>
                                                                 <?php foreach ($genero as $key): ?>
                                                                     <option value="<?= $key->descripcion?>"><?= $key->descripcion?></option>
                                                                 <?php endforeach ?>
@@ -504,7 +588,7 @@ function select_options($habilidades_json){
                                                             <label>Edad</label>
                                                             <select  id="edad" class="form-control">
                                                                 <option value="">Seleccionar</option>
-                                                                <option value="Cualquiera">Cualquiera</option>
+                                                                <option value="Cualquiera">Sin Definir</option>
                                                                 <option value="15 - 25">15 - 25</option>
                                                                 <option value="25 - 35">25 - 35</option>
                                                                 <option value="35 - 45">35 - 45</option>
@@ -560,6 +644,7 @@ function select_options($habilidades_json){
                                                  </div> 
                                                 <div class="row">
                                                     <div class="col-sm-12" style="text-align: right;">
+                                                       <button style="margin-right: 15px;" type="button" onclick="" class="btn btn-warning" data-toggle="modal" data-target="#modal_plantilla">Crear plantilla</button>
                                                          <button id="titulo_boton" type="button" onclick="publicar()" class="btn btn-primary">Publicar</button>
                                                     </div>
                                                 </div>
@@ -653,9 +738,19 @@ function select_options($habilidades_json){
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
-         function oferta(publicacion) {
-            editar(publicacion);
-            loading();
+         function oferta(publicacion,plantilla = null) {
+
+         
+              if(plantilla==null)
+              { 
+            
+                editar(publicacion);
+              } 
+              else
+              {
+                 nueva();
+              }
+           
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -730,7 +825,10 @@ function select_options($habilidades_json){
 
         //Obtener los postulados
         function get_postulados(identificador,ordenar = null) {
-          loading();
+            $("#modal_filtros").modal("hide");
+            
+            if(identificador==""){return 0;}
+ 
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -739,15 +837,27 @@ function select_options($habilidades_json){
             $.ajax({
                 url: 'postulados',
                 type: 'POST',
-                data:{publicacion:identificador,orden:ordenar}, 
+                data:{
+                  publicacion:identificador,
+                  orden:ordenar,
+                  edad:$("#filtro_edad").val(),
+                  experiencia:$("#filtro_experiencia").val(),
+                  genero:$("#filtro_genero").val(),
+                }, 
                 dataType:'json',
                 success: function(response) {
-                  
+                  $("#filtro_edad").val("");
+                  $("#genero").val("");
+                  $("#experiencia").val("");
+                        
                    $("#candidatos_list").html("");
                    
                   var JSONArray = jQuery.parseJSON(JSON.stringify(response));
+                  var boton = '<button onclick="get_postulados('+JSONArray[0].id_oferta+')" type="button" class="btn btn-primary">Aplicar</button> ';
                    var ordenador =' <a onClick="get_postulados('+JSONArray[0].id_oferta+',1)" href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 1</a> <a  onClick="get_postulados('+JSONArray[0].id_oferta+',2)"  href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 2</a> <a  onClick="get_postulados('+JSONArray[0].id_oferta+',3)"  href="#" class="dropdown-item"><i class="icon-check"></i> Marcador 3</a> <div class="dropdown-divider"></div><a  onClick="get_postulados('+JSONArray[0].id_oferta+',0)" href="#" class="dropdown-item"><i class="icon-eye"></i> No leidos</a><a  onClick="get_postulados('+JSONArray[0].id_oferta+',null)" href="#" class="dropdown-item"><i class="icon-file-text"></i> Ver todo</a>';
                    $("#ordenador").html(ordenador);
+                   $("#btn_filtros").html(boton);
+
                   var candidato=""; 
                   jQuery.each(JSONArray, function(index, dato) {
                       var visto="";
@@ -784,7 +894,7 @@ function select_options($habilidades_json){
 
         //Marcador
            function marcador(identificador,publicacion,marcar) {
-            loading(); 
+             
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -824,7 +934,7 @@ function select_options($habilidades_json){
         }  
         //Obtener CV 
         function get_cv(identificador,publicacion) {
-            loading();
+            
 
             $.ajaxSetup({
                 headers: {
@@ -836,10 +946,7 @@ function select_options($habilidades_json){
                 type: 'POST',
                 data:{candidato:identificador,oferta:publicacion}, 
                 dataType:'json',
-                success: function(response) {
-                 
-
-
+                success: function(response) { 
                   $(".info-cv").html("");
                   $("#contenedor_marcadores").html(); 
                   $(".info-cv-imagen").attr('src','https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png');
@@ -868,6 +975,7 @@ function select_options($habilidades_json){
                         $(".info-cv-hijos").html(dato.hijos);
                         $(".info-cv-direccion").html(dato.pais+' '+dato.provincia+' '+dato.localidad+' '+dato.direccion); 
                         $(".info-cv-fecha-nacimiento").html(dato.fecha_nac);
+                        $(".reporte-cv").html('<a href="../reporte/'+dato.id_usuario+'" target="_blank">Descagar CV</a>')
                         $(".info-cv-sobre-mi").html(dato.sobre_mi);
                         $(".info-cv-imagen").attr('src','../uploads/min/'+dato.img);
                         
@@ -941,15 +1049,22 @@ function select_options($habilidades_json){
                     var contenido='';
                      $("#total").text('0');
                      $("#tabla-resumen").html('');
+                     $("#cbn_plantilla").html('');
                      $("#select_ofertas").html('');
                      $("#select_ofertas").append('<option value="">Seleccionar oferta</option>'); 
-                    var JSONArray = jQuery.parseJSON(JSON.stringify(response));
+                    var JSONArray = jQuery.parseJSON(JSON.stringify(response)); 
                     var contador=0;
                     var activa='<span>Activa</span>';
                     var pausada='<span class="tag tag-success" style="background-color:#00b1ff;">Pausada</span>';
                     var boton="";
+                    var c_plantillas="<option value=''>Seleccionar</option>";
                     var alias="Ésta publicación no posee alias"; 
-                     jQuery.each(JSONArray, function(index, dato) { 
+                    jQuery.each(JSONArray.plantillas, function(index, dato) 
+                     {
+                      c_plantillas=c_plantillas+"<option value='"+dato.id+"'>"+dato.plantilla_titulo+"</option>";
+                     }); 
+                     $("#cbn_plantilla").html(c_plantillas);
+                     jQuery.each(JSONArray.ofertas, function(index, dato) { 
                         contador++;
                         if(dato.alias!="")
                         {
@@ -968,11 +1083,11 @@ function select_options($habilidades_json){
                         
                          $("#select_ofertas").append('<option value="'+dato.id+'">'+alias+'</option>');
 
-                        contenido=contenido+'<tr class="sp"> <td class="text-truncate sp" style="padding:2px;"><a href="#" style="color:#282828;">'+alias+'</a></td><td class="text-truncate sp" style="padding:2px;"><span onclick="get_postulados('+dato.id+')" style="cursor:pointer;">'+dato.cantidad+'</span> </td><td class="valign-middle" style="padding:2px;"> '+dato.vistas+' </td><td class="text-truncate sp" style="padding:2px;">'+estatus+'</td><td class="text-truncate sp" style="padding:2px;"> <a title="Ver" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/ver.png" alt="">'+boton+' <span onclick="oferta('+dato.id+')" title="Editar" style="margin-left: 5px;" ><img style="height: 20px;cursor:pointer;" src="<?=$ruta?>/app-assets/images/icons/ofertas/editar.png" alt=""></span> <a onclick="eliminar('+dato.id+')" title="Eliminar" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/eliminar.png" alt=""></a> </td></tr>';
+                        contenido=contenido+'<tr class="sp"> <td class="text-truncate sp" style="padding:2px;"><a href="#" style="color:#282828;">'+alias+'</a></td><td class="text-truncate sp" style="padding:2px;"><span onclick="get_postulados('+dato.id+')" style="cursor:pointer;color:#0645AD;text-decoration:underline;">'+dato.cantidad+'</span> </td><td class="valign-middle" style="padding:2px;"> '+dato.vistas+' </td><td class="text-truncate sp" style="padding:2px;">'+estatus+'</td><td class="text-truncate sp" style="padding:2px;"> <a title="Ver" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/ver.png" alt="">'+boton+' <span onclick="oferta('+dato.id+')" title="Editar" style="margin-left: 5px;" ><img style="height: 20px;cursor:pointer;" src="<?=$ruta?>/app-assets/images/icons/ofertas/editar.png" alt=""></span> <a onclick="eliminar('+dato.id+')" title="Eliminar" style="margin-left: 5px;" href="#"><img style="height: 20px;" src="<?=$ruta?>/app-assets/images/icons/ofertas/eliminar.png" alt=""></a> </td></tr>';
                     });
                      $("#total").text(contador);
                      $("#tabla-resumen").append(contenido);
-                      loading();
+                      
                 },
                 error: function(error) {
                     $.notify("Ocurrió un error al procesar la solicitud.");
@@ -1029,9 +1144,9 @@ function select_options($habilidades_json){
    <script> 
        
        
-      function publicar() 
+      function publicar(theme_par = 0) 
        {
-        
+         
            if(!validar_r('alias')){}
            else if(!validar_r('titulo')){} 
            else if(!validar_r('pais')){}
@@ -1076,8 +1191,10 @@ function select_options($habilidades_json){
                 experiencia:$('#experiencia').val(),
                 habilidades:$('#habilidades').val(),
                 idiomas:$('#idiomas').val(),
-                tipo_oferta:$('#tipo_oferta').val(),
+                tipo_oferta:$('#tipo_oferta').html(),
                 publicacion:$('#publicacion').html(),
+                theme:theme_par,
+                theme_title:$("#nombre_plantilla").val(),
 
                     }
                         $.ajaxSetup({
@@ -1089,13 +1206,12 @@ function select_options($habilidades_json){
                             url: 'publicar',
                             type: 'POST',
                             data:datos,  
-                            success: function(response) { 
+                            success: function(response) {  
                                     if(response=='0')
                                     {
                                         $.notify('Debe arregar alguna habilidad',"info");
                                         return 0;
-                                    }
-                                    
+                                    } 
                                      $.notify(response,"success");
                                      $("select, input, textarea").val('');
                                      $("#pais").val('Argentina');
